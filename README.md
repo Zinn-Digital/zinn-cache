@@ -6,7 +6,10 @@ Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zi
 
 ## Download
 
-- **[Download the latest release](../../releases/latest)** — the zip is attached to every release here.
+- **[Download the latest version from zinndigital.com](https://zinndigital.com/wordpress-plugins)** — always current, no account needed.
+- Or take the zip from [Releases](../../releases/latest) here on GitHub.
+
+Both are the same file. The download page is the canonical one: it is served from our own infrastructure and is what the plugin's own updater checks against.
 
 ## Requirements
 
@@ -34,7 +37,7 @@ On a site we host this plugin keeps itself up to date. On your own WordPress it 
 - **[zinn-connector](https://github.com/Zinn-Digital/zinn-connector)** — Connect any WordPress site to Zinn Digital® so scheduled articles publish to it. Pair with a code from your dashboard.
 - **[zinn-reseller](https://github.com/Zinn-Digital/zinn-reseller-toolkit)** — Sell Zinn Digital® hosting from your own WordPress site — domain search, one-click client sign-in, and WooCommerce provisioning.
 
-All of them are free, and each has its zip attached to its latest release.
+All of them are free to download from https://zinndigital.com/wordpress-plugins.
 
 ## Support
 
