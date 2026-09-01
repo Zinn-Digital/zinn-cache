@@ -1,6 +1,6 @@
 # Zinn® Cache
 
-Server-side cache control for the LiteSpeed (LSCache) full-page cache, with smart auto-purge, a Redis object-cache toggle, and safe cache exclusions.
+Cache control for sites hosted with Zinn Digital® — auto-purge, remote purge from your dashboard, a Redis object cache and one-click admin login.
 
 Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zinndigital.com
 
@@ -33,9 +33,11 @@ On a site we host this plugin keeps itself up to date. On your own WordPress it 
 
 ## Our other WordPress plugins
 
-- **[zinn-cache-pro](https://github.com/Zinn-Digital/zinn-cache-pro)** — Full-page, object, database and CSS/JS optimisation for WordPress on LiteSpeed. A GPLv3 fork of LiteSpeed Cache.
+- **[zinn-cache-pro](https://github.com/Zinn-Digital/zinn-cache-pro)** — A complete caching and optimisation engine — full-page cache, object cache, database cleanup and CSS/JS optimisation — for WordPress sites hosted somewhere that provides no cache layer. On Zinn Digital® hosting, install Zinn® Cache instead. A GPLv3 fork of LiteSpeed Cache.
 - **[zinn-connector](https://github.com/Zinn-Digital/zinn-connector)** — Connect any WordPress site to Zinn Digital® so scheduled articles publish to it. Pair with a code from your dashboard.
+- **[zinn-offload](https://github.com/Zinn-Digital/zinn-offload)** — Move a WordPress media library to Zinn® object storage and serve it from a CDN. Configured from the Zinn® dashboard — no access key is ever typed into WordPress.
 - **[zinn-reseller](https://github.com/Zinn-Digital/zinn-reseller-toolkit)** — Sell Zinn Digital® hosting from your own WordPress site — domain search, one-click client sign-in, and WooCommerce provisioning.
+- **[zinn-translate](https://github.com/Zinn-Digital/zinn-translate)** — Serve a Zinn Digital®-translated site in every language, each on its own web address, with correct hreflang tags. Renders finished translations; generates none.
 
 All of them are free to download from https://zinndigital.com/wordpress-plugins.
 

@@ -1040,7 +1040,16 @@ class WP_Object_Cache {
  * the global `wp_cache_*` functions in this single file. The sniffs that would object to that
  * (SeparateFunctionsFromOO / PrefixAllGlobals / FileName / GlobalVariablesOverride) are scoped out
  * for this path in phpcs.xml.dist.
+ *
+ * ⛔⛔ AND THAT SCOPING IS NOT ENOUGH, BECAUSE IT ONLY BINDS OUR OWN PHPCS RUN. The
+ * wordpress.org directory's own tool — the Plugin Check plugin — carries its own ruleset and
+ * never reads our `phpcs.xml.dist`, so it reported all twelve of these as
+ * `PrefixAllGlobals.NonPrefixedFunctionFound`. The names are not ours to prefix: `wp_cache_get`
+ * IS the WordPress cache API, and a drop-in that prefixed them would define nothing WordPress
+ * calls and silently cache nothing at all. So the suppression is inline, where any reviewer
+ * running that tool will read it, rather than only in a config file they will never open.
  */
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- These ARE the WordPress object-cache API function names; a drop-in that renamed them would be dead code. See the note above.
 
 if ( ! function_exists( 'wp_cache_init' ) ) {
 	/**
@@ -1357,3 +1366,5 @@ if ( ! function_exists( 'wp_cache_supports' ) ) {
 }
 
 $GLOBALS['wp_object_cache'] = new WP_Object_Cache();
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound

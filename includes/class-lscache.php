@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Two integration modes, chosen automatically and degrading gracefully:
  *
- *  - **A cache-engine plugin present** — Zinn Cache Pro (our GPL-3.0 fork, which ships
+ *  - **A cache-engine plugin present** — Zinn Cache Engine (our GPL-3.0 fork, which ships
  *    in the same deploy footprint) or the third-party LiteSpeed Cache plugin. We defer
  *    page caching to it and route purges through its public actions
  *    (`zinn_cache_pro_purge_*` / `litespeed_purge_*`); see {@see self::CACHE_ENGINES}.
@@ -89,7 +89,7 @@ final class Lscache {
 	 * Full-page-cache engines we can hand off to, in preference order, mapped from the
 	 * constant that proves the engine is loaded to the prefix its public actions use.
 	 *
-	 * Zinn Cache Pro is our own GPL-3.0 fork of LiteSpeed Cache and ships in the same
+	 * Zinn Cache Engine is our own GPL-3.0 fork of LiteSpeed Cache and ships in the same
 	 * deploy footprint as this plugin, so it is checked FIRST — if both were somehow
 	 * active we hand off to ours. The fork renames every global it inherits (that is what
 	 * makes it a distinct plugin rather than a colliding copy), so it answers to
@@ -104,7 +104,7 @@ final class Lscache {
 	);
 
 	/**
-	 * Whether a full-page-cache engine plugin (Zinn Cache Pro, or the third-party
+	 * Whether a full-page-cache engine plugin (Zinn Cache Engine, or the third-party
 	 * LiteSpeed Cache plugin) is active and should own page caching on this request.
 	 *
 	 * @return bool

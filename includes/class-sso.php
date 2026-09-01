@@ -41,9 +41,8 @@ use WP_User;
  *    back to `+/` AND re-add `=`. Both are pinned by a byte-exact cross-language vector in
  *    `wp/tests/unit/SsoTest.php` and
  *    `engine/engine/access/tests/test_wp_sso_cross_language_vector.py`, because a suite that
- *    only ever mints and verifies with itself cannot see the two sides drift apart
- *    (`CLAUDE.md` §2.40) — and when they do, the only symptom is that every login says
- *    "invalid" for ever.
+ *    only ever mints and verifies with itself cannot see the two sides drift apart — and
+ *    when they do, the only symptom is that every login says "invalid" for ever.
  *
  * ## Why single-use, when the token already expires
  *

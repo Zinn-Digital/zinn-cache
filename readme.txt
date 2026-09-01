@@ -11,11 +11,18 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Server-side cache control for the LiteSpeed (LSCache) full-page cache, with smart auto-purge, a Redis object-cache toggle, and safe cache exclusions.
+Cache control for sites hosted with Zinn Digital® — auto-purge, remote purge from your dashboard, a Redis object cache and one-click admin login.
 
 == Description ==
 
-Zinn® Cache integrates a WordPress site with the server-side cache layer of the Zinn Digital® hosting platform. It is designed to run on LiteSpeed Enterprise / OpenLiteSpeed hosts with the LSCache module, and degrades gracefully wherever a cache layer is absent — caching is a per-blueprint capability.
+Zinn® Cache connects a WordPress site to the server-side cache layer of the Zinn Digital® hosting platform. It is installed for you when a Zinn® site is provisioned. It runs on LiteSpeed Enterprise / OpenLiteSpeed hosts with the LSCache module, and degrades gracefully wherever a cache layer is absent — caching is a per-blueprint capability.
+
+**Which Zinn® cache plugin do I need?** Exactly one of them:
+
+* **Hosted with Zinn Digital®** — this plugin. Your Zinn® server already runs the page cache; Zinn® Cache controls it and connects it to your dashboard.
+* **Hosted anywhere else** — install **Zinn® Cache Engine**, which brings its own caching engine.
+
+They are different plugins doing different jobs, not a free and a paid tier of one plugin. You do not need both.
 
 **What it does**
 
