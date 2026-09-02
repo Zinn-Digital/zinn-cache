@@ -272,6 +272,13 @@ final class Admin {
 				<?php wp_nonce_field( 'zinn_cache_purge_all' ); ?>
 				<?php submit_button( __( 'Purge everything now', 'zinn-cache' ), 'secondary', 'submit', false ); ?>
 			</form>
+			<?php
+			// ⛔⛔ AT THE BOTTOM OF THE SCREEN, INSIDE `.wrap`, BELOW THE CONTROLS — NEVER ABOVE
+			// THEM. Somebody who opened a settings screen came to change a setting. A promotion
+			// that pushes the thing they came for below the fold is the "disruptive upselling"
+			// a WordPress.org reviewer rejects, and it would deserve it.
+			\Zinn_Cache_Promo::render_panel();
+			?>
 		</div>
 		<?php
 	}

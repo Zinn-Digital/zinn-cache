@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Zinn® Cache
- * Plugin URI:        https://zinndigital.com
+ * Plugin URI:        https://zinndigital.com/wordpress-plugins/zinn-cache
  * Description:       For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, remote purge from your Zinn® dashboard, a Redis object-cache toggle, safe WordPress/WooCommerce exclusions, and one-click admin login. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead.
  * Version:           1.0.0
  * Requires at least: 6.6
@@ -51,3 +51,18 @@ register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );
 register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate' ) );
 
 add_action( 'plugins_loaded', array( Plugin::class, 'boot' ) );
+
+// ── The Zinn® panel ──────────────────────────────────────────────────────────────────────
+//
+// ⚖️ Owner, 2026-09-01: *"each plugin should promote our hosting and marketplace as well as
+// Zinn Hub global marketplace inside people's site in the admin dashboard"*, and *"user
+// guides for them … linked to in the plugins dashboard"*.
+//
+// ⛔ `require_once` rather than the autoloader, and a STRING callable rather than
+// `array( Zinn_Cache_Promo::class, … )`. The class is deliberately global — it is shipped
+// identically into seven plugins with different namespacing conventions, and three of them
+// bootstrap inside a namespace where `Zinn_Cache_Promo::class` would resolve to a class that does
+// not exist. A string callable is resolved in the global namespace at call time, which is
+// correct from every one of the seven. `php -l` cannot see that mistake; only running it can.
+require_once __DIR__ . '/includes/class-zinn-cache-promo.php';
+add_action( 'plugins_loaded', array( 'Zinn_Cache_Promo', 'register' ) );

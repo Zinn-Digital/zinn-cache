@@ -1,6 +1,6 @@
 === Zinn® Cache ===
 Contributors: zinndigital
-Plugin URI: https://zinndigital.com
+Plugin URI: https://zinndigital.com/wordpress-plugins/zinn-cache
 Author: Neil Lock — CEO, Zinn Digital® Ltd
 Author URI: https://zinndigital.com
 Tags: cache, page cache, object cache, redis, performance
@@ -50,6 +50,77 @@ Optionally define these constants in `wp-config.php` (set automatically on Zinn-
 * `ZINN_CACHE_PANEL_URL` and `ZINN_CACHE_PANEL_SECRET` — enable signed purge mirroring to the control plane.
 * `ZINN_SSO_KEY` and `ZINN_SITE_ID` — enable one-click admin login from the Zinn® dashboard. Both are required; with either missing the login route is not registered.
 * `WP_REDIS_HOST`, `WP_REDIS_PORT`, `WP_REDIS_DATABASE`, `WP_REDIS_PASSWORD`, `WP_REDIS_PREFIX` — override the object-cache connection.
+
+== External services ==
+
+This plugin connects your site to Zinn Digital® (the hosting platform it is built for) so that
+cache purges can be driven from your Zinn® dashboard and so an administrator can open wp-admin
+from it without a second password.
+
+**What is sent, and when**
+
+* **Cache purges (only if `ZINN_CACHE_PANEL_URL` and `ZINN_CACHE_PANEL_SECRET` are defined).**
+  When content changes, the plugin posts the affected URLs and cache tags — no post content, no
+  visitor data — to your Zinn® control plane so the CDN purges in step. The request is signed with
+  an HMAC-SHA256 of the body using your site's own secret.
+* **Update checks (only if `ZINN_UPDATE_URL` is defined).** The plugin asks whether a newer release
+  exists, sending the plugin slug and installed version. Nothing about your site or its visitors is
+  included.
+* **One-click admin login (only if `ZINN_SSO_KEY` and `ZINN_SITE_ID` are defined).** This is
+  inbound only — Zinn Digital® presents a short-lived signed token and the plugin verifies it. No
+  request leaves your site, and the route is not registered at all unless both constants are set.
+
+* **Site events (only if `ZINN_SITE_EVENTS_URL` and `ZINN_CACHE_PANEL_SECRET` are defined).** When
+  a plugin or theme is activated, deactivated, switched or upgraded, the plugin reports that fact so
+  your Zinn® dashboard can show what changed on the site. It sends the site's own address, its PHP
+  version, and the name and version of the plugin or theme involved. No post content and no visitor
+  data are included.
+* **Outbound link index (only if `ZINN_SITE_LINKS_URL` and `ZINN_CACHE_PANEL_SECRET` are defined).**
+  When a post is saved or removed, and on a daily pass, the plugin sends that post's **title**, its
+  **permalink**, and the **links found in its content** so link placements can be tracked from your
+  Zinn® dashboard. This is post-derived data: titles and the URLs a post links to. The post body
+  itself is never sent, and no visitor data is included.
+
+**When nothing is sent.** All of the constants above are set by the Zinn® platform when it provisions
+a site. On a site that is not hosted with Zinn Digital® none of them exist, and the plugin makes **no
+outbound requests whatsoever** — caching, exclusions and the object cache all work locally.
+
+Service terms: https://zinndigital.com/legal/terms
+Privacy policy: https://zinndigital.com/legal/privacy
+
+== Translations ==
+
+**Every string this plugin adds to your admin is translated into 57 languages** — labels, notices,
+errors and settings, not a subset. The catalogues are bundled in the plugin, so they work as soon
+as you set your site language; there is no separate language pack to install.
+
+All 56 user-visible strings are complete in every one of the 53 languages WordPress can serve
+today:
+
+Amharic (am), Arabic (ar), Azerbaijani (az), Bulgarian (bg_BG), Bengali (Bangladesh)
+(bn_BD), Czech (cs_CZ), German (de_DE), Greek (el), Spanish (Spain) (es_ES), Persian
+(fa_IR), French (France) (fr_FR), Gujarati (gu), Hebrew (he_IL), Hindi (hi_IN), Croatian
+(hr), Hungarian (hu_HU), Armenian (hy), Indonesian (id_ID), Italian (it_IT), Japanese
+(ja), Georgian (ka_GE), Kazakh (kk), Khmer (km), Kannada (kn), Korean (ko_KR), Lao (lo),
+Malayalam (ml_IN), Mongolian (mn), Marathi (mr), Malay (ms_MY), Myanmar (Burmese)
+(my_MM), Nepali (ne_NP), Dutch (nl_NL), Panjabi (India) (pa_IN), Polish (pl_PL), Pashto
+(ps), Portuguese (Brazil) (pt_BR), Romanian (ro_RO), Russian (ru_RU), Sinhala (si_LK),
+Albanian (sq), Serbian (sr_RS), Swahili (sw), Tamil (ta_IN), Telugu (te), Thai (th),
+Tagalog (tl), Turkish (tr_TR), Ukrainian (uk), Urdu (ur), Uzbek (uz_UZ), Vietnamese
+(vi), Chinese (China) (zh_CN)
+
+A further 4 ship complete in the plugin — Hausa (ha), Somali (so_SO), Tajik (tg), Yoruba (yo) — but
+WordPress core does not currently provide a locale for them, so WordPress cannot load them.
+
+= Right-to-left =
+
+Arabic, Persian, Hebrew, Pashto and Urdu are right-to-left. Every screen this plugin adds was
+rendered in a real WordPress install in each of those languages and checked, not assumed.
+
+= For translators =
+
+`languages/` holds the `.pot` template plus a `.po`, `.mo` and `.l10n.php` for every language, so
+corrections and new languages can be contributed directly.
 
 == Frequently Asked Questions ==
 
