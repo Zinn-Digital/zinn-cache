@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -138,10 +138,16 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 
 == Changelog ==
 
+= 1.1.0 =
+* Added the Zinn® panel: links to Zinn Digital® hosting, the Zinn® marketplace, Zinn Hub® and this plugin's user guide, from inside the WordPress admin.
+
 = 1.0.0 =
 * Initial release: LSCache control, smart tag-based auto-purge, Redis object-cache toggle, safe cache exclusions, and a signed remote-purge REST endpoint.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Adds the Zinn® panel to the WordPress admin. No settings change.
 
 = 1.0.0 =
 Initial release.
