@@ -3,7 +3,7 @@
  * Plugin Name:       Zinn® Cache
  * Plugin URI:        https://zinndigital.com/wordpress-plugins/zinn-cache
  * Description:       For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, remote purge from your Zinn® dashboard, a Redis object-cache toggle, safe WordPress/WooCommerce exclusions, and one-click admin login. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            Neil Lock — CEO, Zinn Digital® Ltd
@@ -34,7 +34,7 @@ namespace Zinn\Cache;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '1.0.0';
+const VERSION = '1.1.2';
 
 define( 'ZINN_CACHE_VERSION', VERSION );
 define( 'ZINN_CACHE_FILE', __FILE__ );

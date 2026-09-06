@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -138,6 +138,9 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 
 == Changelog ==
 
+= 1.1.2 =
+* Fixed: the plugin told the update service it was version 1.0.0, so a site already on the latest version was offered the same version again on every check and re-installed it.
+
 = 1.1.1 =
 * Fixed: changing the Site Title, tagline, front-page, permalink, posts-per-page, widget or theme settings, or saving a menu, now purges the whole page cache. Previously every cached page kept the old value until it expired.
 
@@ -148,6 +151,9 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 * Initial release: LSCache control, smart tag-based auto-purge, Redis object-cache toggle, safe cache exclusions, and a signed remote-purge REST endpoint.
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+Stops the plugin re-downloading and re-installing itself on every update check. No settings change.
 
 = 1.1.1 =
 Site-wide settings changes now purge the page cache. No settings change.
