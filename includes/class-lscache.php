@@ -185,7 +185,7 @@ final class Lscache {
 	public function finalize( string $buffer ): string {
 		if ( ! headers_sent() ) {
 			if ( $this->request_is_cacheable() ) {
-				$ttl = (int) ( $this->settings['lscache_ttl'] ?? 0 );
+				$ttl = $this->ttl_for_request();
 				header( self::HEADER_CONTROL . ': public,max-age=' . $ttl );
 
 				$tags = $this->current_page_tags();
@@ -319,12 +319,45 @@ final class Lscache {
 	}
 
 	/**
+	 * How long THIS page should be cached for.
+	 *
+	 * ⭐ A shop's product pages at an hour while the rest of the site stays a week is the
+	 * commonest real request, and before this the answer was "one number for everything".
+	 *
+	 * @return int Seconds.
+	 */
+	private function ttl_for_request(): int {
+		$default = (int) ( $this->settings['lscache_ttl'] ?? 0 );
+
+		$overrides = $this->settings['ttl_overrides'] ?? array();
+		if ( ! is_array( $overrides ) || array() === $overrides || ! is_singular() ) {
+			return $default;
+		}
+
+		$type = (string) get_post_type();
+		foreach ( $overrides as $rule ) {
+			if ( is_array( $rule ) && (string) ( $rule['post_type'] ?? '' ) === $type ) {
+				return (int) $rule['ttl'];
+			}
+		}
+
+		return $default;
+	}
+
+	/**
 	 * Whether the current request may be served from the full-page cache.
 	 *
 	 * @return bool
 	 */
 	private function request_is_cacheable(): bool {
-		if ( is_admin() || is_user_logged_in() ) {
+		if ( is_admin() ) {
+			return false;
+		}
+		// ⛔⛔ DEFAULTS TO REFUSING A SIGNED-IN REQUEST, and the setting can only ever RELAX
+		// that. Serving one visitor's personalised page to another is the single worst thing
+		// a page cache can do, so the failure direction of a missing or corrupt setting must
+		// be "do not cache" — which is what `?? true` gives.
+		if ( is_user_logged_in() && ( $this->settings['cache_logged_out_only'] ?? true ) ) {
 			return false;
 		}
 		if ( ! $this->request_is_get() ) {

@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.1.2
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,12 @@ outbound requests whatsoever** — caching, exclusions and the object cache all 
 Service terms: https://zinndigital.com/legal/terms
 Privacy policy: https://zinndigital.com/legal/privacy
 
+* **Support diagnostics (only when you press send).** If you ask us for help, the plugin can send
+  a support report to `https://api.zinndigital.com/v1/connector/diagnostics`. **You are shown the
+  exact payload first, already redacted, and nothing leaves your site until you press send.**
+  Credentials are excluded by declaration rather than by matching key names, and render as
+  `[not sent — credential]`. The plugin never sends this on its own initiative.
+
 == Translations ==
 
 **Every string this plugin adds to your admin is translated into 57 languages** — labels, notices,
@@ -137,6 +143,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.2.0 =
+Settings moved under the one Zinn Digital® menu, with per-post-type cache lifetimes, a browser-cache lifetime, a signed-in-visitor rule, a purge-on-comment switch, a Redis password field, and a status panel that tells you when the server is not LiteSpeed and the cache is therefore doing nothing.
 
 = 1.1.2 =
 * Fixed: the plugin told the update service it was version 1.0.0, so a site already on the latest version was offered the same version again on every check and re-installed it.

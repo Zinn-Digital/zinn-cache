@@ -43,19 +43,26 @@ final class Settings {
 	 */
 	public static function defaults(): array {
 		return array(
-			'lscache_enabled'      => true,
-			'lscache_ttl'          => 604800,
-			'object_cache_enabled' => false,
-			'auto_purge_enabled'   => true,
-			'purge_on_upgrade'     => true,
-			'exclude_uris'         => array(),
-			'exclude_query_keys'   => array(),
-			'exclude_cookies'      => array(),
-			'redis_host'           => '127.0.0.1',
-			'redis_port'           => 6379,
-			'redis_database'       => 0,
-			'redis_password'       => '',
-			'redis_key_prefix'     => '',
+			'lscache_enabled'       => true,
+			'lscache_ttl'           => 604800,
+			'object_cache_enabled'  => false,
+			'auto_purge_enabled'    => true,
+			'purge_on_upgrade'      => true,
+			'exclude_uris'          => array(),
+			'exclude_query_keys'    => array(),
+			'exclude_cookies'       => array(),
+			'redis_host'            => '127.0.0.1',
+			'redis_port'            => 6379,
+			'redis_database'        => 0,
+			'redis_password'        => '',
+			'redis_key_prefix'      => '',
+			// ⭐ W41-Q. Every one of these is read by the code that does the work — see the
+			// call sites named in each field's description on the settings screen. A stored
+			// switch with no consumer is the placeholder §2.41 forbids.
+			'browser_ttl'           => 0,
+			'cache_logged_out_only' => true,
+			'purge_on_comment'      => true,
+			'ttl_overrides'         => array(),
 		);
 	}
 
@@ -72,19 +79,23 @@ final class Settings {
 		$defaults = self::defaults();
 
 		return array(
-			'lscache_enabled'      => self::to_bool( $raw['lscache_enabled'] ?? $defaults['lscache_enabled'] ),
-			'lscache_ttl'          => self::clamp_int( $raw['lscache_ttl'] ?? $defaults['lscache_ttl'], self::TTL_MIN, self::TTL_MAX, (int) $defaults['lscache_ttl'] ),
-			'object_cache_enabled' => self::to_bool( $raw['object_cache_enabled'] ?? $defaults['object_cache_enabled'] ),
-			'auto_purge_enabled'   => self::to_bool( $raw['auto_purge_enabled'] ?? $defaults['auto_purge_enabled'] ),
-			'purge_on_upgrade'     => self::to_bool( $raw['purge_on_upgrade'] ?? $defaults['purge_on_upgrade'] ),
-			'exclude_uris'         => self::to_list( $raw['exclude_uris'] ?? array() ),
-			'exclude_query_keys'   => self::to_list( $raw['exclude_query_keys'] ?? array() ),
-			'exclude_cookies'      => self::to_list( $raw['exclude_cookies'] ?? array() ),
-			'redis_host'           => self::to_host( $raw['redis_host'] ?? $defaults['redis_host'] ),
-			'redis_port'           => self::clamp_int( $raw['redis_port'] ?? $defaults['redis_port'], 1, 65535, (int) $defaults['redis_port'] ),
-			'redis_database'       => self::clamp_int( $raw['redis_database'] ?? $defaults['redis_database'], 0, 255, 0 ),
-			'redis_password'       => is_scalar( $raw['redis_password'] ?? '' ) ? (string) ( $raw['redis_password'] ?? '' ) : '',
-			'redis_key_prefix'     => self::to_key_prefix( $raw['redis_key_prefix'] ?? '' ),
+			'lscache_enabled'       => self::to_bool( $raw['lscache_enabled'] ?? $defaults['lscache_enabled'] ),
+			'lscache_ttl'           => self::clamp_int( $raw['lscache_ttl'] ?? $defaults['lscache_ttl'], self::TTL_MIN, self::TTL_MAX, (int) $defaults['lscache_ttl'] ),
+			'object_cache_enabled'  => self::to_bool( $raw['object_cache_enabled'] ?? $defaults['object_cache_enabled'] ),
+			'auto_purge_enabled'    => self::to_bool( $raw['auto_purge_enabled'] ?? $defaults['auto_purge_enabled'] ),
+			'purge_on_upgrade'      => self::to_bool( $raw['purge_on_upgrade'] ?? $defaults['purge_on_upgrade'] ),
+			'exclude_uris'          => self::to_list( $raw['exclude_uris'] ?? array() ),
+			'exclude_query_keys'    => self::to_list( $raw['exclude_query_keys'] ?? array() ),
+			'exclude_cookies'       => self::to_list( $raw['exclude_cookies'] ?? array() ),
+			'redis_host'            => self::to_host( $raw['redis_host'] ?? $defaults['redis_host'] ),
+			'redis_port'            => self::clamp_int( $raw['redis_port'] ?? $defaults['redis_port'], 1, 65535, (int) $defaults['redis_port'] ),
+			'redis_database'        => self::clamp_int( $raw['redis_database'] ?? $defaults['redis_database'], 0, 255, 0 ),
+			'redis_password'        => is_scalar( $raw['redis_password'] ?? '' ) ? (string) ( $raw['redis_password'] ?? '' ) : '',
+			'redis_key_prefix'      => self::to_key_prefix( $raw['redis_key_prefix'] ?? '' ),
+			'browser_ttl'           => self::clamp_int( $raw['browser_ttl'] ?? 0, 0, 31536000, 0 ),
+			'cache_logged_out_only' => self::to_bool( $raw['cache_logged_out_only'] ?? $defaults['cache_logged_out_only'] ),
+			'purge_on_comment'      => self::to_bool( $raw['purge_on_comment'] ?? $defaults['purge_on_comment'] ),
+			'ttl_overrides'         => self::to_ttl_overrides( $raw['ttl_overrides'] ?? array() ),
 		);
 	}
 
@@ -98,6 +109,36 @@ final class Settings {
 	 */
 	public static function lines_to_list( $value ): array {
 		return self::to_list( $value );
+	}
+
+	/**
+	 * Normalise the per-post-type cache-lifetime rules.
+	 *
+	 * ⛔ A row whose post type is not registered on THIS site is dropped, not kept "just in
+	 * case". A rule against a post type that no longer exists is a rule that silently
+	 * matches nothing while reading on the screen as though it works — and a customer who
+	 * deactivates a plugin should not be left with an invisible cache rule from it.
+	 *
+	 * @param mixed $raw Submitted rows.
+	 * @return array<int, array{post_type:string,ttl:int}>
+	 */
+	private static function to_ttl_overrides( $raw ): array {
+		$known = get_post_types( array(), 'names' );
+		$out   = array();
+		foreach ( (array) ( is_array( $raw ) ? $raw : array() ) as $row ) {
+			if ( ! is_array( $row ) ) {
+				continue;
+			}
+			$type = sanitize_key( (string) ( $row['post_type'] ?? '' ) );
+			if ( '' === $type || ! in_array( $type, (array) $known, true ) ) {
+				continue;
+			}
+			$out[] = array(
+				'post_type' => $type,
+				'ttl'       => self::clamp_int( $row['ttl'] ?? self::TTL_MIN, self::TTL_MIN, self::TTL_MAX, self::TTL_MIN ),
+			);
+		}
+		return $out;
 	}
 
 	/**

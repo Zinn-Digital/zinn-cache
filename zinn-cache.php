@@ -3,7 +3,7 @@
  * Plugin Name:       Zinn® Cache
  * Plugin URI:        https://zinndigital.com/wordpress-plugins/zinn-cache
  * Description:       For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, remote purge from your Zinn® dashboard, a Redis object-cache toggle, safe WordPress/WooCommerce exclusions, and one-click admin login. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead.
- * Version:           1.1.2
+ * Version:           1.2.0
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            Neil Lock — CEO, Zinn Digital® Ltd
@@ -34,7 +34,7 @@ namespace Zinn\Cache;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '1.1.2';
+const VERSION = '1.2.0';
 
 define( 'ZINN_CACHE_VERSION', VERSION );
 define( 'ZINN_CACHE_FILE', __FILE__ );
@@ -46,6 +46,17 @@ define( 'ZINN_CACHE_MIN_WP', '6.6' );
 require_once __DIR__ . '/includes/class-autoloader.php';
 
 Autoloader::register( __DIR__ . '/includes' );
+
+// ⛔ `require_once` rather than the autoloader: the shared settings framework is deliberately
+// GLOBAL — shipped identically into seven plugins with different namespacing conventions —
+// and this plugin bootstraps inside `Zinn\Cache`, where an autoloader keyed on the namespace
+// would never look for `Zinn_Cache_Admin_UI`. Loaded unconditionally, because `::get()` is
+// read on front-end requests as well as in wp-admin (§2.38).
+require_once __DIR__ . '/includes/class-zinn-cache-admin-fields.php';
+require_once __DIR__ . '/includes/class-zinn-cache-admin-ui.php';
+require_once __DIR__ . '/includes/class-zinn-cache-connection.php';
+require_once __DIR__ . '/includes/class-zinn-cache-diagnostics.php';
+require_once __DIR__ . '/includes/class-zinn-cache-style-presets.php';
 
 register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );
 register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate' ) );

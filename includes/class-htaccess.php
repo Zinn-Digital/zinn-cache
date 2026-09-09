@@ -82,13 +82,30 @@ final class Htaccess {
 	private static function rules(): array {
 		$cookies = implode( '|', Exclusions::default_cookie_prefixes() );
 
-		return array(
+		$rules = array(
 			'<IfModule LiteSpeed>',
 			'RewriteEngine On',
 			'RewriteCond %{HTTP_COOKIE} (' . $cookies . ') [NC]',
 			'RewriteRule .* - [E=Cache-Control:no-cache]',
 			'</IfModule>',
 		);
+
+		// ⛔⛔ **STATIC FILES ONLY, NEVER `text/html`.** A browser-cache lifetime on a page
+		// is not a performance win, it is a visitor who cannot see a correction until their
+		// cache expires — with no way for us or for them to clear it. The `mod_expires`
+		// block below names image, font, CSS and JavaScript types explicitly for exactly
+		// that reason; there is no "everything else" line and there must not be one.
+		$browser_ttl = (int) ( Settings::get()['browser_ttl'] ?? 0 );
+		if ( $browser_ttl > 0 ) {
+			$rules[] = '<IfModule mod_expires.c>';
+			$rules[] = 'ExpiresActive On';
+			foreach ( array( 'image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/svg+xml', 'font/woff2', 'font/woff', 'text/css', 'application/javascript' ) as $mime ) {
+				$rules[] = 'ExpiresByType ' . $mime . ' "access plus ' . $browser_ttl . ' seconds"';
+			}
+			$rules[] = '</IfModule>';
+		}
+
+		return $rules;
 	}
 
 	/**

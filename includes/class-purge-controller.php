@@ -151,6 +151,13 @@ final class Purge_Controller {
 	 * @return void
 	 */
 	public function on_comment_change( int $comment_id ): void {
+		// ⛔ The customer's switch, read on the event it governs. A very busy comment section
+		// otherwise clears the same page hundreds of times an hour, which costs more than
+		// the stale comment it prevents.
+		if ( empty( $this->settings['purge_on_comment'] ) ) {
+			return;
+		}
+
 		$comment = get_comment( $comment_id );
 		if ( ! $comment instanceof WP_Comment ) {
 			return;
