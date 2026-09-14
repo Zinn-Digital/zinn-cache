@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,12 @@ Tagalog (tl), Turkish (tr_TR), Ukrainian (uk), Urdu (ur), Uzbek (uz_UZ), Vietnam
 A further 4 ship complete in the plugin — Hausa (ha), Somali (so_SO), Tajik (tg), Yoruba (yo) — but
 WordPress core does not currently provide a locale for them, so WordPress cannot load them.
 
+The catalogues are bundled rather than left to translate.wordpress.org because that site can only
+offer what volunteers have contributed, and a site administrator working in Amharic or Khmer would
+otherwise read English indefinitely. They do not compete with community translations: where a
+WordPress language pack exists for this plugin, WordPress loads it ahead of the bundled catalogue,
+so a community translation always wins.
+
 = Right-to-left =
 
 Arabic, Persian, Hebrew, Pashto and Urdu are right-to-left. Every screen this plugin adds was
@@ -143,6 +149,11 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.2.3 =
+* The admin screens' styles and scripts are now enqueued through WordPress rather than printed into the page, so they can be dequeued, deferred or optimised by your site like any other asset — and they still work on a site whose security policy forbids inline code.
+* The page-cache decision no longer leaves an output buffer open for WordPress to unwind at the end of the request; the plugin closes its own and never touches anybody else's.
+* One-click login from your Zinn® dashboard now claims its single-use token atomically, so the same token can never be accepted twice even on a site with no object cache.
 
 = 1.2.2 =
 * Translations: every string this plugin's admin shows is now translated in every bundled language. A few strings the machine translator refused were shipping in English; they are now translated by hand.

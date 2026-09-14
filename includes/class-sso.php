@@ -444,13 +444,15 @@ final class Sso {
 	 * on the Zinn fleet, since this plugin ships the Redis drop-in. Two simultaneous
 	 * presentations of one token then have a genuine winner and loser.
 	 *
-	 * ⛔ Without a persistent object cache there is no atomic primitive in WordPress at all:
-	 * `get_transient` then `set_transient` is a check-then-act with a real window. It is kept
-	 * because the alternative is no replay defence whatsoever, and the residual exposure is
-	 * bounded — two requests would have to interleave within milliseconds, both carrying a
-	 * token that is already single-use and already dead in ~2 minutes. If that ever needs to
-	 * be closed, the fix is a `$wpdb` insert against the unique `option_name` index, not a
-	 * longer TTL.
+	 * ⛔⛤ **AND WITHOUT ONE, THE DATABASE'S OWN UNIQUE INDEX IS THE PRIMITIVE.** This used to
+	 * fall back to `get_transient()` then `set_transient()` and argue that the residual
+	 * window was bounded. WordPress.org's reviewer read the same lines and disagreed
+	 * (`docs/730`), and they are right: *"two requests would have to interleave within
+	 * milliseconds"* describes exactly what an attacker replaying a captured token does on
+	 * purpose, so the bound was a statement about accidents. The fix the old docblock itself
+	 * named — a `$wpdb` insert against the unique `option_name` index — is now what runs.
+	 * §2.24: the comment and the code were two expressions of one intention, and the
+	 * intention was the weaker half.
 	 *
 	 * @param string $jti Token identifier.
 	 * @param int    $ttl Seconds to remember it for (the token's remaining life).
@@ -465,11 +467,86 @@ final class Sso {
 			return (bool) wp_cache_add( $key, 1, self::JTI_GROUP, $ttl );
 		}
 
-		if ( false !== get_transient( $key ) ) {
+		return self::claim_jti_with_database( $key, $ttl );
+	}
+
+	/**
+	 * Claim a token identifier atomically, using `wp_options`' unique index on `option_name`.
+	 *
+	 * ⭐⭐ **THE WHOLE CONTROL IS THE INDEX, AND IT HAS BEEN ON THAT COLUMN SINCE WordPress
+	 * 2.3.** Two requests carrying the same token both reach the `INSERT`; the database
+	 * serialises them and exactly one row is created, so exactly one caller sees
+	 * `rows_affected === 1`. There is no window between a read and a write because there is
+	 * no read.
+	 *
+	 * ⛔ `add_option()` cannot be used for this and neither can `set_transient()`: both ask
+	 * whether the row exists before writing it, which is the check-then-act this function
+	 * exists to remove. It has to be one statement, and WordPress offers no API that emits
+	 * one, so it is `$wpdb` — the documented exception to "never query directly".
+	 *
+	 * ⭐ A transient is two rows and only the TIMEOUT row is the lock. The value row is
+	 * written afterwards and its success does not matter: `get_transient()` treats a
+	 * timeout in the future with no value as absent, which would at worst let a token be
+	 * claimed twice on a site whose database died between two statements — and a site in
+	 * that state has stopped serving anyway.
+	 *
+	 * ⛔ An EXPIRED claim is deleted first, and the delete is conditional on the stored
+	 * expiry already being in the past, so it can never remove a live one. Without it the
+	 * row would block its own key until WordPress's own transient cleanup ran, and a token
+	 * id is only unique in practice — `jti` is a random string, not a guarantee.
+	 *
+	 * @param string $key The option-name suffix, already hashed and prefixed.
+	 * @param int    $ttl Seconds to remember it for.
+	 * @return bool True when this caller claimed it; false when it was already spent.
+	 */
+	private static function claim_jti_with_database( string $key, int $ttl ): bool {
+		global $wpdb;
+
+		if ( ! isset( $wpdb ) || ! is_object( $wpdb ) ) {
 			return false;
 		}
 
-		set_transient( $key, 1, $ttl );
+		$now     = time();
+		$timeout = '_transient_timeout_' . $key;
+		$value   = '_transient_' . $key;
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- an atomic claim is the point; a cache in front of it would reintroduce the race this closes.
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$wpdb->options} WHERE option_name = %s AND option_value < %d",
+				$timeout,
+				$now
+			)
+		);
+
+		// ⛔ `INSERT IGNORE`, not `INSERT ... ON DUPLICATE KEY UPDATE`: an upsert always
+		// succeeds, which would make every replay a winner. The duplicate must FAIL.
+		$claimed = $wpdb->query(
+			$wpdb->prepare(
+				"INSERT IGNORE INTO {$wpdb->options} ( option_name, option_value, autoload ) VALUES ( %s, %s, 'no' )",
+				$timeout,
+				(string) ( $now + max( 1, $ttl ) )
+			)
+		);
+
+		if ( 1 !== (int) $claimed ) {
+			return false;
+		}
+
+		$wpdb->query(
+			$wpdb->prepare(
+				"INSERT IGNORE INTO {$wpdb->options} ( option_name, option_value, autoload ) VALUES ( %s, '1', 'no' )",
+				$value
+			)
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		// ⛔ The rows were written behind WordPress's back, so its own option caches still
+		// hold "this does not exist" from any earlier read in THIS request. Left stale, a
+		// later `get_transient()` in the same request would report the token unclaimed.
+		wp_cache_delete( $timeout, 'options' );
+		wp_cache_delete( $value, 'options' );
+		wp_cache_delete( 'notoptions', 'options' );
 
 		return true;
 	}

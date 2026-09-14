@@ -129,6 +129,17 @@ final class Lscache {
 	}
 
 	/**
+	 * The output-buffer nesting level our own buffer occupies, or null when we hold none.
+	 *
+	 * ⭐ A LEVEL, not a boolean. "Did I open one?" is not enough to close one safely: the
+	 * only question that matters at shutdown is *which frame is mine*, and a boolean would
+	 * have us unwind the whole stack including buffers we never opened.
+	 *
+	 * @var int|null
+	 */
+	private $buffer_level = null;
+
+	/**
 	 * Whether the request is being served by a LiteSpeed web server.
 	 *
 	 * @return bool
@@ -166,6 +177,19 @@ final class Lscache {
 	 * is committed. No-op when LSCache control is disabled, when the LiteSpeed
 	 * plugin is active (it owns caching then), or when not on a LiteSpeed server.
 	 *
+	 * ⛔⛔ **EVERY `ob_start()` HERE IS PAIRED WITH AN EXPLICIT CLOSE, AND THAT IS A
+	 * WORDPRESS.ORG REVIEW FINDING** (`docs/730`, reviewing `zinn-cache` 1.2.0). Their
+	 * objection is not that the buffer is wrong — deferring the cacheability decision to
+	 * flush is the whole point of it — but that it was left OPEN, to be unwound by
+	 * `wp_ob_end_flush_all()` at shutdown along with everybody else's. WordPress is a shared
+	 * output stack: a component that opens a frame and does not close it has made the
+	 * stack's depth depend on the order plugins happened to load, and the component that
+	 * finds itself misaligned is never the one that caused it.
+	 *
+	 * ⭐ So the buffer's own level is recorded and `close_buffer()` unwinds to exactly that
+	 * frame on `shutdown` at priority 0 — before core's flush-all, and touching nothing
+	 * below ours.
+	 *
 	 * @return void
 	 */
 	public function maybe_start_buffer(): void {
@@ -173,7 +197,60 @@ final class Lscache {
 			return;
 		}
 
-		ob_start( array( $this, 'finalize' ) );
+		if ( ! ob_start( array( $this, 'finalize' ) ) ) {
+			return;
+		}
+
+		$this->buffer_level = ob_get_level();
+
+		// ⛔ Priority 0 on `shutdown`: core runs `wp_ob_end_flush_all()` AFTER the whole
+		// `shutdown` action, so closing here is the last chance to do it ourselves rather
+		// than have it done to us. A `template_redirect` request that never reaches
+		// `shutdown` at all — `exit` inside another plugin — still flushes at the end of
+		// the PHP request, exactly as it did before.
+		add_action( 'shutdown', array( $this, 'close_buffer' ), 0 );
+	}
+
+	/**
+	 * Close the buffer this request opened, and only that one.
+	 *
+	 * ⛔⛔ **IT UNWINDS TO OUR OWN FRAME AND STOPS.** Anything opened above ours is nested
+	 * inside it and cannot outlive it, so flushing those is not optional; anything below
+	 * ours belongs to somebody else and is never touched. ⛔ A buffer PHP will not let us
+	 * remove — `zlib.output_compression`, or one started with `PHP_OUTPUT_HANDLER_REMOVABLE`
+	 * off — ends the unwind rather than producing a warning on a customer's live site.
+	 *
+	 * ⛔⛤ **REMOVABILITY IS READ FROM `flags`, NEVER FROM A `del` KEY.** `ob_get_status()`
+	 * returned `del` in PHP 5; it does not in PHP 8, and this function was written against
+	 * the old shape. `empty( $status['del'] )` was therefore always true, so the loop
+	 * returned on its first pass and closed nothing — a repair for an unclosed buffer that
+	 * left the buffer open, with no error anywhere (§2.44: the ambiguous reading resolved to
+	 * the reassuring one). `LsCacheBufferTest` is what found it, by running the real `ob_*`
+	 * stack instead of agreeing with the author.
+	 *
+	 * ⭐ Idempotent: the level is cleared first, so a second call (a plugin firing
+	 * `shutdown` by hand, a `wp_die()` path that has already flushed) does nothing.
+	 *
+	 * @return void
+	 */
+	public function close_buffer(): void {
+		if ( null === $this->buffer_level ) {
+			return;
+		}
+
+		$level              = $this->buffer_level;
+		$this->buffer_level = null;
+
+		while ( ob_get_level() >= $level && ob_get_level() > 0 ) {
+			$status = ob_get_status();
+			$flags  = is_array( $status ) ? (int) ( $status['flags'] ?? 0 ) : 0;
+			if ( 0 === ( $flags & PHP_OUTPUT_HANDLER_REMOVABLE ) ) {
+				return;
+			}
+			if ( ! ob_end_flush() ) {
+				return;
+			}
+		}
 	}
 
 	/**
