@@ -7,11 +7,11 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Cache control for sites hosted with Zinn Digital® — auto-purge, remote purge from your dashboard, a Redis object cache and one-click admin login.
+Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and one-click admin login.
 
 == Description ==
 
@@ -27,13 +27,13 @@ They are different plugins doing different jobs, not a free and a paid tier of o
 **What it does**
 
 * **LSCache control.** Stamps `X-LiteSpeed-Cache-Control` and `X-LiteSpeed-Tag` headers on cacheable front-end responses so the LiteSpeed web server can serve full pages without hitting PHP or MySQL. A configurable public cache lifetime is applied. If the third-party LiteSpeed Cache plugin is present, page caching is deferred to it instead.
-* **Smart auto-purge.** When content changes — a post or page is saved, trashed or deleted, a comment is added or moderated, a taxonomy term is edited, the theme is switched, a plugin is (de)activated, or WordPress/plugins/themes are updated — only the affected pages (and the listings they appear on) are purged, via targeted LiteSpeed cache tags. Purges are mirrored to the control-plane panel over a signed webhook so the CDN/edge purges in step.
+* **Smart auto-purge.** When content changes — a post or page is saved, trashed or deleted, a comment is added or moderated, a taxonomy term is edited, the theme is switched, a plugin is (de)activated, or WordPress/plugins/themes are updated — only the affected pages (and the listings they appear on) are purged, via targeted LiteSpeed cache tags. The plugin can also mirror each purge to a control panel over a signed webhook, but only when `ZINN_CACHE_PANEL_URL` is defined — and the Zinn Digital® platform does not set it today, so on a Zinn-hosted site purges happen on the server and are not mirrored anywhere.
 * **Redis object cache.** A one-click toggle installs a self-contained Redis object-cache drop-in (requires the phpredis extension), offloading repeated database reads. The plugin never overwrites another caching plugin's drop-in, and the drop-in falls back to an in-memory cache if Redis is unreachable, so the site keeps working.
 * **Safe cache exclusions.** Ships with sensible WordPress and WooCommerce/Easy Digital Downloads defaults — cart, checkout, my-account, REST/AJAX, preview, search, and any logged-in or session-cookie request are never cached. Extra path, query-key, and cookie-prefix rules can be added per site.
 
 **Remote purging**
 
-A REST endpoint, `POST /wp-json/zinn-cache/v1/purge`, lets the control plane purge everything, specific URLs, or specific tags. It is authenticated either by a logged-in administrator or by an HMAC-SHA256 signature over the request body using the site's `ZINN_CACHE_PANEL_SECRET`.
+A REST endpoint, `POST /wp-json/zinn-cache/v1/purge`, purges everything, specific URLs, or specific tags. It accepts a logged-in administrator, or any caller holding the site's `ZINN_CACHE_PANEL_SECRET` who signs the request body with it (HMAC-SHA256) — so a deploy script or your own tooling can clear the cache. Your Zinn® dashboard does not call it today; there is no dashboard purge button for this plugin yet.
 
 **One-click admin login**
 
@@ -53,16 +53,17 @@ Optionally define these constants in `wp-config.php` (set automatically on Zinn-
 
 == External services ==
 
-This plugin connects your site to Zinn Digital® (the hosting platform it is built for) so that
-cache purges can be driven from your Zinn® dashboard and so an administrator can open wp-admin
-from it without a second password.
+This plugin can connect your site to Zinn Digital® (the hosting platform it is built for) so that
+an administrator can open wp-admin from the Zinn® dashboard without a second password, and so the
+dashboard can show what changed on the site.
 
 **What is sent, and when**
 
 * **Cache purges (only if `ZINN_CACHE_PANEL_URL` and `ZINN_CACHE_PANEL_SECRET` are defined).**
   When content changes, the plugin posts the affected URLs and cache tags — no post content, no
-  visitor data — to your Zinn® control plane so the CDN purges in step. The request is signed with
-  an HMAC-SHA256 of the body using your site's own secret.
+  visitor data — to the address in `ZINN_CACHE_PANEL_URL`. The request is signed with an HMAC-SHA256
+  of the body using your site's own secret. Note: the Zinn Digital® platform does not define
+  `ZINN_CACHE_PANEL_URL` on the sites it hosts today, so on those sites nothing is sent.
 * **Update checks (only if `ZINN_UPDATE_URL` is defined).** The plugin asks whether a newer release
   exists, sending the plugin slug and installed version. Nothing about your site or its visitors is
   included.
@@ -81,8 +82,8 @@ from it without a second password.
   Zinn® dashboard. This is post-derived data: titles and the URLs a post links to. The post body
   itself is never sent, and no visitor data is included.
 
-**When nothing is sent.** All of the constants above are set by the Zinn® platform when it provisions
-a site. On a site that is not hosted with Zinn Digital® none of them exist, and the plugin makes **no
+**When nothing is sent.** The constants above are set by the Zinn® platform when it provisions
+a site — except `ZINN_CACHE_PANEL_URL`, which it does not set today. On a site that is not hosted with Zinn Digital® none of them exist, and the plugin makes **no
 outbound requests whatsoever** — caching, exclusions and the object cache all work locally.
 
 Service terms: https://zinndigital.com/legal/terms
@@ -138,7 +139,7 @@ corrections and new languages can be contributed directly.
 
 = Does this require LiteSpeed? =
 
-Full-page caching requires a LiteSpeed web server (or the third-party LiteSpeed Cache plugin). On other servers the plugin simply does not emit cache headers — everything else (object cache, exclusions API, remote purge) still works.
+Full-page caching requires a LiteSpeed web server (or the third-party LiteSpeed Cache plugin). On other servers the plugin simply does not emit cache headers — everything else (object cache, exclusions, and the signed purge endpoint) still works.
 
 = Does it conflict with the LiteSpeed Cache plugin? =
 
@@ -149,6 +150,11 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.3.1 =
+* In a right-to-left admin language, the Zinn Digital® menu entry showed its trademark symbol on the wrong side of the name. The name is now isolated so it reads correctly in Arabic, Hebrew, Persian, Pashto and Urdu.
+* Number fields on the settings screen are now wide enough to show the whole value. A long value — a page-cache lifetime of 604800 seconds, say — was cut off to its first few digits, so the setting looked wrong even when it was right.
+* This readme no longer says cache purges are driven from your Zinn® dashboard. The purge endpoint in the plugin is real and works for an administrator or a caller holding the site's secret, but the platform does not yet send purges to it or receive purge mirrors from it, so the description said more than the product does.
 
 = 1.3.0 =
 * When somebody's access to a site is revoked in your Zinn® dashboard, the WordPress admin session they already had open now ends on their very next click. Before this release a one-click login that was already open kept working until WordPress ended it on its own — up to 48 hours — so removing a developer, an agency or a former member of staff did not take effect straight away for whoever still had a tab open.

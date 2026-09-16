@@ -1,6 +1,6 @@
 # Zinn® Cache
 
-Cache control for sites hosted with Zinn Digital® — auto-purge, remote purge from your dashboard, a Redis object cache and one-click admin login.
+Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and one-click admin login.
 
 Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zinndigital.com
 
@@ -15,7 +15,7 @@ Both are the same file. The download page is the canonical one: it is served fro
 
 | | |
 |---|---|
-| Version | `1.3.0` |
+| Version | `1.3.1` |
 | Requires WordPress | 6.6 or later |
 | Tested up to | WordPress **7.1** |
 | Requires PHP | 8.2 or later |
