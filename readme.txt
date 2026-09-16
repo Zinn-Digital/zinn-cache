@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.2.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,10 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.3.0 =
+* When somebody's access to a site is revoked in your Zinn® dashboard, the WordPress admin session they already had open now ends on their very next click. Before this release a one-click login that was already open kept working until WordPress ended it on its own — up to 48 hours — so removing a developer, an agency or a former member of staff did not take effect straight away for whoever still had a tab open.
+* Only sessions that were opened from your Zinn® dashboard are ended. Your own WordPress logins, and anyone else's, are untouched.
 
 = 1.2.3 =
 * The admin screens' styles and scripts are now enqueued through WordPress rather than printed into the page, so they can be dequeued, deferred or optimised by your site like any other asset — and they still work on a site whose security policy forbids inline code.

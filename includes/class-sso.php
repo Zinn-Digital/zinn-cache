@@ -90,6 +90,60 @@ final class Sso {
 	private const JTI_PREFIX = 'zinn_sso_jti_';
 
 	/**
+	 * The key this plugin stamps into a WordPress session it created.
+	 *
+	 * ⛔⛔ **THIS MARKER IS THE ONLY THING THAT SEPARATES THE PLATFORM'S SESSION FROM THE
+	 * CUSTOMER'S OWN.** {@see self::resolve_user()} logs a delegated person in as the site's
+	 * existing administrator account, so the user id, the role, the capabilities and every
+	 * WordPress-level instrument are identical for both. Without this key, "end the sessions
+	 * this person was given" can only be expressed as "end that user's sessions" — which logs
+	 * the customer out of their own site to remove a contractor, a worse defect than the one
+	 * being fixed.
+	 */
+	public const SESSION_MARKER = 'zinn_platform';
+
+	/**
+	 * Option holding `{ actor => revoked-at unix }` for people whose platform access ended.
+	 */
+	public const REVOKED_OPTION = 'zinn_sso_revoked';
+
+	/**
+	 * Option holding `{ user id => last platform login unix }`, so a revoke can report how
+	 * many live sessions it actually matched instead of a bare "done".
+	 *
+	 * ⭐ Bounded by construction: only administrators (or a named `u`) can ever take a
+	 * one-click session, and entries are pruned with the revocations.
+	 */
+	public const SESSION_USERS_OPTION = 'zinn_sso_session_users';
+
+	/**
+	 * How long a revocation record is kept, in seconds — 30 days.
+	 *
+	 * ⛔⛔ **THIS MUST EXCEED THE ENGINE'S CANDIDATE WINDOW** (`WP_SESSION_MAX_AGE`, 15 days in
+	 * `engine/engine/access/wp_session_revocation.py`). The engine only asks us about sites
+	 * somebody opened within its window; we forget a revocation after ours. If ours were the
+	 * shorter, a revocation could be pruned while a session created before it was still alive,
+	 * and the hole would reopen with two correct-looking constants and nothing red anywhere.
+	 * WordPress's own longest stock session is 14 days ("remember me"), so 30 covers both with
+	 * room to spare.
+	 *
+	 * ⛔ A literal rather than `30 * DAY_IN_SECONDS`. A class constant's expression is
+	 * evaluated on first access, and `DAY_IN_SECONDS` is a WordPress runtime constant — so the
+	 * elegant spelling makes this class fatal the moment anything outside WordPress touches it,
+	 * which is exactly what the unit suite does (`wp/tests/bootstrap.php` defines no WordPress
+	 * constants). 30 days.
+	 */
+	public const REVOCATION_RETENTION = 2592000;
+
+	/**
+	 * The exact shape of an actor reference — 32 lowercase hex characters, as minted by
+	 * `engine.access.wp_sso.site_actor_ref`. Validated on the way in from the token AND on the
+	 * way in from WP-CLI: a reference that reaches `wp_options` unchecked is arbitrary text in
+	 * a key we later compare against.
+	 */
+	public const ACTOR_PATTERN = '/^[0-9a-f]{32}$/';
+
+	/**
 	 * How many administrators to consider when resolving "the site's primary admin".
 	 * Bounded because this runs on a customer's site and an unbounded `get_users` on a
 	 * multi-author network is a query nobody budgeted for.
@@ -123,11 +177,30 @@ final class Sso {
 	 * @return void
 	 */
 	public function register(): void {
+		// ⛔⛔ THE ENFORCEMENT IS REGISTERED UNCONDITIONALLY, ABOVE THE `is_configured()` GATE,
+		// AND THAT ORDERING IS DELIBERATE. Everything below depends on the SSO key; this does
+		// not — it reads a marker the session already carries and an option this site already
+		// holds. If the key were ever removed from `wp-config.php` while a revoked person's
+		// tab was open, gating this would stop the one thing that ends it, and the symptom
+		// would be a session that outlives a revoke on a site the platform believes is inert.
+		add_filter( 'determine_current_user', array( $this, 'refuse_revoked_session' ), 30 );
+
 		if ( ! self::is_configured() ) {
 			return;
 		}
 
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
+
+		if ( defined( 'WP_CLI' ) && constant( 'WP_CLI' ) && class_exists( '\WP_CLI' ) ) {
+			// ⭐ WP-CLI, not a REST route, and it is the whole transport decision. The engine
+			// already holds an authenticated channel to this box — it is how the plugin and
+			// the key got here. A revoke that travelled the public HTTPS path would need a new
+			// public route on every customer site, and would then be refused by the very
+			// protections we sell them: bot fight mode, Under Attack mode, a WAF rule, a
+			// maintenance page. A site that can be given one-click login can always be told
+			// to undo it.
+			\WP_CLI::add_command( 'zinn-sso revoke', array( $this, 'cli_revoke' ) );
+		}
 	}
 
 	/**
@@ -327,7 +400,44 @@ final class Sso {
 		}
 
 		wp_set_current_user( $user->ID );
+
+		// ⭐⭐ MARK THE SESSION AS WE CREATE IT. `wp_set_auth_cookie()` calls
+		// `WP_Session_Tokens::create()`, which runs the `attach_session_information` filter —
+		// the one documented moment at which arbitrary data can be stored alongside a session
+		// row. Nothing later can add it: the session's key is a hash of a token we never see
+		// again, so a session that leaves this line unmarked is unattributable for its whole
+		// life and cannot be ended by revoking anybody's access.
+		//
+		// ⛔ Removed immediately afterwards. This filter fires for EVERY session WordPress
+		// creates, including the customer's own form login on the very next request in a
+		// long-running process (WP-CLI, a persistent worker), and a marker left attached would
+		// make the customer's session look like ours — which is precisely the confusion this
+		// whole mechanism exists to prevent, arriving from the opposite direction.
+		$actor  = isset( $payload['act'] ) && is_string( $payload['act'] ) ? $payload['act'] : '';
+		$marker = null;
+		if ( '' !== $actor && 1 === preg_match( self::ACTOR_PATTERN, $actor ) ) {
+			$marker = array(
+				'act' => $actor,
+				// The session's own birth time. ⛔ Compared against the revocation's `at`, so a
+				// person re-granted after a revoke keeps their NEW session: only a session
+				// created before the revoke is ended.
+				'iat' => time(),
+			);
+		}
+		$attach = static function ( $session ) use ( $marker ) {
+			if ( is_array( $session ) && null !== $marker ) {
+				$session[ self::SESSION_MARKER ] = $marker;
+			}
+
+			return $session;
+		};
+		add_filter( 'attach_session_information', $attach, 10, 1 );
 		wp_set_auth_cookie( $user->ID );
+		remove_filter( 'attach_session_information', $attach, 10 );
+
+		if ( null !== $marker ) {
+			self::remember_session_user( $user->ID );
+		}
 		// Core's own `wp_login`, fired so security and audit plugins see this session exactly
 		// as they see a form login. Without it a one-click login is invisible to every
 		// login-notification, 2FA-audit and last-seen plugin on the site — which, on a
@@ -390,6 +500,347 @@ final class Sso {
 		}
 
 		return null;
+	}
+
+	// ── ending a session the platform has revoked (W43-132) ─────────────────────────────
+
+	/**
+	 * Is this session one the platform created for somebody whose access has since ended?
+	 *
+	 * Pure: no WordPress, no state, no side effects, so the unit suite can pin every branch
+	 * without a database. That matters more here than for the verifier, because the two ways
+	 * to get this wrong are *"the customer is logged out of their own site"* and *"a revoked
+	 * contractor keeps working"*, and neither is visible in a diff.
+	 *
+	 * @param array<string,mixed> $session One session row from `WP_Session_Tokens::get()`.
+	 * @param array<string,int>   $revoked `actor => revoked-at unix`.
+	 * @return bool
+	 */
+	public static function session_is_revoked( array $session, array $revoked ): bool {
+		$marker = $session[ self::SESSION_MARKER ] ?? null;
+		if ( ! is_array( $marker ) ) {
+			// ⛔ NO MARKER MEANS THE CUSTOMER'S OWN SESSION, AND IT IS LEFT ALONE. Every
+			// session on the site that this plugin did not create arrives here, and returning
+			// true for any of them logs a customer out of their own WordPress.
+			//
+			// ⚠️ Deliberate defence in depth, and a mutation audit says so: deleting this
+			// branch does NOT fail the suite, because `?? null` on a non-array yields null and
+			// the `is_string`/`is_int` checks below then refuse it anyway. The mutant is
+			// equivalent TODAY. It is kept because the two lines below are about the marker's
+			// SHAPE and this one is about whether there is a marker at all — collapsing them
+			// makes the customer-protection property depend on a type check somebody could
+			// reasonably loosen while thinking about something else.
+			return false;
+		}
+
+		$actor = $marker['act'] ?? null;
+		$born  = $marker['iat'] ?? null;
+		// ⚠️ `isset( $revoked[ $actor ] )` is likewise equivalent under mutation — without it
+		// the missing-key read yields null, `(int) null` is 0, and `$born <= 0` is false for
+		// any real session. It stays because the alternative emits an undefined-key warning on
+		// a customer's site for every signed-in request by a person who was never revoked.
+		if ( ! is_string( $actor ) || ! is_int( $born ) || ! isset( $revoked[ $actor ] ) ) {
+			return false;
+		}
+
+		// ⭐ `<=`, so a session created in the same second as the revoke is ended. The
+		// alternative loses a race nobody can observe, in the direction that keeps access.
+		return $born <= (int) $revoked[ $actor ];
+	}
+
+	/**
+	 * Merge new revocations into the stored map and drop the ones that can no longer matter.
+	 *
+	 * Pure, and separate from the storage for the same reason as above.
+	 *
+	 * ⛔ A later revocation never moves an actor's timestamp BACKWARDS. Two revokes of one
+	 * person, the second narrower than the first, must not resurrect a session the first one
+	 * ended — so the stored value only ever climbs.
+	 *
+	 * @param array<string,int> $current  What the site holds now.
+	 * @param array<string,int> $incoming `actor => revoked-at unix` being added.
+	 * @param int               $now      Current unix time.
+	 * @return array<string,int> The map to store.
+	 */
+	public static function merge_revocations( array $current, array $incoming, int $now ): array {
+		$merged = array();
+		foreach ( $current as $actor => $at ) {
+			if ( is_string( $actor ) && 1 === preg_match( self::ACTOR_PATTERN, $actor ) && is_int( $at ) ) {
+				$merged[ $actor ] = $at;
+			}
+		}
+		foreach ( $incoming as $actor => $at ) {
+			if ( ! is_string( $actor ) || 1 !== preg_match( self::ACTOR_PATTERN, $actor ) || ! is_int( $at ) ) {
+				continue;
+			}
+			$merged[ $actor ] = max( $merged[ $actor ] ?? 0, $at );
+		}
+
+		// ⛔ Pruned by RETENTION, not by "is any session still alive": we cannot see sessions
+		// on other users from here, and a map that grew for ever would be an option that grows
+		// for ever on a customer's site. See `self::REVOCATION_RETENTION` for why the number
+		// has to stay above the engine's own window.
+		$cutoff = $now - self::REVOCATION_RETENTION;
+
+		return array_filter(
+			$merged,
+			static function ( $at ) use ( $cutoff ) {
+				return $at >= $cutoff;
+			}
+		);
+	}
+
+	/**
+	 * Parse and validate a comma-separated actor list from the command line.
+	 *
+	 * ⛔ Refuses the WHOLE list when any entry is malformed rather than dropping the bad ones.
+	 * A silently dropped reference is a person who keeps wp-admin while the platform's screen
+	 * says they do not — the exact failure this feature exists to remove, re-created by being
+	 * lenient about an argument.
+	 *
+	 * @param string $raw Comma-separated references.
+	 * @return array<int,string>|null The references, or null when the list is not usable.
+	 */
+	public static function parse_actor_list( string $raw ): ?array {
+		$parts  = array_filter( array_map( 'trim', explode( ',', $raw ) ), 'strlen' );
+		$actors = array();
+		foreach ( $parts as $part ) {
+			if ( 1 !== preg_match( self::ACTOR_PATTERN, $part ) ) {
+				return null;
+			}
+			$actors[ $part ] = true;
+		}
+
+		return $actors ? array_keys( $actors ) : null;
+	}
+
+	/**
+	 * Refuse a request whose session the platform has revoked. Filters `determine_current_user`.
+	 *
+	 * ⭐⭐ **`determine_current_user` RATHER THAN `auth_cookie_valid`, AND THE DIFFERENCE IS A
+	 * WHOLE REQUEST.** `auth_cookie_valid` fires *after* WordPress has decided who you are, so
+	 * a handler there can destroy the session and the CURRENT request is still served as the
+	 * administrator. Returning `false` from this filter makes the request unauthenticated
+	 * immediately — in wp-admin, in the REST API and in admin-ajax alike, with no redirect and
+	 * no `exit` — which is what "the next request in that tab is refused" has to mean.
+	 *
+	 * ⭐ Priority 30, after core's own `wp_validate_auth_cookie` (10) and
+	 * `wp_validate_logged_in_cookie` (20), so `$user_id` is already resolved and we only have
+	 * to decide whether to keep it.
+	 *
+	 * ⛔ The cheap check comes first. On the overwhelming majority of requests the revocation
+	 * map is empty and this costs one autoloaded option read and a return — nothing is parsed,
+	 * no user meta is touched, and §2.16's "no un-cached call in a hot path" is respected on
+	 * the hottest path there is.
+	 *
+	 * @param int|false|null $user_id Whatever the earlier filters resolved.
+	 * @return int|false|null
+	 */
+	public function refuse_revoked_session( $user_id ) {
+		static $in_progress = false;
+
+		if ( $in_progress || ! $user_id || ! is_numeric( $user_id ) ) {
+			return $user_id;
+		}
+
+		$revoked = self::revocations();
+		if ( ! $revoked ) {
+			return $user_id;
+		}
+
+		if ( ! function_exists( 'wp_get_session_token' ) || ! class_exists( '\WP_Session_Tokens' ) ) {
+			return $user_id;
+		}
+
+		$token = (string) wp_get_session_token();
+		if ( '' === $token ) {
+			// An application password or another token-less authentication. Nothing of ours.
+			return $user_id;
+		}
+
+		$manager = \WP_Session_Tokens::get_instance( (int) $user_id );
+		$session = $manager->get( $token );
+		if ( ! is_array( $session ) || ! self::session_is_revoked( $session, $revoked ) ) {
+			return $user_id;
+		}
+
+		// ⛔ Guarded against re-entry: `wp_clear_auth_cookie()` fires `clear_auth_cookie`, and a
+		// security plugin listening there that calls `wp_get_current_user()` would land back in
+		// this filter with the session already destroyed.
+		$in_progress = true;
+		$manager->destroy( $token );
+		if ( ! headers_sent() ) {
+			wp_clear_auth_cookie();
+		}
+		$in_progress = false;
+
+		return false;
+	}
+
+	/**
+	 * `wp zinn-sso revoke --actors=<hex,hex> --at=<unix> [--porcelain]`
+	 *
+	 * ⭐ The count it prints is a real enumeration, not an acknowledgement. `0` from here means
+	 * *we looked at every user who has ever taken a platform session and none of them had a
+	 * live one matching*, which is a different statement from *we could not look* — and the
+	 * caller can tell them apart because the latter is a non-zero exit (§2.44).
+	 *
+	 * @param array<int,string>    $args       Positional arguments (unused).
+	 * @param array<string,string> $assoc_args `actors`, `at`, `porcelain`.
+	 * @return void
+	 */
+	public function cli_revoke( array $args, array $assoc_args ): void {
+		unset( $args );
+
+		$actors = self::parse_actor_list( (string) ( $assoc_args['actors'] ?? '' ) );
+		if ( null === $actors ) {
+			\WP_CLI::error( 'zinn-sso revoke: --actors must be a comma-separated list of 32-character hex references.' );
+
+			return;
+		}
+
+		$at = isset( $assoc_args['at'] ) ? (int) $assoc_args['at'] : 0;
+		if ( $at <= 0 ) {
+			\WP_CLI::error( 'zinn-sso revoke: --at must be a unix timestamp.' );
+
+			return;
+		}
+
+		$now      = time();
+		$incoming = array_fill_keys( $actors, $at );
+		$stored   = self::merge_revocations( self::revocations(), $incoming, $now );
+		update_option( self::REVOKED_OPTION, $stored, true );
+
+		$ended = self::end_live_sessions( array_fill_keys( $actors, $at ), $now );
+
+		if ( isset( $assoc_args['porcelain'] ) ) {
+			\WP_CLI::line( (string) $ended );
+
+			return;
+		}
+		\WP_CLI::success(
+			sprintf(
+				/* translators: 1: number of sessions ended, 2: number of platform people revoked. */
+				'Ended %1$d live Zinn® platform session(s) for %2$d revoked person(s).',
+				$ended,
+				count( $actors )
+			)
+		);
+	}
+
+	/**
+	 * Destroy the live platform sessions matching these revocations, and report how many.
+	 *
+	 * ⛔⛔ **THIS IS THE ONLY PLACE THE COUNT CAN BE HONEST, AND IT IS WHY
+	 * {@see self::SESSION_USERS_OPTION} EXISTS.** WordPress stores sessions per user and offers
+	 * no way to ask "which users have a live session"; enumerating every user on a site to find
+	 * out is a query nobody budgeted for on a site with ten thousand customers. So the login
+	 * path records the handful of accounts it has ever opened a platform session for, and this
+	 * walks exactly those.
+	 *
+	 * ⭐ Lazy enforcement in {@see self::refuse_revoked_session()} is what makes the *promise*
+	 * true — a session cannot be used without a request, and the next request is refused. This
+	 * eager pass is what makes the *report* true, and it tidies up rows that would otherwise sit
+	 * until they expired.
+	 *
+	 * @param array<string,int> $revoked `actor => revoked-at unix`.
+	 * @param int               $now     Current unix time.
+	 * @return int
+	 */
+	private static function end_live_sessions( array $revoked, int $now ): int {
+		if ( ! class_exists( '\WP_Session_Tokens' ) ) {
+			return 0;
+		}
+
+		$users = self::session_users();
+		$ended = 0;
+		foreach ( array_keys( $users ) as $user_id ) {
+			$manager  = \WP_Session_Tokens::get_instance( (int) $user_id );
+			$sessions = $manager->get_all();
+			if ( ! is_array( $sessions ) ) {
+				continue;
+			}
+			foreach ( $sessions as $session ) {
+				if ( is_array( $session ) && self::session_is_revoked( $session, $revoked ) ) {
+					++$ended;
+				}
+			}
+		}
+
+		// ⛔ The rows are NOT destroyed here and that is deliberate, not an omission.
+		// `WP_Session_Tokens` can only destroy a session given the RAW token, which lives in
+		// the visitor's cookie and nowhere else — the store holds a hash of it. Rewriting the
+		// `session_tokens` user meta by hand would reach inside a structure a site is free to
+		// replace (`session_token_manager`), on somebody else's site, to save a row from
+		// expiring. `refuse_revoked_session()` destroys each one properly on its next request,
+		// using the token the request itself carries, which is also the moment access has to
+		// stop.
+		$fresh = array();
+		foreach ( $users as $user_id => $seen ) {
+			if ( is_int( $seen ) && $seen >= $now - self::REVOCATION_RETENTION ) {
+				$fresh[ $user_id ] = $seen;
+			}
+		}
+		if ( $fresh !== $users ) {
+			update_option( self::SESSION_USERS_OPTION, $fresh, false );
+		}
+
+		return $ended;
+	}
+
+	/**
+	 * The stored revocation map, validated. Never returns anything but `actor => int`.
+	 *
+	 * @return array<string,int>
+	 */
+	private static function revocations(): array {
+		$stored = get_option( self::REVOKED_OPTION, array() );
+		if ( ! is_array( $stored ) ) {
+			return array();
+		}
+		$clean = array();
+		foreach ( $stored as $actor => $at ) {
+			if ( is_string( $actor ) && 1 === preg_match( self::ACTOR_PATTERN, $actor ) && is_int( $at ) ) {
+				$clean[ $actor ] = $at;
+			}
+		}
+
+		return $clean;
+	}
+
+	/**
+	 * The accounts this site has opened a platform session for: `user id => last seen unix`.
+	 *
+	 * @return array<int,int>
+	 */
+	private static function session_users(): array {
+		$stored = get_option( self::SESSION_USERS_OPTION, array() );
+		if ( ! is_array( $stored ) ) {
+			return array();
+		}
+		$clean = array();
+		foreach ( $stored as $user_id => $seen ) {
+			if ( is_numeric( $user_id ) && is_int( $seen ) ) {
+				$clean[ (int) $user_id ] = $seen;
+			}
+		}
+
+		return $clean;
+	}
+
+	/**
+	 * Note that this account now has a platform session, so a later revoke can count it.
+	 *
+	 * ⛔ `autoload` is false: this is read only by the revoke command, never on a page load,
+	 * and an autoloaded option is loaded on every request a visitor makes.
+	 *
+	 * @param int $user_id The WordPress account the session was opened for.
+	 * @return void
+	 */
+	private static function remember_session_user( int $user_id ): void {
+		$users             = self::session_users();
+		$users[ $user_id ] = time();
+		update_option( self::SESSION_USERS_OPTION, $users, false );
 	}
 
 	/**
