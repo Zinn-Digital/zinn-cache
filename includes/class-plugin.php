@@ -66,7 +66,21 @@ final class Plugin {
 		// deploy footprint wrote `ZINN_SSO_KEY` and `ZINN_SITE_ID` into wp-config.php — an
 		// SSO route with no key would have to decide what an empty key means, and every
 		// wrong answer to that is "anyone can log in as the administrator".
-		( new Sso() )->register();
+		// One-click login lived here until 2026-09-18 and has moved to `zinn-footprint`.
+		//
+		// WordPress.org refused this plugin for it, correctly (review R/RMT zinn-cache 18Sep26):
+		// `Sso::handle_login` set an authentication cookie and logged into an administrator
+		// account on a signed request from our dashboard. That is REMOTE ADMINISTRATION by their
+		// definition however carefully it is implemented, and a plugin that offers it cannot be
+		// listed without an independent security audit of the infrastructure behind it.
+		//
+		// The audit is not the reason it moved. A CACHING plugin has no business logging anyone
+		// in: the capability belongs to the platform, not to the thing that serves pages fast, and
+		// shipping it here put it in front of every WordPress.org user who only wanted a cache.
+		//
+		// `zinn-footprint` is app-only and never submitted (owner ruling 2026-08-24), so the
+		// capability keeps working for our own customers and leaves the public artefact entirely.
+		// DO NOT re-add it here.
 		( new Updater( ZINN_CACHE_FILE, ZINN_CACHE_VERSION ) )->register();
 
 		if ( is_admin() ) {
