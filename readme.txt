@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,7 +91,7 @@ Privacy policy: https://zinndigital.com/legal/privacy
 errors and settings, not a subset. The catalogues are bundled in the plugin, so they work as soon
 as you set your site language; there is no separate language pack to install.
 
-All 56 user-visible strings are complete in every one of the 53 languages WordPress can serve
+Every user-visible string is complete in every one of the 53 languages WordPress can serve
 today:
 
 Amharic (am), Arabic (ar), Azerbaijani (az), Bulgarian (bg_BG), Bengali (Bangladesh)
@@ -147,6 +147,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.3.6 =
+* The Translations section no longer says the plugin has 56 user-visible strings. The plugin has grown to nearly three times that many, and every one of them is translated; the count was typed by hand and stopped being true as strings were added, so it is gone rather than corrected.
 
 = 1.3.5 =
 * The plugin's description in your Plugins list no longer offers remote purge from your Zinn® dashboard or one-click admin login. Neither is part of this plugin: one-click login moved out in 1.3.2, and the dashboard does not send purges to it. It now names what the plugin does — smart auto-purge, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe exclusions — in every language it ships.
