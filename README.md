@@ -1,11 +1,12 @@
 # Zinn® Cache
 
-Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and one-click admin login.
+Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and safe exclusions.
 
 Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zinndigital.com
 
 ## Download
 
+- **[Install it from WordPress.org](https://wordpress.org/plugins/zinn-cache/)** — or in wp-admin open **Plugins → Add New Plugin** and search for **Zinn® Cache**.
 - **[Download the latest version from zinndigital.com](https://zinndigital.com/wordpress-plugins)** — always current, no account needed.
 - Or take the zip from [Releases](../../releases/latest) here on GitHub.
 
@@ -15,9 +16,9 @@ Both are the same file. The download page is the canonical one: it is served fro
 
 | | |
 |---|---|
-| Version | `1.3.3` |
+| Version | `1.3.4` |
 | Requires WordPress | 6.6 or later |
-| Tested up to | WordPress **7.1.1** |
+| Tested up to | WordPress **7.1** |
 | Requires PHP | 8.2 or later |
 | Licence | GPL-2.0-or-later |
 
@@ -25,11 +26,15 @@ Every release is installed and activated against the current stable WordPress be
 
 ## Install
 
+From the directory: **Plugins → Add New Plugin**, search for **Zinn® Cache**, then **Install Now** and **Activate**. Or from the zip:
+
 1. Download the zip.
 2. In WordPress: **Plugins → Add New → Upload Plugin**, choose the zip, install.
 3. Activate.
 
 On a site we host this plugin keeps itself up to date. On your own WordPress it has no credentials for our update service and does not contact us — check back here, or watch this repository's releases.
+
+Installed from WordPress.org instead, it updates from the directory like any other directory plugin — WordPress shows the new version on your Plugins screen.
 
 ## Our other WordPress plugins
 

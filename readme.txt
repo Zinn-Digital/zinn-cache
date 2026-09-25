@@ -5,13 +5,13 @@ Author: Neil Lock — CEO, Zinn Digital® Ltd
 Author URI: https://zinndigital.com
 Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
-Tested up to: 7.1.1
+Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and one-click admin login.
+Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and safe exclusions.
 
 == Description ==
 
@@ -35,27 +35,21 @@ They are different plugins doing different jobs, not a free and a paid tier of o
 
 A REST endpoint, `POST /wp-json/zinn-cache/v1/purge`, purges everything, specific URLs, or specific tags. It accepts a logged-in administrator, or any caller holding the site's `ZINN_CACHE_PANEL_SECRET` who signs the request body with it (HMAC-SHA256) — so a deploy script or your own tooling can clear the cache. Your Zinn® dashboard does not call it today; there is no dashboard purge button for this plugin yet.
 
-**One-click admin login**
-
-On Zinn-hosted sites, `GET /wp-json/zinn-sso/v1/login` accepts a short-lived signed token issued by the Zinn® dashboard and opens a wp-admin session for the site's administrator — no password, and no second set of credentials to manage. Tokens are signed with the site's own key (`ZINN_SSO_KEY`), are bound to this site (`ZINN_SITE_ID`), expire after about two minutes, and can only be used once. The route is **not registered at all** unless both constants are defined, so the endpoint does not exist on a site that has not been given a key.
-
 == Installation ==
 
 1. Upload the `zinn-cache` folder to `/wp-content/plugins/` (this is done automatically as part of the Zinn® deploy footprint).
 2. Activate the plugin through the **Plugins** screen in WordPress.
-3. Go to **Settings → Zinn® Cache** to configure the full-page cache, object cache, auto-purge, and exclusions.
+3. Go to **Zinn Digital® → Cache** to configure the full-page cache, object cache, auto-purge, and exclusions.
 
 Optionally define these constants in `wp-config.php` (set automatically on Zinn-hosted sites):
 
 * `ZINN_CACHE_PANEL_URL` and `ZINN_CACHE_PANEL_SECRET` — enable signed purge mirroring to the control plane.
-* `ZINN_SSO_KEY` and `ZINN_SITE_ID` — enable one-click admin login from the Zinn® dashboard. Both are required; with either missing the login route is not registered.
 * `WP_REDIS_HOST`, `WP_REDIS_PORT`, `WP_REDIS_DATABASE`, `WP_REDIS_PASSWORD`, `WP_REDIS_PREFIX` — override the object-cache connection.
 
 == External services ==
 
 This plugin can connect your site to Zinn Digital® (the hosting platform it is built for) so that
-an administrator can open wp-admin from the Zinn® dashboard without a second password, and so the
-dashboard can show what changed on the site.
+cache purges can be mirrored to it and the Zinn® dashboard can show what changed on the site.
 
 **What is sent, and when**
 
@@ -67,10 +61,6 @@ dashboard can show what changed on the site.
 * **Update checks (only if `ZINN_UPDATE_URL` is defined).** The plugin asks whether a newer release
   exists, sending the plugin slug and installed version. Nothing about your site or its visitors is
   included.
-* **One-click admin login (only if `ZINN_SSO_KEY` and `ZINN_SITE_ID` are defined).** This is
-  inbound only — Zinn Digital® presents a short-lived signed token and the plugin verifies it. No
-  request leaves your site, and the route is not registered at all unless both constants are set.
-
 * **Site events (only if `ZINN_SITE_EVENTS_URL` and `ZINN_CACHE_PANEL_SECRET` are defined).** When
   a plugin or theme is activated, deactivated, switched or upgraded, the plugin reports that fact so
   your Zinn® dashboard can show what changed on the site. It sends the site's own address, its PHP
@@ -135,11 +125,18 @@ rendered in a real WordPress install in each of those languages and checked, not
 `languages/` holds the `.pot` template plus a `.po`, `.mo` and `.l10n.php` for every language, so
 corrections and new languages can be contributed directly.
 
+== Screenshots ==
+
+1. The Page cache tab: the full-page cache switch, how long a page stays cached, and whether signed-in visitors are ever served a cached page. The panel above the tabs says plainly when the server cannot cache — here, a server that is not LiteSpeed.
+2. The Purging tab: clear only the affected pages when content changes, clear everything after an update, and the tools to purge by hand or export your settings.
+3. The Exclusions tab: addresses, query parameters and cookies that are never cached, on top of the WordPress and WooCommerce defaults that always apply.
+4. Every screen is translated — here the Page cache tab in Arabic, right to left.
+
 == Frequently Asked Questions ==
 
 = Does this require LiteSpeed? =
 
-Full-page caching requires a LiteSpeed web server (or the third-party LiteSpeed Cache plugin). On other servers the plugin simply does not emit cache headers — everything else (object cache, exclusions, and the signed purge endpoint) still works.
+Full-page caching requires a LiteSpeed web server (or the third-party LiteSpeed Cache plugin). On any other server nothing reads the cache headers, so pages are not cached — and the settings screen says so plainly rather than looking as if it works. Everything else (object cache, exclusions, and the signed purge endpoint) still works.
 
 = Does it conflict with the LiteSpeed Cache plugin? =
 
@@ -150,6 +147,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.3.4 =
+* The readme no longer describes one-click admin login, which moved out of this plugin in 1.3.2, and the settings are found under Zinn Digital® → Cache. Screenshots added for the WordPress.org listing. Tested up to: 7.1 — the major version, as WordPress.org requires.
 
 = 1.3.3 =
 * Tested up to WordPress 7.1.1.
