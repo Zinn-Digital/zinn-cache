@@ -62,11 +62,8 @@ final class Plugin {
 		// unscheduled, unless the deploy footprint configured it.
 		( new Link_Scanner() )->register();
 		( new Rest_Controller( $lscache ) )->register();
-		// One-click wp-admin login from the Zinn dashboard. ⛔ Registers NOTHING unless the
-		// deploy footprint wrote `ZINN_SSO_KEY` and `ZINN_SITE_ID` into wp-config.php — an
-		// SSO route with no key would have to decide what an empty key means, and every
-		// wrong answer to that is "anyone can log in as the administrator".
-		// One-click login lived here until 2026-09-18 and has moved to `zinn-footprint`.
+		// ⛔ No one-click wp-admin login is registered here. It lived here until 2026-09-18
+		// and has moved to `zinn-footprint`, which is app-only and never submitted.
 		//
 		// WordPress.org refused this plugin for it, correctly (review R/RMT zinn-cache 18Sep26):
 		// `Sso::handle_login` set an authentication cookie and logged into an administrator

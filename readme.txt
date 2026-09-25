@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.3.5 =
+* The plugin's description in your Plugins list no longer offers remote purge from your Zinn® dashboard or one-click admin login. Neither is part of this plugin: one-click login moved out in 1.3.2, and the dashboard does not send purges to it. It now names what the plugin does — smart auto-purge, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe exclusions — in every language it ships.
 
 = 1.3.4 =
 * The readme no longer describes one-click admin login, which moved out of this plugin in 1.3.2, and the settings are found under Zinn Digital® → Cache. Screenshots added for the WordPress.org listing. Tested up to: 7.1 — the major version, as WordPress.org requires.
