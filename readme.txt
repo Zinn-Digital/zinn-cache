@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.3.7 =
+* Security hardening: the design-token stylesheet validates every component id and strips anything that could close the inline style.
 
 = 1.3.6 =
 * The Translations section no longer says the plugin has 56 user-visible strings. The plugin has grown to nearly three times that many, and every one of them is translated; the count was typed by hand and stopped being true as strings were added, so it is gone rather than corrected.
