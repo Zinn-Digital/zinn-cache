@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Səhifə keşi"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Obyekt keş-maddəsi"
 
@@ -124,239 +124,296 @@ msgstr "Məzmun növü"
 msgid "Seconds"
 msgstr "Saniyələr"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Obyekt keşi (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Hostunuz bu sayt üçün özəl Redis obyekt keşini işlədir və onu konfiqurasiya olunmuş saxlayır. Burada heç nəyi quraşdırmağa ehtiyac yoxdur; bu ekranın yuxarı hissəsindəki status onun işləyib-işləmədiyini göstərir."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Verilənlər bazası sorğularının nəticələrini keşləyir. Bu, səhifə keşi işləmədikdə, intensiv yüklənən mağazalarda və ya çoxlu sayda daxil olmuş istifadəçisi olan saytlarda ən çox kömək edir."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis obyekt keşi plaginini quraşdırın"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis genişlənməsi tələb olunur. Əgər çatışmırsa, bu ekranın üstündəki qutu bunu göstərir."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Redis hostu"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Redis portu"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Redis verilənlər bazası"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Paylaşılan Redis üzərindəki hər bir vebsayta öz nömrəsini verin, əks halda onlar bir-birinin keşini təmizləyəcəklər."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Redis istifadəçi adı"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Yalnız ACL istifadəçiləri olan Redis serveri üçün (Redis 6 və ya daha sonrakı versiyalar). Yalnız şifrə ilə daxil olmaq üçün boş buraxın."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Redis şifrəsi"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Redis-inizə tələb olunmursa, boş buraxın."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Açar prefiksi"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Ayrı bir verilənlər bazası nömrəsi ola bilmədikdə onun alternativi."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Ağıllı avtomatik təmizləmə"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Məzmun dəyişdikdə təsirlənən səhifələri avtomatik təmizləyin"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "Yeniləmələrdən sonra"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Nüvə, plaqin və ya tema yeniləməsindən sonra hər şeyi təmizləyin"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "Şərhdən sonra"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Yazıya edilən şərh təsdiq edildikdə həmin yazının səhifəsini təmizləyin"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Çox aktiv şərh bölməsində bunu söndürün, çünki orada o, saatda yüzlərlə dəfə eyni səhifəni təmizləyə bilər."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Heç vaxt keş etmə"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Həssas WordPress və WooCommerce standart parametrləri həmişə tətbiq olunur — səbət, ödəniş, mənim-hesabım və istənilən daxil olunmuş sessiya aşağıda nə olmasından asılı olmayaraq heç vaxt keşlənmir."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Ünvanlar"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Hər sətirdə bir yol, məsələn <code>/basket</code>. Sonda yerləşən <code>*</code> simvolu özündən sonrakı hər şeyi əhatə edir."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Sorğu parametrləri"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Bunlardan birini daşıyan səhifə heç vaxt keşlənmir — məsələn, birdəfəlik önizləmə nişanı."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Kuki-fayllar"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Bunlardan birini daşıyan ziyarətçiyə həmişə təzə səhifə təqdim olunur."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Bütün keşlənmiş səhifələr silindi. Ziyarətçilər gəldikcə onlar yenidən yaradılacaq."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "Obyekt kэşi quraşdırılıb, lakin heç nə saxlamır."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "Səhifə kэşi aktivdir, lakin bu server LiteSpeed deyil."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "Keş başlığı göndərilir, lakin heç kim onu oxumur, buna görə də səhifələr əslində keşlənmir. Hostinq provayderinizdən LiteSpeed-in mövcud olub-olmadığını soruşun və ya standart olaraq mövcud olduğu Zinn® hostinqinə keçin."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Obyekt keşi aktivdir, lakin bu serverdə Redis dəstəyi yoxdur."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis genişlənməsi quraşdırılmadığı üçün qoşulub-işləyən modul istifadə edilə bilməz və WordPress öz daxili yaddaş keşinə qayıdır. phpredis-i aktivləşdirmək üçün hostinq provayderinizə müraciət edin."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Heç nə keşlənmir."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Hər iki keş söndürülüb, ona görə də bu qoşma saytı daha sürətli etmir."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Bu saytda keşləmə aktivdir."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis istifadəçi adını və ya şifrəni rədd etdi. wp-config.php faylındakı və ya bu ekrandakı Redis məlumatlarını yoxlayın."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis girişə icazə verdi, lakin bu saytın öz açarlarını saxlamağına icazə vermir. Redis istifadəçisi bu saytın açar prefiksi üçün icazəyə malik olmalıdır."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis verilənlər bazası nömrəsini rədd etdi. Redis verilənlər bazası ayarını yoxlayın."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis yaddaşdan kənardadır və yeni məlumatları qəbul etmir."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "phpredis genişləndirməsi quraşdırılmadığı üçün WordPress öz yaddaşdaxili keşindən istifadə edir. Hostinq provayderinizdən phpredis-i aktivləşdirməsini xahiş edin."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "WP_REDIS_DISABLED wp-config.php faylında təyin edilib, ona görə də obyekt keş söndürülüb."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Redis serverinə qoşulmaq mümkün olmadı. Redis host və portunu və Redis-in işlədiyini yoxlayın."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis özünə yeni yazılmış dəyəri qaytarmadı. Redis serverinin loqlarını yoxlayın."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Veb-server"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — səhifə keşlənməsi mövcuddur"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "LiteSpeed deyil — səhifə keşlənməsi əlçatan deyil"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Redis dəstəyi"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis quraşdırılıb"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis quraşdırılmayıb"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Səhifənin ömrü"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "Keşi təmizləməyə icazəniz yoxdur."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Keşin təmizlənməsi tələb olundu."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: başqa obyekt keşi plgini quraşdırılıb, ona görə də Redis obyekt keşi bu plagin tərəfindən idarə olunmur."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "aşkarlandı"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "aşkarlanmadı"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "phpredis genişlənməsi çatışmır"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "quraşdırılıb, heç nə saxlanılmır"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "aktiv, hostunuz tərəfindən idarə olunur"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "aktiv"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "qeyri-aktiv"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed keşi:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Redis obyekt keşi:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "Redis PHP genişlənməsi (phpredis) bu serverdə mövcud deyil, ona görə də obyekt keşi aktivləşdirilə bilməz."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Başqa bir obyekt-keş əlavəsi artıq quraşdırılıb. Zinn® obyekt keşini aktivləşdirməzdən əvvəl onu silin."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Redis bağlantı konfiqurasiya faylı yazıla bilmədi."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "Komplektə daxil olan obyekt keşi drop-in oxuna bilmədi."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Obyekt keşi drop-in-i wp-content içərisinə quraşdırmaq mümkün olmadı."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Obyekt keşi drop-in-i silmək mümkün olmadı."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress fayl sistemi yazıla bilən deyil, ona görə də obyekt keşi drop-in idarə oluna bilmədi."
 

@@ -54,6 +54,7 @@ final class Settings {
 			'redis_host'            => '127.0.0.1',
 			'redis_port'            => 6379,
 			'redis_database'        => 0,
+			'redis_username'        => '',
 			'redis_password'        => '',
 			'redis_key_prefix'      => '',
 			// ⭐ W41-Q. Every one of these is read by the code that does the work — see the
@@ -90,6 +91,7 @@ final class Settings {
 			'redis_host'            => self::to_host( $raw['redis_host'] ?? $defaults['redis_host'] ),
 			'redis_port'            => self::clamp_int( $raw['redis_port'] ?? $defaults['redis_port'], 1, 65535, (int) $defaults['redis_port'] ),
 			'redis_database'        => self::clamp_int( $raw['redis_database'] ?? $defaults['redis_database'], 0, 255, 0 ),
+			'redis_username'        => is_scalar( $raw['redis_username'] ?? '' ) ? sanitize_text_field( (string) ( $raw['redis_username'] ?? '' ) ) : '',
 			'redis_password'        => is_scalar( $raw['redis_password'] ?? '' ) ? (string) ( $raw['redis_password'] ?? '' ) : '',
 			'redis_key_prefix'      => self::to_key_prefix( $raw['redis_key_prefix'] ?? '' ),
 			'browser_ttl'           => self::clamp_int( $raw['browser_ttl'] ?? 0, 0, 31536000, 0 ),

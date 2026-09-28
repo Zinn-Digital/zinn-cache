@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Pamięć podręczna strony"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Pamięć podręczna obiektu"
 
@@ -124,239 +124,296 @@ msgstr "Typ zawartości"
 msgid "Seconds"
 msgstr "Sekundy"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Pamięć podręczna obiektów (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Twój hosting obsługuje prywatną pamięć podręczną obiektów Redis dla tej witryny i dba o jej konfigurację. Nie trzeba tutaj niczego konfigurować; status u góry tego ekranu pokazuje, czy system działa."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Przechowuje w pamięci podręcznej wyniki zapytań do bazy danych. Jest to najbardziej przydatne w przypadku ruchliwych sklepów lub witryn z dużym ruchem użytkowników zalogowanych, gdzie pamięć podręczna stron nie wystarcza."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Zainstaluj wtyczkę Redis object-cache drop-in"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Wymaga rozszerzenia phpredis. Jeśli go brakuje, informuje o tym ramka powyżej tego ekranu."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Host Redis"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Port Redis"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Baza danych Redis"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Przypisz każdej stronie na współdzielonym Redis własny numer, w przeciwnym razie będą się nawzajem pozbawiać pamięci podręcznej."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Nazwa użytkownika Redis"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Tylko dla serwera Redis z użytkownikami ACL (Redis 6 lub nowszy). Pozostaw puste, aby zalogować się samym hasłem."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Hasło Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Pozostaw puste, jeśli Twoje Redis go nie wymaga."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Prefiks klucza"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Alternatywa dla oddzielnego numeru bazy danych, gdy nie możesz go mieć."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Inteligentne automatyczne czyszczenie"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Automatyczne czyszczenie pamięci podręcznej zmienionych stron"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "Po aktualizacjach"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Wyczyść wszystko po aktualizacji rdzenia, wtyczki lub motywu"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "Po komentarzu"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Wyczyść stronę wpisu po zatwierdzeniu nowego komentarza do niego"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Wyłącz to w bardzo aktywnej sekcji komentarzy, gdzie funkcja ta potrafi odświeżać tę samą stronę setki razy na godzinę."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Nigdy nie cachuj tych elementów"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Rozsądne ustawienia domyślne dla WordPress i WooCommerce są zawsze stosowane — koszyk, kasa, strona mojego konta oraz każda zalogowana sesja nigdy nie są cachowane, bez względu na to, co znajduje się poniżej."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Adresy"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Jedna ścieżka w linii, na przykład <code>/basket</code>. Końcowy znak <code>*</code> dopasowuje wszystko, co znajduje się pod nim."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Parametry zapytania"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Strona zawierająca jeden z tych elementów nigdy nie jest buforowana – na przykład jednorazowy token podglądu."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Pliki cookies"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Odwiedzający posiadający jeden z nich zawsze otrzymuje świeżą stronę."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Każda zapisana w pamięci podręcznej strona została usunięta. Zostaną one odbudowane w miarę pojawiania się odwiedzających."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "Pamięć podręczna obiektów jest zainstalowana, ale niczego nie przechowuje."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "Pamięć podręczna strony jest włączona, ale ten serwer nie jest LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "Nagłówki pamięci podręcznej są wysyłane, ale nic ich nie odczytuje, więc strony nie są faktycznie buforowane. Zapytaj swojego dostawcę hostingu, czy LiteSpeed jest dostępny, lub przejdź na hosting Zinn®, gdzie jest on standardem."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Pamięć podręczna obiektów jest włączona, ale ten serwer nie obsługuje Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Rozszerzenie phpredis nie jest zainstalowane, więc nie można użyć pliku drop-in i WordPress wraca do własnej pamięci podręcznej w pamięci RAM. Poproś swojego dostawcę hostingowego o włączenie phpredis."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Nic nie jest buforowane."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Oba pamięci podręczne są wyłączone, więc ta wtyczka nie przyspiesza witryny."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Pamięć podręczna jest włączona w tej witrynie."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis odrzucił nazwę użytkownika lub hasło. Sprawdź dane uwierzytelniające Redis w pliku wp-config.php lub na tym ekranie."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis zaakceptował logowanie, ale nie zezwala tej witrynie na przechowywanie swoich kluczy. Użytkownik Redis potrzebuje uprawnień do prefiksu klucza tej witryny."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis odrzucił numer bazy danych. Sprawdź ustawienia bazy danych Redis."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis nie ma wolnej pamięci i odrzuca nowe dane."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "Rozszerzenie phpredis nie jest zainstalowane, więc WordPress używa własnej pamięci podręcznej w pamięci RAM. Poproś swojego dostawcę hostingowego o włączenie phpredis."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "Zmienna WP_REDIS_DISABLED jest ustawiona w pliku wp-config.php, więc pamięć podręczna obiektów jest wyłączona."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Nie można połączyć się z serwerem Redis. Sprawdź host i port usługi Redis oraz upewnij się, że Redis jest uruchomiony."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis nie zwrócił wartości, która została do niego przed chwilą zapisana. Sprawdź logi serwera Redis."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Serwer WWW"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — dostępne buforowanie stron"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "brak LiteSpeed — pamięć podręczna stron jest niedostępna"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Obsługa Redis"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis jest zainstalowany"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis nie jest zainstalowany"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Czas życia strony"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "Nie masz uprawnień do czyszczenia pamięci podręcznej."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Zażądano wyczyszczenia pamięci podręcznej."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: zainstalowana jest inna wtyczka pamięci podręcznej obiektów (object-cache drop-in), dlatego pamięć podręczna obiektów Redis nie jest zarządzana przez tę wtyczkę."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "wykryto"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "nie wykryto"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "brak rozszerzenia phpredis"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "zainstalowano, nic nie jest przechowywane"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "aktywna, zarządzana przez Twój hosting"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "aktywne"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "nieaktywne"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "Pamięć podręczna LiteSpeed:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Pamięć podręczna obiektów Redis:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "Rozszerzenie PHP Redis (phpredis) nie jest dostępne na tym serwerze, dlatego pamięci podręcznej obiektów nie można włączyć."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Inny moduł object-cache jest już zainstalowany. Usuń go przed włączeniem pamięci podręcznej object cache Zinn®."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Nie udało się zapisać pliku konfiguracyjnego połączenia Redis."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "Nie udało się odczytać dołączonego pliku drop-in pamięci podręcznej obiektów."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Nie udało się zainstalować pliku drop-in pamięci podręcznej obiektów w wp-content."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Nie udało się usunąć pliku drop-in pamięci podręcznej obiektów."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "System plików WordPress nie jest zapisywalny, dlatego nie można było zarządzać plikiem drop-in pamięci podręcznej obiektów."
 

@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Προσωρινή μνήμη σελίδας"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Προσωνήμνη αντικειμένων"
 
@@ -124,239 +124,296 @@ msgstr "Τύπος περιεχομένου"
 msgid "Seconds"
 msgstr "Δευτερόλεπτα"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Προσωρινή μνήμη αντικειμένων (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Ο κεντρικός υπολογιστής σας διαχειρίζεται μια ιδιωτική κρυφία αντικειμένων Redis για αυτόν τον ιστότοπο και διατηρεί τις ρυθμίσεις της. Δεν χρειάζεται να ρυθμίσετε τίποτα εδώ· η κατάσταση στο επάνω μέρος αυτής της οθόνης δείχνει αν λειτουργεί."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Κάνει caching στα αποτελέσματα των ερωτημάτων βάσης δεδομένων. Βοηθάει περισσότερο σε ένα φορτωμένο κατάστημα ή σε έναν ιστότοπο με μεγάλη κίνηση από συνδεδεμένους χρήστες, όπου η προσω Aν μνήμη (cache) σελίδων δεν μπορεί."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Εγκατάσταση του drop-in object-cache Redis"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Απαιτείται η επέκταση phpredis. Εάν λείπει, το πλαίσιο πάνω από αυτή την οθόνη το αναφέρει."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Κεντρικός υπολογιστής Redis"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Θύρα Redis"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Βάση δεδομένων Redis"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Δώστε σε κάθε ιστότοπο σε ένα κοινόχρηστο Redis τον δικό του αριθμό, διαφορετικά θα διαγράψουν την προσωernή μνήμη ο ένας του άλλου."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Όνομα χρήστη Redis"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Μόνο για διακομιστή Redis με χρήστες ACL (Redis 6 ή νεότερη έκδοση). Αφήστε το κενό για σύνδεση μόνο με τον κωδικό πρόσβασης."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Κωδικός πρόσβασης Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Αφήστε το κενό εάν το Redis σας δεν χρειάζεται."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Πρόθεμα κλειδιού"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Μια εναλλακτική λύση αντί για έναν ξεχωριστό αριθμό βάσης δεδομένων όταν δεν μπορείτε να έχετε έναν."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Έξυπνη αυτόματη εκκαθάριση"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Αυτόματος καθαρισμός επηρεασμένων σελίδων όταν αλλάζει το περιεχόμενο"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "Μετά από ενημερώσεις"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Εκκαθάριση όλων των δεδομένων μετά από ενημέρωση πυρήνα, πρόσθετου ή θέματος"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "Μετά από ένα σχόλιο"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Εκκαθάριση της σελίδας μιας δημοσίευσης όταν εγκρίνεται ένα σχόλιο σε αυτήν"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Απενεργοποιήστε το αυτό σε μια ενότητα σχολίων με μεγάλη κίνηση, όπου μπορεί να καθαρίζει την ίδια σελίδα εκατοντάδες φορές την ώρα."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Να μη γίνεται ποτέ προσωρινή αποθήκευση αυτών"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Οι λογικές προεπιλογές για τα WordPress και WooCommerce εφαρμόζονται πάντα — το καλάθι, το ταμείο, ο λογαριασμός μου και οποιαδήποτε συνδεδεμένη συνεδρία δεν αποθηκεύονται ποτέ στην κρυφή μνήμη (cache), ανεξάρτητα από το τι βρίσκεται παρακάτω."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Διευθύνσεις"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Μία διαδρομή ανά γραμμή, για παράδειγμα <code>/basket</code>. Ένας τελικός χαρακτήρας <code>*</code> ταιριάζει με τα πάντα κάτω από αυτόν."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Παράμετροι ερωτήματος"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Μια σελίδα που φέρει ένα από αυτά δεν αποθηκεύεται ποτέ στην κρυφή μνήμη — για παράδειγμα, ένα διακριτικό προεπισκόπησης μίας χρήσης."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Cookies"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Σε έναν επισκέπτη που φέρει ένα από αυτά, σερβίρεται πάντα μια φρέσκια σελίδα."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Όλες οι προσωρινά αποθηκευμένες σελίδες έχουν διαγραφεί. Θα αναδημιουργηθούν καθώς φθάνουν οι επισκέπτες."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "Η κρυφή μνήμη αντικειμένων είναι εγκατεστημένη, αλλά δεν αποθηκεύει τίποτα."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "Η προσω Sνή μνήμη (cache) της σελίδας είναι ενεργοποιημένη, αλλά αυτός ο διακομιστής δεν είναι LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "Οι κεφαλίδες προσωρινής αποθήκευσης αποστέλλονται και κανείς δεν τις διαβάζει, επομένως οι σελίδες δεν αποθηκεύονται τελικά στην κρυφή μνήμη. Ρωτήστε τον πάροχό σας εάν το LiteSpeed είναι διαθέσιμο ή μεταβείτε στη φιλοξενία Zinn® όπου αποτελεί βασικό πρότυπο."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Η προσωine μνήμη αντικειμένων (object cache) είναι ενεργή, αλλά αυτός ο διακομιστής δεν υποστηρίζει το Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Η επέκταση phpredis δεν είναι εγκατεστημένη, επομένως το drop-in δεν μπορεί να χρησιμοποιηθεί και το WordPress επιστρέφει στη δική του προσω Gνή μνήμη cache. Ζητήστε από τον πάροχο φιλοξενίας σας να ενεργοποιήσει το phpredis."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Δεν γίνεται προσωρινή αποθήκευση."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Και οι δύο κρυφές μνήμες είναι απενεργοποιημένες, επομένως αυτό το πρόσθετο δεν κάνει τον ιστότοπο πιο γρήγορο."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Η προσωρινή μνήμη (caching) είναι ενεργή σε αυτόν τον ιστότοπο."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Το Redis απέρριψε το όνομα χρήστη ή τον κωδικό πρόσβασης. Ελέγξτε τα διαπιστευτήρια του Redis στο wp-config.php ή σε αυτήν την οθόνη."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Η Redis αποδίωξε τη σύνδεση αλλά δεν επιτρέπει σε αυτόν τον ιστότοπο να αποθηκεύσει τα κλειδιά του. Ο χρήστης της Redis χρειάζεται άδεια για το πρόθεμα κλειδιών αυτού του ιστότοπου."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Η Redis απέρριψε τον αριθμό της βάσης δεδομένων. Ελέγξτε τη ρύθμιση της βάσης δεδομένων Redis."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Το Redis εξάντλησε τη μνήμη του και αρνείται νέα δεδομένα."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "Η επέκταση phpredis δεν είναι εγκατεστημένη, επομένως το WordPress χρησιμοποιεί τη δική του μνήμη cache. Ζητήστε από τον πάροχο φιλοξενίας σας να ενεργοποιήσει το phpredis."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "Το WP_REDIS_DISABLED έχει οριστεί στο wp-config.php, επομένως η προσωνή μνήμη αντικειμένων είναι απενεργοποιημένη."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Δεν ήταν δυνατή η σύνδεση με τον διακομιστή Redis. Ελέγξτε τον κεντρικό υπολογιστή και τη θύρα του Redis, καθώς και αν ο Redis εκτελείται."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Το Redis δεν επέστρεψε την τιμή που μόλις γράφτηκε σε αυτό. Ελέγξτε τα αρχεία καταγραφής (logs) του διακομιστή Redis."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Διακομιστής Ιστού"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — διαθέσιμη προσωρινή αποθήκευση σελίδας"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "δεν είναι LiteSpeed — η λανθάνουσα μνήμη σελίδας δεν είναι διαθέσιμη"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Υποστήριξη Redis"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "το phpredis είναι εγκατεστημένο"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "Το phpredis δεν είναι εγκατεστημένο"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Διάρκεια ζωής σελίδας"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "Δεν έχετε άδεια να εκκαθαρίσετε την προσωρινή μνήμη."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Ζητήθηκε εκκαθάριση της προσωρινής μνήμης."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: έχει εγκατασταθεί ένα άλλο πρόσθετο προσωρινής μνήμης αντικειμένων, επομένως η προσωρινή μνήμη αντικειμένων Redis δεν διαχειρίζεται από αυτό το πρόσθετο."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "εντοπίστηκε"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "δεν εντοπίστηκε"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "λείπει η επέκταση phpredis"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "εγκατεστημένο, δεν αποθηκεύει τίποτα"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "ενεργό, διαχειριζόμενο από τον πάροχό σας"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "ενεργό"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "ανενεργό"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "Προσωρινή μνήμη LiteSpeed:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Προσωρινή μνήμη αντικειμένων Redis:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "Η επέκταση PHP του Redis (phpredis) δεν είναι διαθέσιμη σε αυτόν τον διακομιστή, επομένως η προσωρινή μνήμη αντικειμένων δεν μπορεί να ενεργοποιηθεί."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Ένα άλλο πρόσθετο object-cache είναι ήδη εγκατεστημένο. Αφαιρέστε το πριν ενεργοποιήσετε την κρυφάμηνη αντικειμένων Zinn®."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Δεν ήταν δυνατή η εγγραφή του αρχείου ρυθμίσεων σύνδεσης Redis."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "Δεν ήταν δυνατή η ανάγνωση του συνοδευτικού drop-in προσωρινής μνήμης αντικειμένων."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Δεν ήταν δυνατή η εγκατάσταση του drop-in προσωρινής μνήμης αντικειμένων στο wp-content."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Δεν ήταν δυνατή η αφαίρεση του drop-in προσωρινής μνήμης αντικειμένων."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Το σύστημα αρχείων του WordPress δεν είναι εγγράψιμο, επομένως δεν ήταν δυνατή η διαχείριση του drop-in προσωρινής μνήμης αντικειμένων."
 

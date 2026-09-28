@@ -50,6 +50,15 @@ final class Plugin {
 		$lscache = new Lscache( $settings );
 		$lscache->register();
 
+		// A plugin update ships a new drop-in, but WordPress runs the COPY in wp-content. Refresh
+		// an older copy of our own drop-in after an update and on admin page loads (two 1 KB header
+		// reads; nothing is written unless the bundled revision is newer).
+		$refresh = static function () use ( $settings ): void {
+			( new Object_Cache( $settings ) )->refresh_if_stale();
+		};
+		add_action( 'admin_init', $refresh );
+		add_action( 'upgrader_process_complete', $refresh );
+
 		( new Purge_Controller( $lscache, $settings ) )->register();
 		// Reports plugin/theme/core changes to the panel so the speed timeline can
 		// explain a score change (docs/85 §6.2). It hooks the SAME WordPress events
@@ -79,6 +88,7 @@ final class Plugin {
 		// capability keeps working for our own customers and leaves the public artefact entirely.
 		// DO NOT re-add it here.
 		( new Updater( ZINN_CACHE_FILE, ZINN_CACHE_VERSION ) )->register();
+		Cli::register();
 
 		if ( is_admin() ) {
 			( new Admin( new Object_Cache( $settings ), $lscache ) )->register();

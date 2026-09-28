@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Pagina-cache"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Objectcache"
 
@@ -124,239 +124,296 @@ msgstr "Inhoudstype"
 msgid "Seconds"
 msgstr "Seconden"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Objectcache (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Uw host beheert een private Redis-objectcache voor deze site en houdt deze geconfigureerd. Hier valt niets in te stellen; de status bovenaan dit scherm geeft aan of deze werkt."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Cacht de resultaten van databasequery's. Dit helpt het meest bij een drukke winkel of een site met veel ingelogde bezoekers, waar de paginacache dat niet kan."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Installeer de Redis object-cache drop-in"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Vereist de phpredis-extensie. Als deze ontbreekt, wordt dat aangegeven in het venster hierboven."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Redis-host"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Redis-poort"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Redis-database"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Geef elke website op een gedeelde Redis zijn eigen nummer, anders wissen ze elkaars cache."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Redis-gebruikersnaam"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Alleen voor een Redis-server met ACL-gebruikers (Redis 6 of hoger). Laat leeg om alleen met het wachtwoord in te loggen."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Redis-wachtwoord"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Laat dit leeg als uw Redis er geen nodig heeft."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Sleutelvoorvoegsel"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Een alternatief voor een apart databasenummer wanneer u er geen kunt hebben."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Slim automatisch legen"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Automatisch getroffen pagina's wissen wanneer de inhoud wijzigt"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "Na updates"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Wis alles na een update van een core, plugin of thema"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "Na een opmerking"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Wis de pagina van een bericht wanneer een reactie daarop wordt goedgekeurd"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Schakel dit uit bij een zeer drukke reactiesectie, waar dit dezelfde pagina honderden keren per uur kan legen."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Deze nooit cachen"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Verstandige WordPress- en WooCommerce-standaarden worden altijd toegepast — winkelwagen, afrekenen, mijn-account en ingelogde sessies worden nooit gecached, wat er ook onder staat."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Adressen"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Één pad per regel, bijvoorbeeld <code>/basket</code>. Een afsluitende <code>*</code> komt overeen met alles daaronder."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Query-parameters"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Een pagina met een van deze tokens wordt nooit in de cache opgeslagen, zoals bijvoorbeeld een eenmalig voorbeeldtoken."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Cookies"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Een bezoeker die er een bij zich heeft, krijgt altijd een nieuwe pagina te zien."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Elke gekachelde pagina is verwijderd. Deze worden opnieuw opgebouwd naarmate er bezoekers arriveren."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "De object cache is geïnstalleerd, maar slaat niets op."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "De paginacache is ingeschakeld, maar deze server is geen LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "De cache-headers worden verzonden en niets leest ze, dus pagina's worden in werkelijkheid niet gecached. Vraag uw hostingprovider of LiteSpeed beschikbaar is, of stap over op Zinn®-hosting waar dit standaard is."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "De object cache is ingeschakeld, maar deze server heeft geen ondersteuning voor Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "De phpredis-extensie is niet geïnstalleerd, dus de drop-in kan niet worden gebruikt en WordPress schakelt terug naar de eigen in-memory cache. Vraag uw host om phpredis in te schakelen."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Er wordt niets gekaand."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Beide caches zijn uitgeschakeld, dus deze plugin maakt de website niet sneller."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Caching is actief op deze website."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis heeft de gebruikersnaam of het wachtswoord geweigerd. Controleer de Redis-inloggegevens in wp-config.php of op dit scherm."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis heeft de aanmeldgegevens geaccepteerd, maar staat niet toe dat deze site sleutels opslaat. De Redis-gebruiker heeft toestemming nodig voor het sleutelvoorvoegsel van deze site."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis heeft het databasenummer geweigerd. Controleer de instelling van de Redis-database."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis heeft onvoldoende geheugen en weigert nieuwe gegevens."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "De phpredis-extensie is niet geïnstalleerd, dus WordPress gebruikt zijn eigen in-memory cache. Vraag uw hostingprovider om phpredis in te schakelen."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "WP_REDIS_DISABLED is ingesteld in wp-config.php, waardoor de objectcache is uitgeschakeld."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "De Redis-server is niet bereikbaar. Controleer de Redis-host en -poort en zorg ervoor dat Redis actief is."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis heeft de zojuist geschreven waarde niet geretourneerd. Controleer de logboeken van de Redis-server."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Webserver"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — pagina-caching beschikbaar"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "geen LiteSpeed — pagina-caching niet beschikbaar"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Redis-ondersteuning"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis is geïnstalleerd"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis is niet geïnstalleerd"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Pagina-levensduur"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "U hebt geen toestemming om de cache te legen."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Verzoek om cache te legen ontvangen."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: er is al een andere object-cache drop-in geïnstalleerd, dus de Redis-objectcache wordt niet door deze plugin beheerd."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "gedetecteerd"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "niet gedetecteerd"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "phpredis-extensie ontbreekt"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "geïnstalleerd, slaat niets op"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "actief, beheerd door uw host"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "actief"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "inactief"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed-cache:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Redis-objectcache:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "De Redis PHP-extensie (phpredis) is niet beschikbaar op deze server, dus de objectcache kan niet worden ingeschakeld."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Er is al een andere object-cache drop-in geïnstalleerd. Verwijder deze voordat u de Zinn® object-cache inschakelt."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Kon het configuratiebestand voor de Redis-verbinding niet schrijven."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "De meegeleverde object-cache drop-in kon niet worden gelezen."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Kon de object-cache drop-in niet in wp-content installeren."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Kon de object-cache drop-in niet verwijderen."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Het WordPress-bestandssysteem is niet beschrijfbaar, dus de object-cache drop-in kon niet worden beheerd."
 

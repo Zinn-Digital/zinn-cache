@@ -1,6 +1,7 @@
 <?php
 /**
  * Zinn Cache object-cache drop-in — a persistent WordPress object cache backed by Redis (phpredis).
+ * Drop-in revision: 2
  *
  * This file is copied to `wp-content/object-cache.php` by the Zinn Cache plugin. WordPress loads it
  * very early (before most of core), so it must be self-contained and must never fatal: when the
@@ -38,6 +39,35 @@ class WP_Object_Cache {
 	 * @var string
 	 */
 	public const MARKER = 'Zinn Cache object-cache drop-in';
+
+	/**
+	 * Revision of this drop-in's code, independent of the plugin version.
+	 *
+	 * The plugin compares it with the `Drop-in revision:` line of the installed copy and refreshes
+	 * an older copy of its OWN drop-in, so a fix here reaches `wp-content/object-cache.php` without
+	 * anyone re-enabling the cache. Raise it whenever this file changes behaviour.
+	 *
+	 * @var int
+	 */
+	public const REVISION = 2;
+
+	/**
+	 * Key (under the site's prefix) used by the write/read health probe.
+	 *
+	 * @var string
+	 */
+	public const PROBE_KEY = 'zinn-cache-health:probe';
+
+	/**
+	 * Why the last connection attempt or command failed ('' when nothing has failed).
+	 *
+	 * A cache that cannot authenticate still serves every page (from memory), so the only place
+	 * the failure can surface is here: the plugin reads it and shows it, instead of a green badge
+	 * over a cache that stores nothing.
+	 *
+	 * @var string
+	 */
+	private string $last_error = '';
 
 	/**
 	 * Cumulative number of cache hits served this request.
@@ -128,9 +158,9 @@ class WP_Object_Cache {
 	private bool $use_igbinary = false;
 
 	/**
-	 * Normalised connection configuration (host, port, database, password, prefix, timeout).
+	 * Normalised connection configuration.
 	 *
-	 * @var array{host:string,port:int,database:int,password:string,prefix:string,timeout:float}
+	 * @var array{host:string,port:int,database:int,username:string,password:string,prefix:string,timeout:float,maxttl:int,flush_socket:string}
 	 */
 	private array $config = array();
 
@@ -266,7 +296,7 @@ class WP_Object_Cache {
 	 */
 	public function set( $key, $data, $group = 'default', $expire = 0 ): bool {
 		$group  = $this->normalize_group( $group );
-		$expire = max( 0, (int) $expire );
+		$expire = $this->cap_expiry( (int) $expire );
 		$store  = is_object( $data ) ? clone $data : $data;
 
 		$this->cache[ $group ][ $key ] = $store;
@@ -556,6 +586,13 @@ class WP_Object_Cache {
 			return true;
 		}
 
+		// A host that fences each site with a Redis ACL takes SCAN away (it takes no key, so an ACL
+		// pattern cannot fence it, and it would hand every tenant every other tenant's key names).
+		// Such a host runs a helper that deletes only the calling account's keys; ask it first.
+		if ( $this->helper_flush() ) {
+			return true;
+		}
+
 		return $this->scan_delete( $this->global_prefix . $this->key_salt . '*' );
 	}
 
@@ -588,7 +625,18 @@ class WP_Object_Cache {
 		$site    = $this->is_global_group( $group ) ? '' : $this->blog_prefix;
 		$pattern = $this->global_prefix . $this->key_salt . $site . $group . ':*';
 
-		return $this->scan_delete( $pattern );
+		if ( $this->scan_delete( $pattern ) ) {
+			return true;
+		}
+
+		// SCAN refused (a per-site ACL): the only safe way to drop one group is to drop every key
+		// this site owns. Clearing more than asked is correct for a cache; clearing less is not.
+		if ( '' !== $this->config['flush_socket'] && $this->helper_flush() ) {
+			$this->cache = array();
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -689,19 +737,33 @@ class WP_Object_Cache {
 	/**
 	 * Load and normalise the connection configuration.
 	 *
-	 * Precedence per key: `WP_REDIS_*` constants, then the `zinn-cache-redis.php` config file, then
-	 * built-in defaults.
+	 * Precedence per key: `WP_REDIS_*` / `ZINN_CACHE_*` constants, then the `zinn-cache-redis.php`
+	 * config file, then built-in defaults.
 	 *
-	 * @return array{host:string,port:int,database:int,password:string,prefix:string,timeout:float}
+	 * Credentials follow the conventions hosts already use for Redis 6+ ACLs, so a host can switch
+	 * to this drop-in without rewriting `wp-config.php`:
+	 *
+	 * - `WP_REDIS_PASSWORD` as a string: a plain `AUTH <password>`.
+	 * - `WP_REDIS_PASSWORD` as `array( 'user', 'password' )`: an ACL `AUTH <user> <password>`.
+	 * - `WP_REDIS_USERNAME` plus a string password: the same ACL login.
+	 *
+	 * ⛔ An array password was once cast to the string "Array", the login failed, and the cache
+	 * quietly stored nothing while every page kept working — the one failure nobody would notice.
+	 * `connection_error()` now carries the reason, and the plugin shows it.
+	 *
+	 * @return array{host:string,port:int,database:int,username:string,password:string,prefix:string,timeout:float,maxttl:int,flush_socket:string}
 	 */
 	private function load_config(): array {
 		$config = array(
-			'host'     => '127.0.0.1',
-			'port'     => 6379,
-			'database' => 0,
-			'password' => '',
-			'prefix'   => '',
-			'timeout'  => 1.0,
+			'host'         => '127.0.0.1',
+			'port'         => 6379,
+			'database'     => 0,
+			'username'     => '',
+			'password'     => '',
+			'prefix'       => '',
+			'timeout'      => 1.0,
+			'maxttl'       => 0,
+			'flush_socket' => '',
 		);
 
 		$path = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR . '/zinn-cache-redis.php' : '';
@@ -712,33 +774,62 @@ class WP_Object_Cache {
 			}
 		}
 
-		if ( defined( 'WP_REDIS_HOST' ) ) {
-			$config['host'] = WP_REDIS_HOST;
-		}
-		if ( defined( 'WP_REDIS_PORT' ) ) {
-			$config['port'] = WP_REDIS_PORT;
-		}
-		if ( defined( 'WP_REDIS_DATABASE' ) ) {
-			$config['database'] = WP_REDIS_DATABASE;
-		}
-		if ( defined( 'WP_REDIS_PASSWORD' ) ) {
-			$config['password'] = WP_REDIS_PASSWORD;
-		}
-		if ( defined( 'WP_REDIS_PREFIX' ) ) {
-			$config['prefix'] = WP_REDIS_PREFIX;
-		}
-		if ( defined( 'WP_REDIS_TIMEOUT' ) ) {
-			$config['timeout'] = WP_REDIS_TIMEOUT;
+		$constants = array(
+			'host'         => 'WP_REDIS_HOST',
+			'port'         => 'WP_REDIS_PORT',
+			'database'     => 'WP_REDIS_DATABASE',
+			'username'     => 'WP_REDIS_USERNAME',
+			'password'     => 'WP_REDIS_PASSWORD',
+			'prefix'       => 'WP_REDIS_PREFIX',
+			'timeout'      => 'WP_REDIS_TIMEOUT',
+			'maxttl'       => 'WP_REDIS_MAXTTL',
+			'flush_socket' => 'ZINN_CACHE_FLUSH_SOCKET',
+		);
+		foreach ( $constants as $key => $constant ) {
+			if ( defined( $constant ) ) {
+				$config[ $key ] = constant( $constant );
+			}
 		}
 
+		// A Unix socket may be named with the Redis Object Cache convention instead of a host.
+		if ( defined( 'WP_REDIS_PATH' ) && is_string( WP_REDIS_PATH ) && '' !== WP_REDIS_PATH ) {
+			$config['host'] = WP_REDIS_PATH;
+		}
+
+		list( $username, $password ) = self::credentials( $config['username'], $config['password'] );
+
 		return array(
-			'host'     => (string) $config['host'],
-			'port'     => (int) $config['port'],
-			'database' => (int) $config['database'],
-			'password' => (string) $config['password'],
-			'prefix'   => (string) $config['prefix'],
-			'timeout'  => (float) $config['timeout'],
+			'host'         => is_scalar( $config['host'] ) ? (string) $config['host'] : '127.0.0.1',
+			'port'         => (int) $config['port'],
+			'database'     => (int) $config['database'],
+			'username'     => $username,
+			'password'     => $password,
+			'prefix'       => is_scalar( $config['prefix'] ) ? (string) $config['prefix'] : '',
+			'timeout'      => (float) $config['timeout'],
+			'maxttl'       => max( 0, (int) $config['maxttl'] ),
+			'flush_socket' => is_scalar( $config['flush_socket'] ) ? (string) $config['flush_socket'] : '',
 		);
+	}
+
+	/**
+	 * Normalise a (username, password) pair from the shapes hosts write.
+	 *
+	 * @param mixed $username Configured username (may be empty).
+	 * @param mixed $password Configured password: a string, or `array( user, pass )` / `array( pass )`.
+	 * @return array{0:string,1:string} Username ('' for a plain AUTH) and password.
+	 */
+	public static function credentials( $username, $password ): array {
+		$user = is_scalar( $username ) ? (string) $username : '';
+
+		if ( is_array( $password ) ) {
+			$parts = array_values( array_filter( $password, 'is_scalar' ) );
+			if ( 2 <= count( $parts ) ) {
+				return array( (string) $parts[0], (string) $parts[1] );
+			}
+			return array( $user, isset( $parts[0] ) ? (string) $parts[0] : '' );
+		}
+
+		return array( $user, is_scalar( $password ) ? (string) $password : '' );
 	}
 
 	/**
@@ -773,28 +864,201 @@ class WP_Object_Cache {
 		try {
 			$redis     = new \Redis();
 			$host      = $this->config['host'];
-			$is_socket = str_starts_with( $host, '/' );
+			$is_socket = 0 === strpos( $host, '/' );
 			$port      = $is_socket ? 0 : $this->config['port'];
 			$connected = $redis->connect( $host, $port, $this->config['timeout'] );
 
 			if ( true !== $connected ) {
+				$this->last_error = 'connect';
 				return;
 			}
 
-			if ( '' !== $this->config['password'] && true !== $redis->auth( $this->config['password'] ) ) {
-				return;
+			if ( '' !== $this->config['password'] ) {
+				$auth = '' !== $this->config['username']
+					? array( $this->config['username'], $this->config['password'] )
+					: $this->config['password'];
+				if ( true !== $redis->auth( $auth ) ) {
+					$this->last_error = 'auth';
+					return;
+				}
 			}
 
-			if ( 0 !== $this->config['database'] ) {
-				$redis->select( $this->config['database'] );
+			if ( 0 !== $this->config['database'] && true !== $redis->select( $this->config['database'] ) ) {
+				$this->last_error = 'select';
+				return;
 			}
 
 			$this->redis     = $redis;
 			$this->connected = true;
 		} catch ( \Exception $e ) {
-			$this->redis     = null;
-			$this->connected = false;
+			$this->redis      = null;
+			$this->connected  = false;
+			$this->last_error = self::classify_error( $e->getMessage() );
 		}
+	}
+
+	/**
+	 * Reduce a Redis error message to a stable, non-sensitive reason code.
+	 *
+	 * The raw message is never kept: it can echo a key name, and a key name on a shared server can
+	 * carry another tenant's data.
+	 *
+	 * @param string $message Exception or `getLastError()` text.
+	 * @return string One of `auth`, `noperm`, `connect`, `oom`, `error`.
+	 */
+	private static function classify_error( string $message ): string {
+		$upper = strtoupper( $message );
+		if ( false !== strpos( $upper, 'WRONGPASS' ) || false !== strpos( $upper, 'NOAUTH' ) || false !== strpos( $upper, 'AUTH' ) ) {
+			return 'auth';
+		}
+		if ( false !== strpos( $upper, 'NOPERM' ) ) {
+			return 'noperm';
+		}
+		if ( false !== strpos( $upper, 'OOM' ) ) {
+			return 'oom';
+		}
+		if ( false !== strpos( $upper, 'CONNECT' ) || false !== strpos( $upper, 'TIMED OUT' ) || false !== strpos( $upper, 'REFUSED' ) || false !== strpos( $upper, 'WENT AWAY' ) ) {
+			return 'connect';
+		}
+		return 'error';
+	}
+
+	/**
+	 * Why the cache is not storing anything, as a reason code ('' when it is healthy).
+	 *
+	 * @return string `connect`, `auth`, `select`, `noperm`, `oom`, `error`, `no-extension`, `disabled` or ''.
+	 */
+	public function connection_error(): string {
+		if ( defined( 'WP_REDIS_DISABLED' ) && WP_REDIS_DISABLED ) {
+			return 'disabled';
+		}
+		if ( ! class_exists( 'Redis' ) ) {
+			return 'no-extension';
+		}
+		return $this->is_connected() ? '' : ( '' !== $this->last_error ? $this->last_error : 'connect' );
+	}
+
+	/**
+	 * Prove the cache really stores data: write a value to Redis, read it back, delete it.
+	 *
+	 * ⛔ "Connected" is not "working": a login can succeed for a user whose ACL refuses writes to
+	 * this prefix, and the only honest test of a cache is a round trip. This bypasses the in-request
+	 * layer, so a pass means Redis itself returned the value.
+	 *
+	 * @return array{ok:bool,reason:string,ms:float}
+	 */
+	public function health(): array {
+		$started = microtime( true );
+		$reason  = $this->connection_error();
+
+		if ( '' === $reason ) {
+			try {
+				$key   = $this->build_key( self::PROBE_KEY . ':' . bin2hex( random_bytes( 4 ) ), 'zinn-cache' );
+				$value = 'ok-' . (string) $started;
+				$wrote = $this->redis->setex( $key, 60, $value );
+				$read  = $this->redis->get( $key );
+				$this->redis->del( $key );
+				if ( true !== $wrote || $read !== $value ) {
+					$last   = $this->redis->getLastError();
+					$reason = is_string( $last ) && '' !== $last ? self::classify_error( $last ) : 'roundtrip';
+				}
+			} catch ( \Exception $e ) {
+				$reason = self::classify_error( $e->getMessage() );
+			}
+		}
+
+		return array(
+			'ok'     => '' === $reason,
+			'reason' => $reason,
+			'ms'     => round( ( microtime( true ) - $started ) * 1000, 2 ),
+		);
+	}
+
+	/**
+	 * The Redis SERVER's own counters (INFO stats + memory), or null when they cannot be read.
+	 *
+	 * ⚠️ Server-wide: on a Redis shared by several sites the hit ratio is everybody's, and the
+	 * caller must say so. A per-site ACL user may run INFO (the fleet re-grants exactly that).
+	 *
+	 * @return array{hits:int,misses:int,hit_ratio:float|null,used_memory:int,maxmemory:int,evicted_keys:int}|null
+	 */
+	public function server_stats(): ?array {
+		if ( ! $this->is_connected() ) {
+			return null;
+		}
+
+		try {
+			$stats  = $this->redis->info( 'stats' );
+			$memory = $this->redis->info( 'memory' );
+		} catch ( \Exception $e ) {
+			return null;
+		}
+
+		if ( ! is_array( $stats ) || ! is_array( $memory ) ) {
+			return null;
+		}
+
+		$hits   = (int) ( $stats['keyspace_hits'] ?? 0 );
+		$misses = (int) ( $stats['keyspace_misses'] ?? 0 );
+
+		return array(
+			'hits'         => $hits,
+			'misses'       => $misses,
+			'hit_ratio'    => $hits + $misses > 0 ? round( $hits / ( $hits + $misses ) * 100, 2 ) : null,
+			'used_memory'  => (int) ( $memory['used_memory'] ?? 0 ),
+			'maxmemory'    => (int) ( $memory['maxmemory'] ?? 0 ),
+			'evicted_keys' => (int) ( $stats['evicted_keys'] ?? 0 ),
+		);
+	}
+
+	/**
+	 * Ask the host's flush helper to delete every key this site owns.
+	 *
+	 * Used only when `ZINN_CACHE_FLUSH_SOCKET` names a Unix socket. The helper identifies the
+	 * caller from the kernel (the PHP process's user), never from anything this request sends, so
+	 * a site can only ever flush its own keys. Protocol: send `FLUSH\n`, read `OK <n>`.
+	 *
+	 * @return bool True when the helper confirmed the flush.
+	 */
+	private function helper_flush(): bool {
+		$path = $this->config['flush_socket'];
+		if ( '' === $path ) {
+			return false;
+		}
+
+		$errno  = 0;
+		$errstr = '';
+		// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- A missing socket is an expected, handled state (the host has not installed the helper); PHP's warning would only add noise to the site's log.
+		$socket = @stream_socket_client( 'unix://' . $path, $errno, $errstr, 2.0 );
+		if ( ! is_resource( $socket ) ) {
+			return false;
+		}
+
+		stream_set_timeout( $socket, 15 );
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- A Unix-socket protocol exchange, not a file write; WP_Filesystem does not do sockets.
+		fwrite( $socket, "FLUSH\n" );
+		$reply = fgets( $socket );
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- Closing the socket opened above.
+		fclose( $socket );
+
+		return is_string( $reply ) && 0 === strpos( $reply, 'OK ' );
+	}
+
+	/**
+	 * Apply the host's maximum lifetime (`WP_REDIS_MAXTTL`) to a requested expiry.
+	 *
+	 * @param int $expire Requested expiry in seconds (0 = no expiry).
+	 * @return int Expiry to use.
+	 */
+	private function cap_expiry( int $expire ): int {
+		$expire = max( 0, $expire );
+		$max    = $this->config['maxttl'];
+
+		if ( $max > 0 && ( 0 === $expire || $expire > $max ) ) {
+			return $max;
+		}
+
+		return $expire;
 	}
 
 	/**
@@ -859,6 +1123,8 @@ class WP_Object_Cache {
 			$this->redis->setOption( \Redis::OPT_SCAN, \Redis::SCAN_RETRY );
 			$iterator = null;
 
+			$this->redis->clearLastError();
+
 			do {
 				$keys = $this->redis->scan( $iterator, $pattern, 500 );
 				if ( is_array( $keys ) && array() !== $keys ) {
@@ -866,9 +1132,22 @@ class WP_Object_Cache {
 				}
 			} while ( false !== $keys && $iterator > 0 );
 
+			// A refused SCAN (a per-site ACL) answers false with an error, not an exception; that
+			// is "this server cannot flush this way", never "the flush worked".
+			$last = $this->redis->getLastError();
+			if ( is_string( $last ) && '' !== $last ) {
+				$this->redis->clearLastError();
+				return false;
+			}
+
 			return true;
 		} catch ( \Exception $e ) {
-			$this->handle_exception();
+			// ⛔ A permission refusal is not a dead connection: dropping to memory-only mode here
+			// would switch the whole cache off for the rest of the request because one command
+			// is forbidden.
+			if ( 'noperm' !== self::classify_error( $e->getMessage() ) ) {
+				$this->handle_exception();
+			}
 			return false;
 		}
 	}

@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "ແຄຊຂອງໜ້າ"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "ແຄຊວັດຖຸ"
 
@@ -124,239 +124,296 @@ msgstr "ປະເພດເນື້ອຫາ"
 msgid "Seconds"
 msgstr "ວິນາທີ"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "ແຄສອັອບເຈັກ (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "ໂຮດຂອງທ່ານດໍາເນີນການແຄຊວັດຖຸ Redis ສ່ວນຕົວສໍາລັບເວັບໄຊນີ້ ແລະຄອຍຕັ້ງຄ່າໃຫ້ມັນຢູ່ສະເໝີ. ບໍ່ມີຫຍັງທີ່ຈະຕ້ອງຕັ້ງຄ່າຢູ່ທີ່ນີ້; ສະຖານະຢູ່ດ້ານເທິງຂອງໜ້າຈໍນີ້ສະແດງໃຫ້ເຫັນວ່າວ່າມັນກໍາລັງທໍາງານຢູ່ຫຼືບໍ່."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "ເກັບບັນທຶກຜົນຂອງການສອບຖາມຖານຂໍ້ມູນໄວ້ໃນຄache. ມັນຊ່ວຍໄດ້ຫຼາຍທີ່ສຸດກັບຮ້ານຄ້າທີ່ມີຜູ້ໃຊ້ບໍລິການຫຼາຍ ຫຼື ເວັບໄຊທີ່ມີທຣາຟຟິກຈາກຜູ້ໃຊ້ທີ່ເຂົ້າສູ່ລະບົບເປັນຈຳນວນຫຼາຍ, ບ່ອນທີ່ຄache ຂອງໜ້າເວັບບໍ່ສາມາດຊ່ວຍໄດ້."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "ຕິດຕັ້ງ Redis object-cache drop-in"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "ຕ້ອງການສ່ວນຂະຫຍາຍ phpredis. ຖຫາກວ່າມັນຂາດຫາຍໄປ, ຕາຕະລາງທີ່ຢູ່ເໜືອໜ້າຈໍນີ້ຈະສະແດງຂຶ້ນ."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "ໂຮສ Redis"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "ພອດ Redis"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "ຖານຂໍ້ມູນ Redis"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "ໃຫ້ແຕ່ລະເວັບໄຊເທິງ Redis ທີ່ໃຊ້ຮ່ວມກັນມີໝາຍເລກຂອງຕົນເອງ, ບໍ່ດັ່ງນັ້ນພວກມັນຈະລຶບແຄຊຂອງກັນແລະກັນ."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "ຊື່ຜູ້ໃຊ້ Redis"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "ສຳລັບເຊີບເວີ Redis ທີ່ມີຜູ້ໃຊ້ ACL (Redis 6 ຫຼື ໃໝ່ກວ່າ) ເທົ່ານັ້ນ. ປະໄວ້ຫວ່າງເປົ່າເພື່ອເຂົ້າສູ່ລະບົບດ້ວຍລະຫັດຜ່ານຢ່າງດຽວ."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "ລະຫັດຜ່ານ Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "ປະໄວ້ວ່າງໄວ້ ຖ້າ Redis ຂອງທ່ານບໍ່ຈໍາເປັນຕ້ອງໃຊ້."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "ຄຳນຳໜ້າກະແຈ"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "ທາງເລືອກແທນໝາຍເລກຖານຂໍ້ມູນແຍກຕ່າງຫາກ ເມື່ອທ່ານບໍ່ສາມາດມີມັນໄດ້."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "ການລ້າງແຄສອັດຕະໂນມັດແບບສະຫຼາດ"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "ລຶບລ້າງໜ້າທີ່ໄດ້ຮັບຜົນກະທົບໂດຍອັດໂນມັດເມື່ອເນື້ອຫາປ່ຽນແປງ"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "ຫຼັງຈາກການອັບເດດ"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "ລຶບລ້າງທຸກຢ່າງຫຼັງຈາກການອັບເດດຄໍ, ປລັກອິນ ຫຼື ທິມ"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "ຫຼັງຈາກຄຳຄິດເຫັນ"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "ລຶບແຄຊ໌ໜ້າໃດໜຶ່ງຂອງໂພສ ເມື່ອຄວາມຄິດເຫັນໃນໂພສນັ້ນໄດ້ຮັບການອະນຸມັດ"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "ປິດຄຳສັ່ງນີ້ໃນສ່ວນຄວາມເຫັນທີ່ມີການເຄື່ອນໄຫວຫຼາຍ ເຊິ່ງມັນສາມາດລຶບລ້າງໜ້າເວັບດຽວກັນນັ້ນຫຼາຍຮ້ອຍຄັ້ງຕໍ່ຊົ່ວໂມງ."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "ຢ່າເກັບແຄຊ໌ສິ່ງເຫຼົ່ານີ້"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "ຄ່າເລີ່ມຕົ້ນທີ່ສົມເຫດສົມຜົນຂອງ WordPress ແລະ WooCommerce ຈະຖືກນຳໃຊ້ສະເໝີ — ກະຕ່າສິນຄ້າ, ໜ້າຈ່າຍເງິນ, ບັນຊີຂອງຂ້ອຍ ແລະ ຊ່ວງເວລາການເຂົ້າສູ່ລະບົບໃດໆກໍຕາມ ຈະບໍ່ຖືກບັນທຶກໄວ້ໃນຄຳສັ່ງແຄດ (cached) ເປັນອັນຂາດ, ບໍ່ວ່າຈະມີຫຍັງຢູ່ລຸ່ມສຸດນີ້ກໍຕາມ."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "ທີ່ຢູ່"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "ເສັ້ນທາງໜຶ່ງຕໍ່ແຖວ, ຕົວຢ່າງເຊັ່ນ <code>/basket</code>. ເຄື່ອງໝາຍ <code>*</code> ຕໍ່ທ້າຍແມ່ນຈັບຄູ່ທຸກຢ່າງທີ່ຢູ່ພາຍໃຕ້ມັນ."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "ພາລາມິເຕີຂອງການສອບຖາມ"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "ໜ້າເວັບທີ່ມີອັນໃດອັນໜຶ່ງເຫຼົ່ານີ້ຈະບໍ່ຖືກເກັບໄວ້ໃນເຊີບເວີແຄຊ໌ເລີຍ — ຕົວຢ່າງເຊັ່ນ: ໂທເຄັນການເບິ່ງຕົວຢ່າງທີ່ໃຊ້ຄັ້ງດຽວ."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "ຄຸກກີ້"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "ຜູ້ມາຢ້ຽມຢາມທີ່ມີອັນໃດອັນໜຶ່ງເຫຼົ່ານີ້ຈະໄດ້ຮັບໜ້າເວັບສົດໃໝ່ສະເໝີ."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "ໜ້າທີ່ຖືກແຄສໄວ້ທັງໝົດໄດ້ຖືກລຶບອອກແລ້ວ. ພວກມັນຈະຖືກສ້າງຂຶ້ນໃໝ່ເມື່ອກຸ່ມຜູ້ເຂົ້າຊົມເຂົ້າມາ."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "ແຄດຂອງວັດຖຸໄດ້ຖືກຕິດຕັ້ງແລ້ວ, ແຕ່ມັນບໍ່ໄດ້ຈັດເກັບຫຍັງເລີຍ."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "ແຄຊ໌ໜ້າເວັບເປີດຢູ່, ແຕ່ເຊີບເວີນີ້ບໍ່ແມ່ນ LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "ມີການສົ່ງ ສ່ວນຫົວຂອງແຄຊ (cache headers) ແຕ່ບໍ່ມີຫຍັງອ່ານພວກມັນ, ດັ່ງນັ້ນ ໜ້າເວັບຈຶ່ງບໍ່ໄດ້ຖືກຈັດເກັບໄວ້ໃນແຄຊຢ່າງແທ້ຈິງ. ກະລຸນາສອບຖາມຜູ້ໃຫ້ບໍລິການໂຮດຕິ້ງຂອງທ່ານວ່າ ມີ LiteSpeed ໃຫ້ບໍລິການຫຼືບໍ່, ຫຼື ຍ້າຍມາໃຊ້ບໍລິການໂຮດຕິ້ງຂອງ Zinn® ທີ່ມີມາໃຫ້ເປັນມາດຕະຖານ."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ມີການເປີດໃຊ້ Object cache ແລ້ວ, ແຕ່ເຊີເວີນີ້ບໍ່ຮອງຮັບ Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "ສ່ວນຂະຫຍາຍ phpredis ບໍ່ໄດ້ຖືກຕິດຕັ້ງ, ດັ່ງນັ້ນຈຶ່ງບໍ່ສາມາດໃຊ້ drop- ແລະ WordPress ກັບຄືນໄປໃຊ້ແຄຊໃນໜ່ວຍຄວາມຈຳຂອງຕົນເອງ. ກະລຸນາຂໍໃຫ້ໂຮສຂອງທ່ານເປີດໃຊ້ງານ phpredis."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "ບໍ່ມີການບັນທຶກແຄຊ໌."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "ມີການປິດແຄຊ໌ທັງສອງຢ່າງ, ດັ່ງນັ້ນ ປລັກອິນນີ້ຈຶ່ງບໍ່ໄດ້ເຮັດໃຫ້ເວັບໄຊໄວຂຶ້ນເລີຍ."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "ການແຄຊ໌ (Caching) ພວມເປີດໃຊ້ງານຢູ່ໃນເວັບໄຊນີ້."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis ປະຕິເສດຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານ. ກະລຸນາ ກວດສອບ ຂໍ້ມູນປະຈຳຕົວ Redis ໃນ wp-config.php ຫຼື ຢູ່ໃນໜ້ານີ້."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis ຍອມຮັບການເຂົ້າສູ່ລະບົບແລ້ວ ແຕ່ບໍ່ອະນຸຍາດໃຫ້ເວັບໄຊນີ້ຈັດເກັດຄີຂອງຕົນ. ຜູ້ໃຊ້ Redis ຕ້ອງມີສິດອະນຸຍາດສຳລັບຄຳນຳໜ້າຄີຂອງເວັບໄຊນີ້."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis ໄດ້ປະຕິເສດໝາຍເລກຖານຂໍ້ມູນ. ກະລຸນາ ກວດສອບ ການຕັ້ງຄ່າຖານຂໍ້ມູນ Redis."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis ຫນ່ວຍຄວາມຈໍາເຕັມ ແລະ ປະຕິເສດຂໍ້ມູນໃຫມ່."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "ສ່ວນຂະຫຍາຍ phpredis ບໍ່ໄດ້ຖືກຕິດຕັ້ງ, ດັ່ງນັ້ນ WordPress ຈຶ່ງນຳໃຊ້ແຄຊ໌ໃນໜ່ວຍຄວາມຈຳຂອງຕົນເອງ. ກະລຸນາແຈ້ງຜູ້ໃຫ້ບໍລິການໂຮດຕິ້ງຂອງທ່ານເພື່ອເປີດໃຊ້ງານ phpredis."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "WP_REDIS_DISABLED ຖືກຕັ້ງຄ່າໄວ້ໃນ wp-config.php, ດັ່ງນັ້ນ ລະບົບແຄຊ໌ວັດຖຸຈຶ່ງຖືກປິດການໃຊ້ງານ."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບເຊີບເວີ Redis ໄດ້. ກະລຸນາ ກວດສອບໂຮສ ແລະ ພອດຂອງ Redis, ລວມທັງກວດສອບວ່າ Redis ກໍາລັງເຮັດວຽກຢູ່."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis ບໍ່ໄດ້ສົ່ງຄືນຄ່າທີ່ຫາກໍ່ຖືກຂຽນລົງໄປ. ໃຫ້ກວດສອບບັນທຶກ (logs) ຂອງເຊີບເວີ Redis."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "ເວັບເຊີເວີ"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — ມີການເກັບແຄຊໜ້າເວັບໃຫ້ໃຊ້ງານ"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "ບໍ່ແມ່ນ LiteSpeed — ການແຄຊ໌ໜ້າເວັບບໍ່ສາມາດໃຊ້ງານໄດ້"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "ການຮອງຮັບ Redis"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis ໄດ້ຖືກຕິດຕັ້ງແລ້ວ"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis ບໍ່ໄດ້ຖືກຕິດຕັ້ງ"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "ອາຍຸການຂອງໜ້າເວັບ"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ລ້າງແຄສ."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "ໄດ້ຮ້ອງຂໍການລ້າງແຄສແລ້ວ."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: ປລັກອິນ object-cache ອື່ນໄດ້ຖືກຕິດຕັ້ງໄວ້ແລ້ວ, ດັ່ງນັ້ນ object cache ຂອງ Redis ຈຶ່ງບໍ່ໄດ້ຖືກຈັດການໂດຍປລັກອິນນີ້."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "ກວດພົບ"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "ບໍ່ພົບ"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "ບໍ່ມີ extension phpredis"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "ຕິດຕັ້ງແລ້ວ, ບໍ່ໄດ້ຈັດເກັບຫຍັງໄວ້"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "ເປີດໃຊ້ງານ, ຈັດການໂດຍໂຮສຂອງທ່ານ"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "ເປີດໃຊ້ງານ"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "ບໍ່ເປີດໃຊ້ງານ"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "ແຄສ LiteSpeed:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "ແຄສອັອບເຈັກ Redis:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "extension PHP ຂອງ Redis (phpredis) ບໍ່ມີໃນເຊີບເວີນີ້, ສະນັ້ນຈຶ່ງບໍ່ສາມາດເປີດໃຊ້ແຄສອັອບເຈັກໄດ້."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "ມີໂປຣແກຣມເສີມ object-cache ອື່ນຖືກຕິດຕັ້ງໄວ້ແລ້ວ. ກະລຸນາລຶບມັນອອກກ່ອນທີ່ຈະເປີດໃຊ້ງານ Zinn® object cache."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "ບໍ່ສາມາດຂຽນໄຟລ໌ການຕັ້ງຄ່າການເຊື່ອມຕໍ່ Redis ໄດ້."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "ບໍ່ສາມາດອ່ານ object-cache drop-in ທີ່ມາພ້ອມກັນໄດ້."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "ບໍ່ສາມາດຕິດຕັ້ງ object-cache drop-in ເຂົ້າໃນ wp-content ໄດ້."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "ບໍ່ສາມາດລົບ object-cache drop-in ໄດ້."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "ລະບົບໄຟລ໌ຂອງ WordPress ບໍ່ສາມາດຂຽນໄດ້, ສະນັ້ນຈຶ່ງບໍ່ສາມາດຈັດການ object-cache drop-in ໄດ້."
 

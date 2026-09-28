@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Էջի քեշ"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Օբյեկտների շտեմարան"
 
@@ -124,239 +124,296 @@ msgstr "Բովանդակության տեսակը"
 msgid "Seconds"
 msgstr "Վայրկյաններ"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Օբյեկտների քեշ (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Ձեր հոսթը այս կայքի համար գործարկում է մասնավոր Redis օբյեկտների քեշ և պահում այն կարգավորված վիճակում։ Այստեղ կարգավորելու կամ ստեղծելու որևէ բան չկա. այս էկրանի վերևի հատվածում առկա կարգավիճակը ցույց է տալիս, թե արդյոք այն աշխատում է։"
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Քեշավորում է տվյալների բազայի հարցումների արդյունքները: Այն առավելագույնս օգնում է ծանրաբեռնված առցանց խանութներում կամ մեծ քանակությամբ մուտք գործած այցելուներ ունեցող կայքերում, որտեղ էջերի քեշավորումն անզոր է:"
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Տեղադրել Redis object-cache drop-in-ը"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Անհրաժեշտ է phpredis ընդլայնումը: Եթե այն բացակայում է, այս էկրանի վերևի վանդակը կտեղեկացնի այդ մասին:"
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Redis-ի հոսթ"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Redis-ի պորտ"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Redis-ի տվյալների բազա"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Ընդհանուր Redis-ի վրա գտնվող յուրաքանչյուր կայքին տվեք առանձնահատուկ համար, հակառակ դեպքում նրանք կջնջեն միմյանց քեշը:"
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Redis-ի օգտանուն"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Միայն Redis սերվերի համար, որն ունի ACL օգտատերեր (Redis 6 կամ ավելի նոր): Թողեք դատարկ՝ միայն գաղտնաբառով մուտք գործելու համար:"
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Redis գաղտնաբառ"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Դատարկ թողեք, եթե ձեր Redis-ին այն պետք չէ:"
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Բանալու նախածանց"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Անկախ բազային համարի այլընտրանք, երբ հնարավոր չէ այն ունենալ:"
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Խելացի ինքնաշխատ մաքրում"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Մաքրել ազդեցության ենթարկված էջերն ավտոմատ կերպով, երբ բովանդակությունը փոխվում է"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "Թարմացումներից հետո"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Մաքրել ամեն ինչ միջուկի, հավելվածի կամ թեմայի թարմացումից հետո"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "Մեկնաբանությունից հետո"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Մաքրել գրառման էջը, երբ դրա վրա արված մեկնաբանությունը հաստատվում է"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Անջատեք սա շատ ծանրաբեռնված մեկնաբանությունների բաժնում, որտեղ այն կարող է մաքրել նույն էջը ժամում հարյուրավոր անգամներ:"
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Երբեք չկեշավորել այս"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "WordPress-ի և WooCommerce-ի խելամիտ լռելյայն կարգավորումները միշտ կիրառվում են. զամբյուղը, վճարումը, իմ հաշիվը և ցանկացված մուտք գործած սեսիա երբեք չեն քեշավորվում՝ անկախ ստորև նշվածից:"
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Հասցեներ"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Յուրաքանչյուր ուղի մեկ տողում, օրինակ՝ <code>/basket</code>: Վերջնամասի <code>*</code> նշանը համընկնում է դրա տակ գտնվող ամեն ինչի հետ:"
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Հարցման պարամետրեր"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Այս նշաններից մեկը կրող էջը երբեք չի քեշավորվում, օրինակ՝ միանգամյա նախադիտման թոքենը:"
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Թխուկներ"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Այս սարքերից մեկը կրող այցելուին միշտ տրամադրվում է նոր էջ:"
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Քեշավորված բոլոր էջերը հեռացվել են։ Դրանք նորից կստեղծվեն, երբ այցելուներ գան։"
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "Օբյեկտների շտեմարանը (object cache) տեղադրված է, բայց ոչինչ չի պահպանում:"
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "Էջի շերտապահեստը (page cache) միացված է, բայց այս սերվերը LiteSpeed չէ:"
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "Քեշի վերնագրերն ուղարկվում են, և ոչինչ դրանք չի կարդում, ուստի էջերը փաստացի չեն քեշավորվում: Հարցրեք ձեր հոսթինգ մատակարարին, թե արդյոք LiteSpeed-ը հասանելի է, կամ տեղափոխվեք Zinn® հոսթինգ, որտեղ այն ստանդարտ է:"
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Օբյեկտների քեշը միացված է, բայց այս սերվերը չունի Redis աջակցություն:"
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ընդլայնումը տեղադրված չէ, ուստի drop-in-ը չի կարող օգտագործվել, և WordPress-ը վերադառնում է իր ներհիշողության քեշին: Խնդրեք ձեր հոսթինգ մատակարարին միացնել phpredis-ը:"
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Ոչինչ չի քեշավորվում։"
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Երկու քեշերն էլ անջատված են, որի պատճառով այս փլագինը չի արագացնում կայքի աշխատանքը:"
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Քեշավորումն ակտիվ է այս կայքում:"
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis-ը մերժել է օգտանունը կամ գաղտնբառը։ Ստուգեք Redis-ի հավատարմագրերը wp-config.php ֆայլում կամ այս էկրանին։"
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis-ը ընդունել է մուտքը, սակայն թույլ չի տալիս այս կայքին պահել իր բանալիները: Redis-ի օգտատերը տվյալ կայքի բանալիների նախածանցի թույլտվության կարիք ունի:"
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis-ը մերժեց տվյալների բազայի համարը։ Ստուգեք Redis տվյալների բազայի կարգավորումը։"
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis-ը հիշողությունից դուրս է և մերժում է նոր տվյալները:"
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "phpredis ընդլայնումը տեղադրված չէ, ուստի WordPress-ն օգտագործում է իր հիշողության մեջ պահվող սեփական շտեմը (cache): Խնդրեք ձեր հոսթինգ մատակարարին միացնել phpredis-ը:"
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "WP_REDIS_DISABLED-ը սահմանված է wp-config.php ֆայլում, ուստի օբյեկտների շերտապահեստը (cache) անջատված է:"
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Հնարավոր չէ կապ հաստատել Redis սերվերի հետ: Ստուգեք Redis հոսթն ու պորտը և համոզվեք, որ Redis-ն աշխատում է:"
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis-ը չվերադարձրեց հենց նոր իր մեջ գրված արժեքը: Ստուգեք Redis սերվերի մատյանները (logs):"
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Վեբ սերվեր"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — հասանելի է էջերի քեշավորում"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "ոչ LiteSpeed — էջերի քեշավորումը հասանելի չէ"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Redis աջակցություն"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis-ը տեղադրված է"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis-ը տեղադրված չէ"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Էջի գործողության տևողությունը"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "Դուք չունեք քեշը մաքրելու թույլտվություն։"
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Քեշի մաքրումը պահանջված է։"
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: տեղադրված է այլ օբյեկտային քեշի հավելված, հետևաբար Redis օբյեկտային քեշը չի կառավարվում այս հավելվածի (plugin) կողմից:"
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "հայտնաբերված է"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "հայտնաբերված չէ"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "phpredis ընդլայնումը բացակայում է"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "տեղադրված է, ոչինչ չի պահվում"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "ակտիվ, կառավարվում է ձեր հոսթի կողմից"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "ակտիվ"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "ոչ ակտիվ"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed քեշ."
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Redis օբյեկտների քեշ."
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "Redis PHP ընդլայնումը (phpredis) հասանելի չէ այս սերվերում, ուստի օբյեկտների քեշը հնարավոր չէ միացնել։"
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Այլ object-cache drop-in արդեն տեղադրված է: Հեռացրեք այն նախքան Zinn® object cache-ը միացնելը:"
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Հնարավոր չեղավ գրել Redis-ի կապակցման կազմաձևման ֆայլը։"
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "Կցված օբյեկտների քեշի drop-in-ը հնարավոր չեղավ կարդալ։"
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Հնարավոր չեղավ տեղադրել օբյեկտների քեշի drop-in-ը wp-content-ում։"
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Հնարավոր չեղավ հեռացնել օբյեկտների քեշի drop-in-ը։"
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress-ի ֆայլային համակարգը գրառելի չէ, ուստի օբյեկտների քեշի drop-in-ը հնարավոր չեղավ կառավարել։"
 

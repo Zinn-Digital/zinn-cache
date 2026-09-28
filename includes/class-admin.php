@@ -214,6 +214,18 @@ final class Admin {
 	 * @return array<int, array<string, mixed>>
 	 */
 	public static function object_fields(): array {
+		if ( defined( 'ZINN_CACHE_MANAGED_OBJECT_CACHE' ) && (bool) constant( 'ZINN_CACHE_MANAGED_OBJECT_CACHE' ) ) {
+			// The host installed and configured the object cache for this site, with credentials of
+			// its own; offering a switch and a password box here would only let a customer break it.
+			return array(
+				array(
+					'type'        => 'heading',
+					'label'       => __( 'Object cache (Redis)', 'zinn-cache' ),
+					'description' => __( 'Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working.', 'zinn-cache' ),
+				),
+			);
+		}
+
 		return array(
 			array(
 				'type'        => 'heading',
@@ -252,6 +264,14 @@ final class Admin {
 				'min'         => 0,
 				'max'         => 255,
 				'default'     => 0,
+				'show_if'     => array( 'object_cache_enabled' => true ),
+			),
+			array(
+				'key'         => 'redis_username',
+				'type'        => 'text',
+				'label'       => __( 'Redis username', 'zinn-cache' ),
+				'description' => __( 'Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone.', 'zinn-cache' ),
+				'default'     => '',
 				'show_if'     => array( 'object_cache_enabled' => true ),
 			),
 			array(
@@ -390,6 +410,18 @@ final class Admin {
 		$litespeed = self::server_is_litespeed();
 		$redis_ok  = extension_loaded( 'redis' );
 
+		// ⭐ First, because it is the failure nothing else shows: a drop-in that cannot sign in
+		// serves every page from memory, so the site looks fine and nothing is cached.
+		$object = self::object_cache_health();
+		if ( null !== $object && ! $object['ok'] ) {
+			return array(
+				'state'   => 'degraded',
+				'summary' => __( 'The object cache is installed, but it is not storing anything.', 'zinn-cache' ),
+				'reason'  => self::health_reason( $object['reason'] ),
+				'details' => self::detail_rows( $settings, $litespeed, $redis_ok ),
+			);
+		}
+
 		if ( $settings['lscache_enabled'] && ! $litespeed ) {
 			return array(
 				'state'   => 'degraded',
@@ -422,6 +454,54 @@ final class Admin {
 			'summary' => __( 'Caching is active on this site.', 'zinn-cache' ),
 			'details' => self::detail_rows( $settings, $litespeed, $redis_ok ),
 		);
+	}
+
+	/**
+	 * The live write/read check of this plugin's object cache, or null when it is not in use.
+	 *
+	 * ⛔ Not "is the drop-in there": a drop-in that cannot sign in to Redis serves every page from
+	 * memory, so the site looks fine and nothing is cached. Only a round trip through Redis says
+	 * the cache works.
+	 *
+	 * @return array{ok:bool,reason:string,ms:float}|null
+	 */
+	public static function object_cache_health(): ?array {
+		global $wp_object_cache;
+
+		if ( ! is_object( $wp_object_cache ) || ! method_exists( $wp_object_cache, 'health' ) || ! defined( get_class( $wp_object_cache ) . '::MARKER' ) ) {
+			return null;
+		}
+
+		$health = $wp_object_cache->health();
+
+		return is_array( $health ) && isset( $health['ok'], $health['reason'] ) ? $health : null;
+	}
+
+	/**
+	 * A customer-facing explanation for an object-cache failure reason code.
+	 *
+	 * @param string $reason Reason code from the drop-in.
+	 * @return string
+	 */
+	public static function health_reason( string $reason ): string {
+		switch ( $reason ) {
+			case 'auth':
+				return __( 'Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen.', 'zinn-cache' );
+			case 'noperm':
+				return __( 'Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site\'s key prefix.', 'zinn-cache' );
+			case 'select':
+				return __( 'Redis refused the database number. Check the Redis database setting.', 'zinn-cache' );
+			case 'oom':
+				return __( 'Redis is out of memory and is refusing new data.', 'zinn-cache' );
+			case 'no-extension':
+				return __( 'The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis.', 'zinn-cache' );
+			case 'disabled':
+				return __( 'WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off.', 'zinn-cache' );
+			case 'connect':
+				return __( 'The Redis server could not be reached. Check the Redis host and port, and that Redis is running.', 'zinn-cache' );
+			default:
+				return __( 'Redis did not return the value that was just written to it. Check the Redis server\'s logs.', 'zinn-cache' );
+		}
 	}
 
 	/**
@@ -573,8 +653,13 @@ final class Admin {
 			? __( 'detected', 'zinn-cache' )
 			: __( 'not detected', 'zinn-cache' );
 
+		$health = self::object_cache_health();
 		if ( ! $this->object_cache->is_redis_extension_available() ) {
 			$object_state = __( 'phpredis extension missing', 'zinn-cache' );
+		} elseif ( null !== $health && ! $health['ok'] ) {
+			$object_state = __( 'installed, not storing anything', 'zinn-cache' );
+		} elseif ( $this->object_cache->is_enabled() && $this->object_cache->is_managed() ) {
+			$object_state = __( 'active, managed by your host', 'zinn-cache' );
 		} elseif ( $this->object_cache->is_enabled() ) {
 			$object_state = __( 'active', 'zinn-cache' );
 		} else {

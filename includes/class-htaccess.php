@@ -66,12 +66,40 @@ final class Htaccess {
 	 */
 	public static function remove(): void {
 		$path = self::path();
-		if ( '' === $path || ! file_exists( $path ) ) {
+		if ( '' === $path || ! is_readable( $path ) ) {
 			return;
 		}
 
-		self::load_markers_api();
-		insert_with_markers( $path, self::MARKER, array() );
+		// ⛔ Not `insert_with_markers( …, array() )`: that leaves an EMPTY "# BEGIN Zinn Cache"
+		// block behind, so a site that never turned the page cache on still had its .htaccess
+		// written by us (reported by the V1 rollout, 2026-09-28). With the page cache off this
+		// plugin must leave .htaccess exactly as it found it: nothing is written when there is
+		// no block, and an existing block is removed whole, markers included.
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Reading the site's own .htaccess, as insert_with_markers() does.
+		$current = file_get_contents( $path );
+		if ( ! is_string( $current ) ) {
+			return;
+		}
+
+		$stripped = self::strip_block( $current );
+		if ( $stripped === $current ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- Same direct, locked write insert_with_markers() performs on .htaccess; WP_Filesystem may be FTP-backed.
+		file_put_contents( $path, $stripped, LOCK_EX );
+	}
+
+	/**
+	 * Remove this plugin's marked block (markers included) from .htaccess content.
+	 *
+	 * @param string $content The file's content.
+	 * @return string The content without the block; unchanged when there is none.
+	 */
+	public static function strip_block( string $content ): string {
+		$pattern = '/^# BEGIN ' . preg_quote( self::MARKER, '/' ) . '\R.*?^# END ' . preg_quote( self::MARKER, '/' ) . '\R?/ms';
+
+		return (string) preg_replace( $pattern, '', $content );
 	}
 
 	/**

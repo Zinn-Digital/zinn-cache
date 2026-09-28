@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "페이지 캐시"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "오브젝트 캐시"
 
@@ -124,239 +124,296 @@ msgstr "콘텐츠 유형"
 msgid "Seconds"
 msgstr "초"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "객체 캐시 (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "호스트가 이 사이트를 위해 비공개 Redis 객체 캐시를 실행하고 있으며 이를 구성된 상태로 유지합니다. 여기서 설정할 것은 없으며, 이 화면 상단의 상태에서 작동 여부를 확인할 수 있습니다."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "데이터베이스 쿼리 결과를 캐시합니다. 페이지 캐시를 사용할 수 없는 바쁜 상점이나 로그인한 트래픽이 많은 사이트에서 가장 큰 도움이 됩니다."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis 오브젝트 캐시 드롭인을 설치합니다."
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis 확장이 필요합니다. 누락된 경우 이 화면 위의 상자에 표시됩니다."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Redis 호스트"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Redis 포트"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Redis 데이터베이스"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "공유 Redis를 사용하는 각 사이트에 고유한 번호를 부여하세요. 그렇지 않으면 서로의 캐시를 삭제하게 됩니다."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Redis 사용자 이름"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "ACL 사용자가 있는 Redis 서버 전용(Redis 6 이상). 비밀번호만 사용하여 로그인하려면 비워 두세요."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Redis 비밀번호"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Redis 설정이 필요하지 않은 경우 비워 두세요."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "키 접두사"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "별도의 데이터베이스 번호를 사용할 수 없을 때 이를 대체할 수 있는 대안입니다."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "스마트 자동 비우기"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "콘텐츠 변경 시 영향을 받는 페이지를 자동으로 지우기"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "업데이트 후"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "코어, 플러그인 또는 테마 업데이트 후 모든 캐시 삭제"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "댓글 작성 후"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "게시물에 대한 댓글이 승인되면 해당 게시물의 페이지 지우기"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "댓글이 매우 활발하여 한 시간에 수백 번씩 동일한 페이지를 지울 수 있는 바쁜 댓글 섹션에서는 이 기능을 끄십시오."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "이 항목들은 캐시하지 않음"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "합리적인 WordPress 및 WooCommerce 기본값이 항상 적용됩니다. 장바구니, 결제 페이지, 내 계정 및 로그인된 세션은 하위 설정과 관계없이 절대 캐시되지 않습니다."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "주소"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "줄당 하나의 경로를 입력하세요(예: <code>/basket</code>). 후행 <code>*</code>는 그 아래의 모든 항목과 일치합니다."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "쿼리 매개변수"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "이러한 값이 포함된 페이지는 캐시되지 않습니다. 예를 들어 일회용 미리보기 토큰이 이에 해당합니다."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "쿠키"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "이러한 항목을 소지한 방문자에게는 항상 최신 페이지가 제공됩니다."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "모든 캐시된 페이지가 삭제되었습니다. 방문자가 방문할 때 다시 생성됩니다."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "오브젝트 캐시가 설치되어 있지만 데이터를 저장하지 않고 있습니다."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "페이지 캐시가 켜져 있지만 이 서버는 LiteSpeed가 아닙니다."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "캐시 헤더가 전송되고 있지만 읽는 곳이 없어 페이지가 실제로 캐시되지 않고 있습니다. 호스팅 제공업체에 LiteSpeed 사용 가능 여부를 문의하거나, 표준으로 제공되는 Zinn® 호스팅으로 이전하세요."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "오브젝트 캐시가 활성화되어 있지만, 이 서버는 Redis 지원을 제공하지 않습니다."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis 확장 프로그램이 설치되어 있지 않아 드롭인을 사용할 수 없으며, WordPress가 자체 인메모리 캐시로 대체하고 있습니다. 호스팅 업체에 phpredis 활성화를 요청하십시오."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "캐시된 항목이 없습니다."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "두 캐시가 모두 꺼져 있으므로, 이 플러그인은 사이트 속도를 높이지 못하고 있습니다."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "이 사이트에서 캐싱이 활성화되어 있습니다."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis에서 사용자 이름 또는 비밀번호를 거부했습니다. wp-config.php 또는 이 화면에서 Redis 자격 증명을 확인하세요."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis가 로그인을 수락했으나 이 사이트의 키 저장을 허용하지 않습니다. Redis 사용자는 이 사이트의 키 접두사에 대한 권한이 필요합니다."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis에서 데이터베이스 번호를 거부했습니다. Redis 데이터베이스 설정을 확인하세요."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis의 메모리가 부족하여 새로운 데이터를 거부하고 있습니다."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "phpredis 확장 프로그램이 설치되어 있지 않아 WordPress에서 자체 인메모리 캐시를 사용하고 있습니다. 호스팅 업체에 연락하여 phpredis를 활성화해 달라고 요청하세요."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "wp-config.php에 WP_REDIS_DISABLED가 설정되어 있으므로 오브젝트 캐시가 꺼져 있습니다."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Redis 서버에 연결할 수 없습니다. Redis 호스트와 포트를 확인하고 Redis가 실행 중인지 확인하세요."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis가 방금 쓰여진 값을 반환하지 않았습니다. Redis 서버의 로그를 확인하세요."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "웹 서버"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — 페이지 캐싱 사용 가능"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "LiteSpeed 아님 — 페이지 캐싱 사용 불가"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Redis 지원"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis가 설치되어 있습니다."
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis가 설치되어 있지 않습니다."
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "페이지 수명 주기"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "캐시를 비울 권한이 없습니다."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "캐시 비우기가 요청되었습니다."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® 캐시: 다른 객체 캐시 플러그인이 이미 설치되어 있어, Redis 객체 캐시가 이 플러그인에 의해 관리되지 않습니다."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "감지됨"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "감지되지 않음"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "phpredis 확장 기능 없음"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "설치됨, 저장 중인 항목 없음"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "활성 상태, 호스트에서 관리됨"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "활성"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "비활성"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed 캐시:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Redis 객체 캐시:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "이 서버에서 Redis PHP 확장 기능(phpredis)을 사용할 수 없어 객체 캐시를 사용할 수 없습니다."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "다른 오브젝트 캐시 드롭인이 이미 설치되어 있습니다. Zinn® 오브젝트 캐시를 활성화하기 전에 이를 제거하십시오."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Redis 연결 구성 파일을 쓸 수 없습니다."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "번들로 제공된 객체 캐시 드롭인을 읽을 수 없습니다."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "객체 캐시 드롭인을 wp-content에 설치할 수 없습니다."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "객체 캐시 드롭인을 제거할 수 없습니다."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress 파일 시스템에 쓸 수 없어 객체 캐시 드롭인을 관리할 수 없습니다."
 

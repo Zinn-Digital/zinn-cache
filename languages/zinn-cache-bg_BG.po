@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Кеш на страницата"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Обектен кеш"
 
@@ -124,239 +124,296 @@ msgstr "Тип съдържание"
 msgid "Seconds"
 msgstr "Секунди"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Обектен кеш (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Вашият хост поддържа частен Redis обектен кеш за този сайт и го поддържа конфигуриран. Тук няма нищо за настройване; състоянието в горната част на този екран показва дали той работи."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Кэшира резултатите от заявките към базата данни. Помага най-много в натоварен онлайн магазин или сайт с много влезли потребители, където кеширането на страници не може да помогне."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Инсталирайте добавъчния обектен кеш Redis"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Изисква разширението phpredis. Ако липсва, полето над този екран ще го покаже."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Хост на Redis"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Порт на Redis"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "База данни на Redis"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Дайте на всеки сайт в споделен Redis собствен номер, в противен случай те ще изчистят кеша си взаимно."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Потребителско име за Redis"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Само за Redis сървър с ACL потребители (Redis 6 или по-нова версия). Оставете празно за влизане само с парола."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Redis парола"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Оставете празно, ако вашият Redis не изисква такъв."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Префикс на ключ"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Алтернатива на отделен номер на база данни, когато нямате такъв."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Интелигентно автоматично изчистване"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Изчистване на засегнатите страници автоматично при промяна на съдържанието"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "След актуализации"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Изчистете всичко след актуализация на ядро, плъгин или тема"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "След коментар"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Изчистване на страницата на публикация, когато коментар към нея бъде одобрен"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Изключете това в много активна секция за коментари, където то може да изчиства една и съща страница стотици пъти на час."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Никога не кеширай тези"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Прилагат се разумни настройки по подразбиране за WordPress и WooCommerce – кошницата, плащането, страницата „Моят акаунт“ и всяка сесия на влязъл потребител никога не се кешират, независимо от всичко по-долу."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Адреси"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "По един път на ред, например <code>/basket</code>. Накрайник <code>*</code> съвпада с всичко под него."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Параметри на заявката"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Страницата, носеща такъв елемент, никога не се кешира — например еднократен маркер за преглед."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Бисквитки"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "На посетител, който носи такъв, винаги се сервира нова страница."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Всички кеширани страници са изтрити. Те ще бъдат генерирани отново при посещение от потребители."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "Обектният кеш е инсталиран, но в него нищо не се съхранява."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "Кешът на страницата е включен, но този сървър не е LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "Заглавните файлове за кеширане се изпращат и нищо не ги чете, така че страниците всъщност не се кешират. Попитайте вашия хост дали LiteSpeed е наличен или преминете към хостинг на Zinn®, където това е стандартно."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Обектният кеш е включен, но този сървър няма поддръжка за Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Разширението phpredis не е инсталирано, така че разширението за вграждане не може да се използва и WordPress преминава към собствения си кеш в паметта. Помолете своя хост да активира phpredis."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Нищо не се кешира."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "И двата кеша са изключени, така че този плъгин не прави сайта по-бърз."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Кеширането е активно на този сайт."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis отхвърли потребителското име или паролата. Проверете идентификационните данни за Redis в wp-config.php или на този екран."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis прие входните данни, но не позволява на този сайт да съхранява своите ключове. Потребителят на Redis се нуждае от разрешение за префикса на ключовете на този сайт."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis отказа номера на базата данни. Проверете настройката на базата данни Redis."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis няма достатъчно памет и отказва нови данни."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "Разширението phpredis не е инсталирано, така че WordPress използва собствен кеш в паметта. Попитайте вашия хост да активира phpredis."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "WP_REDIS_DISABLED е зададено във wp-config.php, така че кешът на обектите е изключен."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Сървърът на Redis не беше намерен. Проверете хоста и порта на Redis, както и дали Redis работи."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis не върна стойността, която току-що му беше записана. Проверете логовете на сървъра на Redis."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Уебсървър"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — налично кеширане на страници"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "not LiteSpeed — кеширането на страници е недостъпно"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Поддръжка на Redis"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "phpredis е инсталиран"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis не е инсталиран"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Живот на страницата"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "Нямате право да изчиствате кеша."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Заявено е изчистване на кеша."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: инсталиран е друг модул за кеширане на обекти, така че обектният кеш на Redis не се управлява от този плъгин."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "открит"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "не е открит"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "разширението phpredis липсва"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "инсталиран, нищо не се съхранява"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "активен, управляван от вашия хост"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "активен"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "неактивен"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "Кеш на LiteSpeed:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Обектен кеш на Redis:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "PHP разширението за Redis (phpredis) не е налично на този сървър, затова обектният кеш не може да бъде активиран."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Вече е инсталиран друг приставки за кеширане на обекти (object-cache drop-in). Премахнете го, преди да активирате Zinn® object cache."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Конфигурационният файл за връзката с Redis не можа да бъде записан."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "Вграденият drop-in за обектния кеш не можа да бъде прочетен."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Drop-in-ът за обектния кеш не можа да бъде инсталиран в wp-content."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Drop-in-ът за обектния кеш не можа да бъде премахнат."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Файловата система на WordPress не е достъпна за запис, затова drop-in-ът за обектния кеш не можа да бъде управляван."
 

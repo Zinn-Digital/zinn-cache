@@ -45,7 +45,7 @@ msgid "Page cache"
 msgstr "التخزين المؤقت للصفحات"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "التخزين المؤقت للكائنات"
 
@@ -125,239 +125,296 @@ msgstr "نوع المحتوى"
 msgid "Seconds"
 msgstr "ثوانٍ"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "التخزين المؤقت للكائنات (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "يُدير مستضيفك ذاكرة تخزين مؤقت كائنية خاصة من نوع Redis لهذا الموقع ويحافظ على تكوينها. ليس هناك ما يجب إعداده هنا؛ تُظهر الحالة في أعلى هذه الشاشة ما إذا كانت تعمل."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "يقوم بتخزين نتائج استعلامات قاعدة البيانات مؤقتاً. يساعد هذا بشكل كبير في المتجر المزدحم أو الموقع الذي يشهد حركة مرور كثيرة للمستخدمين المسجلين، حيث لا تستطيع ذاكرة التخزين المؤقت للصفحات القيام بذلك."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "تثبيت ملف ذاكرة التخزين المؤقت للكائنات Redis"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "يتطلب إضافة phpredis. إذا كانت مفقودة، فإن المربع الموجود أعلى هذه الشاشة يشير إلى ذلك."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "مضيف Redis"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "منفذ Redis"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "قاعدة بيانات Redis"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "اعمل على منح كل موقع على مثيل Redis مشترك رقماً خاصاً به، وإلا فسيقوم كل موقع بمحو ذاكرة التخزين المؤقت للآخر."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "اسم مستخدم Redis"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "فقط لخادم Redis الذي يضم مستخدمي ACL (إصدار Redis 6 أو أحدث). اترك الحقل فارغاً لتسجيل الدخول باستخدام كلمة المرور وحدها."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "كلمة مرور Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "اتركه فارغاً إذا كان Redis الخاص بك لا يحتاج إلى واحد."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "بادئة المفتاح"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "بديل لرقم قاعدة بيانات منفصل عندما يتعذر توفر رقم واحد."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "التفريغ التلقائي الذكي"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "مسح الصفحات المتأثرة تلقائياً عند تغيير المحتوى"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "بعد التحديثات"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "مسح كل شيء بعد تحديث النواة، أو المكون الإضافي، أو القالب"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "بعد تعليق"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "إفراغ صفحة المنشور عند الموافقة على تعليق عليه"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "أوقف تشغيل هذه الميزة في قسم تعليقات نشط للغاية، حيث يمكنها مسح الصفحة نفسها مئات المرات في الساعة."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "لا تقم بتخزين هذه مؤقتاً مطلقاً"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "يتم دائمًا تطبيق الإعدادات الافتراضية المعقولة لـ WordPress و WooCommerce - حيث لا يتم تخزين عربة التسوق، والدفع، وحسابي، وأي جلسة تسجيل دخول مؤقتًا أبدًا، بغض النظر عن محتوى ما يلي."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "عناوين البريد الإلكتروني"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "مسار واحد في كل سطر، على سبيل المثال <code>/basket</code>. الرمز <code>*</code> اللاحق يطابق كل ما يقع تحته."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "معلمات الاستعلام"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "الصفحة التي تحمل أياً من هذه العناصر لا يتم تخزينها مؤقتاً أبداً - على سبيل المثال، رمز معاينة لمرة واحدة."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "ملفات تعريف الارتباط"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "دائماً ما يتم تقديم صفحة جديدة كلياً لأي زائر يحمل إحداها."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "تم حذف كل صفحة مخبأة. سيتم إعادة إنشائها مع وصول الزوار."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "تخزين كاش الكائنات مثبت، ولكنه لا يقوم بتخزين أي شيء."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "ذاكرة التخزين المؤقت للصفحة قيد التشغيل، ولكن هذا الخادم ليس LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "يتم إرسال ترويسات التخزين المؤقت ولا يوجد ما يقرؤها، لذا لا يتم تخزين الصفحات مؤقتاً فعلياً. اسأل مستضيفك عما إذا كانت خدمة LiteSpeed متاحة، أو انتقل إلى استضافة Zinn® حيث تُعد ميزة أساسية."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ذاكرة الكائن مفعلة، ولكن هذا الخادم لا يدعم Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "امتداد phpredis غير مثبت، لذلك لا يمكن استخدام الإضافة المؤقتة ويعود WordPress إلى استخدام ذاكرة التخزين المؤقت الخاصة به في الذاكرة. اطلب من مستضيفك تمكين phpredis."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "لا يتم تخزين أي شيء مؤقتاً."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "كلا التخزينين المؤقتين متوقفان، لذا فإن هذا الملحق لا يجعل الموقع أسرع."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "التخزين المؤقت نشط على هذا الموقع."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "رفض Redis اسم المستخدم أو كلمة المرور. تحقق من بيانات اعتماد Redis في wp-config.php أو على هذه الشاشة."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "قبل Redis تسجيل الدخول ولكن لا يسمح لهذا الموقع بتخزين مفاتيحه. يحتاج مستخدم Redis إلى إذن لبادئة مفاتيح هذا الموقع."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "رفض Redis رقم قاعدة البيانات. تحقق من إعداد قاعدة بيانات Redis."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "نفدت ذاكرة Redis وتم رفض البيانات الجديدة."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "امتداد phpredis غير مثبت، لذلك يستخدم WordPress ذاكرة التخزين المؤقت الداخلية الخاصة به. اطلب من مستضيفك تمكين phpredis."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "تم تعيين WP_REDIS_DISABLED في ملف wp-config.php، لذلك تم إيقاف تشغيل ذاكرة التخزين المؤقت للكائنات."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "تعذر الاتصال بخادم Redis. تحقق من مضيف ومنفذ Redis، وتأكد من أن Redis قيد التشغيل."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "لم يعرض Redis القيمة التي تمّت كتابتها للتو فيه. تحقق من سجلات خادم Redis."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "خادم الويب"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — التخزين المؤقت للصفحات متاح"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "ليس LiteSpeed — التخزين المؤقت للصفحات غير متوفر"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "دعم Redis"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "تم تثبيت phpredis"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "إضافة phpredis غير مثبتة"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "عمر الصفحة"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "لا يُسمح لك بتفريغ التخزين المؤقت."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "تم طلب تفريغ التخزين المؤقت."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "ذاكرة تخزين مؤقت لـ Zinn®: تم تثبيت مكون إضافي آخر لذاكرة التخزين المؤقت للكائنات، لذا فإن ذاكرة تخزين الكائنات Redis لا تتم إدارتها بواسطة هذا المكون الإضافي."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "تم اكتشافه"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "لم يتم اكتشافه"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "امتداد phpredis غير موجود"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "مثبت، لا يتم تخزين أي شيء"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "نشط، مدار من قبل مستضيفك"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "نشط"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "غير نشط"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "التخزين المؤقت في LiteSpeed:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "التخزين المؤقت للكائنات عبر Redis:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "امتداد Redis لـ PHP (phpredis) غير متوفر على هذا الخادم، لذا لا يمكن تفعيل التخزين المؤقت للكائنات."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "تم تثبيت ملف كاش الكائنات (object-cache drop-in) بالفعل. قم بإزالته قبل تفعيل ذاكرة كاش الكائنات Zinn®."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "تعذّرت كتابة ملف إعدادات اتصال Redis."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "تعذّرت قراءة مكوّن التخزين المؤقت للكائنات المرفق."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "تعذّر تثبيت مكوّن التخزين المؤقت للكائنات في wp-content."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "تعذّرت إزالة مكوّن التخزين المؤقت للكائنات."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "نظام ملفات WordPress غير قابل للكتابة، لذا تعذّرت إدارة مكوّن التخزين المؤقت للكائنات."
 

@@ -44,7 +44,7 @@ msgid "Page cache"
 msgstr "Bộ nhớ đệm trang"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:226
+#: includes/class-admin.php:238
 msgid "Object cache"
 msgstr "Bộ nhớ đệm đối tượng"
 
@@ -124,239 +124,296 @@ msgstr "Loại nội dung"
 msgid "Seconds"
 msgstr "Giây"
 
-#: includes/class-admin.php:220
+#: includes/class-admin.php:223
+#: includes/class-admin.php:232
 msgid "Object cache (Redis)"
 msgstr "Bộ nhớ đệm đối tượng (Redis)"
 
-#: includes/class-admin.php:221
+#: includes/class-admin.php:224
+msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
+msgstr "Máy chủ của bạn chạy một bộ nhớ đệm đối tượng Redis riêng cho trang web này và duy trì cấu hình của nó. Không có gì cần thiết lập ở đây; trạng thái ở đầu màn hình này cho biết nó có đang hoạt động hay không."
+
+#: includes/class-admin.php:233
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Lưu trữ tạm kết quả các truy vấn cơ sở dữ liệu. Tính năng này hữu ích nhất cho một cửa hàng có lượng truy cập lớn hoặc một trang web có nhiều lưu lượng truy cập đã đăng nhập, nơi bộ nhớ đệm trang không thể đáp ứng."
 
-#: includes/class-admin.php:227
+#: includes/class-admin.php:239
 msgid "Install the Redis object-cache drop-in"
 msgstr "Cài đặt drop-in object-cache Redis"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:240
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Cần có tiện ích mở rộng phpredis. Nếu thiếu, hộp ở trên màn hình này sẽ hiển thị thông báo đó."
 
-#: includes/class-admin.php:234
+#: includes/class-admin.php:246
 msgid "Redis host"
 msgstr "Máy chủ Redis"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:253
 msgid "Redis port"
 msgstr "Cổng Redis"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:262
 msgid "Redis database"
 msgstr "Cơ sở dữ liệu Redis"
 
-#: includes/class-admin.php:251
+#: includes/class-admin.php:263
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Hãy cấp cho mỗi trang web trên một Redis chung một số riêng, nếu không chúng sẽ xóa bộ nhớ đệm của nhau."
 
-#: includes/class-admin.php:261
+#: includes/class-admin.php:272
+msgid "Redis username"
+msgstr "Tên người dùng Redis"
+
+#: includes/class-admin.php:273
+msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
+msgstr "Chỉ dành cho máy chủ Redis có người dùng ACL (Redis 6 trở lên). Để trống nếu chỉ đăng nhập bằng mật khẩu."
+
+#: includes/class-admin.php:281
 msgid "Redis password"
 msgstr "Mật khẩu Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:282
 msgid "Leave blank if your Redis does not need one."
 msgstr "Để trống nếu Redis của bạn không cần."
 
-#: includes/class-admin.php:269
+#: includes/class-admin.php:289
 msgid "Key prefix"
 msgstr "Tiền tố khóa"
 
-#: includes/class-admin.php:270
+#: includes/class-admin.php:290
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Một giải pháp thay thế cho một số cơ sở dữ liệu riêng biệt khi bạn không thể có một số cơ sở dữ liệu đó."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:307
 msgid "Smart auto-purge"
 msgstr "Tự động xóa thông minh"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:308
 msgid "Clear affected pages automatically when content changes"
 msgstr "Tự động xóa các trang bị ảnh hưởng khi nội dung thay đổi"
 
-#: includes/class-admin.php:294
+#: includes/class-admin.php:314
 msgid "After updates"
 msgstr "Sau khi cập nhật"
 
-#: includes/class-admin.php:295
+#: includes/class-admin.php:315
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Xóa mọi thứ sau khi cập nhật lõi, plugin hoặc giao diện"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:321
 msgid "After a comment"
 msgstr "Sau một bình luận"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:322
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Xóa trang của bài viết khi một bình luận trên đó được phê duyệt"
 
-#: includes/class-admin.php:303
+#: includes/class-admin.php:323
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Tắt tính năng này ở phần bình luận có lượng truy cập rất cao, nơi tính năng này có thể làm sạch cùng một trang hàng trăm lần mỗi giờ."
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:338
 msgid "Never cache these"
 msgstr "Không bao giờ lưu đệm các mục này"
 
-#: includes/class-admin.php:319
+#: includes/class-admin.php:339
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Các thiết lập mặc định hợp lý cho WordPress và WooCommerce luôn được áp dụng — giỏ hàng, thanh toán, tài khoản của tôi và mọi phiên đăng nhập sẽ không bao giờ bị lưu bộ nhớ đệm, bất kể có gì bên dưới."
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:345
 msgid "Addresses"
 msgstr "Địa chỉ"
 
-#: includes/class-admin.php:326
+#: includes/class-admin.php:346
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Mỗi đường dẫn trên một dòng, ví dụ <code>/basket</code>. Ký tự <code>*</code> ở cuối khớp với mọi thứ bên dưới nó."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:354
 msgid "Query parameters"
 msgstr "Tham số truy vấn"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:355
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Một trang chứa một trong các mục này sẽ không bao giờ bị lưu vào bộ nhớ đệm — ví dụ như mã thông báo xem trước một lần."
 
-#: includes/class-admin.php:343
+#: includes/class-admin.php:363
 msgid "Cookies"
 msgstr "Cookie"
 
-#: includes/class-admin.php:344
+#: includes/class-admin.php:364
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Khách truy cập mang theo một trong những thứ này luôn nhận được một trang mới."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:393
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Tất cả các trang đã lưu bộ nhớ đệm đã bị xóa. Chúng sẽ được tạo lại khi khách truy cập đến."
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:419
+msgid "The object cache is installed, but it is not storing anything."
+msgstr "Bộ nhớ đệm đối tượng đã được cài đặt, nhưng nó không lưu trữ bất kỳ thứ gì."
+
+#: includes/class-admin.php:428
 msgid "The page cache is on, but this server is not LiteSpeed."
 msgstr "Bộ nhớ đệm trang đang bật, nhưng máy chủ này không phải là LiteSpeed."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:429
 msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
 msgstr "Các tiêu đề bộ nhớ đệm đang được gửi nhưng không có gì đọc chúng, vì vậy các trang thực sự không được lưu vào bộ nhớ đệm. Hãy hỏi nhà cung cấp dịch vụ lưu trữ của bạn xem LiteSpeed có sẵn không, hoặc chuyển sang dịch vụ lưu trữ Zinn® nơi điều này là tiêu chuẩn."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:437
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Bộ nhớ đệm đối tượng đang bật, nhưng máy chủ này không hỗ trợ Redis."
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:438
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Tiện ích mở rộng phpredis chưa được cài đặt, vì vậy không thể sử dụng tệp drop-in và WordPress đang quay lại sử dụng bộ nhớ đệm trong bộ nhớ của chính nó. Hãy yêu cầu nhà cung cấp dịch vụ lưu trữ của bạn bật phpredis."
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:446
 msgid "Nothing is being cached."
 msgstr "Không có gì được lưu vào bộ nhớ đệm."
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:447
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Cả hai bộ nhớ cache đều đang tắt, vì vậy plugin này không giúp trang web chạy nhanh hơn."
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:454
 msgid "Caching is active on this site."
 msgstr "Bộ nhớ đệm đang hoạt động trên trang web này."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:489
+msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
+msgstr "Redis đã từ chối tên người dùng hoặc mật khẩu. Hãy kiểm tra thông tin xác thực Redis trong wp-config.php hoặc trên màn hình này."
+
+#: includes/class-admin.php:491
+msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
+msgstr "Redis đã chấp nhận thông tin đăng nhập nhưng không cho phép trang web này lưu trữ các khóa của mình. Người dùng Redis cần có quyền đối với tiền tố khóa của trang web này."
+
+#: includes/class-admin.php:493
+msgid "Redis refused the database number. Check the Redis database setting."
+msgstr "Redis từ chối số cơ sở dữ liệu. Hãy kiểm tra cài đặt cơ sở dữ liệu Redis."
+
+#: includes/class-admin.php:495
+msgid "Redis is out of memory and is refusing new data."
+msgstr "Redis đã hết bộ nhớ và đang từ chối dữ liệu mới."
+
+#: includes/class-admin.php:497
+msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
+msgstr "Tiện ích mở rộng phpredis chưa được cài đặt, vì vậy WordPress đang sử dụng bộ nhớ đệm nội bộ của chính nó. Hãy yêu cầu nhà cung cấp dịch vụ lưu trữ của quý khách bật phpredis."
+
+#: includes/class-admin.php:499
+msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
+msgstr "WP_REDIS_DISABLED đã được thiết lập trong wp-config.php, vì vậy bộ nhớ đệm đối tượng đã bị tắt."
+
+#: includes/class-admin.php:501
+msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
+msgstr "Không thể kết nối đến máy chủ Redis. Hãy kiểm tra máy chủ và cổng của Redis, đồng thời đảm bảo Redis đang chạy."
+
+#: includes/class-admin.php:503
+msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
+msgstr "Redis không trả về giá trị vừa được ghi vào đó. Hãy kiểm tra nhật ký của máy chủ Redis."
+
+#: includes/class-admin.php:518
 msgid "Web server"
 msgstr "Máy chủ web"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:520
 msgid "LiteSpeed — page caching available"
 msgstr "LiteSpeed — có sẵn bộ nhớ đệm trang"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:521
 msgid "not LiteSpeed — page caching unavailable"
 msgstr "không phải LiteSpeed — không có sẵn bộ nhớ đệm trang"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:524
 msgid "Redis support"
 msgstr "Hỗ trợ Redis"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:526
 msgid "phpredis is installed"
 msgstr "đã cài đặt phpredis"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:527
 msgid "phpredis is not installed"
 msgstr "phpredis chưa được cài đặt"
 
-#: includes/class-admin.php:450
+#: includes/class-admin.php:530
 msgid "Page lifetime"
 msgstr "Thời gian duy trì trang"
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:605
 msgid "You are not allowed to purge the cache."
 msgstr "Bạn không được phép xóa bộ nhớ đệm."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:611
 msgid "Cache purge requested."
 msgstr "Đã yêu cầu xóa bộ nhớ đệm."
 
-#: includes/class-admin.php:559
+#: includes/class-admin.php:639
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: một drop-in bộ đệm đối tượng khác đã được cài đặt, do đó bộ đệm đối tượng Redis không được quản lý bởi plugin này."
 
-#: includes/class-admin.php:573
+#: includes/class-admin.php:653
 msgid "detected"
 msgstr "đã phát hiện"
 
-#: includes/class-admin.php:574
+#: includes/class-admin.php:654
 msgid "not detected"
 msgstr "không phát hiện"
 
-#: includes/class-admin.php:577
+#: includes/class-admin.php:658
 msgid "phpredis extension missing"
 msgstr "thiếu tiện ích mở rộng phpredis"
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:660
+msgid "installed, not storing anything"
+msgstr "đã cài đặt, không lưu trữ gì cả"
+
+#: includes/class-admin.php:662
+msgid "active, managed by your host"
+msgstr "đang hoạt động, được quản lý bởi máy chủ của bạn"
+
+#: includes/class-admin.php:664
 msgid "active"
 msgstr "đang hoạt động"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:666
 msgid "inactive"
 msgstr "không hoạt động"
 
-#: includes/class-admin.php:586
+#: includes/class-admin.php:671
 msgid "LiteSpeed cache:"
 msgstr "Bộ nhớ đệm LiteSpeed:"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:673
 msgid "Redis object cache:"
 msgstr "Bộ nhớ đệm đối tượng Redis:"
 
-#: includes/class-object-cache.php:118
+#: includes/class-object-cache.php:205
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
 msgstr "Tiện ích mở rộng PHP của Redis (phpredis) không khả dụng trên máy chủ này, vì vậy không thể bật bộ nhớ đệm đối tượng."
 
-#: includes/class-object-cache.php:125
+#: includes/class-object-cache.php:212
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
 msgstr "Một drop-in object-cache khác đã được cài đặt. Vui lòng gỡ bỏ nó trước khi bật bộ nhớ đệm object cache của Zinn®."
 
-#: includes/class-object-cache.php:137
+#: includes/class-object-cache.php:224
 msgid "Could not write the Redis connection configuration file."
 msgstr "Không thể ghi tệp cấu hình kết nối Redis."
 
-#: includes/class-object-cache.php:145
+#: includes/class-object-cache.php:232
 msgid "The bundled object-cache drop-in could not be read."
 msgstr "Không thể đọc object-cache drop-in đi kèm."
 
-#: includes/class-object-cache.php:152
+#: includes/class-object-cache.php:239
 msgid "Could not install the object-cache drop-in into wp-content."
 msgstr "Không thể cài đặt object-cache drop-in vào wp-content."
 
-#: includes/class-object-cache.php:173
+#: includes/class-object-cache.php:265
 msgid "Could not remove the object-cache drop-in."
 msgstr "Không thể gỡ bỏ object-cache drop-in."
 
-#: includes/class-object-cache.php:262
+#: includes/class-object-cache.php:360
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Hệ thống tệp của WordPress không thể ghi được, vì vậy không thể quản lý object-cache drop-in."
 

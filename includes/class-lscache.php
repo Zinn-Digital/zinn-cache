@@ -263,7 +263,7 @@ final class Lscache {
 		if ( ! headers_sent() ) {
 			if ( $this->request_is_cacheable() ) {
 				$ttl = $this->ttl_for_request();
-				header( self::HEADER_CONTROL . ': public,max-age=' . $ttl );
+				header( self::HEADER_CONTROL . ': ' . $this->cache_control_value( $ttl ) );
 
 				$tags = $this->current_page_tags();
 				if ( array() !== $tags ) {
@@ -291,19 +291,26 @@ final class Lscache {
 	/**
 	 * Purge the entire full-page cache.
 	 *
+	 * @param string $reason Why: 'manual', 'deploy', 'update' or 'api' (passed to `zinn_cache_purged_all`).
 	 * @return void
 	 */
-	public function purge_all(): void {
+	public function purge_all( string $reason = 'manual' ): void {
 		$engine = $this->cache_engine_hook_prefix();
 		if ( null !== $engine ) {
 			do_action( $engine . 'purge_all' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Invoking the active cache-engine plugin's own action, not defining ours; the prefix comes from the fixed CACHE_ENGINES map.
-			return;
-		}
-
-		if ( $this->is_litespeed_server() ) {
+		} elseif ( $this->is_litespeed_server() ) {
 			$this->purge_all_queued = true;
 			$this->emit_purge_now();
 		}
+
+		/**
+		 * Fires after a full purge of the page cache was requested.
+		 *
+		 * Add-ons listen here to warm the cache again or clear caches of their own.
+		 *
+		 * @param string $reason Why: 'manual', 'deploy', 'update' or 'api'.
+		 */
+		do_action( 'zinn_cache_purged_all', $reason );
 	}
 
 	/**
@@ -314,7 +321,7 @@ final class Lscache {
 	 */
 	public function dispatch( array $plan ): void {
 		if ( ! empty( $plan['purge_all'] ) ) {
-			$this->purge_all();
+			$this->purge_all( 'update' );
 			return;
 		}
 
@@ -404,21 +411,53 @@ final class Lscache {
 	 * @return int Seconds.
 	 */
 	private function ttl_for_request(): int {
-		$default = (int) ( $this->settings['lscache_ttl'] ?? 0 );
+		$ttl = (int) ( $this->settings['lscache_ttl'] ?? 0 );
 
 		$overrides = $this->settings['ttl_overrides'] ?? array();
-		if ( ! is_array( $overrides ) || array() === $overrides || ! is_singular() ) {
-			return $default;
-		}
-
-		$type = (string) get_post_type();
-		foreach ( $overrides as $rule ) {
-			if ( is_array( $rule ) && (string) ( $rule['post_type'] ?? '' ) === $type ) {
-				return (int) $rule['ttl'];
+		if ( is_array( $overrides ) && array() !== $overrides && is_singular() ) {
+			$type = (string) get_post_type();
+			foreach ( $overrides as $rule ) {
+				if ( is_array( $rule ) && (string) ( $rule['post_type'] ?? '' ) === $type ) {
+					$ttl = (int) $rule['ttl'];
+					break;
+				}
 			}
 		}
 
-		return $default;
+		/**
+		 * Filters how long the current page is cached for, in seconds.
+		 *
+		 * Runs on every cacheable request, after the per-post-type overrides.
+		 *
+		 * @param int $ttl Seconds.
+		 */
+		$filtered = apply_filters( 'zinn_cache_ttl', $ttl );
+
+		return is_numeric( $filtered ) ? max( 0, (int) $filtered ) : $ttl;
+	}
+
+	/**
+	 * The `X-LiteSpeed-Cache-Control` value for a cacheable page.
+	 *
+	 * ⛔ The filtered value is accepted only in the two shapes that are safe to send —
+	 * `public,max-age=N` and `private,max-age=N` — so an add-on can make a page private but can
+	 * never smuggle another directive (an ESI toggle, a vary) into the header.
+	 *
+	 * @param int $ttl Seconds.
+	 * @return string
+	 */
+	private function cache_control_value( int $ttl ): string {
+		$default = 'public,max-age=' . $ttl;
+
+		/**
+		 * Filters the cache-control value sent to LiteSpeed for a cacheable page.
+		 *
+		 * @param string $value `public,max-age=N` by default; `private,max-age=N` is also accepted.
+		 * @param int    $ttl   Seconds.
+		 */
+		$value = apply_filters( 'zinn_cache_control_header', $default, $ttl );
+
+		return is_string( $value ) && 1 === preg_match( '/^(public|private),max-age=\d{1,9}$/', $value ) ? $value : $default;
 	}
 
 	/**
@@ -453,12 +492,22 @@ final class Lscache {
 			$this->as_list( $this->settings['exclude_cookies'] ?? array() )
 		);
 
-		return ! Exclusions::is_excluded(
+		$cacheable = ! Exclusions::is_excluded(
 			$this->request_uri(),
 			$this->cookie_names(),
 			$this->query_keys(),
 			$rules
 		);
+
+		/**
+		 * Filters whether the current front-end request may be served from the page cache.
+		 *
+		 * ⛔ Reached only AFTER the hard refusals above (wp-admin, a signed-in visitor, a non-GET,
+		 * DONOTCACHEPAGE, a preview, a 404, a search), so no filter can make those cacheable.
+		 *
+		 * @param bool $cacheable Whether the exclusion rules allow caching this request.
+		 */
+		return (bool) apply_filters( 'zinn_cache_request_cacheable', $cacheable );
 	}
 
 	/**
