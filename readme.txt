@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -148,6 +148,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.5.0 =
+* Updates install whenever you click Update, even months later: the download link is fetched fresh at install time instead of expiring in WordPress's saved update data.
 
 = 1.4.0 =
 * The Redis object cache signs in with a Redis 6+ ACL username and password (WP_REDIS_USERNAME, or WP_REDIS_PASSWORD as array( user, password )), honours WP_REDIS_PATH and WP_REDIS_MAXTTL, and can flush through a host helper (ZINN_CACHE_FLUSH_SOCKET) where SCAN is not allowed. It now proves itself with a write-and-read round trip and the settings screen says why when Redis refuses the login or the data, instead of a cache that silently stores nothing. Hosts can mark the object cache as managed (ZINN_CACHE_MANAGED_OBJECT_CACHE) so the plugin never removes their drop-in, and an older copy of the plugin's own drop-in is refreshed after an update. New filters for add-ons: zinn_cache_request_cacheable, zinn_cache_ttl, zinn_cache_control_header, and the zinn_cache_purged_all action.
