@@ -62,6 +62,8 @@ final class Cli {
 		$pages                      = Page_Cache::stats();
 		$report['page_cache']       = empty( Settings::get()['lscache_enabled'] ) ? 'off' : ( Page_Cache::is_ready() ? 'disk' : 'server' );
 		$report['page_cache_pages'] = $pages['pages'];
+		// false when the build lost vendor/freemius and the plugin is running without it (D28308).
+		$report['freemius'] = ! defined( 'ZINN_CACHE_FREEMIUS_MISSING' );
 
 		if ( 'json' === ( $assoc_args['format'] ?? 'table' ) ) {
 			\WP_CLI::line( (string) wp_json_encode( $report ) );

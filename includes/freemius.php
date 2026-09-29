@@ -9,10 +9,14 @@
  *
  * ⭐ Anonymous on a site hosted with Zinn Digital® (ZINN_CACHE_MANAGED_OBJECT_CACHE or ZINN_SITE_EVENTS_URL, both written by the platform): the host already knows the site, and an opt-in screen on a hosted customer's site is a question with no one to answer it.
  *
+ * ⛔⛔ FAIL SAFE: without the SDK on disk the whole block is skipped and the cache keeps working. A build that lost vendor/freemius (D28307) otherwise fatalled on activation and, through the platform's footprint, at core install of every new site (D28308).
+ *
  * @package Zinn\Cache
  */
 defined( 'ABSPATH' ) || exit;
-if ( !function_exists( 'zinn_cache_fs' ) ) {
+if ( !file_exists( dirname( __DIR__ ) . '/vendor/freemius/start.php' ) ) {
+    define( 'ZINN_CACHE_FREEMIUS_MISSING', true );
+} elseif ( !function_exists( 'zinn_cache_fs' ) ) {
     /**
      * The licensing SDK instance for this plugin (Freemius product 40420).
      *
