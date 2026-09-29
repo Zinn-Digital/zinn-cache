@@ -7,7 +7,7 @@
  *
  * ⛔ No secret key here, ever: the SDK needs only the PUBLIC key. The product secret lives in Vault (secret/vendors/freemius/zinn-cache).
  *
- * ⭐ Anonymous on a site hosted with Zinn Digital® (ZINN_CACHE_MANAGED_OBJECT_CACHE or ZINN_SITE_EVENTS_URL, both written by the platform): the host already knows the site, and an opt-in screen on a hosted customer's site is a question with no one to answer it.
+ * ⭐ Anonymous on a site hosted with Zinn Digital® (zinn_cache_is_platform_hosted(): ZINN_CACHE_MANAGED_OBJECT_CACHE or ZINN_SITE_EVENTS_URL, both written by the platform): the host already knows the site, and an opt-in screen on a hosted customer's site is a question with no one to answer it.
  *
  * ⛔⛔ FAIL SAFE: without the SDK on disk the whole block is skipped and the cache keeps working. A build that lost vendor/freemius (D28307) otherwise fatalled on activation and, through the platform's footprint, at core install of every new site (D28308).
  *
@@ -35,7 +35,7 @@ if ( !file_exists( dirname( __DIR__ ) . '/vendor/freemius/start.php' ) ) {
                 'has_addons'       => false,
                 'has_paid_plans'   => false,
                 'is_org_compliant' => true,
-                'anonymous_mode'   => ( defined( 'ZINN_CACHE_MANAGED_OBJECT_CACHE' ) && ZINN_CACHE_MANAGED_OBJECT_CACHE ) || defined( 'ZINN_SITE_EVENTS_URL' ),
+                'anonymous_mode'   => zinn_cache_is_platform_hosted(),
                 'menu'             => array(
                     'slug'    => 'zinn-admin-ui-zinn-cache',
                     'account' => false,
@@ -51,6 +51,7 @@ if ( !file_exists( dirname( __DIR__ ) . '/vendor/freemius/start.php' ) ) {
         }
         return $zinn_cache_fs;
     }
+
     zinn_cache_fs();
     zinn_cache_fs()->add_action( 'after_uninstall', 'zinn_cache_uninstall' );
     do_action( 'zinn_cache_fs_loaded' );
