@@ -115,7 +115,7 @@ final class Cache_Tags {
 	 * @return string[]
 	 */
 	public static function for_post_change( int $post_id, string $post_type ): array {
-		return array(
+		$tags = array(
 			self::post( $post_id ),
 			self::post_type( $post_type ),
 			self::home(),
@@ -123,6 +123,21 @@ final class Cache_Tags {
 			self::archive(),
 			self::feed(),
 		);
+
+		/**
+		 * Filters the cache tags purged when a post changes.
+		 *
+		 * ⭐ The default is deliberately broad (every archive), because a free plugin cannot know
+		 * which listings a post appears on without reading its terms. Zinn® Cache Pro narrows it to
+		 * the post's own term, author and product listings (smart invalidation).
+		 *
+		 * @param string[] $tags      Tags to purge.
+		 * @param int      $post_id   Post ID.
+		 * @param string   $post_type Post type.
+		 */
+		$filtered = apply_filters( 'zinn_cache_post_change_tags', $tags, $post_id, $post_type );
+
+		return is_array( $filtered ) ? array_values( array_unique( array_filter( array_map( 'strval', $filtered ) ) ) ) : $tags;
 	}
 
 	/**

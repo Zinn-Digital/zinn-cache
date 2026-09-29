@@ -21,8 +21,8 @@ msgstr "https://zinndigital.com/wordpress-plugins/zinn-cache"
 
 #. Description of the plugin
 #: zinn-cache.php
-msgid "For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe WordPress/WooCommerce exclusions. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead."
-msgstr "עבור אתרים המארחים ב-Zinn Digital®. שולט במטמון העמודים ששרת ה-Zinn® שלכם כבר מספק — ניקוי אוטומטי חכם בעת שינוי תוכן, נקודת קצה חתומה לניקוי עבור הכלים שלכם, מתג למטמון אובייקטים של Redis והחרגות בטוחות עבור WordPress/WooCommerce. זהו בקר מטמון, לא מנוע מטמון. מארחים במקום אחר? התקינו את Zinn® Cache Engine במקום זאת."
+msgid "A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works."
+msgstr "מטמון עמודים ומטמון אובייקטים מסוג Redis עבור כל אתר WordPress. משתמש במטמון שרת LiteSpeed היכן שקיים ובמטמון הדיסק שלו בכל מקום אחר, מנקה רק את מה ששינוי משפיע עליו, ומוכיח שחיבור ה-Redis שלו פועל."
 
 #. Author of the plugin
 #: zinn-cache.php
@@ -69,12 +69,12 @@ msgid "Full-page cache"
 msgstr "מטמון עמוד מלא"
 
 #: includes/class-admin.php:148
-msgid "Served by LiteSpeed at the web server, before WordPress runs. This is where nearly all the speed comes from."
-msgstr "מוגש על ידי LiteSpeed בשרת האתר, לפני הפעלת WordPress. מכאן מגיעה כמעט כל מהירות הטעינה."
+msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
+msgstr "בשרת LiteSpeed, העמודים מוגשים על ידי שרת האינטרנט לפני ש־WordPress רץ. בשרת אחר כלשהו, תוסף זה מאחסן כל עמוד כקובץ ומגיש אותו לפני ש־WordPress נטען. מכאן נובעת כמעט כל המהירות."
 
 #: includes/class-admin.php:154
-msgid "Send LiteSpeed cache-control and tag headers on cacheable pages"
-msgstr "שלח כותרות cache-control ו-tag של LiteSpeed בדפים הניתנים למטמון"
+msgid "Cache pages for visitors who are not signed in"
+msgstr "הסתר עמודים במטמון עבור מבקרים שאינם מחוברים"
 
 #: includes/class-admin.php:160
 msgid "How long a page stays cached"
@@ -253,139 +253,143 @@ msgstr "כל הדפים המטומטמים פונו. הם ייבנו מחדש כ
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "מטמון האובייקטים מותקן, אך אינו שומר דבר."
 
-#: includes/class-admin.php:428
-msgid "The page cache is on, but this server is not LiteSpeed."
-msgstr "מטמון העמודים מופעל, אך שרת זה אינו LiteSpeed."
+#: includes/class-admin.php:433
+msgid "The page cache is on, but pages are not being stored yet."
+msgstr "מטמון העמודים מופעל, אך עמודים טרם נשמרים."
 
-#: includes/class-admin.php:429
-msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
-msgstr "כותרות המטמון נשלחות אך אף גורם אינו קורא אותן, ולכן העמודים אינם עוברים שמירה במטמון בפועל. שאל את המארח שלך אם LiteSpeed זמין, או עבור לאחסון של Zinn® שבו הוא סטנדרטי."
+#: includes/class-admin.php:434
+msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
+msgstr "וורדפרס (WordPress) טרם טענה את קובץ ה-drop-in של מטמון העמודים. הוא יופעל בטעינת העמוד הבאה; אם לא, יש לוודא שערכו של WP_CACHE הוא true בקובץ wp-config.php."
 
-#: includes/class-admin.php:437
+#: includes/class-admin.php:443
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "מטמון האובייקט פועל, אך לשרת זה אין תמיכה ב-Redis."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:444
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "הרחבת phpredis אינה מותקנת, ולכן לא ניתן להשתמש בתוסף ו-WordPress חוזרת למטמון הפנימי שלה בזיכרון. יש לבקש מארח האתר לאפשר את phpredis."
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Nothing is being cached."
 msgstr "שום דבר אינו מטומן במטמון."
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:453
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "שני המטמונים כבויים, כך שתוסף זה אינו מאיץ את האתר."
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Caching is active on this site."
 msgstr "התאמון פעיל באתר זה."
 
-#: includes/class-admin.php:489
+#: includes/class-admin.php:495
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis סירב לשם המשתמש או לסיסמה. בדוק את פרטי ההתחברות של Redis בתוך wp-config.php או במסך זה."
 
-#: includes/class-admin.php:491
+#: includes/class-admin.php:497
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis אישר את ההתחברות אך אינו מאפשר לאתר זה לאחסן את מפתחותיו. משתמש Redis זקוק להרשאה עבור קידומת המפתחות של אתר זה."
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis סירב למספר מסד הנתונים. בדוק את הגדרת מסד הנתונים של Redis."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:501
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis אזל מהזיכרון והוא מסרב לקבל נתונים חדשים."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:503
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "תוספת ה-phpredis אינה מותקנת, ולכן WordPress משתמשת במטמון הפנימי שלה בזיכרון. בקשו ממארח האתר שלכם להפעיל את phpredis."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:505
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED מוגדר בקובץ wp-config.php, ולכן מטמון האובייקט כבוי."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "לא ניתן היה ליצור קשר עם שרת ה-Redis. בדוק את מארח ה-Redis ואת היציאה, וודא ש-Redis פועל."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:509
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis לא החזיר את הערך שזה עתה נכתב אליו. בדוק את יומני הרישום של שרת Redis."
 
-#: includes/class-admin.php:518
+#: includes/class-admin.php:524
 msgid "Web server"
 msgstr "שרת אינטרנט"
 
-#: includes/class-admin.php:520
-msgid "LiteSpeed — page caching available"
-msgstr "LiteSpeed — מטמון עמודים זמין"
+#: includes/class-admin.php:526
+msgid "LiteSpeed — pages are cached by the web server"
+msgstr "LiteSpeed — הדפים מנוהלים במטמון על ידי שרת האינטרנט"
 
-#: includes/class-admin.php:521
-msgid "not LiteSpeed — page caching unavailable"
-msgstr "לא LiteSpeed — מטמון עמודים אינו זמין"
+#: includes/class-admin.php:527
+msgid "not LiteSpeed — pages are cached on disk by this plugin"
+msgstr "לא LiteSpeed — הדפים מנוהלים במטמון על ידי תוסף זה בכונן הקשיח"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:530
+msgid "Pages stored on disk"
+msgstr "דפים מאוחסנים בדיסק"
+
+#: includes/class-admin.php:534
 msgid "Redis support"
 msgstr "תמיכה ב-Redis"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:536
 msgid "phpredis is installed"
 msgstr "phpredis מותקן"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:537
 msgid "phpredis is not installed"
 msgstr "phpredis אינו מותקן"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:540
 msgid "Page lifetime"
 msgstr "משך חיי העמוד"
 
-#: includes/class-admin.php:605
+#: includes/class-admin.php:615
 msgid "You are not allowed to purge the cache."
 msgstr "אינך רשאי לנקות את המטמון."
 
-#: includes/class-admin.php:611
+#: includes/class-admin.php:621
 msgid "Cache purge requested."
 msgstr "התקבלה בקשה לניקוי המטמון."
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:649
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: מודול מטמון עצמים אחר מותקן, ולכן מטמון העצמים של Redis אינו מנוהל על ידי תוסף זה."
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:663
 msgid "detected"
 msgstr "זוהה"
 
-#: includes/class-admin.php:654
+#: includes/class-admin.php:664
 msgid "not detected"
 msgstr "לא זוהה"
 
-#: includes/class-admin.php:658
+#: includes/class-admin.php:668
 msgid "phpredis extension missing"
 msgstr "הרחבת phpredis חסרה"
 
-#: includes/class-admin.php:660
+#: includes/class-admin.php:670
 msgid "installed, not storing anything"
 msgstr "מותקן, לא שומר שום דבר"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:672
 msgid "active, managed by your host"
 msgstr "פעיל, מנוהל על ידי המארח שלך"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:674
 msgid "active"
 msgstr "פעיל"
 
-#: includes/class-admin.php:666
+#: includes/class-admin.php:676
 msgid "inactive"
 msgstr "לא פעיל"
 
-#: includes/class-admin.php:671
+#: includes/class-admin.php:681
 msgid "LiteSpeed cache:"
 msgstr "מטמון LiteSpeed:"
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:683
 msgid "Redis object cache:"
 msgstr "מטמון אובייקטים של Redis:"
 
@@ -417,6 +421,18 @@ msgstr "לא ניתן היה להסיר את תוסף ה-drop-in של מטמון
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "מערכת הקבצים של WordPress אינה ניתנת לכתיבה, ולכן לא ניתן היה לנהל את תוסף ה-drop-in של מטמון האובייקטים."
 
+#: includes/class-page-cache.php:291
+msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
+msgstr "תוסף מטמון עמודים אחר התקין את wp-content/advanced-cache.php. הסר את התסף ההוא תחילה, או המשך להשתמש במטמון העמודים שלו."
+
+#: includes/class-page-cache.php:294
+msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
+msgstr "לא ניתן לכתוב אל התיקייה wp-content/cache/zinn-cache, ולכן לא ניתן לשמור עמודים במטמון."
+
+#: includes/class-page-cache.php:301
+msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
+msgstr "לא ניתן לכתוב את הקובץ wp-content/advanced-cache.php, ולכן לא ניתן לשמור עמודים במטמון."
+
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
 msgstr "עיין בהערות הגרסה של Zinn Digital®."
@@ -434,6 +450,64 @@ msgstr "לא ניתן היה להוריד את העדכון משירות העד�
 #: includes/class-updater.php:327
 msgid "The downloaded update failed its integrity check and was not installed."
 msgstr "העדכון שהורד נכשל בבדיקת התקינות ולא הותקן."
+
+#: includes/class-upsell.php:85
+msgid "Go Pro"
+msgstr "שדרג לפרו"
+
+#: includes/class-upsell.php:112
+msgid "A cache analytics screen: hit ratio, memory, keys and the slowest cache commands."
+msgstr "מסך ניתוח מטמון: יחס פגיעות, זיכרון, מפתחות ופקודות המטמון האיטיות ביותר."
+
+#: includes/class-upsell.php:113
+msgid "A slow-query and uncached-call finder that names the plugin or theme responsible."
+msgstr "כלי לאיתור שאילתות איטיות וקריאות ללא מטמון, המזהה את תוסף או ערכת העיצוב האחראיים לכך."
+
+#: includes/class-upsell.php:114
+msgid "An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer."
+msgstr "שכבת APCu בזיכרון לפני Redis עבור המפתחות החמים ביותר, בתוספת טעינה מוקדמת, דחיסה ומנגנון הסדרת הנתונים igbinary."
+
+#: includes/class-upsell.php:115
+msgid "Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together."
+msgstr "ניקוי מטמון מבוסס תגים עבור פוסטים, טקסונומיות ומוצרי WooCommerce, כך שרק מה שהשתנה מנוקה, תוך ניקוי בו-זמני של מטמוני הדפים והאובייקטים."
+
+#: includes/class-upsell.php:116
+msgid "Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript."
+msgstr "חימום מטמון אוטומטי לאחר ניקוי, תמונות WebP ו-AVIF, הסרת CSS שאינו בשימוש ועיכוב טעינת JavaScript."
+
+#: includes/class-upsell.php:117
+msgid "Scheduled database clean-up with a preview, and per-page cache rules."
+msgstr "ניקוי מסד נתונים מתוזמן עם תצוגה מקדימה וכללי מטמון לפי עמוד."
+
+#: includes/class-upsell.php:118
+msgid "Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills."
+msgstr "התרעות על מצב ה-Cache בלוח הבקרה של Zinn Digital® שלך כאשר יחס הפגיעות יורד או הזיכרון מתמלא."
+
+#: includes/class-upsell.php:132
+msgid "Everything on the other tabs is free and stays free. Pro installs on top of this plugin and adds:"
+msgstr "כל מה שמופיע בלשוניות האחרות הוא חינמי ויישאר חינמי. גרסת Pro מותקנת מעל תוסף זה ומוסיפה:"
+
+#: includes/class-upsell.php:134
+msgid "See what Pro costs"
+msgstr "ראה את העלות של Pro"
+
+#. translators: 1: yearly price for one site, 2: for five sites, 3: for unlimited sites (each already formatted, e.g. $49).
+#: includes/class-upsell.php:138
+#, php-format
+msgid "Every plan starts with a 14-day free trial, no card needed: %1$s a year for one site, %2$s for five sites, %3$s for unlimited sites."
+msgstr "כל תוכנית מתחילה ב-14 ימי ניסיון חינם, ללא צורך בכרטיס אשראי: %1$s בשנה עבור אתר אחד, %2$s עבור חמישה אתרים, %3$s עבור אתרים ללא הגבלה."
+
+#: includes/class-wp-config.php:66
+msgid "wp-config.php was not found, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "הקובץ wp-config.php לא נמצא, ולכן לא ניתן היה להפעיל את WP_CACHE. יש להוסיף אליו את השורה define( 'WP_CACHE', true );."
+
+#: includes/class-wp-config.php:72
+msgid "wp-config.php already defines WP_CACHE as false, so the page cache cannot start. Change it to true."
+msgstr "wp-config.php כבר הגדיר את WP_CACHE כ-false, ולכן מטמון העמודים אינו יכול להפעיל. שנה אותו ל-true."
+
+#: includes/class-wp-config.php:79
+msgid "wp-config.php is not writable, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "קובץ wp-config.php אינו ניתנים לכתיבה, ולכן לא ניתן היה להפעיל את WP_CACHE. יש להוסיף אליו את השורה define( 'WP_CACHE', true );."
 
 #: includes/class-zinn-cache-admin-fields.php:580
 msgid "Stored. Type a new value to replace it."
@@ -460,6 +534,8 @@ msgid "Remove this row"
 msgstr "הסר שורה זו"
 
 #: includes/class-zinn-cache-admin-fields.php:725
+#: includes/freemius-strings.php:2132
+#: includes/freemius-strings.php:4997
 msgid "Remove"
 msgstr "הסר"
 
@@ -503,6 +579,8 @@ msgid "Settings sections"
 msgstr "קטעי הגדרות"
 
 #: includes/class-zinn-cache-admin-ui.php:871
+#: includes/freemius-strings.php:2420
+#: includes/freemius-strings.php:5291
 msgid "Support"
 msgstr "תמיכה"
 
@@ -741,3 +819,4067 @@ msgstr "השתמש בצבעים ובגדלים שלי"
 #: includes/class-zinn-cache-style-presets.php:127
 msgid "Leave this off and the preset is used exactly as it is."
 msgstr "השאר זאת כבוי והתצנית תעשה בדיוק כפי שהיא."
+
+#: includes/freemius-strings.php:21
+#: includes/freemius-strings.php:6306
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "a license key"
+msgstr "מפתח רישיון"
+
+#: includes/freemius-strings.php:25
+#: includes/freemius-strings.php:3062
+msgid "A user has not yet been associated with the license, which is necessary to prevent unauthorized activation. To assign the license to your user, you agree to share your WordPress user's full name and email address."
+msgstr "טרם שויך משתמש לרישיון, פעולה הכרחית למניעת הפעלה בלתי מורשית. כדי להקצות את הרישיון למשתמש שלך, הנך מסכים/ה לשתף את השם המלא וכתובת הדוא\"ל של משתמש ה-WordPress שלך."
+
+#: includes/freemius-strings.php:29
+#: includes/freemius-strings.php:6253
+msgid "the above-mentioned sites"
+msgstr "האתרים הנזכרים לעיל"
+
+#: includes/freemius-strings.php:33
+#: includes/freemius-strings.php:3072
+msgid "Account"
+msgstr "חשבון"
+
+#: includes/freemius-strings.php:37
+#: includes/freemius-strings.php:3077
+msgid "Account Details"
+msgstr "פרטי חשבון"
+
+#: includes/freemius-strings.php:41
+#: includes/freemius-strings.php:3082
+msgid "Account is pending activation. Please check your email and click the link to activate your account and then submit the affiliate form again."
+msgstr "החשבון ממתין להפעלה. אנא בדוק את האימייל שלך ולחץ על הקישור כדי להפעיל את החשבון שלך, ולאחר מכן שלח את טופס השותפים שוב."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:46
+#: includes/freemius-strings.php:5838
+#, php-format
+msgid "Would you like to merge %1$s into %2$s?"
+msgstr "האם ברצונך מיזוג את %1$s לתוך %2$s?"
+
+#: includes/freemius-strings.php:50
+#: includes/freemius-strings.php:3087
+msgid "Actions"
+msgstr "פעולות"
+
+#: includes/freemius-strings.php:54
+#: includes/freemius-strings.php:3092
+msgid "Activate"
+msgstr "הפעלה"
+
+#: includes/freemius-strings.php:58
+#: includes/freemius-strings.php:62
+#: includes/freemius-strings.php:3115
+msgid "Activate Free Version"
+msgstr "הפעל גרסה חינמית"
+
+#: includes/freemius-strings.php:66
+#: includes/freemius-strings.php:3120
+msgid "Activate License"
+msgstr "הפעל רישיון"
+
+#: includes/freemius-strings.php:70
+#: includes/freemius-strings.php:6131
+msgid "activate a license here"
+msgstr "הפעל רישיון כאן"
+
+#: includes/freemius-strings.php:74
+#: includes/freemius-strings.php:4793
+msgid "Please enter the license key that you received in the email right after the purchase:"
+msgstr "אנא הזן את מפתח הרישיון שקיבלת בדוא\"ל מיד לאחר הרכישה:"
+
+#: includes/freemius-strings.php:78
+#: includes/freemius-strings.php:3130
+msgid "Activate license on all sites in the network."
+msgstr "הפעל את הרישיון בכל האתרים ברשת."
+
+#: includes/freemius-strings.php:82
+#: includes/freemius-strings.php:3125
+msgid "Activate license on all pending sites."
+msgstr "הפעל רישיון בכל האתרים הממתינים."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:87
+#: includes/freemius-strings.php:2859
+#, php-format
+msgid " The paid version of %1$s is already installed. Please activate it to start benefiting from the %2$s features. %3$s"
+msgstr "הגרסה בתשלום של %1$s כבר מותקנת. יש להפעיל אותה כדי להתחיל ליהנות מתכונות ה-%2$s. %3$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:92
+#: includes/freemius-strings.php:2865
+#, php-format
+msgid " The paid version of %1$s is already installed. Please navigate to the %2$s to activate it and start benefiting from the %3$s features."
+msgstr "הגרסה בתשלום של %1$s כבר מותקנת. יש לנווט אל %2$s כדי להפעיל אותה ולהתחיל ליהנות מתכונות ה-%3$s."
+
+#: includes/freemius-strings.php:96
+#: includes/freemius-strings.php:3135
+msgid "Activate this add-on"
+msgstr "הפעל תוסף זה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:101
+#: includes/freemius-strings.php:3098
+#, php-format
+msgid "Activate %s"
+msgstr "הפעל את %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:106
+#: includes/freemius-strings.php:3110
+#, php-format
+msgid "Activate %s features"
+msgstr "הפעל תכונות של %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:111
+#: includes/freemius-strings.php:6276
+#, php-format
+msgctxt "%s - plugin name. As complete \"PluginX\" activation now"
+msgid "Complete \"%s\" Activation Now"
+msgstr "השלם את ההפעלה של \"%s\" כעת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:116
+#: includes/freemius-strings.php:3104
+#, php-format
+msgid "Activate %s Plan"
+msgstr "הפעל את תוכנית %s"
+
+#: includes/freemius-strings.php:120
+#: includes/freemius-strings.php:3140
+msgid "Activated"
+msgstr "מופעל"
+
+#: includes/freemius-strings.php:124
+#: includes/freemius-strings.php:3145
+msgid "Activating"
+msgstr "מפעיל"
+
+#: includes/freemius-strings.php:128
+#: includes/freemius-strings.php:3150
+msgid "Activating license"
+msgstr "מפעיל רישיון"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:133
+#: includes/freemius-strings.php:6022
+#, php-format
+msgid "Your account was successfully activated with the %s plan."
+msgstr "חשבון הופעל בהצלחה במסגרת תוכנית %s."
+
+#: includes/freemius-strings.php:137
+#: includes/freemius-strings.php:6366
+msgctxt "active add-on"
+msgid "Active"
+msgstr "פעיל"
+
+#: includes/freemius-strings.php:141
+#: includes/freemius-strings.php:3167
+msgid "Add another domain"
+msgstr "הוסף דומיין נוסף"
+
+#: includes/freemius-strings.php:145
+#: includes/freemius-strings.php:3177
+msgid "Add-Ons"
+msgstr "תוספות"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:150
+#: includes/freemius-strings.php:3156
+#, php-format
+msgid "Add Ons for %s"
+msgstr "תוספות עבור %s"
+
+#: includes/freemius-strings.php:154
+#: includes/freemius-strings.php:5751
+msgid "We couldn't load the add-ons list. It's probably an issue on our side, please try to come back in few minutes."
+msgstr "לא הצלחנו לטעון את רשימת התוספים. זו כנראה בעיה בצד שלנו, אנא נסו לחזור בעוד מספר דקות."
+
+#: includes/freemius-strings.php:158
+#: includes/freemius-strings.php:3172
+msgid "Add-On"
+msgstr "תוסף"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:163
+#: includes/freemius-strings.php:2931
+#, php-format
+msgid "%s is a premium only add-on. You have to purchase a license first before activating the plugin."
+msgstr "%s היא תוספת פרימיום בלבד. עליך לרכוש רישיון תחילה לפני הפעלת התוסף."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:168
+#: includes/freemius-strings.php:2883
+#, php-format
+msgid "%s Add-on was successfully purchased."
+msgstr "תוספת %s נרכשה בהצלחה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:173
+#: includes/freemius-strings.php:5993
+#, php-format
+msgid "Your %s Add-on plan was successfully upgraded."
+msgstr "תוכנית ההרחבה %s שלך שודרגה בהצלחה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:178
+#: includes/freemius-strings.php:2925
+#, php-format
+msgid "%s free trial was successfully cancelled. Since the add-on is premium only it was automatically deactivated. If you like to use it in the future, you'll have to purchase a license."
+msgstr "תקופת הניסיון בחינם עבור %s בוטלה בהצלחה. מכיוון שהתוסף זמין בגרסת פרימיום בלבד, הוא הושבת באופן אוטומטי. אם ברצונכם להשתמש בו בעתיד, תצטרכו לרכוש רישיון."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:183
+#: includes/freemius-strings.php:6378
+#, php-format
+msgctxt "addonX cannot run..."
+msgid "%s cannot run without the plugin."
+msgstr "%s לא יכול לפעול ללא התוסף."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:188
+#: includes/freemius-strings.php:6372
+#, php-format
+msgctxt "addonX cannot run without pluginY"
+msgid "%1$s cannot run without %2$s."
+msgstr "%1$s אינו יכול לפעול ללא %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:193
+#: includes/freemius-strings.php:4332
+#, php-format
+msgid "Just letting you know that the add-ons information of %s is being pulled from an external server."
+msgstr "רק רציינו לעדכן שמידע התוספים של %s נשלף משרת חיצוני."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:198
+#: includes/freemius-strings.php:3162
+#, php-format
+msgid "Add Ons of module %s"
+msgstr "תוספות של מודול %s"
+
+#: includes/freemius-strings.php:202
+#: includes/freemius-strings.php:3187
+msgid "Address"
+msgstr "כתובת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:207
+#: includes/freemius-strings.php:3193
+#, php-format
+msgid "Address Line %d"
+msgstr "שורה כתובת %d"
+
+#: includes/freemius-strings.php:211
+#: includes/freemius-strings.php:3198
+msgid "Affiliate"
+msgstr "שותף מטעמנו"
+
+#: includes/freemius-strings.php:215
+#: includes/freemius-strings.php:3830
+msgid "Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support."
+msgstr "עקב הפרה של תנאי השותפים שלנו, החלטנו לחסום זמנית את חשבון השותפים שלך. אם יש לך שאלות כלשהות, אנא פנה לתמיכה."
+
+#: includes/freemius-strings.php:219
+#: includes/freemius-strings.php:6033
+msgid "Your affiliation account was temporarily suspended."
+msgstr "חשבון השותף שלך הושעה זמנית."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:224
+#: includes/freemius-strings.php:6028
+#, php-format
+msgid "Your affiliate application for %1$s has been accepted! Log in to your affiliate area at: %2$s."
+msgstr "בקשת השותפים שלך עבור %1$s התקבלה! התחבר לאזור השותפים שלך בכתובת: %2$s."
+
+#: includes/freemius-strings.php:228
+#: includes/freemius-strings.php:5316
+msgid "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days."
+msgstr "תודה על הגשת המועמדות לתוכנית השותפים שלנו, לרוע המזל, החלטנו בשלב זה דחות את בקשתך. נסה שוב בעוד 30 יום."
+
+#: includes/freemius-strings.php:232
+#: includes/freemius-strings.php:5321
+msgid "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information."
+msgstr "תודה על הגשת המועמדות לתוכנית השותפים שלנו, נבחן את הפרטים שלך במהלך 14 הימים הקרובים ונחזור אליך עם מידע נוסף."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:237
+#: includes/freemius-strings.php:3027
+#, php-format
+msgid "%s tracking cookie after the first visit to maximize earnings potential."
+msgstr "%s עוגיית מעקב לאחר הביקור הראשון כדי למקסם את פוטנציאל ההכנסות."
+
+#: includes/freemius-strings.php:241
+#: includes/freemius-strings.php:3203
+msgid "Affiliation"
+msgstr "השתייכות"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:246
+#: includes/freemius-strings.php:4652
+#, php-format
+msgid "Once your license expires you can still use the Free version but you will NOT have access to the %s features."
+msgstr "ברגע שהרישיון שלך יפוג, עדיין תוכל להשתמש בגרסה החינמית, אך לא תהיה לך גישה לתכונות של %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:251
+#: includes/freemius-strings.php:4658
+#, php-format
+msgid "Once your license expires you will no longer be able to use the %s, unless you activate it again with a valid premium license."
+msgstr "לאחר שתוקף הרישיון שלך יפוג, לא תוכל עוד להשתמש ב-%s, אלא אם תפעיל אותו מחדש באמצעות רישיון פרימיום תקף."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:256
+#: includes/freemius-strings.php:5917
+#, php-format
+msgid "You can still enjoy all %1$s features but you will not have access to %2$s security & feature updates, nor support."
+msgstr "עדיין תוכל ליהנות מכל התכונות של %1$s אך לא תהיה לך גישה לעדכוני האבטחה והתכונות של %2$s, וגם לא לתמיכה."
+
+#: includes/freemius-strings.php:260
+#: includes/freemius-strings.php:5366
+msgid "Thanks for upgrading."
+msgstr "תודה ששדרגת."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:265
+#: includes/freemius-strings.php:3209
+#, php-format
+msgid "After your free %1$s, pay as little as %2$s"
+msgstr "לאחר תקופת הניסיון החינמית של %1$s, שלם החל מ-%2$s"
+
+#: includes/freemius-strings.php:269
+#: includes/freemius-strings.php:3214
+msgid "Agree & Activate License"
+msgstr "הסכם והפעל רישיון"
+
+#: includes/freemius-strings.php:273
+#: includes/freemius-strings.php:4071
+msgid "I Agree - Change User"
+msgstr "אני מסכים - החלף משתמש"
+
+#: includes/freemius-strings.php:277
+#: includes/freemius-strings.php:3219
+msgid "All Requests"
+msgstr "כל הבקשות"
+
+#: includes/freemius-strings.php:281
+#: includes/freemius-strings.php:3224
+msgid "All Types"
+msgstr "כל הסוגים"
+
+#: includes/freemius-strings.php:285
+#: includes/freemius-strings.php:6136
+msgid "allow"
+msgstr "התר"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:290
+#: includes/freemius-strings.php:5982
+#, php-format
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving the %s."
+msgstr "כבר נרשמת למעקב השימוש שלנו, המסייע לנו להמשיך ולשפר את %s."
+
+#: includes/freemius-strings.php:294
+#: includes/freemius-strings.php:5987
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving them."
+msgstr "כבר נרשמת למעקב השימוש שלנו, מה שעזר לנו להמשיך לשפר אותם."
+
+#: includes/freemius-strings.php:298
+#: includes/freemius-strings.php:3240
+msgid "Amount"
+msgstr "סכום"
+
+#: includes/freemius-strings.php:302
+#: includes/freemius-strings.php:6469
+msgctxt "as once a year"
+msgid "Annual"
+msgstr "שנתי"
+
+#: includes/freemius-strings.php:306
+#: includes/freemius-strings.php:6474
+msgctxt "as once a year"
+msgid "Annually"
+msgstr "שנתי"
+
+#: includes/freemius-strings.php:310
+#: includes/freemius-strings.php:3277
+msgid "Anonymous feedback"
+msgstr "משוב אנונימי"
+
+#: includes/freemius-strings.php:314
+#: includes/freemius-strings.php:6404
+msgctxt "as application program interface"
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:318
+#: includes/freemius-strings.php:3287
+msgid "Apply on all sites in the network."
+msgstr "החל על כל האתרים ברשת."
+
+#: includes/freemius-strings.php:322
+#: includes/freemius-strings.php:3282
+msgid "Apply on all pending sites."
+msgstr "החל על כל האתרים הממתינים."
+
+#: includes/freemius-strings.php:326
+#: includes/freemius-strings.php:3292
+msgid "Apply to become an affiliate"
+msgstr "הגש בקשה להצטרף לתוכנית השותפים"
+
+#: includes/freemius-strings.php:330
+#: includes/freemius-strings.php:3297
+msgid "Approve & Start Trial"
+msgstr "אישור והתחלת תקופת ניסיון"
+
+#: includes/freemius-strings.php:334
+#: includes/freemius-strings.php:4357
+msgid "Kindly tell us the reason so we can improve."
+msgstr "אנא אמור לנו את הסיבה כדי שנוכל להשתפר."
+
+#: includes/freemius-strings.php:338
+#: includes/freemius-strings.php:3898
+msgid "Enter the email address you've used for the upgrade below and we will resend you the license key."
+msgstr "הזן למטה את כתובת המייל שבה השתמשת לשדרוג ואנו נשלח לך מחדש את מפתח הרישיון."
+
+#: includes/freemius-strings.php:342
+#: includes/freemius-strings.php:3893
+msgid "Enter the email address you've used during the purchase and we will resend you the license key."
+msgstr "הזן את כתובת הדוא\"ל שבה השתמשת בעת הרכישה ואנו נשלח אליך מחדש את מפתח הרישיון."
+
+#: includes/freemius-strings.php:346
+#: includes/freemius-strings.php:3328
+msgid "Associate with the license owner's account."
+msgstr "יש לשייך לחשבון של בעל הרישיון."
+
+#: includes/freemius-strings.php:350
+#: includes/freemius-strings.php:6514
+msgctxt "as the plugin author"
+msgid "Author"
+msgstr "מחבר"
+
+#: includes/freemius-strings.php:354
+#: includes/freemius-strings.php:4220
+msgid "Invalid module ID."
+msgstr "מזהה מודול לא חוקי."
+
+#: includes/freemius-strings.php:358
+#: includes/freemius-strings.php:5922
+msgid "You do not have a valid license to access the premium version."
+msgstr "אין לך ברישיון תקף לגישה לגרסת הפרימיום."
+
+#: includes/freemius-strings.php:362
+#: includes/freemius-strings.php:3333
+msgid "Auto installation only works for opted-in users."
+msgstr "ההתקנה האוטומטית פועלת רק עבור משתמשים שנרשמו לשירות."
+
+#: includes/freemius-strings.php:366
+#: includes/freemius-strings.php:4900
+msgid "Premium version already active."
+msgstr "גרסת הפרימיום כבר פעילה."
+
+#: includes/freemius-strings.php:370
+#: includes/freemius-strings.php:4890
+msgid "Premium add-on version already installed."
+msgstr "גרסת התוסף פרימיום כבר מותקנת."
+
+#: includes/freemius-strings.php:374
+#: includes/freemius-strings.php:4859
+msgid "Plugin is a \"Serviceware\" which means it does not have a premium code version."
+msgstr "תוסף הוא \"תוכנה כשירות\" (Serviceware), מה שאומר שאין לו גרסת קוד בתשלום."
+
+#: includes/freemius-strings.php:378
+#: includes/freemius-strings.php:3344
+msgid "Automatic Installation"
+msgstr "התקנה אוטומטית"
+
+#: includes/freemius-strings.php:382
+#: includes/freemius-strings.php:6622
+msgctxt "timer for auto-disabling debug"
+msgid "Auto off in:"
+msgstr "כיבוי אוטומטי בעוד:"
+
+#: includes/freemius-strings.php:386
+#: includes/freemius-strings.php:3349
+msgid "Average Rating"
+msgstr "דירוג ממוצע"
+
+#: includes/freemius-strings.php:390
+#: includes/freemius-strings.php:3354
+msgid "Awesome"
+msgstr "מעולה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:395
+#: includes/freemius-strings.php:6142
+#, php-format
+msgid "based on %s"
+msgstr "מבוסס על %s"
+
+#: includes/freemius-strings.php:399
+#: includes/freemius-strings.php:3359
+msgid "Become an affiliate"
+msgstr "הפוך לשותף עסקי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:404
+#: includes/freemius-strings.php:4438
+#, php-format
+msgid "Like the %s? Become our ambassador and earn cash ;-)"
+msgstr "אהבתם את ה-%s? הפכו לשגרירים שלנו והרוויחו כסף ;-)"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:409
+#: includes/freemius-strings.php:4045
+#, php-format
+msgid "Hey there, did you know that %1$s has an affiliate program? If you like the %2$s you can become our ambassador and earn some cash!"
+msgstr "הי, האם ידעת של-%1$s יש תוכנית שותפים? אם אתה אוהב את %2$s, אתה יכול להפוך לשגריר שלנו ולהרוויח כסף!"
+
+#: includes/freemius-strings.php:413
+#: includes/freemius-strings.php:6556
+msgctxt "e.g. the best product"
+msgid "Best"
+msgstr "הטוב ביותר"
+
+#: includes/freemius-strings.php:417
+#: includes/freemius-strings.php:3364
+msgid "Beta"
+msgstr "בטא"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:422
+#: includes/freemius-strings.php:3267
+#, php-format
+msgid "An update to a Beta version will replace your installed version of %s with the latest Beta release - use with caution, and not on production sites. You have been warned."
+msgstr "עדכון לגרסת בטא יחליף את הגרסה המותקנת של %s בגרסת הבטא העדכנית ביותר - יש להשתמש בזהירות ולא באתרי ייצור (פרודקשן). הוזהרת."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:427
+#: includes/freemius-strings.php:6551
+#, php-format
+msgctxt "e.g. billed monthly"
+msgid "Billed %s"
+msgstr "מחוייב ב-%s"
+
+#: includes/freemius-strings.php:431
+#: includes/freemius-strings.php:3369
+msgid "Billing"
+msgstr "חיוב"
+
+#: includes/freemius-strings.php:435
+#: includes/freemius-strings.php:3374
+msgid "Billing & Invoices"
+msgstr "חיוב וחשבוניות"
+
+#: includes/freemius-strings.php:439
+#: includes/freemius-strings.php:6424
+msgctxt "as connection blocked"
+msgid "Blocked"
+msgstr "חסום"
+
+#: includes/freemius-strings.php:443
+#: includes/freemius-strings.php:3379
+msgid "Blocking"
+msgstr "חסימה"
+
+#: includes/freemius-strings.php:447
+#: includes/freemius-strings.php:3384
+msgid "Blog ID"
+msgstr "מזהה בלוג"
+
+#: includes/freemius-strings.php:451
+#: includes/freemius-strings.php:3389
+msgid "Body"
+msgstr "גוף"
+
+#: includes/freemius-strings.php:455
+#: includes/freemius-strings.php:5859
+msgid "Yes - both addresses are mine"
+msgstr "כן - שתי הכתובות שלי"
+
+#: includes/freemius-strings.php:459
+#: includes/freemius-strings.php:3394
+msgid "Bundle"
+msgstr "חבילה"
+
+#: includes/freemius-strings.php:463
+#: includes/freemius-strings.php:3399
+msgid "Bundle Plan"
+msgstr "תוכנית חבילה"
+
+#: includes/freemius-strings.php:467
+#: includes/freemius-strings.php:3404
+msgid "Business name"
+msgstr "שם העסק"
+
+#: includes/freemius-strings.php:471
+#: includes/freemius-strings.php:3414
+msgid "Buy license"
+msgstr "רכש רישיון"
+
+#: includes/freemius-strings.php:475
+#: includes/freemius-strings.php:3409
+msgid "Buy a license now"
+msgstr "רכשו רישיון כעת"
+
+#: includes/freemius-strings.php:479
+#: includes/freemius-strings.php:3453
+msgid "Cancel"
+msgstr "ביטול"
+
+#: includes/freemius-strings.php:483
+#: includes/freemius-strings.php:3476
+msgid "Cancel Installation"
+msgstr "ביטול ההתקנה"
+
+#: includes/freemius-strings.php:487
+#: includes/freemius-strings.php:3481
+msgid "Cancel Subscription"
+msgstr "ביטול מנוי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:492
+#: includes/freemius-strings.php:4179
+#, php-format
+msgid "In case you are NOT planning on using this %1$s on this site (or any other site) - would you like to cancel the %2$s as well?"
+msgstr "במקרה ואינך מתכנן/ת להשתמש ב-%1$s הזה באתר זה (או בכל אתר אחר) - האם ברצונך לבטל גם את ה-%2$s?"
+
+#: includes/freemius-strings.php:496
+#: includes/freemius-strings.php:3486
+msgid "Cancel Trial"
+msgstr "ביטול תקופת ניסיון"
+
+#: includes/freemius-strings.php:500
+#: includes/freemius-strings.php:3513
+msgid "Cancelling the trial will immediately block access to all premium features. Are you sure?"
+msgstr "ביטול תקופת הניסיון יחסום מיד את הגישה לכל תכונות הפרימיום. האם אתה בטוח?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:505
+#: includes/freemius-strings.php:3459
+#, php-format
+msgid "Cancel %s & Proceed"
+msgstr "בטל את %s והמשך"
+
+#: includes/freemius-strings.php:509
+#: includes/freemius-strings.php:3491
+msgid "Cancelled"
+msgstr "מבוטל"
+
+#: includes/freemius-strings.php:513
+#: includes/freemius-strings.php:3508
+msgid "Cancelling the subscription"
+msgstr "ביטול המנוי"
+
+#: includes/freemius-strings.php:517
+#: includes/freemius-strings.php:3448
+msgid "Can't find your license key?"
+msgstr "לא מצליחים למצוא את מפתח הרישיון שלכם?"
+
+#: includes/freemius-strings.php:521
+#: includes/freemius-strings.php:3518
+msgid "Change License"
+msgstr "שינוי רישיון"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:526
+#: includes/freemius-strings.php:3057
+#, php-format
+msgid "A confirmation email was just sent to %s. You must confirm the update within the next 4 hours. If you cannot find the email, please check your spam folder."
+msgstr "דוא\"ל אישור נשלח כעת אל %s. עליך לאשר את העדכון במהלך 4 השעות הקרובות. אם אינך מצליח למצוא את הודעת הדוא\"ל, אנא בדוק בתיקיית הספאם שלך."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:531
+#: includes/freemius-strings.php:3051
+#, php-format
+msgid "A confirmation email was just sent to %s. The email owner must confirm the update within the next 4 hours."
+msgstr "אישור נשלח זה עתה אל %s. בעל/ת כתובת הדוא\"ל חייב/ת לאשר את העדכון במהלך 4 השעות הקרובות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:536
+#: includes/freemius-strings.php:2949
+#, php-format
+msgid "%s is the new owner of the account."
+msgstr "%s הוא הבעלים החדש של החשבון."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:541
+#: includes/freemius-strings.php:5361
+#, php-format
+msgid "Thanks for confirming the ownership change. An email was just sent to %s for final approval."
+msgstr "תודה על אישור העברת הבעלות. הודעת אימייל נשלחה כעת אל %s לאישרור סופי."
+
+#: includes/freemius-strings.php:545
+#: includes/freemius-strings.php:3523
+msgid "Change Ownership"
+msgstr "העברת בעלות"
+
+#: includes/freemius-strings.php:549
+#: includes/freemius-strings.php:3528
+msgid "Change Plan"
+msgstr "שינוי תוכנית"
+
+#: includes/freemius-strings.php:553
+#: includes/freemius-strings.php:3533
+msgid "Change User"
+msgstr "החלף משתמש"
+
+#: includes/freemius-strings.php:557
+#: includes/freemius-strings.php:3419
+msgid "By changing the user, you agree to transfer the account ownership to:"
+msgstr "על ידי החלפת המשתמש, הנך מסכים/ה להעביר את בעלות החשבון אל:"
+
+#: includes/freemius-strings.php:561
+#: includes/freemius-strings.php:6321
+msgctxt "Plugin installer section title"
+msgid "Changelog"
+msgstr "יומן שינויים"
+
+#: includes/freemius-strings.php:565
+#: includes/freemius-strings.php:3538
+msgid "Changing user, please wait"
+msgstr "מחליף משתמש, נא להמתין"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:570
+#: includes/freemius-strings.php:4132
+#, php-format
+msgid "If you didn't get the email, try checking your spam folder or search for emails from %4$s."
+msgstr "אם לא קיבלת את האימייל, נסה לבדוק את תיקיית הספאם או חפש אימיילים מ-%4$s."
+
+#: includes/freemius-strings.php:574
+#: includes/freemius-strings.php:3543
+msgid "Checkout"
+msgstr "לתשלום"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:579
+#: includes/freemius-strings.php:3549
+#, php-format
+msgid "Choose up to %s site(s) to activate the license on."
+msgstr "בחר עד %s אתר/אתרים להפעלת הרישיון עליהם."
+
+#: includes/freemius-strings.php:583
+#: includes/freemius-strings.php:3554
+msgid "City"
+msgstr "עיר"
+
+#: includes/freemius-strings.php:587
+#: includes/freemius-strings.php:3559
+msgid "Clear API Cache"
+msgstr "נקה מטמון API"
+
+#: includes/freemius-strings.php:591
+#: includes/freemius-strings.php:3564
+msgid "Clear Updates Transients"
+msgstr "ניקוי קובצי עידכון זמניים"
+
+#: includes/freemius-strings.php:595
+#: includes/freemius-strings.php:6301
+msgctxt "Part of an activation link message."
+msgid "Click here"
+msgstr "לחץ כאן"
+
+#: includes/freemius-strings.php:599
+#: includes/freemius-strings.php:3574
+msgid "Click here to use the plugin anonymously"
+msgstr "לחץ כאן כדי להשתמש בתוסף בעילום שם"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:604
+#: includes/freemius-strings.php:3580
+#, php-format
+msgid "Click to see reviews that provided a rating of %s"
+msgstr "לחץ כדי לראות חוות דעת שנתנו דירוג של %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:609
+#: includes/freemius-strings.php:2937
+#, php-format
+msgid "%s is my client's email address"
+msgstr "%s היא כתובת הדוא\"ל של הלקוח שלי"
+
+#: includes/freemius-strings.php:613
+#: includes/freemius-strings.php:3591
+msgid "Code"
+msgstr "קוד"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:618
+#: includes/freemius-strings.php:2919
+#, php-format
+msgid "%s commission when a customer purchases a new license."
+msgstr "%s עמלה כאשר לקוח רוכש רישיון חדש."
+
+#: includes/freemius-strings.php:622
+#: includes/freemius-strings.php:3323
+msgid "As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days."
+msgstr "מאחר שאנו שומרים 30 יום עבור החזרים פוטנציאליים, אנו משלמים רק עמלות ותיקות מ-30 יום."
+
+#: includes/freemius-strings.php:626
+#: includes/freemius-strings.php:3596
+msgid "Communication"
+msgstr "תקשורת"
+
+#: includes/freemius-strings.php:630
+#: includes/freemius-strings.php:3601
+msgid "Compatible up to"
+msgstr "תואם עד"
+
+#: includes/freemius-strings.php:634
+#: includes/freemius-strings.php:6147
+msgid "complete the opt-in"
+msgstr "השלמת ההצטרפות"
+
+#: includes/freemius-strings.php:638
+#: includes/freemius-strings.php:6419
+msgctxt "as congratulations"
+msgid "Congrats"
+msgstr "ברכות"
+
+#: includes/freemius-strings.php:642
+#: includes/freemius-strings.php:4544
+msgid "Never miss an important update"
+msgstr "לעולם אל תפספס עדכון חשוב"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:647
+#: includes/freemius-strings.php:5327
+#, php-format
+msgid "Thank you for updating to %1$s v%2$s!"
+msgstr "תודה שעדכנת ל-%1$s v%2$s!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:652
+#: includes/freemius-strings.php:4679
+#, php-format
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info. This will help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "הירשם כדי לקבל התראות דוא\"ל על עדכוני אבטחה ותכונות, תוכן חינוכי והצעות מזדמנות, ולשיתוף מידע בסיסי על סביבת WordPress שלך. זה יעזור לנו להפוך את ה-%s לתואם יותר לאתר שלך ולשפר את יכולתו לבצע את מה שאתה צריך."
+
+#: includes/freemius-strings.php:656
+#: includes/freemius-strings.php:4673
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info."
+msgstr "הצטרפו כדי לקבל התראות במייל על עדכוני אבטחה ותכונות, תוכן לימודי והצעות מזדמנות, וכדי לשתף מידע בסיסי על סביבת ה-WordPress שלכם."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:661
+#: includes/freemius-strings.php:4144
+#, php-format
+msgid "If you skip this, that's okay! %1$s will still work just fine."
+msgstr "אם תדלג על זה, זה בסדר גמור! %1$s עדיין יעבוד מצוין."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:666
+#: includes/freemius-strings.php:5757
+#, php-format
+msgid "We have introduced this opt-in so you never miss an important update and help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "הכנסנו את אפשרות ההצטרפות הזו כדי שלא תפספסו אף עדכון חשוב וכדי לעזור לנו להפוך את %s לתואם יותר לאתר שלכם ולטוב יותר בביצוע מה שאתם צריכים שהוא יעשה."
+
+#: includes/freemius-strings.php:670
+#: includes/freemius-strings.php:5773
+msgid "We're excited to introduce the Freemius network-level integration."
+msgstr "אנו נרגשים להציג את האינטגרציה ברמת הרשת של Freemius."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:675
+#: includes/freemius-strings.php:3847
+#, php-format
+msgid "During the update process we detected %s site(s) in the network that are still pending your attention."
+msgstr "במהלך תהליך העדכון זיהינו %s אתר/אתרים ברשת שעדיין ממתינים לתשומת לבך."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:680
+#: includes/freemius-strings.php:3841
+#, php-format
+msgid "During the update process we detected %d site(s) that are still pending license activation."
+msgstr "במהלך תהליך העדכון זוהו %d אתר(ים) שרישיונם טרם הופעל."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:685
+#: includes/freemius-strings.php:4162
+#, php-format
+msgid "If you'd like to use the %s on those sites, please enter your license key below and click the activation button."
+msgstr "אם ברצונך להשתמש ב-%s באתרים אלה, אנא הזן את מפתח הרישיון שלך להלן ולחץ על לחצן ההפעלה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:690
+#: includes/freemius-strings.php:3235
+#, php-format
+msgid "Alternatively, you can skip it for now and activate the license later, in your %s's network-level Account page."
+msgstr "לחלופין, תוכל לדלג על כך לעת עתה ולהפעיל את הרישיון מאוחר יותר, בעמוד החשבון ברמת הרשת של ה-%s שלך."
+
+#: includes/freemius-strings.php:694
+#: includes/freemius-strings.php:6429
+msgctxt "as connection was successful"
+msgid "Connected"
+msgstr "מחובר"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:699
+#: includes/freemius-strings.php:4646
+#, php-format
+msgid "Once you are done, deactivate the %s and activate it again."
+msgstr "לאחר שתסיים, השבת את ה-%s והפעל אותו מחדש."
+
+#: includes/freemius-strings.php:703
+#: includes/freemius-strings.php:3606
+msgid "Contact"
+msgstr "צור קשר"
+
+#: includes/freemius-strings.php:707
+#: includes/freemius-strings.php:4813
+msgid "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:"
+msgstr "אנא הודיעו לנו אם ברצונכם שניצור עמכם קשר לקבלת עדכוני אבטחה ותכונות, תוכן הדרכתי והצעות מדי פעם:"
+
+#: includes/freemius-strings.php:711
+#: includes/freemius-strings.php:3611
+msgid "Contact Support"
+msgstr "פנה לתמיכה"
+
+#: includes/freemius-strings.php:715
+#: includes/freemius-strings.php:5219
+msgid "Sorry for the inconvenience and we are here to help if you give us a chance."
+msgstr "אנו מתנצלים על אי-הנוחות וכאן כדי לעזור אם תיתן לנו הזדמנות."
+
+#: includes/freemius-strings.php:719
+#: includes/freemius-strings.php:3616
+msgid "Contact Us"
+msgstr "צור קשר"
+
+#: includes/freemius-strings.php:723
+#: includes/freemius-strings.php:4777
+msgid "Please contact us here"
+msgstr "אנא צור איתנו קשר כאן"
+
+#: includes/freemius-strings.php:727
+#: includes/freemius-strings.php:4782
+msgid "Please contact us with the following message:"
+msgstr "אנא צור איתנו קשר עם ההודעה הבאה:"
+
+#: includes/freemius-strings.php:731
+#: includes/freemius-strings.php:3621
+msgid "Continue"
+msgstr "המשך"
+
+#: includes/freemius-strings.php:735
+#: includes/freemius-strings.php:3626
+msgid "Contributors"
+msgstr "תורמים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:740
+#: includes/freemius-strings.php:3632
+#, php-format
+msgid "Couldn't activate %s."
+msgstr "לא ניתן להפעיל את %s."
+
+#: includes/freemius-strings.php:744
+#: includes/freemius-strings.php:3637
+msgid "Country"
+msgstr "מדינה"
+
+#: includes/freemius-strings.php:748
+#: includes/freemius-strings.php:3642
+msgid "Cron Type"
+msgstr "סוג Cron"
+
+#: includes/freemius-strings.php:752
+#: includes/freemius-strings.php:5768
+msgid "We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server."
+msgstr "אנו מששתמשים בספריית PHP cURL עבור קריאות ה-API, מדובר בספרייה נפוצה מאוד שבדרך כלל מותקנת ומופעלת כברירת מחדל. למרבה הצער, cURL אינו מופעל (או שהוא מושבת) בשרת שלך."
+
+#: includes/freemius-strings.php:756
+#: includes/freemius-strings.php:6152
+msgid "data"
+msgstr "נתונים"
+
+#: includes/freemius-strings.php:760
+#: includes/freemius-strings.php:3699
+msgid "Debug mode was successfully enabled and will be automatically disabled in 60 min. You can also disable it earlier by clicking the \"Stop Debug\" link."
+msgstr "מצב הניפוי (Debug) הופעל בהצלחה ויושבת אוטומטית בעוד 60 דקות. באפשרותך גם להשבית אותו מוקדם יותר על ידי לחיצה על הקישור \"הפסק ניפוי\"."
+
+#: includes/freemius-strings.php:764
+#: includes/freemius-strings.php:3653
+msgid "Date"
+msgstr "תאריך"
+
+#: includes/freemius-strings.php:768
+#: includes/freemius-strings.php:3658
+msgid "Deactivate"
+msgstr "השבתה"
+
+#: includes/freemius-strings.php:772
+#: includes/freemius-strings.php:3668
+msgid "Deactivate the free version"
+msgstr "השבת את הגרסה החינמית"
+
+#: includes/freemius-strings.php:776
+#: includes/freemius-strings.php:3663
+msgid "Deactivate License"
+msgstr "ביטול הפעלת רישיון"
+
+#: includes/freemius-strings.php:780
+#: includes/freemius-strings.php:3684
+msgid "Deactivating your license will block all premium features, but will enable activating the license on another site. Are you sure you want to proceed?"
+msgstr "השבתת הרישיון תחסום את כל תכונות הפרימיום, אך תאפשר להפעיל את הרישיון באתר אחר. האם אתה בטוח שברצונך להמשיך?"
+
+#: includes/freemius-strings.php:784
+#: includes/freemius-strings.php:3689
+msgid "Deactivation"
+msgstr "השבתה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:789
+#: includes/freemius-strings.php:5854
+#, php-format
+msgid "Yes - %s"
+msgstr "כן - %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:794
+#: includes/freemius-strings.php:5276
+#, php-format
+msgid "Submit & %s"
+msgstr "שלח ו-%s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:799
+#: includes/freemius-strings.php:3679
+#, php-format
+msgid "Deactivating or uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "השבתה או הסרה של ה-%s תבטל אוטומטית את הרישיון, שבו תוכל להשתמש באתר אחר."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:804
+#: includes/freemius-strings.php:4138
+#, php-format
+msgid "If you have a moment, please let us know why you are %s"
+msgstr "אם יש לך רגע, אנא ספר לנו מדוע אתה %s"
+
+#: includes/freemius-strings.php:808
+#: includes/freemius-strings.php:3694
+msgid "Debug Log"
+msgstr "יומן ניפוי שגיאות"
+
+#: includes/freemius-strings.php:812
+#: includes/freemius-strings.php:6414
+msgctxt "as code debugging"
+msgid "Debugging"
+msgstr "ניפוי שגיאות"
+
+#: includes/freemius-strings.php:816
+#: includes/freemius-strings.php:6167
+msgid "delegate"
+msgstr "האצל"
+
+#: includes/freemius-strings.php:820
+#: includes/freemius-strings.php:4126
+msgid "If you click it, this decision will be delegated to the sites administrators."
+msgstr "אם תלחץ עליו, החלטה זו תועבר לאדמיניסטרטורים של האתרים."
+
+#: includes/freemius-strings.php:824
+#: includes/freemius-strings.php:3704
+msgid "Delegate to Site Admins"
+msgstr "האצל למנהלי אתרים"
+
+#: includes/freemius-strings.php:828
+#: includes/freemius-strings.php:3709
+msgid "Delegate to Site Admins & Continue"
+msgstr "האצל סמכויות למנהלי אתר והמשך"
+
+#: includes/freemius-strings.php:832
+#: includes/freemius-strings.php:3714
+msgid "Delegating, please wait"
+msgstr "מעביר הרשאות, נא להמתין"
+
+#: includes/freemius-strings.php:836
+#: includes/freemius-strings.php:6632
+msgctxt "verb"
+msgid "Delete"
+msgstr "מחיקה"
+
+#: includes/freemius-strings.php:840
+#: includes/freemius-strings.php:3719
+msgid "Delete All Accounts"
+msgstr "מחיקת כל החשבונות"
+
+#: includes/freemius-strings.php:844
+#: includes/freemius-strings.php:3308
+msgid "Are you sure you want to delete all Freemius data?"
+msgstr "האם אתה בטוח שברצונך למחוק את כל נתוני Freemius?"
+
+#: includes/freemius-strings.php:848
+#: includes/freemius-strings.php:6326
+msgctxt "Plugin installer section title"
+msgid "Description"
+msgstr "תיאור"
+
+#: includes/freemius-strings.php:852
+#: includes/freemius-strings.php:3724
+msgid "Details"
+msgstr "פרטים"
+
+#: includes/freemius-strings.php:856
+#: includes/freemius-strings.php:6223
+msgid "seems like the key you entered doesn't match our records."
+msgstr "נראה שהמפתח שהזנת אינו תואם את הרישומים שלנו."
+
+#: includes/freemius-strings.php:860
+#: includes/freemius-strings.php:3729
+msgid "Diagnostic Info"
+msgstr "נתוני אבחון"
+
+#: includes/freemius-strings.php:864
+#: includes/freemius-strings.php:3740
+msgid "Disabling white-label mode"
+msgstr "השבתת מצב מותאם אישית"
+
+#: includes/freemius-strings.php:868
+#: includes/freemius-strings.php:3745
+msgid "Disconnect"
+msgstr "ניתוק"
+
+#: includes/freemius-strings.php:872
+#: includes/freemius-strings.php:3318
+msgid "Are you sure you would like to proceed with the disconnection?"
+msgstr "האם ברצונך להמשיך בתהליך הניתוק?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:877
+#: includes/freemius-strings.php:4150
+#, php-format
+msgid "If you wish to cancel your %1$s plan's subscription instead, please navigate to the %2$s and cancel it there."
+msgstr "אם ברצונך לבטל את המנוי לתכנית %1$s שלך במקום זאת, אנא נווט אל %2$s ובטל אותו שם."
+
+#: includes/freemius-strings.php:881
+#: includes/freemius-strings.php:6409
+msgctxt "as close a window"
+msgid "Dismiss"
+msgstr "התעלם"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:886
+#: includes/freemius-strings.php:6173
+#, php-format
+msgid "do %1$sNOT%2$s send me security & feature updates, educational content and offers."
+msgstr "אל תשלח %1$sלי%2$s עדכוני אבטחה ותכונות, תוכן חינוכי והצעות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:891
+#: includes/freemius-strings.php:3888
+#, php-format
+msgid "Enter the domain of your website or other websites from where you plan to promote the %s."
+msgstr "הזן את המתחם של אתר האינטרנט שלך או אתרים אחרים שמהם אתה מתכנן לקדם את ה-%s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:896
+#: includes/freemius-strings.php:5822
+#, php-format
+msgid "Where are you going to promote the %s?"
+msgstr "היכן בכוונתך לקדם את ה-%s?"
+
+#: includes/freemius-strings.php:900
+#: includes/freemius-strings.php:3756
+msgid "Domain is required."
+msgstr "דומיין הוא שדה חובה."
+
+#: includes/freemius-strings.php:904
+#: includes/freemius-strings.php:3772
+msgid "Donate to this plugin"
+msgstr "תרום לתוסף זה"
+
+#: includes/freemius-strings.php:908
+#: includes/freemius-strings.php:3777
+msgid "Done"
+msgstr "בוצע"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:913
+#: includes/freemius-strings.php:3762
+#, php-format
+msgid "Don't cancel %s - I'm still interested in getting security & feature updates, as well as be able to contact support."
+msgstr "אל תבטל את %s - אני עדיין מעוניין לקבל עדכוני אבטחה ותכונות, וכן להיות מסוגל ליצור קשר עם התמיכה."
+
+#: includes/freemius-strings.php:917
+#: includes/freemius-strings.php:3767
+msgid "Don't have a license key?"
+msgstr "אין לך מפתח רישיון?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:922
+#: includes/freemius-strings.php:5958
+#, php-format
+msgid "You might have missed it, but you don't have to share any data and can just %s the opt-in."
+msgstr "ייתכן שפספסת את זה, אבל אינך חייב לשתף מידע כלשהו ותוכל פשוט ל-%s את ההסכמה."
+
+#: includes/freemius-strings.php:926
+#: includes/freemius-strings.php:6637
+msgctxt "verb"
+msgid "Downgrade"
+msgstr "שדרוג לאחור"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:931
+#: includes/freemius-strings.php:2877
+#, php-format
+msgid "%1$s will immediately stop all future recurring payments and your %2$s plan license will expire in %3$s."
+msgstr "%1$s יפסיק מיד את כל התשלומים החוזרים בעתיד ורישיון תוכנית ה-%2$s שלך יפוג ב-%3$s."
+
+#: includes/freemius-strings.php:935
+#: includes/freemius-strings.php:3782
+msgid "Downgrading"
+msgstr "בדרגה מטה"
+
+#: includes/freemius-strings.php:939
+#: includes/freemius-strings.php:3787
+msgid "Downgrading your plan"
+msgstr "שדרוג לאחור של התוכנית שלך"
+
+#: includes/freemius-strings.php:943
+#: includes/freemius-strings.php:3792
+msgid "Download"
+msgstr "הורדה"
+
+#: includes/freemius-strings.php:947
+#: includes/freemius-strings.php:6434
+msgctxt "as download latest version"
+msgid "Download Latest"
+msgstr "הורד את הגרסה האחרונה"
+
+#: includes/freemius-strings.php:951
+#: includes/freemius-strings.php:6439
+msgctxt "as download latest version"
+msgid "Download Latest Free Version"
+msgstr "הורד את הגרסה החינמית העדכנית ביותר"
+
+#: includes/freemius-strings.php:955
+#: includes/freemius-strings.php:3814
+msgid "Download the latest version"
+msgstr "הורד את הגרסה האחרונה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:960
+#: includes/freemius-strings.php:3809
+#, php-format
+msgid "Download the latest %s version"
+msgstr "הורד את הגרסה העדכנית ביותר של %s"
+
+#: includes/freemius-strings.php:964
+#: includes/freemius-strings.php:3803
+msgid "Download Paid Version"
+msgstr "הורד גרסה בתשלום"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:969
+#: includes/freemius-strings.php:3798
+#, php-format
+msgid "Download %s Version"
+msgstr "הורד גרסת %s"
+
+#: includes/freemius-strings.php:973
+#: includes/freemius-strings.php:3819
+msgid "Downloaded"
+msgstr "הורד"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:978
+#: includes/freemius-strings.php:3825
+#, php-format
+msgid "Due to the new %1$sEU General Data Protection Regulation (GDPR)%2$s compliance requirements it is required that you provide your explicit consent, again, confirming that you are onboard :-)"
+msgstr "עקב דרישות התאימות החדשות של %1$sהתקנון הכללי להגנת מידע של האיחוד האירופי (GDPR)%2$s, נדרש שתספק/י את הסכמתך המפורשת מחדש, כדי לאשר שאת/ה איתנו :-)"
+
+#: includes/freemius-strings.php:982
+#: includes/freemius-strings.php:3835
+msgid "Duplicate Website"
+msgstr "שכפול אתר"
+
+#: includes/freemius-strings.php:986
+#: includes/freemius-strings.php:6642
+msgctxt "verb"
+msgid "Edit"
+msgstr "עריכה"
+
+#: includes/freemius-strings.php:990
+#: includes/freemius-strings.php:3852
+msgid "Email"
+msgstr "אימייל"
+
+#: includes/freemius-strings.php:994
+#: includes/freemius-strings.php:3857
+msgid "Email address"
+msgstr "כתובת דוא״ל"
+
+#: includes/freemius-strings.php:998
+#: includes/freemius-strings.php:3862
+msgid "Email address is required."
+msgstr "כתובת הדוא\"ל היא שדה חובה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1003
+#: includes/freemius-strings.php:2943
+#, php-format
+msgid "%s is my email address"
+msgstr "%s היא כתובת המייל שלי"
+
+#: includes/freemius-strings.php:1007
+#: includes/freemius-strings.php:3867
+msgid "Email address update"
+msgstr "עדכון כתובת דוא״ל"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1012
+#: includes/freemius-strings.php:3303
+#, php-format
+msgid "Are both %1$s and %2$s your email addresses?"
+msgstr "האם גם %1$s וגם %2$s הם כתובות הדוא״ל שלך?"
+
+#: includes/freemius-strings.php:1016
+#: includes/freemius-strings.php:5746
+msgid "We couldn't find your email address in the system, are you sure it's the right address?"
+msgstr "לא הצלחנו למצוא את כתובת האימייל שלך במערכת, האם את/ה בטוח/ה שזו הכתובת הנכונה?"
+
+#: includes/freemius-strings.php:1020
+#: includes/freemius-strings.php:6038
+msgid "Your email has been successfully verified - you are AWESOME!"
+msgstr "כתובת האימייל שלך אומתה בהצלחה - את/ה מדהים/ה!"
+
+#: includes/freemius-strings.php:1024
+#: includes/freemius-strings.php:4427
+msgid "License key is empty."
+msgstr "מפתח הרישון ריק."
+
+#: includes/freemius-strings.php:1028
+#: includes/freemius-strings.php:3872
+msgid "Enabling white-label mode"
+msgstr "הפעלת מצב מותאם אישית"
+
+#: includes/freemius-strings.php:1032
+#: includes/freemius-strings.php:3877
+msgid "End"
+msgstr "סיום"
+
+#: includes/freemius-strings.php:1036
+#: includes/freemius-strings.php:3882
+msgid "Enter email address"
+msgstr "הזן כתובת דוא\"ל"
+
+#: includes/freemius-strings.php:1040
+#: includes/freemius-strings.php:3903
+msgid "Enter the new email address"
+msgstr "הזן את כתובת הדוא\"ל החדשה"
+
+#: includes/freemius-strings.php:1044
+#: includes/freemius-strings.php:3908
+msgid "Error"
+msgstr "שגיאה"
+
+#: includes/freemius-strings.php:1048
+#: includes/freemius-strings.php:6449
+msgctxt "as expiration date"
+msgid "Expiration"
+msgstr "תפוגה"
+
+#: includes/freemius-strings.php:1052
+#: includes/freemius-strings.php:3918
+msgid "Expired"
+msgstr "פג תוקף"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1057
+#: includes/freemius-strings.php:3924
+#, php-format
+msgid "Expires in %s"
+msgstr "פג תוקף בעוד %s"
+
+#: includes/freemius-strings.php:1061
+#: includes/freemius-strings.php:3929
+msgid "Extensions"
+msgstr "תוספים"
+
+#: includes/freemius-strings.php:1065
+#: includes/freemius-strings.php:3939
+msgid "Extra domains where you will be marketing the product from."
+msgstr "דומיינים נוספים שמהם תשווק את המוצר."
+
+#: includes/freemius-strings.php:1069
+#: includes/freemius-strings.php:3934
+msgid "Extra Domains"
+msgstr "דומיינים נוספים"
+
+#: includes/freemius-strings.php:1073
+#: includes/freemius-strings.php:4003
+msgid "Freemius SDK couldn't find the plugin's main file. Please contact sdk@freemius.com with the current error."
+msgstr "Freemius SDK לא הצליח למצוא את הקובץ הראשי של התוסף. נא ליצור קשר עם sdk@freemius.com עם השגיאה הנוכחית."
+
+#: includes/freemius-strings.php:1077
+#: includes/freemius-strings.php:6331
+msgctxt "Plugin installer section title"
+msgid "FAQ"
+msgstr "שאלות נפוצות"
+
+#: includes/freemius-strings.php:1081
+#: includes/freemius-strings.php:6336
+msgctxt "Plugin installer section title"
+msgid "Features & Pricing"
+msgstr "מאפיינים ותמחור"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1086
+#: includes/freemius-strings.php:5763
+#, php-format
+msgid "We made a few tweaks to the %1$s, %2$s"
+msgstr "ביצענו מספר התאמות ב-%1$s, %2$s"
+
+#: includes/freemius-strings.php:1090
+#: includes/freemius-strings.php:3944
+msgid "File"
+msgstr "קובץ"
+
+#: includes/freemius-strings.php:1094
+#: includes/freemius-strings.php:3949
+msgid "Filter"
+msgstr "סנן"
+
+#: includes/freemius-strings.php:1098
+#: includes/freemius-strings.php:4808
+msgid "Please follow these steps to complete the upgrade"
+msgstr "אנא עקוב אחר שלבים אלה כדי להשלים את השדרוג"
+
+#: includes/freemius-strings.php:1102
+#: includes/freemius-strings.php:3978
+msgid "Free"
+msgstr "חינם"
+
+#: includes/freemius-strings.php:1106
+#: includes/freemius-strings.php:3182
+msgid "Add-on must be deployed to WordPress.org or Freemius."
+msgstr "יש לפרוס את תוסף ההרחבה ב-WordPress.org או ב-Freemius."
+
+#: includes/freemius-strings.php:1110
+#: includes/freemius-strings.php:3983
+msgid "Free Trial"
+msgstr "ניסיון חינם"
+
+#: includes/freemius-strings.php:1114
+#: includes/freemius-strings.php:3988
+msgid "Free version"
+msgstr "גרסה חינמית"
+
+#: includes/freemius-strings.php:1118
+#: includes/freemius-strings.php:3993
+msgid "Freemius API"
+msgstr "API Freemius"
+
+#: includes/freemius-strings.php:1122
+#: includes/freemius-strings.php:3998
+msgid "Freemius Debug"
+msgstr "ניפוי שגיאות ב-Freemius"
+
+#: includes/freemius-strings.php:1126
+#: includes/freemius-strings.php:4008
+msgid "Freemius State"
+msgstr "מצב Freemius"
+
+#: includes/freemius-strings.php:1130
+#: includes/freemius-strings.php:4018
+msgid "Full name"
+msgstr "שם מלא"
+
+#: includes/freemius-strings.php:1134
+#: includes/freemius-strings.php:4023
+msgid "Function"
+msgstr "פונקציה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1139
+#: includes/freemius-strings.php:4034
+#, php-format
+msgid "Get updates for bleeding edge Beta versions of %s."
+msgstr "קבל עדכונים עבור גרסאות בטא חדשניות ביותר של %s."
+
+#: includes/freemius-strings.php:1143
+#: includes/freemius-strings.php:4039
+msgid "Have a license key?"
+msgstr "יש לך מפתח רישיון?"
+
+#: includes/freemius-strings.php:1147
+#: includes/freemius-strings.php:6383
+msgctxt "advance notice of something that will need attention."
+msgid "Heads up"
+msgstr "לתשומת ליבך"
+
+#: includes/freemius-strings.php:1151
+#: includes/freemius-strings.php:6561
+msgctxt "exclamation"
+msgid "Hey"
+msgstr "היי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1156
+#: includes/freemius-strings.php:6572
+#, php-format
+msgctxt "greeting"
+msgid "Hey %s,"
+msgstr "הי %s,"
+
+#: includes/freemius-strings.php:1160
+#: includes/freemius-strings.php:6647
+msgctxt "verb"
+msgid "Hide"
+msgstr "הסתר"
+
+#: includes/freemius-strings.php:1164
+#: includes/freemius-strings.php:6617
+msgctxt "something somebody says when they are thinking about what you have just said."
+msgid "Hmm"
+msgstr "הממ"
+
+#: includes/freemius-strings.php:1168
+#: includes/freemius-strings.php:4061
+msgid "How to upload and activate?"
+msgstr "איך מעלים ומפעילים?"
+
+#: includes/freemius-strings.php:1172
+#: includes/freemius-strings.php:4115
+msgid "ID"
+msgstr "מזהה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1177
+#: includes/freemius-strings.php:5905
+#, php-format
+msgid "You are already running the %s in a trial mode."
+msgstr "אתה כבר מריץ את ה-%s במצב ניסיון."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1182
+#: includes/freemius-strings.php:4173
+#, php-format
+msgid "In %s"
+msgstr "בתוך %s"
+
+#: includes/freemius-strings.php:1186
+#: includes/freemius-strings.php:4184
+msgid "Install Free Version Now"
+msgstr "התקן את הגרסה החינמית כעת"
+
+#: includes/freemius-strings.php:1190
+#: includes/freemius-strings.php:4189
+msgid "Install Free Version Update Now"
+msgstr "התקן עדכון גרסה חינמית כעת"
+
+#: includes/freemius-strings.php:1194
+#: includes/freemius-strings.php:4194
+msgid "Install Now"
+msgstr "התקן כעת"
+
+#: includes/freemius-strings.php:1198
+#: includes/freemius-strings.php:4199
+msgid "Install Update Now"
+msgstr "התקן עדכון כעת"
+
+#: includes/freemius-strings.php:1202
+#: includes/freemius-strings.php:6341
+msgctxt "Plugin installer section title"
+msgid "Installation"
+msgstr "התקנה"
+
+#: includes/freemius-strings.php:1206
+#: includes/freemius-strings.php:6577
+msgctxt "installed add-on"
+msgid "Installed"
+msgstr "מותקן"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1211
+#: includes/freemius-strings.php:3246
+#, php-format
+msgid "An automated download and installation of %1$s (paid version) from %2$s will start in %3$s. If you would like to do it manually - click the cancellation button now."
+msgstr "הורדה והתקנה אוטומטיות של %1$s (גרסה בתשלום) מ-%2$s תתחלנה בעוד %3$s. אם ברצונך לעשות זאת באופן ידני – לחץ על כפתור הביטול כעת."
+
+#: includes/freemius-strings.php:1215
+#: includes/freemius-strings.php:5428
+msgid "The installation process has started and may take a few minutes to complete. Please wait until it is done - do not refresh this page."
+msgstr "תהליך ההתקנה החל ועשוי להימשך מספר דקות. אנא המתן עד לסיומו - אל תרענן עמוד זה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1220
+#: includes/freemius-strings.php:4205
+#, php-format
+msgid "Installing plugin: %s"
+msgstr "מתקין תוסף: %s"
+
+#: includes/freemius-strings.php:1224
+#: includes/freemius-strings.php:4210
+msgid "Invalid clone resolution action."
+msgstr "פעולת רזולוציית השכפול אינה חוקית."
+
+#: includes/freemius-strings.php:1228
+#: includes/freemius-strings.php:4215
+msgid "Invalid domain"
+msgstr "דומיין לא תקין"
+
+#: includes/freemius-strings.php:1232
+#: includes/freemius-strings.php:4225
+msgid "Invalid new user ID or email address."
+msgstr "מזהה משתמש חדש או כתובת אימייל אינם חוקיים."
+
+#: includes/freemius-strings.php:1236
+#: includes/freemius-strings.php:4230
+msgid "Invalid site details collection."
+msgstr "איסוף פרטי אתר לא חוקיים."
+
+#: includes/freemius-strings.php:1240
+#: includes/freemius-strings.php:4235
+msgid "Invoice"
+msgstr "חשבונית"
+
+#: includes/freemius-strings.php:1244
+#: includes/freemius-strings.php:4258
+msgid "Is Active"
+msgstr "פעיל"
+
+#: includes/freemius-strings.php:1248
+#: includes/freemius-strings.php:4337
+msgid "Keep Sharing"
+msgstr "המשך לשיתוף"
+
+#: includes/freemius-strings.php:1252
+#: includes/freemius-strings.php:4347
+msgid "Key"
+msgstr "מפתח"
+
+#: includes/freemius-strings.php:1256
+#: includes/freemius-strings.php:4362
+msgid "Last"
+msgstr "אחרון"
+
+#: includes/freemius-strings.php:1260
+#: includes/freemius-strings.php:4372
+msgid "Last license"
+msgstr "הרישיון האחרון"
+
+#: includes/freemius-strings.php:1264
+#: includes/freemius-strings.php:4367
+msgid "Last Updated"
+msgstr "עדכון אחרון"
+
+#: includes/freemius-strings.php:1268
+#: includes/freemius-strings.php:4377
+msgid "Latest Free Version Installed"
+msgstr "גרסה חינמית אחרונה מותקנת"
+
+#: includes/freemius-strings.php:1272
+#: includes/freemius-strings.php:4382
+msgid "Latest Version Installed"
+msgstr "הגרסה האחרונה מותקנת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1277
+#: includes/freemius-strings.php:6259
+#, php-format
+msgid "the latest %s version here"
+msgstr "גרסת ה-%s האחרונה כאן"
+
+#: includes/freemius-strings.php:1281
+#: includes/freemius-strings.php:4387
+msgid "Learn more"
+msgstr "למד עוד"
+
+#: includes/freemius-strings.php:1285
+#: includes/freemius-strings.php:4392
+msgid "Length"
+msgstr "אורך"
+
+#: includes/freemius-strings.php:1289
+#: includes/freemius-strings.php:6077
+msgid "Your license was successfully activated."
+msgstr "הרישיון שלך הופעל בהצלחה."
+
+#: includes/freemius-strings.php:1293
+#: includes/freemius-strings.php:4274
+msgid "It looks like the license could not be activated."
+msgstr "נראה שלא ניתן היה להפעיל את הרישיון."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1298
+#: includes/freemius-strings.php:3021
+#, php-format
+msgid "%s to activate the license once you get it."
+msgstr "%s כדי להפעיל את הרישיון ברגע שתקבל אותו."
+
+#: includes/freemius-strings.php:1302
+#: includes/freemius-strings.php:4402
+msgid "License Agreement"
+msgstr "הסכם רישיון"
+
+#: includes/freemius-strings.php:1306
+#: includes/freemius-strings.php:6054
+msgid "Your license has been cancelled. If you think it's a mistake, please contact support."
+msgstr "הרישיון שלך בוטל. אם לדעתך מדובר בטעות, אנא פנה לשירות הלקוחות."
+
+#: includes/freemius-strings.php:1310
+#: includes/freemius-strings.php:4279
+msgid "It looks like the license deactivation failed."
+msgstr "נראה שביטול הפעלה של הרישיון נכשל."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1315
+#: includes/freemius-strings.php:6083
+#, php-format
+msgid "Your license was successfully deactivated, you are back to the %s plan."
+msgstr "הרישיון שלך בוטל בהצלחה, חזרת לתוכנית %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1320
+#: includes/freemius-strings.php:6011
+#, php-format
+msgid "Your %s license was successfully deactivated."
+msgstr "הרישיון מסוג %s שלך הושבת בהצלחה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1325
+#: includes/freemius-strings.php:6072
+#, php-format
+msgid "Your license has expired. You can still continue using the free %s forever."
+msgstr "הרישיון שלך פג. באפשרותך להמשיך להשתמש ב-%s החינמי לנצח."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1330
+#: includes/freemius-strings.php:6060
+#, php-format
+msgid "Your license has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "הרישיון שלך פג. %1$sשדרג כעת%2$s כדי להמשיך להשתמש ב-%3$s ללא הפסקות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1335
+#: includes/freemius-strings.php:6066
+#, php-format
+msgid "Your license has expired. You can still continue using all the %s features, but you'll need to renew your license to continue getting updates and support."
+msgstr "הרישיון שלך פג. באפשרותך להמשיך להשתמש בכל התכונות של %s, אך עליך לחדש את הרישיון כדי להמשיך לקבל עדכונים ותמיכה."
+
+#: includes/freemius-strings.php:1339
+#: includes/freemius-strings.php:4407
+msgid "License ID"
+msgstr "מזהה רישיון"
+
+#: includes/freemius-strings.php:1343
+#: includes/freemius-strings.php:4417
+msgid "License issues?"
+msgstr "בעיות ברישיון?"
+
+#: includes/freemius-strings.php:1347
+#: includes/freemius-strings.php:5156
+msgid "Single Site License"
+msgstr "רישיון לאתר יחיד"
+
+#: includes/freemius-strings.php:1351
+#: includes/freemius-strings.php:5596
+msgid "Unlimited Licenses"
+msgstr "רישיונות ללא הגבלה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1356
+#: includes/freemius-strings.php:5612
+#, php-format
+msgid "Up to %s Sites"
+msgstr "עד %s אתרים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1361
+#: includes/freemius-strings.php:4269
+#, php-format
+msgid "Is this your client's site? %s if you wish to hide sensitive info like your email, license key, prices, billing address & invoices from the WP Admin."
+msgstr "האם זה האתר של הלקוח שלך? %s אם ברצונך להסתיר מידע רגיש כגון אימייל, מפתח רישיון, מחירים, כתובת חיוב וחשבוניות מלוח הניהול של WP."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1366
+#: includes/freemius-strings.php:6005
+#, php-format
+msgid "Your %1$s license was flagged as white-labeled to hide sensitive information from the WP Admin (e.g. your email, license key, prices, billing address & invoices). If you ever wish to revert it back, you can easily do it through your %2$s. If this was a mistake you can also %3$s."
+msgstr "הרישיון שלך מסוג %1$s סומן כמותג לבן כדי להסתיר מידע רגיש מלוח הבקרה של WP (כגון כתובת האימייל, מפתח הרישיון, המחירים, כתובת החיוב והחשבוניות). אם תרצה אי פעם לשחזר זאת, תוכל לעשות זאת בקלות דרך ה-%2$s שלך. אם מדובר בטעות, באפשרותך גם %3$s."
+
+#: includes/freemius-strings.php:1370
+#: includes/freemius-strings.php:4432
+msgid "Lifetime"
+msgstr "לכל החיים"
+
+#: includes/freemius-strings.php:1374
+#: includes/freemius-strings.php:4443
+msgid "Load DB Option"
+msgstr "טען אפשרות מסד נתונים"
+
+#: includes/freemius-strings.php:1378
+#: includes/freemius-strings.php:4448
+msgid "Localhost"
+msgstr "לוקלואוסט"
+
+#: includes/freemius-strings.php:1382
+#: includes/freemius-strings.php:4453
+msgid "Log"
+msgstr "יומן פעילות"
+
+#: includes/freemius-strings.php:1386
+#: includes/freemius-strings.php:4458
+msgid "Logger"
+msgstr "יומן רישום"
+
+#: includes/freemius-strings.php:1390
+#: includes/freemius-strings.php:4463
+msgid "Long-Term Duplicate"
+msgstr "כפילות לטווח ארוך"
+
+#: includes/freemius-strings.php:1394
+#: includes/freemius-strings.php:4468
+msgid "Message"
+msgstr "הודעה"
+
+#: includes/freemius-strings.php:1398
+#: includes/freemius-strings.php:4473
+msgid "Method"
+msgstr "שיטה"
+
+#: includes/freemius-strings.php:1402
+#: includes/freemius-strings.php:4488
+msgid "Migrate Options to Network"
+msgstr "העבר אפשרויות לרשת"
+
+#: includes/freemius-strings.php:1406
+#: includes/freemius-strings.php:4478
+msgid "Migrate"
+msgstr "העבר"
+
+#: includes/freemius-strings.php:1410
+#: includes/freemius-strings.php:4483
+msgid "Migrate License"
+msgstr "העבר רישיון"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1415
+#: includes/freemius-strings.php:4253
+#, php-format
+msgid "Is %2$s the new home of %4$s?"
+msgstr "האם %2$s הוא הבית החדש של %4$s?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1420
+#: includes/freemius-strings.php:5871
+#, php-format
+msgid "Yes, %%2$s is replacing %%4$s. I would like to migrate my %s from %%4$s to %%2$s."
+msgstr "כן, %%2$s מחליף את %%4$s. ברצוני להעביר את ה-%s שלי מ-%%4$s ל-%%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1425
+#: includes/freemius-strings.php:2955
+#, php-format
+msgid "%s minimum payout amount."
+msgstr "סכום התשלום המינימלי הוא %s."
+
+#: includes/freemius-strings.php:1429
+#: includes/freemius-strings.php:6464
+msgctxt "as monthly period"
+msgid "mo"
+msgstr "מוֹ"
+
+#: includes/freemius-strings.php:1433
+#: includes/freemius-strings.php:4493
+msgid "Mobile apps"
+msgstr "אפליקציות מובייל"
+
+#: includes/freemius-strings.php:1437
+#: includes/freemius-strings.php:4498
+msgid "Module"
+msgstr "מודול"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1442
+#: includes/freemius-strings.php:2889
+#, php-format
+msgid "%s Installs"
+msgstr "%s התקנות"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1447
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s Licenses"
+msgstr "%s רישיונות"
+
+#: includes/freemius-strings.php:1451
+#: includes/freemius-strings.php:5445
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "חבילת התוסף המרוחקת אינה מכילה תיקייה עם המזהה (slug) המבוקש והשינוי של השם לא הצליח."
+
+#: includes/freemius-strings.php:1455
+#: includes/freemius-strings.php:4503
+msgid "Module Path"
+msgstr "נתיב מודול"
+
+#: includes/freemius-strings.php:1459
+#: includes/freemius-strings.php:4508
+msgid "Module Type"
+msgstr "סוג מודול"
+
+#: includes/freemius-strings.php:1463
+#: includes/freemius-strings.php:6444
+msgctxt "as every month"
+msgid "Monthly"
+msgstr "חודשי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1468
+#: includes/freemius-strings.php:4519
+#, php-format
+msgid "More information about %s"
+msgstr "מידע נוסף על %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1473
+#: includes/freemius-strings.php:5865
+#, php-format
+msgid "Yes - move all my data and assets from %1$s to %2$s"
+msgstr "כן - העבר את כל הנתונים והנכסים שלי מ-%1$s ל-%2$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1478
+#: includes/freemius-strings.php:4597
+#, php-format
+msgid "No - only move this site's data to %s"
+msgstr "לא - העבר רק את הנתונים של אתר זה אל %s"
+
+#: includes/freemius-strings.php:1482
+#: includes/freemius-strings.php:6592
+msgctxt "milliseconds"
+msgid "ms"
+msgstr "אל\"ש"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1487
+#: includes/freemius-strings.php:5434
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of %3$s:%1$s"
+msgstr "המוצרים שלהלן הועברו למצב בטוח מכיוון ששמנו לב ש-%2$s הוא עותק מדויק של %3$s:%1$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1492
+#: includes/freemius-strings.php:5440
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of these sites:%3$s%1$s"
+msgstr "המוצרים להלן הועברו למצב בטוח מכיוון ששמנו לב ש-%2$s הוא עותק מדויק של אתרים אלה:%3$s%1$s"
+
+#: includes/freemius-strings.php:1496
+#: includes/freemius-strings.php:4524
+msgid "Name"
+msgstr "שם"
+
+#: includes/freemius-strings.php:1500
+#: includes/freemius-strings.php:4829
+msgid "Please provide your full name."
+msgstr "נא לספק את שמך המלא."
+
+#: includes/freemius-strings.php:1504
+#: includes/freemius-strings.php:6088
+msgid "Your name was successfully updated."
+msgstr "שמך עודכן בהצלחה."
+
+#: includes/freemius-strings.php:1508
+#: includes/freemius-strings.php:4534
+msgid "Network Blog"
+msgstr "בלוג רשת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1513
+#: includes/freemius-strings.php:3039
+#, php-format
+msgid "%1$sClick here%2$s to choose the sites where you'd like to activate the license on."
+msgstr "%1$sלחץ כאן%2$s כדי לבחור את האתרים שבהם ברצונך להפעיל את הרישיון."
+
+#: includes/freemius-strings.php:1517
+#: includes/freemius-strings.php:4539
+msgid "Network User"
+msgstr "משתמש רשת"
+
+#: includes/freemius-strings.php:1521
+#: includes/freemius-strings.php:4554
+msgid "New"
+msgstr "חדש"
+
+#: includes/freemius-strings.php:1525
+#: includes/freemius-strings.php:6193
+msgid "new Beta version"
+msgstr "גרסת בטא חדשה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1530
+#: includes/freemius-strings.php:4247
+#, php-format
+msgid "Is %2$s a new website?"
+msgstr "האם %2$s הוא אתר חדש?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1535
+#: includes/freemius-strings.php:5883
+#, php-format
+msgid "Yes, %2$s is a new and different website that is separate from %4$s."
+msgstr "כן, %2$s הוא אתר חדש ושונה הנפרד מ-%4$s."
+
+#: includes/freemius-strings.php:1539
+#: includes/freemius-strings.php:4300
+msgid "It requires license activation."
+msgstr "נדרשת הפעלת רישיון."
+
+#: includes/freemius-strings.php:1543
+#: includes/freemius-strings.php:6198
+msgid "new version"
+msgstr "גרסה חדשה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1548
+#: includes/freemius-strings.php:5483
+#, php-format
+msgid "There is a new version of %s available."
+msgstr "יש גרסה חדשה של %s זמינה."
+
+#: includes/freemius-strings.php:1552
+#: includes/freemius-strings.php:4564
+msgid "New Website"
+msgstr "אתר חדש"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1557
+#: includes/freemius-strings.php:4570
+#, php-format
+msgid "Newer Free Version (%s) Installed"
+msgstr "גרסה חינמית חדשה יותר (%s) מותקנת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1562
+#: includes/freemius-strings.php:4576
+#, php-format
+msgid "Newer Version (%s) Installed"
+msgstr "מותקנה גרסה חדשה יותר (%s)"
+
+#: includes/freemius-strings.php:1566
+#: includes/freemius-strings.php:5504
+msgid "This plugin requires a newer version of PHP."
+msgstr "תוסף זה דורש גרסה חדשה יותר של PHP."
+
+#: includes/freemius-strings.php:1570
+#: includes/freemius-strings.php:4586
+msgid "Next"
+msgstr "הבא"
+
+#: includes/freemius-strings.php:1574
+#: includes/freemius-strings.php:4591
+msgid "No"
+msgstr "לא"
+
+#: includes/freemius-strings.php:1578
+#: includes/freemius-strings.php:4295
+msgid "It looks like your site currently doesn't have an active license."
+msgstr "נראה שלאתר שלך אין כרגע רישיון פעיל."
+
+#: includes/freemius-strings.php:1582
+#: includes/freemius-strings.php:5741
+msgid "We can't see any active licenses associated with that email address, are you sure it's the right address?"
+msgstr "איננו רואים רישומים פעילים המשויכים לכתובת דוא\"ל זו, האם אתה בטוח שזו הכתובת הנכונה?"
+
+#: includes/freemius-strings.php:1586
+#: includes/freemius-strings.php:4619
+msgid "No credit card required"
+msgstr "אין צורך בכרטיס אשראי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1591
+#: includes/freemius-strings.php:4614
+#, php-format
+msgid "No commitment for %s days - cancel anytime!"
+msgstr "ללא התחייבות במשך %s ימים - ניתן לבטל בכל עת!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1596
+#: includes/freemius-strings.php:4608
+#, php-format
+msgid "No commitment for %s - cancel anytime"
+msgstr "ללא התחייבות עבור %s - ניתן לבטל בכל עת"
+
+#: includes/freemius-strings.php:1600
+#: includes/freemius-strings.php:4624
+msgid "No expiration"
+msgstr "ללא תפוגה"
+
+#: includes/freemius-strings.php:1604
+#: includes/freemius-strings.php:4602
+msgid "No ID"
+msgstr "אין מזהה"
+
+#: includes/freemius-strings.php:1608
+#: includes/freemius-strings.php:6281
+msgctxt "API connectivity state is unknown"
+msgid "No requests yet"
+msgstr "אין בקשות עדיין"
+
+#: includes/freemius-strings.php:1612
+#: includes/freemius-strings.php:6489
+msgctxt "as secret encryption key missing"
+msgid "No Secret"
+msgstr "אין סוד"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1617
+#: includes/freemius-strings.php:4635
+#, php-format
+msgid "None of the %s's plans supports a trial period."
+msgstr "ףאחד מהמסלולים של %s אינו תומך בתקופת ניסיון."
+
+#: includes/freemius-strings.php:1621
+#: includes/freemius-strings.php:4629
+msgid "Non-expiring"
+msgstr "ללא תאריך תפוגה"
+
+#: includes/freemius-strings.php:1625
+#: includes/freemius-strings.php:5494
+msgid "This plugin has not been marked as compatible with your version of WordPress."
+msgstr "תוסף זה לא סומן כתואם לגרסת ה-WordPress שלך."
+
+#: includes/freemius-strings.php:1629
+#: includes/freemius-strings.php:5499
+msgid "This plugin has not been tested with your current version of WordPress."
+msgstr "תוסף זה לא נבדק עם הגרסה הנוכחית של WordPress שלך."
+
+#: includes/freemius-strings.php:1633
+#: includes/freemius-strings.php:6203
+msgid "not verified"
+msgstr "לא מאומת"
+
+#: includes/freemius-strings.php:1637
+#: includes/freemius-strings.php:6519
+msgctxt "as turned off"
+msgid "Off"
+msgstr "כבוי"
+
+#: includes/freemius-strings.php:1641
+#: includes/freemius-strings.php:4640
+msgid "O.K"
+msgstr "אישור"
+
+#: includes/freemius-strings.php:1645
+#: includes/freemius-strings.php:6524
+msgctxt "as turned on"
+msgid "On"
+msgstr "פעיל"
+
+#: includes/freemius-strings.php:1649
+#: includes/freemius-strings.php:6479
+msgctxt "as once a year"
+msgid "Once"
+msgstr "פעם אחת"
+
+#: includes/freemius-strings.php:1653
+#: includes/freemius-strings.php:6566
+msgctxt "exclamation"
+msgid "Oops"
+msgstr "אופס"
+
+#: includes/freemius-strings.php:1657
+#: includes/freemius-strings.php:4663
+msgid "Opt In"
+msgstr "הצטרפות"
+
+#: includes/freemius-strings.php:1661
+#: includes/freemius-strings.php:3229
+msgid "Allow & Continue"
+msgstr "אפשר והמשך"
+
+#: includes/freemius-strings.php:1665
+#: includes/freemius-strings.php:4668
+msgid "Opt Out"
+msgstr "ביטול הסכמה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1670
+#: includes/freemius-strings.php:5131
+#, php-format
+msgid "Sharing diagnostic data with %s helps to provide functionality that's more relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the plugin should be translated and tailored to."
+msgstr "שיתוף נתונים אבחוניים עם %s עוזר לספק פונקציונליות הרלוונטית יותר לאתר שלך, להימנע מאי-התאמות של גרסאות WordPress או PHP העלולות לגרום לקריסת האתר, ולזהות אילו שפות ואזורים נדרשים לתרגום והתאמה של התוסף."
+
+#: includes/freemius-strings.php:1674
+#: includes/freemius-strings.php:5136
+msgid "Sharing your name and email allows us to keep you in the loop about new features and important updates, warn you about security issues before they become public knowledge, and send you special offers."
+msgstr "שיתוף השם וכתובת האימייל שלך מאפשר לנו לעדכן אותך לגבי תכונות חדשות ועדכונים חשובים, להזהיר אותך מפני בעיות אבטחה לפני שהן הופכות לגלויות לציבור, ולשלוח לך הצעות מיוחדות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1679
+#: includes/freemius-strings.php:3735
+#, php-format
+msgid "Diagnostic data will no longer be sent from %1$s to %2$s."
+msgstr "נתוני האבחון לא יישלחו עוד מ-%1$s אל %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1684
+#: includes/freemius-strings.php:4685
+#, php-format
+msgid "Opt in to make \"%s\" better!"
+msgstr "הירשם כדי לשפר את \"%s\"!"
+
+#: includes/freemius-strings.php:1688
+#: includes/freemius-strings.php:4690
+msgid "Opting in"
+msgstr "הצטרפות"
+
+#: includes/freemius-strings.php:1692
+#: includes/freemius-strings.php:4695
+msgid "Opting out"
+msgstr "ביטול הסכמה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1697
+#: includes/freemius-strings.php:3973
+#, php-format
+msgid "For ongoing compatibility with your website, you can optionally allow %s to:"
+msgstr "כדי להבטיח תאימות מתמשכת לאתר שלך, באפשרותך לאפשר ל-%s לבצע את הפעולות הבאות (אופציונלי):"
+
+#: includes/freemius-strings.php:1701
+#: includes/freemius-strings.php:2108
+#: includes/freemius-strings.php:4705
+msgid "Other"
+msgstr "אחר"
+
+#: includes/freemius-strings.php:1705
+#: includes/freemius-strings.php:6346
+msgctxt "Plugin installer section title"
+msgid "Other Notes"
+msgstr "הערות נוספות"
+
+#: includes/freemius-strings.php:1709
+#: includes/freemius-strings.php:4710
+msgid "Owner Email"
+msgstr "דוא״ל בעלים"
+
+#: includes/freemius-strings.php:1713
+#: includes/freemius-strings.php:4715
+msgid "Owner ID"
+msgstr "מזהה בעלים"
+
+#: includes/freemius-strings.php:1717
+#: includes/freemius-strings.php:4720
+msgid "Owner Name"
+msgstr "שם הבעלים"
+
+#: includes/freemius-strings.php:1721
+#: includes/freemius-strings.php:4730
+msgid "Paid add-on must be deployed to Freemius."
+msgstr "יש לפרוס תוסף בתשלום ב-Freemius."
+
+#: includes/freemius-strings.php:1725
+#: includes/freemius-strings.php:6454
+msgctxt "as file/folder path"
+msgid "Path"
+msgstr "נתיב"
+
+#: includes/freemius-strings.php:1729
+#: includes/freemius-strings.php:4745
+msgid "Payments"
+msgstr "תשלומים"
+
+#: includes/freemius-strings.php:1733
+#: includes/freemius-strings.php:4750
+msgid "Payouts are in USD and processed monthly via PayPal."
+msgstr "התשלומים מתבצעים בדולר אמריקאי ומעובדים מדי חודש באמצעות PayPal."
+
+#: includes/freemius-strings.php:1737
+#: includes/freemius-strings.php:4735
+msgid "PayPal account email address"
+msgstr "כתובת האימייל של חשבון PayPal"
+
+#: includes/freemius-strings.php:1741
+#: includes/freemius-strings.php:4740
+msgid "PayPal email address is required."
+msgstr "נדרשת כתובת הדוא\"ל של PayPal."
+
+#: includes/freemius-strings.php:1745
+#: includes/freemius-strings.php:4725
+msgid "PCI compliant"
+msgstr "תואם תקן PCI"
+
+#: includes/freemius-strings.php:1749
+#: includes/freemius-strings.php:5711
+msgid "View Diagnostic Info"
+msgstr "הצג מידע אבחוני"
+
+#: includes/freemius-strings.php:1753
+#: includes/freemius-strings.php:5827
+msgid "WordPress & PHP versions, site language & title"
+msgstr "גירסאות WordPress ו-PHP, שפת האתר והכותרת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1758
+#: includes/freemius-strings.php:5526
+#, php-format
+msgid "To avoid breaking your website due to WordPress or PHP version incompatibilities, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "כדי להימנע מפגיעה באתר האינטרנט שלך עקב אי-התאמות של גרסאות WordPress או PHP, וכדי לזהות לאילו שפות ואזורים יש לתרגם ולהתאים את ה-%s."
+
+#: includes/freemius-strings.php:1762
+#: includes/freemius-strings.php:5716
+msgid "View License Essentials"
+msgstr "הצג את עיקרי הרישיון"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1767
+#, php-format
+msgid "Homepage URL, %s version, SDK version"
+msgstr "כתובת אתר הבית, גרסת %s, גרסת SDK"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1772
+#: includes/freemius-strings.php:5549
+#, php-format
+msgid "To let you manage & control where the license is activated and ensure %s security & feature updates are only delivered to websites you authorize."
+msgstr "כדי לאפשר לך לנהל ולשלוט היכן שהרישיון מופעל ולוודא שעדכוני האבטחה והתכונות של %s נשלחים רק לאתרים שאתה מאשר."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1777
+#: includes/freemius-strings.php:3648
+#, php-format
+msgid "Current %s & SDK versions, and if active or uninstalled"
+msgstr "%s נוכחיים וגרסאות SDK, והאם פעילים או מוסרים"
+
+#: includes/freemius-strings.php:1781
+#: includes/freemius-strings.php:4263
+msgid "Is active, deactivated, or uninstalled"
+msgstr "פעיל, מושבת או מוסר"
+
+#: includes/freemius-strings.php:1785
+#: includes/freemius-strings.php:5721
+msgid "View Plugins & Themes List"
+msgstr "הצג רשימת תוספים וערכות עיצוב"
+
+#: includes/freemius-strings.php:1789
+#: includes/freemius-strings.php:4581
+msgid "Newsletter"
+msgstr "ניוזלטר"
+
+#: includes/freemius-strings.php:1793
+#: includes/freemius-strings.php:5627
+msgid "Updates, announcements, marketing, no spam"
+msgstr "עדכונים, הודעות, שיווק, ללא ספאם"
+
+#: includes/freemius-strings.php:1797
+#: includes/freemius-strings.php:5701
+msgid "View Basic Profile Info"
+msgstr "הצג פרטי פרופיל בסיסיים"
+
+#: includes/freemius-strings.php:1801
+#: includes/freemius-strings.php:6016
+msgid "Your WordPress user's: first & last name, and email address"
+msgstr "השם הפרטי ושם המשפחה של משתמש ה-WordPress שלך, וכתובת הדוא\"ל שלהם"
+
+#: includes/freemius-strings.php:1805
+#: includes/freemius-strings.php:4549
+msgid "Never miss important updates, get security warnings before they become public knowledge, and receive notifications about special offers and awesome new features."
+msgstr "לעולם אל תחמיץ עדכונים חשובים, קבל אזהרות אבטחה לפני שהן הופכות לנחלת הכלל, וקבל הודעות על מבצעים מיוחדים ותכונות חדשות ומדהימות."
+
+#: includes/freemius-strings.php:1809
+#: includes/freemius-strings.php:5706
+msgid "View Basic Website Info"
+msgstr "הצג מידע בסיסי על האתר"
+
+#: includes/freemius-strings.php:1813
+#: includes/freemius-strings.php:4050
+msgid "Homepage URL & title, WP & PHP versions, and site language"
+msgstr "כתובת האתר וכותרת הדף הבית, גרסאות WP ו-PHP, ושפת האתר"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1818
+#: includes/freemius-strings.php:5555
+#, php-format
+msgid "To provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "כדי לספק פונקציונליות נוספת הרלוונטית לאתר שלך, להימנע מאי-התאמות של גרסאות WordPress או PHP העלולות לגרום לקריסת האתר שלך, ולזהות אילו שפות ואזורים יש לתרגם ולהתאים עבורם את ה-%s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1823
+#: includes/freemius-strings.php:3045
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">Click here to learn more about updating PHP</a>."
+msgstr "<a href=\"%s\" target=\"_blank\">לחץ כאן כדי ללמוד עוד על עדכון PHP</a>."
+
+#: includes/freemius-strings.php:1827
+#: includes/freemius-strings.php:5805
+msgid "What price would you feel comfortable paying?"
+msgstr "באיזה מחיר היית מרגיש בנוח לשלם?"
+
+#: includes/freemius-strings.php:1831
+#: includes/freemius-strings.php:5794
+msgid "What feature?"
+msgstr "איזו תכונה?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1836
+#: includes/freemius-strings.php:5816
+#, php-format
+msgid "What's the %s's name?"
+msgstr "מהו שמו של ה-%s?"
+
+#: includes/freemius-strings.php:1840
+#: includes/freemius-strings.php:4352
+msgid "Kindly share what didn't work so we can fix it for future users..."
+msgstr "אנא שתפו במה שלא עבד כדי שנוכל לתקן זאת עבור משתמשים בעתיד..."
+
+#: includes/freemius-strings.php:1844
+#: includes/freemius-strings.php:5789
+msgid "What did you expect?"
+msgstr "מה ציפית?"
+
+#: includes/freemius-strings.php:1848
+#: includes/freemius-strings.php:5810
+msgid "What you've been looking for?"
+msgstr "האם זה מה שחיפשת?"
+
+#: includes/freemius-strings.php:1852
+#: includes/freemius-strings.php:6484
+msgctxt "as product pricing plan"
+msgid "Plan"
+msgstr "תוכנית"
+
+#: includes/freemius-strings.php:1856
+#: includes/freemius-strings.php:6093
+msgid "Your plan was successfully activated."
+msgstr "התוכנית שלך הופעלה בהצלחה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1861
+#: includes/freemius-strings.php:6099
+#, php-format
+msgid "Your plan was successfully changed to %s."
+msgstr "התוכנית שלך שונתה בהצלחה ל-%s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1866
+#: includes/freemius-strings.php:4098
+#, php-format
+msgid "I have upgraded my account but when I try to Sync the License, the plan remains %s."
+msgstr "שדרגתי את החשבון שלי אך כשאני מנסה לסנכרן את הרישון, התוכנית נשארת %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1871
+#: includes/freemius-strings.php:4290
+#, php-format
+msgid "It looks like you are still on the %s plan. If you did upgrade or change your plan, it's probably an issue on our side - sorry."
+msgstr "נראה שאתה עדיין נמצא בתוכנית %s. אם שדרגת או שינית את התוכנית שלך, זו כנראה בעיה בצד שלנו – סליחה."
+
+#: includes/freemius-strings.php:1875
+#: includes/freemius-strings.php:4772
+msgid "Plan ID"
+msgstr "מזהה תוכנית"
+
+#: includes/freemius-strings.php:1879
+#: includes/freemius-strings.php:6104
+msgid "Your plan was successfully upgraded."
+msgstr "תוכניתך שודרגה בהצלחה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1884
+#: includes/freemius-strings.php:6116
+#, php-format
+msgid "Your subscription was successfully cancelled. Your %1$s plan license will expire in %2$s."
+msgstr "המינוי שלך בוטל בהצלחה. רישיון ה- %1$s שלך יפוג ב-%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1889
+#: includes/freemius-strings.php:4767
+#, php-format
+msgid "Plan %s does not support a trial period."
+msgstr "תוכנית %s אינה תומכת בתקופת ניסיון."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1894
+#: includes/freemius-strings.php:4788
+#, php-format
+msgid "Please download %s."
+msgstr "אנא הורד את %s."
+
+#: includes/freemius-strings.php:1898
+#: includes/freemius-strings.php:4834
+msgid "Please wait"
+msgstr "אנא המתן"
+
+#: includes/freemius-strings.php:1902
+#: includes/freemius-strings.php:4839
+msgid "Plugin"
+msgstr "תוסף"
+
+#: includes/freemius-strings.php:1906
+#: includes/freemius-strings.php:4844
+msgid "Plugin Homepage"
+msgstr "דף הבית של התוסף"
+
+#: includes/freemius-strings.php:1910
+#: includes/freemius-strings.php:4849
+msgid "Plugin ID"
+msgstr "מזהה תוסף"
+
+#: includes/freemius-strings.php:1914
+#: includes/freemius-strings.php:4854
+msgid "Plugin Install"
+msgstr "התקנת תוסף"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1919
+#: includes/freemius-strings.php:2961
+#, php-format
+msgid "%s opt-in was successfully completed."
+msgstr "ההרשמה של %s הושלמה בהצלחה."
+
+#: includes/freemius-strings.php:1923
+#: includes/freemius-strings.php:4864
+msgid "Plugins"
+msgstr "תוספים"
+
+#: includes/freemius-strings.php:1927
+#: includes/freemius-strings.php:4874
+msgid "Plugins page"
+msgstr "עמוד תוספים"
+
+#: includes/freemius-strings.php:1931
+#: includes/freemius-strings.php:4869
+msgid "Plugins & Themes Sync"
+msgstr "סנכרון תוספים וערכות עיצוב"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1936
+#: includes/freemius-strings.php:2853
+#, php-format
+msgid " The %1$s's %2$sdownload link%3$s, license key, and installation instructions have been sent to %4$s. If you can't find the email after 5 min, please check your spam box."
+msgstr "קישור ההורדה %2$sשל %1$s%3$s, מפתח הרישון והוראות ההתקנה נשלחו אל %4$s. אם אינך מצליח למצוא את הודעת הדוא\"ל לאחר 5 דקות, אנא בדק/י בתיקיית הספאם."
+
+#: includes/freemius-strings.php:1940
+#: includes/freemius-strings.php:4879
+msgid "Premium"
+msgstr "פרמיום"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1945
+#: includes/freemius-strings.php:4885
+#, php-format
+msgid "Premium %s version was successfully activated."
+msgstr "גרסת Premium %s הופעלה בהצלחה."
+
+#: includes/freemius-strings.php:1949
+#: includes/freemius-strings.php:4342
+msgid "Keep automatic updates"
+msgstr "שמור על עדכונים אוטומטיים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1954
+#: includes/freemius-strings.php:5537
+#, php-format
+msgid "To ensure that security & feature updates are automatically delivered directly to your WordPress Admin Dashboard while protecting your license from unauthorized abuse, %2$s needs to view the website’s homepage URL, %1$s version, SDK version, and whether the %1$s is active."
+msgstr "כדי להבטיח שעדכוני אבטחה ותכונות יסופקו אוטומטית ישירות אל לוח הבקרה של WordPress שלך תוך הגנה על הרישיון שלך מפני שימוש לרעה לא מורשה, %2$s צריך להציג את כתובת ה-URL של דף הבית של האתר, גרסת %1$s, גרסת ה-SDK, והאם ה-%1$s פעיל."
+
+#: includes/freemius-strings.php:1958
+#: includes/freemius-strings.php:4895
+msgid "Premium version"
+msgstr "גרסה פרימיום"
+
+#: includes/freemius-strings.php:1962
+#: includes/freemius-strings.php:6597
+msgctxt "noun"
+msgid "Price"
+msgstr "מחיר"
+
+#: includes/freemius-strings.php:1966
+#: includes/freemius-strings.php:4905
+msgid "Pricing"
+msgstr "תמחור"
+
+#: includes/freemius-strings.php:1970
+#: includes/freemius-strings.php:4818
+msgid "Please note that we will not be able to grandfather outdated pricing for renewals/new subscriptions after a cancellation. If you choose to renew the subscription manually in the future, after a price increase, which typically occurs once a year, you will be charged the updated price."
+msgstr "שים לב/י כי לא נוכל לשמור על תמחור ישן עבור חידושים או מנויים חדשים לאחר ביטול. אם תבחר/י לחדש את המנוי ידנית בעתיד, לאחר עליית מחירים המתרחשת בדרך כלל פעם בשנה, תחויב/י במחיר המעודכן."
+
+#: includes/freemius-strings.php:1974
+#: includes/freemius-strings.php:4910
+msgid "Privacy Policy"
+msgstr "מדיניות פרטיות"
+
+#: includes/freemius-strings.php:1978
+#: includes/freemius-strings.php:4915
+msgid "Proceed"
+msgstr "המשך"
+
+#: includes/freemius-strings.php:1982
+#: includes/freemius-strings.php:3313
+msgid "Are you sure you want to proceed?"
+msgstr "האם אתה בטוח שברצונך להמשיך?"
+
+#: includes/freemius-strings.php:1986
+#: includes/freemius-strings.php:4920
+msgid "Process ID"
+msgstr "מזהה תהליך"
+
+#: includes/freemius-strings.php:1990
+#: includes/freemius-strings.php:4925
+msgid "Processing"
+msgstr "מעבד"
+
+#: includes/freemius-strings.php:1994
+#: includes/freemius-strings.php:4930
+msgid "Processing, please wait and do not close or refresh this window..."
+msgstr "מעבד, נא להמתין ולא לסגור או לרענן את החלון הזה..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1999
+#: includes/freemius-strings.php:2907
+#, php-format
+msgid "%s and its add-ons"
+msgstr "%s ותוספותיו"
+
+#: includes/freemius-strings.php:2003
+#: includes/freemius-strings.php:6316
+msgctxt "Part of the message that tells the user to check their spam folder for a specific email."
+msgid "the product's support email address"
+msgstr "כתובת הדוא\"ל של התמיכה של המוצר"
+
+#: includes/freemius-strings.php:2007
+#: includes/freemius-strings.php:4940
+msgid "Program Summary"
+msgstr "סיכום תוכנית"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2012
+#: includes/freemius-strings.php:4824
+#, php-format
+msgid "Please provide details on how you intend to promote %s (please be as specific as possible)."
+msgstr "נא לספק פרטים על האופן שבו אתם מתכוונים לקדם את %s (נא להיות ספציפיים ככל האפשר)."
+
+#: includes/freemius-strings.php:2016
+#: includes/freemius-strings.php:4066
+msgid "How will you promote us?"
+msgstr "איך תעזרו לקדם אותנו?"
+
+#: includes/freemius-strings.php:2020
+#: includes/freemius-strings.php:4945
+msgid "Promotion methods"
+msgstr "שיטות קידום מכירות"
+
+#: includes/freemius-strings.php:2024
+#: includes/freemius-strings.php:4950
+msgid "Province"
+msgstr "מחוז"
+
+#: includes/freemius-strings.php:2028
+#: includes/freemius-strings.php:4955
+msgid "Public Key"
+msgstr "מפתח ציבורי"
+
+#: includes/freemius-strings.php:2032
+#: includes/freemius-strings.php:6662
+msgctxt "verb"
+msgid "Purchase"
+msgstr "רכישה"
+
+#: includes/freemius-strings.php:2036
+#: includes/freemius-strings.php:4960
+msgid "Purchase License"
+msgstr "רכישת רישיון"
+
+#: includes/freemius-strings.php:2040
+#: includes/freemius-strings.php:4965
+msgid "Purchase More"
+msgstr "רכישה נוספת"
+
+#: includes/freemius-strings.php:2044
+#: includes/freemius-strings.php:4970
+msgid "Quick Feedback"
+msgstr "משוב מהיר"
+
+#: includes/freemius-strings.php:2048
+#: includes/freemius-strings.php:4975
+msgid "Quota"
+msgstr "מכסה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2053
+#: includes/freemius-strings.php:5388
+#, php-format
+msgid "The %s broke my site"
+msgstr "ה-%s שבר את האתר שלי"
+
+#: includes/freemius-strings.php:2057
+#: includes/freemius-strings.php:4076
+msgid "I can't pay for it anymore"
+msgstr "איני יכול לשלם עבור זה יותר"
+
+#: includes/freemius-strings.php:2061
+#: includes/freemius-strings.php:4081
+msgid "I couldn't understand how to make it work"
+msgstr "לא הצלחתי להבין איך גורמים לזה לעבוד"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2066
+#: includes/freemius-strings.php:5394
+#, php-format
+msgid "The %s didn't work"
+msgstr "הפעולה %s נכשלה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2071
+#: includes/freemius-strings.php:5400
+#, php-format
+msgid "The %s didn't work as expected"
+msgstr "ה-%s לא פעל כמצופה"
+
+#: includes/freemius-strings.php:2075
+#: includes/freemius-strings.php:4086
+msgid "I don't like to share my information with you"
+msgstr "אני לא מעוניין לשתף את המידע שלי איתך"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2080
+#: includes/freemius-strings.php:4092
+#, php-format
+msgid "I found a better %s"
+msgstr "מצאתי %s טוב יותר"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2085
+#: includes/freemius-strings.php:5406
+#, php-format
+msgid "The %s is great, but I need specific feature that you don't support"
+msgstr "%s הוא נהדר, אבל אני צריך תכונה ספציפית שאינכם תומכים בה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2090
+#: includes/freemius-strings.php:4110
+#, php-format
+msgid "I only needed the %s for a short period"
+msgstr "הזדקקתי ל-%s רק למשך תקופה קצרה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2095
+#: includes/freemius-strings.php:4104
+#, php-format
+msgid "I no longer need the %s"
+msgstr "איני זקוק עוד ל-%s"
+
+#: includes/freemius-strings.php:2099
+#: includes/freemius-strings.php:4316
+msgid "It's not what I was looking for"
+msgstr "זה לא מה שחיפשתי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2104
+#: includes/freemius-strings.php:5412
+#, php-format
+msgid "The %s is not working"
+msgstr "ה-%s אינו פועל"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2113
+#: includes/freemius-strings.php:5418
+#, php-format
+msgid "The %s suddenly stopped working"
+msgstr "ה-%s הפסיק לפתע לעבוד"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2118
+#: includes/freemius-strings.php:4311
+#, php-format
+msgid "It's a temporary %s - I'm troubleshooting an issue"
+msgstr "זהו %s זמני - אני מפתר בעיה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2123
+#: includes/freemius-strings.php:4986
+#, php-format
+msgid "Redirecting, please <a href=\"%1$s\">click here</a> if you're stuck..."
+msgstr "מבצע הפניה מחדש, <a href=\"%1$s\">לחץ כאן</a> אם נתקעת..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2128
+#: includes/freemius-strings.php:4992
+#, php-format
+msgid "Refer new customers to our %1$s and earn %2$s commission on each successful sale you refer!"
+msgstr "הפנו לקוחות חדשים אל %1$s שלנו והרוויחו עמלה בסך %2$s על כל מכירה מוצלחת שתפנו!"
+
+#: includes/freemius-strings.php:2136
+#: includes/freemius-strings.php:5002
+msgid "Renew license"
+msgstr "חידוש רישיון"
+
+#: includes/freemius-strings.php:2140
+#: includes/freemius-strings.php:5007
+msgid "Renew your license now"
+msgstr "חידוש הרישיון שלך כעת"
+
+#: includes/freemius-strings.php:2144
+#: includes/freemius-strings.php:4028
+msgid "Get commission for automated subscription renewals."
+msgstr "קבל עמלות עבור חידושי מנויים אוטומטיים."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2149
+#: includes/freemius-strings.php:3339
+#, php-format
+msgid "Auto renews in %s"
+msgstr "מתחדש אוטומטית בעוד %s"
+
+#: includes/freemius-strings.php:2153
+#: includes/freemius-strings.php:5012
+msgid "Requests"
+msgstr "בקשות"
+
+#: includes/freemius-strings.php:2157
+#: includes/freemius-strings.php:5017
+msgid "Required"
+msgstr "שדה חובה"
+
+#: includes/freemius-strings.php:2161
+#: includes/freemius-strings.php:5022
+msgid "Requires PHP Version"
+msgstr "דורש גרסת PHP"
+
+#: includes/freemius-strings.php:2165
+#: includes/freemius-strings.php:5027
+msgid "Requires WordPress Version"
+msgstr "דורש גירסת WordPress"
+
+#: includes/freemius-strings.php:2169
+#: includes/freemius-strings.php:4980
+msgid "Re-send activation email"
+msgstr "שליחה מחדש של אימייל הפעלה"
+
+#: includes/freemius-strings.php:2173
+#: includes/freemius-strings.php:5032
+msgid "Reset Deactivation Snoozing"
+msgstr "איפוס השהיית השבתה"
+
+#: includes/freemius-strings.php:2177
+#: includes/freemius-strings.php:5037
+msgid "Result"
+msgstr "תוצאה"
+
+#: includes/freemius-strings.php:2181
+#: includes/freemius-strings.php:6218
+msgid "revert it now"
+msgstr "שחזר כעת"
+
+#: includes/freemius-strings.php:2185
+#: includes/freemius-strings.php:6351
+msgctxt "Plugin installer section title"
+msgid "Reviews"
+msgstr "חוות דעת"
+
+#: includes/freemius-strings.php:2189
+#: includes/freemius-strings.php:6361
+msgctxt "a positive response"
+msgid "Right on"
+msgstr "בסדר גמור"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2194
+#: includes/freemius-strings.php:5053
+#, php-format
+msgid "Save %s"
+msgstr "שמור את %s"
+
+#: includes/freemius-strings.php:2198
+#: includes/freemius-strings.php:5058
+msgid "Saved"
+msgstr "נשמר"
+
+#: includes/freemius-strings.php:2202
+#: includes/freemius-strings.php:5063
+msgid "Scheduled Crons"
+msgstr "CRON מתוזמנים"
+
+#: includes/freemius-strings.php:2206
+#: includes/freemius-strings.php:5068
+msgid "Screenshots"
+msgstr "צילומי מסך"
+
+#: includes/freemius-strings.php:2210
+#: includes/freemius-strings.php:5042
+msgid "SDK"
+msgstr "ערכת פיתוח תוכנה (SDK)"
+
+#: includes/freemius-strings.php:2214
+#: includes/freemius-strings.php:5047
+msgid "SDK Path"
+msgstr "נתיב SDK"
+
+#: includes/freemius-strings.php:2218
+#: includes/freemius-strings.php:6494
+msgctxt "as software development kit versions"
+msgid "SDK Versions"
+msgstr "גרסאות SDK"
+
+#: includes/freemius-strings.php:2222
+#: includes/freemius-strings.php:5073
+msgid "Search by address"
+msgstr "חיפוש לפי כתובת"
+
+#: includes/freemius-strings.php:2226
+#: includes/freemius-strings.php:6612
+msgctxt "seconds"
+msgid "sec"
+msgstr "שניות"
+
+#: includes/freemius-strings.php:2230
+#: includes/freemius-strings.php:5078
+msgid "Secret Key"
+msgstr "מפתח סודי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2235
+#: includes/freemius-strings.php:5084
+#, php-format
+msgid "Secure HTTPS %s page, running from an external domain"
+msgstr "דף HTTPS מאובטח %s, הפועל מדומיין חיצוני"
+
+#: includes/freemius-strings.php:2239
+#: includes/freemius-strings.php:5104
+msgid "Select Country"
+msgstr "בחר מדינה"
+
+#: includes/freemius-strings.php:2243
+#: includes/freemius-strings.php:5109
+msgid "Send License Key"
+msgstr "שלח מפתח רישיון"
+
+#: includes/freemius-strings.php:2247
+#: includes/freemius-strings.php:6228
+msgid "send me security & feature updates, educational content and offers."
+msgstr "שלח לי עדכוני אבטחה ותכונות, תוכן לימודי והצעות."
+
+#: includes/freemius-strings.php:2251
+#: includes/freemius-strings.php:6459
+msgctxt "as in the process of sending an email"
+msgid "Sending email"
+msgstr "שולח דוא\"ל"
+
+#: includes/freemius-strings.php:2255
+#: includes/freemius-strings.php:5114
+msgid "Sending license key"
+msgstr "שולח מפתח רישיון"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2260
+#: includes/freemius-strings.php:6110
+#, php-format
+msgid "Your server is blocking the access to Freemius' API, which is crucial for %1$s synchronization. Please contact your host to whitelist the following domains:%2$s"
+msgstr "השרת שלך חוסך את הגישה ל-API של Freemius, דבר הקריטי לסנכרון של %1$s. אנא צור קשר עם המארח שלך כדי להוסיף לרשימה הלבנה את הדומיינים הבאים:%2$s"
+
+#: includes/freemius-strings.php:2264
+#: includes/freemius-strings.php:3913
+msgid "Error received from the server:"
+msgstr "שגיאה התקבלה מהשרת:"
+
+#: includes/freemius-strings.php:2268
+#: includes/freemius-strings.php:5119
+msgid "Set DB Option"
+msgstr "הגדר אפשרות מסד נתונים"
+
+#: includes/freemius-strings.php:2272
+#: includes/freemius-strings.php:6667
+msgctxt "verb"
+msgid "Show"
+msgstr "הצג"
+
+#: includes/freemius-strings.php:2276
+#: includes/freemius-strings.php:5141
+msgid "Show error details"
+msgstr "הצג פרטי שגיאה"
+
+#: includes/freemius-strings.php:2280
+#: includes/freemius-strings.php:5146
+msgid "Simulate Network Upgrade"
+msgstr "הדמיית שדרוג רשת"
+
+#: includes/freemius-strings.php:2284
+#: includes/freemius-strings.php:5151
+msgid "Simulate Trial Promotion"
+msgstr "הפעל מבצע ניסיון מדמה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2289
+#: includes/freemius-strings.php:2871
+#, php-format
+msgid "%1$s has been placed into safe mode because we noticed that %2$s is an exact copy of %3$s."
+msgstr "%1$s הועבר למצב בטוח מכיוון ששמנו לב ש-%2$s הוא עותק מדויק של %3$s."
+
+#: includes/freemius-strings.php:2293
+#: includes/freemius-strings.php:5161
+msgid "Site ID"
+msgstr "מזהה אתר"
+
+#: includes/freemius-strings.php:2297
+#: includes/freemius-strings.php:5171
+msgid "Sites"
+msgstr "אתרים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2302
+#: includes/freemius-strings.php:5177
+#, php-format
+msgid "Skip & %s"
+msgstr "דלג ו- %s"
+
+#: includes/freemius-strings.php:2306
+#: includes/freemius-strings.php:5182
+msgid "Skipping, please wait"
+msgstr "מדולל, נא להמתין"
+
+#: includes/freemius-strings.php:2310
+#: includes/freemius-strings.php:5187
+msgid "Slug"
+msgstr "מזהה כתובת"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2315
+#: includes/freemius-strings.php:5193
+#, php-format
+msgid "Snooze & %s"
+msgstr "השהה והפעלה %s"
+
+#: includes/freemius-strings.php:2319
+#: includes/freemius-strings.php:5198
+msgid "Snooze this panel during troubleshooting"
+msgstr "השהה פאנל זה במהלך פתרון בעיות"
+
+#: includes/freemius-strings.php:2323
+#: includes/freemius-strings.php:5203
+msgid "Snooze this panel for"
+msgstr "השהה פאנל זה למשך"
+
+#: includes/freemius-strings.php:2327
+#: includes/freemius-strings.php:5214
+msgid "Social media (Facebook, Twitter, etc.)"
+msgstr "רשתות חברתיות (פייסבוק, טוויטר וכו')"
+
+#: includes/freemius-strings.php:2331
+#: includes/freemius-strings.php:5229
+msgid "Start"
+msgstr "התחל"
+
+#: includes/freemius-strings.php:2335
+#: includes/freemius-strings.php:5234
+msgid "Start Debug"
+msgstr "התחל ניפוי באגים"
+
+#: includes/freemius-strings.php:2339
+#: includes/freemius-strings.php:6529
+msgctxt "call to action"
+msgid "Start free trial"
+msgstr "התחל ניסיון חינם"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2344
+#: includes/freemius-strings.php:5245
+#, php-format
+msgid "Start my free %s"
+msgstr "התחל את %s החינמי שלי"
+
+#: includes/freemius-strings.php:2348
+#: includes/freemius-strings.php:6238
+msgid "start the trial"
+msgstr "התחל את תקופת הניסיון"
+
+#: includes/freemius-strings.php:2352
+#: includes/freemius-strings.php:5239
+msgid "Start Trial"
+msgstr "התחל ניסיון חינם"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2357
+#: includes/freemius-strings.php:5894
+#, php-format
+msgid "You are 1-click away from starting your %1$s-day free trial of the %2$s plan."
+msgstr "אתה במרחק הקשה אחת מתחילת תקופת הניסיון בחינם למשך %1$s ימים של תוכנית %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2362
+#: includes/freemius-strings.php:3961
+#, php-format
+msgid "For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %1$s to periodically send data to %2$s to check for version updates and to validate your trial."
+msgstr "לשם עמידה בהנחיות של WordPress.org, לפני שנתחיל את תקופת הניסיון אנו מבקשים שתאשר/י את השתתפותך עם פרטי המשתמש והמידע הבלתי-רגיש של האתר שלך, דבר שיאפשר ל-%1$s לשלוח מאירוע לאירוע נתונים ל-%2$s כדי לבדוק אם קיימים עדכוני גרסה ולבחון את תקינות תקופת הניסיון שלך."
+
+#: includes/freemius-strings.php:2366
+#: includes/freemius-strings.php:5250
+msgid "Starting trial"
+msgstr "מתחיל תקופת ניסיון"
+
+#: includes/freemius-strings.php:2370
+#: includes/freemius-strings.php:5255
+msgid "State"
+msgstr "מצב"
+
+#: includes/freemius-strings.php:2374
+#: includes/freemius-strings.php:4803
+msgid "Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential)."
+msgstr "אנא מרגיש חופשי לספק נתונים רלוונטיים כלשהם על אתר האינטרנט או הרשתות החברתיות, כגון ביקורים חודשיים ייחודיים באתר, מספר המנויים לדיוור אלקטרוני, עוקבים וכו' (אנו נשמור מידע זה בסודיות)."
+
+#: includes/freemius-strings.php:2378
+#: includes/freemius-strings.php:5778
+msgid "Website, email, and social media statistics (optional)"
+msgstr "סטטיסטיקות אתר, אימייל ורשתות חברתיות (אופציונלי)"
+
+#: includes/freemius-strings.php:2382
+#: includes/freemius-strings.php:5260
+msgid "Stay Connected"
+msgstr "היאר מעודכן"
+
+#: includes/freemius-strings.php:2386
+#: includes/freemius-strings.php:5265
+msgid "Stop Debug"
+msgstr "הפסק איתור באגים"
+
+#: includes/freemius-strings.php:2390
+#: includes/freemius-strings.php:5270
+msgid "Submit"
+msgstr "שלח"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2395
+#: includes/freemius-strings.php:5543
+#, php-format
+msgid "To enter the debug mode, please enter the secret key of the license owner (UserID = %d), which you can find in your \"My Profile\" section of your User Dashboard:"
+msgstr "כדי להיכנס למצב ניפוי הבאגים, נא להזין את המפתח הסודי של בעל הרישיון (UserID = %d), שאותו תוכל למצוא בסעיף \"הפרופיל שלי\" בלוח הבקרה שלך:"
+
+#: includes/freemius-strings.php:2399
+#: includes/freemius-strings.php:4798
+msgid "Please enter the license key to enable the debug mode:"
+msgstr "אנא הזן את מפתח הרישון כדי לאפשר את מצב הניפוי (דיבאג):"
+
+#: includes/freemius-strings.php:2403
+#: includes/freemius-strings.php:5281
+msgid "Submitting"
+msgstr "שולח"
+
+#: includes/freemius-strings.php:2407
+#: includes/freemius-strings.php:5089
+msgid "Seems like we are having some temporary issue with your subscription cancellation. Please try again in few minutes."
+msgstr "נראה שיש לנו בעיה זמנית בביטול המנוי שלך. נא לנסות שוב בעוד מספר דקות."
+
+#: includes/freemius-strings.php:2411
+#: includes/freemius-strings.php:5166
+msgid "Site successfully opted in."
+msgstr "האתר הצטרף בהצלחה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2416
+#: includes/freemius-strings.php:5451
+#, php-format
+msgid "The upgrade of %s was successfully completed."
+msgstr "שדרוג ה-%s הושלם בהצלחה."
+
+#: includes/freemius-strings.php:2424
+#: includes/freemius-strings.php:5296
+msgid "Support Forum"
+msgstr "פורום תמיכה"
+
+#: includes/freemius-strings.php:2428
+#: includes/freemius-strings.php:6248
+msgid "switching"
+msgstr "מעבר"
+
+#: includes/freemius-strings.php:2432
+#: includes/freemius-strings.php:6286
+msgctxt "ASCII arrow left icon"
+msgid "&#x2190;"
+msgstr "&#x2190;"
+
+#: includes/freemius-strings.php:2436
+#: includes/freemius-strings.php:6291
+msgctxt "ASCII arrow right icon"
+msgid "&#x27a4;"
+msgstr "&#x27a4;"
+
+#: includes/freemius-strings.php:2440
+#: includes/freemius-strings.php:6504
+msgctxt "as synchronize"
+msgid "Sync"
+msgstr "סנכרון"
+
+#: includes/freemius-strings.php:2444
+#: includes/freemius-strings.php:5301
+msgid "Sync Data From Server"
+msgstr "סנכרון נתונים מהשרת"
+
+#: includes/freemius-strings.php:2448
+#: includes/freemius-strings.php:6509
+msgctxt "as synchronize license"
+msgid "Sync License"
+msgstr "סנכרון רישיון"
+
+#: includes/freemius-strings.php:2452
+#: includes/freemius-strings.php:5306
+msgid "Tax / VAT ID"
+msgstr "מספר ח.פ. / מע״מ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2457
+#: includes/freemius-strings.php:5946
+#, php-format
+msgid "You marked this website, %1$s, as a temporary duplicate of %2$s."
+msgstr "סימנת את אתר האינטרנט הזה, %1$s, כעותק זמני של %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2462
+#: includes/freemius-strings.php:5952
+#, php-format
+msgid "You marked this website, %s, as a temporary duplicate of these sites"
+msgstr "סימנת את האתר הזה, %s, כעותק זמני של אתרים אלה"
+
+#: includes/freemius-strings.php:2466
+#: includes/freemius-strings.php:5349
+msgid "Thank you!"
+msgstr "!תודה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2471
+#: includes/freemius-strings.php:5339
+#, php-format
+msgid "Thank you so much for using %s!"
+msgstr "תודה רבה על השימוש ב-%s!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2476
+#: includes/freemius-strings.php:5333
+#, php-format
+msgid "Thank you so much for using %s and its add-ons!"
+msgstr "תודה רבה על השימוש ב-%s ובהוספות שלו!"
+
+#: includes/freemius-strings.php:2480
+#: includes/freemius-strings.php:5344
+msgid "Thank you so much for using our products!"
+msgstr "תודה רבה על השימוש במוצרים שלנו!"
+
+#: includes/freemius-strings.php:2484
+#: includes/freemius-strings.php:5371
+msgid "Thanks!"
+msgstr "תודה!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2489
+#: includes/freemius-strings.php:5784
+#, php-format
+msgid "Welcome to %s! To get started, please enter your license key:"
+msgstr "ברוכים הבאים אל %s! כדי להתחיל, הזינו את מפתח הרישיון שלכם:"
+
+#: includes/freemius-strings.php:2493
+#: includes/freemius-strings.php:5376
+msgid "Thanks, please wait"
+msgstr "תודה, נא המתן"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2498
+#: includes/freemius-strings.php:5355
+#, php-format
+msgid "Thanks %s!"
+msgstr "תודה %s!"
+
+#: includes/freemius-strings.php:2502
+#: includes/freemius-strings.php:5423
+msgid "The following products'"
+msgstr "המוצרים הבאים:"
+
+#: includes/freemius-strings.php:2506
+#: includes/freemius-strings.php:6311
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "the installation instructions"
+msgstr "הוראות ההתקנה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2511
+#: includes/freemius-strings.php:6270
+#, php-format
+msgctxt "\"The <product_label>\", e.g.: \"The plugin\""
+msgid "The %s's"
+msgstr "ה-%s"
+
+#: includes/freemius-strings.php:2515
+#: includes/freemius-strings.php:5456
+msgid "Theme"
+msgstr "ערכת עיצוב"
+
+#: includes/freemius-strings.php:2519
+#: includes/freemius-strings.php:5461
+msgid "Theme Switch"
+msgstr "החלפת ערכה"
+
+#: includes/freemius-strings.php:2523
+#: includes/freemius-strings.php:5466
+msgid "Themes"
+msgstr "ערכות נושא"
+
+#: includes/freemius-strings.php:2527
+#: includes/freemius-strings.php:5471
+msgid "Themes page"
+msgstr "דף ערכות נושא"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2532
+#: includes/freemius-strings.php:5510
+#, php-format
+msgid "This will allow %s to"
+msgstr "פעולה זו תאפשר ל-%s ל-"
+
+#: includes/freemius-strings.php:2536
+#: includes/freemius-strings.php:5515
+msgid "Timestamp"
+msgstr "חותם זמן"
+
+#: includes/freemius-strings.php:2540
+#: includes/freemius-strings.php:5520
+msgid "Title"
+msgstr "כותרת"
+
+#: includes/freemius-strings.php:2544
+#: includes/freemius-strings.php:5311
+msgid "Terms of Service"
+msgstr "תנאי שימוש"
+
+#: includes/freemius-strings.php:2548
+#: includes/freemius-strings.php:5560
+msgid "Total"
+msgstr "סך הכל"
+
+#: includes/freemius-strings.php:2552
+#: includes/freemius-strings.php:5565
+msgid "Town"
+msgstr "יישוב"
+
+#: includes/freemius-strings.php:2556
+#: includes/freemius-strings.php:5094
+msgid "Seems like we are having some temporary issue with your trial cancellation. Please try again in few minutes."
+msgstr "נראה שיש לנו בעיה זמנית בביטול תקופת הניסיון שלך. נא לנסות שוב בעוד מספר דקות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2561
+#: includes/freemius-strings.php:5999
+#, php-format
+msgid "Your %s free trial was successfully cancelled."
+msgstr "%s תקופת הניסיון בחינם שלך בוטלה בהצלחה."
+
+#: includes/freemius-strings.php:2565
+#: includes/freemius-strings.php:4284
+msgid "It looks like you are not in trial mode anymore so there's nothing to cancel :)"
+msgstr "נראה שאתה כבר לא תקופת ניסיון, כך שאין מה לבטל :)"
+
+#: includes/freemius-strings.php:2569
+#: includes/freemius-strings.php:6049
+msgid "Your free trial has expired. You can still continue using all our free features."
+msgstr "תקופת הניסיון החינמית שלך הסתיימה. אתה עדיין יכול להמשיך להשתמש ב כל התכונות החינמיות שלנו."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2574
+#: includes/freemius-strings.php:6044
+#, php-format
+msgid "Your free trial has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "תקופת הניסיון החינמית שלך הסתיימה. %1$sשדרג עכשיו%2$s כדי להמשיך להשתמש ב-%3$s ללא הפרעות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2579
+#: includes/freemius-strings.php:4761
+#, php-format
+msgid "Plan %s do not exist, therefore, can't start a trial."
+msgstr "התוכנית %s אינה קיימת, ולכן לא ניתן להתחיל תקופת ניסיון."
+
+#: includes/freemius-strings.php:2583
+#: includes/freemius-strings.php:6121
+msgid "Your trial has been successfully started."
+msgstr "הגרסה הניסיונית שלך התחילה בהצלחה."
+
+#: includes/freemius-strings.php:2587
+#: includes/freemius-strings.php:5888
+msgid "You already utilized a trial before."
+msgstr "כבר ניצלת תקופת ניסיון בעבר."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2592
+#: includes/freemius-strings.php:4056
+#, php-format
+msgid "How do you like %1$s so far? Test all our %2$s premium features with a %3$d-day free trial."
+msgstr "מה דעתך על %1$s עד כה? התנסו בכל תכונות פרימיום %2$s שלנו עם תקופת ניסיון ללא תשלום למשך %3$d ימים."
+
+#: includes/freemius-strings.php:2596
+#: includes/freemius-strings.php:5575
+msgid "Type"
+msgstr "סוג"
+
+#: includes/freemius-strings.php:2600
+#: includes/freemius-strings.php:5580
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "לא ניתן להתחבר למערכת הקבצים. אנא אמת את פרטי ההתחברות שלך."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2605
+#: includes/freemius-strings.php:5489
+#, php-format
+msgid "There was an unexpected API error while processing your request. Please try again in a few minutes and if it still doesn't work, contact the %s's author with the following:"
+msgstr "אירעה שגיאת API בלתי צפויה בעת עיבוד הבקשה שלך. אנא נסה שוב בעוד מספר דקות ואם זה עדיין לא עובד, פנה למחבר של %s עם הפרטים הבאים:"
+
+#: includes/freemius-strings.php:2609
+#: includes/freemius-strings.php:5585
+msgid "Unexpected error, try again in 5 minutes. If the error persists, please contact support."
+msgstr "שגיאה בלתי צפויה, נסה שוב בעוד 5 דקות. אם השגיאה נמשכת, אנא פנה לתמיכה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2614
+#: includes/freemius-strings.php:5591
+#, php-format
+msgid "Uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "הסרת ה-%s תשבית אוטומטית את הרישיון, שבו תוכל להשתמש באתר אחר."
+
+#: includes/freemius-strings.php:2618
+#: includes/freemius-strings.php:3261
+msgid "An unknown error has occurred."
+msgstr "אירעה שגיאה בלתי ידועה."
+
+#: includes/freemius-strings.php:2622
+#: includes/freemius-strings.php:5606
+msgid "Unlimited commissions."
+msgstr "עמלות ללא הגבלה."
+
+#: includes/freemius-strings.php:2626
+#: includes/freemius-strings.php:5601
+msgid "Unlimited Updates"
+msgstr "עדכונים ללא הגבלה"
+
+#: includes/freemius-strings.php:2630
+#: includes/freemius-strings.php:6677
+msgctxt "verb"
+msgid "Update"
+msgstr "עדכן"
+
+#: includes/freemius-strings.php:2634
+#: includes/freemius-strings.php:5843
+msgid "Would you like to proceed with the update?"
+msgstr "האם ברצונך להמשיך בעדכון?"
+
+#: includes/freemius-strings.php:2638
+#: includes/freemius-strings.php:5617
+msgid "Update"
+msgstr "עדכן"
+
+#: includes/freemius-strings.php:2642
+#: includes/freemius-strings.php:5622
+msgid "Update License"
+msgstr "עדכן רישיון"
+
+#: includes/freemius-strings.php:2646
+#: includes/freemius-strings.php:5632
+msgid "Upgrade"
+msgstr "שדרג"
+
+#: includes/freemius-strings.php:2650
+#: includes/freemius-strings.php:4167
+msgid "Important Upgrade Notice:"
+msgstr "הודעת שדרוג חשובה:"
+
+#: includes/freemius-strings.php:2654
+#: includes/freemius-strings.php:5637
+msgid "Upload and activate the downloaded version"
+msgstr "העלה והפעל את הגרסה שהורדה"
+
+#: includes/freemius-strings.php:2658
+#: includes/freemius-strings.php:5642
+msgid "User Dashboard"
+msgstr "לוח בקרה למשתמש"
+
+#: includes/freemius-strings.php:2662
+#: includes/freemius-strings.php:5224
+msgid "Sorry, we could not complete the email update. Another user with the same email is already registered."
+msgstr "מצטערים, לא הצלחנו להשלים את עדכון כתובת הדוא\"ל. משתמש אחר עם אותה כתובת דוא\"ל כבר רשום במערכת."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2667
+#: includes/freemius-strings.php:4156
+#, php-format
+msgid "If you would like to give up the ownership of the %1$s's account to %2$s click the Change Ownership button."
+msgstr "אם ברצונך להעביר את הבעלות על החשבון של %1$s אל %2$s, לחץ על ה כפתור שינוי בעלות."
+
+#: includes/freemius-strings.php:2671
+#: includes/freemius-strings.php:5647
+msgid "User ID"
+msgstr "מזהה משתמש"
+
+#: includes/freemius-strings.php:2675
+#: includes/freemius-strings.php:5652
+msgid "User key"
+msgstr "מפתח משתמש"
+
+#: includes/freemius-strings.php:2679
+#: includes/freemius-strings.php:5657
+msgid "Users"
+msgstr "משתמשים"
+
+#: includes/freemius-strings.php:2683
+#: includes/freemius-strings.php:5662
+msgid "Value"
+msgstr "ערך"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2688
+#: includes/freemius-strings.php:5668
+#, php-format
+msgid "Verification mail was just sent to %s. If you can't find it after 5 min, please check your spam box."
+msgstr "דוא\"ל אימות נשלח כעת אל %s. אם אינך מצליח למצוא אותו לאחר 5 דקות, אנא בדוק בתיקיית הספאם שלך."
+
+#: includes/freemius-strings.php:2692
+#: includes/freemius-strings.php:5673
+msgid "Verified"
+msgstr "מאומת"
+
+#: includes/freemius-strings.php:2696
+#: includes/freemius-strings.php:5678
+msgid "Verify Email"
+msgstr "אמת אימייל"
+
+#: includes/freemius-strings.php:2700
+#: includes/freemius-strings.php:6607
+msgctxt "product version"
+msgid "Version"
+msgstr "גרסה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2705
+#: includes/freemius-strings.php:5684
+#, php-format
+msgid "Version %s was released."
+msgstr "גרסה %s שוחררה."
+
+#: includes/freemius-strings.php:2709
+#: includes/freemius-strings.php:5726
+msgid "View details"
+msgstr "הצג פרטים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2714
+#: includes/freemius-strings.php:3586
+#, php-format
+msgid "Click to view full-size screenshot %d"
+msgstr "לחץ לצפצפה בצילום מסך בגודל מלא %d"
+
+#: includes/freemius-strings.php:2718
+#: includes/freemius-strings.php:5731
+msgid "View paid features"
+msgstr "הצג תכונות בתשלום"
+
+#: includes/freemius-strings.php:2722
+#: includes/freemius-strings.php:5736
+msgid "Warning"
+msgstr "אזהרה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2727
+#: includes/freemius-strings.php:5800
+#, php-format
+msgid "What is your %s?"
+msgstr "מהו ה-%s שלך?"
+
+#: includes/freemius-strings.php:2731
+#: includes/freemius-strings.php:6356
+msgctxt "Used to express elation, enthusiasm, or triumph (especially in electronic communication)."
+msgid "W00t"
+msgstr "יש!"
+
+#: includes/freemius-strings.php:2735
+#: includes/freemius-strings.php:5832
+msgid "WordPress.org Plugin Page"
+msgstr "עמוד התוספים של WordPress.org"
+
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:4305
+msgid "It seems like one of the authentication parameters is wrong. Update your Public Key, Secret Key & User ID, and try again."
+msgstr "נראה שפרט אימות אחד שגוי. עדכן את המפתח הציבורי, המפתח הסודי ומזהה המשתמש שלך, ונסה שוב."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2744
+#: includes/freemius-strings.php:2901
+#, php-format
+msgid "%s ago"
+msgstr "לפני %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2749
+#: includes/freemius-strings.php:6389
+#, php-format
+msgctxt "as 5 licenses left"
+msgid "%s left"
+msgstr "%s שנותרו"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2754
+#: includes/freemius-strings.php:2967
+#, php-format
+msgid "%s or higher"
+msgstr "%s או גבוה יותר"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2759
+#: includes/freemius-strings.php:3033
+#, php-format
+msgid "%s's paid features"
+msgstr "התכונות בתשלום של %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2764
+#: includes/freemius-strings.php:6545
+#, php-format
+msgctxt "e.g. Professional Plan"
+msgid "%s Plan"
+msgstr "תוכנית %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2769
+#: includes/freemius-strings.php:2973
+#, php-format
+msgid "%s rating"
+msgstr "דירוג %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2774
+#: includes/freemius-strings.php:2979
+#, php-format
+msgid "%s ratings"
+msgstr "%s דירוגים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2779
+#: includes/freemius-strings.php:2985
+#, php-format
+msgid "%s sec"
+msgstr "%s שניות"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2784
+#: includes/freemius-strings.php:2991
+#, php-format
+msgid "%s star"
+msgstr "%s כוכב"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2789
+#: includes/freemius-strings.php:2997
+#, php-format
+msgid "%s stars"
+msgstr "%s כוכבים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2794
+#: includes/freemius-strings.php:3003
+#, php-format
+msgid "%s time"
+msgstr "%s זמן"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2799
+#: includes/freemius-strings.php:3009
+#, php-format
+msgid "%s times"
+msgstr "%s פעמים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2804
+#: includes/freemius-strings.php:5940
+#, php-format
+msgid "You have successfully updated your %s."
+msgstr "עדכנת בהצלחה את ה-%s שלך."
+
+#: includes/freemius-strings.php:2808
+#: includes/freemius-strings.php:6399
+msgctxt "as annual period"
+msgid "year"
+msgstr "שנה"
+
+#: includes/freemius-strings.php:2812
+#: includes/freemius-strings.php:6582
+msgctxt "interjection expressing joy or exuberance"
+msgid "Yee-haw"
+msgstr "יי-הא"
+
+#: includes/freemius-strings.php:2816
+#: includes/freemius-strings.php:5848
+msgid "Yes"
+msgstr "כן"
+
+#: includes/freemius-strings.php:2820
+#: includes/freemius-strings.php:5899
+msgid "You are all good!"
+msgstr "הכל תקין!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2825
+#: includes/freemius-strings.php:5911
+#, php-format
+msgid "You are just one step away - %s"
+msgstr "אתה במרחק צעד אחד בלבד - %s"
+
+#: includes/freemius-strings.php:2829
+#: includes/freemius-strings.php:5099
+msgid "Seems like you got the latest release."
+msgstr "נראה שקיבלת את הגרסה האחרונה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2834
+#: includes/freemius-strings.php:5964
+#, php-format
+msgid "You should receive %3$s for %1$s to your mailbox at %2$s in the next 5 minutes."
+msgstr "אתה אמור לקבל %3$s עבור %1$s לתיבת הדואר שלך בכתובת %2$s בתוך 5 הדקות הקרובות."
+
+#: includes/freemius-strings.php:2838
+#: includes/freemius-strings.php:6126
+msgid "ZIP / Postal Code"
+msgstr "מיקוד / מיקוד דואר"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2847
+#, php-format
+msgid " %1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s כדי לגשת לעדכוני האבטחה והתכונות של גרסה %2$s, ולתמיכה."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2913
+#, php-format
+msgid "%1$s automatic security & feature updates and paid functionality will keep working without interruptions until %2$s (or when your license expires, whatever comes first)."
+msgstr "%1$s עדכוני אבטחה ותכונות אוטומטיים ופונקציונליות בתשלום ימשיכו לפעול ללא הפרעות עד %2$s (או עד שתוקף הרישיון שלך יפגה, המוקדם מביניהם)."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3015
+#, php-format
+msgid "%1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s כדי לגשת לעדכוני האבטחה והתכונות של גרסה %2$s, ולתמיכה."
+
+#: includes/freemius-strings.php:3067
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:3251
+msgid "An unknown error has occurred while trying to set the user's beta mode."
+msgstr "אירעה שגיאה בלתי ידועה בעת הניסיון להגדיר את מצב הבטא של המשתמש."
+
+#: includes/freemius-strings.php:3256
+msgid "An unknown error has occurred while trying to toggle the license's white-label mode."
+msgstr "אירעה שגיאה בלתי ידועה בעת הניסיון להחליף את מצב המיתוג הלבן של הרישיון."
+
+#: includes/freemius-strings.php:3272
+msgid "Annual"
+msgstr "שנתי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3425
+#, php-format
+msgid "By clicking \"Opt Out\", %s will no longer be able to view your name and email."
+msgstr "על ידי לחיצה על \"ביטול הסכמה\", %s לא יוכלו עוד לראות את שמך ואת כתובת הדוא\"ל שלך."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3431
+#, php-format
+msgid "By clicking \"Opt Out\", diagnostic data will no longer be sent to %s."
+msgstr "על ידי לחיצה על \"ביטול הסכמה\", נתוני האבחון לא יישלחו עוד אל %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3437
+#, php-format
+msgid "By disconnecting the website, previously shared diagnostic data about %1$s will be deleted and no longer visible to %2$s."
+msgstr "ניתוק האתר יגרום למחיקת נתוני האבחון ששותפו בעבר אודות %1$s כך שלא יהיו עוד גלויים ל-%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3443
+#, php-format
+msgid "By opting out from sharing this information with the updates server, you’ll have to check for new %1$s releases and manually download & install them. Not just a hassle, but missing an update can put your site at risk and cause undue compatibility issues, so we highly recommend keeping these essential permissions on."
+msgstr "על ידי ביטול ההסכמה לשיתוף מידע זה עם שרת העדכונים, תצטרך לבדוק מהם ה- %1$s החדשים ולהוריד ולהתקין אותם באופן ידני. זו לא רק טרחה, אלא שפספוס עדכון עלול לסכן את האתר שלך ולגרום לבעיות תאימות מיותרות, ולכן אנו ממליצים בחום להשאיר הרשאות חיוניות אלו מופעלות."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3465
+#, php-format
+msgid "Cancel %1$s - I no longer need any security & feature updates, nor support for %2$s because I'm not planning to use the %3$s on this, or any other site."
+msgstr "בטל את %1$s - איני זקוק עוד לעדכוני אבטחה ותכונות, וגם לא לתמיכה עבור %2$s משום שאיני מתכנן להשתמש ב-%3$s באתר זה או בכל אתר אחר."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3471
+#, php-format
+msgid "Cancel %s?"
+msgstr "לבטל את %s?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3497
+#, php-format
+msgid "Cancelling %s"
+msgstr "מבטל את %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3503
+#, php-format
+msgid "Cancelling %s..."
+msgstr "מבטל את %s..."
+
+#: includes/freemius-strings.php:3569
+msgid "Click here"
+msgstr "לחץ כאן"
+
+#: includes/freemius-strings.php:3673
+msgid "Deactivating"
+msgstr "מבטל הפעלה"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3751
+#, php-format
+msgid "Disconnecting the website will permanently remove %s from your User Dashboard's account."
+msgstr "ניתוק האתר יסיר לצמיתות את %s מחשבון לוח הבקרה למשתמש שלך."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3955
+#, php-format
+msgid "For automatic delivery of security & feature updates, and license management & protection, %s needs to:"
+msgstr "לקבלת עדכוני אבטחה ותכונות באופן אוטומטי, ולצורך ניהול והגנה של רישיונות, %s נדרש ל:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3967
+#, php-format
+msgid "For delivery of security & feature updates, and license management, %s needs to"
+msgstr "לצורך קבלת עדכוני אבטחה ותכונות, וניהול רישיונות, %s צריך ל-"
+
+#: includes/freemius-strings.php:4013
+msgid "Freemius is our licensing and software updates engine"
+msgstr "Freemius הוא מנוע הרישוי ועדכוני התוכנה שלנו"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4121
+#, php-format
+msgid "If this is a long term duplicate, to keep automatic updates and paid functionality after %1$s, please %2$s."
+msgstr "אם מדובר בכפילות ארוכת טווח, כדי לשמור על עדכונים אוטומטיים ופונקציונליות בתשלום לאחר %1$s, אנא %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4241
+#, php-format
+msgid "Is %2$s a duplicate of %4$s?"
+msgstr "האם %2$s הוא כפילות של %4$s?"
+
+#: includes/freemius-strings.php:4321
+msgid "Join the Beta Program"
+msgstr "הצטרף לתוכנית הבטא"
+
+#: includes/freemius-strings.php:4326
+msgid "Join the Beta program"
+msgstr "הצטרף לתכנית הבטא"
+
+#: includes/freemius-strings.php:4397
+msgid "License"
+msgstr "רישיון"
+
+#: includes/freemius-strings.php:4412
+msgid "License Key"
+msgstr "מפתח רישיון"
+
+#: includes/freemius-strings.php:4422
+msgid "License key"
+msgstr "מפתח רישיון"
+
+#: includes/freemius-strings.php:4513
+msgid "Monthly"
+msgstr "חודשי"
+
+#: includes/freemius-strings.php:4529
+msgid "Names, slugs, versions, and if active or not"
+msgstr "שמות, מזהים (slugs), גרסאות, והאם הם פעילים או לא"
+
+#: includes/freemius-strings.php:4559
+msgid "New Version Available"
+msgstr "גרסה חדשה זמינה"
+
+#: includes/freemius-strings.php:4700
+msgid "Optional"
+msgstr "אופציונלי"
+
+#: includes/freemius-strings.php:4755
+msgid "Plan"
+msgstr "תוכנית"
+
+#: includes/freemius-strings.php:4935
+msgid "Products"
+msgstr "מוצרים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5125
+#, php-format
+msgid "Sharing diagnostic data helps to provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break the website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "שיתוף נתוני אבחון מסייע לספק פונקציונליות נוספת הרלוונטית לאתר שלך, להימנע מאי-התאמות של גרסאות WordPress או PHP העלולות לשבור את האתר, ולזהות אילו שפות ואזורים יש לתרגם ולהתאים עבור ה-%s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5209
+#, php-format
+msgid "So you can reuse the license when the %s is no longer active."
+msgstr "כדי שתוכל להשתמש ברישיון מחדש כאשר ה-%s אינו פעיל עוד."
+
+#: includes/freemius-strings.php:5286
+msgid "Subscription"
+msgstr "מנוי"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5382
+#, php-format
+msgid "The %1$s will be periodically sending essential license data to %2$s to check for security and feature updates, and verify the validity of your license."
+msgstr "%1$s ישלח מעת לעעת נתוני רישיון חיוניים אל %2$s כדי לבדק עדכוני אבטחה ותכונות, וכדי לאמת את תקפות הרישיון שלך."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5477
+#, php-format
+msgid "There is a %1$s of %2$s available."
+msgstr "יש %1$s של %2$s זמין."
+
+#: includes/freemius-strings.php:5531
+msgid "To ensure compatibility and avoid conflicts with your installed plugins and themes."
+msgstr "כדי להבטיח תאימות ולמנוע התנגשויות עם התוספים והערכות עיצוב המותקנים שלך."
+
+#: includes/freemius-strings.php:5570
+msgid "Trial"
+msgstr "ניסיון"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5690
+#, php-format
+msgid "View %s State"
+msgstr "הצג את מצב %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5696
+#, php-format
+msgid "View Basic %s Info"
+msgstr "הצג פרטי %s בסיסיים"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5877
+#, php-format
+msgid "Yes, %2$s is a duplicate of %4$s for the purpose of testing, staging, or development."
+msgstr "כן, %2$s הוא עותק כפול של %4$s לצורך בדיקות, סביבת Staging או פיתוח."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5928
+#, php-format
+msgid "You have a %s license."
+msgstr "ברשותך רישיון מסוג %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5934
+#, php-format
+msgid "You have purchased a %s license."
+msgstr "רכשת רישיון מסוג %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5970
+#: includes/freemius-strings.php:5976
+#, php-format
+msgid "You should receive a confirmation email for %1$s to your mailbox at %2$s. Please make sure you click the button in that email to %3$s."
+msgstr "עליך לקבל אימייל אישור עבור %1$s לתיבת הדואר שלך ב-%2$s. אנא ודא שלחצת על הכפתור באותו אימייל כדי %3$s."
+
+#: includes/freemius-strings.php:6157
+msgid "days"
+msgstr "ימים"
+
+#: includes/freemius-strings.php:6162
+msgid "deactivating"
+msgstr "מנטרל"
+
+#: includes/freemius-strings.php:6178
+msgid "hour"
+msgstr "שעה"
+
+#: includes/freemius-strings.php:6183
+msgid "hours"
+msgstr "שעות"
+
+#: includes/freemius-strings.php:6188
+msgid "license"
+msgstr "רישיון"
+
+#: includes/freemius-strings.php:6208
+msgid "optional"
+msgstr "אופציונלי"
+
+#: includes/freemius-strings.php:6213
+msgid "products"
+msgstr "מוצרים"
+
+#: includes/freemius-strings.php:6233
+msgid "skip"
+msgstr "דלג"
+
+#: includes/freemius-strings.php:6243
+msgid "subscription"
+msgstr "מנוי"
+
+#: includes/freemius-strings.php:6264
+msgid "trial"
+msgstr "ניסיון"
+
+#: includes/freemius-strings.php:6296
+msgctxt "Clone resolution admin notice products list label"
+msgid "Products"
+msgstr "מוצרים"
+
+#: includes/freemius-strings.php:6394
+msgctxt "as activating plugin"
+msgid "Activating"
+msgstr "מפעיל"
+
+#: includes/freemius-strings.php:6499
+msgctxt "as software license"
+msgid "License"
+msgstr "רישיון"
+
+#: includes/freemius-strings.php:6534
+msgctxt "close a window"
+msgid "Dismiss"
+msgstr "התעלם"
+
+#: includes/freemius-strings.php:6539
+msgctxt "close window"
+msgid "Dismiss"
+msgstr "התעלם"
+
+#: includes/freemius-strings.php:6587
+msgctxt "like websites"
+msgid "Sites"
+msgstr "אתרים"
+
+#: includes/freemius-strings.php:6602
+msgctxt "noun"
+msgid "Pricing"
+msgstr "תמחור"
+
+#: includes/freemius-strings.php:6627
+msgctxt "trial period"
+msgid "Trial"
+msgstr "גרסת ניסיון"
+
+#: includes/freemius-strings.php:6652
+msgctxt "verb"
+msgid "Opt In"
+msgstr "הצטרפות"
+
+#: includes/freemius-strings.php:6657
+msgctxt "verb"
+msgid "Opt Out"
+msgstr "ביטול הסכמה"
+
+#: includes/freemius-strings.php:6672
+msgctxt "verb"
+msgid "Skip"
+msgstr "דלג"
+
+#: includes/freemius-strings.php:6682
+msgctxt "verb"
+msgid "Upgrade"
+msgstr "שדרג"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:6688
+#, php-format
+msgctxt "x-ago"
+msgid "%s ago"
+msgstr "לפני %s"

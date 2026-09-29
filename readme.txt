@@ -7,26 +7,21 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and safe exclusions.
+A page cache and a Redis object cache for any WordPress site — LiteSpeed-aware, with smart auto-purge and safe exclusions.
 
 == Description ==
 
-Zinn® Cache connects a WordPress site to the server-side cache layer of the Zinn Digital® hosting platform. It is installed for you when a Zinn® site is provisioned. It runs on LiteSpeed Enterprise / OpenLiteSpeed hosts with the LSCache module, and degrades gracefully wherever a cache layer is absent — caching is a per-blueprint capability.
+Zinn® Cache makes a WordPress site faster wherever it is hosted. On a LiteSpeed server it drives the server's own page cache; on any other server it stores each page as a file and serves it before WordPress loads. It also installs a Redis object cache that proves it is working, and purges only the pages a change affects.
 
-**Which Zinn® cache plugin do I need?** Exactly one of them:
-
-* **Hosted with Zinn Digital®** — this plugin. Your Zinn® server already runs the page cache; Zinn® Cache controls it and connects it to your dashboard.
-* **Hosted anywhere else** — install **Zinn® Cache Engine**, which brings its own caching engine.
-
-They are different plugins doing different jobs, not a free and a paid tier of one plugin. You do not need both.
+It is installed for you on sites hosted with Zinn Digital®, and it works the same way on any other host. There is one Zinn® cache plugin; Zinn® Cache Pro is an optional add-on that installs on top of it (see Pro features below).
 
 **What it does**
 
-* **LSCache control.** Stamps `X-LiteSpeed-Cache-Control` and `X-LiteSpeed-Tag` headers on cacheable front-end responses so the LiteSpeed web server can serve full pages without hitting PHP or MySQL. A configurable public cache lifetime is applied. If the third-party LiteSpeed Cache plugin is present, page caching is deferred to it instead.
+* **Page cache on any server.** On a LiteSpeed server it stamps `X-LiteSpeed-Cache-Control` and `X-LiteSpeed-Tag` headers so the web server serves full pages without hitting PHP or MySQL. On any other server it stores each complete page as a file under `wp-content/cache/zinn-cache/` and serves it from `advanced-cache.php` before WordPress loads (it adds `define( 'WP_CACHE', true );` to `wp-config.php` for that, and removes it again when the page cache is turned off). Only visitors who are not signed in are served stored pages, and only addresses with no query string (tracking parameters such as `utm_source` are ignored). If the third-party LiteSpeed Cache plugin is present, page caching is deferred to it instead.
 * **Smart auto-purge.** When content changes — a post or page is saved, trashed or deleted, a comment is added or moderated, a taxonomy term is edited, the theme is switched, a plugin is (de)activated, or WordPress/plugins/themes are updated — only the affected pages (and the listings they appear on) are purged, via targeted LiteSpeed cache tags. The plugin can also mirror each purge to a control panel over a signed webhook, but only when `ZINN_CACHE_PANEL_URL` is defined — and the Zinn Digital® platform does not set it today, so on a Zinn-hosted site purges happen on the server and are not mirrored anywhere.
 * **Redis object cache.** A one-click toggle installs a self-contained Redis object-cache drop-in (requires the phpredis extension), offloading repeated database reads. It signs in with a plain password or a Redis 6+ ACL username and password, honours the usual `WP_REDIS_*` constants (including `WP_REDIS_PASSWORD` given as `array( 'user', 'password' )`, `WP_REDIS_PATH` and `WP_REDIS_MAXTTL`), and proves itself with a write-and-read round trip: if Redis refuses the login or the data, the settings screen says why instead of showing a cache that stores nothing. The plugin never overwrites another caching plugin's drop-in, refreshes its own drop-in after an update, and the drop-in falls back to an in-memory cache if Redis is unreachable, so the site keeps working.
 * **Host-managed object cache.** A host that installs this drop-in for its customers (as Zinn Digital® hosting does) defines `ZINN_CACHE_MANAGED_OBJECT_CACHE`; the plugin then never removes that drop-in and shows the cache as managed. A host whose Redis users may not run `SCAN` can define `ZINN_CACHE_FLUSH_SOCKET`, the path of a local helper that deletes only the calling site's keys, so "Flush cache" keeps working.
@@ -35,6 +30,20 @@ They are different plugins doing different jobs, not a free and a paid tier of o
 **Remote purging**
 
 A REST endpoint, `POST /wp-json/zinn-cache/v1/purge`, purges everything, specific URLs, or specific tags. It accepts a logged-in administrator, or any caller holding the site's `ZINN_CACHE_PANEL_SECRET` who signs the request body with it (HMAC-SHA256) — so a deploy script or your own tooling can clear the cache. Your Zinn® dashboard does not call it today; there is no dashboard purge button for this plugin yet.
+
+= Pro features =
+
+Everything above is free and stays free. [Zinn® Cache Pro](https://zinndigital.com/wordpress-plugins/zinn-cache-pro) is an add-on that installs on top of this plugin and adds:
+
+* A cache analytics screen: hit ratio, memory, keys and the slowest cache commands.
+* A slow-query and uncached-call finder that names the plugin or theme responsible.
+* An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer.
+* Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together.
+* Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript.
+* Scheduled database clean-up with a preview, and per-page cache rules.
+* Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills.
+
+Pro costs $49 a year for one site, $99 for five sites and $199 for unlimited sites, and every plan starts with a 14-day free trial, no card needed. Start it from the Pro tab of the Zinn® Cache screen.
 
 == Installation ==
 
@@ -73,9 +82,19 @@ cache purges can be mirrored to it and the Zinn® dashboard can show what change
   Zinn® dashboard. This is post-derived data: titles and the URLs a post links to. The post body
   itself is never sent, and no visitor data is included.
 
+* **Freemius (only if you opt in).** The plugin bundles the Freemius SDK, which handles the opt-in,
+  the upgrade path to Zinn® Cache Pro and licences. Nothing is sent until you opt in on the screen
+  shown after activation. When you do, the SDK sends your site's URL, WordPress, PHP and plugin
+  versions, language, and the administrator's name and email address to Freemius, and checks it
+  periodically. Before connecting it checks that the service is reachable by requesting
+  `https://api.freemius.com/v1/ping.json`, which sends nothing about your site. You can opt out at
+  any time. On a site hosted with Zinn Digital® (where the platform defines
+  `ZINN_CACHE_MANAGED_OBJECT_CACHE` or `ZINN_SITE_EVENTS_URL`), the SDK runs anonymously and asks nothing. Service: https://freemius.com · Terms:
+  https://freemius.com/terms/ · Privacy: https://freemius.com/privacy/
+
 **When nothing is sent.** The constants above are set by the Zinn® platform when it provisions
 a site — except `ZINN_CACHE_PANEL_URL`, which it does not set today. On a site that is not hosted with Zinn Digital® none of them exist, and the plugin makes **no
-outbound requests whatsoever** — caching, exclusions and the object cache all work locally.
+outbound requests whatsoever** unless you opt in to Freemius — caching, exclusions and the object cache all work locally.
 
 Service terms: https://zinndigital.com/legal/terms
 Privacy policy: https://zinndigital.com/legal/privacy
@@ -148,6 +167,11 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.7.0 =
+* New: a page cache for servers that are not LiteSpeed. Each page is stored as a file and served before WordPress loads; purges clear exactly the pages a change affects.
+* New: Freemius opt-in and the upgrade path to Zinn® Cache Pro, an add-on with cache analytics, a slow-query finder, an APCu tier, warm-up and image optimisation. A "Pro" tab on the settings screen and a "Go Pro" link on the Plugins screen show what it adds; neither is a notice, and both disappear once Pro is installed.
+* The object-cache drop-in (revision 3) lets Zinn® Cache Pro add its features without replacing it.
 
 = 1.6.0 =
 * Smaller download: the editable translation sources (.po) are no longer shipped; WordPress only ever loads the compiled .mo and .l10n.php files, which are unchanged.

@@ -1,6 +1,6 @@
 # Zinn® Cache
 
-Cache control for sites hosted with Zinn Digital® — smart auto-purge, a signed purge endpoint, a Redis object cache and safe exclusions.
+A page cache and a Redis object cache for any WordPress site — LiteSpeed-aware, with smart auto-purge and safe exclusions.
 
 Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zinndigital.com
 
@@ -10,11 +10,19 @@ Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zi
 
 It is free, and it updates itself from WordPress.org like any directory plugin.
 
+## Zinn® Cache Pro
+
+The add-on for Zinn® Cache: cache analytics, a slow-query and uncached-call finder, an APCu tier in front of Redis, prefetching, compression, tag-based purging, cache warm-up, WebP/AVIF images, unused-CSS removal, delayed JavaScript, database clean-up and per-page cache rules.
+
+- **[See what Zinn® Cache Pro adds, and what it costs](https://zinndigital.com/wordpress-plugins/zinn-cache-pro)**
+
+Everything in Zinn® Cache keeps working without it.
+
 ## Requirements
 
 | | |
 |---|---|
-| Version | `1.6.0` |
+| Version | `1.7.0` |
 | Requires WordPress | 6.6 or later |
 | Tested up to | WordPress **7.1** |
 | Requires PHP | 8.2 or later |
@@ -31,7 +39,6 @@ The listing is at https://wordpress.org/plugins/zinn-cache/. On a site we host i
 
 ## Our other WordPress plugins
 
-- **[zinn-cache-pro](https://github.com/Zinn-Digital/zinn-cache-pro)** — A complete caching and optimisation engine — full-page cache, object cache, database cleanup and CSS/JS optimisation — for WordPress sites hosted somewhere that provides no cache layer. On Zinn Digital® hosting, install Zinn® Cache instead. A GPLv3 fork of LiteSpeed Cache.
 - **[zinn-chat](https://github.com/Zinn-Digital/zinn-chat)** — A fast, privacy-respecting live chat for any WordPress site — answered by AI when you are busy, handed to a person when it matters, and emailed to you when you miss it. Under 10 KB on the page, and no requests at all until a visitor opens it.
 - **[zinn-connector](https://github.com/Zinn-Digital/zinn-connector)** — Connect any WordPress site to Zinn Digital® so scheduled articles publish to it. Pair with a code from your dashboard. · [Install from WordPress.org](https://wordpress.org/plugins/zinn-connector/)
 - **[zinn-migrate](https://github.com/Zinn-Digital/zinn-migrate)** — Install it on the WordPress site you are LEAVING. It packages that site — files and database — into one archive and gives you a private link to paste into your Zinn Digital® migration. For hosts that give you no FTP, no SSH and no control-panel API; if you have any of those, Zinn® can fetch the site directly and you do not need this.

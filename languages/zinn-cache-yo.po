@@ -21,8 +21,8 @@ msgstr "https://zinndigital.com/wordpress-plugins/zinn-cache"
 
 #. Description of the plugin
 #: zinn-cache.php
-msgid "For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe WordPress/WooCommerce exclusions. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead."
-msgstr "Fún àwọn ojúlé wẹ́bù tí a gbalejo pẹ̀lú Zinn Digital®. Ó ǹ ṣàkóso cache ojú-ìwé tí sẹ́fà Zinn® rẹ ti pèsè tẹ́lẹ̀ — ìfọ̀mọ́ra aládàáṣe ọlọgbọ́n lórí àwọn àyípadà àkóónú, ìpò òpin ìfọ̀mọ́ra tí a twọ̀wé fún àwọn irinṣẹ́ tirẹ̀, bọ́tìnì à Yíyí cache ohun-èló Redis padà àti àwọn àìyọ̀ sílẹ̀ WordPress/WooCommerce tó ní àìléwu. Èyí jẹ́ olùṣàkóso cache, kì í ṣe ẹ̀rọ cache. Ṣé o ǹ gbalejo ní ibòmíràn? Fi sori ẹ̀rọ Zinn® Cache Engine dípò rẹ̀."
+msgid "A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works."
+msgstr "Cache ojú-ewé kan ati cache ohun elo Redis kan fun eyikeyi aaye WordPress. O nlo cache soplifire LiteSpeed nibiti o wa ati cache disk tirẹ ni ibi gbogbo miiran, o npa ohun ti iyipada kan kan nikan nu, o si fihan pe asopọ Redis rẹ nṣiṣẹ."
 
 #. Author of the plugin
 #: zinn-cache.php
@@ -69,12 +69,12 @@ msgid "Full-page cache"
 msgstr "Ímọ́lẹ̀ ojú-ewé kíkún"
 
 #: includes/class-admin.php:148
-msgid "Served by LiteSpeed at the web server, before WordPress runs. This is where nearly all the speed comes from."
-msgstr "LiteSpeed lo n ṣe ìránṣẹ́ ní apá ìṣàkóso ẹ̀rọ ayélujára (web server), kí WordPress tó bẹ̀rẹ̀ sí í ṣiṣẹ́. Nibi ni gbogbo iyara náà ti wá fẹ́rẹ̀ẹ́ gbogbo rẹ̀."
+msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
+msgstr "Lori sẹ́fà LiteSpeed, àwọn ojúewé ni a n gbé kalẹ̀ nipasẹ sẹ́fà wẹẹbu ṣáájú ki WordPress tó bẹ̀rẹ̀ sí í ṣiṣẹ́. Lori eyikeyi sẹ́fà miiran, plọọgi-in yii n tọju ojuewé kọọkan gẹgẹ bi faili kan ti o si n gbe e kale ṣáájú ki WordPress tó kojọ. Eyi ni ibi ti o fẹrẹ jẹ pe gbogbo iyara ti wa."
 
 #: includes/class-admin.php:154
-msgid "Send LiteSpeed cache-control and tag headers on cacheable pages"
-msgstr "Fi awọn akọsori cache-control ati tag ti LiteSpeed sori awọn oju-iwe ti a le ṣe fipamọ (cacheable)"
+msgid "Cache pages for visitors who are not signed in"
+msgstr "Ṣe kaṣi (cache) àwọn ojú-ewé fún àwọn alábèwò tí kò tíì wọlé"
 
 #: includes/class-admin.php:160
 msgid "How long a page stays cached"
@@ -253,139 +253,143 @@ msgstr "Gbogbo ojú-ewé tí a ti fi pamọ́ fún ìgbà díẹ̀ ni a ti sọ 
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "A ti fi ibi-itoju ohun elo sori ẹrọ, ṣugbọn ko n tọju ohunkohun."
 
-#: includes/class-admin.php:428
-msgid "The page cache is on, but this server is not LiteSpeed."
-msgstr "Ibi ipamọoju oju-ewé wa ni títàn, sùgbọ́n sẹ̀fà náà kii ṣe LiteSpeed."
+#: includes/class-admin.php:433
+msgid "The page cache is on, but pages are not being stored yet."
+msgstr "Akọọlẹ pamọ ti oju-iwe wa tan, ṣugbodun a ko tii n ṣafipamọ awọn oju-iwe naa sibẹ."
 
-#: includes/class-admin.php:429
-msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
-msgstr "Awọn akọsori kaṣe nṣe ni fifiranṣẹ ati pe ko si nkan ti o n ka wọn, nitorina a ko fi kaṣe pamọ si awọn oju-iwe naa ni otitọ. Bi olùgbalejo rẹ boya LiteSpeed wa, tabi lọ si Zinn® hosting nibiti o ti jẹ iṣedede."
+#: includes/class-admin.php:434
+msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
+msgstr "WordPress kò tíì gbé drop-in ìpamọ́ ojú-ewé (page-cache) sórí ayélujára náà. Ó máa bẹ̀rẹ̀ nígbà tí ojú-ewé tí ó kàn bá ń kó; bí kò bá ṣe bẹ́ẹ̀, ṣàyẹ̀wò pé WP_CACHE jẹ́ otítọ́ (true) nínú wp-config.php."
 
-#: includes/class-admin.php:437
+#: includes/class-admin.php:443
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Àpò ìpamọ́ ohun púpọ̀ wà l'ọ́wọ́, ṣùgbọ́n sẹ̀fà yìí kò ní ìtìlẹ́yìn Redis."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:444
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Àì śe ètò-àfíkùn phpredis ni a fi sí i, nítorí náà àìśe ètò náà kò jé kí a lè lò ó, sísí àyè sí WordPress sì ń lo ìpàmó ìrántí ara rẹ. Bèrè lọ́wọ́ olùgbàkà rẹ láti jẹ kí phpredis sisẹ́."
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Nothing is being cached."
 msgstr "Kò sí ohun tí a ń fi pamọ́ sínú káṣì."
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:453
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Àwọn àtúnṣe méjèèjì ti pa, nítorí náà àfikún yìí kò mú kí ojú-wẹ́bù náà yára síi."
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Caching is active on this site."
 msgstr "Ìpamọ́ wà ní sísẹ́ lórí ojú òpó wẹ́bù yìí."
 
-#: includes/class-admin.php:489
+#: includes/class-admin.php:495
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis kọ orúkọ olùṣe tàbí ọ̀rọ̀ aṣínà náà. Ṣàyẹ̀wò àwọn ẹ̀rí ìdánimọ̀ Redis nínú wp-config.php tàbí lórí iboju yìí."
 
-#: includes/class-admin.php:491
+#: includes/class-admin.php:497
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis gbawọ fun wíwọlé ṣugbọn kò gba aaye yii laaye lati fipamọ awọn bọtini rẹ. Olumulo Redis nilo aṣẹ fun aami-iwaju bọtini aaye yii."
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis kọ nọmba ibi ipamọ data naa. Ṣayẹwo eto ibi ipamọ data Redis."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:501
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis ti ni iranti ti o tan ti o si n kọ data titun."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:503
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "A ko fi ìgbòkègbòó phpredis sori ẹrọ, nitorina WordPress n lo àfikún ìpamọ́ rẹ̀ ninu iranti. Bi olùgbàlejò rẹ lati jẹ ki phpredis ṣiṣẹ."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:505
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "A ti ṣeto WP_REDIS_DISABLED ninu wp-config.php, nitorina a ti pa ibi ipamọ ohun (object cache) mọ."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Ko le de ba sẹ́wà Redis. Ṣàyẹ̀wò olùgbàgbọ́ àti èbúté Redis, kí o sì rí i pé Redis ń ṣiṣẹ́ lọ́wọ́."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:509
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis kò dáye tí a ṣẹ̀ṣẹ̀ kọ sínú rẹ̀ padà. Ṣàyẹ̀wò àwọn àkọsílẹ̀ ẹ̀rọ ìṣẹ̀ṣẹ Redis."
 
-#: includes/class-admin.php:518
+#: includes/class-admin.php:524
 msgid "Web server"
 msgstr "Sẹ́fà wẹ́bù"
 
-#: includes/class-admin.php:520
-msgid "LiteSpeed — page caching available"
-msgstr "LiteSpeed — ìpamọ́ ojúewé wà fún lo"
+#: includes/class-admin.php:526
+msgid "LiteSpeed — pages are cached by the web server"
+msgstr "LiteSpeed — olupin webu nṣe ikojọpọ kaṣe fun awọn oju-iwe naa"
 
-#: includes/class-admin.php:521
-msgid "not LiteSpeed — page caching unavailable"
-msgstr "kii ṣe LiteSpeed — caching ojú-ewé kò sí"
+#: includes/class-admin.php:527
+msgid "not LiteSpeed — pages are cached on disk by this plugin"
+msgstr "kii iṣẹ LiteSpeed — awọn oju-iwe ti wa ni ipamọ sori disk nipasẹ afikun yii"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:530
+msgid "Pages stored on disk"
+msgstr "Àwọn ojúewé tí a ti fi pamọ́ sórí disk"
+
+#: includes/class-admin.php:534
 msgid "Redis support"
 msgstr "Àtìlẹ́yìn Redis"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:536
 msgid "phpredis is installed"
 msgstr "a fi phpredis sori ẹrọ"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:537
 msgid "phpredis is not installed"
 msgstr "phpredis ko ni iṣagbega"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:540
 msgid "Page lifetime"
 msgstr "Akoko aye oju-iwe"
 
-#: includes/class-admin.php:605
+#: includes/class-admin.php:615
 msgid "You are not allowed to purge the cache."
 msgstr "A kò gbà ọ́ láàyè láti sọ ìpamọ́ di mímọ́."
 
-#: includes/class-admin.php:611
+#: includes/class-admin.php:621
 msgid "Cache purge requested."
 msgstr "A ti béèrè fún sísọ ìpamọ́ di mímọ́."
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:649
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: a fi ohun elo ìpamọ́ ohun àmúṣelọ́wọ́ mìíràn sori, nitorina a ko n ṣakoso ohun elo ìpamọ́ ohun àmúṣelọ́wọ́ Redis nipasẹ àfikún yii."
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:663
 msgid "detected"
 msgstr "a rí i"
 
-#: includes/class-admin.php:654
+#: includes/class-admin.php:664
 msgid "not detected"
 msgstr "a kò rí i"
 
-#: includes/class-admin.php:658
+#: includes/class-admin.php:668
 msgid "phpredis extension missing"
 msgstr "ẹ̀yà-àfikún phpredis kò sí"
 
-#: includes/class-admin.php:660
+#: includes/class-admin.php:670
 msgid "installed, not storing anything"
 msgstr "ti fi sori ẹrọ, ko fipamọ ohunkohun"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:672
 msgid "active, managed by your host"
 msgstr "ti n ṣiṣẹ, ti olugbalejo rẹ nṣakoso rẹ"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:674
 msgid "active"
 msgstr "ń ṣiṣẹ́"
 
-#: includes/class-admin.php:666
+#: includes/class-admin.php:676
 msgid "inactive"
 msgstr "kò ń ṣiṣẹ́"
 
-#: includes/class-admin.php:671
+#: includes/class-admin.php:681
 msgid "LiteSpeed cache:"
 msgstr "Ìpamọ́ LiteSpeed:"
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:683
 msgid "Redis object cache:"
 msgstr "Ìpamọ́-nǹkan Redis:"
 
@@ -417,6 +421,18 @@ msgstr "A kò lè yọ drop-in ìpamọ́-nǹkan kúrò."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "A kò lè kọ sínú ètò-fáìlì WordPress, nítorí náà a kò lè ṣàkóso drop-in ìpamọ́-nǹkan."
 
+#: includes/class-page-cache.php:291
+msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
+msgstr "Płọgìnnì cache ojú-ewé mìíràn ti fi wp-content/advanced-cache.php sori ẹrọ. Yọ plọgìnnì yẹn kuro kọkọ, tabi tẹsiwaju lati lo cache ojú-ewé rẹ̀."
+
+#: includes/class-page-cache.php:294
+msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
+msgstr "A ko le kọ sí inú fọ́lídà wp-content/cache/zinn-cache, nítorí náà a ko le fi pamọ́ fún àwọn ojú ewé."
+
+#: includes/class-page-cache.php:301
+msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
+msgstr "A kò lè kọ wp-content/advanced-cache.php, nítorí náà a kò lè fi ojú èwé pamọ́ (cache)."
+
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
 msgstr "Wo àwọn àkọsílẹ̀ ìtújáde Zinn Digital®."
@@ -434,6 +450,64 @@ msgstr "A ko le ṣe igbasilẹ imudojuiwọn naa lati iṣẹ imudojuiwọn Zin
 #: includes/class-updater.php:327
 msgid "The downloaded update failed its integrity check and was not installed."
 msgstr "Ìmúdójúìwọ̀n tí a gbà sílẹ̀ kùnà àyẹ̀wò ìdúróṣinṣin rẹ̀, a kò sì fi sórí ẹ̀rọ."
+
+#: includes/class-upsell.php:85
+msgid "Go Pro"
+msgstr "Lo si Pro"
+
+#: includes/class-upsell.php:112
+msgid "A cache analytics screen: hit ratio, memory, keys and the slowest cache commands."
+msgstr "Ojú-wò titupọ̀ kaṣi: ìwọ̀n ìgbàtí ó ṣe déede, ìṣùpọ̀ ìrántí, àwọn kọ́ọ̀sì àti àwọn àṣẹ kaṣi tó lọ́ra jù lọ."
+
+#: includes/class-upsell.php:113
+msgid "A slow-query and uncached-call finder that names the plugin or theme responsible."
+msgstr "Ohun ìfárápá ìbéèrè aláìjẹ àti ìpe tí kò ní àkójọpọ̀ tí ó sọ orúkọ àfikún tàbí àkòrí tí ó ní ojúṣe."
+
+#: includes/class-upsell.php:114
+msgid "An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer."
+msgstr "Ipele APCu ti o wa ninu iranti ni iwaju Redis fun awọn bọtini gbigbona julọ, pẹlu igbasilẹ iṣaaju, fisinuirindigbindigbin ati igbinary serializer."
+
+#: includes/class-upsell.php:115
+msgid "Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together."
+msgstr "Fífọ̀ tí ó dá lórí tágì fún àwọn àpilẹ̀kọ, àwọn ọ̀rọ̀, àti àwọn ọjà WooCommerce, kí bẹ́ẹ̀ gẹ́gẹ́ kí ohun tí ó yí padà nìkan lè jẹ́ nu kúrò, pẹ̀lú ìfọ̀ àwọn kíìṣì ojú-ewé àti ohun (object caches) ní àpapọ̀."
+
+#: includes/class-upsell.php:116
+msgid "Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript."
+msgstr "Àmúṣẹ gbígbóná àkójọpọ̀ fúnra rẹ̀ lẹ́yìn ìgbà tí a ti nu ohun tí kò wúlò nù, àwọn àwòrán WebP àti AVIF, ìyọkúrò CSS tí a kò lò àti JavaScript tí a sun síwájú."
+
+#: includes/class-upsell.php:117
+msgid "Scheduled database clean-up with a preview, and per-page cache rules."
+msgstr "Ìṣètò ìfọ̀mọ́lẹ̀ ibi ìpamọ́ data pẹ̀lu àkọ́wẹ́wẹ́, àti àwọn òfin cache fún ojú-ewé kọọ̀kan."
+
+#: includes/class-upsell.php:118
+msgid "Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills."
+msgstr "Awọn ìkìlọ̀ ìlera kaṣe ninu daṣibọọdu Zinn Digital® rẹ nigbati ipin ikọlu ba lọ silẹ tabi iranti ba kun."
+
+#: includes/class-upsell.php:132
+msgid "Everything on the other tabs is free and stays free. Pro installs on top of this plugin and adds:"
+msgstr "Gbogbo ohun ti o wa ni ori awọn taabu miiran jẹ ọfẹ ati pe yoo wa ni ọfẹ. Pro fi sori ẹrọ lori afikun yii o si ṣafikun:"
+
+#: includes/class-upsell.php:134
+msgid "See what Pro costs"
+msgstr "Wo iye ti Pro jẹ"
+
+#. translators: 1: yearly price for one site, 2: for five sites, 3: for unlimited sites (each already formatted, e.g. $49).
+#: includes/class-upsell.php:138
+#, php-format
+msgid "Every plan starts with a 14-day free trial, no card needed: %1$s a year for one site, %2$s for five sites, %3$s for unlimited sites."
+msgstr "Gbogbo ètò bẹ̀rẹ̀ pẹ̀lú ọjọ́ ìdánwò ọ̀fẹ́ mẹ́rìndínlógún, kò nílò káàdì: %1$s lọ́dún fún ojula kan, %2$s fún ojula márùn-ún, %3$s fún àwọn ojula tí kò ní opin."
+
+#: includes/class-wp-config.php:66
+msgid "wp-config.php was not found, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "A ko ri wp-config.php, nitorinaa a ko le tan WP_CACHE. Fi define( 'WP_CACHE', true ); kun un."
+
+#: includes/class-wp-config.php:72
+msgid "wp-config.php already defines WP_CACHE as false, so the page cache cannot start. Change it to true."
+msgstr "wp-config.php ti ṣalaye WP_CACHE tẹlẹ gẹgẹ bi eke, nitorina kaṣe oju-iwe ko le bẹrẹ. Yipada si otitọ."
+
+#: includes/class-wp-config.php:79
+msgid "wp-config.php is not writable, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "A kò lè kọ si wp-config.php, nitorina a kò le tan WP_CACHE. Fi define( 'WP_CACHE', true ); kun un."
 
 #: includes/class-zinn-cache-admin-fields.php:580
 msgid "Stored. Type a new value to replace it."
@@ -460,6 +534,8 @@ msgid "Remove this row"
 msgstr "Yọ ala yi kuro"
 
 #: includes/class-zinn-cache-admin-fields.php:725
+#: includes/freemius-strings.php:2132
+#: includes/freemius-strings.php:4997
 msgid "Remove"
 msgstr "Yọ kúrò"
 
@@ -503,6 +579,8 @@ msgid "Settings sections"
 msgstr "Àwọn apá ètò"
 
 #: includes/class-zinn-cache-admin-ui.php:871
+#: includes/freemius-strings.php:2420
+#: includes/freemius-strings.php:5291
 msgid "Support"
 msgstr "Ìtìlẹ̀yìn"
 
@@ -739,3 +817,4067 @@ msgstr "Lo awon awco ati iwọn mi"
 #: includes/class-zinn-cache-style-presets.php:127
 msgid "Leave this off and the preset is used exactly as it is."
 msgstr "Fi è yìí sílẹ̀, a ó sì lo àkójọpọ̀ náà gẹ́gẹ́ bí ó ṣe wà gan-an."
+
+#: includes/freemius-strings.php:21
+#: includes/freemius-strings.php:6306
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "a license key"
+msgstr "bọtìnì ìwé-àṣẹ"
+
+#: includes/freemius-strings.php:25
+#: includes/freemius-strings.php:3062
+msgid "A user has not yet been associated with the license, which is necessary to prevent unauthorized activation. To assign the license to your user, you agree to share your WordPress user's full name and email address."
+msgstr "A ko tii sọ olumulo kan pọ mọ iwe-aṣẹ naa, eyiti o ṣe pataki lati ṣe idiwọ imuṣiṣẹ laisi aṣẹ. Lati sọ iwe-aṣẹ naa fun olumulo rẹ, o gba lati pin orukọ kikun ati adirẹsi imeeli ti olumulo WordPress rẹ."
+
+#: includes/freemius-strings.php:29
+#: includes/freemius-strings.php:6253
+msgid "the above-mentioned sites"
+msgstr "awọn aaye ti a mẹnuba loke"
+
+#: includes/freemius-strings.php:33
+#: includes/freemius-strings.php:3072
+msgid "Account"
+msgstr "Akawunti"
+
+#: includes/freemius-strings.php:37
+#: includes/freemius-strings.php:3077
+msgid "Account Details"
+msgstr "Alaye Akọọlẹ"
+
+#: includes/freemius-strings.php:41
+#: includes/freemius-strings.php:3082
+msgid "Account is pending activation. Please check your email and click the link to activate your account and then submit the affiliate form again."
+msgstr "Àsọkọ ti wà fún ìmúṣẹ. Jọ̀wọ́ ṣàyẹ̀wò imeeli rẹ kí o sì tẹ ìjápọ̀ náà láti mú àsọkọ rẹ ṣiṣẹ́ lẹ́yìn náà tún fi fọ́ọ̀mù alábàákẹ́gbẹ́ sílẹ̀."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:46
+#: includes/freemius-strings.php:5838
+#, php-format
+msgid "Would you like to merge %1$s into %2$s?"
+msgstr "Ṣe o fẹ lati dapọ %1$s sinu %2$s?"
+
+#: includes/freemius-strings.php:50
+#: includes/freemius-strings.php:3087
+msgid "Actions"
+msgstr "Àwọn Ìgbésẹ̀"
+
+#: includes/freemius-strings.php:54
+#: includes/freemius-strings.php:3092
+msgid "Activate"
+msgstr "Mú ṣiṣẹ́"
+
+#: includes/freemius-strings.php:58
+#: includes/freemius-strings.php:62
+#: includes/freemius-strings.php:3115
+msgid "Activate Free Version"
+msgstr "Mú Ẹ̀dọ̀ Ọ̀fẹ́ Ṣiṣẹ́"
+
+#: includes/freemius-strings.php:66
+#: includes/freemius-strings.php:3120
+msgid "Activate License"
+msgstr "Muu iwe-alase ṣiṣẹ"
+
+#: includes/freemius-strings.php:70
+#: includes/freemius-strings.php:6131
+msgid "activate a license here"
+msgstr "mú iwe-aṣẹ ṣiṣẹ nibi"
+
+#: includes/freemius-strings.php:74
+#: includes/freemius-strings.php:4793
+msgid "Please enter the license key that you received in the email right after the purchase:"
+msgstr "Jọwọ tẹ bọtọ̀ ìwé-àṣẹ ti o gba ninu imeeli lẹhin rira naa:"
+
+#: includes/freemius-strings.php:78
+#: includes/freemius-strings.php:3130
+msgid "Activate license on all sites in the network."
+msgstr "Muu iwe-alase ṣiṣẹ lori gbogbo awọn aaye ninu nẹtiwọki naa."
+
+#: includes/freemius-strings.php:82
+#: includes/freemius-strings.php:3125
+msgid "Activate license on all pending sites."
+msgstr "Mú ìwé-àṣẹ ṣiṣẹ́ lórí gbogbo àwọn ojú-wẹ́bù tó ń dúró de ìfọwọ́sọ́pọ̀."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:87
+#: includes/freemius-strings.php:2859
+#, php-format
+msgid " The paid version of %1$s is already installed. Please activate it to start benefiting from the %2$s features. %3$s"
+msgstr "Ẹya ti a sanwo fún %1$s ti wà lórí ẹ̀rọ tẹ́lẹ̀. Jọ̀wọ́ mú un ṣiṣẹ́ láti bẹ̀rẹ̀ sí í jẹ àǹfààní àwọn ànímọ́ %2$s. %3$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:92
+#: includes/freemius-strings.php:2865
+#, php-format
+msgid " The paid version of %1$s is already installed. Please navigate to the %2$s to activate it and start benefiting from the %3$s features."
+msgstr "Ẹya ti a sanwo fún %1$s ti wà lórí ẹ̀rọ náà tẹ́lẹ̀. Jọ̀wọ́ lọ sí %2$s láti mú un ṣiṣẹ́ kí o sì bẹ̀rẹ̀ sí í jẹ àǹfààní àwọn ẹ̀yà %3$s náà."
+
+#: includes/freemius-strings.php:96
+#: includes/freemius-strings.php:3135
+msgid "Activate this add-on"
+msgstr "Mú àfikún yìí ṣiṣẹ́"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:101
+#: includes/freemius-strings.php:3098
+#, php-format
+msgid "Activate %s"
+msgstr "Mú %s ṣiṣẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:106
+#: includes/freemius-strings.php:3110
+#, php-format
+msgid "Activate %s features"
+msgstr "Mú àwọn ẹ̀yà %s ṣiṣẹ́"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:111
+#: includes/freemius-strings.php:6276
+#, php-format
+msgctxt "%s - plugin name. As complete \"PluginX\" activation now"
+msgid "Complete \"%s\" Activation Now"
+msgstr "Parí Ìmúṣẹ \" %s\" Bayìí"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:116
+#: includes/freemius-strings.php:3104
+#, php-format
+msgid "Activate %s Plan"
+msgstr "Mú Ètò %s ṣiṣẹ"
+
+#: includes/freemius-strings.php:120
+#: includes/freemius-strings.php:3140
+msgid "Activated"
+msgstr "Ti ṣiṣẹ lọwọ"
+
+#: includes/freemius-strings.php:124
+#: includes/freemius-strings.php:3145
+msgid "Activating"
+msgstr "Ń ṣiṣẹ́ lọ́wọ́"
+
+#: includes/freemius-strings.php:128
+#: includes/freemius-strings.php:3150
+msgid "Activating license"
+msgstr "Ìṣiṣẹ́ ìwé-àṣẹ lọ́wọ́"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:133
+#: includes/freemius-strings.php:6022
+#, php-format
+msgid "Your account was successfully activated with the %s plan."
+msgstr "A ti mú àkáwù rẹ ṣiṣẹ́ pẹ̀lú ètò %s lórí ìnáwó náà."
+
+#: includes/freemius-strings.php:137
+#: includes/freemius-strings.php:6366
+msgctxt "active add-on"
+msgid "Active"
+msgstr "Gbíṣẹ́"
+
+#: includes/freemius-strings.php:141
+#: includes/freemius-strings.php:3167
+msgid "Add another domain"
+msgstr "Fi domain miiran kun un"
+
+#: includes/freemius-strings.php:145
+#: includes/freemius-strings.php:3177
+msgid "Add-Ons"
+msgstr "Àwọn Ohun Èlò Ìfikún"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:150
+#: includes/freemius-strings.php:3156
+#, php-format
+msgid "Add Ons for %s"
+msgstr "Àwọn Àfikún fún %s"
+
+#: includes/freemius-strings.php:154
+#: includes/freemius-strings.php:5751
+msgid "We couldn't load the add-ons list. It's probably an issue on our side, please try to come back in few minutes."
+msgstr "A ko le gbe àkọọkan àwọn àfikún wá. Ó ṣe e ṣe kí o jẹ́ aṣìṣe láti ọ̀dọ̀ wa, jọ̀wọ́ gbiyanju láti padà bọ̀ lẹ́yìn ìṣẹ́jú díẹ̀."
+
+#: includes/freemius-strings.php:158
+#: includes/freemius-strings.php:3172
+msgid "Add-On"
+msgstr "Àfikún"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:163
+#: includes/freemius-strings.php:2931
+#, php-format
+msgid "%s is a premium only add-on. You have to purchase a license first before activating the plugin."
+msgstr "%s jẹ àfikún tó níyelẹ̀ nìkan. O ní láti rà ìwé-àṣẹ kan kọ́kọ́ kí o tó mú ẹ̀ka-ìṣètò yìí ṣiṣẹ́."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:168
+#: includes/freemius-strings.php:2883
+#, php-format
+msgid "%s Add-on was successfully purchased."
+msgstr "A ti yọọ tita %s Add-on yẹn daradara."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:173
+#: includes/freemius-strings.php:5993
+#, php-format
+msgid "Your %s Add-on plan was successfully upgraded."
+msgstr "Aṣọ eto %s Add-on rẹ ti ni ilọsiwaju ni aṣeyọri."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:178
+#: includes/freemius-strings.php:2925
+#, php-format
+msgid "%s free trial was successfully cancelled. Since the add-on is premium only it was automatically deactivated. If you like to use it in the future, you'll have to purchase a license."
+msgstr "A ti fagile idanwo ọfẹ %s ni aṣeyọri. Niwọn igba ti afikun naa jẹ ti ètò agbara giga nikan, o ti wó lulẹ laifọwọyi. Ti o ba fẹ lo ni ọjọ iwaju, iwọ yoo nilo lati ra iwe-ašẹ kan."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:183
+#: includes/freemius-strings.php:6378
+#, php-format
+msgctxt "addonX cannot run..."
+msgid "%s cannot run without the plugin."
+msgstr "%s kò lè ṣiṣẹ́ láìsí afikún náà."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:188
+#: includes/freemius-strings.php:6372
+#, php-format
+msgctxt "addonX cannot run without pluginY"
+msgid "%1$s cannot run without %2$s."
+msgstr "%1$s kò lè ṣiṣẹ́ láìní %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:193
+#: includes/freemius-strings.php:4332
+#, php-format
+msgid "Just letting you know that the add-ons information of %s is being pulled from an external server."
+msgstr "Mo nikan n sọ fun ọ pe alaye awọn add-ons ti %s ni a n fa jade lati serva miiran."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:198
+#: includes/freemius-strings.php:3162
+#, php-format
+msgid "Add Ons of module %s"
+msgstr "Àwọn àfikún ti mòdùlù %s"
+
+#: includes/freemius-strings.php:202
+#: includes/freemius-strings.php:3187
+msgid "Address"
+msgstr "Adirẹsi"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:207
+#: includes/freemius-strings.php:3193
+#, php-format
+msgid "Address Line %d"
+msgstr "Adirẹẹsi %d"
+
+#: includes/freemius-strings.php:211
+#: includes/freemius-strings.php:3198
+msgid "Affiliate"
+msgstr "Alábàṣẹpọ̀"
+
+#: includes/freemius-strings.php:215
+#: includes/freemius-strings.php:3830
+msgid "Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support."
+msgstr "Nitori pe o ru awọn ohun elo afinance wa, a ti pinnu lati dènà akọọlẹ afinance rẹ fun igba diẹ. Ti o ba ni ibeere kankan, jọwọ kan si ẹgbẹ atilẹyin."
+
+#: includes/freemius-strings.php:219
+#: includes/freemius-strings.php:6033
+msgid "Your affiliation account was temporarily suspended."
+msgstr "A ti fi ìdúró bújú tọ́ jọ̀ mọ́ àkọsílẹ̀ ìsopọ̀ rẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:224
+#: includes/freemius-strings.php:6028
+#, php-format
+msgid "Your affiliate application for %1$s has been accepted! Log in to your affiliate area at: %2$s."
+msgstr "A ti gba ohun elo alabaṣepọ rẹ fun %1$s! Wọ inu agbegbe alabaṣepọ rẹ ni: %2$s."
+
+#: includes/freemius-strings.php:228
+#: includes/freemius-strings.php:5316
+msgid "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days."
+msgstr "Ẹ ṣe ekunra fun titẹ-wọle sí ètò affiliate wa, laanu, a ti pinnu ni akoko yii lati kọ ohun elo rẹ silẹ. Jọwọ tun gbiyanju lẹhin ọjọ 30."
+
+#: includes/freemius-strings.php:232
+#: includes/freemius-strings.php:5321
+msgid "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information."
+msgstr "Ẹ ṣe pupọ fun didapọ mọ eto alabaṣepọ wa, a o ṣe ayẹwo awọn alaye rẹ laarin ọjọ mẹrinla to n bọ yoo si pada ba yin sọrọ pẹlu alaye siwaju sii."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:237
+#: includes/freemius-strings.php:3027
+#, php-format
+msgid "%s tracking cookie after the first visit to maximize earnings potential."
+msgstr "%s kuki abániṣmọ̀lé lẹ́yìn àbẹ̀wọ̀ àkọ́kọ́ láti mú agbára owó wíwọlé pọ̀ sí i."
+
+#: includes/freemius-strings.php:241
+#: includes/freemius-strings.php:3203
+msgid "Affiliation"
+msgstr "Ajọṣepọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:246
+#: includes/freemius-strings.php:4652
+#, php-format
+msgid "Once your license expires you can still use the Free version but you will NOT have access to the %s features."
+msgstr "Nígbà tí ìwé-àṣẹ rẹ bá kọjá, o tun lè lo ẹ̀yà Ọ̀fẹ́ náà sùgbọ́n o KÒ NÍ ní àǹfààní sí àwọn ànímọ́ %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:251
+#: includes/freemius-strings.php:4658
+#, php-format
+msgid "Once your license expires you will no longer be able to use the %s, unless you activate it again with a valid premium license."
+msgstr "Ní báyìí tí ìwé àṣẹ rẹ ti parí, o kì yóò tún lè lo %s náà mọ́, àfi tó o bá tún mú un ṣiṣẹ́ pẹ̀lú ìwé àṣẹ tó pé oṣù tàbí ọdún tí ó wúlò."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:256
+#: includes/freemius-strings.php:5917
+#, php-format
+msgid "You can still enjoy all %1$s features but you will not have access to %2$s security & feature updates, nor support."
+msgstr "O tun le gbadun gbogbo awọn ẹ̀yà %1$s ṣugbọn kò ní sí ànfàani fún ọ láti wọlé sí àwọn ìsọdọ̀tun ààbò àti ẹ̀yà %2$s, bẹ́ẹ̀ ni kò sì ní sí àtìlẹ́yìn."
+
+#: includes/freemius-strings.php:260
+#: includes/freemius-strings.php:5366
+msgid "Thanks for upgrading."
+msgstr "Ẹ ṣe pupọ funigbega rẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:265
+#: includes/freemius-strings.php:3209
+#, php-format
+msgid "After your free %1$s, pay as little as %2$s"
+msgstr "Lẹhin %1$s ọfẹ rẹ, sanwo bi kekere bi %2$s"
+
+#: includes/freemius-strings.php:269
+#: includes/freemius-strings.php:3214
+msgid "Agree & Activate License"
+msgstr "Farọ Ìwé Àṣẹ & Mú Ṣiṣẹ"
+
+#: includes/freemius-strings.php:273
+#: includes/freemius-strings.php:4071
+msgid "I Agree - Change User"
+msgstr "Mo Gbà - Yipada Olumulo"
+
+#: includes/freemius-strings.php:277
+#: includes/freemius-strings.php:3219
+msgid "All Requests"
+msgstr "Gbogbo Awọn Ìbéèrè"
+
+#: includes/freemius-strings.php:281
+#: includes/freemius-strings.php:3224
+msgid "All Types"
+msgstr "Gbogbo Awọn Iru"
+
+#: includes/freemius-strings.php:285
+#: includes/freemius-strings.php:6136
+msgid "allow"
+msgstr "gba laaye"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:290
+#: includes/freemius-strings.php:5982
+#, php-format
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving the %s."
+msgstr "O ti kọ́ sínú ìtọpa ìlò wa tẹ́lẹ̀, èyí tí ó ń ràn wọ̀n lọ́wọ́ láti máa mú kí %s sunwọ̀n síi."
+
+#: includes/freemius-strings.php:294
+#: includes/freemius-strings.php:5987
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving them."
+msgstr "Ẹ ti fọwọ si tẹlẹ lati kopa ninu igbeyewo lilo wa, eyiti o n ran wa lọwọ lati tẹsiwaju lati mu wọn dara si."
+
+#: includes/freemius-strings.php:298
+#: includes/freemius-strings.php:3240
+msgid "Amount"
+msgstr "Iye"
+
+#: includes/freemius-strings.php:302
+#: includes/freemius-strings.php:6469
+msgctxt "as once a year"
+msgid "Annual"
+msgstr "Ọdọọdún"
+
+#: includes/freemius-strings.php:306
+#: includes/freemius-strings.php:6474
+msgctxt "as once a year"
+msgid "Annually"
+msgstr "Lọ́dọọdún"
+
+#: includes/freemius-strings.php:310
+#: includes/freemius-strings.php:3277
+msgid "Anonymous feedback"
+msgstr "Abajade ailorukọ"
+
+#: includes/freemius-strings.php:314
+#: includes/freemius-strings.php:6404
+msgctxt "as application program interface"
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:318
+#: includes/freemius-strings.php:3287
+msgid "Apply on all sites in the network."
+msgstr "Lo lori gbogbo awọn aaye ninu nẹtiwọki naa."
+
+#: includes/freemius-strings.php:322
+#: includes/freemius-strings.php:3282
+msgid "Apply on all pending sites."
+msgstr "Fi sí gbogbo awọn aaye ti o wa ni isunmọ."
+
+#: includes/freemius-strings.php:326
+#: includes/freemius-strings.php:3292
+msgid "Apply to become an affiliate"
+msgstr "Fi ibeere silẹ lati di alabaṣepọ"
+
+#: includes/freemius-strings.php:330
+#: includes/freemius-strings.php:3297
+msgid "Approve & Start Trial"
+msgstr "Fọwọsi & Bẹrẹ Idanwo"
+
+#: includes/freemius-strings.php:334
+#: includes/freemius-strings.php:4357
+msgid "Kindly tell us the reason so we can improve."
+msgstr "Ẹ jọwọ ẹ sọ idi rẹ fun wa ki a le ṣe atunṣe."
+
+#: includes/freemius-strings.php:338
+#: includes/freemius-strings.php:3898
+msgid "Enter the email address you've used for the upgrade below and we will resend you the license key."
+msgstr "Tẹ adirẹsi imeeli ti o lo fun igbega ni isalẹ, a o si tun ran bọtini iwe-aṣẹ si ọ."
+
+#: includes/freemius-strings.php:342
+#: includes/freemius-strings.php:3893
+msgid "Enter the email address you've used during the purchase and we will resend you the license key."
+msgstr "Fi adirẹsi imeeli ti o lo lakoko rira sii silẹ, a o si tun fi bọtọ iwe-aṣẹ ranṣẹ si ọ."
+
+#: includes/freemius-strings.php:346
+#: includes/freemius-strings.php:3328
+msgid "Associate with the license owner's account."
+msgstr "Sopọ pọ̀ mọ́ àkántì olówó ìwé-àṣẹ náà."
+
+#: includes/freemius-strings.php:350
+#: includes/freemius-strings.php:6514
+msgctxt "as the plugin author"
+msgid "Author"
+msgstr "Olùkọ̀wé"
+
+#: includes/freemius-strings.php:354
+#: includes/freemius-strings.php:4220
+msgid "Invalid module ID."
+msgstr "ID timodule ko wulo."
+
+#: includes/freemius-strings.php:358
+#: includes/freemius-strings.php:5922
+msgid "You do not have a valid license to access the premium version."
+msgstr "O ko ni iwe-ašẹ to tọ lati wọle si ẹ̀ya ti o ga julọ."
+
+#: includes/freemius-strings.php:362
+#: includes/freemius-strings.php:3333
+msgid "Auto installation only works for opted-in users."
+msgstr "Fifi sori ẹrọ laifọwọyi nikan nṣiṣẹ fun awọn olumulo ti o ti yan lati kopa."
+
+#: includes/freemius-strings.php:366
+#: includes/freemius-strings.php:4900
+msgid "Premium version already active."
+msgstr "Ẹya tó ga julọ ti ni agbara tẹlẹ."
+
+#: includes/freemius-strings.php:370
+#: includes/freemius-strings.php:4890
+msgid "Premium add-on version already installed."
+msgstr "Wọn ti fi ẹ̀yà àfikún tó dára jù lọ sori ẹrọ náà tẹ́lẹ̀."
+
+#: includes/freemius-strings.php:374
+#: includes/freemius-strings.php:4859
+msgid "Plugin is a \"Serviceware\" which means it does not have a premium code version."
+msgstr "Ploogin jẹ \"Serviceware\" eyiti o tumọ si pe ko ni ẹya koodu ti o ni owo giga."
+
+#: includes/freemius-strings.php:378
+#: includes/freemius-strings.php:3344
+msgid "Automatic Installation"
+msgstr "Fiṣẹ Aifọwọyi"
+
+#: includes/freemius-strings.php:382
+#: includes/freemius-strings.php:6622
+msgctxt "timer for auto-disabling debug"
+msgid "Auto off in:"
+msgstr "Pa a lẹ́ẹ̀kan ṣoṣo ní:"
+
+#: includes/freemius-strings.php:386
+#: includes/freemius-strings.php:3349
+msgid "Average Rating"
+msgstr "Ìwọ̀n Ìwòye Ẹni tí Ó Pọ̀ Jù"
+
+#: includes/freemius-strings.php:390
+#: includes/freemius-strings.php:3354
+msgid "Awesome"
+msgstr "Ó ní ẹ̀mí gan-an"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:395
+#: includes/freemius-strings.php:6142
+#, php-format
+msgid "based on %s"
+msgstr "orí %s"
+
+#: includes/freemius-strings.php:399
+#: includes/freemius-strings.php:3359
+msgid "Become an affiliate"
+msgstr "Di alafẹhọntọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:404
+#: includes/freemius-strings.php:4438
+#, php-format
+msgid "Like the %s? Become our ambassador and earn cash ;-)"
+msgstr "Ṣe o nífẹ̀ẹ́ %s náà? Di aṣoju wa ki o si jèrè owo ;-)"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:409
+#: includes/freemius-strings.php:4045
+#, php-format
+msgid "Hey there, did you know that %1$s has an affiliate program? If you like the %2$s you can become our ambassador and earn some cash!"
+msgstr "Ẹ ǹlẹ́ o, ǹjẹ́ o mọ̀ pé %1$s ní ètò àwọn alájọṣepọ̀? Bí o bá nífẹ̀ẹ́ %2$s o lè di aṣojú wa kí o sì jèrè owó díẹ̀!"
+
+#: includes/freemius-strings.php:413
+#: includes/freemius-strings.php:6556
+msgctxt "e.g. the best product"
+msgid "Best"
+msgstr "Èrò fúnlò jùlọ"
+
+#: includes/freemius-strings.php:417
+#: includes/freemius-strings.php:3364
+msgid "Beta"
+msgstr "Bẹ́tà"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:422
+#: includes/freemius-strings.php:3267
+#, php-format
+msgid "An update to a Beta version will replace your installed version of %s with the latest Beta release - use with caution, and not on production sites. You have been warned."
+msgstr "Imudojuiwọn kan si ẹya Beta kan yoo rọpo ẹya ti o fi sori ẹrọ ti %s pẹlu itusilẹ Beta tuntun - lo pẹlu iṣọra, ki o si má ṣe lo lori awọn aaye iṣelọpọ. A ti kọ silẹ fun ọ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:427
+#: includes/freemius-strings.php:6551
+#, php-format
+msgctxt "e.g. billed monthly"
+msgid "Billed %s"
+msgstr "Ti gba owo lọwọ %s"
+
+#: includes/freemius-strings.php:431
+#: includes/freemius-strings.php:3369
+msgid "Billing"
+msgstr "Isiro Owo"
+
+#: includes/freemius-strings.php:435
+#: includes/freemius-strings.php:3374
+msgid "Billing & Invoices"
+msgstr "Isiro & Awọn Fọọmu Owo"
+
+#: includes/freemius-strings.php:439
+#: includes/freemius-strings.php:6424
+msgctxt "as connection blocked"
+msgid "Blocked"
+msgstr "Ti dènà"
+
+#: includes/freemius-strings.php:443
+#: includes/freemius-strings.php:3379
+msgid "Blocking"
+msgstr "Ìdínà"
+
+#: includes/freemius-strings.php:447
+#: includes/freemius-strings.php:3384
+msgid "Blog ID"
+msgstr "Àmì Ìdánimọ̀ Bọ́lọ̀gùn"
+
+#: includes/freemius-strings.php:451
+#: includes/freemius-strings.php:3389
+msgid "Body"
+msgstr "Ara"
+
+#: includes/freemius-strings.php:455
+#: includes/freemius-strings.php:5859
+msgid "Yes - both addresses are mine"
+msgstr "Bẹẹni - awọn adirẹsi mejeeji jẹ ti mi"
+
+#: includes/freemius-strings.php:459
+#: includes/freemius-strings.php:3394
+msgid "Bundle"
+msgstr "Àpòpọ̀"
+
+#: includes/freemius-strings.php:463
+#: includes/freemius-strings.php:3399
+msgid "Bundle Plan"
+msgstr "Ètò Ìdàpọ̀"
+
+#: includes/freemius-strings.php:467
+#: includes/freemius-strings.php:3404
+msgid "Business name"
+msgstr "Oruko onisowo"
+
+#: includes/freemius-strings.php:471
+#: includes/freemius-strings.php:3414
+msgid "Buy license"
+msgstr "Ra ìwé àṣẹ"
+
+#: includes/freemius-strings.php:475
+#: includes/freemius-strings.php:3409
+msgid "Buy a license now"
+msgstr "Ra iwe-aṣẹ bayii"
+
+#: includes/freemius-strings.php:479
+#: includes/freemius-strings.php:3453
+msgid "Cancel"
+msgstr "Fagile"
+
+#: includes/freemius-strings.php:483
+#: includes/freemius-strings.php:3476
+msgid "Cancel Installation"
+msgstr "Fagilee Fifi sori ẹrọ"
+
+#: includes/freemius-strings.php:487
+#: includes/freemius-strings.php:3481
+msgid "Cancel Subscription"
+msgstr "Fagile Alabapin"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:492
+#: includes/freemius-strings.php:4179
+#, php-format
+msgid "In case you are NOT planning on using this %1$s on this site (or any other site) - would you like to cancel the %2$s as well?"
+msgstr "Tí o bá wà ní ÈÈWÒ láti má lo %1$s yìí lórí ojú-wọ́ yìí (tàbí ojú-wọ́ mìírànkankan) - o fẹ́ láti fagilé %2$s náà pẹ̀lú?"
+
+#: includes/freemius-strings.php:496
+#: includes/freemius-strings.php:3486
+msgid "Cancel Trial"
+msgstr "Fagile Idanwo Mo"
+
+#: includes/freemius-strings.php:500
+#: includes/freemius-strings.php:3513
+msgid "Cancelling the trial will immediately block access to all premium features. Are you sure?"
+msgstr "Fífagbára ìdánwò náà yóò dí wọlé sí gbogbo àwọn ẹ̀yà ara tó ga jù lọ lẹ́sẹ̀ kẹsẹ̀. Ṣé o da ọ lójú?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:505
+#: includes/freemius-strings.php:3459
+#, php-format
+msgid "Cancel %s & Proceed"
+msgstr "Fagile %s & Tẹsiwaju"
+
+#: includes/freemius-strings.php:509
+#: includes/freemius-strings.php:3491
+msgid "Cancelled"
+msgstr "Ti fagile"
+
+#: includes/freemius-strings.php:513
+#: includes/freemius-strings.php:3508
+msgid "Cancelling the subscription"
+msgstr "Fífagbára ìforúkọsílẹ rú"
+
+#: includes/freemius-strings.php:517
+#: includes/freemius-strings.php:3448
+msgid "Can't find your license key?"
+msgstr "Ṣe o ko le ri bọtọ̀ ìwé-àṣẹ rẹ?"
+
+#: includes/freemius-strings.php:521
+#: includes/freemius-strings.php:3518
+msgid "Change License"
+msgstr "Yi Iwe-ašẹ Pada"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:526
+#: includes/freemius-strings.php:3057
+#, php-format
+msgid "A confirmation email was just sent to %s. You must confirm the update within the next 4 hours. If you cannot find the email, please check your spam folder."
+msgstr "A rán ifiranṣẹ aṣẹrisi kan si %s báyìí. O gbọdọ jẹrisi imudojuiwọn náà laarin wakati 4 to nbọ. Ti o ko ba le ri ifiranṣẹ naa, jọwọ ṣayẹwo folda spam rẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:531
+#: includes/freemius-strings.php:3051
+#, php-format
+msgid "A confirmation email was just sent to %s. The email owner must confirm the update within the next 4 hours."
+msgstr "A fi imeeli ifẹsẹmulẹ ranṣẹ si %s báyìí. O ni lati jẹrisi imudojuiwọn náà laarin wakati 4 to nbọ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:536
+#: includes/freemius-strings.php:2949
+#, php-format
+msgid "%s is the new owner of the account."
+msgstr "%s ni oluwa titun akawunti náà."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:541
+#: includes/freemius-strings.php:5361
+#, php-format
+msgid "Thanks for confirming the ownership change. An email was just sent to %s for final approval."
+msgstr "O ṣeun fun fífìdí ìyípadà ohun-ini múlẹ̀. A ti fi imeeli ranṣẹ sí %s fún ìfọwọ́sí ìkẹyìn."
+
+#: includes/freemius-strings.php:545
+#: includes/freemius-strings.php:3523
+msgid "Change Ownership"
+msgstr "Yipada Ẹni To Ni Iṣakoso"
+
+#: includes/freemius-strings.php:549
+#: includes/freemius-strings.php:3528
+msgid "Change Plan"
+msgstr "Yi Ètò Sílẹ̀"
+
+#: includes/freemius-strings.php:553
+#: includes/freemius-strings.php:3533
+msgid "Change User"
+msgstr "Yi Olumulo pada"
+
+#: includes/freemius-strings.php:557
+#: includes/freemius-strings.php:3419
+msgid "By changing the user, you agree to transfer the account ownership to:"
+msgstr "Nipa yiyi olumulo pada, o gba lati gbe ohun-ini akọọlẹ naa kalẹ fun:"
+
+#: includes/freemius-strings.php:561
+#: includes/freemius-strings.php:6321
+msgctxt "Plugin installer section title"
+msgid "Changelog"
+msgstr "Àwọn Ìyípadà"
+
+#: includes/freemius-strings.php:565
+#: includes/freemius-strings.php:3538
+msgid "Changing user, please wait"
+msgstr "À ń yipada olumulo, jọ̀wọ́ dúró"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:570
+#: includes/freemius-strings.php:4132
+#, php-format
+msgid "If you didn't get the email, try checking your spam folder or search for emails from %4$s."
+msgstr "Tí o kò bá gba ímeèlì náà, gbiyanju láti ṣàyẹ̀wò apamọ́ spam rẹ tàbí wá awọn ímeèlì láti ọdọ %4$s."
+
+#: includes/freemius-strings.php:574
+#: includes/freemius-strings.php:3543
+msgid "Checkout"
+msgstr "Sanwo"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:579
+#: includes/freemius-strings.php:3549
+#, php-format
+msgid "Choose up to %s site(s) to activate the license on."
+msgstr "Yan oju-opó wẹẹbu tó pọ̀ jù lọ di %s láti mú ìwé-àṣẹ náa ṣiṣẹ́ lé lori."
+
+#: includes/freemius-strings.php:583
+#: includes/freemius-strings.php:3554
+msgid "City"
+msgstr "Ìlú"
+
+#: includes/freemius-strings.php:587
+#: includes/freemius-strings.php:3559
+msgid "Clear API Cache"
+msgstr "Pa Kaadi API rẹ"
+
+#: includes/freemius-strings.php:591
+#: includes/freemius-strings.php:3564
+msgid "Clear Updates Transients"
+msgstr "Ko Awọn Imudojuiwọn Transients kuro"
+
+#: includes/freemius-strings.php:595
+#: includes/freemius-strings.php:6301
+msgctxt "Part of an activation link message."
+msgid "Click here"
+msgstr "Tẹ ibi"
+
+#: includes/freemius-strings.php:599
+#: includes/freemius-strings.php:3574
+msgid "Click here to use the plugin anonymously"
+msgstr "Tẹ ibi lati lo àfikọ́ náà láìfihàn ara rẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:604
+#: includes/freemius-strings.php:3580
+#, php-format
+msgid "Click to see reviews that provided a rating of %s"
+msgstr "Tẹ lati wo awọn atunyẹwo ti o pese iwọn %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:609
+#: includes/freemius-strings.php:2937
+#, php-format
+msgid "%s is my client's email address"
+msgstr "%s ni adirẹsi imeeli alabara mi"
+
+#: includes/freemius-strings.php:613
+#: includes/freemius-strings.php:3591
+msgid "Code"
+msgstr "Koodu"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:618
+#: includes/freemius-strings.php:2919
+#, php-format
+msgid "%s commission when a customer purchases a new license."
+msgstr "%s kọmisiọnu nigbati alabara kan ba ra iwe-aṣẹ tuntun kan."
+
+#: includes/freemius-strings.php:622
+#: includes/freemius-strings.php:3323
+msgid "As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days."
+msgstr "Bi a ṣe n ṣètò ọjọ́ 30 fún àwọn àpapọ̀ owó ẹ̀san tí ó lè padà wá, a n san àwọn ìpín owó nìkan tí ó ju ọjọ́ 30 lọ."
+
+#: includes/freemius-strings.php:626
+#: includes/freemius-strings.php:3596
+msgid "Communication"
+msgstr "Ìbánisọ̀rọ̀"
+
+#: includes/freemius-strings.php:630
+#: includes/freemius-strings.php:3601
+msgid "Compatible up to"
+msgstr "Ó ni ibamu de"
+
+#: includes/freemius-strings.php:634
+#: includes/freemius-strings.php:6147
+msgid "complete the opt-in"
+msgstr "par pari iforukọsilẹ na"
+
+#: includes/freemius-strings.php:638
+#: includes/freemius-strings.php:6419
+msgctxt "as congratulations"
+msgid "Congrats"
+msgstr "A ku oriire"
+
+#: includes/freemius-strings.php:642
+#: includes/freemius-strings.php:4544
+msgid "Never miss an important update"
+msgstr "Máṣe jẹ́ kí ìsọfúnni pàtàkì èyíkéyìí yọ́ ọ́ lọ́wọ́"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:647
+#: includes/freemius-strings.php:5327
+#, php-format
+msgid "Thank you for updating to %1$s v%2$s!"
+msgstr "Ẹ ṣe pupọ fun mimu imudojuiwọn wa si %1$s v%2$s!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:652
+#: includes/freemius-strings.php:4679
+#, php-format
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info. This will help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "Gba lati gba awọn ifitonileti imeeli fun aabo & awọn imudojuiwọn ẹya, akoonu eto-ẹkọ, ati awọn ipese lẹẹkọọkan, ati lati pin diẹ ninu awọn alaye ayika WordPress ipilẹ. Eyi yoo ran wa lọwọ lati jẹ ki %s ni ibamu diẹ sii pẹlu aaye rẹ ati dara julọ ni ṣiṣe ohun ti o nilo rẹ fun."
+
+#: includes/freemius-strings.php:656
+#: includes/freemius-strings.php:4673
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info."
+msgstr "Yọ̀ǹda láti gba àwọn ìfitónilétí imeeli fún àwọn àfikún ààbò & ẹ̀yà, àwọn ohun àlùmọ̀ ìkẹ́kọ̀ọ́, àti àwọn ìpèsè ìgbà anfaani, àti láti pín àwọn ìfitónilétí ibi àyíká WordPress ipilẹ̀ kan."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:661
+#: includes/freemius-strings.php:4144
+#, php-format
+msgid "If you skip this, that's okay! %1$s will still work just fine."
+msgstr "Tí o bá fò èyí sílẹ̀, kò burú! %1$s yóò ṣì máa ṣiṣẹ́ dáadáa."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:666
+#: includes/freemius-strings.php:5757
+#, php-format
+msgid "We have introduced this opt-in so you never miss an important update and help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "A ti ṣafihan àṣàyàn yìí kí o má baà padanu ìfilọlẹ pàtàkì kankan kí o sì lè ràn wa lọwọ lati jẹ ki %s baamu diẹ sii pẹlu aaye ayelujara rẹ ti o si dara julọ ni ṣiṣe ohun ti o nilo rẹ fun."
+
+#: includes/freemius-strings.php:670
+#: includes/freemius-strings.php:5773
+msgid "We're excited to introduce the Freemius network-level integration."
+msgstr "Inu wa dun lati ṣafihan ìṣọ̀kan ipele nẹtiwọki Freemius."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:675
+#: includes/freemius-strings.php:3847
+#, php-format
+msgid "During the update process we detected %s site(s) in the network that are still pending your attention."
+msgstr "Nígbà ìgbàsílẹ̀ náà, a ríi pé %s ojú-wọ̀n kan tàbí jù bẹ́ẹ̀ lọ nínú nẹ́tíwọ̀kì náà ṣì ń dúró de àfiyèsí rẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:680
+#: includes/freemius-strings.php:3841
+#, php-format
+msgid "During the update process we detected %d site(s) that are still pending license activation."
+msgstr "Nigba ilana imudojuiwọn a rii %d ojula (awọn ojula) ti o tun n duro de mimu iwe-ašẹ ṣiṣẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:685
+#: includes/freemius-strings.php:4162
+#, php-format
+msgid "If you'd like to use the %s on those sites, please enter your license key below and click the activation button."
+msgstr "Ti o ba fẹ lati lo %s lori awọn oju opo wẹẹbu yẹn, jọwọ tẹ bọtini iwe-aṣẹ rẹ sii ni isalẹ ki o tẹ bọtini imactivate."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:690
+#: includes/freemius-strings.php:3235
+#, php-format
+msgid "Alternatively, you can skip it for now and activate the license later, in your %s's network-level Account page."
+msgstr "Bẹ́ẹ̀ gẹ́gẹ́, o lè fò ó kọjá fún àkókò yìí kí o sì mú ìwé-àṣẹ náà ṣiṣẹ́ nígbà míì, lórí ojú-ewé Account ìpele-nẹ́twọ́kì ti %s rẹ."
+
+#: includes/freemius-strings.php:694
+#: includes/freemius-strings.php:6429
+msgctxt "as connection was successful"
+msgid "Connected"
+msgstr "Ti sopọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:699
+#: includes/freemius-strings.php:4646
+#, php-format
+msgid "Once you are done, deactivate the %s and activate it again."
+msgstr "Nígbà tí o bá parí, pa %s rẹ́ kí o sì tún tan an náà."
+
+#: includes/freemius-strings.php:703
+#: includes/freemius-strings.php:3606
+msgid "Contact"
+msgstr "Kanṣoṣo"
+
+#: includes/freemius-strings.php:707
+#: includes/freemius-strings.php:4813
+msgid "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:"
+msgstr "Jọ̀wọ́ jẹ́ kí a mọ̀ tí o bá fẹ́ kí a kàn sí ọ fún àwọn ìròyìn ààbò àti ẹ̀yà ara, àwọn àkóónú ẹ̀kọ́, àti àwọn àǹfààní láìpẹ́ sí i:"
+
+#: includes/freemius-strings.php:711
+#: includes/freemius-strings.php:3611
+msgid "Contact Support"
+msgstr "Kan Atilẹyin"
+
+#: includes/freemius-strings.php:715
+#: includes/freemius-strings.php:5219
+msgid "Sorry for the inconvenience and we are here to help if you give us a chance."
+msgstr "Ẹ jẹ̀ wá àìrọ̀rùn náà, a sì wà níbí láti ràn ọ́ lọ́wọ́ tí o bá fún wa ní àǹfààní."
+
+#: includes/freemius-strings.php:719
+#: includes/freemius-strings.php:3616
+msgid "Contact Us"
+msgstr "Kanṣoṣo Wa"
+
+#: includes/freemius-strings.php:723
+#: includes/freemius-strings.php:4777
+msgid "Please contact us here"
+msgstr "Jọwọ kan si wa nibi"
+
+#: includes/freemius-strings.php:727
+#: includes/freemius-strings.php:4782
+msgid "Please contact us with the following message:"
+msgstr "Jọwọ kan si wa pẹlu ifiranṣẹ yii:"
+
+#: includes/freemius-strings.php:731
+#: includes/freemius-strings.php:3621
+msgid "Continue"
+msgstr "Tẹsiwaju"
+
+#: includes/freemius-strings.php:735
+#: includes/freemius-strings.php:3626
+msgid "Contributors"
+msgstr "Àwọn Olùkópa"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:740
+#: includes/freemius-strings.php:3632
+#, php-format
+msgid "Couldn't activate %s."
+msgstr "Kò lè mú %s ṣiṣẹ́."
+
+#: includes/freemius-strings.php:744
+#: includes/freemius-strings.php:3637
+msgid "Country"
+msgstr "Orílẹ̀-èdè"
+
+#: includes/freemius-strings.php:748
+#: includes/freemius-strings.php:3642
+msgid "Cron Type"
+msgstr "Iru Cron"
+
+#: includes/freemius-strings.php:752
+#: includes/freemius-strings.php:5768
+msgid "We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server."
+msgstr "Awon nlo ile-ikawe PHP cURL fun Awon ipe API, eyi ti o je ile-ikawe ti o wopo pupo ti o si n sise lori ero gbigba data lai nilo eto pataki. Laanu, cURL ko sise (tabi ti wa ni pipa) lori server re."
+
+#: includes/freemius-strings.php:756
+#: includes/freemius-strings.php:6152
+msgid "data"
+msgstr "data"
+
+#: includes/freemius-strings.php:760
+#: includes/freemius-strings.php:3699
+msgid "Debug mode was successfully enabled and will be automatically disabled in 60 min. You can also disable it earlier by clicking the \"Stop Debug\" link."
+msgstr "Aṣiṣe (Debug) ti ni agbara ni aṣeyọri yoo si jẹ alaabo laifọwọyi ni iṣẹju 60. O tun le sọ ọ di alaabo ni kutukutu nipa tite ọna asopọ \"Stop Debug\"."
+
+#: includes/freemius-strings.php:764
+#: includes/freemius-strings.php:3653
+msgid "Date"
+msgstr "Ọjọ́"
+
+#: includes/freemius-strings.php:768
+#: includes/freemius-strings.php:3658
+msgid "Deactivate"
+msgstr "Mú kúrò lẹ́nu iṣẹ́"
+
+#: includes/freemius-strings.php:772
+#: includes/freemius-strings.php:3668
+msgid "Deactivate the free version"
+msgstr "Mu ẹ̀yà ọfẹ kúrò nínú iṣẹ́"
+
+#: includes/freemius-strings.php:776
+#: includes/freemius-strings.php:3663
+msgid "Deactivate License"
+msgstr "Pa Ìwé Àṣẹ Lẹ́nu Kúrò"
+
+#: includes/freemius-strings.php:780
+#: includes/freemius-strings.php:3684
+msgid "Deactivating your license will block all premium features, but will enable activating the license on another site. Are you sure you want to proceed?"
+msgstr "Ṣíṣe àìlérí ìwé-àṣẹ rẹ yóò dí gbogbo àwọn ẹ̀yà ara tó dára julọ, ṣugbọn yóò jẹ ki o le mú ìwé-àṣẹ náà ṣiṣẹ lórí ojú-wẹ́bù mìíràn. Ṣé o da ọ lójú pé o fẹ tẹ̀síwájú?"
+
+#: includes/freemius-strings.php:784
+#: includes/freemius-strings.php:3689
+msgid "Deactivation"
+msgstr "Ìgbékúró"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:789
+#: includes/freemius-strings.php:5854
+#, php-format
+msgid "Yes - %s"
+msgstr "Bẹẹni - %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:794
+#: includes/freemius-strings.php:5276
+#, php-format
+msgid "Submit & %s"
+msgstr "Fi silẹ & %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:799
+#: includes/freemius-strings.php:3679
+#, php-format
+msgid "Deactivating or uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "Wiwepọ tabi pipa %s yoo mu iwe-ẹri naa kuro laifọwọyi, eyiti o le lo lori aaye miiran."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:804
+#: includes/freemius-strings.php:4138
+#, php-format
+msgid "If you have a moment, please let us know why you are %s"
+msgstr "Ti o ba ni akoko diẹ, jọwọ jẹ ki a mọ idi ti o fi jẹ %s"
+
+#: includes/freemius-strings.php:808
+#: includes/freemius-strings.php:3694
+msgid "Debug Log"
+msgstr "Àkọsílẹ̀ Ìgbàṣe Ìṣòro"
+
+#: includes/freemius-strings.php:812
+#: includes/freemius-strings.php:6414
+msgctxt "as code debugging"
+msgid "Debugging"
+msgstr "Wọ́n ń ṣe àtúnṣe àṣìṣe"
+
+#: includes/freemius-strings.php:816
+#: includes/freemius-strings.php:6167
+msgid "delegate"
+msgstr "fi le gba agbara"
+
+#: includes/freemius-strings.php:820
+#: includes/freemius-strings.php:4126
+msgid "If you click it, this decision will be delegated to the sites administrators."
+msgstr "Tí o bá tẹ́ ẹ, a ó fi ìpinnu yìí lé àwọn alábòjútó ojú-opó wọ̀nyí lọ́wọ́."
+
+#: includes/freemius-strings.php:824
+#: includes/freemius-strings.php:3704
+msgid "Delegate to Site Admins"
+msgstr "Fi le an lọ sí àwọn Alábòjútó Ojú-wọ̀lé"
+
+#: includes/freemius-strings.php:828
+#: includes/freemius-strings.php:3709
+msgid "Delegate to Site Admins & Continue"
+msgstr "Fi lé Àwọn Olùṣàkóso Ìtàn & Tẹ̀síwájú"
+
+#: includes/freemius-strings.php:832
+#: includes/freemius-strings.php:3714
+msgid "Delegating, please wait"
+msgstr "Ṣíṣe aṣojú, jọ̀wọ́ dúró"
+
+#: includes/freemius-strings.php:836
+#: includes/freemius-strings.php:6632
+msgctxt "verb"
+msgid "Delete"
+msgstr "Paarẹ"
+
+#: includes/freemius-strings.php:840
+#: includes/freemius-strings.php:3719
+msgid "Delete All Accounts"
+msgstr "Pa Gbogbo Awọn Iroyin Rẹ Kuro"
+
+#: includes/freemius-strings.php:844
+#: includes/freemius-strings.php:3308
+msgid "Are you sure you want to delete all Freemius data?"
+msgstr "Ṣe o ni idaniloju pe o fẹ pa gbogbo data Freemius rẹ́?"
+
+#: includes/freemius-strings.php:848
+#: includes/freemius-strings.php:6326
+msgctxt "Plugin installer section title"
+msgid "Description"
+msgstr "Àpèjúwe"
+
+#: includes/freemius-strings.php:852
+#: includes/freemius-strings.php:3724
+msgid "Details"
+msgstr "Àwọn kúlẹ̀kúlẹ̀"
+
+#: includes/freemius-strings.php:856
+#: includes/freemius-strings.php:6223
+msgid "seems like the key you entered doesn't match our records."
+msgstr "ó jọ pé kọ́kọ́rọ́ tí o tẹ sílé kò bá àwọn ìkọ́ silẹ̀ wa mu."
+
+#: includes/freemius-strings.php:860
+#: includes/freemius-strings.php:3729
+msgid "Diagnostic Info"
+msgstr "Alaye Ìwádìí Aisan"
+
+#: includes/freemius-strings.php:864
+#: includes/freemius-strings.php:3740
+msgid "Disabling white-label mode"
+msgstr "Mimu ipo aami-funfun kuro"
+
+#: includes/freemius-strings.php:868
+#: includes/freemius-strings.php:3745
+msgid "Disconnect"
+msgstr "Ge asopọ̀"
+
+#: includes/freemius-strings.php:872
+#: includes/freemius-strings.php:3318
+msgid "Are you sure you would like to proceed with the disconnection?"
+msgstr "Ṣe o ni idaniloju pe o fẹ lati tẹsiwaju pẹlu asopọ-ge naa?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:877
+#: includes/freemius-strings.php:4150
+#, php-format
+msgid "If you wish to cancel your %1$s plan's subscription instead, please navigate to the %2$s and cancel it there."
+msgstr "Tí o bá fẹ́ fagile ìwọ̀ṣẹ́ ètò %1$s rẹ dípò bẹ́ẹ̀, jọ̀wọ́ lọ sí %2$s kí o sì fagile rẹ̀ níbẹ̀."
+
+#: includes/freemius-strings.php:881
+#: includes/freemius-strings.php:6409
+msgctxt "as close a window"
+msgid "Dismiss"
+msgstr "Pa kuro"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:886
+#: includes/freemius-strings.php:6173
+#, php-format
+msgid "do %1$sNOT%2$s send me security & feature updates, educational content and offers."
+msgstr "má %1$sSE%2$s fi àwọn àlàyé ààbò & àwọn ìṣètò tuntun, àwọn ohun ẹ̀kọ́ àti àwọn ìpèsè ránṣẹ́ sí mi."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:891
+#: includes/freemius-strings.php:3888
+#, php-format
+msgid "Enter the domain of your website or other websites from where you plan to promote the %s."
+msgstr "Tẹ agbegbe wẹbù ti wẹbù rẹ tabi awọn wẹbù miiran lati ibi ti o ti gbero lati ṣe igbega %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:896
+#: includes/freemius-strings.php:5822
+#, php-format
+msgid "Where are you going to promote the %s?"
+msgstr "Nibo ni o fẹ lati ṣe igbega %s naa?"
+
+#: includes/freemius-strings.php:900
+#: includes/freemius-strings.php:3756
+msgid "Domain is required."
+msgstr "O jọ̀wọ́ fi orúkọ ìkanni síbẹ̀."
+
+#: includes/freemius-strings.php:904
+#: includes/freemius-strings.php:3772
+msgid "Donate to this plugin"
+msgstr "Ṣe ipèsè owó fún plọọgìn yìí"
+
+#: includes/freemius-strings.php:908
+#: includes/freemius-strings.php:3777
+msgid "Done"
+msgstr "Ti parọ̀"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:913
+#: includes/freemius-strings.php:3762
+#, php-format
+msgid "Don't cancel %s - I'm still interested in getting security & feature updates, as well as be able to contact support."
+msgstr "Má fagilé %s - Mo tun nifẹ lati gba awọn imudojuiwọn aabo ati awọn ẹya, bakannaa ni anfani lati kan si atilẹyin."
+
+#: includes/freemius-strings.php:917
+#: includes/freemius-strings.php:3767
+msgid "Don't have a license key?"
+msgstr "Ṣe o ko ní bọtìnì ìwé-àṣẹ?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:922
+#: includes/freemius-strings.php:5958
+#, php-format
+msgid "You might have missed it, but you don't have to share any data and can just %s the opt-in."
+msgstr "O le jẹ pe o padanu rẹ, ṣugbọn o ko ni lati pin eyikeyi data ati pe o le kan %s aṣayan ifisi naa."
+
+#: includes/freemius-strings.php:926
+#: includes/freemius-strings.php:6637
+msgctxt "verb"
+msgid "Downgrade"
+msgstr "Wọn sípò"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:931
+#: includes/freemius-strings.php:2877
+#, php-format
+msgid "%1$s will immediately stop all future recurring payments and your %2$s plan license will expire in %3$s."
+msgstr "%1$s yoo da gbogbo awọn sisanwo ti n bọ lọjọ iwaju duro lẹsẹkẹsẹ ati pe iwe-aṣẹ eto %2$s rẹ yoo pari ni %3$s."
+
+#: includes/freemius-strings.php:935
+#: includes/freemius-strings.php:3782
+msgid "Downgrading"
+msgstr "Ti n sọkalẹ sí ipò tí ó kéré síi"
+
+#: includes/freemius-strings.php:939
+#: includes/freemius-strings.php:3787
+msgid "Downgrading your plan"
+msgstr "Ṣíṣe ìpele rẹ sí ìpele tí ó kéré sí i"
+
+#: includes/freemius-strings.php:943
+#: includes/freemius-strings.php:3792
+msgid "Download"
+msgstr "Ṣe agbekalẹ"
+
+#: includes/freemius-strings.php:947
+#: includes/freemius-strings.php:6434
+msgctxt "as download latest version"
+msgid "Download Latest"
+msgstr "Ṣe igbasilẹ tuntun"
+
+#: includes/freemius-strings.php:951
+#: includes/freemius-strings.php:6439
+msgctxt "as download latest version"
+msgid "Download Latest Free Version"
+msgstr "Gba Ẹya Ọfẹ Tuntun Julọ Lori"
+
+#: includes/freemius-strings.php:955
+#: includes/freemius-strings.php:3814
+msgid "Download the latest version"
+msgstr "Ṣe igbasilẹ ẹya tuntun julọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:960
+#: includes/freemius-strings.php:3809
+#, php-format
+msgid "Download the latest %s version"
+msgstr "Gbà ẹ̀yà %s tó tuntun jùlọ lọ́wọ́"
+
+#: includes/freemius-strings.php:964
+#: includes/freemius-strings.php:3803
+msgid "Download Paid Version"
+msgstr "Ṣe igbasilẹ Ẹya Ti O Sanwo"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:969
+#: includes/freemius-strings.php:3798
+#, php-format
+msgid "Download %s Version"
+msgstr "Gba Ẹya %s sílẹ̀"
+
+#: includes/freemius-strings.php:973
+#: includes/freemius-strings.php:3819
+msgid "Downloaded"
+msgstr "Ti ṣe igbasilẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:978
+#: includes/freemius-strings.php:3825
+#, php-format
+msgid "Due to the new %1$sEU General Data Protection Regulation (GDPR)%2$s compliance requirements it is required that you provide your explicit consent, again, confirming that you are onboard :-)"
+msgstr "Nitori awọn ibeere ibamu tuntun ti %1$sEU General Data Protection Regulation (GDPR)%2$s, o jẹ dandan pe ki o fun ni ifọwọsi rẹ ni kedere, lẹẹkansi, ni ἑṣe rẹ daju pe o wa ninu ọkọ :-)"
+
+#: includes/freemius-strings.php:982
+#: includes/freemius-strings.php:3835
+msgid "Duplicate Website"
+msgstr "Ṣe ẹ̀dà kejì ojù odò wẹ́bù"
+
+#: includes/freemius-strings.php:986
+#: includes/freemius-strings.php:6642
+msgctxt "verb"
+msgid "Edit"
+msgstr "Ṣatunkọ"
+
+#: includes/freemius-strings.php:990
+#: includes/freemius-strings.php:3852
+msgid "Email"
+msgstr "Ímèlù"
+
+#: includes/freemius-strings.php:994
+#: includes/freemius-strings.php:3857
+msgid "Email address"
+msgstr "Àdírẹ́sì ímeèlì"
+
+#: includes/freemius-strings.php:998
+#: includes/freemius-strings.php:3862
+msgid "Email address is required."
+msgstr "Àìdì símùlù èkísì nílò."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1003
+#: includes/freemius-strings.php:2943
+#, php-format
+msgid "%s is my email address"
+msgstr "%s ni adirẹsi imeeli mi"
+
+#: includes/freemius-strings.php:1007
+#: includes/freemius-strings.php:3867
+msgid "Email address update"
+msgstr "Ìmudojúìwọ̀ adírẹ́sì íwọ́ṣì"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1012
+#: includes/freemius-strings.php:3303
+#, php-format
+msgid "Are both %1$s and %2$s your email addresses?"
+msgstr "Ṣé àwọn méjèèjí %1$s àti %2$s jẹ́ àdírẹ́sì íwé-afẹ́fẹ́ (email) rẹ?"
+
+#: includes/freemius-strings.php:1016
+#: includes/freemius-strings.php:5746
+msgid "We couldn't find your email address in the system, are you sure it's the right address?"
+msgstr "A ko le ri adirẹsi imeeli rẹ ninu eto naa, o ni idaniloju pe o jẹ adirẹsi to tọ?"
+
+#: includes/freemius-strings.php:1020
+#: includes/freemius-strings.php:6038
+msgid "Your email has been successfully verified - you are AWESOME!"
+msgstr "A ti fidi imeeli rẹ mulẹ ni aṣeyọri - o jẹ ẹni iyanu!"
+
+#: includes/freemius-strings.php:1024
+#: includes/freemius-strings.php:4427
+msgid "License key is empty."
+msgstr "Kọ́kọ́rọ́ ìwé àṣẹ ṣofo."
+
+#: includes/freemius-strings.php:1028
+#: includes/freemius-strings.php:3872
+msgid "Enabling white-label mode"
+msgstr "Nípa mú lò mídì láìlórúkọ (white-label mode) sípò"
+
+#: includes/freemius-strings.php:1032
+#: includes/freemius-strings.php:3877
+msgid "End"
+msgstr "Ipari"
+
+#: includes/freemius-strings.php:1036
+#: includes/freemius-strings.php:3882
+msgid "Enter email address"
+msgstr "Fi adirẹsi imeeli sii"
+
+#: includes/freemius-strings.php:1040
+#: includes/freemius-strings.php:3903
+msgid "Enter the new email address"
+msgstr "Tẹ adirẹsi imeeli titun sii"
+
+#: includes/freemius-strings.php:1044
+#: includes/freemius-strings.php:3908
+msgid "Error"
+msgstr "Àṣìṣe"
+
+#: includes/freemius-strings.php:1048
+#: includes/freemius-strings.php:6449
+msgctxt "as expiration date"
+msgid "Expiration"
+msgstr "Àsìkò Ìparí"
+
+#: includes/freemius-strings.php:1052
+#: includes/freemius-strings.php:3918
+msgid "Expired"
+msgstr "Ti pari akoko re"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1057
+#: includes/freemius-strings.php:3924
+#, php-format
+msgid "Expires in %s"
+msgstr "Yoo pari ni %s"
+
+#: includes/freemius-strings.php:1061
+#: includes/freemius-strings.php:3929
+msgid "Extensions"
+msgstr "Awọn amugbooro"
+
+#: includes/freemius-strings.php:1065
+#: includes/freemius-strings.php:3939
+msgid "Extra domains where you will be marketing the product from."
+msgstr "Àwọn agbègbè wẹ́bù afikún tí wọ́n ti fẹ́ ta ọjà náà."
+
+#: includes/freemius-strings.php:1069
+#: includes/freemius-strings.php:3934
+msgid "Extra Domains"
+msgstr "Àwọn Doménì Míràn"
+
+#: includes/freemius-strings.php:1073
+#: includes/freemius-strings.php:4003
+msgid "Freemius SDK couldn't find the plugin's main file. Please contact sdk@freemius.com with the current error."
+msgstr "Freemius SDK ko le ri faili akọkọ plugin náa. Jọ̀ọ́ kàn sí sdk@freemius.com pẹ̀lú àṣìṣe lọ́wọ́lọ́wọ́ yìí."
+
+#: includes/freemius-strings.php:1077
+#: includes/freemius-strings.php:6331
+msgctxt "Plugin installer section title"
+msgid "FAQ"
+msgstr "Àwọn Ìbéèrè Tó Ʞpọ̀ Gidi"
+
+#: includes/freemius-strings.php:1081
+#: includes/freemius-strings.php:6336
+msgctxt "Plugin installer section title"
+msgid "Features & Pricing"
+msgstr "Àwọn Ohun Ìṣàpẹẹrẹ & Iye owó"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1086
+#: includes/freemius-strings.php:5763
+#, php-format
+msgid "We made a few tweaks to the %1$s, %2$s"
+msgstr "A ṣe àwọn àtúnṣe díẹ̀ sí %1$s, %2$s"
+
+#: includes/freemius-strings.php:1090
+#: includes/freemius-strings.php:3944
+msgid "File"
+msgstr "Fáìlì"
+
+#: includes/freemius-strings.php:1094
+#: includes/freemius-strings.php:3949
+msgid "Filter"
+msgstr "Ṣe àlẹmọ"
+
+#: includes/freemius-strings.php:1098
+#: includes/freemius-strings.php:4808
+msgid "Please follow these steps to complete the upgrade"
+msgstr "Jọwọ tẹle awọn igbesẹ wọnyi lati pari igbega naa"
+
+#: includes/freemius-strings.php:1102
+#: includes/freemius-strings.php:3978
+msgid "Free"
+msgstr "Ọfẹ"
+
+#: includes/freemius-strings.php:1106
+#: includes/freemius-strings.php:3182
+msgid "Add-on must be deployed to WordPress.org or Freemius."
+msgstr "Gbọdọ gbe àfikún náà kalẹ̀ sí WordPress.org tabi Freemius."
+
+#: includes/freemius-strings.php:1110
+#: includes/freemius-strings.php:3983
+msgid "Free Trial"
+msgstr "Ìdánwò Ọ̀fẹ́"
+
+#: includes/freemius-strings.php:1114
+#: includes/freemius-strings.php:3988
+msgid "Free version"
+msgstr "Ẹ̀dà ọ̀fẹ́"
+
+#: includes/freemius-strings.php:1118
+#: includes/freemius-strings.php:3993
+msgid "Freemius API"
+msgstr "Freemius API"
+
+#: includes/freemius-strings.php:1122
+#: includes/freemius-strings.php:3998
+msgid "Freemius Debug"
+msgstr "Ètò Ìṣòro Freemius"
+
+#: includes/freemius-strings.php:1126
+#: includes/freemius-strings.php:4008
+msgid "Freemius State"
+msgstr "Ipo Freemius"
+
+#: includes/freemius-strings.php:1130
+#: includes/freemius-strings.php:4018
+msgid "Full name"
+msgstr "Orúkọ kíkún"
+
+#: includes/freemius-strings.php:1134
+#: includes/freemius-strings.php:4023
+msgid "Function"
+msgstr "Iṣẹ́"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1139
+#: includes/freemius-strings.php:4034
+#, php-format
+msgid "Get updates for bleeding edge Beta versions of %s."
+msgstr "Gbà àwọn àfikún fún àwọn ẹ̀dà Beta tí ó ga jùlọ ti %s."
+
+#: includes/freemius-strings.php:1143
+#: includes/freemius-strings.php:4039
+msgid "Have a license key?"
+msgstr "ṢE O NI KỌ́Ọ̀FÙ ÌWÉ ÀṢẸ?"
+
+#: includes/freemius-strings.php:1147
+#: includes/freemius-strings.php:6383
+msgctxt "advance notice of something that will need attention."
+msgid "Heads up"
+msgstr "À kíyèsí i"
+
+#: includes/freemius-strings.php:1151
+#: includes/freemius-strings.php:6561
+msgctxt "exclamation"
+msgid "Hey"
+msgstr "Ẹ nlẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1156
+#: includes/freemius-strings.php:6572
+#, php-format
+msgctxt "greeting"
+msgid "Hey %s,"
+msgstr "Ẹ ǹlẹ %s,"
+
+#: includes/freemius-strings.php:1160
+#: includes/freemius-strings.php:6647
+msgctxt "verb"
+msgid "Hide"
+msgstr "Fi pamọ́"
+
+#: includes/freemius-strings.php:1164
+#: includes/freemius-strings.php:6617
+msgctxt "something somebody says when they are thinking about what you have just said."
+msgid "Hmm"
+msgstr "Kò yé mi"
+
+#: includes/freemius-strings.php:1168
+#: includes/freemius-strings.php:4061
+msgid "How to upload and activate?"
+msgstr "Báwo ni lati gbé sori ẹ̀rọ ati lati mú un ṣiṣẹ́?"
+
+#: includes/freemius-strings.php:1172
+#: includes/freemius-strings.php:4115
+msgid "ID"
+msgstr "ID"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1177
+#: includes/freemius-strings.php:5905
+#, php-format
+msgid "You are already running the %s in a trial mode."
+msgstr "O ti nṣiṣẹ %s tẹlẹ ni ipo idanwo."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1182
+#: includes/freemius-strings.php:4173
+#, php-format
+msgid "In %s"
+msgstr "Ninu %s"
+
+#: includes/freemius-strings.php:1186
+#: includes/freemius-strings.php:4184
+msgid "Install Free Version Now"
+msgstr "Fi Ẹya Ọfẹ Sori Bayi"
+
+#: includes/freemius-strings.php:1190
+#: includes/freemius-strings.php:4189
+msgid "Install Free Version Update Now"
+msgstr "Fi Ẹ̀yà Ọ̀fẹ́ Sori Bayìí Lọ́wọ́lọ́wọ́"
+
+#: includes/freemius-strings.php:1194
+#: includes/freemius-strings.php:4194
+msgid "Install Now"
+msgstr "Fi Sori Ẹ̀rọ Bayi"
+
+#: includes/freemius-strings.php:1198
+#: includes/freemius-strings.php:4199
+msgid "Install Update Now"
+msgstr "Fi Imudojuiwọn Sori Bayi"
+
+#: includes/freemius-strings.php:1202
+#: includes/freemius-strings.php:6341
+msgctxt "Plugin installer section title"
+msgid "Installation"
+msgstr "Fifi sori ẹrọ"
+
+#: includes/freemius-strings.php:1206
+#: includes/freemius-strings.php:6577
+msgctxt "installed add-on"
+msgid "Installed"
+msgstr "Ti fi sori ẹrọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1211
+#: includes/freemius-strings.php:3246
+#, php-format
+msgid "An automated download and installation of %1$s (paid version) from %2$s will start in %3$s. If you would like to do it manually - click the cancellation button now."
+msgstr "Àwọn ìgbésẹ̀ aláìlátọwọ́ fún gbígbà áwọ̀tún àti fífi %1$s (ẹ̀yà tó ní owó) sori ẹ̀rọ láti %2$s yóò bẹ̀rẹ̀ ní %3$s. Bí o bá fẹ́ ṣe é fúnra rẹ̀ - tẹ bọ́tìnì ìfagilé báyìí."
+
+#: includes/freemius-strings.php:1215
+#: includes/freemius-strings.php:5428
+msgid "The installation process has started and may take a few minutes to complete. Please wait until it is done - do not refresh this page."
+msgstr "Ilana fifi sori ẹrọ ti bẹrẹ o si le gba iṣẹju diẹ lati pari. Jọwọ duro titi yoo fi pari - maṣe sọ oju-iwe yii di titun."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1220
+#: includes/freemius-strings.php:4205
+#, php-format
+msgid "Installing plugin: %s"
+msgstr "Fifi plugin sori: %s"
+
+#: includes/freemius-strings.php:1224
+#: includes/freemius-strings.php:4210
+msgid "Invalid clone resolution action."
+msgstr "Ìṣe ìdámọ̀ ìṣẹ̀dá àti wíwàtúnṣe kò wúlò."
+
+#: includes/freemius-strings.php:1228
+#: includes/freemius-strings.php:4215
+msgid "Invalid domain"
+msgstr "Agbegbe wẹbù ti ko wulo"
+
+#: includes/freemius-strings.php:1232
+#: includes/freemius-strings.php:4225
+msgid "Invalid new user ID or email address."
+msgstr "ID olumulo tuntun tabi adirẹsi imeeli ti ko tọ."
+
+#: includes/freemius-strings.php:1236
+#: includes/freemius-strings.php:4230
+msgid "Invalid site details collection."
+msgstr "Gbogbo alaye aaye ti ko tọ."
+
+#: includes/freemius-strings.php:1240
+#: includes/freemius-strings.php:4235
+msgid "Invoice"
+msgstr "Fún ìdíyelé"
+
+#: includes/freemius-strings.php:1244
+#: includes/freemius-strings.php:4258
+msgid "Is Active"
+msgstr "Ṣe o wà lori afẹfẹ"
+
+#: includes/freemius-strings.php:1248
+#: includes/freemius-strings.php:4337
+msgid "Keep Sharing"
+msgstr "Tọ́jú Pínpín"
+
+#: includes/freemius-strings.php:1252
+#: includes/freemius-strings.php:4347
+msgid "Key"
+msgstr "Bọtìnnì Ìkọkọ"
+
+#: includes/freemius-strings.php:1256
+#: includes/freemius-strings.php:4362
+msgid "Last"
+msgstr "Gbẹ̀yìn"
+
+#: includes/freemius-strings.php:1260
+#: includes/freemius-strings.php:4372
+msgid "Last license"
+msgstr "Laini iwe-ašẹ to kẹhin"
+
+#: includes/freemius-strings.php:1264
+#: includes/freemius-strings.php:4367
+msgid "Last Updated"
+msgstr "Ìgbà Ìsọdiwọ̀n Gbẹ̀yìn"
+
+#: includes/freemius-strings.php:1268
+#: includes/freemius-strings.php:4377
+msgid "Latest Free Version Installed"
+msgstr "Ẹ̀ka Ọ̀fẹ́ Tuntun Jù Lọ Tí A Fi Sori Ẹrọ"
+
+#: includes/freemius-strings.php:1272
+#: includes/freemius-strings.php:4382
+msgid "Latest Version Installed"
+msgstr "Ẹ̀ka Tuntun Jùlọ Tí A Fi Sori Rẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1277
+#: includes/freemius-strings.php:6259
+#, php-format
+msgid "the latest %s version here"
+msgstr "ẹya %s tuntun julọ nibi"
+
+#: includes/freemius-strings.php:1281
+#: includes/freemius-strings.php:4387
+msgid "Learn more"
+msgstr "Kọ́ ẹ̀kọ́ sí i"
+
+#: includes/freemius-strings.php:1285
+#: includes/freemius-strings.php:4392
+msgid "Length"
+msgstr "Gígùn"
+
+#: includes/freemius-strings.php:1289
+#: includes/freemius-strings.php:6077
+msgid "Your license was successfully activated."
+msgstr "A mu ìwé-àṣẹ rẹ ṣiṣẹ pẹ̀lú àṣeyọrí."
+
+#: includes/freemius-strings.php:1293
+#: includes/freemius-strings.php:4274
+msgid "It looks like the license could not be activated."
+msgstr "Ó jọ pé a kò lè mú ìwé àṣẹ náà ṣiṣẹ́."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1298
+#: includes/freemius-strings.php:3021
+#, php-format
+msgid "%s to activate the license once you get it."
+msgstr "%s lati mu iwe-ase mu ṣiṣẹ ni kete ti o ba gba a."
+
+#: includes/freemius-strings.php:1302
+#: includes/freemius-strings.php:4402
+msgid "License Agreement"
+msgstr "Àdéhùn Ìwé-àṣẹ"
+
+#: includes/freemius-strings.php:1306
+#: includes/freemius-strings.php:6054
+msgid "Your license has been cancelled. If you think it's a mistake, please contact support."
+msgstr "A ti fagile iwe-ašẹ rẹ. Ti o ba ro pe o jẹ aṣiṣe, jọwọ kan si ẹgbẹ atilẹyin."
+
+#: includes/freemius-strings.php:1310
+#: includes/freemius-strings.php:4279
+msgid "It looks like the license deactivation failed."
+msgstr "Ó jọ pé ìdádúró ìwé àṣẹ náà kùnà."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1315
+#: includes/freemius-strings.php:6083
+#, php-format
+msgid "Your license was successfully deactivated, you are back to the %s plan."
+msgstr "A ṣe ìdúróṣe fún ìwé-àṣẹ rẹ, o ti padà sí ètò %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1320
+#: includes/freemius-strings.php:6011
+#, php-format
+msgid "Your %s license was successfully deactivated."
+msgstr "Wọn ti yọ iwe-ašẹ %s rẹ kuro pẹlu aṣeyọri."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1325
+#: includes/freemius-strings.php:6072
+#, php-format
+msgid "Your license has expired. You can still continue using the free %s forever."
+msgstr "Tí iwe-aṣẹ rẹ ti pari. O tun le tẹsiwaju lati lo %s ọfẹ lailai."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1330
+#: includes/freemius-strings.php:6060
+#, php-format
+msgid "Your license has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "Ìwé-àṣẹ rẹ ti pè. %1$sṢe ìgbéga nísìnyí%2$s láti tẹ̀síwajú ní lílò %3$s laìní ìdíwọ́."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1335
+#: includes/freemius-strings.php:6066
+#, php-format
+msgid "Your license has expired. You can still continue using all the %s features, but you'll need to renew your license to continue getting updates and support."
+msgstr "Ìwé àṣẹ rẹ ti parí. O ṣì lè máa lo gbogbo àwọn ànímọ́ %s, ṣùgbọ́n o nílò láti sọ ìwé àṣẹ rẹ di tuntun kí o lè máa gba àwọn ìsọdọtun àti ìtìlẹ́yìn."
+
+#: includes/freemius-strings.php:1339
+#: includes/freemius-strings.php:4407
+msgid "License ID"
+msgstr "Ìdánimọ̀ Ìwé-àṣẹ"
+
+#: includes/freemius-strings.php:1343
+#: includes/freemius-strings.php:4417
+msgid "License issues?"
+msgstr "Àwọn ìṣòroìwé àṣẹ?"
+
+#: includes/freemius-strings.php:1347
+#: includes/freemius-strings.php:5156
+msgid "Single Site License"
+msgstr "Àṣẹ Ìpìlẹ̀ Ojú-wò Ọ̀kan"
+
+#: includes/freemius-strings.php:1351
+#: includes/freemius-strings.php:5596
+msgid "Unlimited Licenses"
+msgstr "Àwọn Ìwé Àṣẹ tíkò Ní Òpin"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1356
+#: includes/freemius-strings.php:5612
+#, php-format
+msgid "Up to %s Sites"
+msgstr "O to %s Aaye"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1361
+#: includes/freemius-strings.php:4269
+#, php-format
+msgid "Is this your client's site? %s if you wish to hide sensitive info like your email, license key, prices, billing address & invoices from the WP Admin."
+msgstr "Ṣé ojúewé oníbàárà rẹ ni èyí? %s tí o bá fẹ́ pa ìwífún ìkọ̀kọ̀ bí ímeèlì rẹ, bọ́tìnì ìwé-àṣẹ, owó, àdíréèjì ìbéèrè owó & àwọn ìwé-ìbéèrè owó mọ́ kúrò ní WP Admin."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1366
+#: includes/freemius-strings.php:6005
+#, php-format
+msgid "Your %1$s license was flagged as white-labeled to hide sensitive information from the WP Admin (e.g. your email, license key, prices, billing address & invoices). If you ever wish to revert it back, you can easily do it through your %2$s. If this was a mistake you can also %3$s."
+msgstr "A fọwọsi iwe-ašẹ %1$s rẹ gẹgẹ bi aami funfun (white-labeled) lati fi alaye ti o ni ika mo ara (fun apẹẹrẹ, imeeli rẹ, bọtini iwe-ašẹ, awọn idiyele, adirẹsi sisanwo & awọn owo-iwe) pamọ si WP Admin. Ti o ba fẹ yipada pada nigbakugba, o le ṣe bẹ ni irọrun nipasẹ %2$s rẹ. Ti eyi ba jẹ aṣiṣe o tun le %3$s."
+
+#: includes/freemius-strings.php:1370
+#: includes/freemius-strings.php:4432
+msgid "Lifetime"
+msgstr "Gbogbo ìgbà"
+
+#: includes/freemius-strings.php:1374
+#: includes/freemius-strings.php:4443
+msgid "Load DB Option"
+msgstr "Ṣe agbewọle Aṣayan DB"
+
+#: includes/freemius-strings.php:1378
+#: includes/freemius-strings.php:4448
+msgid "Localhost"
+msgstr "Ojula agbegbe"
+
+#: includes/freemius-strings.php:1382
+#: includes/freemius-strings.php:4453
+msgid "Log"
+msgstr "Akọọlẹ iṣẹlẹ"
+
+#: includes/freemius-strings.php:1386
+#: includes/freemius-strings.php:4458
+msgid "Logger"
+msgstr "Akọsilẹ ìṣẹlẹ"
+
+#: includes/freemius-strings.php:1390
+#: includes/freemius-strings.php:4463
+msgid "Long-Term Duplicate"
+msgstr "Àwọn tó tún pọ̀ fún ìgbà pípẹ́"
+
+#: includes/freemius-strings.php:1394
+#: includes/freemius-strings.php:4468
+msgid "Message"
+msgstr "Ifẹran"
+
+#: includes/freemius-strings.php:1398
+#: includes/freemius-strings.php:4473
+msgid "Method"
+msgstr "Ọna"
+
+#: includes/freemius-strings.php:1402
+#: includes/freemius-strings.php:4488
+msgid "Migrate Options to Network"
+msgstr "Fi àṣàyàn sí Sọ́tìwọ̀kì kún"
+
+#: includes/freemius-strings.php:1406
+#: includes/freemius-strings.php:4478
+msgid "Migrate"
+msgstr "Gbéra lọ"
+
+#: includes/freemius-strings.php:1410
+#: includes/freemius-strings.php:4483
+msgid "Migrate License"
+msgstr "Ṣe Aṣikiri Iwe-ašẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1415
+#: includes/freemius-strings.php:4253
+#, php-format
+msgid "Is %2$s the new home of %4$s?"
+msgstr "Ṣe %2$s ni ile tuntun fun %4$s?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1420
+#: includes/freemius-strings.php:5871
+#, php-format
+msgid "Yes, %%2$s is replacing %%4$s. I would like to migrate my %s from %%4$s to %%2$s."
+msgstr "Bẹẹni, %%2$s n rọpo %%4$s. Mo fẹ lati gbe %s mi kuro ni %%4$s lọ si %%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1425
+#: includes/freemius-strings.php:2955
+#, php-format
+msgid "%s minimum payout amount."
+msgstr "%s iye owo isanwo to kere ju."
+
+#: includes/freemius-strings.php:1429
+#: includes/freemius-strings.php:6464
+msgctxt "as monthly period"
+msgid "mo"
+msgstr "mo"
+
+#: includes/freemius-strings.php:1433
+#: includes/freemius-strings.php:4493
+msgid "Mobile apps"
+msgstr "Àwọn ohun elo alágbèéká"
+
+#: includes/freemius-strings.php:1437
+#: includes/freemius-strings.php:4498
+msgid "Module"
+msgstr "Mọ́dùlù"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1442
+#: includes/freemius-strings.php:2889
+#, php-format
+msgid "%s Installs"
+msgstr "Àwọn Ìfikòsílẹ̀ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1447
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s Licenses"
+msgstr "Àwọn ìwé àṣẹ %s"
+
+#: includes/freemius-strings.php:1451
+#: includes/freemius-strings.php:5445
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "Apo àfikún abẹ̀rìn-jìn náà kò ní fọ́lídà kan pẹ̀lú slug tó yẹ àti pé yíyí orúkọ padà kò ṣiṣẹ́."
+
+#: includes/freemius-strings.php:1455
+#: includes/freemius-strings.php:4503
+msgid "Module Path"
+msgstr "Ọ̀nà Module"
+
+#: includes/freemius-strings.php:1459
+#: includes/freemius-strings.php:4508
+msgid "Module Type"
+msgstr "Oríkì Module"
+
+#: includes/freemius-strings.php:1463
+#: includes/freemius-strings.php:6444
+msgctxt "as every month"
+msgid "Monthly"
+msgstr "Oṣooṣù"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1468
+#: includes/freemius-strings.php:4519
+#, php-format
+msgid "More information about %s"
+msgstr "Alaye siwaju sii nipa %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1473
+#: includes/freemius-strings.php:5865
+#, php-format
+msgid "Yes - move all my data and assets from %1$s to %2$s"
+msgstr "Bẹẹni - gbe gbogbo data ati awọn ohun-ini mi kuro ni %1$s lọ si %2$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1478
+#: includes/freemius-strings.php:4597
+#, php-format
+msgid "No - only move this site's data to %s"
+msgstr "Rara - gbe data aaye yii nikan lọ si %s"
+
+#: includes/freemius-strings.php:1482
+#: includes/freemius-strings.php:6592
+msgctxt "milliseconds"
+msgid "ms"
+msgstr "ms"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1487
+#: includes/freemius-strings.php:5434
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of %3$s:%1$s"
+msgstr "Awon oja ti o wa ni isale ni a ti fi si ipo ailewu nitori pe a akiyesi pe %2$s je eda gangan ti %3$s:%1$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1492
+#: includes/freemius-strings.php:5440
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of these sites:%3$s%1$s"
+msgstr "Awon oja ti o wa ni isale ni a ti gbe sinu ipo aabo nitori pe a akiyesi pe %2$s jogba deede awon aaye wanyi:%3$s%1$s"
+
+#: includes/freemius-strings.php:1496
+#: includes/freemius-strings.php:4524
+msgid "Name"
+msgstr "Oruko"
+
+#: includes/freemius-strings.php:1500
+#: includes/freemius-strings.php:4829
+msgid "Please provide your full name."
+msgstr "Jọwọ pese orukọ rẹ kikun."
+
+#: includes/freemius-strings.php:1504
+#: includes/freemius-strings.php:6088
+msgid "Your name was successfully updated."
+msgstr "A ti yọ orúkọ rẹ sí ẹ̀yà tuntun ní àṣeyọrí."
+
+#: includes/freemius-strings.php:1508
+#: includes/freemius-strings.php:4534
+msgid "Network Blog"
+msgstr "Bọọgi Nẹ́twọ̀kì"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1513
+#: includes/freemius-strings.php:3039
+#, php-format
+msgid "%1$sClick here%2$s to choose the sites where you'd like to activate the license on."
+msgstr "%1$sTẹ ibi%2$s láti yan àwọn ojula lórí ayélujára tí o fẹ́ mú ìwé-àṣẹ ṣiṣẹ́ lé lórí."
+
+#: includes/freemius-strings.php:1517
+#: includes/freemius-strings.php:4539
+msgid "Network User"
+msgstr "Oníṣẹ́ Nẹ́twọ̀kì"
+
+#: includes/freemius-strings.php:1521
+#: includes/freemius-strings.php:4554
+msgid "New"
+msgstr "Titun"
+
+#: includes/freemius-strings.php:1525
+#: includes/freemius-strings.php:6193
+msgid "new Beta version"
+msgstr "ẹya Beta tuntun"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1530
+#: includes/freemius-strings.php:4247
+#, php-format
+msgid "Is %2$s a new website?"
+msgstr "Njẹ %2$s jẹ oju opo wẹẹbu tuntun bi?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1535
+#: includes/freemius-strings.php:5883
+#, php-format
+msgid "Yes, %2$s is a new and different website that is separate from %4$s."
+msgstr "Bẹẹni, %2$s jẹ́ ojú opo wẹẹbu titun ati ti o yatọ ti o yapa kuro lọdọ %4$s."
+
+#: includes/freemius-strings.php:1539
+#: includes/freemius-strings.php:4300
+msgid "It requires license activation."
+msgstr "Ó nílò ìmúṣiṣẹ́ ìwé-àṣẹ."
+
+#: includes/freemius-strings.php:1543
+#: includes/freemius-strings.php:6198
+msgid "new version"
+msgstr "ẹ̀ya tuntun"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1548
+#: includes/freemius-strings.php:5483
+#, php-format
+msgid "There is a new version of %s available."
+msgstr "Ẹ̀dọ̀ titun ti %s wà láti lò."
+
+#: includes/freemius-strings.php:1552
+#: includes/freemius-strings.php:4564
+msgid "New Website"
+msgstr "Ojula Oju Opo Wora Ntitun"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1557
+#: includes/freemius-strings.php:4570
+#, php-format
+msgid "Newer Free Version (%s) Installed"
+msgstr "Ẹ̀yà Ọ̀fẹ́ Tuntun Ju ( %s ) Lọ́wọ́lọ́wọ́ Ti Wà Níbẹ̀"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1562
+#: includes/freemius-strings.php:4576
+#, php-format
+msgid "Newer Version (%s) Installed"
+msgstr "Àtúnṣe Tuntun (%s) Ti Fi Sílẹ̀"
+
+#: includes/freemius-strings.php:1566
+#: includes/freemius-strings.php:5504
+msgid "This plugin requires a newer version of PHP."
+msgstr "Plagiọti yii nilo ẹ̀yà PHP ti o tuntun julọ."
+
+#: includes/freemius-strings.php:1570
+#: includes/freemius-strings.php:4586
+msgid "Next"
+msgstr "Tẹ̀lé e"
+
+#: includes/freemius-strings.php:1574
+#: includes/freemius-strings.php:4591
+msgid "No"
+msgstr "Bẹẹkọ"
+
+#: includes/freemius-strings.php:1578
+#: includes/freemius-strings.php:4295
+msgid "It looks like your site currently doesn't have an active license."
+msgstr "Ó jọ pé ojula rẹ kò ní ìwé-àṣẹ tó ń ṣiṣẹ lọ́wọ́ báyìí."
+
+#: includes/freemius-strings.php:1582
+#: includes/freemius-strings.php:5741
+msgid "We can't see any active licenses associated with that email address, are you sure it's the right address?"
+msgstr "A ko le ri awọn iwe-aṣẹ ti nṣiṣẹ lọwọ eyikeyi ti o ni nkan ṣe pẹlu adirẹsi imeeli yẹn, ṣe o ni idaniloju pe o jẹ adirẹsi to tọ?"
+
+#: includes/freemius-strings.php:1586
+#: includes/freemius-strings.php:4619
+msgid "No credit card required"
+msgstr "Ko nilo kaadi kirẹditi"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1591
+#: includes/freemius-strings.php:4614
+#, php-format
+msgid "No commitment for %s days - cancel anytime!"
+msgstr "Kò sí ìfarajìn fún ọjọ́ %s — fagilé nígbàkigbà!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1596
+#: includes/freemius-strings.php:4608
+#, php-format
+msgid "No commitment for %s - cancel anytime"
+msgstr "Kò sí ìgbékalẹ̀ fún %s - fagile nígbàkúgbà"
+
+#: includes/freemius-strings.php:1600
+#: includes/freemius-strings.php:4624
+msgid "No expiration"
+msgstr "Ko si ọjọ ipari"
+
+#: includes/freemius-strings.php:1604
+#: includes/freemius-strings.php:4602
+msgid "No ID"
+msgstr "Kò sí ID"
+
+#: includes/freemius-strings.php:1608
+#: includes/freemius-strings.php:6281
+msgctxt "API connectivity state is unknown"
+msgid "No requests yet"
+msgstr "Ko si awọn ibeere kankan sibẹsibẹ"
+
+#: includes/freemius-strings.php:1612
+#: includes/freemius-strings.php:6489
+msgctxt "as secret encryption key missing"
+msgid "No Secret"
+msgstr "Ko si Asiri"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1617
+#: includes/freemius-strings.php:4635
+#, php-format
+msgid "None of the %s's plans supports a trial period."
+msgstr "Kò sí ètò kankan nínú %s tí ó ní ìtìlẹ́yìn fún àkókò ìdánwò."
+
+#: includes/freemius-strings.php:1621
+#: includes/freemius-strings.php:4629
+msgid "Non-expiring"
+msgstr "Tí kò ní parí"
+
+#: includes/freemius-strings.php:1625
+#: includes/freemius-strings.php:5494
+msgid "This plugin has not been marked as compatible with your version of WordPress."
+msgstr "A ko ti sàmọ̀ sí pé àfikún yii ní ìbámu pẹ̀lú ẹ̀dà WordPress rẹ."
+
+#: includes/freemius-strings.php:1629
+#: includes/freemius-strings.php:5499
+msgid "This plugin has not been tested with your current version of WordPress."
+msgstr "A ko tii ṣe àyẹ̀wò plugin yii pẹ̀lú ẹ̀dá WordPress rẹ̀ lọwọlọwọ."
+
+#: includes/freemius-strings.php:1633
+#: includes/freemius-strings.php:6203
+msgid "not verified"
+msgstr "kò tíì jẹ́ ẹ̀rí"
+
+#: includes/freemius-strings.php:1637
+#: includes/freemius-strings.php:6519
+msgctxt "as turned off"
+msgid "Off"
+msgstr "Pa"
+
+#: includes/freemius-strings.php:1641
+#: includes/freemius-strings.php:4640
+msgid "O.K"
+msgstr "Ó dára"
+
+#: includes/freemius-strings.php:1645
+#: includes/freemius-strings.php:6524
+msgctxt "as turned on"
+msgid "On"
+msgstr "Tan"
+
+#: includes/freemius-strings.php:1649
+#: includes/freemius-strings.php:6479
+msgctxt "as once a year"
+msgid "Once"
+msgstr "Ẹ̀ẹ̀kan"
+
+#: includes/freemius-strings.php:1653
+#: includes/freemius-strings.php:6566
+msgctxt "exclamation"
+msgid "Oops"
+msgstr "Ẹ jọ̀ọ́"
+
+#: includes/freemius-strings.php:1657
+#: includes/freemius-strings.php:4663
+msgid "Opt In"
+msgstr "Faramọ̀"
+
+#: includes/freemius-strings.php:1661
+#: includes/freemius-strings.php:3229
+msgid "Allow & Continue"
+msgstr "Gbà & Tẹ̀síwájú"
+
+#: includes/freemius-strings.php:1665
+#: includes/freemius-strings.php:4668
+msgid "Opt Out"
+msgstr "Yọ kúrò"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1670
+#: includes/freemius-strings.php:5131
+#, php-format
+msgid "Sharing diagnostic data with %s helps to provide functionality that's more relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the plugin should be translated and tailored to."
+msgstr "Pipinlẹ data aisan pẹlu %s ṣe iranlọwọ lati pese iṣẹ-ṣiṣe ti o ṣe pataki diẹ sii si oju opo wẹẹbu rẹ, yago fun aisi ibamu WordPress tabi ẹya PHP ti o le fọ oju opo wẹẹbu rẹ, ati mọ iru awọn ede & agbegbe ti o yẹ ki a tumọ afikun naa si ati ṣe deede si."
+
+#: includes/freemius-strings.php:1674
+#: includes/freemius-strings.php:5136
+msgid "Sharing your name and email allows us to keep you in the loop about new features and important updates, warn you about security issues before they become public knowledge, and send you special offers."
+msgstr "Pínpín orúkọ rẹ àti imeeli rẹ jẹ kí a lè máa sọ fún ọ nípa àwọn àbùdá tuntun àti àwọn ìsọfúnni pàtàkì, kìlọ̀ fún ọ nípa àwọn ìṣòro ààbò kí wọ́n tó di mímọ̀ fún gbogbo ènìyàn, kí a sì rán àwọn ànfààni pàtàkì sí ọ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1679
+#: includes/freemius-strings.php:3735
+#, php-format
+msgid "Diagnostic data will no longer be sent from %1$s to %2$s."
+msgstr "A ki yoo fi data iwadi ranṣẹ lati %1$s si %2$s mọ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1684
+#: includes/freemius-strings.php:4685
+#, php-format
+msgid "Opt in to make \"%s\" better!"
+msgstr "Forukọ silẹ lati jẹ ki \"%s\" dara si!"
+
+#: includes/freemius-strings.php:1688
+#: includes/freemius-strings.php:4690
+msgid "Opting in"
+msgstr "Gbigba lati kopa"
+
+#: includes/freemius-strings.php:1692
+#: includes/freemius-strings.php:4695
+msgid "Opting out"
+msgstr "Yiyan kuro"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1697
+#: includes/freemius-strings.php:3973
+#, php-format
+msgid "For ongoing compatibility with your website, you can optionally allow %s to:"
+msgstr "Fun ibamu tẹsiwaju pẹlu oju opo wẹẹbu rẹ, o le fi aṣayan gba %s laaye lati:"
+
+#: includes/freemius-strings.php:1701
+#: includes/freemius-strings.php:2108
+#: includes/freemius-strings.php:4705
+msgid "Other"
+msgstr "Àwọn mìíràn"
+
+#: includes/freemius-strings.php:1705
+#: includes/freemius-strings.php:6346
+msgctxt "Plugin installer section title"
+msgid "Other Notes"
+msgstr "Àwọn Àkọsílẹ̀ Mìíràn"
+
+#: includes/freemius-strings.php:1709
+#: includes/freemius-strings.php:4710
+msgid "Owner Email"
+msgstr "Íméì Olùníṣẹ́"
+
+#: includes/freemius-strings.php:1713
+#: includes/freemius-strings.php:4715
+msgid "Owner ID"
+msgstr "ID Aláṣọ"
+
+#: includes/freemius-strings.php:1717
+#: includes/freemius-strings.php:4720
+msgid "Owner Name"
+msgstr "Orukọ Ẹni Tó ni Ọjà"
+
+#: includes/freemius-strings.php:1721
+#: includes/freemius-strings.php:4730
+msgid "Paid add-on must be deployed to Freemius."
+msgstr "Gbọdọ gbe àfikún tí a sanwo kalẹ̀ sí Freemius."
+
+#: includes/freemius-strings.php:1725
+#: includes/freemius-strings.php:6454
+msgctxt "as file/folder path"
+msgid "Path"
+msgstr "Ojú-ọ̀nà"
+
+#: includes/freemius-strings.php:1729
+#: includes/freemius-strings.php:4745
+msgid "Payments"
+msgstr "Àwọn ìsanwó"
+
+#: includes/freemius-strings.php:1733
+#: includes/freemius-strings.php:4750
+msgid "Payouts are in USD and processed monthly via PayPal."
+msgstr "Àwọn owó ìsanwó jẹ́ USD wọ́n sì ń san á lóṣooṣù nípasẹ̀ PayPal."
+
+#: includes/freemius-strings.php:1737
+#: includes/freemius-strings.php:4735
+msgid "PayPal account email address"
+msgstr "Adirẹsi imeeli akọọlẹ PayPal"
+
+#: includes/freemius-strings.php:1741
+#: includes/freemius-strings.php:4740
+msgid "PayPal email address is required."
+msgstr "Aaye imeeli PayPal jẹ dandan."
+
+#: includes/freemius-strings.php:1745
+#: includes/freemius-strings.php:4725
+msgid "PCI compliant"
+msgstr "Gbọ́ ìbámu pẹ̀lú PCI"
+
+#: includes/freemius-strings.php:1749
+#: includes/freemius-strings.php:5711
+msgid "View Diagnostic Info"
+msgstr "Wo Alaye Ayewo"
+
+#: includes/freemius-strings.php:1753
+#: includes/freemius-strings.php:5827
+msgid "WordPress & PHP versions, site language & title"
+msgstr "Àwọn ẹ̀yà WordPress & PHP, èdè àti àkọlé ojú òpó wéèbù"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1758
+#: includes/freemius-strings.php:5526
+#, php-format
+msgid "To avoid breaking your website due to WordPress or PHP version incompatibilities, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "Lati yago fún biba oju opo wẹẹlu rẹ jẹ nitori aisedede ẹya WordPress tabi PHP, ati lati mọ iru awọn ede ati awọn agbegbe ti o yẹ ki a tumọ %s si ki o si ṣe agbekalẹ rẹ fun."
+
+#: includes/freemius-strings.php:1762
+#: includes/freemius-strings.php:5716
+msgid "View License Essentials"
+msgstr "Wo Awon Ohun Ti O Se Pataki Fun Iwe-Asẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1767
+#, php-format
+msgid "Homepage URL, %s version, SDK version"
+msgstr "URL ojú-ewé ile, ẹ̀yà %s, ẹ̀yà SDK"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1772
+#: includes/freemius-strings.php:5549
+#, php-format
+msgid "To let you manage & control where the license is activated and ensure %s security & feature updates are only delivered to websites you authorize."
+msgstr "Lati jẹ ki o ṣakoso ati ṣakakoso ibiti a ti mu iwe-ašẹ ṣiṣẹ ati rii daju pe a firanṣẹ aabo %s & awọn imudojuiwọn ẹya nikan si awọn oju opo wẹẹbu ti o fun ni aṣẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1777
+#: includes/freemius-strings.php:3648
+#, php-format
+msgid "Current %s & SDK versions, and if active or uninstalled"
+msgstr "Àwọn àgbéyẹwò %s & SDK lọ́wọ́lọ́wọ́, àti bóyá wọ́n ń ṣiṣẹ́ tàbí wọ́n ti jẹ́ pípárẹ́"
+
+#: includes/freemius-strings.php:1781
+#: includes/freemius-strings.php:4263
+msgid "Is active, deactivated, or uninstalled"
+msgstr "Ó wà nínú iṣẹ́, ó ti wà nípa, tàbí ó ti kúrò ní kíkún"
+
+#: includes/freemius-strings.php:1785
+#: includes/freemius-strings.php:5721
+msgid "View Plugins & Themes List"
+msgstr "Wo Àkójọ Àwọn Ìfinúgbò & Àwọn Àkòrí"
+
+#: includes/freemius-strings.php:1789
+#: includes/freemius-strings.php:4581
+msgid "Newsletter"
+msgstr "Ìwé ìròyìn"
+
+#: includes/freemius-strings.php:1793
+#: includes/freemius-strings.php:5627
+msgid "Updates, announcements, marketing, no spam"
+msgstr "Àwọn ìfilọ́lẹ̀, àwọn ìkéde, ọjà-ta, kò sí spam"
+
+#: includes/freemius-strings.php:1797
+#: includes/freemius-strings.php:5701
+msgid "View Basic Profile Info"
+msgstr "Wo Alaye Profaili Ipilẹ"
+
+#: includes/freemius-strings.php:1801
+#: includes/freemius-strings.php:6016
+msgid "Your WordPress user's: first & last name, and email address"
+msgstr "Orúkọ àti ìgbẹ̀yìn orúkọ ti olùlò WordPress rẹ, àti àdírẹ́sì ímeèlì rẹ̀"
+
+#: includes/freemius-strings.php:1805
+#: includes/freemius-strings.php:4549
+msgid "Never miss important updates, get security warnings before they become public knowledge, and receive notifications about special offers and awesome new features."
+msgstr "Máṣé pàdánù àwọn ìsọfìtọ̀n pàtàkì kankan, gba ì kìlọ̀ nípa ààbò kí wọ́n tó di mímọ̀ fún gbogbo èèyàn, kí o sì gba àwọn ìfitónilétí nípa àwọn ànfààní àtàtà àti àwọn ẹ̀yà tuntun tó wuni."
+
+#: includes/freemius-strings.php:1809
+#: includes/freemius-strings.php:5706
+msgid "View Basic Website Info"
+msgstr "Wo Alaye Ipilẹ Aaye Ayelujara"
+
+#: includes/freemius-strings.php:1813
+#: includes/freemius-strings.php:4050
+msgid "Homepage URL & title, WP & PHP versions, and site language"
+msgstr "URL Ojú-iwe akọkọ & àkọlé, àwọn ẹ̀yà WP & PHP, àti èdè ojú-iwe aaye naa"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1818
+#: includes/freemius-strings.php:5555
+#, php-format
+msgid "To provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "Lati pese iṣẹ afikun ti o baamu fun oju opo wẹpe rẹ, yago fun aibamu ẹya WordPress tabi PHP ti o le fọ oju opo wẹpe rẹ, ati lati mọ iru awọn ede & awọn agbegbe ti a yẹ ki o tumọ %s si ati mu baamu."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1823
+#: includes/freemius-strings.php:3045
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">Click here to learn more about updating PHP</a>."
+msgstr "<a href=\"%s\" target=\"_blank\">Tẹ ibi lati kọ diẹ sii nipa imudojuiwọn PHP</a>."
+
+#: includes/freemius-strings.php:1827
+#: includes/freemius-strings.php:5805
+msgid "What price would you feel comfortable paying?"
+msgstr "Kí ni iye tí o lè fi lọ́kàn balẹ̀ san?"
+
+#: includes/freemius-strings.php:1831
+#: includes/freemius-strings.php:5794
+msgid "What feature?"
+msgstr "Ẹya wo?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1836
+#: includes/freemius-strings.php:5816
+#, php-format
+msgid "What's the %s's name?"
+msgstr "Kí ni orúkọ %s náà?"
+
+#: includes/freemius-strings.php:1840
+#: includes/freemius-strings.php:4352
+msgid "Kindly share what didn't work so we can fix it for future users..."
+msgstr "Ẹ jọ̀wọ́, ẹ pín ohun tí kò ṣiṣẹ́ kí a lè ṣe àtúnṣe rẹ̀ fún àwọn olùlò iwájú..."
+
+#: includes/freemius-strings.php:1844
+#: includes/freemius-strings.php:5789
+msgid "What did you expect?"
+msgstr "Kí ni o retí?"
+
+#: includes/freemius-strings.php:1848
+#: includes/freemius-strings.php:5810
+msgid "What you've been looking for?"
+msgstr "Ohun ti o ti n wa ni yẹn?"
+
+#: includes/freemius-strings.php:1852
+#: includes/freemius-strings.php:6484
+msgctxt "as product pricing plan"
+msgid "Plan"
+msgstr "Ètò"
+
+#: includes/freemius-strings.php:1856
+#: includes/freemius-strings.php:6093
+msgid "Your plan was successfully activated."
+msgstr "Aṣàyàn rẹ ti wọ inú iṣẹ́ lọ àṣeyọrí."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1861
+#: includes/freemius-strings.php:6099
+#, php-format
+msgid "Your plan was successfully changed to %s."
+msgstr "Aṣọ ìṣètò rẹ ti yí padà sí %s ní àṣeyọrí."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1866
+#: includes/freemius-strings.php:4098
+#, php-format
+msgid "I have upgraded my account but when I try to Sync the License, the plan remains %s."
+msgstr "Mo ti ṣe àmúlò àkọọ́lẹ̀ mi, sùgbọ́n nígbà tí mo gbìyànjú láti Ṣe ìṣẹpọ̀ Ìwé Àṣẹ náà, ètò náà sì tún wà ní %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1871
+#: includes/freemius-strings.php:4290
+#, php-format
+msgid "It looks like you are still on the %s plan. If you did upgrade or change your plan, it's probably an issue on our side - sorry."
+msgstr "O dabi pe o wa lori ètọ́ %s náà lọwọ́lọwọ́. Bí o bá ṣe ìgbéga tàbí yíyí ètọ́ rẹ padà, o ṣe é ṣe kí o jẹ́ àsìṣe láti ọ̀dọ̀ wa — a bẹ̀rù rẹ̀."
+
+#: includes/freemius-strings.php:1875
+#: includes/freemius-strings.php:4772
+msgid "Plan ID"
+msgstr "ID Ètò"
+
+#: includes/freemius-strings.php:1879
+#: includes/freemius-strings.php:6104
+msgid "Your plan was successfully upgraded."
+msgstr "Aṣàṣẹ rẹ ti ní ìgbéga ní àṣeyọrí."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1884
+#: includes/freemius-strings.php:6116
+#, php-format
+msgid "Your subscription was successfully cancelled. Your %1$s plan license will expire in %2$s."
+msgstr "A fagile ìforúkọsilẹ rẹ ní àṣeyọrí. Ìwé-àṣẹ ètò %1$s rẹ yóò parí ní %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1889
+#: includes/freemius-strings.php:4767
+#, php-format
+msgid "Plan %s does not support a trial period."
+msgstr "Ètò %s kò ṣe àtìlẹyín fún àkókò ìdánwò."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1894
+#: includes/freemius-strings.php:4788
+#, php-format
+msgid "Please download %s."
+msgstr "Jọwọ ṣe igbasilẹ %s."
+
+#: includes/freemius-strings.php:1898
+#: includes/freemius-strings.php:4834
+msgid "Please wait"
+msgstr "Jọ̀wọ́ dúró"
+
+#: includes/freemius-strings.php:1902
+#: includes/freemius-strings.php:4839
+msgid "Plugin"
+msgstr "Afikun"
+
+#: includes/freemius-strings.php:1906
+#: includes/freemius-strings.php:4844
+msgid "Plugin Homepage"
+msgstr "Ojúlé Fándììlì"
+
+#: includes/freemius-strings.php:1910
+#: includes/freemius-strings.php:4849
+msgid "Plugin ID"
+msgstr "Àmì Ìdánimọ̀ Ìtẹ́lẹ́gbẹ́"
+
+#: includes/freemius-strings.php:1914
+#: includes/freemius-strings.php:4854
+msgid "Plugin Install"
+msgstr "Fifi sori ẹrọ Plugin"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1919
+#: includes/freemius-strings.php:2961
+#, php-format
+msgid "%s opt-in was successfully completed."
+msgstr "%s opt-in ti yọọṣe pari."
+
+#: includes/freemius-strings.php:1923
+#: includes/freemius-strings.php:4864
+msgid "Plugins"
+msgstr "Àwọn afikun"
+
+#: includes/freemius-strings.php:1927
+#: includes/freemius-strings.php:4874
+msgid "Plugins page"
+msgstr "Ojú-ewé àwọn àfikún"
+
+#: includes/freemius-strings.php:1931
+#: includes/freemius-strings.php:4869
+msgid "Plugins & Themes Sync"
+msgstr "Ìṣẹpọ̀ àwọn Plọ́gìn àti Àwọn Àkòrí"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1936
+#: includes/freemius-strings.php:2853
+#, php-format
+msgid " The %1$s's %2$sdownload link%3$s, license key, and installation instructions have been sent to %4$s. If you can't find the email after 5 min, please check your spam box."
+msgstr "A ti fi ọna asopọ igbasilẹ %2$s ti %1$s%3$s, bọtini iwe-aṣẹ, ati awọn ilana fifi sori ranṣẹ si %4$s. Ti o ko ba le ri imeeli naa lẹyin iṣẹju 5, jọwọ ṣayẹwo apoti spam rẹ."
+
+#: includes/freemius-strings.php:1940
+#: includes/freemius-strings.php:4879
+msgid "Premium"
+msgstr "Gidi-gidi"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1945
+#: includes/freemius-strings.php:4885
+#, php-format
+msgid "Premium %s version was successfully activated."
+msgstr "Aṣọ Premium %s ti ni agbara pẹlu aṣeyọri."
+
+#: includes/freemius-strings.php:1949
+#: includes/freemius-strings.php:4342
+msgid "Keep automatic updates"
+msgstr "Tọ́jú àwọn ìsọdọ̀tun aládàáṣe"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1954
+#: includes/freemius-strings.php:5537
+#, php-format
+msgid "To ensure that security & feature updates are automatically delivered directly to your WordPress Admin Dashboard while protecting your license from unauthorized abuse, %2$s needs to view the website’s homepage URL, %1$s version, SDK version, and whether the %1$s is active."
+msgstr "Lati rii daju pe a fi awọn imudojuiwọn aabo ati awọn ẹya ranṣẹ laifọwọyi taara si Ibi Ipamọ Alakoso WordPress rẹ lakoko ti o n daabobo iwe-aṣẹ rẹ lọwọ ilokulo ti ko ni aṣẹ, %2$s nilo lati wo URL oju-iwe ile ti oju opo wẹẹbu, ẹya %1$s, ẹya SDK, ati boya %1$s ti nṣiṣẹ lọwọ."
+
+#: includes/freemius-strings.php:1958
+#: includes/freemius-strings.php:4895
+msgid "Premium version"
+msgstr "Ẹya gidi"
+
+#: includes/freemius-strings.php:1962
+#: includes/freemius-strings.php:6597
+msgctxt "noun"
+msgid "Price"
+msgstr "Iye"
+
+#: includes/freemius-strings.php:1966
+#: includes/freemius-strings.php:4905
+msgid "Pricing"
+msgstr "Iye owo"
+
+#: includes/freemius-strings.php:1970
+#: includes/freemius-strings.php:4818
+msgid "Please note that we will not be able to grandfather outdated pricing for renewals/new subscriptions after a cancellation. If you choose to renew the subscription manually in the future, after a price increase, which typically occurs once a year, you will be charged the updated price."
+msgstr "Jọ̀wọ́ kí o mọ̀ pé a kii yoo ni anfani lati tẹ́wọ́gbà iye owo atijọ fun awọn isọdọtun tabi awọn alabapin tuntun lẹhin ifagile kan. Ti o ba yan lati tun alabapin ṣe pẹlu ọwọ ni ọjọ iwaju, lẹhin ilosoke idiyele, eyiti o ma n ṣẹlẹ ni ẹẹkan lọdun, iwọ yoo san owo ti a ti sọ di tuntun."
+
+#: includes/freemius-strings.php:1974
+#: includes/freemius-strings.php:4910
+msgid "Privacy Policy"
+msgstr "Eto Asiri"
+
+#: includes/freemius-strings.php:1978
+#: includes/freemius-strings.php:4915
+msgid "Proceed"
+msgstr "Tẹsiwaju"
+
+#: includes/freemius-strings.php:1982
+#: includes/freemius-strings.php:3313
+msgid "Are you sure you want to proceed?"
+msgstr "Ṣe o ni idaniloju pe o fẹ tẹsiwaju?"
+
+#: includes/freemius-strings.php:1986
+#: includes/freemius-strings.php:4920
+msgid "Process ID"
+msgstr "Àmì Ìdánimọ̀ Ìlànà"
+
+#: includes/freemius-strings.php:1990
+#: includes/freemius-strings.php:4925
+msgid "Processing"
+msgstr "Ńṣe Lọ́wọ́"
+
+#: includes/freemius-strings.php:1994
+#: includes/freemius-strings.php:4930
+msgid "Processing, please wait and do not close or refresh this window..."
+msgstr "Nṣe ni ìlọ̀ lọwọ́, jọ̀wọ́ dúró se, má sì pa ojú ewé yìí tàbí kí o sọ ọ́ di tuntun..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1999
+#: includes/freemius-strings.php:2907
+#, php-format
+msgid "%s and its add-ons"
+msgstr "%s ati awọn add-on rẹ"
+
+#: includes/freemius-strings.php:2003
+#: includes/freemius-strings.php:6316
+msgctxt "Part of the message that tells the user to check their spam folder for a specific email."
+msgid "the product's support email address"
+msgstr "adirẹsi imeeli atilẹyin ọja náà"
+
+#: includes/freemius-strings.php:2007
+#: includes/freemius-strings.php:4940
+msgid "Program Summary"
+msgstr "Akotan Eto"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2012
+#: includes/freemius-strings.php:4824
+#, php-format
+msgid "Please provide details on how you intend to promote %s (please be as specific as possible)."
+msgstr "Jọwọ pese awọn alaye lori bi o ṣe n gbero lati ṣe igbega %s (jọwọ jẹ pato bi o ti ṣeeṣe)."
+
+#: includes/freemius-strings.php:2016
+#: includes/freemius-strings.php:4066
+msgid "How will you promote us?"
+msgstr "Ba wo ni o ṣe fẹ́ gbé wa ga?"
+
+#: includes/freemius-strings.php:2020
+#: includes/freemius-strings.php:4945
+msgid "Promotion methods"
+msgstr "Ọ̀nà ìgbégawájú"
+
+#: includes/freemius-strings.php:2024
+#: includes/freemius-strings.php:4950
+msgid "Province"
+msgstr "Ẹkun rẹ"
+
+#: includes/freemius-strings.php:2028
+#: includes/freemius-strings.php:4955
+msgid "Public Key"
+msgstr "Bọtini Ìkọ̀gbé (Public Key)"
+
+#: includes/freemius-strings.php:2032
+#: includes/freemius-strings.php:6662
+msgctxt "verb"
+msgid "Purchase"
+msgstr "Ra"
+
+#: includes/freemius-strings.php:2036
+#: includes/freemius-strings.php:4960
+msgid "Purchase License"
+msgstr "Ra Ìwé Àṣẹ"
+
+#: includes/freemius-strings.php:2040
+#: includes/freemius-strings.php:4965
+msgid "Purchase More"
+msgstr "Ra Díẹ̀ Síi"
+
+#: includes/freemius-strings.php:2044
+#: includes/freemius-strings.php:4970
+msgid "Quick Feedback"
+msgstr "Èsì Kíákíá"
+
+#: includes/freemius-strings.php:2048
+#: includes/freemius-strings.php:4975
+msgid "Quota"
+msgstr "Ààyè Ìpín"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2053
+#: includes/freemius-strings.php:5388
+#, php-format
+msgid "The %s broke my site"
+msgstr "%s náà bajẹ́ ojú-wọ́ mi"
+
+#: includes/freemius-strings.php:2057
+#: includes/freemius-strings.php:4076
+msgid "I can't pay for it anymore"
+msgstr "Mi o le sanwo fun mọ"
+
+#: includes/freemius-strings.php:2061
+#: includes/freemius-strings.php:4081
+msgid "I couldn't understand how to make it work"
+msgstr "Mi o le loye bi a ṣe le jẹ ki o ṣiṣẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2066
+#: includes/freemius-strings.php:5394
+#, php-format
+msgid "The %s didn't work"
+msgstr "%s naa ko sise"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2071
+#: includes/freemius-strings.php:5400
+#, php-format
+msgid "The %s didn't work as expected"
+msgstr "%s náà kò ṣiṣẹ́ gẹ́gẹ́ bí a ti retí rẹ̀"
+
+#: includes/freemius-strings.php:2075
+#: includes/freemius-strings.php:4086
+msgid "I don't like to share my information with you"
+msgstr "Mi o fẹ́ láti pín alaye mi pẹ̀lú rẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2080
+#: includes/freemius-strings.php:4092
+#, php-format
+msgid "I found a better %s"
+msgstr "Mo rí %s tó dára jù lọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2085
+#: includes/freemius-strings.php:5406
+#, php-format
+msgid "The %s is great, but I need specific feature that you don't support"
+msgstr "%s náà dára, ṣùgbọ́n nílò àlàyé tàbí ohun àfikọ́ kan pàtò tí o kò ṣe àtìlẹyìn fún"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2090
+#: includes/freemius-strings.php:4110
+#, php-format
+msgid "I only needed the %s for a short period"
+msgstr "Mo Nìlò %s fún ìgbà díẹ̀ péré"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2095
+#: includes/freemius-strings.php:4104
+#, php-format
+msgid "I no longer need the %s"
+msgstr "Mi o nilo %s mọ́"
+
+#: includes/freemius-strings.php:2099
+#: includes/freemius-strings.php:4316
+msgid "It's not what I was looking for"
+msgstr "Kò ṣe tọ́ mi wá"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2104
+#: includes/freemius-strings.php:5412
+#, php-format
+msgid "The %s is not working"
+msgstr "%s naa ko sise"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2113
+#: includes/freemius-strings.php:5418
+#, php-format
+msgid "The %s suddenly stopped working"
+msgstr "%s naa lojiji dawọ iṣẹ duro"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2118
+#: includes/freemius-strings.php:4311
+#, php-format
+msgid "It's a temporary %s - I'm troubleshooting an issue"
+msgstr "O jẹ %s ti a fi n yọ akoko kan - Mo n ṣatunṣe iṣoro kan"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2123
+#: includes/freemius-strings.php:4986
+#, php-format
+msgid "Redirecting, please <a href=\"%1$s\">click here</a> if you're stuck..."
+msgstr "Ìpàdà sí ojúlé mìíràn, jọ̀wọ́ <a href=\"%1$s\">tẹ ibi yìí</a> tí o bá di mọ́ ọn..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2128
+#: includes/freemius-strings.php:4992
+#, php-format
+msgid "Refer new customers to our %1$s and earn %2$s commission on each successful sale you refer!"
+msgstr "Fi awọn alabara tuntun ranṣẹ si %1$s wa ki o si ni igbimọ %2$s lori ọkọọkan tita aṣeyọri ti o tọka si!"
+
+#: includes/freemius-strings.php:2136
+#: includes/freemius-strings.php:5002
+msgid "Renew license"
+msgstr "Sọ lẹ́ẹ̀kan sí i wẹ́ǹsì"
+
+#: includes/freemius-strings.php:2140
+#: includes/freemius-strings.php:5007
+msgid "Renew your license now"
+msgstr "Sọ iwe-ašẹ rẹ di tuntun bayii"
+
+#: includes/freemius-strings.php:2144
+#: includes/freemius-strings.php:4028
+msgid "Get commission for automated subscription renewals."
+msgstr "Gbẹ oṣuwọn fún àwọn ìsọdọ̀tun ìforúkọsilẹ aládàáṣe."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2149
+#: includes/freemius-strings.php:3339
+#, php-format
+msgid "Auto renews in %s"
+msgstr "Ṣe àtúnṣe laifọwọyi ni %s"
+
+#: includes/freemius-strings.php:2153
+#: includes/freemius-strings.php:5012
+msgid "Requests"
+msgstr "Àwọn Ìbéèrè"
+
+#: includes/freemius-strings.php:2157
+#: includes/freemius-strings.php:5017
+msgid "Required"
+msgstr "Tí a nílò"
+
+#: includes/freemius-strings.php:2161
+#: includes/freemius-strings.php:5022
+msgid "Requires PHP Version"
+msgstr "Ó Nílò Ẹ̀dà PHP"
+
+#: includes/freemius-strings.php:2165
+#: includes/freemius-strings.php:5027
+msgid "Requires WordPress Version"
+msgstr "Gbọ́dọ̀ Jẹ́ Ẹ̀yà WordPress"
+
+#: includes/freemius-strings.php:2169
+#: includes/freemius-strings.php:4980
+msgid "Re-send activation email"
+msgstr "Tun rán imeeli ìmúṣẹ sílẹ̀"
+
+#: includes/freemius-strings.php:2173
+#: includes/freemius-strings.php:5032
+msgid "Reset Deactivation Snoozing"
+msgstr "Tún Aìm Ìmúkúrò Sùúrù"
+
+#: includes/freemius-strings.php:2177
+#: includes/freemius-strings.php:5037
+msgid "Result"
+msgstr "Èsi"
+
+#: includes/freemius-strings.php:2181
+#: includes/freemius-strings.php:6218
+msgid "revert it now"
+msgstr "daapọ bẹ́ẹ̀ gẹ́gẹ́ bẹ́ẹ̀ bẹ́ẹ̀ ni nísinsìnyí"
+
+#: includes/freemius-strings.php:2185
+#: includes/freemius-strings.php:6351
+msgctxt "Plugin installer section title"
+msgid "Reviews"
+msgstr "Àwọn Àyẹ̀wò"
+
+#: includes/freemius-strings.php:2189
+#: includes/freemius-strings.php:6361
+msgctxt "a positive response"
+msgid "Right on"
+msgstr "O tọ̀"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2194
+#: includes/freemius-strings.php:5053
+#, php-format
+msgid "Save %s"
+msgstr "Fi %s pamọ́"
+
+#: includes/freemius-strings.php:2198
+#: includes/freemius-strings.php:5058
+msgid "Saved"
+msgstr "Ti fipamọ"
+
+#: includes/freemius-strings.php:2202
+#: includes/freemius-strings.php:5063
+msgid "Scheduled Crons"
+msgstr "Àwọn Crons tí a ṣètò"
+
+#: includes/freemius-strings.php:2206
+#: includes/freemius-strings.php:5068
+msgid "Screenshots"
+msgstr "Àwọn àwòrán ojú-àyè"
+
+#: includes/freemius-strings.php:2210
+#: includes/freemius-strings.php:5042
+msgid "SDK"
+msgstr "SDK"
+
+#: includes/freemius-strings.php:2214
+#: includes/freemius-strings.php:5047
+msgid "SDK Path"
+msgstr "Ọ̀nà SDK"
+
+#: includes/freemius-strings.php:2218
+#: includes/freemius-strings.php:6494
+msgctxt "as software development kit versions"
+msgid "SDK Versions"
+msgstr "Àwọn Ẹ̀dà SDK"
+
+#: includes/freemius-strings.php:2222
+#: includes/freemius-strings.php:5073
+msgid "Search by address"
+msgstr "Wá kiri nipa adirẹsi"
+
+#: includes/freemius-strings.php:2226
+#: includes/freemius-strings.php:6612
+msgctxt "seconds"
+msgid "sec"
+msgstr "ìṣẹ́jú ààyè"
+
+#: includes/freemius-strings.php:2230
+#: includes/freemius-strings.php:5078
+msgid "Secret Key"
+msgstr "Bọtínì Àṣírí"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2235
+#: includes/freemius-strings.php:5084
+#, php-format
+msgid "Secure HTTPS %s page, running from an external domain"
+msgstr "Oju-ewe HTTPS %s to ni aabo, ti nṣiṣẹ lati ibi-itumọ ita"
+
+#: includes/freemius-strings.php:2239
+#: includes/freemius-strings.php:5104
+msgid "Select Country"
+msgstr "Yan Orílẹ-èdè"
+
+#: includes/freemius-strings.php:2243
+#: includes/freemius-strings.php:5109
+msgid "Send License Key"
+msgstr "Fi Bọtìni Iwe-aṣẹ Ranṣẹ"
+
+#: includes/freemius-strings.php:2247
+#: includes/freemius-strings.php:6228
+msgid "send me security & feature updates, educational content and offers."
+msgstr "rán mi lọ́wọ́ pẹ̀lú àwọn ìròyìn ààbò àti ẹ̀yà ara, àwọn àkóónú ẹ̀kọ́ àti àwọn ìfẹ́nsísẹ̀."
+
+#: includes/freemius-strings.php:2251
+#: includes/freemius-strings.php:6459
+msgctxt "as in the process of sending an email"
+msgid "Sending email"
+msgstr "Ńfi imeeli ranṣẹ"
+
+#: includes/freemius-strings.php:2255
+#: includes/freemius-strings.php:5114
+msgid "Sending license key"
+msgstr "Nfi bọtìni iwe-ašẹ ranšẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2260
+#: includes/freemius-strings.php:6110
+#, php-format
+msgid "Your server is blocking the access to Freemius' API, which is crucial for %1$s synchronization. Please contact your host to whitelist the following domains:%2$s"
+msgstr "Seeva rẹ n dènà iraye si API ti Freemius, eyiti o ṣe pataki pupọ fun imuuṣiṣẹpọ %1$s. Jọwọ kan si olupese seefa rẹ lati fun awọn agbegbe wọnyi ni àṣẹ (whitelist):%2$s"
+
+#: includes/freemius-strings.php:2264
+#: includes/freemius-strings.php:3913
+msgid "Error received from the server:"
+msgstr "Àṣìṣe tí a gbà láti ọ̀dọ̀ ẹ̀rọ ìṣiṣẹ́:"
+
+#: includes/freemius-strings.php:2268
+#: includes/freemius-strings.php:5119
+msgid "Set DB Option"
+msgstr "Ṣe Agbekalẹ Aṣayan DB"
+
+#: includes/freemius-strings.php:2272
+#: includes/freemius-strings.php:6667
+msgctxt "verb"
+msgid "Show"
+msgstr "Fi hàn"
+
+#: includes/freemius-strings.php:2276
+#: includes/freemius-strings.php:5141
+msgid "Show error details"
+msgstr "Fi àwọn kúlẹ̀kúlẹ̀ àṣìṣe hàn"
+
+#: includes/freemius-strings.php:2280
+#: includes/freemius-strings.php:5146
+msgid "Simulate Network Upgrade"
+msgstr "Ṣe àwòkọ̀ aṣojú ìgbéloke nẹ́twọ́kì"
+
+#: includes/freemius-strings.php:2284
+#: includes/freemius-strings.php:5151
+msgid "Simulate Trial Promotion"
+msgstr "Ṣe àṣefihàn Ìgbékalẹ̀ Ọfẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2289
+#: includes/freemius-strings.php:2871
+#, php-format
+msgid "%1$s has been placed into safe mode because we noticed that %2$s is an exact copy of %3$s."
+msgstr "A ti fi %1$s sínú ipò ààbò nítorí pé a kíyèsí pé %2$s jẹ́ àwòkọ tààràtà ti %3$s."
+
+#: includes/freemius-strings.php:2293
+#: includes/freemius-strings.php:5161
+msgid "Site ID"
+msgstr "ID Ayika Wẹbù"
+
+#: includes/freemius-strings.php:2297
+#: includes/freemius-strings.php:5171
+msgid "Sites"
+msgstr "Àwọn ojula wẹbù"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2302
+#: includes/freemius-strings.php:5177
+#, php-format
+msgid "Skip & %s"
+msgstr "Fo & %s"
+
+#: includes/freemius-strings.php:2306
+#: includes/freemius-strings.php:5182
+msgid "Skipping, please wait"
+msgstr "Fífò sílẹ̀, jọ̀wọ́ dúró"
+
+#: includes/freemius-strings.php:2310
+#: includes/freemius-strings.php:5187
+msgid "Slug"
+msgstr "Àlàyé URL"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2315
+#: includes/freemius-strings.php:5193
+#, php-format
+msgid "Snooze & %s"
+msgstr "Sun sun & %s"
+
+#: includes/freemius-strings.php:2319
+#: includes/freemius-strings.php:5198
+msgid "Snooze this panel during troubleshooting"
+msgstr "Sun pátákì yìí sùn nígbà tó o bá ń ṣàtúnṣe ìṣòro"
+
+#: includes/freemius-strings.php:2323
+#: includes/freemius-strings.php:5203
+msgid "Snooze this panel for"
+msgstr "Sun paneli yii fun akoko kan si"
+
+#: includes/freemius-strings.php:2327
+#: includes/freemius-strings.php:5214
+msgid "Social media (Facebook, Twitter, etc.)"
+msgstr "Àwọn ìkànnì awùjọ (Facebook, Twitter, bbl.)"
+
+#: includes/freemius-strings.php:2331
+#: includes/freemius-strings.php:5229
+msgid "Start"
+msgstr "Bẹrẹ"
+
+#: includes/freemius-strings.php:2335
+#: includes/freemius-strings.php:5234
+msgid "Start Debug"
+msgstr "Bẹrẹ Ìṣẹ́ṣe Ṣíṣe Àṣìṣe Àyẹ̀wò"
+
+#: includes/freemius-strings.php:2339
+#: includes/freemius-strings.php:6529
+msgctxt "call to action"
+msgid "Start free trial"
+msgstr "Bẹrẹ ìdánwò ọfẹ rẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2344
+#: includes/freemius-strings.php:5245
+#, php-format
+msgid "Start my free %s"
+msgstr "Bẹrẹ %s ọfẹ mi"
+
+#: includes/freemius-strings.php:2348
+#: includes/freemius-strings.php:6238
+msgid "start the trial"
+msgstr "bẹrẹ idanwo naa"
+
+#: includes/freemius-strings.php:2352
+#: includes/freemius-strings.php:5239
+msgid "Start Trial"
+msgstr "Bẹrẹ Idanwo"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2357
+#: includes/freemius-strings.php:5894
+#, php-format
+msgid "You are 1-click away from starting your %1$s-day free trial of the %2$s plan."
+msgstr "O wa ni tẹ kan soso lati bẹrẹ idanwo ọfẹ ọjọ %1$s rẹ ti eto %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2362
+#: includes/freemius-strings.php:3961
+#, php-format
+msgid "For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %1$s to periodically send data to %2$s to check for version updates and to validate your trial."
+msgstr "Lati tẹle awọn ilana WordPress.org, ṣaju ki a to bẹrẹ idanwo naa, a beere pe ki o fi igbanilaaye han pẹlu olumulo rẹ ati alaye aaye ti kii ṣe ifura, eyiti o gba %1$s laaye lati fi data ranṣẹ si %2$s lẹẹkọọkan lati ṣayẹwo fun awọn imudojuiwọn ẹya ati lati fọwọsi idanwo rẹ."
+
+#: includes/freemius-strings.php:2366
+#: includes/freemius-strings.php:5250
+msgid "Starting trial"
+msgstr "Bẹ̀rẹ̀ ìdánwò"
+
+#: includes/freemius-strings.php:2370
+#: includes/freemius-strings.php:5255
+msgid "State"
+msgstr "Ipinlẹ"
+
+#: includes/freemius-strings.php:2374
+#: includes/freemius-strings.php:4803
+msgid "Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential)."
+msgstr "Ẹ jọ̀wọ́, ẹ lómìnira láti pèsè èyíkéyìí wẹ́ẹ̀bù tó ní ṣe pẹ̀lú rẹ̀ tàbí ìṣirò rédíò àwùjọ, f.p. àwọn àbẹ̀wò ojú-wẹ́ẹ̀bù àrà ọ̀tọ̀ lóṣooṣù, iye àwọn tó ń gbà ẹ̀kọ́ orí ẹ̀rọ-ìbánisọ̀rọ̀, àwọn a tẹ̀lé e, b.w.ó. (a óò pa ìsọfúnni yìí mọ́ lọ́fọ̀ọ̀)."
+
+#: includes/freemius-strings.php:2378
+#: includes/freemius-strings.php:5778
+msgid "Website, email, and social media statistics (optional)"
+msgstr "Àwọn ìsọfúnni nípa ojú òpó wẹ́bù, imeeli, àti àwọn ìkan alárinrin (aṣàyàn)"
+
+#: includes/freemius-strings.php:2382
+#: includes/freemius-strings.php:5260
+msgid "Stay Connected"
+msgstr "Duro Sín"
+
+#: includes/freemius-strings.php:2386
+#: includes/freemius-strings.php:5265
+msgid "Stop Debug"
+msgstr "Dá Iṣẹ́ Àṣìṣe Mọ̀ dúró"
+
+#: includes/freemius-strings.php:2390
+#: includes/freemius-strings.php:5270
+msgid "Submit"
+msgstr "Fi silẹ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2395
+#: includes/freemius-strings.php:5543
+#, php-format
+msgid "To enter the debug mode, please enter the secret key of the license owner (UserID = %d), which you can find in your \"My Profile\" section of your User Dashboard:"
+msgstr "Lati wọ inu ipo aṣiṣe (debug mode), jọwọ tẹ bọtini ikọkọ ti oluwa iwe-aṣẹ sii (UserID = %d), eyiti o le rii ni apakan \"Profaili Mi\" ti Dasibọọdu Olumulo rẹ:"
+
+#: includes/freemius-strings.php:2399
+#: includes/freemius-strings.php:4798
+msgid "Please enter the license key to enable the debug mode:"
+msgstr "Jọwọ tẹ bọtini iwe-aṣẹ sii lati mu ipo aṣiṣe ṣiṣẹ:"
+
+#: includes/freemius-strings.php:2403
+#: includes/freemius-strings.php:5281
+msgid "Submitting"
+msgstr "Fifiranṣẹ"
+
+#: includes/freemius-strings.php:2407
+#: includes/freemius-strings.php:5089
+msgid "Seems like we are having some temporary issue with your subscription cancellation. Please try again in few minutes."
+msgstr "O dabi pe a n ni iṣoro diẹ lẹẹkanṣokan pẹlu ifagile alabapin rẹ. Jọwọ gbiyanju lẹẹkan si ni iṣẹju diẹ."
+
+#: includes/freemius-strings.php:2411
+#: includes/freemius-strings.php:5166
+msgid "Site successfully opted in."
+msgstr "A yọ aaye naa sílẹ̀ ní àṣeyọrí."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2416
+#: includes/freemius-strings.php:5451
+#, php-format
+msgid "The upgrade of %s was successfully completed."
+msgstr "Ìgbéga %s ti parí ní àṣeyọrí."
+
+#: includes/freemius-strings.php:2424
+#: includes/freemius-strings.php:5296
+msgid "Support Forum"
+msgstr "Apejọ Atilẹyin"
+
+#: includes/freemius-strings.php:2428
+#: includes/freemius-strings.php:6248
+msgid "switching"
+msgstr "ń yí padà"
+
+#: includes/freemius-strings.php:2432
+#: includes/freemius-strings.php:6286
+msgctxt "ASCII arrow left icon"
+msgid "&#x2190;"
+msgstr "&#x2190;"
+
+#: includes/freemius-strings.php:2436
+#: includes/freemius-strings.php:6291
+msgctxt "ASCII arrow right icon"
+msgid "&#x27a4;"
+msgstr "&#x27a4;"
+
+#: includes/freemius-strings.php:2440
+#: includes/freemius-strings.php:6504
+msgctxt "as synchronize"
+msgid "Sync"
+msgstr "Ṣiṣẹpọ̀"
+
+#: includes/freemius-strings.php:2444
+#: includes/freemius-strings.php:5301
+msgid "Sync Data From Server"
+msgstr "Mímọ Data Láti Sọ́fà (Server)"
+
+#: includes/freemius-strings.php:2448
+#: includes/freemius-strings.php:6509
+msgctxt "as synchronize license"
+msgid "Sync License"
+msgstr "Mú Ìwé-àṣẹ sípọ̀"
+
+#: includes/freemius-strings.php:2452
+#: includes/freemius-strings.php:5306
+msgid "Tax / VAT ID"
+msgstr "Orí Ìgbèsẹ̀ / VAT ID"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2457
+#: includes/freemius-strings.php:5946
+#, php-format
+msgid "You marked this website, %1$s, as a temporary duplicate of %2$s."
+msgstr "O sà aaye ayelujara yii, %1$s, gẹgẹ bi ẹda igba die ti %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2462
+#: includes/freemius-strings.php:5952
+#, php-format
+msgid "You marked this website, %s, as a temporary duplicate of these sites"
+msgstr "O ti samisi oju opo wẹẹbu yii, %s, gẹgẹbi ẹda igba diẹ ti awọn oju opo wẹẹbu wọnyi"
+
+#: includes/freemius-strings.php:2466
+#: includes/freemius-strings.php:5349
+msgid "Thank you!"
+msgstr "E ṣe oṣooṣu!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2471
+#: includes/freemius-strings.php:5339
+#, php-format
+msgid "Thank you so much for using %s!"
+msgstr "Ẹ ṣe pupọ fun lilo %s!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2476
+#: includes/freemius-strings.php:5333
+#, php-format
+msgid "Thank you so much for using %s and its add-ons!"
+msgstr "Ẹ ṣe pupọ fun lilo %s ati awọn àfikún rẹ!"
+
+#: includes/freemius-strings.php:2480
+#: includes/freemius-strings.php:5344
+msgid "Thank you so much for using our products!"
+msgstr "Ẹ ṣe pupọ fun lilo awọn ọja wa!"
+
+#: includes/freemius-strings.php:2484
+#: includes/freemius-strings.php:5371
+msgid "Thanks!"
+msgstr "E ṣe gan-an ni!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2489
+#: includes/freemius-strings.php:5784
+#, php-format
+msgid "Welcome to %s! To get started, please enter your license key:"
+msgstr "Ẹ káàbọ̀ sí %s! Láti bẹ̀rẹ̀, jọ̀wọ́ tẹ bọ́tìnnì ìwé àṣẹ rẹ sílẹ̀:"
+
+#: includes/freemius-strings.php:2493
+#: includes/freemius-strings.php:5376
+msgid "Thanks, please wait"
+msgstr "Ẹ ṣe, jọ̀wọ́ ẹ dúró"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2498
+#: includes/freemius-strings.php:5355
+#, php-format
+msgid "Thanks %s!"
+msgstr "Ẹ ṣe %s!"
+
+#: includes/freemius-strings.php:2502
+#: includes/freemius-strings.php:5423
+msgid "The following products'"
+msgstr "Awọn ọja wọnyi'"
+
+#: includes/freemius-strings.php:2506
+#: includes/freemius-strings.php:6311
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "the installation instructions"
+msgstr "àwọn ìlànà fífikún"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2511
+#: includes/freemius-strings.php:6270
+#, php-format
+msgctxt "\"The <product_label>\", e.g.: \"The plugin\""
+msgid "The %s's"
+msgstr "Ti %s"
+
+#: includes/freemius-strings.php:2515
+#: includes/freemius-strings.php:5456
+msgid "Theme"
+msgstr "Akori"
+
+#: includes/freemius-strings.php:2519
+#: includes/freemius-strings.php:5461
+msgid "Theme Switch"
+msgstr "Àyípadà Àkòrí"
+
+#: includes/freemius-strings.php:2523
+#: includes/freemius-strings.php:5466
+msgid "Themes"
+msgstr "Àwọn àkòrí"
+
+#: includes/freemius-strings.php:2527
+#: includes/freemius-strings.php:5471
+msgid "Themes page"
+msgstr "Ojú-ewé àwọn àkòrí"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2532
+#: includes/freemius-strings.php:5510
+#, php-format
+msgid "This will allow %s to"
+msgstr "Èyí yóò jẹ́ kí %s lè"
+
+#: includes/freemius-strings.php:2536
+#: includes/freemius-strings.php:5515
+msgid "Timestamp"
+msgstr "Àkókò tí a ṣeé"
+
+#: includes/freemius-strings.php:2540
+#: includes/freemius-strings.php:5520
+msgid "Title"
+msgstr "Àkọlé"
+
+#: includes/freemius-strings.php:2544
+#: includes/freemius-strings.php:5311
+msgid "Terms of Service"
+msgstr "Awọn Ofin Iṣẹ"
+
+#: includes/freemius-strings.php:2548
+#: includes/freemius-strings.php:5560
+msgid "Total"
+msgstr "Apapọ"
+
+#: includes/freemius-strings.php:2552
+#: includes/freemius-strings.php:5565
+msgid "Town"
+msgstr "Ilu"
+
+#: includes/freemius-strings.php:2556
+#: includes/freemius-strings.php:5094
+msgid "Seems like we are having some temporary issue with your trial cancellation. Please try again in few minutes."
+msgstr "O dabi pe a ni iṣoro diẹ ti ko ni pẹ pẹlu fagile idanwo rẹ. Jọwọ gbiyanju lẹẹkan si ni iṣẹju diẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2561
+#: includes/freemius-strings.php:5999
+#, php-format
+msgid "Your %s free trial was successfully cancelled."
+msgstr "Aṣeyọri fagile idanwo ọfẹ %s rẹ."
+
+#: includes/freemius-strings.php:2565
+#: includes/freemius-strings.php:4284
+msgid "It looks like you are not in trial mode anymore so there's nothing to cancel :)"
+msgstr "Ó jọ pé o kò wọ inu ipò ìdánwò mọ́ nitorina kò sí ohun kan láti fagile :)"
+
+#: includes/freemius-strings.php:2569
+#: includes/freemius-strings.php:6049
+msgid "Your free trial has expired. You can still continue using all our free features."
+msgstr "Idanwo ọfẹ rẹ ti pari. O tun le tẹsiwaju lati lo gbogbo awọn ẹya ara ẹrọ ọfẹ wa."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2574
+#: includes/freemius-strings.php:6044
+#, php-format
+msgid "Your free trial has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "Idanwo ọfẹ rẹ ti pari. %1$sṢe agbega nisisiyi%2$s lati tẹsiwaju lilo %3$s laisi idilọwọ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2579
+#: includes/freemius-strings.php:4761
+#, php-format
+msgid "Plan %s do not exist, therefore, can't start a trial."
+msgstr "Eto %s ko si, nitorinaa, o ko le bẹrẹ idanwo kan."
+
+#: includes/freemius-strings.php:2583
+#: includes/freemius-strings.php:6121
+msgid "Your trial has been successfully started."
+msgstr "A ti bẹrẹ idanwo rẹ lẹsẹ ọgbọn."
+
+#: includes/freemius-strings.php:2587
+#: includes/freemius-strings.php:5888
+msgid "You already utilized a trial before."
+msgstr "O ti lo idanwo tẹlẹ rẹ ri."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2592
+#: includes/freemius-strings.php:4056
+#, php-format
+msgid "How do you like %1$s so far? Test all our %2$s premium features with a %3$d-day free trial."
+msgstr "Bawo ni o ṣe n fẹran %1$s titi di isisiyi? Dan gbogbo awọn ẹya alailẹgbẹ %2$s wa wo pẹlu idanwo ọfẹ ọjọ %3$d."
+
+#: includes/freemius-strings.php:2596
+#: includes/freemius-strings.php:5575
+msgid "Type"
+msgstr "Orísí"
+
+#: includes/freemius-strings.php:2600
+#: includes/freemius-strings.php:5580
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "Kò lè sopọ̀ mọ́ ẹ̀rọ faili náà. Jọ̀wọ́ jẹ́ kí nǹkan dá ọ lójú lórí àwọn àṣẹ rẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2605
+#: includes/freemius-strings.php:5489
+#, php-format
+msgid "There was an unexpected API error while processing your request. Please try again in a few minutes and if it still doesn't work, contact the %s's author with the following:"
+msgstr "Àṣìṣe API tí a kò retí wáyé nígbà tí a ń ṣe ìbéèrè rẹ. Jọ̀wọ́ tún gbìyànjú lẹ́ẹ̀kan sí i ní ìṣẹ́jú díẹ̀ sẹ́yìn, tí kò bá sì ṣiṣẹ́ gẹ́gẹ́ bí ó ṣe yẹ, kàn sí onkọwe %s pẹ̀lu èyí tí ó tẹ̀lé e:"
+
+#: includes/freemius-strings.php:2609
+#: includes/freemius-strings.php:5585
+msgid "Unexpected error, try again in 5 minutes. If the error persists, please contact support."
+msgstr "Àṣìṣe àìròtẹlẹ kan wáyé, jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi lẹ́yìn ìṣẹ́jú márùn-ún. Bí àṣìṣe náà bá ń tẹ̀ síwájú, jọ̀wọ́ kàn sí ìṣọ̀rọ̀-ẹni-lẹ́yìn."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2614
+#: includes/freemius-strings.php:5591
+#, php-format
+msgid "Uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "Piparẹ %s yoo jẹ ki iwe-ašẹ naa di alaiṣẹ laifọwọyi, eyiti o yoo ni anfani lati lo lori aaye miiran."
+
+#: includes/freemius-strings.php:2618
+#: includes/freemius-strings.php:3261
+msgid "An unknown error has occurred."
+msgstr "Àìmọ̀ ìṣòro kan ti wáyé."
+
+#: includes/freemius-strings.php:2622
+#: includes/freemius-strings.php:5606
+msgid "Unlimited commissions."
+msgstr "Àwọn ìgbìmọ̀ aláìlópin."
+
+#: includes/freemius-strings.php:2626
+#: includes/freemius-strings.php:5601
+msgid "Unlimited Updates"
+msgstr "Àwọn Ìgbékalẹ̀ tí kò ní opin"
+
+#: includes/freemius-strings.php:2630
+#: includes/freemius-strings.php:6677
+msgctxt "verb"
+msgid "Update"
+msgstr "Ṣe imudojuiwọn"
+
+#: includes/freemius-strings.php:2634
+#: includes/freemius-strings.php:5843
+msgid "Would you like to proceed with the update?"
+msgstr "Ṣe o fẹ́ tẹ̀síwájú pẹ̀lú imudojuiwọn náà?"
+
+#: includes/freemius-strings.php:2638
+#: includes/freemius-strings.php:5617
+msgid "Update"
+msgstr "Ṣe imudojuiwọn"
+
+#: includes/freemius-strings.php:2642
+#: includes/freemius-strings.php:5622
+msgid "Update License"
+msgstr "Ṣe imudojuiwọn Iwe-aṣẹ"
+
+#: includes/freemius-strings.php:2646
+#: includes/freemius-strings.php:5632
+msgid "Upgrade"
+msgstr "Ṣe agbéga"
+
+#: includes/freemius-strings.php:2650
+#: includes/freemius-strings.php:4167
+msgid "Important Upgrade Notice:"
+msgstr "Àkíyèsí Ìgbékòsé Kókó:"
+
+#: includes/freemius-strings.php:2654
+#: includes/freemius-strings.php:5637
+msgid "Upload and activate the downloaded version"
+msgstr "Po ati mu ikede ti a gba silẹ ṣiṣẹ"
+
+#: includes/freemius-strings.php:2658
+#: includes/freemius-strings.php:5642
+msgid "User Dashboard"
+msgstr "Dasibọọdu Olumulo"
+
+#: includes/freemius-strings.php:2662
+#: includes/freemius-strings.php:5224
+msgid "Sorry, we could not complete the email update. Another user with the same email is already registered."
+msgstr "Ẹ binu, a ko le pari imudojuiwọn imeeli naa. Olumulo miiran ti o ni imeeli kanna ti forukọsilẹ tẹlẹ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2667
+#: includes/freemius-strings.php:4156
+#, php-format
+msgid "If you would like to give up the ownership of the %1$s's account to %2$s click the Change Ownership button."
+msgstr "Ti o ba fẹ fi ohun-ini akọọlu fun %1$s le %2$s, tẹ bọtini Yi Ohun-ini pada."
+
+#: includes/freemius-strings.php:2671
+#: includes/freemius-strings.php:5647
+msgid "User ID"
+msgstr "ID Olumulo"
+
+#: includes/freemius-strings.php:2675
+#: includes/freemius-strings.php:5652
+msgid "User key"
+msgstr "Bọtini olumulo"
+
+#: includes/freemius-strings.php:2679
+#: includes/freemius-strings.php:5657
+msgid "Users"
+msgstr "Àwọn onífọ̀"
+
+#: includes/freemius-strings.php:2683
+#: includes/freemius-strings.php:5662
+msgid "Value"
+msgstr "Iye"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2688
+#: includes/freemius-strings.php:5668
+#, php-format
+msgid "Verification mail was just sent to %s. If you can't find it after 5 min, please check your spam box."
+msgstr "A rán ìfẹ́sẹ̀hùn sí %s lọ́wọ́ lọ́wọ́. Bí o kò bá rí i lẹ́yìn ìṣẹ́jú márùn-ún, jọ̀ọ́ ṣàyẹ̀wò àpótí ìtànjẹ rẹ."
+
+#: includes/freemius-strings.php:2692
+#: includes/freemius-strings.php:5673
+msgid "Verified"
+msgstr "A ti fìdí rẹ̀ múlẹ̀"
+
+#: includes/freemius-strings.php:2696
+#: includes/freemius-strings.php:5678
+msgid "Verify Email"
+msgstr "Ṣe Ìdájọ́ Ìmeèlì rẹ̀"
+
+#: includes/freemius-strings.php:2700
+#: includes/freemius-strings.php:6607
+msgctxt "product version"
+msgid "Version"
+msgstr "Ẹ̀dà"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2705
+#: includes/freemius-strings.php:5684
+#, php-format
+msgid "Version %s was released."
+msgstr "A ti tu Ẹya %s jade."
+
+#: includes/freemius-strings.php:2709
+#: includes/freemius-strings.php:5726
+msgid "View details"
+msgstr "Wo alaye kun"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2714
+#: includes/freemius-strings.php:3586
+#, php-format
+msgid "Click to view full-size screenshot %d"
+msgstr "Tẹ lati wo aworan sikirinifoti ni iwọn kikun %d"
+
+#: includes/freemius-strings.php:2718
+#: includes/freemius-strings.php:5731
+msgid "View paid features"
+msgstr "Wo awọn ẹya ti a sanwo lọwọ"
+
+#: includes/freemius-strings.php:2722
+#: includes/freemius-strings.php:5736
+msgid "Warning"
+msgstr "Ìkìlọ̀"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2727
+#: includes/freemius-strings.php:5800
+#, php-format
+msgid "What is your %s?"
+msgstr "Kini %s rẹ?"
+
+#: includes/freemius-strings.php:2731
+#: includes/freemius-strings.php:6356
+msgctxt "Used to express elation, enthusiasm, or triumph (especially in electronic communication)."
+msgid "W00t"
+msgstr "W00t"
+
+#: includes/freemius-strings.php:2735
+#: includes/freemius-strings.php:5832
+msgid "WordPress.org Plugin Page"
+msgstr "Ojú-ewé Ìṣọ̀kan WordPress.org"
+
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:4305
+msgid "It seems like one of the authentication parameters is wrong. Update your Public Key, Secret Key & User ID, and try again."
+msgstr "Ó jo bi pe ọkan ninu awọn paramita idanimọ ko tọ. Ṣe imudojuiwọn Bọtini Gbangba rẹ, Bọtini Aṣiri & ID Olumulo rẹ, ki o tun gbiyanju lẹẹkan si."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2744
+#: includes/freemius-strings.php:2901
+#, php-format
+msgid "%s ago"
+msgstr "%s sẹ́yìn"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2749
+#: includes/freemius-strings.php:6389
+#, php-format
+msgctxt "as 5 licenses left"
+msgid "%s left"
+msgstr "%s lo ku"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2754
+#: includes/freemius-strings.php:2967
+#, php-format
+msgid "%s or higher"
+msgstr "%s tabi ga julọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2759
+#: includes/freemius-strings.php:3033
+#, php-format
+msgid "%s's paid features"
+msgstr "Awọn ẹya ti a sanwo ti %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2764
+#: includes/freemius-strings.php:6545
+#, php-format
+msgctxt "e.g. Professional Plan"
+msgid "%s Plan"
+msgstr "Ètò %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2769
+#: includes/freemius-strings.php:2973
+#, php-format
+msgid "%s rating"
+msgstr "%s ìwọ̀n"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2774
+#: includes/freemius-strings.php:2979
+#, php-format
+msgid "%s ratings"
+msgstr "%s àwọn ìwọ̀n"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2779
+#: includes/freemius-strings.php:2985
+#, php-format
+msgid "%s sec"
+msgstr "%s aaya"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2784
+#: includes/freemius-strings.php:2991
+#, php-format
+msgid "%s star"
+msgstr "%s irawọ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2789
+#: includes/freemius-strings.php:2997
+#, php-format
+msgid "%s stars"
+msgstr "awòràrà %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2794
+#: includes/freemius-strings.php:3003
+#, php-format
+msgid "%s time"
+msgstr "%s àkókò"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2799
+#: includes/freemius-strings.php:3009
+#, php-format
+msgid "%s times"
+msgstr "Igba %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2804
+#: includes/freemius-strings.php:5940
+#, php-format
+msgid "You have successfully updated your %s."
+msgstr "O ti ṣe imudojuiwọn %s rẹ ni aṣeyọri."
+
+#: includes/freemius-strings.php:2808
+#: includes/freemius-strings.php:6399
+msgctxt "as annual period"
+msgid "year"
+msgstr "ọdún"
+
+#: includes/freemius-strings.php:2812
+#: includes/freemius-strings.php:6582
+msgctxt "interjection expressing joy or exuberance"
+msgid "Yee-haw"
+msgstr "Yee-haw"
+
+#: includes/freemius-strings.php:2816
+#: includes/freemius-strings.php:5848
+msgid "Yes"
+msgstr "Bẹẹni"
+
+#: includes/freemius-strings.php:2820
+#: includes/freemius-strings.php:5899
+msgid "You are all good!"
+msgstr "Gbogbo re dara!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2825
+#: includes/freemius-strings.php:5911
+#, php-format
+msgid "You are just one step away - %s"
+msgstr "O ku igbesẹ kan pere - %s"
+
+#: includes/freemius-strings.php:2829
+#: includes/freemius-strings.php:5099
+msgid "Seems like you got the latest release."
+msgstr "Ó jo bi pe o ti gba tuuru tuntun naa."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2834
+#: includes/freemius-strings.php:5964
+#, php-format
+msgid "You should receive %3$s for %1$s to your mailbox at %2$s in the next 5 minutes."
+msgstr "O yẹ kí o gba %3$s fún %1$s sí àpótí ìfiránṣẹ́ rẹ ní %2$s ní ìṣẹ́jú 5 tó ń bọ̀."
+
+#: includes/freemius-strings.php:2838
+#: includes/freemius-strings.php:6126
+msgid "ZIP / Postal Code"
+msgstr "Koodu Fífúnni / Pósítọ̀lì"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2847
+#, php-format
+msgid " %1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s lati wọle si ẹya %2$s aabo & awọn imudojuiwọn ẹya, ati atilẹyin."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2913
+#, php-format
+msgid "%1$s automatic security & feature updates and paid functionality will keep working without interruptions until %2$s (or when your license expires, whatever comes first)."
+msgstr "Awọn imudojuiwọn aabo ati ẹ̀ya ara ẹrọ aifọwọyi %1$s ati iṣẹ ti a san fun yoo tẹsiwaju lati ṣiṣẹ laisi idilọwọ titi di %2$s (tabi nigbati iwe-aṣẹ rẹ ba pari, eyikeyi ti o ba kọkọ de)."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3015
+#, php-format
+msgid "%1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s lati wọ alabo ati awọn imudojuiwọn ẹya ti ẹya %2$s, ati atilẹyin."
+
+#: includes/freemius-strings.php:3067
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:3251
+msgid "An unknown error has occurred while trying to set the user's beta mode."
+msgstr "Aṣiṣe ti a ko mọ ti waye nigbati o n gbiyanju lati ṣeto ipo beta olumulo naa."
+
+#: includes/freemius-strings.php:3256
+msgid "An unknown error has occurred while trying to toggle the license's white-label mode."
+msgstr "Aṣìṣe àìmọ̀ kan ti wáyé nígbà tí a ń gbìyànjú láti yí ipò àmì funfun ti ìwé-àṣẹ padà."
+
+#: includes/freemius-strings.php:3272
+msgid "Annual"
+msgstr "Ọdọọdun"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3425
+#, php-format
+msgid "By clicking \"Opt Out\", %s will no longer be able to view your name and email."
+msgstr "Nípa títẹ \"Opt Out\", %s kò ní lè wo orúkọ rẹ àti ímeèlì rẹ mọ́."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3431
+#, php-format
+msgid "By clicking \"Opt Out\", diagnostic data will no longer be sent to %s."
+msgstr "Nipa tite \"Opt Out\", a kii yoo tun fi data iwadi ranṣע si %s mọ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3437
+#, php-format
+msgid "By disconnecting the website, previously shared diagnostic data about %1$s will be deleted and no longer visible to %2$s."
+msgstr "Nípa yíyọ ojú òpó wẹ́bù náà kúrò, data ìwádìí tí a pín tẹ́lẹ̀ nípa %1$s ni a óò pa rẹ́, kò sì ní hàn mọ́ fún %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3443
+#, php-format
+msgid "By opting out from sharing this information with the updates server, you’ll have to check for new %1$s releases and manually download & install them. Not just a hassle, but missing an update can put your site at risk and cause undue compatibility issues, so we highly recommend keeping these essential permissions on."
+msgstr "Nípa yíyọ ara rẹ̀ kúrò nínú pípín ìwífún yìí pẹ̀lú sínkà ìsọfúnni, o ní láti ṣàyẹ̀wò fún àwọn ìfilọlẹ̀ %1$s tuntun kí o sì ṣe agbékalẹ̀ àti fi sílẹ̀ fúnra rẹ. Kì í ṣe ìṣòro nìkan, ṣùgbọ́n àìní ìfilọlẹ̀ kan lè fi ojúskìn sí ewu kí ó sì fa àwọn ìṣòro ìbáramu tí kò yẹ, nítorí náà a gba ọ ní ìmọ̀ràn gidigidi láti jẹ́ kí àwọn àṣẹ pàtàkì wọ̀nyí wà ní ṣíṣí."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3465
+#, php-format
+msgid "Cancel %1$s - I no longer need any security & feature updates, nor support for %2$s because I'm not planning to use the %3$s on this, or any other site."
+msgstr "Fagile %1$s - Emi ko nilo awọn imudojuiwọn aabo & ẹya kankan mọ, tabi atilẹyin fun %2$s nitori Emi ko gbero lati lo %3$s lori eyi, tabi eyikeyi aaye miiran."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3471
+#, php-format
+msgid "Cancel %s?"
+msgstr "Ṣe o fẹ fagile %s?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3497
+#, php-format
+msgid "Cancelling %s"
+msgstr "Fagile %s kuro"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3503
+#, php-format
+msgid "Cancelling %s..."
+msgstr "Fagile %s..."
+
+#: includes/freemius-strings.php:3569
+msgid "Click here"
+msgstr "Tẹ ibi"
+
+#: includes/freemius-strings.php:3673
+msgid "Deactivating"
+msgstr "Ń ṣe àìmúrasílẹ̀"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3751
+#, php-format
+msgid "Disconnecting the website will permanently remove %s from your User Dashboard's account."
+msgstr "Geeti wẹbusaiti naa yoo yọ %s kuro ninu akọọlẹ Dasibọọdu Oniwun rẹ laelae."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3955
+#, php-format
+msgid "For automatic delivery of security & feature updates, and license management & protection, %s needs to:"
+msgstr "Fun ìfiránṣẹ́ àìṣọwọ́ fún àwọn ìmúdàgbàsókè ààbò & ẹ̀yà ara, àti ìṣàkoso & ààbò ìwé àṣẹ, %s nílò láti:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3967
+#, php-format
+msgid "For delivery of security & feature updates, and license management, %s needs to"
+msgstr "Fún ìfiṣẹ̀dánilójú àti àwọn ìsọdọtun ẹ̀yà ara, àti ìṣàkóso ìwé-àṣẹ, %s nílò láti"
+
+#: includes/freemius-strings.php:4013
+msgid "Freemius is our licensing and software updates engine"
+msgstr "Freemius ni ẹ̀rọ iṣakoso ìwé-àṣẹ àti àwọn ìsọdọtun sọfitiwia wa"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4121
+#, php-format
+msgid "If this is a long term duplicate, to keep automatic updates and paid functionality after %1$s, please %2$s."
+msgstr "Tí èyí bá jẹ́ ẹ̀dà pípẹ́, láti jẹ́ kí àwọn ìsọdọ̀tun aláìníṣẹ́ǹkọ̀ àti àwọn iṣẹ́ ìránṣẹ́ tí a san owó lé lórí wà ní ipò lẹ́yìn %1$s, jọ̀wọ́ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4241
+#, php-format
+msgid "Is %2$s a duplicate of %4$s?"
+msgstr "Ṣé %2$s jẹ́ ẹ̀dà kejì ti %4$s?"
+
+#: includes/freemius-strings.php:4321
+msgid "Join the Beta Program"
+msgstr "Darapọ mọ Ètò Bẹta"
+
+#: includes/freemius-strings.php:4326
+msgid "Join the Beta program"
+msgstr "Darapọ mọ ètò Beta"
+
+#: includes/freemius-strings.php:4397
+msgid "License"
+msgstr "Iwe-ašẹ"
+
+#: includes/freemius-strings.php:4412
+msgid "License Key"
+msgstr "Bọtìnì Ìwé Àṣẹ"
+
+#: includes/freemius-strings.php:4422
+msgid "License key"
+msgstr "Bọtìnì ìwé-àṣẹ"
+
+#: includes/freemius-strings.php:4513
+msgid "Monthly"
+msgstr "Osù-osù"
+
+#: includes/freemius-strings.php:4529
+msgid "Names, slugs, versions, and if active or not"
+msgstr "Àwọn orúkọ, àwọn slug, àwọn ẹ̀dà, àti bóyá wọ́n ń ṣiṣẹ́ tàbí wọn kò ní ṣiṣẹ́"
+
+#: includes/freemius-strings.php:4559
+msgid "New Version Available"
+msgstr "Ẹ̀yà Tuntun Wà"
+
+#: includes/freemius-strings.php:4700
+msgid "Optional"
+msgstr "Aṣayan"
+
+#: includes/freemius-strings.php:4755
+msgid "Plan"
+msgstr "Ètò"
+
+#: includes/freemius-strings.php:4935
+msgid "Products"
+msgstr "Àwọn Ọjà"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5125
+#, php-format
+msgid "Sharing diagnostic data helps to provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break the website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "Pipin data ti a nṣe ayẹwo rẹ ranlọwọ lati pese iṣẹ-ṣiṣe afikun ti o ni ibatan si oju opo wẹẹbu rẹ, yago fun awọn aisedede ẹya WordPress tabi PHP ti o le fọ oju opo wẹẹbu naa, ati mọ awọn ede ati agbegbe ti o yẹ ki o tumọ %s si ati ṣe deede si."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5209
+#, php-format
+msgid "So you can reuse the license when the %s is no longer active."
+msgstr "Nitorinaa o le tun lo iwe-ašẹ naa nigbati %s ko ba si ni sise mo."
+
+#: includes/freemius-strings.php:5286
+msgid "Subscription"
+msgstr "Ìforúkọṣílẹ̀"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5382
+#, php-format
+msgid "The %1$s will be periodically sending essential license data to %2$s to check for security and feature updates, and verify the validity of your license."
+msgstr "%1$s yoo ma ran data ìwé àṣẹ pàtàkì sí %2$s léraléra láti ṣàyẹ̀wò àwọn ohun àmúṣe àti àwọn àfikún ààbò, àti láti mọ̀ dájú pé ìwé àṣẹ rẹ wúlò."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5477
+#, php-format
+msgid "There is a %1$s of %2$s available."
+msgstr "%1$s ti %2$s wa."
+
+#: includes/freemius-strings.php:5531
+msgid "To ensure compatibility and avoid conflicts with your installed plugins and themes."
+msgstr "Lati ri daju pe ohun gbogbo n ṣiṣẹ pọ daradara ati lati yago fun awọn aiyede pẹlu awọn afikun ati awọn akori ti o fi sori ẹrọ."
+
+#: includes/freemius-strings.php:5570
+msgid "Trial"
+msgstr "Àpilẹ̀kọ ìdánwò"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5690
+#, php-format
+msgid "View %s State"
+msgstr "Wo Ipo %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5696
+#, php-format
+msgid "View Basic %s Info"
+msgstr "Wo Alaye Ipilẹ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5877
+#, php-format
+msgid "Yes, %2$s is a duplicate of %4$s for the purpose of testing, staging, or development."
+msgstr "Bẹẹni, %2$s jẹ ẹda ti %4$s fun idi idanwo, ipele, tabi idagbasoke."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5928
+#, php-format
+msgid "You have a %s license."
+msgstr "O ni ìwé àṣẹ %s kan."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5934
+#, php-format
+msgid "You have purchased a %s license."
+msgstr "O ti ra iwe-aşẹ %s kan."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5970
+#: includes/freemius-strings.php:5976
+#, php-format
+msgid "You should receive a confirmation email for %1$s to your mailbox at %2$s. Please make sure you click the button in that email to %3$s."
+msgstr "O yẹ ki o gba imeeli ìfìdí-mulẹ̀ fún %1$s sí àpótí ìfiránṣẹ́ rẹ ní %2$s. Jọ̀wọ́ rí i dajú pé o tẹ bọ́tìnnì tó wà nínú imeeli yẹn láti %3$s."
+
+#: includes/freemius-strings.php:6157
+msgid "days"
+msgstr "àwọn ọjọ́"
+
+#: includes/freemius-strings.php:6162
+msgid "deactivating"
+msgstr "ń yọ kúrò nínú iṣẹ́"
+
+#: includes/freemius-strings.php:6178
+msgid "hour"
+msgstr "wakati"
+
+#: includes/freemius-strings.php:6183
+msgid "hours"
+msgstr "àkókò wákàtí"
+
+#: includes/freemius-strings.php:6188
+msgid "license"
+msgstr "ìwé àṣẹ"
+
+#: includes/freemius-strings.php:6208
+msgid "optional"
+msgstr "a yàn láàyè"
+
+#: includes/freemius-strings.php:6213
+msgid "products"
+msgstr "àwọn ọjà"
+
+#: includes/freemius-strings.php:6233
+msgid "skip"
+msgstr "fò kọjá"
+
+#: includes/freemius-strings.php:6243
+msgid "subscription"
+msgstr "ìforúkọ sílẹ̀"
+
+#: includes/freemius-strings.php:6264
+msgid "trial"
+msgstr "ìdánwò"
+
+#: includes/freemius-strings.php:6296
+msgctxt "Clone resolution admin notice products list label"
+msgid "Products"
+msgstr "Àwọn Ọjà"
+
+#: includes/freemius-strings.php:6394
+msgctxt "as activating plugin"
+msgid "Activating"
+msgstr "Ń mú ṣiṣẹ́"
+
+#: includes/freemius-strings.php:6499
+msgctxt "as software license"
+msgid "License"
+msgstr "Iwe-ašẹ"
+
+#: includes/freemius-strings.php:6534
+msgctxt "close a window"
+msgid "Dismiss"
+msgstr "Ko sí"
+
+#: includes/freemius-strings.php:6539
+msgctxt "close window"
+msgid "Dismiss"
+msgstr "Pa kuro"
+
+#: includes/freemius-strings.php:6587
+msgctxt "like websites"
+msgid "Sites"
+msgstr "Àwọn ojula wẹbù"
+
+#: includes/freemius-strings.php:6602
+msgctxt "noun"
+msgid "Pricing"
+msgstr "Iye owo"
+
+#: includes/freemius-strings.php:6627
+msgctxt "trial period"
+msgid "Trial"
+msgstr "Idanwo"
+
+#: includes/freemius-strings.php:6652
+msgctxt "verb"
+msgid "Opt In"
+msgstr "Gba Ilọkan"
+
+#: includes/freemius-strings.php:6657
+msgctxt "verb"
+msgid "Opt Out"
+msgstr "Jade kuro"
+
+#: includes/freemius-strings.php:6672
+msgctxt "verb"
+msgid "Skip"
+msgstr "Fò já sí"
+
+#: includes/freemius-strings.php:6682
+msgctxt "verb"
+msgid "Upgrade"
+msgstr "Ṣe agbega"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:6688
+#, php-format
+msgctxt "x-ago"
+msgid "%s ago"
+msgstr "%s sẹ́yìn"

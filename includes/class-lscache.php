@@ -12,21 +12,22 @@ namespace Zinn\Cache;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Controls the LiteSpeed server-level full-page cache.
+ * Controls the full-page cache.
  *
- * Two integration modes, chosen automatically and degrading gracefully:
+ * Three integration modes, chosen automatically:
  *
- *  - **A cache-engine plugin present** — Zinn Cache Engine (our GPL-3.0 fork, which ships
- *    in the same deploy footprint) or the third-party LiteSpeed Cache plugin. We defer
- *    page caching to it and route purges through its public actions
- *    (`zinn_cache_pro_purge_*` / `litespeed_purge_*`); see {@see self::CACHE_ENGINES}.
- *  - **LiteSpeed server only** (our deploy-footprint case: LiteSpeed Enterprise /
- *    OpenLiteSpeed with the cache module, no third-party plugin) — we stamp
- *    cacheability and cache tags on responses via `X-LiteSpeed-Cache-Control` /
- *    `X-LiteSpeed-Tag`, and purge with `X-LiteSpeed-Purge` tag directives.
+ *  - **A cache-engine plugin present** — the third-party LiteSpeed Cache plugin. We defer
+ *    page caching to it and route purges through its public actions (`litespeed_purge_*`);
+ *    see {@see self::CACHE_ENGINES}.
+ *  - **LiteSpeed server** (our hosting: LiteSpeed Enterprise / OpenLiteSpeed with the cache
+ *    module) — we stamp cacheability and cache tags on responses via
+ *    `X-LiteSpeed-Cache-Control` / `X-LiteSpeed-Tag`, and purge with `X-LiteSpeed-Purge`.
+ *  - **Any other server** — the disk cache ({@see Page_Cache}): pages are stored as files and
+ *    served by `advanced-cache.php` before WordPress loads, and purged by tag and URL.
  *
- * When neither is present (e.g. Apache/nginx, or WP-CLI), every method is a safe
- * no-op — the cache layer is a per-blueprint capability that may simply be absent.
+ * ⛔ Zinn® Cache Engine (the LiteSpeed Cache fork that answered to `ZINN_CACHE_PRO_V`) was
+ * retired on 2026-09-29 with no users; the slug `zinn-cache-pro` now belongs to the Pro add-on,
+ * which installs on top of this plugin and never owns page caching itself.
  */
 final class Lscache {
 
@@ -89,22 +90,16 @@ final class Lscache {
 	 * Full-page-cache engines we can hand off to, in preference order, mapped from the
 	 * constant that proves the engine is loaded to the prefix its public actions use.
 	 *
-	 * Zinn Cache Engine is our own GPL-3.0 fork of LiteSpeed Cache and ships in the same
-	 * deploy footprint as this plugin, so it is checked FIRST — if both were somehow
-	 * active we hand off to ours. The fork renames every global it inherits (that is what
-	 * makes it a distinct plugin rather than a colliding copy), so it answers to
-	 * `ZINN_CACHE_PRO_V` / `zinn_cache_pro_purge_*` and is invisible to a bare `LSCWP_V`
-	 * check — which is exactly how this plugin used to look for an engine.
+	 * Only the third-party LiteSpeed Cache plugin today.
 	 *
 	 * @var array<string,string>
 	 */
 	private const CACHE_ENGINES = array(
-		'ZINN_CACHE_PRO_V' => 'zinn_cache_pro_',
-		'LSCWP_V'          => 'litespeed_',
+		'LSCWP_V' => 'litespeed_',
 	);
 
 	/**
-	 * Whether a full-page-cache engine plugin (Zinn Cache Engine, or the third-party
+	 * Whether a full-page-cache engine plugin (the third-party
 	 * LiteSpeed Cache plugin) is active and should own page caching on this request.
 	 *
 	 * @return bool
@@ -260,6 +255,10 @@ final class Lscache {
 	 * @return string The unmodified body.
 	 */
 	public function finalize( string $buffer ): string {
+		if ( $this->is_disk_mode() ) {
+			return $this->finalize_disk( $buffer );
+		}
+
 		if ( ! headers_sent() ) {
 			if ( $this->request_is_cacheable() ) {
 				$ttl = $this->ttl_for_request();
@@ -278,6 +277,48 @@ final class Lscache {
 	}
 
 	/**
+	 * Store the page for the disk cache when it may be cached, and say whether it was a miss.
+	 *
+	 * ⛔ Only a complete `200` HTML document is stored: a redirect, an error page, a feed or a
+	 * JSON response served from the page cache is a defect the visitor sees and we do not.
+	 *
+	 * @param string $buffer Response body.
+	 * @return string The unmodified body.
+	 */
+	private function finalize_disk( string $buffer ): string {
+		$uri   = $this->request_uri();
+		$parts = explode( '?', $uri, 2 );
+		$keys  = $this->query_keys();
+		if ( ! $this->request_is_cacheable() || 200 !== http_response_code() || ! Page_Cache::query_is_ignorable( $keys ) || is_feed() || ! $this->is_html_response() || false === stripos( $buffer, '</html>' ) ) {
+			if ( ! headers_sent() ) {
+				header( 'X-Zinn-Cache: BYPASS' );
+			}
+			return $buffer;
+		}
+		$host = isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
+		$type = 'text/html; charset=' . get_option( 'blog_charset', 'UTF-8' );
+		Page_Cache::store( $host, '' === $parts[0] ? '/' : $parts[0], $buffer, $this->ttl_for_request(), $this->current_page_tags(), $type, '' );
+		if ( ! headers_sent() ) {
+			header( 'X-Zinn-Cache: MISS' );
+		}
+		return $buffer;
+	}
+
+	/**
+	 * Whether the response being sent is HTML (no Content-Type header sent yet means WordPress's default, HTML).
+	 *
+	 * @return bool
+	 */
+	private function is_html_response(): bool {
+		foreach ( headers_list() as $header ) {
+			if ( 0 === stripos( $header, 'content-type:' ) ) {
+				return false !== stripos( $header, 'text/html' );
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Whether this plugin should be controlling the LiteSpeed cache on this request.
 	 *
 	 * @return bool
@@ -285,7 +326,38 @@ final class Lscache {
 	private function should_control_cache(): bool {
 		return ! empty( $this->settings['lscache_enabled'] )
 			&& ! $this->is_lscache_plugin_active()
-			&& $this->is_litespeed_server();
+			&& ( $this->is_litespeed_server() || $this->is_disk_mode() );
+	}
+
+	/**
+	 * Whether pages are cached on disk by {@see Page_Cache} on this request: the page cache is on,
+	 * no cache-engine plugin owns it, the server is not LiteSpeed, and the drop-in is in place.
+	 *
+	 * @return bool
+	 */
+	public function is_disk_mode(): bool {
+		return ! empty( $this->settings['lscache_enabled'] )
+			&& ! $this->is_lscache_plugin_active()
+			&& ! $this->is_litespeed_server()
+			&& Page_Cache::is_ready();
+	}
+
+	/**
+	 * Which page-cache engine serves this site right now, for the status screen and the CLI.
+	 *
+	 * @return string `litespeed`, `disk`, `plugin`, `off` or `not-ready` (on, but the disk cache is not installed).
+	 */
+	public function engine(): string {
+		if ( empty( $this->settings['lscache_enabled'] ) ) {
+			return 'off';
+		}
+		if ( $this->is_lscache_plugin_active() ) {
+			return 'plugin';
+		}
+		if ( $this->is_litespeed_server() ) {
+			return 'litespeed';
+		}
+		return Page_Cache::is_ready() ? 'disk' : 'not-ready';
 	}
 
 	/**
@@ -302,6 +374,9 @@ final class Lscache {
 			$this->purge_all_queued = true;
 			$this->emit_purge_now();
 		}
+		// The disk cache is emptied whatever engine serves now: pages stored before a switch to
+		// LiteSpeed (or before the cache was turned off) must not come back if it is switched back.
+		Page_Cache::purge_all();
 
 		/**
 		 * Fires after a full purge of the page cache was requested.
@@ -324,6 +399,9 @@ final class Lscache {
 			$this->purge_all( 'update' );
 			return;
 		}
+
+		Page_Cache::purge_tags( (array) ( $plan['tags'] ?? array() ) );
+		Page_Cache::purge_urls( (array) ( $plan['urls'] ?? array() ) );
 
 		$engine = $this->cache_engine_hook_prefix();
 		if ( null !== $engine ) {

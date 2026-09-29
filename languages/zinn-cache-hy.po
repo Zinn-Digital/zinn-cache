@@ -21,8 +21,8 @@ msgstr "https://zinndigital.com/wordpress-plugins/zinn-cache"
 
 #. Description of the plugin
 #: zinn-cache.php
-msgid "For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe WordPress/WooCommerce exclusions. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead."
-msgstr "Zinn Digital®-ով հոսթինգ անցնող կայքերի համար։ Կառավարում է էջի քեշը, որն արդեն իսկ տրամադրում է Ձեր Zinn® սերվերը՝ բովանդակության փոփոխման դեպքում ավտոմատ խելացի մաքրում, ստորագրված մաքրման վերջնակետ (endpoint) Ձեր սեփական գործիքների համար, Redis օբյեկտային քեշի միացում/անջատում և WordPress/WooCommerce-ի անվտանգ բացառումներ։ Սա քեշի կառավարիչ է, այլ ոչ թե քեշի շարժիչ (engine)։ Հոսթինգն այլ տեղո՞ւմ է։ Դրա փոխարեն տեղադրեք Zinn® Cache Engine-ը։"
+msgid "A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works."
+msgstr "Էջի քեշ և Redis օբյեկտային քեշ ցանկացած WordPress կայքի համար: Օգտագործում է LiteSpeed սերվերի քեշը, որտեղ այն առկա է, և սեփական սկավառակի քեշը մնացած բոլոր դեպքերում, մաքրում է միայն այն, ինչին ազդում է փոփոխությունը, և ապացուցում է իր Redis կապի աշխատանքը:"
 
 #. Author of the plugin
 #: zinn-cache.php
@@ -69,12 +69,12 @@ msgid "Full-page cache"
 msgstr "Ամբողջ էջի քեշավորում"
 
 #: includes/class-admin.php:148
-msgid "Served by LiteSpeed at the web server, before WordPress runs. This is where nearly all the speed comes from."
-msgstr "Սպասարկվում է LiteSpeed վեբ սերվերի կողմից՝ մինչև WordPress-ի գործարկումը: Սա է գրեթե ամբողջ արագության աղբյուրը:"
+msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
+msgstr "LiteSpeed սերվերի վրա էջերը սպասարկվում են վեբ սերվերի կողմից նախքան WordPress-ի աշխատարկվելը:Ցանկացած այլ սերվերի վրա այս հավելվածը պահում է յուրաքանչյուր էջ որպես ֆայլ և սպասարկում այն ​​նախքան WordPress-ի բեռնվելը: Սրանից է գալիս գրեթե ամբողջ արագությունը:"
 
 #: includes/class-admin.php:154
-msgid "Send LiteSpeed cache-control and tag headers on cacheable pages"
-msgstr "Ուղարկել LiteSpeed cache-control և tag վերնագրեր քեշավորվող էջերում"
+msgid "Cache pages for visitors who are not signed in"
+msgstr "Պահշնորհել էջերը համակարգ մուտք չգործած այցելուների համար"
 
 #: includes/class-admin.php:160
 msgid "How long a page stays cached"
@@ -253,139 +253,143 @@ msgstr "Քեշավորված բոլոր էջերը հեռացվել են։ Դր�
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Օբյեկտների շտեմարանը (object cache) տեղադրված է, բայց ոչինչ չի պահպանում:"
 
-#: includes/class-admin.php:428
-msgid "The page cache is on, but this server is not LiteSpeed."
-msgstr "Էջի շերտապահեստը (page cache) միացված է, բայց այս սերվերը LiteSpeed չէ:"
+#: includes/class-admin.php:433
+msgid "The page cache is on, but pages are not being stored yet."
+msgstr "Էջերի քեշը միացված է, բայց էջերը դեռ չեն պահպանվում:"
 
-#: includes/class-admin.php:429
-msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
-msgstr "Քեշի վերնագրերն ուղարկվում են, և ոչինչ դրանք չի կարդում, ուստի էջերը փաստացի չեն քեշավորվում: Հարցրեք ձեր հոսթինգ մատակարարին, թե արդյոք LiteSpeed-ը հասանելի է, կամ տեղափոխվեք Zinn® հոսթինգ, որտեղ այն ստանդարտ է:"
+#: includes/class-admin.php:434
+msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
+msgstr "WordPress-ը դեռևս չի բեռնել էջի քեշի drop-in-ը: Այն սկսվում է հաջորդ էջի բեռնման ժամանակ. եթե չբեռնվի, ստուգեք, որ WP_CACHE-ը true լինի wp-config.php ֆայլում:"
 
-#: includes/class-admin.php:437
+#: includes/class-admin.php:443
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Օբյեկտների քեշը միացված է, բայց այս սերվերը չունի Redis աջակցություն:"
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:444
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ընդլայնումը տեղադրված չէ, ուստի drop-in-ը չի կարող օգտագործվել, և WordPress-ը վերադառնում է իր ներհիշողության քեշին: Խնդրեք ձեր հոսթինգ մատակարարին միացնել phpredis-ը:"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Nothing is being cached."
 msgstr "Ոչինչ չի քեշավորվում։"
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:453
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Երկու քեշերն էլ անջատված են, որի պատճառով այս փլագինը չի արագացնում կայքի աշխատանքը:"
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Caching is active on this site."
 msgstr "Քեշավորումն ակտիվ է այս կայքում:"
 
-#: includes/class-admin.php:489
+#: includes/class-admin.php:495
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis-ը մերժել է օգտանունը կամ գաղտնբառը։ Ստուգեք Redis-ի հավատարմագրերը wp-config.php ֆայլում կամ այս էկրանին։"
 
-#: includes/class-admin.php:491
+#: includes/class-admin.php:497
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis-ը ընդունել է մուտքը, սակայն թույլ չի տալիս այս կայքին պահել իր բանալիները: Redis-ի օգտատերը տվյալ կայքի բանալիների նախածանցի թույլտվության կարիք ունի:"
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis-ը մերժեց տվյալների բազայի համարը։ Ստուգեք Redis տվյալների բազայի կարգավորումը։"
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:501
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis-ը հիշողությունից դուրս է և մերժում է նոր տվյալները:"
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:503
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ընդլայնումը տեղադրված չէ, ուստի WordPress-ն օգտագործում է իր հիշողության մեջ պահվող սեփական շտեմը (cache): Խնդրեք ձեր հոսթինգ մատակարարին միացնել phpredis-ը:"
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:505
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED-ը սահմանված է wp-config.php ֆայլում, ուստի օբյեկտների շերտապահեստը (cache) անջատված է:"
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Հնարավոր չէ կապ հաստատել Redis սերվերի հետ: Ստուգեք Redis հոսթն ու պորտը և համոզվեք, որ Redis-ն աշխատում է:"
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:509
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis-ը չվերադարձրեց հենց նոր իր մեջ գրված արժեքը: Ստուգեք Redis սերվերի մատյանները (logs):"
 
-#: includes/class-admin.php:518
+#: includes/class-admin.php:524
 msgid "Web server"
 msgstr "Վեբ սերվեր"
 
-#: includes/class-admin.php:520
-msgid "LiteSpeed — page caching available"
-msgstr "LiteSpeed — հասանելի է էջերի քեշավորում"
+#: includes/class-admin.php:526
+msgid "LiteSpeed — pages are cached by the web server"
+msgstr "LiteSpeed — էջերը պահվում են վեբ սերվերի քեշում"
 
-#: includes/class-admin.php:521
-msgid "not LiteSpeed — page caching unavailable"
-msgstr "ոչ LiteSpeed — էջերի քեշավորումը հասանելի չէ"
+#: includes/class-admin.php:527
+msgid "not LiteSpeed — pages are cached on disk by this plugin"
+msgstr "ոչ LiteSpeed — այս հավելվածի միջոցով էջերը քեշավորվում են սկավառակի վրա"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:530
+msgid "Pages stored on disk"
+msgstr "Սկավառակում պահվող էջեր"
+
+#: includes/class-admin.php:534
 msgid "Redis support"
 msgstr "Redis աջակցություն"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:536
 msgid "phpredis is installed"
 msgstr "phpredis-ը տեղադրված է"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:537
 msgid "phpredis is not installed"
 msgstr "phpredis-ը տեղադրված չէ"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:540
 msgid "Page lifetime"
 msgstr "Էջի գործողության տևողությունը"
 
-#: includes/class-admin.php:605
+#: includes/class-admin.php:615
 msgid "You are not allowed to purge the cache."
 msgstr "Դուք չունեք քեշը մաքրելու թույլտվություն։"
 
-#: includes/class-admin.php:611
+#: includes/class-admin.php:621
 msgid "Cache purge requested."
 msgstr "Քեշի մաքրումը պահանջված է։"
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:649
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: տեղադրված է այլ օբյեկտային քեշի հավելված, հետևաբար Redis օբյեկտային քեշը չի կառավարվում այս հավելվածի (plugin) կողմից:"
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:663
 msgid "detected"
 msgstr "հայտնաբերված է"
 
-#: includes/class-admin.php:654
+#: includes/class-admin.php:664
 msgid "not detected"
 msgstr "հայտնաբերված չէ"
 
-#: includes/class-admin.php:658
+#: includes/class-admin.php:668
 msgid "phpredis extension missing"
 msgstr "phpredis ընդլայնումը բացակայում է"
 
-#: includes/class-admin.php:660
+#: includes/class-admin.php:670
 msgid "installed, not storing anything"
 msgstr "տեղադրված է, ոչինչ չի պահվում"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:672
 msgid "active, managed by your host"
 msgstr "ակտիվ, կառավարվում է ձեր հոսթի կողմից"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:674
 msgid "active"
 msgstr "ակտիվ"
 
-#: includes/class-admin.php:666
+#: includes/class-admin.php:676
 msgid "inactive"
 msgstr "ոչ ակտիվ"
 
-#: includes/class-admin.php:671
+#: includes/class-admin.php:681
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed քեշ."
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:683
 msgid "Redis object cache:"
 msgstr "Redis օբյեկտների քեշ."
 
@@ -417,6 +421,18 @@ msgstr "Հնարավոր չեղավ հեռացնել օբյեկտների քեշ
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress-ի ֆայլային համակարգը գրառելի չէ, ուստի օբյեկտների քեշի drop-in-ը հնարավոր չեղավ կառավարել։"
 
+#: includes/class-page-cache.php:291
+msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
+msgstr "Էջերի քեշավորման մեկ այլ հավելված տեղադրել է wp-content/advanced-cache.php ֆայլը։ Նախ հեռացրեք այդ հավելվածը կամ շարունակեք օգտագործել դրա էջի քեշը։"
+
+#: includes/class-page-cache.php:294
+msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
+msgstr "wp-content/cache/zinn-cache թղթապանակում գրել հնարավոր չէ, հետևաբար էջերը չեն կարող քեշավորվել։"
+
+#: includes/class-page-cache.php:301
+msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
+msgstr "Հնարավոր չէ գրել wp-content/advanced-cache.php ֆայլը, ուստի էջերը չեն կարող քեշավորվել։"
+
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
 msgstr "Տեսեք Zinn Digital®-ի թողարկման նշումները:"
@@ -434,6 +450,64 @@ msgstr "Թարմացումը չհաջողվեց ներբեռնել Zinn® թար
 #: includes/class-updater.php:327
 msgid "The downloaded update failed its integrity check and was not installed."
 msgstr "Ներբեռնված թարմացումը չանցավ ամբողջականության ստուգումը և չտեղադրվեց։"
+
+#: includes/class-upsell.php:85
+msgid "Go Pro"
+msgstr "Անցնել Pro-ին"
+
+#: includes/class-upsell.php:112
+msgid "A cache analytics screen: hit ratio, memory, keys and the slowest cache commands."
+msgstr "Քեշի վերլուծության էկրան՝ դիպչելու գործակից, հիշողություն, բանալիներ և ամենադանդաղ քեշի հրամանները:"
+
+#: includes/class-upsell.php:113
+msgid "A slow-query and uncached-call finder that names the plugin or theme responsible."
+msgstr "Դանդաղ հարցումների և չքեշավորված զանգերի հայտնաբերման գործիք, որը նշում է պատասխանատու հավելվածը կամ թեման:"
+
+#: includes/class-upsell.php:114
+msgid "An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer."
+msgstr "Հիշողության մեջ պահվող APCu շերտ Redis-ի առջև՝ ամենաթեժ բանալիների համար, ինչպես նաև նախնական բեռնում, սեղմում և igbinary սերիալիզատոր:"
+
+#: includes/class-upsell.php:115
+msgid "Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together."
+msgstr "Պիտակների վրա հիմնված մաքրում գրառումների, տերմինների և WooCommerce արտադրանքների համար, որպեսզի մաքրվի միայն այն, ինչ փոխվել է, ընդ որում էջի և օբյեկտի քեշերը մաքրվում են միասին:"
+
+#: includes/class-upsell.php:116
+msgid "Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript."
+msgstr "Ավտոմատ քեշի տաքացում մաքրումից հետո, WebP և AVIF պատկերներ, չօգտագործված CSS-ի հեռացում և հետաձգված JavaScript:"
+
+#: includes/class-upsell.php:117
+msgid "Scheduled database clean-up with a preview, and per-page cache rules."
+msgstr "Նախատեսված տվյալների բազայի մաքրում նախնական դիտմամբ և քեշի կանոններ՝ ըստ էջերի:"
+
+#: includes/class-upsell.php:118
+msgid "Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills."
+msgstr "Քեշի վիճակի մասին ծանուցումներ ձեր Zinn Digital® վահանակում, երբ հիթերի հարաբերակցությունը նվազում է կամ հիշողությունը լցվում է:"
+
+#: includes/class-upsell.php:132
+msgid "Everything on the other tabs is free and stays free. Pro installs on top of this plugin and adds:"
+msgstr "Մնացած ներդիրների ամեն ինչ անվճար է և այդպես էլ կմնա։ Pro-ն տեղադրվում է այս հավելվածի վրա և ավելացնում է հետևյալը."
+
+#: includes/class-upsell.php:134
+msgid "See what Pro costs"
+msgstr "Տեսեք, թե որքան արժե Pro-ն"
+
+#. translators: 1: yearly price for one site, 2: for five sites, 3: for unlimited sites (each already formatted, e.g. $49).
+#: includes/class-upsell.php:138
+#, php-format
+msgid "Every plan starts with a 14-day free trial, no card needed: %1$s a year for one site, %2$s for five sites, %3$s for unlimited sites."
+msgstr "Յուրաքանչյուր պլան սկսվում է 14-օրյա անվճար փորձաշրջանով, քարտ պետք չէ․ %1$s տարեկան մեկ կայքի համար, %2$s՝ հինգ կայքի, %3$s՝ անսահմանափակ կայքերի համար:"
+
+#: includes/class-wp-config.php:66
+msgid "wp-config.php was not found, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "wp-config.php ֆայլը չի գտնվել, ուստի հնարավոր չէ միացնել WP_CACHE-ը: Ավելացրեք define( 'WP_CACHE', true ); այնտեղ:"
+
+#: includes/class-wp-config.php:72
+msgid "wp-config.php already defines WP_CACHE as false, so the page cache cannot start. Change it to true."
+msgstr "wp-config.php-ն արդեն իսկ սահմանում է WP_CACHE-ը որպես false, այդ պատճառով էջի քեշը չի կարող գործարկվել: Փոխեք այն true-ի:"
+
+#: includes/class-wp-config.php:79
+msgid "wp-config.php is not writable, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "wp-config.php-ն գրելի չէ, ուստի հնարավոր չեղավ միացնել WP_CACHE-ը: Ավելացրեք define( 'WP_CACHE', true ); տողը դրանում:"
 
 #: includes/class-zinn-cache-admin-fields.php:580
 msgid "Stored. Type a new value to replace it."
@@ -460,6 +534,8 @@ msgid "Remove this row"
 msgstr "Հեռացնել այս տողը"
 
 #: includes/class-zinn-cache-admin-fields.php:725
+#: includes/freemius-strings.php:2132
+#: includes/freemius-strings.php:4997
 msgid "Remove"
 msgstr "Հեռացնել"
 
@@ -503,6 +579,8 @@ msgid "Settings sections"
 msgstr "Կարգավորումների բաժիններ"
 
 #: includes/class-zinn-cache-admin-ui.php:871
+#: includes/freemius-strings.php:2420
+#: includes/freemius-strings.php:5291
 msgid "Support"
 msgstr "Աջակցություն"
 
@@ -740,3 +818,4067 @@ msgstr "Օգտագործել իմ սեփական գույներն ու չափե�
 #: includes/class-zinn-cache-style-presets.php:127
 msgid "Leave this off and the preset is used exactly as it is."
 msgstr "Անջատեք սա, և նախադրյալը կօգտագործվի այնպես, ինչպես որ կա։"
+
+#: includes/freemius-strings.php:21
+#: includes/freemius-strings.php:6306
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "a license key"
+msgstr "արտոնագրի բանալի"
+
+#: includes/freemius-strings.php:25
+#: includes/freemius-strings.php:3062
+msgid "A user has not yet been associated with the license, which is necessary to prevent unauthorized activation. To assign the license to your user, you agree to share your WordPress user's full name and email address."
+msgstr "Օգտատերը դեռևս կապված չէ արտոնագրի հետ, ինչը պարտադիր է չարտոնված ակտիվացումը կանխելու համար: Արտոնագիրը ձեր օգտատիրոջը հատկացնելու համար դուք համաձայնում եք կիսվել ձեր WordPress օգտատիրոջ անուն-ազգանունով և էլփոստի հասցեով:"
+
+#: includes/freemius-strings.php:29
+#: includes/freemius-strings.php:6253
+msgid "the above-mentioned sites"
+msgstr "վերոնշյալ կայքերը"
+
+#: includes/freemius-strings.php:33
+#: includes/freemius-strings.php:3072
+msgid "Account"
+msgstr "Հաշիվ"
+
+#: includes/freemius-strings.php:37
+#: includes/freemius-strings.php:3077
+msgid "Account Details"
+msgstr "Հաշվի մանրամասները"
+
+#: includes/freemius-strings.php:41
+#: includes/freemius-strings.php:3082
+msgid "Account is pending activation. Please check your email and click the link to activate your account and then submit the affiliate form again."
+msgstr "Հաշիվը սպասում է ակտիվացման: Խնդրում ենք ստուգել ձեր էլ. փոստը և սեղմել հղումը՝ ձեր հաշիվն ակտիվացնելու համար, այնուհետև նորից ուղարկել գործընկերոջ հայտը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:46
+#: includes/freemius-strings.php:5838
+#, php-format
+msgid "Would you like to merge %1$s into %2$s?"
+msgstr "Ցանկանո՞ւմ եք միավորել %1$s-ը %2$s-ին:"
+
+#: includes/freemius-strings.php:50
+#: includes/freemius-strings.php:3087
+msgid "Actions"
+msgstr "Գործողություններ"
+
+#: includes/freemius-strings.php:54
+#: includes/freemius-strings.php:3092
+msgid "Activate"
+msgstr "Ակտիվացնել"
+
+#: includes/freemius-strings.php:58
+#: includes/freemius-strings.php:62
+#: includes/freemius-strings.php:3115
+msgid "Activate Free Version"
+msgstr "Ակտիվացնել անվճար տարբերակը"
+
+#: includes/freemius-strings.php:66
+#: includes/freemius-strings.php:3120
+msgid "Activate License"
+msgstr "Ակտիվացնել լիցենզիան"
+
+#: includes/freemius-strings.php:70
+#: includes/freemius-strings.php:6131
+msgid "activate a license here"
+msgstr "Ակտիվացրեք լիցենզիան այստեղ"
+
+#: includes/freemius-strings.php:74
+#: includes/freemius-strings.php:4793
+msgid "Please enter the license key that you received in the email right after the purchase:"
+msgstr "Խնդրում ենք մուտքագրել այն լիցենզիայի բանալին, որը ստացել եք էլ.փոստով գնումից անմիջապես հետո."
+
+#: includes/freemius-strings.php:78
+#: includes/freemius-strings.php:3130
+msgid "Activate license on all sites in the network."
+msgstr "Ակտիվացրեք արտոնագիրը ցանցի բոլոր կայքերում:"
+
+#: includes/freemius-strings.php:82
+#: includes/freemius-strings.php:3125
+msgid "Activate license on all pending sites."
+msgstr "Ակտիվացնել լիցենզիան սպասման մեջ գտնվող բոլոր կայքերում։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:87
+#: includes/freemius-strings.php:2859
+#, php-format
+msgid " The paid version of %1$s is already installed. Please activate it to start benefiting from the %2$s features. %3$s"
+msgstr "%1$s-ի վճարովի տարբերակն արդեն տեղադրված է։ Խնդրում ենք ակտիվացնել այն՝ %2$s-ի հնարավորություններից օգտվելու համար։ %3$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:92
+#: includes/freemius-strings.php:2865
+#, php-format
+msgid " The paid version of %1$s is already installed. Please navigate to the %2$s to activate it and start benefiting from the %3$s features."
+msgstr "%1$s-ի վճարովի տարբերակն արդեն տեղադրված է։ Խնդրում ենք անցնել %2$s՝ այն ակտիվացնելու և %3$s հնարավորություններից օգտվելու համար:"
+
+#: includes/freemius-strings.php:96
+#: includes/freemius-strings.php:3135
+msgid "Activate this add-on"
+msgstr "Ակտիվացնել այս հավելումը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:101
+#: includes/freemius-strings.php:3098
+#, php-format
+msgid "Activate %s"
+msgstr "Ակտիվացնել %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:106
+#: includes/freemius-strings.php:3110
+#, php-format
+msgid "Activate %s features"
+msgstr "Ակտիվացնել %s գործառույթները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:111
+#: includes/freemius-strings.php:6276
+#, php-format
+msgctxt "%s - plugin name. As complete \"PluginX\" activation now"
+msgid "Complete \"%s\" Activation Now"
+msgstr "Ավարտել «%s»-ի ակտիվացումը հիմա"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:116
+#: includes/freemius-strings.php:3104
+#, php-format
+msgid "Activate %s Plan"
+msgstr "Ակտիվացնել %s պլանը"
+
+#: includes/freemius-strings.php:120
+#: includes/freemius-strings.php:3140
+msgid "Activated"
+msgstr "Ակտիվացված է"
+
+#: includes/freemius-strings.php:124
+#: includes/freemius-strings.php:3145
+msgid "Activating"
+msgstr "Ակտիվացվում է"
+
+#: includes/freemius-strings.php:128
+#: includes/freemius-strings.php:3150
+msgid "Activating license"
+msgstr "Լիցենզիայի ակտիվացում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:133
+#: includes/freemius-strings.php:6022
+#, php-format
+msgid "Your account was successfully activated with the %s plan."
+msgstr "Ձեր հաշիվը հաջողությամբ ակտիվացվել է %s պլանով:"
+
+#: includes/freemius-strings.php:137
+#: includes/freemius-strings.php:6366
+msgctxt "active add-on"
+msgid "Active"
+msgstr "Ակտիվ"
+
+#: includes/freemius-strings.php:141
+#: includes/freemius-strings.php:3167
+msgid "Add another domain"
+msgstr "Ավելացնել այլ դոմեյն"
+
+#: includes/freemius-strings.php:145
+#: includes/freemius-strings.php:3177
+msgid "Add-Ons"
+msgstr "Հավելումներ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:150
+#: includes/freemius-strings.php:3156
+#, php-format
+msgid "Add Ons for %s"
+msgstr "Հավելումներ %s-ի համար"
+
+#: includes/freemius-strings.php:154
+#: includes/freemius-strings.php:5751
+msgid "We couldn't load the add-ons list. It's probably an issue on our side, please try to come back in few minutes."
+msgstr "Չհաջողվեց բեռնել հավելումների ցանկը։ Հավանաբար սա խնդիր է մեր կողմից, խնդրում ենք փորձել մի քանի րոպեից:"
+
+#: includes/freemius-strings.php:158
+#: includes/freemius-strings.php:3172
+msgid "Add-On"
+msgstr "Հավելում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:163
+#: includes/freemius-strings.php:2931
+#, php-format
+msgid "%s is a premium only add-on. You have to purchase a license first before activating the plugin."
+msgstr "%s-ը միայն պրեմիում հավելում է: Նախքան հավելվածն ակտիվացնելը, դուք պետք է գնեք արտոնագիր:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:168
+#: includes/freemius-strings.php:2883
+#, php-format
+msgid "%s Add-on was successfully purchased."
+msgstr "%s հավելումը հաջողությամբ գնվեց:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:173
+#: includes/freemius-strings.php:5993
+#, php-format
+msgid "Your %s Add-on plan was successfully upgraded."
+msgstr "Ձեր %s հավելման պլանը հաջողությամբ բարելավվեց։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:178
+#: includes/freemius-strings.php:2925
+#, php-format
+msgid "%s free trial was successfully cancelled. Since the add-on is premium only it was automatically deactivated. If you like to use it in the future, you'll have to purchase a license."
+msgstr "%s անվճար փորձաշրջանը հաջողությամբ չեղարկվել է: Քանի որ հավելումը միայն պրեմիում է, այն ավտոմատ կերպով ապաակտիվացվել է: Եթե ցանկանում եք այն օգտագործել ապագայում, պետք է արտոնագիր ձեռք բերեք:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:183
+#: includes/freemius-strings.php:6378
+#, php-format
+msgctxt "addonX cannot run..."
+msgid "%s cannot run without the plugin."
+msgstr "%s-ը չի կարող աշխատել առանց հավելվածի:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:188
+#: includes/freemius-strings.php:6372
+#, php-format
+msgctxt "addonX cannot run without pluginY"
+msgid "%1$s cannot run without %2$s."
+msgstr "%1$s-ը չի կարող աշխատել առանց %2$s-ի:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:193
+#: includes/freemius-strings.php:4332
+#, php-format
+msgid "Just letting you know that the add-ons information of %s is being pulled from an external server."
+msgstr "Տեղեկացնում ենք Ձեզ, որ %s-ի հավելումների մասին տեղեկատվությունը ստացվում է արտաքին սերվերից:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:198
+#: includes/freemius-strings.php:3162
+#, php-format
+msgid "Add Ons of module %s"
+msgstr "%s մոդուլի հավելումներ"
+
+#: includes/freemius-strings.php:202
+#: includes/freemius-strings.php:3187
+msgid "Address"
+msgstr "Հասցե"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:207
+#: includes/freemius-strings.php:3193
+#, php-format
+msgid "Address Line %d"
+msgstr "Հասցեի տող %d"
+
+#: includes/freemius-strings.php:211
+#: includes/freemius-strings.php:3198
+msgid "Affiliate"
+msgstr "Գործընկեր"
+
+#: includes/freemius-strings.php:215
+#: includes/freemius-strings.php:3830
+msgid "Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support."
+msgstr "Մեր գործընկերային պայմանների խախտման պատճառով մենք որոշել ենք ժամանակավորապես արգելափակել ձեր գործընկերային հաշիվը: Հարցերի դեպքում խնդրում ենք դիմել աջակցման ծառայություն:"
+
+#: includes/freemius-strings.php:219
+#: includes/freemius-strings.php:6033
+msgid "Your affiliation account was temporarily suspended."
+msgstr "Ձեր գործընկերային հաշիվը ժամանակավորապես սառեցվել է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:224
+#: includes/freemius-strings.php:6028
+#, php-format
+msgid "Your affiliate application for %1$s has been accepted! Log in to your affiliate area at: %2$s."
+msgstr "Ձեր գործընկերային ծրագրի հայտը %1$s-ի համար հաստատվել է: Մուտք գործեք ձեր գործընկերային բաժին հետևյալ հասցեով՝ %2$s:"
+
+#: includes/freemius-strings.php:228
+#: includes/freemius-strings.php:5316
+msgid "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days."
+msgstr "Շնորհակալություն մեր գործընկերային ծրագրին դիմելու համար, սակայն, մենք որոշել ենք այս փուլում մերժել ձեր հայտը: Խնդրում ենք կրկին փորձել 30 օր հետո:"
+
+#: includes/freemius-strings.php:232
+#: includes/freemius-strings.php:5321
+msgid "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information."
+msgstr "Շնորհակալություն մեր գործընկերային ծրագրին դիմելու համար, մենք կստուգենք ձեր տվյալները առաջիկա 14 օրվա ընթացքում և կկապվենք ձեզ հետ լրացուցիչ տեղեկություններով:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:237
+#: includes/freemius-strings.php:3027
+#, php-format
+msgid "%s tracking cookie after the first visit to maximize earnings potential."
+msgstr "%s հետևելու թխուկ առաջին այցելությունից հետո՝ եկամտի ներուժն առավելագույնի հասցնելու համար:"
+
+#: includes/freemius-strings.php:241
+#: includes/freemius-strings.php:3203
+msgid "Affiliation"
+msgstr "Գործընկերություն"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:246
+#: includes/freemius-strings.php:4652
+#, php-format
+msgid "Once your license expires you can still use the Free version but you will NOT have access to the %s features."
+msgstr "Ձեր լիցենզիայի ժամկետը լրանալուց հետո դուք դեռևս կարող եք օգտագործել Անվճար տարբերակը, սակայն ՀԱՍԱՆԵԼԻՈՒԹՅՈՒՆ չեք ունենա %s հնարավորություններին:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:251
+#: includes/freemius-strings.php:4658
+#, php-format
+msgid "Once your license expires you will no longer be able to use the %s, unless you activate it again with a valid premium license."
+msgstr "Ձեր լիցենզիայի ժամկետը լրանալուց հետո դուք այլևս չեք կարողանա օգտագործել %s-ը, քանի դեռ այն նորից չեք ակտիվացրել վավեր պրեմիում լիցենզիայով:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:256
+#: includes/freemius-strings.php:5917
+#, php-format
+msgid "You can still enjoy all %1$s features but you will not have access to %2$s security & feature updates, nor support."
+msgstr "Դուք դեռևս կարող եք օգտվել %1$s բոլոր հնարավորություններից, բայց չեք ունենա հասանելիություն %2$s անվտանգության և գործառույթների թարմացումներին, ինչպես նաև աջակցությանը:"
+
+#: includes/freemius-strings.php:260
+#: includes/freemius-strings.php:5366
+msgid "Thanks for upgrading."
+msgstr "Շնորհակալություն թարմացման համար։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:265
+#: includes/freemius-strings.php:3209
+#, php-format
+msgid "After your free %1$s, pay as little as %2$s"
+msgstr "Ձեր անվճար %1$s-ից հետո վճարեք ընդամենը %2$s"
+
+#: includes/freemius-strings.php:269
+#: includes/freemius-strings.php:3214
+msgid "Agree & Activate License"
+msgstr "Համաձայնվել և ակտիվացնել արտոնագիրը"
+
+#: includes/freemius-strings.php:273
+#: includes/freemius-strings.php:4071
+msgid "I Agree - Change User"
+msgstr "Համաձայն եմ - Փոխել օգտատիրոջը"
+
+#: includes/freemius-strings.php:277
+#: includes/freemius-strings.php:3219
+msgid "All Requests"
+msgstr "Բոլոր հարցումները"
+
+#: includes/freemius-strings.php:281
+#: includes/freemius-strings.php:3224
+msgid "All Types"
+msgstr "Բոլոր տեսակները"
+
+#: includes/freemius-strings.php:285
+#: includes/freemius-strings.php:6136
+msgid "allow"
+msgstr "թույլատրել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:290
+#: includes/freemius-strings.php:5982
+#, php-format
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving the %s."
+msgstr "Դուք արդեն միացրել եք մեր օգտագործման հետևման հնարավորությունը, ինչն օգնում է մեզ շարունակել բարելավել %s-ը:"
+
+#: includes/freemius-strings.php:294
+#: includes/freemius-strings.php:5987
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving them."
+msgstr "Դուք արդեն միացրել եք մեր օգտագործման հետևման հնարավորությունը, ինչն օգնում է մեզ շարունակել բարելավել դրանք:"
+
+#: includes/freemius-strings.php:298
+#: includes/freemius-strings.php:3240
+msgid "Amount"
+msgstr "Գումար"
+
+#: includes/freemius-strings.php:302
+#: includes/freemius-strings.php:6469
+msgctxt "as once a year"
+msgid "Annual"
+msgstr "Տարեկան"
+
+#: includes/freemius-strings.php:306
+#: includes/freemius-strings.php:6474
+msgctxt "as once a year"
+msgid "Annually"
+msgstr "Ամեն տարի"
+
+#: includes/freemius-strings.php:310
+#: includes/freemius-strings.php:3277
+msgid "Anonymous feedback"
+msgstr "Անանուն հետադարձ կապ"
+
+#: includes/freemius-strings.php:314
+#: includes/freemius-strings.php:6404
+msgctxt "as application program interface"
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:318
+#: includes/freemius-strings.php:3287
+msgid "Apply on all sites in the network."
+msgstr "Կիրառել ցանցի բոլոր կայքերում:"
+
+#: includes/freemius-strings.php:322
+#: includes/freemius-strings.php:3282
+msgid "Apply on all pending sites."
+msgstr "Կիրառել բոլոր սպասվող կայքերում:"
+
+#: includes/freemius-strings.php:326
+#: includes/freemius-strings.php:3292
+msgid "Apply to become an affiliate"
+msgstr "Դիմել որպես գործընկեր դառնալու համար"
+
+#: includes/freemius-strings.php:330
+#: includes/freemius-strings.php:3297
+msgid "Approve & Start Trial"
+msgstr "Հաստատել և սկսել փորձաշրջանը"
+
+#: includes/freemius-strings.php:334
+#: includes/freemius-strings.php:4357
+msgid "Kindly tell us the reason so we can improve."
+msgstr "Խնդրում ենք հայտնել պատճառը, որպեսզի կարողանանք բարելավել:"
+
+#: includes/freemius-strings.php:338
+#: includes/freemius-strings.php:3898
+msgid "Enter the email address you've used for the upgrade below and we will resend you the license key."
+msgstr "Մուտքագրեք ստորև այն էլ. փոստի հասցեն, որն օգտագործել եք թարմացման համար, և մենք նորից կուղարկենք լիցենզիայի բանալին:"
+
+#: includes/freemius-strings.php:342
+#: includes/freemius-strings.php:3893
+msgid "Enter the email address you've used during the purchase and we will resend you the license key."
+msgstr "Մուտքագրեք այն էլ. փոստի հասցեն, որն օգտագործել եք գնման ժամանակ, և մենք նորից կուղարկենք լիցենզիայի բանալին:"
+
+#: includes/freemius-strings.php:346
+#: includes/freemius-strings.php:3328
+msgid "Associate with the license owner's account."
+msgstr "Կապել լիցենզիայի սեփականատիրոջ հաշվի հետ:"
+
+#: includes/freemius-strings.php:350
+#: includes/freemius-strings.php:6514
+msgctxt "as the plugin author"
+msgid "Author"
+msgstr "Հեղինակ"
+
+#: includes/freemius-strings.php:354
+#: includes/freemius-strings.php:4220
+msgid "Invalid module ID."
+msgstr "Անվավեր մոդուլի ID:"
+
+#: includes/freemius-strings.php:358
+#: includes/freemius-strings.php:5922
+msgid "You do not have a valid license to access the premium version."
+msgstr "Պրեմիում տարբերակ մուտք գործելու համար դուք չունեք վավեր լիցենզիա:"
+
+#: includes/freemius-strings.php:362
+#: includes/freemius-strings.php:3333
+msgid "Auto installation only works for opted-in users."
+msgstr "Ավտոմատ տեղադրումն աշխատում է միայն համապատասխան կարգավորումներն ընտրած օգտատերերի համար:"
+
+#: includes/freemius-strings.php:366
+#: includes/freemius-strings.php:4900
+msgid "Premium version already active."
+msgstr "Պրեմիում տարբերակն արդեն ակտիվ է:"
+
+#: includes/freemius-strings.php:370
+#: includes/freemius-strings.php:4890
+msgid "Premium add-on version already installed."
+msgstr "Պրեմիում հավելվածի տարբերակն արդեն տեղադրված է:"
+
+#: includes/freemius-strings.php:374
+#: includes/freemius-strings.php:4859
+msgid "Plugin is a \"Serviceware\" which means it does not have a premium code version."
+msgstr "Plugin-ը «Serviceware» է, ինչը նշանակում է, որ այն պրեմիում կոդի տարբերակ չունի:"
+
+#: includes/freemius-strings.php:378
+#: includes/freemius-strings.php:3344
+msgid "Automatic Installation"
+msgstr "Ավտոմատ տեղադրում"
+
+#: includes/freemius-strings.php:382
+#: includes/freemius-strings.php:6622
+msgctxt "timer for auto-disabling debug"
+msgid "Auto off in:"
+msgstr "Ավտոմատ անջատում՝"
+
+#: includes/freemius-strings.php:386
+#: includes/freemius-strings.php:3349
+msgid "Average Rating"
+msgstr "Միջին գնահատական"
+
+#: includes/freemius-strings.php:390
+#: includes/freemius-strings.php:3354
+msgid "Awesome"
+msgstr "Հիանալի"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:395
+#: includes/freemius-strings.php:6142
+#, php-format
+msgid "based on %s"
+msgstr "հիմնված %s-ի վրա"
+
+#: includes/freemius-strings.php:399
+#: includes/freemius-strings.php:3359
+msgid "Become an affiliate"
+msgstr "Դարձեք գործընկեր"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:404
+#: includes/freemius-strings.php:4438
+#, php-format
+msgid "Like the %s? Become our ambassador and earn cash ;-)"
+msgstr "Հավանո՞ւմ եք %s-ը: Դարձե՛ք մեր դեսպանը և գումար վաստակեք ;-)"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:409
+#: includes/freemius-strings.php:4045
+#, php-format
+msgid "Hey there, did you know that %1$s has an affiliate program? If you like the %2$s you can become our ambassador and earn some cash!"
+msgstr "Բարև ձեզ, գիտեի՞ք, որ %1$s-ն ունի գործընկերային ծրագիր: Եթե ձեզ դուր է գալիս %2$s-ը, դուք կարող եք դառնալ մեր դեսպանը և որոշակի գումար վաստակել:"
+
+#: includes/freemius-strings.php:413
+#: includes/freemius-strings.php:6556
+msgctxt "e.g. the best product"
+msgid "Best"
+msgstr "Լավագույնը"
+
+#: includes/freemius-strings.php:417
+#: includes/freemius-strings.php:3364
+msgid "Beta"
+msgstr "Բետա"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:422
+#: includes/freemius-strings.php:3267
+#, php-format
+msgid "An update to a Beta version will replace your installed version of %s with the latest Beta release - use with caution, and not on production sites. You have been warned."
+msgstr "Բետա տարբերակին թարմացումը կփոխարինի %s-ի տեղադրված տարբերակը վերջին բետա թողարկումով. օգտագործեք զգուշությամբ և ոչ թե աշխատանքային (պրոդաքշն) կայքերում: Դուք նախազգուշացված եք:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:427
+#: includes/freemius-strings.php:6551
+#, php-format
+msgctxt "e.g. billed monthly"
+msgid "Billed %s"
+msgstr "Վճարված է %s"
+
+#: includes/freemius-strings.php:431
+#: includes/freemius-strings.php:3369
+msgid "Billing"
+msgstr "Վճարումներ"
+
+#: includes/freemius-strings.php:435
+#: includes/freemius-strings.php:3374
+msgid "Billing & Invoices"
+msgstr "Վճարումներ և հաշիվներ"
+
+#: includes/freemius-strings.php:439
+#: includes/freemius-strings.php:6424
+msgctxt "as connection blocked"
+msgid "Blocked"
+msgstr "Արգելափակված"
+
+#: includes/freemius-strings.php:443
+#: includes/freemius-strings.php:3379
+msgid "Blocking"
+msgstr "Արգելափակում"
+
+#: includes/freemius-strings.php:447
+#: includes/freemius-strings.php:3384
+msgid "Blog ID"
+msgstr "Բլոգի ID"
+
+#: includes/freemius-strings.php:451
+#: includes/freemius-strings.php:3389
+msgid "Body"
+msgstr "Տեքստային մաս"
+
+#: includes/freemius-strings.php:455
+#: includes/freemius-strings.php:5859
+msgid "Yes - both addresses are mine"
+msgstr "Այո, երկու հասցեներն էլ իմն են"
+
+#: includes/freemius-strings.php:459
+#: includes/freemius-strings.php:3394
+msgid "Bundle"
+msgstr "Փաթեթ"
+
+#: includes/freemius-strings.php:463
+#: includes/freemius-strings.php:3399
+msgid "Bundle Plan"
+msgstr "Փաթեթային պլան"
+
+#: includes/freemius-strings.php:467
+#: includes/freemius-strings.php:3404
+msgid "Business name"
+msgstr "Բիզնեսի անվանումը"
+
+#: includes/freemius-strings.php:471
+#: includes/freemius-strings.php:3414
+msgid "Buy license"
+msgstr "Գնել լիցենզիա"
+
+#: includes/freemius-strings.php:475
+#: includes/freemius-strings.php:3409
+msgid "Buy a license now"
+msgstr "Գնել լիցենզիա հիմա"
+
+#: includes/freemius-strings.php:479
+#: includes/freemius-strings.php:3453
+msgid "Cancel"
+msgstr "Չեղարկել"
+
+#: includes/freemius-strings.php:483
+#: includes/freemius-strings.php:3476
+msgid "Cancel Installation"
+msgstr "Չեղարկել տեղադրումը"
+
+#: includes/freemius-strings.php:487
+#: includes/freemius-strings.php:3481
+msgid "Cancel Subscription"
+msgstr "Չեղարկել բաժանորդագրությունը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:492
+#: includes/freemius-strings.php:4179
+#, php-format
+msgid "In case you are NOT planning on using this %1$s on this site (or any other site) - would you like to cancel the %2$s as well?"
+msgstr "Եթե Դուք ՉԵՔ ծրագրում օգտագործել այս %1$s-ը այս կայքում (կամ որևէ այլ կայքում), ցանկանո՞ւմ եք չեղարկել նաև %2$s-ը:"
+
+#: includes/freemius-strings.php:496
+#: includes/freemius-strings.php:3486
+msgid "Cancel Trial"
+msgstr "Չեղարկել փորձաշրջանը"
+
+#: includes/freemius-strings.php:500
+#: includes/freemius-strings.php:3513
+msgid "Cancelling the trial will immediately block access to all premium features. Are you sure?"
+msgstr "Փորձաշրջանի չեղարկումը անմիջապես կարգելափակի մուտքը բոլոր պրեմիում գործառույթներին: Համոզված ե՞ք:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:505
+#: includes/freemius-strings.php:3459
+#, php-format
+msgid "Cancel %s & Proceed"
+msgstr "Չեղարկել %s և շարունակել"
+
+#: includes/freemius-strings.php:509
+#: includes/freemius-strings.php:3491
+msgid "Cancelled"
+msgstr "Չեղարկված"
+
+#: includes/freemius-strings.php:513
+#: includes/freemius-strings.php:3508
+msgid "Cancelling the subscription"
+msgstr "Բաժանորդագրության չեղարկում"
+
+#: includes/freemius-strings.php:517
+#: includes/freemius-strings.php:3448
+msgid "Can't find your license key?"
+msgstr "Չե՞ք գտնում ձեր լիցենզիայի բանալին:"
+
+#: includes/freemius-strings.php:521
+#: includes/freemius-strings.php:3518
+msgid "Change License"
+msgstr "Փոխել լիցենզիան"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:526
+#: includes/freemius-strings.php:3057
+#, php-format
+msgid "A confirmation email was just sent to %s. You must confirm the update within the next 4 hours. If you cannot find the email, please check your spam folder."
+msgstr "Հաստատման էլեկտրոնային նամակն ուղարկվել է %s հասցեին: Դուք պետք է հաստատեք թարմացումը առաջիկա 4 ժամվա ընթացքում: Եթե չեք գտնում նամակը, խնդրում ենք ստուգել «Սպամ» թղթապանակը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:531
+#: includes/freemius-strings.php:3051
+#, php-format
+msgid "A confirmation email was just sent to %s. The email owner must confirm the update within the next 4 hours."
+msgstr "Հաստատման էլփոստը նոր ուղարկվեց %s հասցեին: Էլփոստի սեփականատերը պետք է հաստատի թարմացումը առաջիկա 4 ժամվա ընթացքում:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:536
+#: includes/freemius-strings.php:2949
+#, php-format
+msgid "%s is the new owner of the account."
+msgstr "%s-ը հաշվի նոր սեփականատերն է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:541
+#: includes/freemius-strings.php:5361
+#, php-format
+msgid "Thanks for confirming the ownership change. An email was just sent to %s for final approval."
+msgstr "Շնորհակալություն սեփականության իրավունքի փոփոխությունը հաստատելու համար։ %s հասցեին վերջնական հաստատման համար նամակ է ուղարկվել։"
+
+#: includes/freemius-strings.php:545
+#: includes/freemius-strings.php:3523
+msgid "Change Ownership"
+msgstr "Փոխել սեփականատիրոջը"
+
+#: includes/freemius-strings.php:549
+#: includes/freemius-strings.php:3528
+msgid "Change Plan"
+msgstr "Փոխել պլանը"
+
+#: includes/freemius-strings.php:553
+#: includes/freemius-strings.php:3533
+msgid "Change User"
+msgstr "Փոխել օգտատիրոջը"
+
+#: includes/freemius-strings.php:557
+#: includes/freemius-strings.php:3419
+msgid "By changing the user, you agree to transfer the account ownership to:"
+msgstr "Օգտատիրոջը փոխելով՝ դուք համաձայնում եք հաշվի սեփականությունը փոխանցել հետևյալ անձին՝"
+
+#: includes/freemius-strings.php:561
+#: includes/freemius-strings.php:6321
+msgctxt "Plugin installer section title"
+msgid "Changelog"
+msgstr "Փոփոխությունների մատյան"
+
+#: includes/freemius-strings.php:565
+#: includes/freemius-strings.php:3538
+msgid "Changing user, please wait"
+msgstr "Օգտատիրոջ փոփոխում, խնդրում ենք սպասել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:570
+#: includes/freemius-strings.php:4132
+#, php-format
+msgid "If you didn't get the email, try checking your spam folder or search for emails from %4$s."
+msgstr "Եթե չեք ստացել էլ. նամակը, ստուգեք ձեր սպամի թղթապանակը կամ որոնեք %4$s-ից եկած նամակները:"
+
+#: includes/freemius-strings.php:574
+#: includes/freemius-strings.php:3543
+msgid "Checkout"
+msgstr "Վճարում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:579
+#: includes/freemius-strings.php:3549
+#, php-format
+msgid "Choose up to %s site(s) to activate the license on."
+msgstr "Ընտրեք մինչև %s կայք՝ արտոնագիրն ակտիվացնելու համար:"
+
+#: includes/freemius-strings.php:583
+#: includes/freemius-strings.php:3554
+msgid "City"
+msgstr "Քաղաք"
+
+#: includes/freemius-strings.php:587
+#: includes/freemius-strings.php:3559
+msgid "Clear API Cache"
+msgstr "Մաքրել API-ի քեշը"
+
+#: includes/freemius-strings.php:591
+#: includes/freemius-strings.php:3564
+msgid "Clear Updates Transients"
+msgstr "Մաքրել թարմացումների ժամանակավոր տվյալները"
+
+#: includes/freemius-strings.php:595
+#: includes/freemius-strings.php:6301
+msgctxt "Part of an activation link message."
+msgid "Click here"
+msgstr "Սեղմեք այստեղ"
+
+#: includes/freemius-strings.php:599
+#: includes/freemius-strings.php:3574
+msgid "Click here to use the plugin anonymously"
+msgstr "Սեղմեք այստեղ՝ պլագինն անանուն օգտագործելու համար"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:604
+#: includes/freemius-strings.php:3580
+#, php-format
+msgid "Click to see reviews that provided a rating of %s"
+msgstr "Սեղմեք՝ տեսնելու կարծիքները, որոնք տվել են %s գնահատական"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:609
+#: includes/freemius-strings.php:2937
+#, php-format
+msgid "%s is my client's email address"
+msgstr "%s-ը իմ հաճախորդի էլ. փոստի հասցeան է"
+
+#: includes/freemius-strings.php:613
+#: includes/freemius-strings.php:3591
+msgid "Code"
+msgstr "Կոդ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:618
+#: includes/freemius-strings.php:2919
+#, php-format
+msgid "%s commission when a customer purchases a new license."
+msgstr "%s միջնորդավճար, երբ հաճախորդը գնում է նոր լիցենզիա:"
+
+#: includes/freemius-strings.php:622
+#: includes/freemius-strings.php:3323
+msgid "As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days."
+msgstr "Քանի որ մենք 30 օր ենք պահուստավորում հնարավոր վերադարձների համար, մենք վճարում ենք միայն 30 օրից ավելի հին միջնորդավճարները:"
+
+#: includes/freemius-strings.php:626
+#: includes/freemius-strings.php:3596
+msgid "Communication"
+msgstr "Հաղորդակցություն"
+
+#: includes/freemius-strings.php:630
+#: includes/freemius-strings.php:3601
+msgid "Compatible up to"
+msgstr "Համատեղելի է մինչև"
+
+#: includes/freemius-strings.php:634
+#: includes/freemius-strings.php:6147
+msgid "complete the opt-in"
+msgstr "Ավարտել միացումը"
+
+#: includes/freemius-strings.php:638
+#: includes/freemius-strings.php:6419
+msgctxt "as congratulations"
+msgid "Congrats"
+msgstr "Շնորհավորանքներ"
+
+#: includes/freemius-strings.php:642
+#: includes/freemius-strings.php:4544
+msgid "Never miss an important update"
+msgstr "Երբեք մի վրիպեք կարևոր թարմացումը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:647
+#: includes/freemius-strings.php:5327
+#, php-format
+msgid "Thank you for updating to %1$s v%2$s!"
+msgstr "Շնորհակալություն %1$s v%2$s տարբերակի թարմացման համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:652
+#: includes/freemius-strings.php:4679
+#, php-format
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info. This will help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "Բաժանորդագրվեք՝ ստանալու էլեկտրոնային նամակների ծանուցումներ անվտանգության և հնարավորությունների թարմացումների, ուսուցողական բովանդակության և երբեմն-երբեմն առաջարկների մասին, ինչպես նաև կիսվելու WordPress միջավայրի մասին հիմնական տեղեկություններով: Սա կօգնի մեզ դարձնել %s-ն ավելի համատեղելի ձեր կայքի հետ և ավելի լավ կատարել այն, ինչ ձեզ հարկավոր է:"
+
+#: includes/freemius-strings.php:656
+#: includes/freemius-strings.php:4673
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info."
+msgstr "Բաժանորդագրվեք՝ անվտանգության և գործառույթների թարմացումների, ուսուցողական բովանդակության և երբեմն առաջարկների վերաբերյալ էլ. փոստով ծանուցումներ ստանալու, ինչպես նաև WordPress միջավայրի վերաբերյալ որոշ հիմնական տեղեկություններ փոխանցելու համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:661
+#: includes/freemius-strings.php:4144
+#, php-format
+msgid "If you skip this, that's okay! %1$s will still work just fine."
+msgstr "Եթե բաց թողնեք սա, ոչինչ: %1$s-ը միևնույն է հիանալի աշխատելու է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:666
+#: includes/freemius-strings.php:5757
+#, php-format
+msgid "We have introduced this opt-in so you never miss an important update and help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "Մենք ներդրել ենք այս ընտրովի հնարավորությունը, որպեսզի երբեք բաց չթողնեք որևէ կարևոր թարմացում և օգնեք մեզ դարձնել %s-ն առավել համատեղելի ձեր կայքի հետ և ավելի լավ կատարելու այն, ինչ ձեզ հարկավոր է:"
+
+#: includes/freemius-strings.php:670
+#: includes/freemius-strings.php:5773
+msgid "We're excited to introduce the Freemius network-level integration."
+msgstr "Մենք ուրախ ենք ներկայացնել Freemius ցանցային մակարդակի ինտեգրումը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:675
+#: includes/freemius-strings.php:3847
+#, php-format
+msgid "During the update process we detected %s site(s) in the network that are still pending your attention."
+msgstr "Թարմացման գործընթացում ցանցում հայտնաբերվել է %s կայք, որը դեռևս ձեր ուշադրության կարիքն ունի։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:680
+#: includes/freemius-strings.php:3841
+#, php-format
+msgid "During the update process we detected %d site(s) that are still pending license activation."
+msgstr "Թարմացման ընթացքում մենք հայտնաբերել ենք %d կայք(եր), որոնց լիցենզիայի ակտիվացումը դեռևս սպասման մեջ է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:685
+#: includes/freemius-strings.php:4162
+#, php-format
+msgid "If you'd like to use the %s on those sites, please enter your license key below and click the activation button."
+msgstr "Եթե ցանկանում եք օգտագործել %s-ը այդ կայքերում, խնդրում ենք մուտքագրել ձեր արտոնագրային բանալին ստորև և սեղմել ակտիվացման կոճակը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:690
+#: includes/freemius-strings.php:3235
+#, php-format
+msgid "Alternatively, you can skip it for now and activate the license later, in your %s's network-level Account page."
+msgstr "Ոպես այլընտրանք՝ կարող եք առայժմ բաց թողնել այն և ակտիվացնել արտոնագիրը ավելի ուշ՝ ձեր %s-ի ցանցային մակարդակի Հաշվի էջում:"
+
+#: includes/freemius-strings.php:694
+#: includes/freemius-strings.php:6429
+msgctxt "as connection was successful"
+msgid "Connected"
+msgstr "Միացված"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:699
+#: includes/freemius-strings.php:4646
+#, php-format
+msgid "Once you are done, deactivate the %s and activate it again."
+msgstr "Երբ ավարտեք, անջատեք %s-ը և նորից միացրեք այն։"
+
+#: includes/freemius-strings.php:703
+#: includes/freemius-strings.php:3606
+msgid "Contact"
+msgstr "Կապ"
+
+#: includes/freemius-strings.php:707
+#: includes/freemius-strings.php:4813
+msgid "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:"
+msgstr "Խնդրում ենք տեղեկացնել մեզ, եթե ցանկանում եք, որ կապ հաստատենք ձեզ հետ անվտանգության և գործառույթների թարմացումների, ուսումնական բովանդակության և երբեմնի առաջարկների համար."
+
+#: includes/freemius-strings.php:711
+#: includes/freemius-strings.php:3611
+msgid "Contact Support"
+msgstr "Կապ հաստատել աջակցման ծառայության հետ"
+
+#: includes/freemius-strings.php:715
+#: includes/freemius-strings.php:5219
+msgid "Sorry for the inconvenience and we are here to help if you give us a chance."
+msgstr "Ներողություն ենք խնդրում անհանգստության համար, և մենք այստեղ ենք՝ օգնելու, եթե հնարավորություն տաք մեզ։"
+
+#: includes/freemius-strings.php:719
+#: includes/freemius-strings.php:3616
+msgid "Contact Us"
+msgstr "Կապ մեզ հետ"
+
+#: includes/freemius-strings.php:723
+#: includes/freemius-strings.php:4777
+msgid "Please contact us here"
+msgstr "Խնդրում ենք կապնվել մեզ հետ այստեղ"
+
+#: includes/freemius-strings.php:727
+#: includes/freemius-strings.php:4782
+msgid "Please contact us with the following message:"
+msgstr "Խնդրում ենք կապվել մեզ հետ հետևյալ հաղորդագրությամբ՝"
+
+#: includes/freemius-strings.php:731
+#: includes/freemius-strings.php:3621
+msgid "Continue"
+msgstr "Շարունակել"
+
+#: includes/freemius-strings.php:735
+#: includes/freemius-strings.php:3626
+msgid "Contributors"
+msgstr "Մասնակիցներ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:740
+#: includes/freemius-strings.php:3632
+#, php-format
+msgid "Couldn't activate %s."
+msgstr "Չհաջողվեց ակտիվացնել %s:"
+
+#: includes/freemius-strings.php:744
+#: includes/freemius-strings.php:3637
+msgid "Country"
+msgstr "Երկիր"
+
+#: includes/freemius-strings.php:748
+#: includes/freemius-strings.php:3642
+msgid "Cron Type"
+msgstr "Cron-ի տեսակը"
+
+#: includes/freemius-strings.php:752
+#: includes/freemius-strings.php:5768
+msgid "We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server."
+msgstr "API կանչերի համար մենք օգտագործում ենք PHP cURL գրադարանը, որը շատ տարածված գրադարան է և սովորաբար տեղադրված ու ակտիվացված է լինում լռելյայն: Ցավոք, cURL-ը ակտիվացված չէ (կամ անջատված է) ձեր սերվերում:"
+
+#: includes/freemius-strings.php:756
+#: includes/freemius-strings.php:6152
+msgid "data"
+msgstr "տվյալներ"
+
+#: includes/freemius-strings.php:760
+#: includes/freemius-strings.php:3699
+msgid "Debug mode was successfully enabled and will be automatically disabled in 60 min. You can also disable it earlier by clicking the \"Stop Debug\" link."
+msgstr "Վրեպազերծման ռեժիմը հաջողությամբ միացվել է և ինքնաշխատ կերպով կանջատվի 60 րոպեից: Կարող եք նաև այն ավելի շուտ անջատել՝ սեղմելով «Դադարեցնել վրեպազերծումը» հղումը:"
+
+#: includes/freemius-strings.php:764
+#: includes/freemius-strings.php:3653
+msgid "Date"
+msgstr "Ամսաթիվ"
+
+#: includes/freemius-strings.php:768
+#: includes/freemius-strings.php:3658
+msgid "Deactivate"
+msgstr "Ապաակտիվացնել"
+
+#: includes/freemius-strings.php:772
+#: includes/freemius-strings.php:3668
+msgid "Deactivate the free version"
+msgstr "Ապաակտիվացնել անվճար տարբերակը"
+
+#: includes/freemius-strings.php:776
+#: includes/freemius-strings.php:3663
+msgid "Deactivate License"
+msgstr "Ապաակտիվացնել արտոնագիրը"
+
+#: includes/freemius-strings.php:780
+#: includes/freemius-strings.php:3684
+msgid "Deactivating your license will block all premium features, but will enable activating the license on another site. Are you sure you want to proceed?"
+msgstr "Ձեր լիցենզիայի ապաակտիվացումը կարգելիք բոլոր պրեմիում հնարավորությունները, սակայն թույլ կտա ակտիվացնել լիցենզիան այլ կայքում: Համոզված՞ եք, որ ցանկանում եք շարունակել:"
+
+#: includes/freemius-strings.php:784
+#: includes/freemius-strings.php:3689
+msgid "Deactivation"
+msgstr "Ապաակտիվացում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:789
+#: includes/freemius-strings.php:5854
+#, php-format
+msgid "Yes - %s"
+msgstr "Այո - %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:794
+#: includes/freemius-strings.php:5276
+#, php-format
+msgid "Submit & %s"
+msgstr "Ուղարկել և %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:799
+#: includes/freemius-strings.php:3679
+#, php-format
+msgid "Deactivating or uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "%s-ի ապաակտիվացումը կամ ապատեղադրումը ավտոմատ կերպով կանջատի լիցենզիան, որը դուք կկարողանաք օգտագործել մեկ այլ կայքում:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:804
+#: includes/freemius-strings.php:4138
+#, php-format
+msgid "If you have a moment, please let us know why you are %s"
+msgstr "Եթե ժամանակ ունեք, խնդրում ենք հայտնել մեզ, թե ինչու եք %s"
+
+#: includes/freemius-strings.php:808
+#: includes/freemius-strings.php:3694
+msgid "Debug Log"
+msgstr "Վրեպազերծման մատյան"
+
+#: includes/freemius-strings.php:812
+#: includes/freemius-strings.php:6414
+msgctxt "as code debugging"
+msgid "Debugging"
+msgstr "Վերացկում"
+
+#: includes/freemius-strings.php:816
+#: includes/freemius-strings.php:6167
+msgid "delegate"
+msgstr "պատվիրակել"
+
+#: includes/freemius-strings.php:820
+#: includes/freemius-strings.php:4126
+msgid "If you click it, this decision will be delegated to the sites administrators."
+msgstr "Եթե սեղմեք այն, այս որոշումը կփոխանցվի կայքերի ադմինիստրատորներին:"
+
+#: includes/freemius-strings.php:824
+#: includes/freemius-strings.php:3704
+msgid "Delegate to Site Admins"
+msgstr "Փոխանցել կայքի ադմինիստրատորներին"
+
+#: includes/freemius-strings.php:828
+#: includes/freemius-strings.php:3709
+msgid "Delegate to Site Admins & Continue"
+msgstr "Փոխանցել կայքի ադմինիստրատորներին և շարունակել"
+
+#: includes/freemius-strings.php:832
+#: includes/freemius-strings.php:3714
+msgid "Delegating, please wait"
+msgstr "Փոխանցվում է, խնդրում ենք սպասել"
+
+#: includes/freemius-strings.php:836
+#: includes/freemius-strings.php:6632
+msgctxt "verb"
+msgid "Delete"
+msgstr "Ջնջել"
+
+#: includes/freemius-strings.php:840
+#: includes/freemius-strings.php:3719
+msgid "Delete All Accounts"
+msgstr "Ջնջել բոլոր հաշիվները"
+
+#: includes/freemius-strings.php:844
+#: includes/freemius-strings.php:3308
+msgid "Are you sure you want to delete all Freemius data?"
+msgstr "Վստահ՞ եք, որ ցանկանում եք ջնջել Freemius բոլոր տվյալները:"
+
+#: includes/freemius-strings.php:848
+#: includes/freemius-strings.php:6326
+msgctxt "Plugin installer section title"
+msgid "Description"
+msgstr "Նկարագրություն"
+
+#: includes/freemius-strings.php:852
+#: includes/freemius-strings.php:3724
+msgid "Details"
+msgstr "Մանրամասներ"
+
+#: includes/freemius-strings.php:856
+#: includes/freemius-strings.php:6223
+msgid "seems like the key you entered doesn't match our records."
+msgstr "կարծես թե ձեր մուտքագրած բանալին չի համապատասխանում մեր գրառումներին:"
+
+#: includes/freemius-strings.php:860
+#: includes/freemius-strings.php:3729
+msgid "Diagnostic Info"
+msgstr "Ախտորոշման տեղեկատվություն"
+
+#: includes/freemius-strings.php:864
+#: includes/freemius-strings.php:3740
+msgid "Disabling white-label mode"
+msgstr "White-label ռեժիմի անջատում"
+
+#: includes/freemius-strings.php:868
+#: includes/freemius-strings.php:3745
+msgid "Disconnect"
+msgstr "Անջատել"
+
+#: includes/freemius-strings.php:872
+#: includes/freemius-strings.php:3318
+msgid "Are you sure you would like to proceed with the disconnection?"
+msgstr "Վստա՞հ եք, որ ցանկանում եք շարունակել անջատումը։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:877
+#: includes/freemius-strings.php:4150
+#, php-format
+msgid "If you wish to cancel your %1$s plan's subscription instead, please navigate to the %2$s and cancel it there."
+msgstr "Եթե փոխարենը ցանկանում եք չեղարկել ձեր %1$s պլանի բաժանորդագրությունը, խնդրում ենք անցնել %2$s և չեղարկել այն այնտեղ:"
+
+#: includes/freemius-strings.php:881
+#: includes/freemius-strings.php:6409
+msgctxt "as close a window"
+msgid "Dismiss"
+msgstr "Հեռացնել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:886
+#: includes/freemius-strings.php:6173
+#, php-format
+msgid "do %1$sNOT%2$s send me security & feature updates, educational content and offers."
+msgstr "մի ուղարկեք ինձ անվտանգության և հնարավորությունների թարմացումներ, ուսումնական բովանդակություն և առաջարկներ: do %1$sNOT%2$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:891
+#: includes/freemius-strings.php:3888
+#, php-format
+msgid "Enter the domain of your website or other websites from where you plan to promote the %s."
+msgstr "Մուտքագրեք ձեր վեբկայքի կամ այլ վեբկայքերի դոմենը, որոնcից նախատեսում եք գովազդել %s-ը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:896
+#: includes/freemius-strings.php:5822
+#, php-format
+msgid "Where are you going to promote the %s?"
+msgstr "Ո՞րտեղ եք պատրաստվում գովազդել %s-ը:"
+
+#: includes/freemius-strings.php:900
+#: includes/freemius-strings.php:3756
+msgid "Domain is required."
+msgstr "Պահանջվում է դոմեն:"
+
+#: includes/freemius-strings.php:904
+#: includes/freemius-strings.php:3772
+msgid "Donate to this plugin"
+msgstr "Նվիրաբերել այս հավելվածին"
+
+#: includes/freemius-strings.php:908
+#: includes/freemius-strings.php:3777
+msgid "Done"
+msgstr "Կատարված է"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:913
+#: includes/freemius-strings.php:3762
+#, php-format
+msgid "Don't cancel %s - I'm still interested in getting security & feature updates, as well as be able to contact support."
+msgstr "Չչեղարկել %s-ը - ես դեռ ցանկանում եմ ստանալ անվտանգության և գործառույթների թարմացումներ, ինչպես նաև հնարավորություն ունենալ կապ հաստատել աջակցման ծառայության հետ:"
+
+#: includes/freemius-strings.php:917
+#: includes/freemius-strings.php:3767
+msgid "Don't have a license key?"
+msgstr "Չու՞նեք լիցենզիայի բանալի:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:922
+#: includes/freemius-strings.php:5958
+#, php-format
+msgid "You might have missed it, but you don't have to share any data and can just %s the opt-in."
+msgstr "Հնարավոր է՝ վրիպել եք, բայց պարտադիր չէ որևէ տվյալ կիսել և կարող եք պարզապես %s անել հրաժարման կամ միանալու հարցում։"
+
+#: includes/freemius-strings.php:926
+#: includes/freemius-strings.php:6637
+msgctxt "verb"
+msgid "Downgrade"
+msgstr "Նվազեցնել տարբերակը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:931
+#: includes/freemius-strings.php:2877
+#, php-format
+msgid "%1$s will immediately stop all future recurring payments and your %2$s plan license will expire in %3$s."
+msgstr "%1$s-ը անմիջապես կդադարեցնի հետագա բոլոր պարբերական վճարումները, և ձեր %2$s պլանի լիցենզիայի ժամկետը կավարտվի %3$s-ին:"
+
+#: includes/freemius-strings.php:935
+#: includes/freemius-strings.php:3782
+msgid "Downgrading"
+msgstr "Նվազեցում"
+
+#: includes/freemius-strings.php:939
+#: includes/freemius-strings.php:3787
+msgid "Downgrading your plan"
+msgstr "Ձեր սակագնային պլանի նվազեցում"
+
+#: includes/freemius-strings.php:943
+#: includes/freemius-strings.php:3792
+msgid "Download"
+msgstr "Ներբեռնել"
+
+#: includes/freemius-strings.php:947
+#: includes/freemius-strings.php:6434
+msgctxt "as download latest version"
+msgid "Download Latest"
+msgstr "Ներբեռնել վերջինը"
+
+#: includes/freemius-strings.php:951
+#: includes/freemius-strings.php:6439
+msgctxt "as download latest version"
+msgid "Download Latest Free Version"
+msgstr "Ներբեռնել վերջին անվճար տարբերակը"
+
+#: includes/freemius-strings.php:955
+#: includes/freemius-strings.php:3814
+msgid "Download the latest version"
+msgstr "Ներբեռնել ամենավերջին տարբերակը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:960
+#: includes/freemius-strings.php:3809
+#, php-format
+msgid "Download the latest %s version"
+msgstr "Ներբեռնեք վերջին %s տարբերակը"
+
+#: includes/freemius-strings.php:964
+#: includes/freemius-strings.php:3803
+msgid "Download Paid Version"
+msgstr "Ներբեռնել վճարովի տարբերակը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:969
+#: includes/freemius-strings.php:3798
+#, php-format
+msgid "Download %s Version"
+msgstr "Ներբեռնել %s տարբերակը"
+
+#: includes/freemius-strings.php:973
+#: includes/freemius-strings.php:3819
+msgid "Downloaded"
+msgstr "Ներբեռնված"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:978
+#: includes/freemius-strings.php:3825
+#, php-format
+msgid "Due to the new %1$sEU General Data Protection Regulation (GDPR)%2$s compliance requirements it is required that you provide your explicit consent, again, confirming that you are onboard :-)"
+msgstr "%1$sԵՄ Ընդհանուր տվյալների պաշտպանության կանոնակարգի (GDPR)%2$s համապատասխանության նոր պահանջների պատճառով պահանջվում է, որ դուք կրկին տրամադրեք ձեր հստակ համաձայնությունը՝ հաստատելով, որ դուք համաձայն եք :-)"
+
+#: includes/freemius-strings.php:982
+#: includes/freemius-strings.php:3835
+msgid "Duplicate Website"
+msgstr "Կրկնօրինակել կայքը"
+
+#: includes/freemius-strings.php:986
+#: includes/freemius-strings.php:6642
+msgctxt "verb"
+msgid "Edit"
+msgstr "Խմբագրել"
+
+#: includes/freemius-strings.php:990
+#: includes/freemius-strings.php:3852
+msgid "Email"
+msgstr "Էլ. փոստ"
+
+#: includes/freemius-strings.php:994
+#: includes/freemius-strings.php:3857
+msgid "Email address"
+msgstr "Էլ. հասցե"
+
+#: includes/freemius-strings.php:998
+#: includes/freemius-strings.php:3862
+msgid "Email address is required."
+msgstr "Էլփոստի հասցեն պարտադիր է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1003
+#: includes/freemius-strings.php:2943
+#, php-format
+msgid "%s is my email address"
+msgstr "%s-ը իմ էլհասցեն է"
+
+#: includes/freemius-strings.php:1007
+#: includes/freemius-strings.php:3867
+msgid "Email address update"
+msgstr "Էլ. փոստի հասցեի թարմացում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1012
+#: includes/freemius-strings.php:3303
+#, php-format
+msgid "Are both %1$s and %2$s your email addresses?"
+msgstr "Արդյո՞ք և՛ %1$s-ը, և՛ %2$s-ը Ձեր էլեկտրոնային փոստի հասցեներն են:"
+
+#: includes/freemius-strings.php:1016
+#: includes/freemius-strings.php:5746
+msgid "We couldn't find your email address in the system, are you sure it's the right address?"
+msgstr "Մենք չկարողացանք գտնել ձեր էլ. հասցեն համակարգում, վստա՞հ եք, որ դա ճիշտ հասցե է:"
+
+#: includes/freemius-strings.php:1020
+#: includes/freemius-strings.php:6038
+msgid "Your email has been successfully verified - you are AWESOME!"
+msgstr "Ձեր էլ. փոստը հաջողությամբ հաստատվել է. դուք ՀԻԱՆԱԼԻ եք:"
+
+#: includes/freemius-strings.php:1024
+#: includes/freemius-strings.php:4427
+msgid "License key is empty."
+msgstr "Լիցենզիայի բանալին դատարկ է։"
+
+#: includes/freemius-strings.php:1028
+#: includes/freemius-strings.php:3872
+msgid "Enabling white-label mode"
+msgstr "Սպիտակ պիտակի (white-label) ռեժիմի միացում"
+
+#: includes/freemius-strings.php:1032
+#: includes/freemius-strings.php:3877
+msgid "End"
+msgstr "Ավարտել"
+
+#: includes/freemius-strings.php:1036
+#: includes/freemius-strings.php:3882
+msgid "Enter email address"
+msgstr "Մուտքագրեք էլ. փոստի հասցեն"
+
+#: includes/freemius-strings.php:1040
+#: includes/freemius-strings.php:3903
+msgid "Enter the new email address"
+msgstr "Մուտքագրեք նոր էլ. փոստի հասցեն"
+
+#: includes/freemius-strings.php:1044
+#: includes/freemius-strings.php:3908
+msgid "Error"
+msgstr "Սխալ"
+
+#: includes/freemius-strings.php:1048
+#: includes/freemius-strings.php:6449
+msgctxt "as expiration date"
+msgid "Expiration"
+msgstr "Ժամկետի ավարտ"
+
+#: includes/freemius-strings.php:1052
+#: includes/freemius-strings.php:3918
+msgid "Expired"
+msgstr "Ժամկետանց"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1057
+#: includes/freemius-strings.php:3924
+#, php-format
+msgid "Expires in %s"
+msgstr "%s-ից հետո ժամկետը լրանում է"
+
+#: includes/freemius-strings.php:1061
+#: includes/freemius-strings.php:3929
+msgid "Extensions"
+msgstr "Ընդլայնումներ"
+
+#: includes/freemius-strings.php:1065
+#: includes/freemius-strings.php:3939
+msgid "Extra domains where you will be marketing the product from."
+msgstr "Լրացուցիչ տիրույթներ, որոնցից դուք մարքեթինգ եք իրականացնելու ապրանքի համար:"
+
+#: includes/freemius-strings.php:1069
+#: includes/freemius-strings.php:3934
+msgid "Extra Domains"
+msgstr "Լրացուցիչ դոմեններ"
+
+#: includes/freemius-strings.php:1073
+#: includes/freemius-strings.php:4003
+msgid "Freemius SDK couldn't find the plugin's main file. Please contact sdk@freemius.com with the current error."
+msgstr "Freemius SDK-ն չկարողացավ գտնել հավելվածի հիմնական ֆայլը։ Խնդրում ենք կապ հաստատել sdk@freemius.com հասցեով՝ ներկայացնելով առկա սխալը։"
+
+#: includes/freemius-strings.php:1077
+#: includes/freemius-strings.php:6331
+msgctxt "Plugin installer section title"
+msgid "FAQ"
+msgstr "ՀՏՀ"
+
+#: includes/freemius-strings.php:1081
+#: includes/freemius-strings.php:6336
+msgctxt "Plugin installer section title"
+msgid "Features & Pricing"
+msgstr "Հատկանիշներ և գնացուցակ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1086
+#: includes/freemius-strings.php:5763
+#, php-format
+msgid "We made a few tweaks to the %1$s, %2$s"
+msgstr "Մենք մի քանի փոփոխություն կատարեցինք հետևյալում՝ %1$s, %2$s"
+
+#: includes/freemius-strings.php:1090
+#: includes/freemius-strings.php:3944
+msgid "File"
+msgstr "Ֆայլ"
+
+#: includes/freemius-strings.php:1094
+#: includes/freemius-strings.php:3949
+msgid "Filter"
+msgstr "Ֆիլտրել"
+
+#: includes/freemius-strings.php:1098
+#: includes/freemius-strings.php:4808
+msgid "Please follow these steps to complete the upgrade"
+msgstr "Խնդրում ենք հետևել այս քայլերին՝ թարմացումն ավարտելու համար"
+
+#: includes/freemius-strings.php:1102
+#: includes/freemius-strings.php:3978
+msgid "Free"
+msgstr "Անվճար"
+
+#: includes/freemius-strings.php:1106
+#: includes/freemius-strings.php:3182
+msgid "Add-on must be deployed to WordPress.org or Freemius."
+msgstr "Հավելումը պետք է տեղակայվի WordPress.org-ում կամ Freemius-ում:"
+
+#: includes/freemius-strings.php:1110
+#: includes/freemius-strings.php:3983
+msgid "Free Trial"
+msgstr "Անվճար փորձաշրջան"
+
+#: includes/freemius-strings.php:1114
+#: includes/freemius-strings.php:3988
+msgid "Free version"
+msgstr "Անվճար տարբերակ"
+
+#: includes/freemius-strings.php:1118
+#: includes/freemius-strings.php:3993
+msgid "Freemius API"
+msgstr "Freemius API"
+
+#: includes/freemius-strings.php:1122
+#: includes/freemius-strings.php:3998
+msgid "Freemius Debug"
+msgstr "Freemius Debug"
+
+#: includes/freemius-strings.php:1126
+#: includes/freemius-strings.php:4008
+msgid "Freemius State"
+msgstr "Freemius-ի կարգավիճակը"
+
+#: includes/freemius-strings.php:1130
+#: includes/freemius-strings.php:4018
+msgid "Full name"
+msgstr "Ամբողջական անուն"
+
+#: includes/freemius-strings.php:1134
+#: includes/freemius-strings.php:4023
+msgid "Function"
+msgstr "Գործառույթ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1139
+#: includes/freemius-strings.php:4034
+#, php-format
+msgid "Get updates for bleeding edge Beta versions of %s."
+msgstr "Ստացեք թարմացումներ %s-ի նորագույն բետա տարբերակների համար:"
+
+#: includes/freemius-strings.php:1143
+#: includes/freemius-strings.php:4039
+msgid "Have a license key?"
+msgstr "Արտոնագրի բանալի ունե՞ք:"
+
+#: includes/freemius-strings.php:1147
+#: includes/freemius-strings.php:6383
+msgctxt "advance notice of something that will need attention."
+msgid "Heads up"
+msgstr "Ուշադրություն"
+
+#: includes/freemius-strings.php:1151
+#: includes/freemius-strings.php:6561
+msgctxt "exclamation"
+msgid "Hey"
+msgstr "Ողջույն"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1156
+#: includes/freemius-strings.php:6572
+#, php-format
+msgctxt "greeting"
+msgid "Hey %s,"
+msgstr "Բարև %s,"
+
+#: includes/freemius-strings.php:1160
+#: includes/freemius-strings.php:6647
+msgctxt "verb"
+msgid "Hide"
+msgstr "Թաքցնել"
+
+#: includes/freemius-strings.php:1164
+#: includes/freemius-strings.php:6617
+msgctxt "something somebody says when they are thinking about what you have just said."
+msgid "Hmm"
+msgstr "Հմմ"
+
+#: includes/freemius-strings.php:1168
+#: includes/freemius-strings.php:4061
+msgid "How to upload and activate?"
+msgstr "Ինչպե՞ս վերբեռնել և ակտիվացնել:"
+
+#: includes/freemius-strings.php:1172
+#: includes/freemius-strings.php:4115
+msgid "ID"
+msgstr "ID"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1177
+#: includes/freemius-strings.php:5905
+#, php-format
+msgid "You are already running the %s in a trial mode."
+msgstr "Դուք արդեն գործարկում եք %s-ը փորձնական ռեժիմով:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1182
+#: includes/freemius-strings.php:4173
+#, php-format
+msgid "In %s"
+msgstr "%s-ում"
+
+#: includes/freemius-strings.php:1186
+#: includes/freemius-strings.php:4184
+msgid "Install Free Version Now"
+msgstr "Տեղադրել անվճար տարբերակը հիմա"
+
+#: includes/freemius-strings.php:1190
+#: includes/freemius-strings.php:4189
+msgid "Install Free Version Update Now"
+msgstr "Տեղադրել անվճար տարբերակի թարմացումը հիմա"
+
+#: includes/freemius-strings.php:1194
+#: includes/freemius-strings.php:4194
+msgid "Install Now"
+msgstr "Տեղադրել հիմա"
+
+#: includes/freemius-strings.php:1198
+#: includes/freemius-strings.php:4199
+msgid "Install Update Now"
+msgstr "Տեղադրել թարմացումը հիմա"
+
+#: includes/freemius-strings.php:1202
+#: includes/freemius-strings.php:6341
+msgctxt "Plugin installer section title"
+msgid "Installation"
+msgstr "Տեղադրում"
+
+#: includes/freemius-strings.php:1206
+#: includes/freemius-strings.php:6577
+msgctxt "installed add-on"
+msgid "Installed"
+msgstr "Տեղադրված է"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1211
+#: includes/freemius-strings.php:3246
+#, php-format
+msgid "An automated download and installation of %1$s (paid version) from %2$s will start in %3$s. If you would like to do it manually - click the cancellation button now."
+msgstr "%1$s-ի (վճարովի տարբերակ) ավտոմատ ներբեռնումը և տեղադրումը %2$s-ից կսկսվի %3$s հետո: Էջը ձեռքով ներբեռնելու համար սեղմեք չեղարկման կոճակը հիմա:"
+
+#: includes/freemius-strings.php:1215
+#: includes/freemius-strings.php:5428
+msgid "The installation process has started and may take a few minutes to complete. Please wait until it is done - do not refresh this page."
+msgstr "Տեղադրման գործընթացը սկսվել է և կարող է տևել մի քանի րոպե: Խնդրում ենք սպասել մինչև ավարտը. մի՛ թարմացրեք այս էջը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1220
+#: includes/freemius-strings.php:4205
+#, php-format
+msgid "Installing plugin: %s"
+msgstr "Տեղադրվում է հավելվածը՝ %s"
+
+#: includes/freemius-strings.php:1224
+#: includes/freemius-strings.php:4210
+msgid "Invalid clone resolution action."
+msgstr "Clone-ի անվավեր լուծման գործողություն:"
+
+#: includes/freemius-strings.php:1228
+#: includes/freemius-strings.php:4215
+msgid "Invalid domain"
+msgstr "Անվավեր դոմեյն"
+
+#: includes/freemius-strings.php:1232
+#: includes/freemius-strings.php:4225
+msgid "Invalid new user ID or email address."
+msgstr "Նոր օգտատիրոջ անվավեր ID կամ էլ. փոստի հասցե:"
+
+#: includes/freemius-strings.php:1236
+#: includes/freemius-strings.php:4230
+msgid "Invalid site details collection."
+msgstr "Կայքի տվյալների անվավեր հավաքագրում:"
+
+#: includes/freemius-strings.php:1240
+#: includes/freemius-strings.php:4235
+msgid "Invoice"
+msgstr "Հաշիվ-ապրանքագիր"
+
+#: includes/freemius-strings.php:1244
+#: includes/freemius-strings.php:4258
+msgid "Is Active"
+msgstr "Ակտիվ է"
+
+#: includes/freemius-strings.php:1248
+#: includes/freemius-strings.php:4337
+msgid "Keep Sharing"
+msgstr "Շարունակել կիսվել"
+
+#: includes/freemius-strings.php:1252
+#: includes/freemius-strings.php:4347
+msgid "Key"
+msgstr "Բանալի"
+
+#: includes/freemius-strings.php:1256
+#: includes/freemius-strings.php:4362
+msgid "Last"
+msgstr "Վերջին"
+
+#: includes/freemius-strings.php:1260
+#: includes/freemius-strings.php:4372
+msgid "Last license"
+msgstr "Վերջին լիցենզիան"
+
+#: includes/freemius-strings.php:1264
+#: includes/freemius-strings.php:4367
+msgid "Last Updated"
+msgstr "Վերջին թարմացումը"
+
+#: includes/freemius-strings.php:1268
+#: includes/freemius-strings.php:4377
+msgid "Latest Free Version Installed"
+msgstr "Տեղադրված է ամենավերջին անվճար տարբերակը"
+
+#: includes/freemius-strings.php:1272
+#: includes/freemius-strings.php:4382
+msgid "Latest Version Installed"
+msgstr "Տեղադրված է վերջին տարբերակը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1277
+#: includes/freemius-strings.php:6259
+#, php-format
+msgid "the latest %s version here"
+msgstr "%s-ի վերջին տարբերակն այստեղ"
+
+#: includes/freemius-strings.php:1281
+#: includes/freemius-strings.php:4387
+msgid "Learn more"
+msgstr "Իմանալ ավելին"
+
+#: includes/freemius-strings.php:1285
+#: includes/freemius-strings.php:4392
+msgid "Length"
+msgstr "Երկարություն"
+
+#: includes/freemius-strings.php:1289
+#: includes/freemius-strings.php:6077
+msgid "Your license was successfully activated."
+msgstr "Ձեր արտոնագիրը հաջողությամբ ակտիվացվեց:"
+
+#: includes/freemius-strings.php:1293
+#: includes/freemius-strings.php:4274
+msgid "It looks like the license could not be activated."
+msgstr "Կարծես թե արտոնագիրը չհաջողվեց ակտիվացնել:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1298
+#: includes/freemius-strings.php:3021
+#, php-format
+msgid "%s to activate the license once you get it."
+msgstr "%s լիցենզիան ակտիվացնելու համար, երբ այն ստանաք:"
+
+#: includes/freemius-strings.php:1302
+#: includes/freemius-strings.php:4402
+msgid "License Agreement"
+msgstr "Լիցենզային համաձայնագիր"
+
+#: includes/freemius-strings.php:1306
+#: includes/freemius-strings.php:6054
+msgid "Your license has been cancelled. If you think it's a mistake, please contact support."
+msgstr "Ձեր լիցենզիան չեղարկվել է: Եթե կարծում եք, որ սա սխալ է, խնդրում ենք կապվել աջակցման ծառայության հետ:"
+
+#: includes/freemius-strings.php:1310
+#: includes/freemius-strings.php:4279
+msgid "It looks like the license deactivation failed."
+msgstr "Կարծես թե արտոնագրի չակտիվացումը ձախողվեց:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1315
+#: includes/freemius-strings.php:6083
+#, php-format
+msgid "Your license was successfully deactivated, you are back to the %s plan."
+msgstr "Ձեր լիցենզիան հաջողությամբ ապաակտիվացվեց, դուք վերադարձել եք %s պլանին:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1320
+#: includes/freemius-strings.php:6011
+#, php-format
+msgid "Your %s license was successfully deactivated."
+msgstr "Ձեր %s լիցենզիան հաջողությամբ ապաակտիվացվեց:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1325
+#: includes/freemius-strings.php:6072
+#, php-format
+msgid "Your license has expired. You can still continue using the free %s forever."
+msgstr "Ձեր լիցենզիայի ժամկետը սպառվել է։ Դուք դեռ կարող եք հավերժ շարունակել օգտագործել անվճար %s-ը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1330
+#: includes/freemius-strings.php:6060
+#, php-format
+msgid "Your license has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "Ձեր լիցենզիայի ժամկետը լրացել է: %1$sԹարմացրեք հիմա%2$s՝ առանց ընդհատումների շարունակելու %3$s-ի օգտագործումը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1335
+#: includes/freemius-strings.php:6066
+#, php-format
+msgid "Your license has expired. You can still continue using all the %s features, but you'll need to renew your license to continue getting updates and support."
+msgstr "Ձեր լիցենզիայի ժամկետը սպառվել է։ Դուք դեռ կարող եք շարունակել օգտագործել %s-ի բոլոր հնարավորությունները, սակայն թարմացումներ և աջակցություն ստանալը շարունակելու համար հարկավոր է երկարացնել ձեր լիցենզիան։"
+
+#: includes/freemius-strings.php:1339
+#: includes/freemius-strings.php:4407
+msgid "License ID"
+msgstr "Լիցենզիայի ID"
+
+#: includes/freemius-strings.php:1343
+#: includes/freemius-strings.php:4417
+msgid "License issues?"
+msgstr "Լիցենզիայի հետ կապված խնդիրնե՞ր:"
+
+#: includes/freemius-strings.php:1347
+#: includes/freemius-strings.php:5156
+msgid "Single Site License"
+msgstr "Մեկ կայքի արտոնագիր"
+
+#: includes/freemius-strings.php:1351
+#: includes/freemius-strings.php:5596
+msgid "Unlimited Licenses"
+msgstr "Անսահմանափակ լիցենզիաներ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1356
+#: includes/freemius-strings.php:5612
+#, php-format
+msgid "Up to %s Sites"
+msgstr "Մինչև %s կայք"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1361
+#: includes/freemius-strings.php:4269
+#, php-format
+msgid "Is this your client's site? %s if you wish to hide sensitive info like your email, license key, prices, billing address & invoices from the WP Admin."
+msgstr "Սա ձեր հաճախորդի կայքն է: %s, եթե ցանկանում եք թաքցնել զգայուն տեղեկությունները, ինչպիսիք են ձեր էլ. փոստը, լիցենզիայի բանալին, գները, վճարման հասցեն և հաշիվ-ապրանքագրերը WP Admin-ից:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1366
+#: includes/freemius-strings.php:6005
+#, php-format
+msgid "Your %1$s license was flagged as white-labeled to hide sensitive information from the WP Admin (e.g. your email, license key, prices, billing address & invoices). If you ever wish to revert it back, you can easily do it through your %2$s. If this was a mistake you can also %3$s."
+msgstr "Ձեր %1$s արտոնագիրը նշվել է որպես սպիտակ պիտակով (white-labeled)՝ WP Admin-ում զգայուն տեղեկությունները թաքցնելու համար (օրինակ՝ ձեր էլ. փոստը, արտոնագրի բանալին, գները, հաշվապահական հասցեն և հաշիվ-ապրանքագրերը): Եթե երբևէ ցանկանաք վերադարձնել այն, կարող եք հեշտությամբ անել դա ձեր %2$s-ի միջոցով: Եթե սա սխալ էր, կարող եք նաև %3$s:"
+
+#: includes/freemius-strings.php:1370
+#: includes/freemius-strings.php:4432
+msgid "Lifetime"
+msgstr "Ցմահ"
+
+#: includes/freemius-strings.php:1374
+#: includes/freemius-strings.php:4443
+msgid "Load DB Option"
+msgstr "Բեռնել տվյալների բազայի ընտրանքը"
+
+#: includes/freemius-strings.php:1378
+#: includes/freemius-strings.php:4448
+msgid "Localhost"
+msgstr "Լոկալհոստ"
+
+#: includes/freemius-strings.php:1382
+#: includes/freemius-strings.php:4453
+msgid "Log"
+msgstr "Մատյան"
+
+#: includes/freemius-strings.php:1386
+#: includes/freemius-strings.php:4458
+msgid "Logger"
+msgstr "Գրանցամատյան"
+
+#: includes/freemius-strings.php:1390
+#: includes/freemius-strings.php:4463
+msgid "Long-Term Duplicate"
+msgstr "Երկարաժամկետ կրկնօրինակ"
+
+#: includes/freemius-strings.php:1394
+#: includes/freemius-strings.php:4468
+msgid "Message"
+msgstr "Հաղորդագրություն"
+
+#: includes/freemius-strings.php:1398
+#: includes/freemius-strings.php:4473
+msgid "Method"
+msgstr "Մեթոդ"
+
+#: includes/freemius-strings.php:1402
+#: includes/freemius-strings.php:4488
+msgid "Migrate Options to Network"
+msgstr "Տեղափոխել ընտրանքները ցանց"
+
+#: includes/freemius-strings.php:1406
+#: includes/freemius-strings.php:4478
+msgid "Migrate"
+msgstr "Տեղափոխել"
+
+#: includes/freemius-strings.php:1410
+#: includes/freemius-strings.php:4483
+msgid "Migrate License"
+msgstr "Լիցենզիայի տեղափոխում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1415
+#: includes/freemius-strings.php:4253
+#, php-format
+msgid "Is %2$s the new home of %4$s?"
+msgstr "Արդյո՞ք %2$s-ը %4$s-ի նոր տունն է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1420
+#: includes/freemius-strings.php:5871
+#, php-format
+msgid "Yes, %%2$s is replacing %%4$s. I would like to migrate my %s from %%4$s to %%2$s."
+msgstr "Այո, %%2$s-ը փոխարինում է %%4$s-ին: Ես կցանկանայի տեղափոխել իմ %s-ը %%4$s-ից %%2$s:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1425
+#: includes/freemius-strings.php:2955
+#, php-format
+msgid "%s minimum payout amount."
+msgstr "%s նվազագույն վճարման գումար:"
+
+#: includes/freemius-strings.php:1429
+#: includes/freemius-strings.php:6464
+msgctxt "as monthly period"
+msgid "mo"
+msgstr "ամիս"
+
+#: includes/freemius-strings.php:1433
+#: includes/freemius-strings.php:4493
+msgid "Mobile apps"
+msgstr "Բջջային հավելվածներ"
+
+#: includes/freemius-strings.php:1437
+#: includes/freemius-strings.php:4498
+msgid "Module"
+msgstr "Մոդուլ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1442
+#: includes/freemius-strings.php:2889
+#, php-format
+msgid "%s Installs"
+msgstr "%s Տեղադրումներ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1447
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s Licenses"
+msgstr "%s Արտոնագիր"
+
+#: includes/freemius-strings.php:1451
+#: includes/freemius-strings.php:5445
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "Հեռավոր հավելյալ մոդուլի փաթեթը չի պարունակում պահանջվող պիտակով թղթապանակ, և անվանափոխությունը չհաջողվեց:"
+
+#: includes/freemius-strings.php:1455
+#: includes/freemius-strings.php:4503
+msgid "Module Path"
+msgstr "Մոդուլի ուղի"
+
+#: includes/freemius-strings.php:1459
+#: includes/freemius-strings.php:4508
+msgid "Module Type"
+msgstr "Մոդուլի տեսակը"
+
+#: includes/freemius-strings.php:1463
+#: includes/freemius-strings.php:6444
+msgctxt "as every month"
+msgid "Monthly"
+msgstr "Ամսական"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1468
+#: includes/freemius-strings.php:4519
+#, php-format
+msgid "More information about %s"
+msgstr "Լրացուցիչ տեղեկություններ %s-ի մասին"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1473
+#: includes/freemius-strings.php:5865
+#, php-format
+msgid "Yes - move all my data and assets from %1$s to %2$s"
+msgstr "Այո - տեղափոխել իմ բոլոր տվյալներն ու ռեսուրսները %1$s-ից %2$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1478
+#: includes/freemius-strings.php:4597
+#, php-format
+msgid "No - only move this site's data to %s"
+msgstr "Ոչ - միայն տեղափոխել այս կայքի տվյալները %s"
+
+#: includes/freemius-strings.php:1482
+#: includes/freemius-strings.php:6592
+msgctxt "milliseconds"
+msgid "ms"
+msgstr "մվ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1487
+#: includes/freemius-strings.php:5434
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of %3$s:%1$s"
+msgstr "Ստորև նշված ապրանքները տեղափոխվել են անվտանգ ռեժիմ, քանի որ նկատել ենք, որ %2$s-ը %3$s-ի ճշգրիտ պատճենն է.%1$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1492
+#: includes/freemius-strings.php:5440
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of these sites:%3$s%1$s"
+msgstr "Ստորև նշված ապրանքները տեղափոխվել են ապահով ռեժիմ, քանի որ նկատել ենք, որ %2$s-ը հետևյալ կայքերի ճշգրիտ պատճենն է․%3$s%1$s"
+
+#: includes/freemius-strings.php:1496
+#: includes/freemius-strings.php:4524
+msgid "Name"
+msgstr "Անուն"
+
+#: includes/freemius-strings.php:1500
+#: includes/freemius-strings.php:4829
+msgid "Please provide your full name."
+msgstr "Խնդրում ենք նշել ձեր ամբողջական անունը:"
+
+#: includes/freemius-strings.php:1504
+#: includes/freemius-strings.php:6088
+msgid "Your name was successfully updated."
+msgstr "Ձեր անունը հաջողությամբ թարմացվել է:"
+
+#: includes/freemius-strings.php:1508
+#: includes/freemius-strings.php:4534
+msgid "Network Blog"
+msgstr "Ցանցային բլոգ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1513
+#: includes/freemius-strings.php:3039
+#, php-format
+msgid "%1$sClick here%2$s to choose the sites where you'd like to activate the license on."
+msgstr "%1$sՍեղմեք այստեղ%2$s՝ ընտրելու համար այն կայքերը, որոնցում ցանկանում եք ակտիվացնել լիցենզիան:"
+
+#: includes/freemius-strings.php:1517
+#: includes/freemius-strings.php:4539
+msgid "Network User"
+msgstr "Ցանցային օգտատեր"
+
+#: includes/freemius-strings.php:1521
+#: includes/freemius-strings.php:4554
+msgid "New"
+msgstr "Նոր"
+
+#: includes/freemius-strings.php:1525
+#: includes/freemius-strings.php:6193
+msgid "new Beta version"
+msgstr "նոր Beta տարբերակ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1530
+#: includes/freemius-strings.php:4247
+#, php-format
+msgid "Is %2$s a new website?"
+msgstr "Արդյո՞ք %2$s-ը նոր վեբկայք է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1535
+#: includes/freemius-strings.php:5883
+#, php-format
+msgid "Yes, %2$s is a new and different website that is separate from %4$s."
+msgstr "Այո, %2$s-ը նոր և այլ կայք է, որը առանձնացված է %4$s-ից:"
+
+#: includes/freemius-strings.php:1539
+#: includes/freemius-strings.php:4300
+msgid "It requires license activation."
+msgstr "Այն պահանջում է արտոնագրի ակտիվացում։"
+
+#: includes/freemius-strings.php:1543
+#: includes/freemius-strings.php:6198
+msgid "new version"
+msgstr "նոր տարբերակ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1548
+#: includes/freemius-strings.php:5483
+#, php-format
+msgid "There is a new version of %s available."
+msgstr "%s-ի նոր տարբերակը հասանելի է:"
+
+#: includes/freemius-strings.php:1552
+#: includes/freemius-strings.php:4564
+msgid "New Website"
+msgstr "Նոր կայք"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1557
+#: includes/freemius-strings.php:4570
+#, php-format
+msgid "Newer Free Version (%s) Installed"
+msgstr "Ավելի նոր անվճար տարբերակը (%s) տեղադրված է"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1562
+#: includes/freemius-strings.php:4576
+#, php-format
+msgid "Newer Version (%s) Installed"
+msgstr "Տեղադրված է ավելի նոր տարբերակ (%s)"
+
+#: includes/freemius-strings.php:1566
+#: includes/freemius-strings.php:5504
+msgid "This plugin requires a newer version of PHP."
+msgstr "Այս հավելվածը պահանջում է PHP-ի ավելի նոր տարբերակ:"
+
+#: includes/freemius-strings.php:1570
+#: includes/freemius-strings.php:4586
+msgid "Next"
+msgstr "Հաջորդը"
+
+#: includes/freemius-strings.php:1574
+#: includes/freemius-strings.php:4591
+msgid "No"
+msgstr "Ոչ"
+
+#: includes/freemius-strings.php:1578
+#: includes/freemius-strings.php:4295
+msgid "It looks like your site currently doesn't have an active license."
+msgstr "Կարծես թե ձեր կայքը ներկայումս չունի ակտիվ արտոնագիր:"
+
+#: includes/freemius-strings.php:1582
+#: includes/freemius-strings.php:5741
+msgid "We can't see any active licenses associated with that email address, are you sure it's the right address?"
+msgstr "Այդ էլեկտրոնային փոստի հասցեին կցված ակտիվ արտոնագրեր չենք տեսնում, վստա՞հ եք, որ սա ճիշտ հասցեն է:"
+
+#: includes/freemius-strings.php:1586
+#: includes/freemius-strings.php:4619
+msgid "No credit card required"
+msgstr "Քարտի տվյալներ պարտադիր չեն"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1591
+#: includes/freemius-strings.php:4614
+#, php-format
+msgid "No commitment for %s days - cancel anytime!"
+msgstr "Առանց պարտավորության %s օրվա ընթացքում. չեղարկեք ցանկացած պահի:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1596
+#: includes/freemius-strings.php:4608
+#, php-format
+msgid "No commitment for %s - cancel anytime"
+msgstr "Առանց պարտավորության %s-ի համար - չեղարկեք ցանկացած պահի"
+
+#: includes/freemius-strings.php:1600
+#: includes/freemius-strings.php:4624
+msgid "No expiration"
+msgstr "Անժամկետ"
+
+#: includes/freemius-strings.php:1604
+#: includes/freemius-strings.php:4602
+msgid "No ID"
+msgstr "ID չկա"
+
+#: includes/freemius-strings.php:1608
+#: includes/freemius-strings.php:6281
+msgctxt "API connectivity state is unknown"
+msgid "No requests yet"
+msgstr "Դեռևս հարցումներ չկան"
+
+#: includes/freemius-strings.php:1612
+#: includes/freemius-strings.php:6489
+msgctxt "as secret encryption key missing"
+msgid "No Secret"
+msgstr "Գաղտնիք չկա"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1617
+#: includes/freemius-strings.php:4635
+#, php-format
+msgid "None of the %s's plans supports a trial period."
+msgstr "%s-ի պլաններից ոչ մեկը չի աջակցում փորձաշրջան:"
+
+#: includes/freemius-strings.php:1621
+#: includes/freemius-strings.php:4629
+msgid "Non-expiring"
+msgstr "Չժամկետանց"
+
+#: includes/freemius-strings.php:1625
+#: includes/freemius-strings.php:5494
+msgid "This plugin has not been marked as compatible with your version of WordPress."
+msgstr "Այs պլագինը նշված չէ որպես համատեղելի WordPress-ի ձեր տարբերակի հետ:"
+
+#: includes/freemius-strings.php:1629
+#: includes/freemius-strings.php:5499
+msgid "This plugin has not been tested with your current version of WordPress."
+msgstr "Այs պլագինը չի ստուգվել ձեր WordPress-ի ընթացիկ տարբերակի հետ:"
+
+#: includes/freemius-strings.php:1633
+#: includes/freemius-strings.php:6203
+msgid "not verified"
+msgstr "չհաստատված"
+
+#: includes/freemius-strings.php:1637
+#: includes/freemius-strings.php:6519
+msgctxt "as turned off"
+msgid "Off"
+msgstr "Անջատված"
+
+#: includes/freemius-strings.php:1641
+#: includes/freemius-strings.php:4640
+msgid "O.K"
+msgstr "ԼԱՎ"
+
+#: includes/freemius-strings.php:1645
+#: includes/freemius-strings.php:6524
+msgctxt "as turned on"
+msgid "On"
+msgstr "Միացված է"
+
+#: includes/freemius-strings.php:1649
+#: includes/freemius-strings.php:6479
+msgctxt "as once a year"
+msgid "Once"
+msgstr "Մեկ անգամ"
+
+#: includes/freemius-strings.php:1653
+#: includes/freemius-strings.php:6566
+msgctxt "exclamation"
+msgid "Oops"
+msgstr "Վրիպում"
+
+#: includes/freemius-strings.php:1657
+#: includes/freemius-strings.php:4663
+msgid "Opt In"
+msgstr "Միանալ"
+
+#: includes/freemius-strings.php:1661
+#: includes/freemius-strings.php:3229
+msgid "Allow & Continue"
+msgstr "Թույլ տալ և շարունակել"
+
+#: includes/freemius-strings.php:1665
+#: includes/freemius-strings.php:4668
+msgid "Opt Out"
+msgstr "Հրաժարվել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1670
+#: includes/freemius-strings.php:5131
+#, php-format
+msgid "Sharing diagnostic data with %s helps to provide functionality that's more relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the plugin should be translated and tailored to."
+msgstr "Ախտորոշիչ տվյալների փոխանակումը %s-ի հետ օգնում է ապահովել ձեր վեբկայքին ավելի համապատասխան ֆունկցիոնալություն, խուսափել WordPress-ի կամ PHP-ի տարբերակների անհամատեղելիություններից, որոնք կարող են խափանել ձեր վեբկայքը, և պարզել, թե որ լեզուներով ու տարածաշրջանների համար պետք է թարգմանվի և հարմարեցվի հավելումը:"
+
+#: includes/freemius-strings.php:1674
+#: includes/freemius-strings.php:5136
+msgid "Sharing your name and email allows us to keep you in the loop about new features and important updates, warn you about security issues before they become public knowledge, and send you special offers."
+msgstr "Ձեր անունն ու էլ. փոստի հասցեն տրամադրելը մեզ հնարավորություն է տալիս տեղեկացված պահել ձեզ նոր հնարավորությունների և կարևոր թարմացումների մասին, զգուշացնել անվտանգության խնդիրների մասին, նախքան դրանք հանրային դառնալը, և ուղարկել հատուկ առաջարկներ:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1679
+#: includes/freemius-strings.php:3735
+#, php-format
+msgid "Diagnostic data will no longer be sent from %1$s to %2$s."
+msgstr "Ախտորոշ տվյալներն այլևս չեն ուղարկվի %1$s-ից %2$s:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1684
+#: includes/freemius-strings.php:4685
+#, php-format
+msgid "Opt in to make \"%s\" better!"
+msgstr "Մասնակցեք «%s»-ի բարելավմանը:"
+
+#: includes/freemius-strings.php:1688
+#: includes/freemius-strings.php:4690
+msgid "Opting in"
+msgstr "Միացում"
+
+#: includes/freemius-strings.php:1692
+#: includes/freemius-strings.php:4695
+msgid "Opting out"
+msgstr "Հրաժարվել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1697
+#: includes/freemius-strings.php:3973
+#, php-format
+msgid "For ongoing compatibility with your website, you can optionally allow %s to:"
+msgstr "Ձեր կայքի հետ շարունակական համատեղելիությունն ապահովելու համար կարող եք կամայականորեն թույլատրել %s-ին՝"
+
+#: includes/freemius-strings.php:1701
+#: includes/freemius-strings.php:2108
+#: includes/freemius-strings.php:4705
+msgid "Other"
+msgstr "Այլ"
+
+#: includes/freemius-strings.php:1705
+#: includes/freemius-strings.php:6346
+msgctxt "Plugin installer section title"
+msgid "Other Notes"
+msgstr "Այլ նշումներ"
+
+#: includes/freemius-strings.php:1709
+#: includes/freemius-strings.php:4710
+msgid "Owner Email"
+msgstr "Սեփականատիրոջ էլ. հասցե"
+
+#: includes/freemius-strings.php:1713
+#: includes/freemius-strings.php:4715
+msgid "Owner ID"
+msgstr "Սեփականատիրոջ ID"
+
+#: includes/freemius-strings.php:1717
+#: includes/freemius-strings.php:4720
+msgid "Owner Name"
+msgstr "Սեփականատիրոջ անունը"
+
+#: includes/freemius-strings.php:1721
+#: includes/freemius-strings.php:4730
+msgid "Paid add-on must be deployed to Freemius."
+msgstr "Վճարովի հավելումը պետք է տեղակայվի Freemius-ում:"
+
+#: includes/freemius-strings.php:1725
+#: includes/freemius-strings.php:6454
+msgctxt "as file/folder path"
+msgid "Path"
+msgstr "Ուղի"
+
+#: includes/freemius-strings.php:1729
+#: includes/freemius-strings.php:4745
+msgid "Payments"
+msgstr "Վճարումներ"
+
+#: includes/freemius-strings.php:1733
+#: includes/freemius-strings.php:4750
+msgid "Payouts are in USD and processed monthly via PayPal."
+msgstr "Վճարումները կատարվում են ԱՄՆ դոլարով և մշակվում են ամսական PayPal-ի միջոցով:"
+
+#: includes/freemius-strings.php:1737
+#: includes/freemius-strings.php:4735
+msgid "PayPal account email address"
+msgstr "PayPal հաշվի էլ. փոստի հասցե"
+
+#: includes/freemius-strings.php:1741
+#: includes/freemius-strings.php:4740
+msgid "PayPal email address is required."
+msgstr "Պահանջվում է PayPal էլ. փոստի հասցե:"
+
+#: includes/freemius-strings.php:1745
+#: includes/freemius-strings.php:4725
+msgid "PCI compliant"
+msgstr "PCI համապատասխանող"
+
+#: includes/freemius-strings.php:1749
+#: includes/freemius-strings.php:5711
+msgid "View Diagnostic Info"
+msgstr "Դիտել ախտորոշման տեղեկությունները"
+
+#: includes/freemius-strings.php:1753
+#: includes/freemius-strings.php:5827
+msgid "WordPress & PHP versions, site language & title"
+msgstr "WordPress և PHP տարբերակներ, կայքի լեզու և վերնագիր"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1758
+#: includes/freemius-strings.php:5526
+#, php-format
+msgid "To avoid breaking your website due to WordPress or PHP version incompatibilities, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "WordPress-ի կամ PHP-ի տարբերակների անհամատեղելիության պատճառով ձեր վեբկայքի խափանումից խուսափելու համար և որոշելու, թե որ լեզուներին և տարածաշրջաններին պետք է հարմարեցվի և թարգմանվի %s-ը:"
+
+#: includes/freemius-strings.php:1762
+#: includes/freemius-strings.php:5716
+msgid "View License Essentials"
+msgstr "Դիտել արտոնագրի հիմնական դրույթները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1767
+#, php-format
+msgid "Homepage URL, %s version, SDK version"
+msgstr "Գլխավոր էջի URL, %s տարբերակ, SDK տարբերակ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1772
+#: includes/freemius-strings.php:5549
+#, php-format
+msgid "To let you manage & control where the license is activated and ensure %s security & feature updates are only delivered to websites you authorize."
+msgstr "Ոպեսզի կարողանաք կառավարել և վերահսկել, թե որտեղ է ակտիվացված լիցենզիան, և ապահովել, որ %s անվտանգության և ֆունկցիոնալ թարմացումները առաքվեն միայն ձեր կողմից լիազորված կայքերին։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1777
+#: includes/freemius-strings.php:3648
+#, php-format
+msgid "Current %s & SDK versions, and if active or uninstalled"
+msgstr "Ընթացիկ %s և SDK տարբերակները, ինչպես նաև ակտիվ կամ տեղահանված լինելը"
+
+#: includes/freemius-strings.php:1781
+#: includes/freemius-strings.php:4263
+msgid "Is active, deactivated, or uninstalled"
+msgstr "Ակտիվ է, ապաակտիվացված է կամ հեռացված"
+
+#: includes/freemius-strings.php:1785
+#: includes/freemius-strings.php:5721
+msgid "View Plugins & Themes List"
+msgstr "Դիտել հավելումների և թեմաների ցանկը"
+
+#: includes/freemius-strings.php:1789
+#: includes/freemius-strings.php:4581
+msgid "Newsletter"
+msgstr "Տեղեկագիր"
+
+#: includes/freemius-strings.php:1793
+#: includes/freemius-strings.php:5627
+msgid "Updates, announcements, marketing, no spam"
+msgstr "Թարմացումներ, հայտարարություններ, մարքեթինգ, առանց սպամի"
+
+#: includes/freemius-strings.php:1797
+#: includes/freemius-strings.php:5701
+msgid "View Basic Profile Info"
+msgstr "Դիտել հիմնական պրոֆիլի տեղեկությունները"
+
+#: includes/freemius-strings.php:1801
+#: includes/freemius-strings.php:6016
+msgid "Your WordPress user's: first & last name, and email address"
+msgstr "Ձեր WordPress օգտատիրոջ՝ անուն, ազգանուն և էլ. փոստի հասցե"
+
+#: includes/freemius-strings.php:1805
+#: includes/freemius-strings.php:4549
+msgid "Never miss important updates, get security warnings before they become public knowledge, and receive notifications about special offers and awesome new features."
+msgstr "Երբեք մի բաց թողեք կարևոր թարմացումները, ստացեք անվտանգության նախազգուշացումներ, նախքան դրանք հանրային դառնալը, և ստացեք ծանուցումներ հատուկ առաջարկների ու հիանալի նոր հնարավորությունների մասին:"
+
+#: includes/freemius-strings.php:1809
+#: includes/freemius-strings.php:5706
+msgid "View Basic Website Info"
+msgstr "Դիտել կայքի հիմնական տեղեկությունները"
+
+#: includes/freemius-strings.php:1813
+#: includes/freemius-strings.php:4050
+msgid "Homepage URL & title, WP & PHP versions, and site language"
+msgstr "Գլխավոր էջի URL-ը և վերնագիրը, WP-ի և PHP-ի տարբերակները և կայքի լեզուն"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1818
+#: includes/freemius-strings.php:5555
+#, php-format
+msgid "To provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "Ձեր վեբկայքին առնչվող լրացուցիչ ֆունկցիոնալություն ապահովելու, WordPress-ի կամ PHP-ի տարբերակների այնպիսի անհամատեղելիությունից խուսափելու համար, որոնք կարող են խափանել ձեր վեբկայքը, և պարզելու, թե որ լեզուներին ու տարածաշրջաններին պետք է թարգմանվի և հարմարեցվի %s-ը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1823
+#: includes/freemius-strings.php:3045
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">Click here to learn more about updating PHP</a>."
+msgstr "<a href=\"%s\" target=\"_blank\">Սեղմեք այստեղ՝ PHP-ի թարմացման մասին ավելին իմանալու համար</a>։"
+
+#: includes/freemius-strings.php:1827
+#: includes/freemius-strings.php:5805
+msgid "What price would you feel comfortable paying?"
+msgstr "Ի՞նչ գին ձեզ համար հարմարավետ կլինի վճարել:"
+
+#: includes/freemius-strings.php:1831
+#: includes/freemius-strings.php:5794
+msgid "What feature?"
+msgstr "Ո՞ր ֆունկցիան։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1836
+#: includes/freemius-strings.php:5816
+#, php-format
+msgid "What's the %s's name?"
+msgstr "Ի՞նչ է %s-ի անունը:"
+
+#: includes/freemius-strings.php:1840
+#: includes/freemius-strings.php:4352
+msgid "Kindly share what didn't work so we can fix it for future users..."
+msgstr "Խնդրում ենք կիսվել, թե ինչը չաշխատեց, որպեսզի կարողանանք այն ուղղել ապագա օգտատերերի համար..."
+
+#: includes/freemius-strings.php:1844
+#: includes/freemius-strings.php:5789
+msgid "What did you expect?"
+msgstr "Ի՞նչ էիք ակնկալում:"
+
+#: includes/freemius-strings.php:1848
+#: includes/freemius-strings.php:5810
+msgid "What you've been looking for?"
+msgstr "Այն, ինչ փնտրում էի՞ք:"
+
+#: includes/freemius-strings.php:1852
+#: includes/freemius-strings.php:6484
+msgctxt "as product pricing plan"
+msgid "Plan"
+msgstr "Սակագնային պլան"
+
+#: includes/freemius-strings.php:1856
+#: includes/freemius-strings.php:6093
+msgid "Your plan was successfully activated."
+msgstr "Ձեր փաթեթը հաջողությամբ ակտիվացվեց:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1861
+#: includes/freemius-strings.php:6099
+#, php-format
+msgid "Your plan was successfully changed to %s."
+msgstr "Ձեր փաթեթը հաջողությամբ փոխվեց %s-ի:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1866
+#: includes/freemius-strings.php:4098
+#, php-format
+msgid "I have upgraded my account but when I try to Sync the License, the plan remains %s."
+msgstr "Ես թարմացրել եմ իմ հաշիվը, բայց երբ փորձում եմ համաժամեցնել լիցենզիան (Sync the License), պլանը մնում է %s:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1871
+#: includes/freemius-strings.php:4290
+#, php-format
+msgid "It looks like you are still on the %s plan. If you did upgrade or change your plan, it's probably an issue on our side - sorry."
+msgstr "Կարծես թե դուք դեռ գտնվում եք %s պլանում: Եթե ​​դուք արդեն բարելավել կամ փոխել եք ձեր պլանը, դա հավանաբար մեր կողմից առաջացած խնդիր է. ներողություն ենք խնդրում:"
+
+#: includes/freemius-strings.php:1875
+#: includes/freemius-strings.php:4772
+msgid "Plan ID"
+msgstr "Պլանի ID"
+
+#: includes/freemius-strings.php:1879
+#: includes/freemius-strings.php:6104
+msgid "Your plan was successfully upgraded."
+msgstr "Ձեր պլանը հաջողությամբ բարելավվեց։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1884
+#: includes/freemius-strings.php:6116
+#, php-format
+msgid "Your subscription was successfully cancelled. Your %1$s plan license will expire in %2$s."
+msgstr "Ձեր բաժանորդագրությունը հաջողությամբ չեղարկվեց։ Ձեր %1$s պլանի արտոնագիրը կժամկետանցվի %2$s հետո։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1889
+#: includes/freemius-strings.php:4767
+#, php-format
+msgid "Plan %s does not support a trial period."
+msgstr "%s պլանը չի աջակցում փորձաշրջան:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1894
+#: includes/freemius-strings.php:4788
+#, php-format
+msgid "Please download %s."
+msgstr "Խնդրում ենք ներբեռնել %s։"
+
+#: includes/freemius-strings.php:1898
+#: includes/freemius-strings.php:4834
+msgid "Please wait"
+msgstr "Խնդրում ենք սպասել"
+
+#: includes/freemius-strings.php:1902
+#: includes/freemius-strings.php:4839
+msgid "Plugin"
+msgstr "Հավելված"
+
+#: includes/freemius-strings.php:1906
+#: includes/freemius-strings.php:4844
+msgid "Plugin Homepage"
+msgstr "Պլագինի գլխավոր էջ"
+
+#: includes/freemius-strings.php:1910
+#: includes/freemius-strings.php:4849
+msgid "Plugin ID"
+msgstr "Հավելվածի ID"
+
+#: includes/freemius-strings.php:1914
+#: includes/freemius-strings.php:4854
+msgid "Plugin Install"
+msgstr "Նրբմուծի տեղադրում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1919
+#: includes/freemius-strings.php:2961
+#, php-format
+msgid "%s opt-in was successfully completed."
+msgstr "%s-ի համաձայնությունը հաջողությամբ ավարտվեց։"
+
+#: includes/freemius-strings.php:1923
+#: includes/freemius-strings.php:4864
+msgid "Plugins"
+msgstr "Հավելվածներ"
+
+#: includes/freemius-strings.php:1927
+#: includes/freemius-strings.php:4874
+msgid "Plugins page"
+msgstr "Հավելվածների էջ"
+
+#: includes/freemius-strings.php:1931
+#: includes/freemius-strings.php:4869
+msgid "Plugins & Themes Sync"
+msgstr "Հավելվածների և թեմաների համաժամացում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1936
+#: includes/freemius-strings.php:2853
+#, php-format
+msgid " The %1$s's %2$sdownload link%3$s, license key, and installation instructions have been sent to %4$s. If you can't find the email after 5 min, please check your spam box."
+msgstr "%1$s-ի %2$sներբեռնման հղումը%3$s, արտոնագրային բանալին և տեղադրման հրահանգները ուղարկվել են %4$s հասցեին։ Եթե 5 րոպե անց չեք գտնում նամակը, ստուգեք ձեր «Սպամ» բաժինը։"
+
+#: includes/freemius-strings.php:1940
+#: includes/freemius-strings.php:4879
+msgid "Premium"
+msgstr "Պրեմիում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1945
+#: includes/freemius-strings.php:4885
+#, php-format
+msgid "Premium %s version was successfully activated."
+msgstr "Premium %s տարբերակը հաջողությամբ ակտիվացվեց:"
+
+#: includes/freemius-strings.php:1949
+#: includes/freemius-strings.php:4342
+msgid "Keep automatic updates"
+msgstr "Պահպանել ավտոմատ թարմացումները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1954
+#: includes/freemius-strings.php:5537
+#, php-format
+msgid "To ensure that security & feature updates are automatically delivered directly to your WordPress Admin Dashboard while protecting your license from unauthorized abuse, %2$s needs to view the website’s homepage URL, %1$s version, SDK version, and whether the %1$s is active."
+msgstr "Ապահովելու համար, որ անվտանգության և հնարավորությունների թարմացումները ավտոմատ կերպով առաքվեն անմիջապես ձեր WordPress Admin Dashboard, միաժամանակ պաշտպանելով ձեր լիցենզիան չարտոնված չարաշահումից, %2$s-ին անհրաժեշտ է դիտել կեբքայլի գլխավոր էջի URL-ը, %1$s տարբերակը, SDK տարբերակը և արդյոք %1$s-ը ակտիվ է:"
+
+#: includes/freemius-strings.php:1958
+#: includes/freemius-strings.php:4895
+msgid "Premium version"
+msgstr "Պրեմիում տարբերակ"
+
+#: includes/freemius-strings.php:1962
+#: includes/freemius-strings.php:6597
+msgctxt "noun"
+msgid "Price"
+msgstr "Գին"
+
+#: includes/freemius-strings.php:1966
+#: includes/freemius-strings.php:4905
+msgid "Pricing"
+msgstr "Գնացուցակ"
+
+#: includes/freemius-strings.php:1970
+#: includes/freemius-strings.php:4818
+msgid "Please note that we will not be able to grandfather outdated pricing for renewals/new subscriptions after a cancellation. If you choose to renew the subscription manually in the future, after a price increase, which typically occurs once a year, you will be charged the updated price."
+msgstr "Խնդրում ենք նկատել, որ չեղարկումից հետո մենք չենք կարող պահպանել հին գները երկարացումների կամ նոր բաժանորդագրությունների համար: Եթե ապագայում՝ գների բարձրացումից հետո, որը սովորաբար տեղի է ունենում տարին մեկ անգամ, դուք նախընտրեք ձեռքով երկարացնել բաժանորդագրությունը, ձեզանից գանձվելու է թարմացված գինը:"
+
+#: includes/freemius-strings.php:1974
+#: includes/freemius-strings.php:4910
+msgid "Privacy Policy"
+msgstr "Գաղտնիության քաղաքականություն"
+
+#: includes/freemius-strings.php:1978
+#: includes/freemius-strings.php:4915
+msgid "Proceed"
+msgstr "Շարունակել"
+
+#: includes/freemius-strings.php:1982
+#: includes/freemius-strings.php:3313
+msgid "Are you sure you want to proceed?"
+msgstr "Վստա՞հ եք, որ ցանկանում եք շարունակել:"
+
+#: includes/freemius-strings.php:1986
+#: includes/freemius-strings.php:4920
+msgid "Process ID"
+msgstr "Պրոցեսի ID"
+
+#: includes/freemius-strings.php:1990
+#: includes/freemius-strings.php:4925
+msgid "Processing"
+msgstr "Մշակվում է"
+
+#: includes/freemius-strings.php:1994
+#: includes/freemius-strings.php:4930
+msgid "Processing, please wait and do not close or refresh this window..."
+msgstr "Մշակվում է, խնդրում ենք սպասել և չփակել կամ չթարմացնել այս պատուհանը..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1999
+#: includes/freemius-strings.php:2907
+#, php-format
+msgid "%s and its add-ons"
+msgstr "%s-ը և դրա հավելումները"
+
+#: includes/freemius-strings.php:2003
+#: includes/freemius-strings.php:6316
+msgctxt "Part of the message that tells the user to check their spam folder for a specific email."
+msgid "the product's support email address"
+msgstr "ապրանքի աջակցման էլ. փոստի հասցեն"
+
+#: includes/freemius-strings.php:2007
+#: includes/freemius-strings.php:4940
+msgid "Program Summary"
+msgstr "Ծրագրի ամփոփագիր"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2012
+#: includes/freemius-strings.php:4824
+#, php-format
+msgid "Please provide details on how you intend to promote %s (please be as specific as possible)."
+msgstr "Խնդրում ենք մանրամասներ տրամադրել այն մասին, թե ինչպես եք պատրաստվում առաջխաղացնել %s-ը (խնդրում ենք լինել հնարավորինս կոնկրետ):"
+
+#: includes/freemius-strings.php:2016
+#: includes/freemius-strings.php:4066
+msgid "How will you promote us?"
+msgstr "Ի՞նչպես եք մեզ գովազդելու:"
+
+#: includes/freemius-strings.php:2020
+#: includes/freemius-strings.php:4945
+msgid "Promotion methods"
+msgstr "Խթանման մեթոդներ"
+
+#: includes/freemius-strings.php:2024
+#: includes/freemius-strings.php:4950
+msgid "Province"
+msgstr "Մարզ"
+
+#: includes/freemius-strings.php:2028
+#: includes/freemius-strings.php:4955
+msgid "Public Key"
+msgstr "Հանրային բանալի"
+
+#: includes/freemius-strings.php:2032
+#: includes/freemius-strings.php:6662
+msgctxt "verb"
+msgid "Purchase"
+msgstr "Գնել"
+
+#: includes/freemius-strings.php:2036
+#: includes/freemius-strings.php:4960
+msgid "Purchase License"
+msgstr "Գնել արտոնագիր"
+
+#: includes/freemius-strings.php:2040
+#: includes/freemius-strings.php:4965
+msgid "Purchase More"
+msgstr "Գնել ավելին"
+
+#: includes/freemius-strings.php:2044
+#: includes/freemius-strings.php:4970
+msgid "Quick Feedback"
+msgstr "Արագ կարծիք"
+
+#: includes/freemius-strings.php:2048
+#: includes/freemius-strings.php:4975
+msgid "Quota"
+msgstr "Քվոտա"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2053
+#: includes/freemius-strings.php:5388
+#, php-format
+msgid "The %s broke my site"
+msgstr "%s-ը վնասեց իմ կայքը"
+
+#: includes/freemius-strings.php:2057
+#: includes/freemius-strings.php:4076
+msgid "I can't pay for it anymore"
+msgstr "Ես այլևս չեմ կարող վճարել դրա համար"
+
+#: includes/freemius-strings.php:2061
+#: includes/freemius-strings.php:4081
+msgid "I couldn't understand how to make it work"
+msgstr "Չկարողացա հասկանալ, թե ինչպես այն աշխատեցնել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2066
+#: includes/freemius-strings.php:5394
+#, php-format
+msgid "The %s didn't work"
+msgstr "%s-ը չաշխատեց"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2071
+#: includes/freemius-strings.php:5400
+#, php-format
+msgid "The %s didn't work as expected"
+msgstr "%s-ը չաշխատեց այնպես, ինչպես սպասվում էր"
+
+#: includes/freemius-strings.php:2075
+#: includes/freemius-strings.php:4086
+msgid "I don't like to share my information with you"
+msgstr "Ես չեմ ցանկանում կիսվել իմ տվյալներով ձեզ հետ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2080
+#: includes/freemius-strings.php:4092
+#, php-format
+msgid "I found a better %s"
+msgstr "Գտա ավելի լավը %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2085
+#: includes/freemius-strings.php:5406
+#, php-format
+msgid "The %s is great, but I need specific feature that you don't support"
+msgstr "%s-ը հիանալի է, սակայն ինձ անհրաժեշտ է որոշակի գործառույթ, որը դուք չեք աջակցում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2090
+#: includes/freemius-strings.php:4110
+#, php-format
+msgid "I only needed the %s for a short period"
+msgstr "Ին %s-ը պետք էր միայն կարճ ժամանակով"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2095
+#: includes/freemius-strings.php:4104
+#, php-format
+msgid "I no longer need the %s"
+msgstr "Ինձ այլևս անհրաժեշտ չէ %s-ը"
+
+#: includes/freemius-strings.php:2099
+#: includes/freemius-strings.php:4316
+msgid "It's not what I was looking for"
+msgstr "Սա այն չէ, ինչ փնտրում էի"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2104
+#: includes/freemius-strings.php:5412
+#, php-format
+msgid "The %s is not working"
+msgstr "%s-ը չի աշխատում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2113
+#: includes/freemius-strings.php:5418
+#, php-format
+msgid "The %s suddenly stopped working"
+msgstr "%s-ը հանկարծ դադարեց աշխատել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2118
+#: includes/freemius-strings.php:4311
+#, php-format
+msgid "It's a temporary %s - I'm troubleshooting an issue"
+msgstr "Սա ժամանակավոր %s է. ես շտկում եմ խնդիրը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2123
+#: includes/freemius-strings.php:4986
+#, php-format
+msgid "Redirecting, please <a href=\"%1$s\">click here</a> if you're stuck..."
+msgstr "Վերահղվում է, խնդրում ենք <a href=\"%1$s\">սեղմել այստեղ</a>, եթե կանգնել եք..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2128
+#: includes/freemius-strings.php:4992
+#, php-format
+msgid "Refer new customers to our %1$s and earn %2$s commission on each successful sale you refer!"
+msgstr "Ուղղորդեք նոր հաճախորդներին դեպի մեր %1$s և վաստակեք %2$s միջնորդավճար ձեր կողմից ուղղորդված յուրաքանչյուր հաջող վաճառքի համար:"
+
+#: includes/freemius-strings.php:2136
+#: includes/freemius-strings.php:5002
+msgid "Renew license"
+msgstr "Թարմացնել լիցենզիան"
+
+#: includes/freemius-strings.php:2140
+#: includes/freemius-strings.php:5007
+msgid "Renew your license now"
+msgstr "Թարմացրեք ձեր լիցենզիան հիմա"
+
+#: includes/freemius-strings.php:2144
+#: includes/freemius-strings.php:4028
+msgid "Get commission for automated subscription renewals."
+msgstr "Ստացեք միջնորդավճար բաժանորդագրությունների ավտոմատ թարմացումների համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2149
+#: includes/freemius-strings.php:3339
+#, php-format
+msgid "Auto renews in %s"
+msgstr "Ավտոմատ թարմացվում է %s հետո"
+
+#: includes/freemius-strings.php:2153
+#: includes/freemius-strings.php:5012
+msgid "Requests"
+msgstr "Հարցումներ"
+
+#: includes/freemius-strings.php:2157
+#: includes/freemius-strings.php:5017
+msgid "Required"
+msgstr "Պահանջվում է"
+
+#: includes/freemius-strings.php:2161
+#: includes/freemius-strings.php:5022
+msgid "Requires PHP Version"
+msgstr "Պահանջվող PHP տարբերակը"
+
+#: includes/freemius-strings.php:2165
+#: includes/freemius-strings.php:5027
+msgid "Requires WordPress Version"
+msgstr "Պահանջում է WordPress տարբերակ"
+
+#: includes/freemius-strings.php:2169
+#: includes/freemius-strings.php:4980
+msgid "Re-send activation email"
+msgstr "Վերաուղարկել ակտիվացման էլ. նամակը"
+
+#: includes/freemius-strings.php:2173
+#: includes/freemius-strings.php:5032
+msgid "Reset Deactivation Snoozing"
+msgstr "Վերագործարկել ապաակտիվացման հետաձգումը"
+
+#: includes/freemius-strings.php:2177
+#: includes/freemius-strings.php:5037
+msgid "Result"
+msgstr "Արդյունք"
+
+#: includes/freemius-strings.php:2181
+#: includes/freemius-strings.php:6218
+msgid "revert it now"
+msgstr "վերականգնել այն հիմա"
+
+#: includes/freemius-strings.php:2185
+#: includes/freemius-strings.php:6351
+msgctxt "Plugin installer section title"
+msgid "Reviews"
+msgstr "Կարծիքներ"
+
+#: includes/freemius-strings.php:2189
+#: includes/freemius-strings.php:6361
+msgctxt "a positive response"
+msgid "Right on"
+msgstr "Ճիշտ է"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2194
+#: includes/freemius-strings.php:5053
+#, php-format
+msgid "Save %s"
+msgstr "Պահպանել %s"
+
+#: includes/freemius-strings.php:2198
+#: includes/freemius-strings.php:5058
+msgid "Saved"
+msgstr "Պահպանված է"
+
+#: includes/freemius-strings.php:2202
+#: includes/freemius-strings.php:5063
+msgid "Scheduled Crons"
+msgstr "Պլանավորված Crons"
+
+#: includes/freemius-strings.php:2206
+#: includes/freemius-strings.php:5068
+msgid "Screenshots"
+msgstr "Սcreenshots"
+
+#: includes/freemius-strings.php:2210
+#: includes/freemius-strings.php:5042
+msgid "SDK"
+msgstr "SDK"
+
+#: includes/freemius-strings.php:2214
+#: includes/freemius-strings.php:5047
+msgid "SDK Path"
+msgstr "SDK-ի ուղի"
+
+#: includes/freemius-strings.php:2218
+#: includes/freemius-strings.php:6494
+msgctxt "as software development kit versions"
+msgid "SDK Versions"
+msgstr "SDK-ի տարբերակներ"
+
+#: includes/freemius-strings.php:2222
+#: includes/freemius-strings.php:5073
+msgid "Search by address"
+msgstr "Որոնել ըստ հասցեի"
+
+#: includes/freemius-strings.php:2226
+#: includes/freemius-strings.php:6612
+msgctxt "seconds"
+msgid "sec"
+msgstr "վրկ"
+
+#: includes/freemius-strings.php:2230
+#: includes/freemius-strings.php:5078
+msgid "Secret Key"
+msgstr "Գաղտնի բանալի"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2235
+#: includes/freemius-strings.php:5084
+#, php-format
+msgid "Secure HTTPS %s page, running from an external domain"
+msgstr "Ապահով HTTPS %s էջ, որն աշխատում է արտաքին դոմենից"
+
+#: includes/freemius-strings.php:2239
+#: includes/freemius-strings.php:5104
+msgid "Select Country"
+msgstr "Ընտրել երկիրը"
+
+#: includes/freemius-strings.php:2243
+#: includes/freemius-strings.php:5109
+msgid "Send License Key"
+msgstr "Ուղարկել լիցենզիայի բանալին"
+
+#: includes/freemius-strings.php:2247
+#: includes/freemius-strings.php:6228
+msgid "send me security & feature updates, educational content and offers."
+msgstr "ուղարկել ինձ անվտանգության և գործառույթների թարմացումներ, ուսուցողական բովանդակություն և առաջարկներ:"
+
+#: includes/freemius-strings.php:2251
+#: includes/freemius-strings.php:6459
+msgctxt "as in the process of sending an email"
+msgid "Sending email"
+msgstr "Էլնամակի ուղարկում"
+
+#: includes/freemius-strings.php:2255
+#: includes/freemius-strings.php:5114
+msgid "Sending license key"
+msgstr "Արտոնագրային բանալիի ուղարկում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2260
+#: includes/freemius-strings.php:6110
+#, php-format
+msgid "Your server is blocking the access to Freemius' API, which is crucial for %1$s synchronization. Please contact your host to whitelist the following domains:%2$s"
+msgstr "Ձեր սերվերը արգելափակում է մուտքը Freemius-ի API, որը շատ կարևոր է %1$s սինքրոնիզացման համար: Խնդրում ենք կապվել ձեր հոսթինգի մատակարարի հետ՝ ստորև նշված դոմենները սպիտակ ցուցակում (whitelist) ներառելու համար:%2$s"
+
+#: includes/freemius-strings.php:2264
+#: includes/freemius-strings.php:3913
+msgid "Error received from the server:"
+msgstr "Ստացված սխալ սերվերից՝"
+
+#: includes/freemius-strings.php:2268
+#: includes/freemius-strings.php:5119
+msgid "Set DB Option"
+msgstr "Սահմանել DB ընտրանքը"
+
+#: includes/freemius-strings.php:2272
+#: includes/freemius-strings.php:6667
+msgctxt "verb"
+msgid "Show"
+msgstr "Ցուցադրել"
+
+#: includes/freemius-strings.php:2276
+#: includes/freemius-strings.php:5141
+msgid "Show error details"
+msgstr "Ցուցադրել սխալի մանրամասները"
+
+#: includes/freemius-strings.php:2280
+#: includes/freemius-strings.php:5146
+msgid "Simulate Network Upgrade"
+msgstr "Ցանցի թարմացման մոդելավորում"
+
+#: includes/freemius-strings.php:2284
+#: includes/freemius-strings.php:5151
+msgid "Simulate Trial Promotion"
+msgstr "Փորձնական ակցիայի մոդելավորում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2289
+#: includes/freemius-strings.php:2871
+#, php-format
+msgid "%1$s has been placed into safe mode because we noticed that %2$s is an exact copy of %3$s."
+msgstr "%1$s-ը տեղափոխվել է անվտանգ ռեժիմ, քանի որ նկատել ենք, որ %2$s-ը %3$s-ի ճշգրիտ պատճենն է:"
+
+#: includes/freemius-strings.php:2293
+#: includes/freemius-strings.php:5161
+msgid "Site ID"
+msgstr "Կայքի ID"
+
+#: includes/freemius-strings.php:2297
+#: includes/freemius-strings.php:5171
+msgid "Sites"
+msgstr "Կայքեր"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2302
+#: includes/freemius-strings.php:5177
+#, php-format
+msgid "Skip & %s"
+msgstr "Բաց թողնել և %s"
+
+#: includes/freemius-strings.php:2306
+#: includes/freemius-strings.php:5182
+msgid "Skipping, please wait"
+msgstr "Բաց է թողնվում, խնդրում ենք սպասել"
+
+#: includes/freemius-strings.php:2310
+#: includes/freemius-strings.php:5187
+msgid "Slug"
+msgstr "Հղում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2315
+#: includes/freemius-strings.php:5193
+#, php-format
+msgid "Snooze & %s"
+msgstr "Հետաձգել և %s"
+
+#: includes/freemius-strings.php:2319
+#: includes/freemius-strings.php:5198
+msgid "Snooze this panel during troubleshooting"
+msgstr "Անջատել այս վահանակը անսարքությունների վերացման ընթացքում"
+
+#: includes/freemius-strings.php:2323
+#: includes/freemius-strings.php:5203
+msgid "Snooze this panel for"
+msgstr "Աuetրացնել այս վահանակը մինչև՝"
+
+#: includes/freemius-strings.php:2327
+#: includes/freemius-strings.php:5214
+msgid "Social media (Facebook, Twitter, etc.)"
+msgstr "Սոցիալական ցանցեր (Facebook, Twitter և այլն)"
+
+#: includes/freemius-strings.php:2331
+#: includes/freemius-strings.php:5229
+msgid "Start"
+msgstr "Սկսել"
+
+#: includes/freemius-strings.php:2335
+#: includes/freemius-strings.php:5234
+msgid "Start Debug"
+msgstr "Սկսել վրիպազերծումը"
+
+#: includes/freemius-strings.php:2339
+#: includes/freemius-strings.php:6529
+msgctxt "call to action"
+msgid "Start free trial"
+msgstr "Սկսել անվճար փորձաշրջանը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2344
+#: includes/freemius-strings.php:5245
+#, php-format
+msgid "Start my free %s"
+msgstr "Սկսել իմ անվճար %s-ը"
+
+#: includes/freemius-strings.php:2348
+#: includes/freemius-strings.php:6238
+msgid "start the trial"
+msgstr "սկսել փորձնական ժամանակաշրջանը"
+
+#: includes/freemius-strings.php:2352
+#: includes/freemius-strings.php:5239
+msgid "Start Trial"
+msgstr "Սկսել փորձաշրջանը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2357
+#: includes/freemius-strings.php:5894
+#, php-format
+msgid "You are 1-click away from starting your %1$s-day free trial of the %2$s plan."
+msgstr "Դուք ընդամենը 1 սեղմում հեռավորության վրա եք %2$s պլանի %1$s-օրյա անվճար փորձաշրջանը սկսելուց:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2362
+#: includes/freemius-strings.php:3961
+#, php-format
+msgid "For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %1$s to periodically send data to %2$s to check for version updates and to validate your trial."
+msgstr "WordPress.org ուղեցույցներին համապատասխանելու համար՝ նախքան փորձաշրջանը սկսելը, մենք խնդրում ենք ձեզ համաձայնություն տալ ձեր օգտատիրոջ և ոչ զգայուն կայքի տեղեկությունների տրամադրմանը, ինչը թույլ է տալիս %1$s-ին պարբերաբար տվյալներ ուղարկել %2$s-ին՝ տարբերակի թարմացումները ստուգելու և ձեր փորձաշրջանը վավերացնելու համար։"
+
+#: includes/freemius-strings.php:2366
+#: includes/freemius-strings.php:5250
+msgid "Starting trial"
+msgstr "Սկսվում է փորձնական ժամանակաշրջանը"
+
+#: includes/freemius-strings.php:2370
+#: includes/freemius-strings.php:5255
+msgid "State"
+msgstr "Կարգավիճակ"
+
+#: includes/freemius-strings.php:2374
+#: includes/freemius-strings.php:4803
+msgid "Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential)."
+msgstr "Խնդրում ենք տրամադրել ձեր վեբ կայքի կամ սոցիալական մեդիայի ցանկացած համապատասխան վիճակագրություն, օրինակ՝ ամսական եզակի այցելությունների քանակը, էլ. փոստի բաժանորդների թիվը, հետևորդների քանակը և այլն (մենք այս տեղեկատվությունը կպահենք գաղտնի):"
+
+#: includes/freemius-strings.php:2378
+#: includes/freemius-strings.php:5778
+msgid "Website, email, and social media statistics (optional)"
+msgstr "Կայքի, էլ. փոստի և սոցիալական մեդիայի վիճակագրություն (ըստ ցանկության)"
+
+#: includes/freemius-strings.php:2382
+#: includes/freemius-strings.php:5260
+msgid "Stay Connected"
+msgstr "Կապի մեջ եղեք"
+
+#: includes/freemius-strings.php:2386
+#: includes/freemius-strings.php:5265
+msgid "Stop Debug"
+msgstr "Դադարեցնել կարգաբերումը"
+
+#: includes/freemius-strings.php:2390
+#: includes/freemius-strings.php:5270
+msgid "Submit"
+msgstr "Ուղարկել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2395
+#: includes/freemius-strings.php:5543
+#, php-format
+msgid "To enter the debug mode, please enter the secret key of the license owner (UserID = %d), which you can find in your \"My Profile\" section of your User Dashboard:"
+msgstr "Վրիպազերծման ռեժիմ մտնելու համար խնդրում ենք մուտքագրել լիցենզիայի սեփականատիրոջ գաղտնի բանալին (UserID = %d), որը կարող եք գտնել Ձեր օգտատիրոջ վահանակի «Իմ պրոֆիլը» բաժնում."
+
+#: includes/freemius-strings.php:2399
+#: includes/freemius-strings.php:4798
+msgid "Please enter the license key to enable the debug mode:"
+msgstr "Խնդրում ենք մուտքագրել լիցենզիայի բանալին վրաբերման (դեբագ) ռեժիմը միացնելու համար՝"
+
+#: includes/freemius-strings.php:2403
+#: includes/freemius-strings.php:5281
+msgid "Submitting"
+msgstr "Ուղարկվում է"
+
+#: includes/freemius-strings.php:2407
+#: includes/freemius-strings.php:5089
+msgid "Seems like we are having some temporary issue with your subscription cancellation. Please try again in few minutes."
+msgstr "Կարծես թե ձեր բաժանորդագրության չեղարկման հետ կապված ժամանակավոր խնդիր կա: Խնդրում ենք փորձել մի քանի րոպեից:"
+
+#: includes/freemius-strings.php:2411
+#: includes/freemius-strings.php:5166
+msgid "Site successfully opted in."
+msgstr "Կայքը հաջողությամբ գրանցվել է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2416
+#: includes/freemius-strings.php:5451
+#, php-format
+msgid "The upgrade of %s was successfully completed."
+msgstr "%s-ի թարմացումը հաջողությամբ ավարտվեց:"
+
+#: includes/freemius-strings.php:2424
+#: includes/freemius-strings.php:5296
+msgid "Support Forum"
+msgstr "Աջակցման ֆորում"
+
+#: includes/freemius-strings.php:2428
+#: includes/freemius-strings.php:6248
+msgid "switching"
+msgstr "փոխարկվում է"
+
+#: includes/freemius-strings.php:2432
+#: includes/freemius-strings.php:6286
+msgctxt "ASCII arrow left icon"
+msgid "&#x2190;"
+msgstr "&#x2190;"
+
+#: includes/freemius-strings.php:2436
+#: includes/freemius-strings.php:6291
+msgctxt "ASCII arrow right icon"
+msgid "&#x27a4;"
+msgstr "&#x27a4;"
+
+#: includes/freemius-strings.php:2440
+#: includes/freemius-strings.php:6504
+msgctxt "as synchronize"
+msgid "Sync"
+msgstr "Համաժամեցնել"
+
+#: includes/freemius-strings.php:2444
+#: includes/freemius-strings.php:5301
+msgid "Sync Data From Server"
+msgstr "Տվյալների համաժամացում սերվերից"
+
+#: includes/freemius-strings.php:2448
+#: includes/freemius-strings.php:6509
+msgctxt "as synchronize license"
+msgid "Sync License"
+msgstr "Համաժամեցնել լիցենզիան"
+
+#: includes/freemius-strings.php:2452
+#: includes/freemius-strings.php:5306
+msgid "Tax / VAT ID"
+msgstr "Հարկային / ԱԱՀ նույնականացման համար"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2457
+#: includes/freemius-strings.php:5946
+#, php-format
+msgid "You marked this website, %1$s, as a temporary duplicate of %2$s."
+msgstr "Դուք նշել եք այս վեբկայքը՝ %1$s, որպես %2$s-ի ժամանակավոր կրկնօրինակ:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2462
+#: includes/freemius-strings.php:5952
+#, php-format
+msgid "You marked this website, %s, as a temporary duplicate of these sites"
+msgstr "Դուք նշել եք այս վեբկայքը՝ %s, որպես հետևյալ կայքերի ժամանակավոր կրկնօրինակ"
+
+#: includes/freemius-strings.php:2466
+#: includes/freemius-strings.php:5349
+msgid "Thank you!"
+msgstr "Շնորհակալություն:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2471
+#: includes/freemius-strings.php:5339
+#, php-format
+msgid "Thank you so much for using %s!"
+msgstr "Շատ շնորհակալություն %s-ն օգտագործելու համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2476
+#: includes/freemius-strings.php:5333
+#, php-format
+msgid "Thank you so much for using %s and its add-ons!"
+msgstr "Շնորհակալություն %s-ից և դրա հավելումներից օգտվելու համար:"
+
+#: includes/freemius-strings.php:2480
+#: includes/freemius-strings.php:5344
+msgid "Thank you so much for using our products!"
+msgstr "Շատ շնորհակալություն մեր արտադրանքն օգտագործելու համար:"
+
+#: includes/freemius-strings.php:2484
+#: includes/freemius-strings.php:5371
+msgid "Thanks!"
+msgstr "Շնորհակալություն:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2489
+#: includes/freemius-strings.php:5784
+#, php-format
+msgid "Welcome to %s! To get started, please enter your license key:"
+msgstr "Բարի գալուստ %s: Սկսելու համար խնդրում ենք մուտքագրել ձեր լիցենզիայի բանալին՝"
+
+#: includes/freemius-strings.php:2493
+#: includes/freemius-strings.php:5376
+msgid "Thanks, please wait"
+msgstr "Շնորհակալություն, խնդրում ենք սպասել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2498
+#: includes/freemius-strings.php:5355
+#, php-format
+msgid "Thanks %s!"
+msgstr "Շնորհակալություն %s։"
+
+#: includes/freemius-strings.php:2502
+#: includes/freemius-strings.php:5423
+msgid "The following products'"
+msgstr "Հետևյալ ապրանքների՝"
+
+#: includes/freemius-strings.php:2506
+#: includes/freemius-strings.php:6311
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "the installation instructions"
+msgstr "տեղադրման հրահանգները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2511
+#: includes/freemius-strings.php:6270
+#, php-format
+msgctxt "\"The <product_label>\", e.g.: \"The plugin\""
+msgid "The %s's"
+msgstr "%s-ի"
+
+#: includes/freemius-strings.php:2515
+#: includes/freemius-strings.php:5456
+msgid "Theme"
+msgstr "Թեմա"
+
+#: includes/freemius-strings.php:2519
+#: includes/freemius-strings.php:5461
+msgid "Theme Switch"
+msgstr "Թեմայի փոխարկիչ"
+
+#: includes/freemius-strings.php:2523
+#: includes/freemius-strings.php:5466
+msgid "Themes"
+msgstr "Թեմաներ"
+
+#: includes/freemius-strings.php:2527
+#: includes/freemius-strings.php:5471
+msgid "Themes page"
+msgstr "Թեմաների էջ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2532
+#: includes/freemius-strings.php:5510
+#, php-format
+msgid "This will allow %s to"
+msgstr "Սա թույլ կտա %s-ին"
+
+#: includes/freemius-strings.php:2536
+#: includes/freemius-strings.php:5515
+msgid "Timestamp"
+msgstr "Ժամանակային դրոշմ"
+
+#: includes/freemius-strings.php:2540
+#: includes/freemius-strings.php:5520
+msgid "Title"
+msgstr "Վերնագիր"
+
+#: includes/freemius-strings.php:2544
+#: includes/freemius-strings.php:5311
+msgid "Terms of Service"
+msgstr "Ծառայության պայմաններ"
+
+#: includes/freemius-strings.php:2548
+#: includes/freemius-strings.php:5560
+msgid "Total"
+msgstr "Ընդհանուր"
+
+#: includes/freemius-strings.php:2552
+#: includes/freemius-strings.php:5565
+msgid "Town"
+msgstr "Բնակավայր"
+
+#: includes/freemius-strings.php:2556
+#: includes/freemius-strings.php:5094
+msgid "Seems like we are having some temporary issue with your trial cancellation. Please try again in few minutes."
+msgstr "Կարծես թե ձեր փորձաշրջանի չեղարկման հետ կապված ժամանակավոր խնդիր կա: Խնդրում ենք կրկին փորձել մի քանի րոպեից:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2561
+#: includes/freemius-strings.php:5999
+#, php-format
+msgid "Your %s free trial was successfully cancelled."
+msgstr "Ձեր %s անվճար փորձաշրջանը հաջողությամբ չեղարկվեց:"
+
+#: includes/freemius-strings.php:2565
+#: includes/freemius-strings.php:4284
+msgid "It looks like you are not in trial mode anymore so there's nothing to cancel :)"
+msgstr "Կարծես թե դուք այլևս փորձաշրջանում չեք, ուստի չեղարկելու որևէ բան չկա :)"
+
+#: includes/freemius-strings.php:2569
+#: includes/freemius-strings.php:6049
+msgid "Your free trial has expired. You can still continue using all our free features."
+msgstr "Ձեր անվճար փորձաշրջանն ավարտվել է: Դուք դեռ կարող եք շարունակել օգտագործել մեր բոլոր անվճար հնարավորությունները:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2574
+#: includes/freemius-strings.php:6044
+#, php-format
+msgid "Your free trial has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "Ձեր անվճար փորձաշրջանն ավարտվել է: %1$sԹարմացրեք հիմա%2$s՝ %3$s-ն առանց ընդհատումների շարունակելու համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2579
+#: includes/freemius-strings.php:4761
+#, php-format
+msgid "Plan %s do not exist, therefore, can't start a trial."
+msgstr "%s պլանը գոյություն չունի, հետևաբար, հնարավոր չէ սկսել փորձնական ժամանակաշրջան:"
+
+#: includes/freemius-strings.php:2583
+#: includes/freemius-strings.php:6121
+msgid "Your trial has been successfully started."
+msgstr "Ձեր փորձաշրջանը հաջողությամբ սկսվել է:"
+
+#: includes/freemius-strings.php:2587
+#: includes/freemius-strings.php:5888
+msgid "You already utilized a trial before."
+msgstr "Դուք արդեն օգտվել եք փորձաշրջանից նախկինում:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2592
+#: includes/freemius-strings.php:4056
+#, php-format
+msgid "How do you like %1$s so far? Test all our %2$s premium features with a %3$d-day free trial."
+msgstr "Ի՞նչ կարծիքի եք %1$s-ի մասին առայժմ։ Փորձարկեք մեր բոլոր %2$s պրեմիում հնարավորությունները %3$d-օրյա անվճար փորձաշրջանով։"
+
+#: includes/freemius-strings.php:2596
+#: includes/freemius-strings.php:5575
+msgid "Type"
+msgstr "Տեսակ"
+
+#: includes/freemius-strings.php:2600
+#: includes/freemius-strings.php:5580
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "Հնարավոր չէ միանալ ֆայլային համակարգին: Խնդրում ենք հաստատել ձեր հավատարմագրերը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2605
+#: includes/freemius-strings.php:5489
+#, php-format
+msgid "There was an unexpected API error while processing your request. Please try again in a few minutes and if it still doesn't work, contact the %s's author with the following:"
+msgstr "Ձեր հարցումը մշակելիս առաջացել է անսպասելի API սխալ: Խնդրում ենք մի քանի րոպեից նորից փորձել, և եթե այն դեռ չաշխատի, դիմեք %s-ի հեղինակին հետևյալ տվյալներով."
+
+#: includes/freemius-strings.php:2609
+#: includes/freemius-strings.php:5585
+msgid "Unexpected error, try again in 5 minutes. If the error persists, please contact support."
+msgstr "Անսպասելի սխալ, փորձեք 5 րոպեից: Եթե սխալը կրկնվում է, խնդրում ենք կապվել աջակցման ծառայության հետ:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2614
+#: includes/freemius-strings.php:5591
+#, php-format
+msgid "Uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "%s-ի ապատեղադրումն ավտոմատ կերպով կչեզոքացնի լիցենզիան, որը դուք կկարողանաք օգտագործել այլ կայքում:"
+
+#: includes/freemius-strings.php:2618
+#: includes/freemius-strings.php:3261
+msgid "An unknown error has occurred."
+msgstr "Տեղի է ունեցել անհայտ սխալ։"
+
+#: includes/freemius-strings.php:2622
+#: includes/freemius-strings.php:5606
+msgid "Unlimited commissions."
+msgstr "Անսահմանափակ միջնորդավճարներ:"
+
+#: includes/freemius-strings.php:2626
+#: includes/freemius-strings.php:5601
+msgid "Unlimited Updates"
+msgstr "Անսահմանափակ թարմացումներ"
+
+#: includes/freemius-strings.php:2630
+#: includes/freemius-strings.php:6677
+msgctxt "verb"
+msgid "Update"
+msgstr "Թարմացնել"
+
+#: includes/freemius-strings.php:2634
+#: includes/freemius-strings.php:5843
+msgid "Would you like to proceed with the update?"
+msgstr "Ցանկանո՞ւմ եք շարունակել թարմացումը:"
+
+#: includes/freemius-strings.php:2638
+#: includes/freemius-strings.php:5617
+msgid "Update"
+msgstr "Թարմացնել"
+
+#: includes/freemius-strings.php:2642
+#: includes/freemius-strings.php:5622
+msgid "Update License"
+msgstr "Թարմացնել արտոնագիրը"
+
+#: includes/freemius-strings.php:2646
+#: includes/freemius-strings.php:5632
+msgid "Upgrade"
+msgstr "Թարմացնել"
+
+#: includes/freemius-strings.php:2650
+#: includes/freemius-strings.php:4167
+msgid "Important Upgrade Notice:"
+msgstr "Կարևոր ծանուցում թարմացման մասին."
+
+#: includes/freemius-strings.php:2654
+#: includes/freemius-strings.php:5637
+msgid "Upload and activate the downloaded version"
+msgstr "Ներբեռնված տարբերակը վերբեռնեք և ակտիվացրեք"
+
+#: includes/freemius-strings.php:2658
+#: includes/freemius-strings.php:5642
+msgid "User Dashboard"
+msgstr "Օգտատիրոջ վահանակ"
+
+#: includes/freemius-strings.php:2662
+#: includes/freemius-strings.php:5224
+msgid "Sorry, we could not complete the email update. Another user with the same email is already registered."
+msgstr "Կներեք, մենք չկարողացանք ավարտել էլ. փոստի թարմացումը: Նույն էլ. փոստով այլ օգտատեր արդեն գրանցված է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2667
+#: includes/freemius-strings.php:4156
+#, php-format
+msgid "If you would like to give up the ownership of the %1$s's account to %2$s click the Change Ownership button."
+msgstr "Եթե ցանկանում եք հանձնե՞լ %1$s-ի հաշվի սեփականության իրավունքը %2$s-ին, սեղմեք «Փոխել սեփականատիրոջը» կոճակը:"
+
+#: includes/freemius-strings.php:2671
+#: includes/freemius-strings.php:5647
+msgid "User ID"
+msgstr "Օգտատիրոջ ID"
+
+#: includes/freemius-strings.php:2675
+#: includes/freemius-strings.php:5652
+msgid "User key"
+msgstr "Օգտատիրոջ բանալի"
+
+#: includes/freemius-strings.php:2679
+#: includes/freemius-strings.php:5657
+msgid "Users"
+msgstr "Օգտատերեր"
+
+#: includes/freemius-strings.php:2683
+#: includes/freemius-strings.php:5662
+msgid "Value"
+msgstr "Արժեք"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2688
+#: includes/freemius-strings.php:5668
+#, php-format
+msgid "Verification mail was just sent to %s. If you can't find it after 5 min, please check your spam box."
+msgstr "Հաստատման նամակն ուղարկվեց %s հասցեին: Եթե 5 րոպե անց այն չգտնեք, խնդրում ենք ստուգել սպամի թղթապանակը:"
+
+#: includes/freemius-strings.php:2692
+#: includes/freemius-strings.php:5673
+msgid "Verified"
+msgstr "Հաստատված"
+
+#: includes/freemius-strings.php:2696
+#: includes/freemius-strings.php:5678
+msgid "Verify Email"
+msgstr "Հաստատել էլ. փոստը"
+
+#: includes/freemius-strings.php:2700
+#: includes/freemius-strings.php:6607
+msgctxt "product version"
+msgid "Version"
+msgstr "Տարբերակ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2705
+#: includes/freemius-strings.php:5684
+#, php-format
+msgid "Version %s was released."
+msgstr "Թողարկվել է %s տարբերակը։"
+
+#: includes/freemius-strings.php:2709
+#: includes/freemius-strings.php:5726
+msgid "View details"
+msgstr "Դիտել մանրամասները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2714
+#: includes/freemius-strings.php:3586
+#, php-format
+msgid "Click to view full-size screenshot %d"
+msgstr "Սեղմեք՝ %d սքրինշոթն ամբողջ չափով դիտելու համար"
+
+#: includes/freemius-strings.php:2718
+#: includes/freemius-strings.php:5731
+msgid "View paid features"
+msgstr "Դիտել վճարովի հնարավորությունները"
+
+#: includes/freemius-strings.php:2722
+#: includes/freemius-strings.php:5736
+msgid "Warning"
+msgstr "Զգուշացում"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2727
+#: includes/freemius-strings.php:5800
+#, php-format
+msgid "What is your %s?"
+msgstr "Ո՞րն է ձեր %s:"
+
+#: includes/freemius-strings.php:2731
+#: includes/freemius-strings.php:6356
+msgctxt "Used to express elation, enthusiasm, or triumph (especially in electronic communication)."
+msgid "W00t"
+msgstr "Ուռա"
+
+#: includes/freemius-strings.php:2735
+#: includes/freemius-strings.php:5832
+msgid "WordPress.org Plugin Page"
+msgstr "WordPress.org-ի հավելվածի էջ"
+
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:4305
+msgid "It seems like one of the authentication parameters is wrong. Update your Public Key, Secret Key & User ID, and try again."
+msgstr "Թվում է, թե նույնականացման պարամետրերից մեկը սխալ է: Թարմացրեք ձեր Հանրային բանալին, Գաղտնի բանալին և Օգտատիրոջ ID-ն և նորից փորձեք:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2744
+#: includes/freemius-strings.php:2901
+#, php-format
+msgid "%s ago"
+msgstr "%s առաջ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2749
+#: includes/freemius-strings.php:6389
+#, php-format
+msgctxt "as 5 licenses left"
+msgid "%s left"
+msgstr "Մնացել է %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2754
+#: includes/freemius-strings.php:2967
+#, php-format
+msgid "%s or higher"
+msgstr "%s կամ ավելի բարձր"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2759
+#: includes/freemius-strings.php:3033
+#, php-format
+msgid "%s's paid features"
+msgstr "%s-ի վճարովի հնարավորությունները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2764
+#: includes/freemius-strings.php:6545
+#, php-format
+msgctxt "e.g. Professional Plan"
+msgid "%s Plan"
+msgstr "%s Պլան"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2769
+#: includes/freemius-strings.php:2973
+#, php-format
+msgid "%s rating"
+msgstr "%s գնահատական"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2774
+#: includes/freemius-strings.php:2979
+#, php-format
+msgid "%s ratings"
+msgstr "%s գնահատական"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2779
+#: includes/freemius-strings.php:2985
+#, php-format
+msgid "%s sec"
+msgstr "%s վրկ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2784
+#: includes/freemius-strings.php:2991
+#, php-format
+msgid "%s star"
+msgstr "%s աստղ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2789
+#: includes/freemius-strings.php:2997
+#, php-format
+msgid "%s stars"
+msgstr "%s աստղ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2794
+#: includes/freemius-strings.php:3003
+#, php-format
+msgid "%s time"
+msgstr "%s ժամանակ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2799
+#: includes/freemius-strings.php:3009
+#, php-format
+msgid "%s times"
+msgstr "%s անգամ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2804
+#: includes/freemius-strings.php:5940
+#, php-format
+msgid "You have successfully updated your %s."
+msgstr "Դուք հաջողությամբ թարմացրել եք ձեր %s-ը։"
+
+#: includes/freemius-strings.php:2808
+#: includes/freemius-strings.php:6399
+msgctxt "as annual period"
+msgid "year"
+msgstr "տարի"
+
+#: includes/freemius-strings.php:2812
+#: includes/freemius-strings.php:6582
+msgctxt "interjection expressing joy or exuberance"
+msgid "Yee-haw"
+msgstr "Յիհա՜"
+
+#: includes/freemius-strings.php:2816
+#: includes/freemius-strings.php:5848
+msgid "Yes"
+msgstr "Այո"
+
+#: includes/freemius-strings.php:2820
+#: includes/freemius-strings.php:5899
+msgid "You are all good!"
+msgstr "Ամեն ինչ կարգին է:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2825
+#: includes/freemius-strings.php:5911
+#, php-format
+msgid "You are just one step away - %s"
+msgstr "Դուք ընդամենը մեկ քայլ հեռավորության վրա եք - %s"
+
+#: includes/freemius-strings.php:2829
+#: includes/freemius-strings.php:5099
+msgid "Seems like you got the latest release."
+msgstr "Կարծես թե դուք ստացել եք վերջին թողարկումը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2834
+#: includes/freemius-strings.php:5964
+#, php-format
+msgid "You should receive %3$s for %1$s to your mailbox at %2$s in the next 5 minutes."
+msgstr "Դուք պետք է ստանաք %3$s %1$s-ի համար ձեր %2$s էլ. փոստի արկղում առաջիկա 5 րոպեների ընթացքում:"
+
+#: includes/freemius-strings.php:2838
+#: includes/freemius-strings.php:6126
+msgid "ZIP / Postal Code"
+msgstr "Փոստային ինդեքս"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2847
+#, php-format
+msgid " %1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s՝ տարբերակի %2$s անվտանգության և հնարավորությունների թարմացումներին, ինչպես նաև աջակցությանը հասանելիություն ստանալու համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2913
+#, php-format
+msgid "%1$s automatic security & feature updates and paid functionality will keep working without interruptions until %2$s (or when your license expires, whatever comes first)."
+msgstr "%1$s ավտոմատ անվտանգության և հնարավորությունների թարմացումները և վճարովի գործառույթները կշարունակեն աշխատել առանց ընդհատումների մինչև %2$s (կամ մինչև ձեր լիցենզիայի ժամկետի ավարտը, կախված թե որն ավելի շուտ տեղի կունենա):"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3015
+#, php-format
+msgid "%1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s՝ անվտանգության և գործառույթների %2$s տարբերակի թարմացումներին և աջակցությանը հասանելիություն ստանալու համար:"
+
+#: includes/freemius-strings.php:3067
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:3251
+msgid "An unknown error has occurred while trying to set the user's beta mode."
+msgstr "Օգտատերի բետա ռեժիմը սահմանելիս տեղի է ունեցել անհայտ սխալ։"
+
+#: includes/freemius-strings.php:3256
+msgid "An unknown error has occurred while trying to toggle the license's white-label mode."
+msgstr "Անհայտ սխալ է տեղի ունեցել լիցենզիայի սպիտակ պիտակի (white-label) ռեժիմը միացնելու/անջատելու փորձ կատարելիս։"
+
+#: includes/freemius-strings.php:3272
+msgid "Annual"
+msgstr "Տարեկան"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3425
+#, php-format
+msgid "By clicking \"Opt Out\", %s will no longer be able to view your name and email."
+msgstr "Սեղմելով «Հրաժարվել» կոճակը՝ %s-ն այլևս չի կարողանա տեսնել ձեր անունն ու էլ. փոստը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3431
+#, php-format
+msgid "By clicking \"Opt Out\", diagnostic data will no longer be sent to %s."
+msgstr "Սեղմելով «Հրաժարվել» կոճակը՝ ախտորոշ տվյալներն այլևս չեն ուղարկվի %s:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3437
+#, php-format
+msgid "By disconnecting the website, previously shared diagnostic data about %1$s will be deleted and no longer visible to %2$s."
+msgstr "Կայքի միացումն անջատելիս %1$s-ի մասին նախկինում կիսված ախտորոշիչ տվյալները կջնջվեն և այլևս տեսանելի չեն լինի %2$s-ին:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3443
+#, php-format
+msgid "By opting out from sharing this information with the updates server, you’ll have to check for new %1$s releases and manually download & install them. Not just a hassle, but missing an update can put your site at risk and cause undue compatibility issues, so we highly recommend keeping these essential permissions on."
+msgstr "Հրաժարվելով այս տեղեկությունը թարմացումների սերվերի հետ հաղորդակցելուց՝ ստիպված կլինեք ինքնուրույն ստուգել %1$s-ի նոր թողարկումները և ձեռքով ներբեռնել ու տեղադրել դրանք: Սա ոչ միայն անհարմարություն է, այլև թարմացումը բաց թողնելը կարող է վտանգի ենթարկել Ձեր կայքը և առաջացնել համատեղելիության անհարկի խնդիրներ, որի պատճառով խստորեն խորհուրդ ենք տալիս միացված պահել այս կարևոր թույլտվությունները:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3465
+#, php-format
+msgid "Cancel %1$s - I no longer need any security & feature updates, nor support for %2$s because I'm not planning to use the %3$s on this, or any other site."
+msgstr "Չեղարկել %1$s. Ենս այլևս անվտանգության և հնարավորությունների թարմացումների, ինչպես նաև %2$s-ի աջակցության կարիքը չունեմ, քանի որ չեմ պլանավորում օգտագործել %3$s-ը այս կամ որևէ այլ կայքում:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3471
+#, php-format
+msgid "Cancel %s?"
+msgstr "Չեղարկե՞լ %s։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3497
+#, php-format
+msgid "Cancelling %s"
+msgstr "Չեղարկվում է %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3503
+#, php-format
+msgid "Cancelling %s..."
+msgstr "Չեղարկվում է %s..."
+
+#: includes/freemius-strings.php:3569
+msgid "Click here"
+msgstr "Սեղմեք այստեղ"
+
+#: includes/freemius-strings.php:3673
+msgid "Deactivating"
+msgstr "Ապաակտիվացվում է"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3751
+#, php-format
+msgid "Disconnecting the website will permanently remove %s from your User Dashboard's account."
+msgstr "Կայքի անջատումը վերջնականապես կհեռացնի %s-ը Ձեր օգտատիրոջ կառավարման վահանակի հաշվից:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3955
+#, php-format
+msgid "For automatic delivery of security & feature updates, and license management & protection, %s needs to:"
+msgstr "Անվտանգության և գործառույթների թարմացումների ավտոմատ առաքման, ինչպես նաև արտոնագրերի կառավարման և պաշտպանության համար %s-ին անհրաժեշտ է՝"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3967
+#, php-format
+msgid "For delivery of security & feature updates, and license management, %s needs to"
+msgstr "Անվտանգության և հնարավորությունների թարմացումների առաքման, ինչպես նաև արտոնագրերի կառավարման համար՝ %s-ին անհրաժեշտ է"
+
+#: includes/freemius-strings.php:4013
+msgid "Freemius is our licensing and software updates engine"
+msgstr "Freemius-ը լիցենզավորման և ծրագրային ապահովման թարմացումների մեր համակարգն է"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4121
+#, php-format
+msgid "If this is a long term duplicate, to keep automatic updates and paid functionality after %1$s, please %2$s."
+msgstr "Եթե սա երկարաժամկետ կրկնօրինակ է, ապա %1$s-ից հետո ավտոմատ թարմացումները և վճարովի ֆունկցիոնալությունը պահպանելու համար խնդրում ենք %2$s:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4241
+#, php-format
+msgid "Is %2$s a duplicate of %4$s?"
+msgstr "Արդյո՞ք %2$s-ը %4$s-ի կրկնօրինակն է:"
+
+#: includes/freemius-strings.php:4321
+msgid "Join the Beta Program"
+msgstr "Միացեք բետա ծրագրին"
+
+#: includes/freemius-strings.php:4326
+msgid "Join the Beta program"
+msgstr "Միացեք բետա ծրագրին"
+
+#: includes/freemius-strings.php:4397
+msgid "License"
+msgstr "Լիցենզիա"
+
+#: includes/freemius-strings.php:4412
+msgid "License Key"
+msgstr "Լիցենզիայի բանալի"
+
+#: includes/freemius-strings.php:4422
+msgid "License key"
+msgstr "Լիցենզիայի բանալի"
+
+#: includes/freemius-strings.php:4513
+msgid "Monthly"
+msgstr "Ամսական"
+
+#: includes/freemius-strings.php:4529
+msgid "Names, slugs, versions, and if active or not"
+msgstr "Անուններ, հասցեներ, տարբերակներ և ակտիվ լինել-չլինելը"
+
+#: includes/freemius-strings.php:4559
+msgid "New Version Available"
+msgstr "Հասանելի է նոր տարբերակը"
+
+#: includes/freemius-strings.php:4700
+msgid "Optional"
+msgstr "Կամընտրական"
+
+#: includes/freemius-strings.php:4755
+msgid "Plan"
+msgstr "Պլան"
+
+#: includes/freemius-strings.php:4935
+msgid "Products"
+msgstr "Ապրանքներ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5125
+#, php-format
+msgid "Sharing diagnostic data helps to provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break the website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "Ախտորոշրական տվյալների փոխանակումն օգնում է ապահովել ձեր վեբկայքին համապատասխան լրացուցիչ գործառույթներ, խուսափել WordPress-ի կամ PHP-ի տարբերակների անհամատեղելիությունից, որոնք կարող են խափանել վեբկայքը, և պարզել, թե որ լեզուներին և տարածաշրջաններին պետք է հարմարեցվի և թարգմանվի %s-ը:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5209
+#, php-format
+msgid "So you can reuse the license when the %s is no longer active."
+msgstr "Ոպեսզի կարողանաք կրկին օգտագործել արտոնագիրը, երբ %s-ն այլևս ակտիվ չլինի:"
+
+#: includes/freemius-strings.php:5286
+msgid "Subscription"
+msgstr "Բաժանորդագրություն"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5382
+#, php-format
+msgid "The %1$s will be periodically sending essential license data to %2$s to check for security and feature updates, and verify the validity of your license."
+msgstr "%1$s-ը պարբերաբար արտոնագրի կարևոր տվյալներ կուղարկի %2$s-ին՝ անվտանգության և գործառույթների թարմացումները ստուգելու, ինչպես նաև ձեր արտոնագրի վավերականությունը հաստատելու համար:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5477
+#, php-format
+msgid "There is a %1$s of %2$s available."
+msgstr "Առկա է %2$s-ի %1$s:"
+
+#: includes/freemius-strings.php:5531
+msgid "To ensure compatibility and avoid conflicts with your installed plugins and themes."
+msgstr "Համատեղելիությունն ապահովելու և տեղադրված հավելումների ու ձևանմուշների հետ կոնֆլիկտներից խուսափելու համար։"
+
+#: includes/freemius-strings.php:5570
+msgid "Trial"
+msgstr "Փորձնական ժամանակաշրջան"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5690
+#, php-format
+msgid "View %s State"
+msgstr "Դիտել %s վիճակը"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5696
+#, php-format
+msgid "View Basic %s Info"
+msgstr "Դիտել %s-ի հիմնական տեղեկությունները"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5877
+#, php-format
+msgid "Yes, %2$s is a duplicate of %4$s for the purpose of testing, staging, or development."
+msgstr "Այո, %2$s-ը %4$s-ի կրկնօրինակն է՝ թեստավորման, ստեյջինգի կամ մշակման նպատակով:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5928
+#, php-format
+msgid "You have a %s license."
+msgstr "Դուք ունեք %s լիցենզիա:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5934
+#, php-format
+msgid "You have purchased a %s license."
+msgstr "Դուք գնել եք %s լիցենզիա։"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5970
+#: includes/freemius-strings.php:5976
+#, php-format
+msgid "You should receive a confirmation email for %1$s to your mailbox at %2$s. Please make sure you click the button in that email to %3$s."
+msgstr "Դուք պետք է ստանաք %1$s-ի հաստատման նամակը ձեր %2$s էլ․ փոստի արկղում: Խնդրում ենք համոզվել, որ սեղմել եք այդ նամակի կոճակը՝ %3$s համար:"
+
+#: includes/freemius-strings.php:6157
+msgid "days"
+msgstr "օրեր"
+
+#: includes/freemius-strings.php:6162
+msgid "deactivating"
+msgstr "ապաակտիվացնում է"
+
+#: includes/freemius-strings.php:6178
+msgid "hour"
+msgstr "ժամ"
+
+#: includes/freemius-strings.php:6183
+msgid "hours"
+msgstr "ժամեր"
+
+#: includes/freemius-strings.php:6188
+msgid "license"
+msgstr "արտոնագիր"
+
+#: includes/freemius-strings.php:6208
+msgid "optional"
+msgstr "ընտրովի"
+
+#: includes/freemius-strings.php:6213
+msgid "products"
+msgstr "ապրանքներ"
+
+#: includes/freemius-strings.php:6233
+msgid "skip"
+msgstr "Բաց թողնել"
+
+#: includes/freemius-strings.php:6243
+msgid "subscription"
+msgstr "բաժանորդագրություն"
+
+#: includes/freemius-strings.php:6264
+msgid "trial"
+msgstr "փորձաշրջան"
+
+#: includes/freemius-strings.php:6296
+msgctxt "Clone resolution admin notice products list label"
+msgid "Products"
+msgstr "Ապրանքներ"
+
+#: includes/freemius-strings.php:6394
+msgctxt "as activating plugin"
+msgid "Activating"
+msgstr "Ակտիվացվում է"
+
+#: includes/freemius-strings.php:6499
+msgctxt "as software license"
+msgid "License"
+msgstr "Լիցենզիա"
+
+#: includes/freemius-strings.php:6534
+msgctxt "close a window"
+msgid "Dismiss"
+msgstr "Փակել"
+
+#: includes/freemius-strings.php:6539
+msgctxt "close window"
+msgid "Dismiss"
+msgstr "Փակել"
+
+#: includes/freemius-strings.php:6587
+msgctxt "like websites"
+msgid "Sites"
+msgstr "Կայքեր"
+
+#: includes/freemius-strings.php:6602
+msgctxt "noun"
+msgid "Pricing"
+msgstr "Գնացուցակ"
+
+#: includes/freemius-strings.php:6627
+msgctxt "trial period"
+msgid "Trial"
+msgstr "Փորձաշրջան"
+
+#: includes/freemius-strings.php:6652
+msgctxt "verb"
+msgid "Opt In"
+msgstr "Միանալ"
+
+#: includes/freemius-strings.php:6657
+msgctxt "verb"
+msgid "Opt Out"
+msgstr "Հրաժարվել"
+
+#: includes/freemius-strings.php:6672
+msgctxt "verb"
+msgid "Skip"
+msgstr "Բաց թողնել"
+
+#: includes/freemius-strings.php:6682
+msgctxt "verb"
+msgid "Upgrade"
+msgstr "Թարմացնել"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:6688
+#, php-format
+msgctxt "x-ago"
+msgid "%s ago"
+msgstr "%s առաջ"

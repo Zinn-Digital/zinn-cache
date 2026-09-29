@@ -122,7 +122,7 @@ final class Admin {
 						'title'  => __( 'Exclusions', 'zinn-cache' ),
 						'fields' => array( __CLASS__, 'exclusion_fields' ),
 					),
-				),
+				) + array_filter( array( 'pro' => Upsell::tab() ) ),
 				'actions'    => array(
 					array(
 						'id'       => 'zinn_cache_purge_all',
@@ -145,13 +145,13 @@ final class Admin {
 			array(
 				'type'        => 'heading',
 				'label'       => __( 'Full-page cache', 'zinn-cache' ),
-				'description' => __( 'Served by LiteSpeed at the web server, before WordPress runs. This is where nearly all the speed comes from.', 'zinn-cache' ),
+				'description' => __( 'On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from.', 'zinn-cache' ),
 			),
 			array(
 				'key'            => 'lscache_enabled',
 				'type'           => 'toggle',
 				'label'          => __( 'Page cache', 'zinn-cache' ),
-				'checkbox_label' => __( 'Send LiteSpeed cache-control and tag headers on cacheable pages', 'zinn-cache' ),
+				'checkbox_label' => __( 'Cache pages for visitors who are not signed in', 'zinn-cache' ),
 				'default'        => true,
 			),
 			array(
@@ -422,13 +422,19 @@ final class Admin {
 			);
 		}
 
-		if ( $settings['lscache_enabled'] && ! $litespeed ) {
-			return array(
-				'state'   => 'degraded',
-				'summary' => __( 'The page cache is on, but this server is not LiteSpeed.', 'zinn-cache' ),
-				'reason'  => __( 'The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard.', 'zinn-cache' ),
-				'details' => self::detail_rows( $settings, $litespeed, $redis_ok ),
-			);
+		// On a server that is not LiteSpeed the page cache is the disk cache (Page_Cache). It needs
+		// its drop-in and WP_CACHE; when either is missing, say which, because "on" is otherwise a
+		// tick that caches nothing.
+		if ( $settings['lscache_enabled'] && ! $litespeed && ! Page_Cache::is_ready() ) {
+			$result = Page_Cache::sync( $settings, false );
+			if ( is_wp_error( $result ) || ! Page_Cache::is_ready() ) {
+				return array(
+					'state'   => 'degraded',
+					'summary' => __( 'The page cache is on, but pages are not being stored yet.', 'zinn-cache' ),
+					'reason'  => is_wp_error( $result ) ? $result->get_error_message() : __( 'WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php.', 'zinn-cache' ),
+					'details' => self::detail_rows( $settings, $litespeed, $redis_ok ),
+				);
+			}
 		}
 
 		if ( $settings['object_cache_enabled'] && ! $redis_ok ) {
@@ -517,8 +523,12 @@ final class Admin {
 			array(
 				'label' => __( 'Web server', 'zinn-cache' ),
 				'value' => $litespeed
-					? __( 'LiteSpeed — page caching available', 'zinn-cache' )
-					: __( 'not LiteSpeed — page caching unavailable', 'zinn-cache' ),
+					? __( 'LiteSpeed — pages are cached by the web server', 'zinn-cache' )
+					: __( 'not LiteSpeed — pages are cached on disk by this plugin', 'zinn-cache' ),
+			),
+			array(
+				'label' => __( 'Pages stored on disk', 'zinn-cache' ),
+				'value' => number_format_i18n( Page_Cache::stats()['pages'] ),
 			),
 			array(
 				'label' => __( 'Redis support', 'zinn-cache' ),

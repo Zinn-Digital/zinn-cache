@@ -21,8 +21,8 @@ msgstr "https://zinndigital.com/wordpress-plugins/zinn-cache"
 
 #. Description of the plugin
 #: zinn-cache.php
-msgid "For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe WordPress/WooCommerce exclusions. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead."
-msgstr "ສຳລັບເວັບໄຊທີ່ໂຮສກັບ Zinn Digital®. ຄວບຄຸມແຄຊໜ້າເວັບທີ່ເຊີບເວີ Zinn® ຂອງທ່ານມີໃຫ້ຢູ່ແລ້ວ — ການລຶບລ້າງຂໍ້ມູນເກົ່າອັດຕະໂນມັດອັດສະລິຍະເມື່ອເນື້ອຫາປ່ຽນແປງ, ຈຸດເຊື່ອມຕໍ່ສຳລັບການລຶບລ້າງທີ່ລົງລາຍເຊັນສຳລັບເຄື່ອງມືຂອງທ່ານເອງ, ປຸ່ມສະຫຼັບແຄຊອອບເຈັກ Redis ແລະ ການຍົກເວັ້ນ WordPress/WooCommerce ທີ່ປອດໄພ. ນີ້ແມ່ນຕົວຄວບຄຸມແຄຊ, ບໍ່ແມ່ນເຄື່ອງຈັກແຄຊ. ໂຮສຢູ່ບ່ອນອື່ນບໍ? ໃຫ້ຕິດຕັ້ງ Zinn® Cache Engine ແທນ."
+msgid "A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works."
+msgstr "ແຄຊໜ້າເວັບ ແລະ ແຄຊອອບເຈັກ Redis ສຳລັບເວັບໄຊ WordPress ໃດກໍຕາມ. ໃຊ້ແຄຊເຊີເວີ LiteSpeed ໃນບ່ອນທີ່ມີ ແລະ ໃຊ້ແຄຊດິສກ໌ຂອງຕົນເອງໃນບ່ອນອື່ນໆທັງໝົດ, ລຶບແຄຊສະເພາະສ່ວນທີ່ມີຜົນກະທົບຈາກການປ່ຽນແປງເທົ່ານັ້ນ, ແລະ ພິສູດວ່າການເຊື່ອມຕໍ່ Redis ຂອງມັນເຮັດວຽກໄດ້."
 
 #. Author of the plugin
 #: zinn-cache.php
@@ -69,12 +69,12 @@ msgid "Full-page cache"
 msgstr "ແຄຊເຕັມໜ້າ"
 
 #: includes/class-admin.php:148
-msgid "Served by LiteSpeed at the web server, before WordPress runs. This is where nearly all the speed comes from."
-msgstr "ໃຫ້ບໍລິການໂດຍ LiteSpeed ຢູ່ເວັບເຊີບເວີ, ກ່ອນທີ່ WordPress ຈະເຮັດວຽກ. ນີ້ແມ່ນບ່ອນທີ່ຄວາມໄວເກືອບທັງໝົດມາຈາກ."
+msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
+msgstr "ຢູ່ເທິງເຊີເວີ LiteSpeed, ໜ້າເວັບຈະຖືກບໍລິການໂດຍເວັບເຊີເວີກ່ອນທີ່ WordPress ຈະທຳງານ. ຢູ່ເທິງເຊີເວີອື່ນໆ, ປລັກອິນນີ້ຈະເກັບຮັກສາແຕ່ລະໜ້າເວັບໄວ້ເປັນໄຟລ໌ ແລະ ບໍລິການໜ້ານັ້ນກ່ອນທີ່ WordPress ຈະໂຫຼດ. ນີ້ແມ່ນບ່ອນທີ່ຄວາມໄວເກືອບທັງໝົດມາຈາກ."
 
 #: includes/class-admin.php:154
-msgid "Send LiteSpeed cache-control and tag headers on cacheable pages"
-msgstr "ສົ່ງສ່ວນຫົວ cache-control ແລະ tag ຂອງ LiteSpeed ໃນໜ້າທີ່ສາມາດແຄຊ໌ໄດ້"
+msgid "Cache pages for visitors who are not signed in"
+msgstr "ລ້າງແຄຊ໌ໜ້າເວັບສຳລັບຜູ້ຢ້ຽມຊົມທີ່ຍັງບໍ່ທັນເຂົ້າສູ່ລະບົບ"
 
 #: includes/class-admin.php:160
 msgid "How long a page stays cached"
@@ -253,139 +253,143 @@ msgstr "ໜ້າທີ່ຖືກແຄສໄວ້ທັງໝົດໄດ້
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "ແຄດຂອງວັດຖຸໄດ້ຖືກຕິດຕັ້ງແລ້ວ, ແຕ່ມັນບໍ່ໄດ້ຈັດເກັບຫຍັງເລີຍ."
 
-#: includes/class-admin.php:428
-msgid "The page cache is on, but this server is not LiteSpeed."
-msgstr "ແຄຊ໌ໜ້າເວັບເປີດຢູ່, ແຕ່ເຊີບເວີນີ້ບໍ່ແມ່ນ LiteSpeed."
+#: includes/class-admin.php:433
+msgid "The page cache is on, but pages are not being stored yet."
+msgstr "ແຄຊ໌ໜ້າເວັບເປີດຢູ່, ແຕ່ຍັງບໍ່ທັນມີການຈັດເກັບໜ້າເວັບເທື່ອ."
 
-#: includes/class-admin.php:429
-msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
-msgstr "ມີການສົ່ງ ສ່ວນຫົວຂອງແຄຊ (cache headers) ແຕ່ບໍ່ມີຫຍັງອ່ານພວກມັນ, ດັ່ງນັ້ນ ໜ້າເວັບຈຶ່ງບໍ່ໄດ້ຖືກຈັດເກັບໄວ້ໃນແຄຊຢ່າງແທ້ຈິງ. ກະລຸນາສອບຖາມຜູ້ໃຫ້ບໍລິການໂຮດຕິ້ງຂອງທ່ານວ່າ ມີ LiteSpeed ໃຫ້ບໍລິການຫຼືບໍ່, ຫຼື ຍ້າຍມາໃຊ້ບໍລິການໂຮດຕິ້ງຂອງ Zinn® ທີ່ມີມາໃຫ້ເປັນມາດຕະຖານ."
+#: includes/class-admin.php:434
+msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
+msgstr "WordPress ຍັງບໍ່ໄດ້ໂຫຼດລະບົບ drop-in ສຳລັບການແຄຊ໌ໜ້າເວັບເທື່ອ. ມັນຈະເລີ່ມຕົ້ນໃນການໂຫຼດໜ້າຕໍ່ໄປ; ຖ້າຫາກວ່າມັນບໍ່ເຮັດວຽກ, ກະລຸນາ ກວດສອບວ່າ WP_CACHE ຖືກຕັ້ງຄ່າເປັນ true ໃນໄຟລ໌ wp-config.php ແລ້ວຫຼືບໍ່."
 
-#: includes/class-admin.php:437
+#: includes/class-admin.php:443
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ມີການເປີດໃຊ້ Object cache ແລ້ວ, ແຕ່ເຊີເວີນີ້ບໍ່ຮອງຮັບ Redis."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:444
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "ສ່ວນຂະຫຍາຍ phpredis ບໍ່ໄດ້ຖືກຕິດຕັ້ງ, ດັ່ງນັ້ນຈຶ່ງບໍ່ສາມາດໃຊ້ drop- ແລະ WordPress ກັບຄືນໄປໃຊ້ແຄຊໃນໜ່ວຍຄວາມຈຳຂອງຕົນເອງ. ກະລຸນາຂໍໃຫ້ໂຮສຂອງທ່ານເປີດໃຊ້ງານ phpredis."
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Nothing is being cached."
 msgstr "ບໍ່ມີການບັນທຶກແຄຊ໌."
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:453
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "ມີການປິດແຄຊ໌ທັງສອງຢ່າງ, ດັ່ງນັ້ນ ປລັກອິນນີ້ຈຶ່ງບໍ່ໄດ້ເຮັດໃຫ້ເວັບໄຊໄວຂຶ້ນເລີຍ."
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Caching is active on this site."
 msgstr "ການແຄຊ໌ (Caching) ພວມເປີດໃຊ້ງານຢູ່ໃນເວັບໄຊນີ້."
 
-#: includes/class-admin.php:489
+#: includes/class-admin.php:495
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis ປະຕິເສດຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານ. ກະລຸນາ ກວດສອບ ຂໍ້ມູນປະຈຳຕົວ Redis ໃນ wp-config.php ຫຼື ຢູ່ໃນໜ້ານີ້."
 
-#: includes/class-admin.php:491
+#: includes/class-admin.php:497
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis ຍອມຮັບການເຂົ້າສູ່ລະບົບແລ້ວ ແຕ່ບໍ່ອະນຸຍາດໃຫ້ເວັບໄຊນີ້ຈັດເກັດຄີຂອງຕົນ. ຜູ້ໃຊ້ Redis ຕ້ອງມີສິດອະນຸຍາດສຳລັບຄຳນຳໜ້າຄີຂອງເວັບໄຊນີ້."
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis ໄດ້ປະຕິເສດໝາຍເລກຖານຂໍ້ມູນ. ກະລຸນາ ກວດສອບ ການຕັ້ງຄ່າຖານຂໍ້ມູນ Redis."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:501
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis ຫນ່ວຍຄວາມຈໍາເຕັມ ແລະ ປະຕິເສດຂໍ້ມູນໃຫມ່."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:503
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "ສ່ວນຂະຫຍາຍ phpredis ບໍ່ໄດ້ຖືກຕິດຕັ້ງ, ດັ່ງນັ້ນ WordPress ຈຶ່ງນຳໃຊ້ແຄຊ໌ໃນໜ່ວຍຄວາມຈຳຂອງຕົນເອງ. ກະລຸນາແຈ້ງຜູ້ໃຫ້ບໍລິການໂຮດຕິ້ງຂອງທ່ານເພື່ອເປີດໃຊ້ງານ phpredis."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:505
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED ຖືກຕັ້ງຄ່າໄວ້ໃນ wp-config.php, ດັ່ງນັ້ນ ລະບົບແຄຊ໌ວັດຖຸຈຶ່ງຖືກປິດການໃຊ້ງານ."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບເຊີບເວີ Redis ໄດ້. ກະລຸນາ ກວດສອບໂຮສ ແລະ ພອດຂອງ Redis, ລວມທັງກວດສອບວ່າ Redis ກໍາລັງເຮັດວຽກຢູ່."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:509
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis ບໍ່ໄດ້ສົ່ງຄືນຄ່າທີ່ຫາກໍ່ຖືກຂຽນລົງໄປ. ໃຫ້ກວດສອບບັນທຶກ (logs) ຂອງເຊີບເວີ Redis."
 
-#: includes/class-admin.php:518
+#: includes/class-admin.php:524
 msgid "Web server"
 msgstr "ເວັບເຊີເວີ"
 
-#: includes/class-admin.php:520
-msgid "LiteSpeed — page caching available"
-msgstr "LiteSpeed — ມີການເກັບແຄຊໜ້າເວັບໃຫ້ໃຊ້ງານ"
+#: includes/class-admin.php:526
+msgid "LiteSpeed — pages are cached by the web server"
+msgstr "LiteSpeed — ເວັບໄຊຖືກແຄຊ໌ໂດຍເວັບເຊີບເວີ"
 
-#: includes/class-admin.php:521
-msgid "not LiteSpeed — page caching unavailable"
-msgstr "ບໍ່ແມ່ນ LiteSpeed — ການແຄຊ໌ໜ້າເວັບບໍ່ສາມາດໃຊ້ງານໄດ້"
+#: includes/class-admin.php:527
+msgid "not LiteSpeed — pages are cached on disk by this plugin"
+msgstr "ບໍ່ແມ່ນ LiteSpeed — ໜ້າເວັບຕ່າງໆຖືກເກັບໄວ້ໃນແຄຊ໌ເທິງດິສກ໌ໂດຍປລັກອິນນີ້"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:530
+msgid "Pages stored on disk"
+msgstr "ໜ້າຕ່າງໆທີ່ເກັບໄວ້ໃນດິດ"
+
+#: includes/class-admin.php:534
 msgid "Redis support"
 msgstr "ການຮອງຮັບ Redis"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:536
 msgid "phpredis is installed"
 msgstr "phpredis ໄດ້ຖືກຕິດຕັ້ງແລ້ວ"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:537
 msgid "phpredis is not installed"
 msgstr "phpredis ບໍ່ໄດ້ຖືກຕິດຕັ້ງ"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:540
 msgid "Page lifetime"
 msgstr "ອາຍຸການຂອງໜ້າເວັບ"
 
-#: includes/class-admin.php:605
+#: includes/class-admin.php:615
 msgid "You are not allowed to purge the cache."
 msgstr "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດໃຫ້ລ້າງແຄສ."
 
-#: includes/class-admin.php:611
+#: includes/class-admin.php:621
 msgid "Cache purge requested."
 msgstr "ໄດ້ຮ້ອງຂໍການລ້າງແຄສແລ້ວ."
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:649
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: ປລັກອິນ object-cache ອື່ນໄດ້ຖືກຕິດຕັ້ງໄວ້ແລ້ວ, ດັ່ງນັ້ນ object cache ຂອງ Redis ຈຶ່ງບໍ່ໄດ້ຖືກຈັດການໂດຍປລັກອິນນີ້."
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:663
 msgid "detected"
 msgstr "ກວດພົບ"
 
-#: includes/class-admin.php:654
+#: includes/class-admin.php:664
 msgid "not detected"
 msgstr "ບໍ່ພົບ"
 
-#: includes/class-admin.php:658
+#: includes/class-admin.php:668
 msgid "phpredis extension missing"
 msgstr "ບໍ່ມີ extension phpredis"
 
-#: includes/class-admin.php:660
+#: includes/class-admin.php:670
 msgid "installed, not storing anything"
 msgstr "ຕິດຕັ້ງແລ້ວ, ບໍ່ໄດ້ຈັດເກັບຫຍັງໄວ້"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:672
 msgid "active, managed by your host"
 msgstr "ເປີດໃຊ້ງານ, ຈັດການໂດຍໂຮສຂອງທ່ານ"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:674
 msgid "active"
 msgstr "ເປີດໃຊ້ງານ"
 
-#: includes/class-admin.php:666
+#: includes/class-admin.php:676
 msgid "inactive"
 msgstr "ບໍ່ເປີດໃຊ້ງານ"
 
-#: includes/class-admin.php:671
+#: includes/class-admin.php:681
 msgid "LiteSpeed cache:"
 msgstr "ແຄສ LiteSpeed:"
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:683
 msgid "Redis object cache:"
 msgstr "ແຄສອັອບເຈັກ Redis:"
 
@@ -417,6 +421,18 @@ msgstr "ບໍ່ສາມາດລົບ object-cache drop-in ໄດ້."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "ລະບົບໄຟລ໌ຂອງ WordPress ບໍ່ສາມາດຂຽນໄດ້, ສະນັ້ນຈຶ່ງບໍ່ສາມາດຈັດການ object-cache drop-in ໄດ້."
 
+#: includes/class-page-cache.php:291
+msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
+msgstr "ປລັກອິນໜ່ວຍຄວາມຈຳສໍາຮອງໜ້າເວັບອື່ນໄດ້ຕິດຕັ້ງ wp-content/advanced-cache.php ແລ້ວ. ກະລຸນາຖອນການຕິດຕັ້ງປລັກອິນນັ້ນອອກກ່ອນ, ຫຼື ນຳໃຊ້ໜ່ວຍຄວາມຈຳສໍາຮອງໜ້າເວັບຂອງປລັກອິນນັ້ນຕໍ່ໄປ."
+
+#: includes/class-page-cache.php:294
+msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
+msgstr "ບໍ່ສາມາດຂຽນໂຟນເດີ wp-content/cache/zinn-cache ໄດ້, ດັ່ງນັ້ນຈຶ່ງບໍ່ສາມາດບັນທຶກໜ້າເວັບໄວ້ໃນແຄຊໄດ້."
+
+#: includes/class-page-cache.php:301
+msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
+msgstr "ບໍ່ສາມາດຂຽນ wp-content/advanced-cache.php ໄດ້, ດັ່ງນັ້ນໜ້າເວັບຈຶ່ງບໍ່ສາມາດບັນທຶກໄວ້ໃນແຄຊໄດ້."
+
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
 msgstr "ເບິ່ງບັນທຶກການປ່ອຍເວີຊັນຂອງ Zinn Digital®."
@@ -434,6 +450,64 @@ msgstr "ບໍ່ສາມາດດາວໂຫລດການອັບເດດ
 #: includes/class-updater.php:327
 msgid "The downloaded update failed its integrity check and was not installed."
 msgstr "ການອັບເດດທີ່ດາວໂຫຼດມາບໍ່ຜ່ານການກວດສອບຄວາມຖືກຕ້ອງ ຈຶ່ງບໍ່ໄດ້ຖືກຕິດຕັ້ງ."
+
+#: includes/class-upsell.php:85
+msgid "Go Pro"
+msgstr "ໄປໂປຣ"
+
+#: includes/class-upsell.php:112
+msgid "A cache analytics screen: hit ratio, memory, keys and the slowest cache commands."
+msgstr "ໜ້າຈໍວິເຄາະແຄຊ: ອັດຕາການໂຫຼດສຳເລັດ, ຫນ່ວຍຄວາມຈຳ, ຄີ ແລະ ຄຳສັ່ງແຄຊທີ່ຊ້າທີ່ສຸດ."
+
+#: includes/class-upsell.php:113
+msgid "A slow-query and uncached-call finder that names the plugin or theme responsible."
+msgstr "ເຄື່ອງມືຊອກຫາການສອບຖາມຊ້າ ແລະ ການໂທທີ່ບໍ່ໄດ້ຖືກແຄຊ໌ ເຊິ່ງລະບຸຊື່ປລັກອິນ ຫຼື ທີມທີ່ຮັບຜິດຊອບ."
+
+#: includes/class-upsell.php:114
+msgid "An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer."
+msgstr "ຊັ້ນຂໍ້ມູນ APCu ໃນໜ່ວຍຄວາມຈຳຢູ່ທາງໜ້າ Redis ສຳລັບຄີທີ່ມີການນຳໃຊ້ຫຼາຍທີ່ສຸດ ພ້ອມທັງການດຶງຂໍ້ມູນລ່ວງໜ້າ, ການບີບອັດ ແລະ ຕົວຈັດລຳາດັບ igbinary."
+
+#: includes/class-upsell.php:115
+msgid "Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together."
+msgstr "ການລຶບລ້າງຂໍ້ມູນແບບແທັກສຳລັບບົດຄວາມ, ໝວດໝູ່ ແລະ ຜະລິດຕະພັນ WooCommerce, ດັ່ງນັ້ນຈຶ່ງມີພຽງແຕ່ສ່ວນທີ່ປ່ຽນແປງເທົ່າຖືກລຶບລ້າງ, ໂດຍມີການລຶບລ້າງແຄຊຂອງໜ້າເວັບ ແລະ ວັດຖຸໄປພ້ອມກັນ."
+
+#: includes/class-upsell.php:116
+msgid "Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript."
+msgstr "ການອຸ່ນແຄສແບບອັດຕະໂນມັດຫຼັງຈາກການລຶບລ້າງ, ຮູບພາບ WebP ແລະ AVIF, ການລຶບ CSS ທີ່ບໍ່ໄດ້ໃຊ້ ແລະ ການໜ່ວງເວລາ JavaScript."
+
+#: includes/class-upsell.php:117
+msgid "Scheduled database clean-up with a preview, and per-page cache rules."
+msgstr "ການລ້າງຖານຂໍ້ມູນຕາມກຳນົດເວລາພ້ອມກັບການເບິ່ງກ່ອນ ແລະ ກົດລະບຽບແຄຊ໌ຕໍ່ໜ້າ."
+
+#: includes/class-upsell.php:118
+msgid "Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills."
+msgstr "ການແຈ້ງເຕືອນສະຖານະແຄຊ (Cache) ໃນແດສບອດ Zinn Digital® ຂອງທ່ານ ເມື່ອອັດຕາການໂຫຼດຂໍ້ມູນສຳເລັດຫຼຸດລົງ ຫຼື ໜ່ວຍຄວາມຈຳເຕັມ."
+
+#: includes/class-upsell.php:132
+msgid "Everything on the other tabs is free and stays free. Pro installs on top of this plugin and adds:"
+msgstr "ທຸກຢ່າງໃນແທັບອື່ນແມ່ນຟຣີ ແລະ ຈະຟຣີຕະຫຼອດໄປ. Pro ຕິດຕັ້ງທັບເທິງປລັກອິນນີ້ ແລະ ເພີ່ມ:"
+
+#: includes/class-upsell.php:134
+msgid "See what Pro costs"
+msgstr "ເບິ່ງລາຄາຂອງ Pro"
+
+#. translators: 1: yearly price for one site, 2: for five sites, 3: for unlimited sites (each already formatted, e.g. $49).
+#: includes/class-upsell.php:138
+#, php-format
+msgid "Every plan starts with a 14-day free trial, no card needed: %1$s a year for one site, %2$s for five sites, %3$s for unlimited sites."
+msgstr "ທຸກແຜນເລີ່ມຕົ້ນດ້ວຍການທົດລອງໃຊ້ຟຣີ 14 ວັນ, ບໍ່ຈຳເປັນຕ້ອງໃຊ້ບັດ: %1$s ຕໍ່ປີສຳລັບເວັບໄຊດຽວ, %2$s ສໍາລັບຫ້າເວັບໄຊ, %3$s ສໍາລັບເວັບໄຊທີ່ບໍ່ຈຳກັດ."
+
+#: includes/class-wp-config.php:66
+msgid "wp-config.php was not found, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "ຫາບໍ່ພົບ wp-config.php, ດັ່ງນັ້ນຈຶ່ງບໍ່ສາມາດເປີດໃຊ້ງານ WP_CACHE ໄດ້. ກະລຸນາເພີ່ມ define( 'WP_CACHE', true ); ໃສ່ໃນໄຟລ໌ດັ່ງກ່າວ."
+
+#: includes/class-wp-config.php:72
+msgid "wp-config.php already defines WP_CACHE as false, so the page cache cannot start. Change it to true."
+msgstr "wp-config.php ໄດ້ກຳນົດ WP_CACHE ໄວ້ເປັນ false ແລ້ວ, ສະນັ້ນ ແຄຊ໌ຂອງໜ້າເວັບຈຶ່ງບໍ່ສາມາດເລີ່ມຕົ້ນໄດ້. ກະລຸນາປ່ຽນມັນເປັນ true."
+
+#: includes/class-wp-config.php:79
+msgid "wp-config.php is not writable, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "ບໍ່ສາມາດຂຽນໃສ່ wp-config.php ໄດ້, ດັ່ງນັ້ນຈຶ່ງບໍ່ສາມາດເປີດໃຊ້ງານ WP_CACHE ໄດ້. ກະລຸນາເພີ່ມ define( 'WP_CACHE', true ); ໃສ່ໃນໄຟລ໌ດັ່ງກ່າວ."
 
 #: includes/class-zinn-cache-admin-fields.php:580
 msgid "Stored. Type a new value to replace it."
@@ -460,6 +534,8 @@ msgid "Remove this row"
 msgstr "ລຶບແຖວນີ້"
 
 #: includes/class-zinn-cache-admin-fields.php:725
+#: includes/freemius-strings.php:2132
+#: includes/freemius-strings.php:4997
 msgid "Remove"
 msgstr "ລຶບອອກ"
 
@@ -503,6 +579,8 @@ msgid "Settings sections"
 msgstr "ພາກສ່ວນການຕັ້ງຄ່າ"
 
 #: includes/class-zinn-cache-admin-ui.php:871
+#: includes/freemius-strings.php:2420
+#: includes/freemius-strings.php:5291
 msgid "Support"
 msgstr "ຊັບພອດ"
 
@@ -739,3 +817,4067 @@ msgstr "ໃຊ້ສວີ ແລະ ຂະໜາດຂອງຂ້ອຍເອ�
 #: includes/class-zinn-cache-style-presets.php:127
 msgid "Leave this off and the preset is used exactly as it is."
 msgstr "ປິດອັນນີ້ໄວ້ ແລະ ການຕັ້ງຄ່າລ່ວງໜ້າຈະຖືກໃຊ້ຢ່າງແນ່ນອນຕາມທີ່ມັນເປັນ."
+
+#: includes/freemius-strings.php:21
+#: includes/freemius-strings.php:6306
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "a license key"
+msgstr "ຄີອະນຸຍາດ"
+
+#: includes/freemius-strings.php:25
+#: includes/freemius-strings.php:3062
+msgid "A user has not yet been associated with the license, which is necessary to prevent unauthorized activation. To assign the license to your user, you agree to share your WordPress user's full name and email address."
+msgstr "ຍັງບໍ່ທັນມີຜູ້ໃຊ້ທີ່ຖືກເຊື່ອມໂຍງກັບໃບອະນຸຍາດເທື່ອ, ຍ້ອນມີຄວາມຈໍາເປັນຕ້ອງປ້ອງກັນການເປີດໃຊ້ງານໂດຍບໍ່ໄດ້ຮັບອະນຸຍາດ. ເພື່ອມອບໃບອະນຸຍາດໃຫ້ກັບຜູ້ໃຊ້ຂອງທ່ານ, ທ່ານຍິນຍອມທີ່ຈະແບ່ງປັນຊື່ເຕັມ ແລະ ທີ່ຢູ່ອີເມວຂອງຜູ້ໃຊ້ WordPress ຂອງທ່ານ."
+
+#: includes/freemius-strings.php:29
+#: includes/freemius-strings.php:6253
+msgid "the above-mentioned sites"
+msgstr "ເວັບໄຊທີ່ໄດ້ກ່າວມາຂ້າງເທິງນີ້"
+
+#: includes/freemius-strings.php:33
+#: includes/freemius-strings.php:3072
+msgid "Account"
+msgstr "ບັນຊີ"
+
+#: includes/freemius-strings.php:37
+#: includes/freemius-strings.php:3077
+msgid "Account Details"
+msgstr "ລາຍລະອຽດບັນຊີ"
+
+#: includes/freemius-strings.php:41
+#: includes/freemius-strings.php:3082
+msgid "Account is pending activation. Please check your email and click the link to activate your account and then submit the affiliate form again."
+msgstr "ບັນຊີຂອງທ່ານກຳລັງລໍຖ້າການເປີດໃຊ້ງານ. ກະລຸນາ ກວດສອບອີເມວຂອງທ່ານ ແລະ ຄລິກໃສ່ລິ້ງ ເພື່ອເປີດໃຊ້ງານບັນຊີຂອງທ່ານ ແລ້ວສົ່ງແບບຟອມສະມາຊິກຄືນໃໝ່."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:46
+#: includes/freemius-strings.php:5838
+#, php-format
+msgid "Would you like to merge %1$s into %2$s?"
+msgstr "ທ່ານຕ້ອງການລວມ %1$s ເຂົ້າໃນ %2$s ບໍ່?"
+
+#: includes/freemius-strings.php:50
+#: includes/freemius-strings.php:3087
+msgid "Actions"
+msgstr "ການດໍາເນີນການ"
+
+#: includes/freemius-strings.php:54
+#: includes/freemius-strings.php:3092
+msgid "Activate"
+msgstr "ເປີດໃຊ້ງານ"
+
+#: includes/freemius-strings.php:58
+#: includes/freemius-strings.php:62
+#: includes/freemius-strings.php:3115
+msgid "Activate Free Version"
+msgstr "ເປີດໃຊ້ງານເວີຊັນຟຣີ"
+
+#: includes/freemius-strings.php:66
+#: includes/freemius-strings.php:3120
+msgid "Activate License"
+msgstr "ເປີດໃຊ້ງານໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:70
+#: includes/freemius-strings.php:6131
+msgid "activate a license here"
+msgstr "ເປີດໃຊ້ງານໃບອະນຸຍາດທີ່ນີ້"
+
+#: includes/freemius-strings.php:74
+#: includes/freemius-strings.php:4793
+msgid "Please enter the license key that you received in the email right after the purchase:"
+msgstr "ກະລຸນາປ້ອນລະຫັດໃບອະນຸຍາດທີ່ທ່ານໄດ້ຮັບໃນອີເມວທັນທີຫຼັງຈາກການຊື້:"
+
+#: includes/freemius-strings.php:78
+#: includes/freemius-strings.php:3130
+msgid "Activate license on all sites in the network."
+msgstr "ເປີດໃຊ້ງານໃບອະນຸຍາດໃນທຸກເວັບໄຊໃນເຄືອຂ່າຍ."
+
+#: includes/freemius-strings.php:82
+#: includes/freemius-strings.php:3125
+msgid "Activate license on all pending sites."
+msgstr "ເປີດໃຊ້ງານໃບອະນຸຍາດໃນທຸກເວັບໄຊທີ່ລໍຖ້າຢູ່."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:87
+#: includes/freemius-strings.php:2859
+#, php-format
+msgid " The paid version of %1$s is already installed. Please activate it to start benefiting from the %2$s features. %3$s"
+msgstr "ເວີຊັນທີ່ຕ້ອງຈ່າຍເງິນຂອງ %1$s ໄດ້ຖືກຕິດຕັ້ງແລ້ວ. ກະລຸນາເປີດໃຊ້ງານມັນເພື່ອເລີ່ມຕົ້ນຮັບຜົນປະໂຫຍດຈາກຄຸນສົມບັດຂອງ %2$s. %3$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:92
+#: includes/freemius-strings.php:2865
+#, php-format
+msgid " The paid version of %1$s is already installed. Please navigate to the %2$s to activate it and start benefiting from the %3$s features."
+msgstr "ເວີຊັນທີ່ຕ້ອງຈ່າຍເງິນຂອງ %1$s ໄດ້ຖືກຕິດຕັ້ງແລ້ວ. ກະລຸນາໄປທີ່ %2$s ເພື່ອເປີດໃຊ້ງານ ແລະ ເລີ່ມຮັບຜົນປະໂຫຍດຈາກຄຸນສົມບັດຕ່າງໆຂອງ %3$s."
+
+#: includes/freemius-strings.php:96
+#: includes/freemius-strings.php:3135
+msgid "Activate this add-on"
+msgstr "ເປີດໃຊ້ງານສ່ວນເສີມນີ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:101
+#: includes/freemius-strings.php:3098
+#, php-format
+msgid "Activate %s"
+msgstr "ເປີດໃຊ້ງານ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:106
+#: includes/freemius-strings.php:3110
+#, php-format
+msgid "Activate %s features"
+msgstr "ເປີດໃຊ້ງານຄຸນສົມບັດ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:111
+#: includes/freemius-strings.php:6276
+#, php-format
+msgctxt "%s - plugin name. As complete \"PluginX\" activation now"
+msgid "Complete \"%s\" Activation Now"
+msgstr "ດໍາເນີນການເປີດໃຊ້ງານ \"%s\" ໃຫ້ສຳເລັດດຽວນີ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:116
+#: includes/freemius-strings.php:3104
+#, php-format
+msgid "Activate %s Plan"
+msgstr "ເປີດໃຊ້ງານແຜນ %s"
+
+#: includes/freemius-strings.php:120
+#: includes/freemius-strings.php:3140
+msgid "Activated"
+msgstr "ເປີດໃຊ້ງານແລ້ວ"
+
+#: includes/freemius-strings.php:124
+#: includes/freemius-strings.php:3145
+msgid "Activating"
+msgstr "ກຳລັງເປີດໃຊ້ງານ"
+
+#: includes/freemius-strings.php:128
+#: includes/freemius-strings.php:3150
+msgid "Activating license"
+msgstr "ກຳລັງເປີດໃຊ້ງານສິດອະນຸຍາດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:133
+#: includes/freemius-strings.php:6022
+#, php-format
+msgid "Your account was successfully activated with the %s plan."
+msgstr "ບັນຊີຂອງທ່ານໄດ້ຮັບການເປີດໃຊ້ງານສຳເລັດແລ້ວດ້ວຍແພັກເກດ %s."
+
+#: includes/freemius-strings.php:137
+#: includes/freemius-strings.php:6366
+msgctxt "active add-on"
+msgid "Active"
+msgstr "ນຳໃຊ້ຢູ່"
+
+#: includes/freemius-strings.php:141
+#: includes/freemius-strings.php:3167
+msgid "Add another domain"
+msgstr "ເພີ່ມໂດເມນອື່ນອີກ"
+
+#: includes/freemius-strings.php:145
+#: includes/freemius-strings.php:3177
+msgid "Add-Ons"
+msgstr "ສ່ວນເສີມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:150
+#: includes/freemius-strings.php:3156
+#, php-format
+msgid "Add Ons for %s"
+msgstr "ສ່ວນເສີມສຳລັບ %s"
+
+#: includes/freemius-strings.php:154
+#: includes/freemius-strings.php:5751
+msgid "We couldn't load the add-ons list. It's probably an issue on our side, please try to come back in few minutes."
+msgstr "ພວກເຮົາບໍ່ສາມາດໂຫຼດລາຍຊື່ສ່ວນເສີມໄດ້. ອາດຈະເປັນບັນຫາທາງຝ່າຍພວກເຮົາ, ກະລຸນາລອງກັບຄືນົາມາໃໝ່ໃນອີກສອງສາມນາທີຂ້າງໜ້າ."
+
+#: includes/freemius-strings.php:158
+#: includes/freemius-strings.php:3172
+msgid "Add-On"
+msgstr "ສ່ວນເສີມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:163
+#: includes/freemius-strings.php:2931
+#, php-format
+msgid "%s is a premium only add-on. You have to purchase a license first before activating the plugin."
+msgstr "%s ຕື່ມເສີມສະເພາະແບບພຣີມຽມເທົ່ານັ້ນ. ທ່ານຕ້ອງຊື້ໃບອະນຸຍາດກ່ອນຈຶ່ງຈະສາມາດເປີດໃຊ້ງານປລັກອິນໄດ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:168
+#: includes/freemius-strings.php:2883
+#, php-format
+msgid "%s Add-on was successfully purchased."
+msgstr "ຊື້ສ່ວນເສີມ %s ສຳເລັດແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:173
+#: includes/freemius-strings.php:5993
+#, php-format
+msgid "Your %s Add-on plan was successfully upgraded."
+msgstr "ແຜນສ່ວນເສີມ %s ຂອງທ່ານໄດ້ຮັບການອັບເກຣດຮຽບຮ້ອຍແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:178
+#: includes/freemius-strings.php:2925
+#, php-format
+msgid "%s free trial was successfully cancelled. Since the add-on is premium only it was automatically deactivated. If you like to use it in the future, you'll have to purchase a license."
+msgstr "ການທົດລອງໃຊ້ຟຣີ %s ໄດ້ຖືກຍົກເລີກສຳເລັດແລ້ວ. ເນື່ອງຈາກສ່ວນເສີມນີ້ມີສະເພາະແບບພຣີມຽມເທົ່ານັ້ນ ມັນຈຶ່ງຖືກປິດການໃຊ້ງານໂດຍອັດຕະໂນມັດ. ຖ້າທ່ານຕ້ອງການໃຊ້ງານມັນໃນອະນາຄົດ, ທ່ານຈະຕ້ອງຊື້ສິດອະນຸຍາດ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:183
+#: includes/freemius-strings.php:6378
+#, php-format
+msgctxt "addonX cannot run..."
+msgid "%s cannot run without the plugin."
+msgstr "%s ບໍ່ສາມາດເຮັດວຽກໄດ້ໂດຍບໍ່ມີປລັກອິນ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:188
+#: includes/freemius-strings.php:6372
+#, php-format
+msgctxt "addonX cannot run without pluginY"
+msgid "%1$s cannot run without %2$s."
+msgstr "%1$s ບໍ່ສາມາດເຮັດວຽກໄດ້ໂດຍບໍ່ມີ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:193
+#: includes/freemius-strings.php:4332
+#, php-format
+msgid "Just letting you know that the add-ons information of %s is being pulled from an external server."
+msgstr "ພຽງແຕ່ແຈ້ງໃຫ້ທ່ານາບວ່າຂໍ້ມູນສ່ວນເສີມຂອງ %s ຖືກດຶງມາຈາກເຊີບເວີພາຍນອກ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:198
+#: includes/freemius-strings.php:3162
+#, php-format
+msgid "Add Ons of module %s"
+msgstr "ສ່ວນເສີມຂອງໂມດູນ %s"
+
+#: includes/freemius-strings.php:202
+#: includes/freemius-strings.php:3187
+msgid "Address"
+msgstr "ທີ່ຢູ່"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:207
+#: includes/freemius-strings.php:3193
+#, php-format
+msgid "Address Line %d"
+msgstr "ທີ່ຢູ່ແຖວ %d"
+
+#: includes/freemius-strings.php:211
+#: includes/freemius-strings.php:3198
+msgid "Affiliate"
+msgstr "ຜູ້ແນະນຳ"
+
+#: includes/freemius-strings.php:215
+#: includes/freemius-strings.php:3830
+msgid "Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support."
+msgstr "ເນື່ອງຈາກການລະເມີດຂໍ້ກຳນົດພັນທະມິດຂອງພວກເຮົາ, ພວກເຮົາໄດ້ຕັດສິນໃຈບລັອກບັນຊີພັນທະມິດຂອງທ່ານໄວ້ຊົ່ວຄາວ. ຖ້າທ່ານມີຄຳຖາມໃດໆ, ກະລຸນາຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນ."
+
+#: includes/freemius-strings.php:219
+#: includes/freemius-strings.php:6033
+msgid "Your affiliation account was temporarily suspended."
+msgstr "ບັນຊີພັນທະມິດຂອງທ່ານຖືກໂຈະໄວ້ຊົ່ວຄາວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:224
+#: includes/freemius-strings.php:6028
+#, php-format
+msgid "Your affiliate application for %1$s has been accepted! Log in to your affiliate area at: %2$s."
+msgstr "ຄຳຮ້ອງສະໝັກຜູ້ຮ່ວມມືຂອງທ່ານສຳລັບ %1$s ໄດ້ຮັບການຍອມຮັບແລ້ວ! ເຂົ້າສູ່ລະບົບພື້ນທີ່ຜູ້ຮ່ວມມືຂອງທ່ານໄດ້ທີ່: %2$s."
+
+#: includes/freemius-strings.php:228
+#: includes/freemius-strings.php:5316
+msgid "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days."
+msgstr "ຂອບໃຈທີ່ທ່ານໄດ້ສະໝັກເຂົ້າຮ່ວມໂຄງການພັນທະມິດຂອງພວກເຮົາ, ແຕ່ເປັນທີ່ໜ້າເສຍດາຍ, ພວກ ເຮົາໄດ້ຕັດສິນໃຈປະເສດໃບສະໝັກຂອງທ່ານໃນຕອນນີ້. ກະລຸນາລອງໃໝ່ອີກຄັ້ງໃນ 30 ວັນ."
+
+#: includes/freemius-strings.php:232
+#: includes/freemius-strings.php:5321
+msgid "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information."
+msgstr "ຂອບໃຈສຳລັບການສະໝັກເຂົ້າຮ່ວມໂຄງການພັນທະມິດຂອງພວກເຮົາ, ພວກເຮົາຈະກວດສອບລາຍລະອຽດຂອງທ່ານໃນຊ່ວງ 14 ວັນຕໍ່ໜ້າ ແລະ ຈະຕິດຕໍ່ກັບຫາທ່ານພ້ອມກັບຂໍ້ມູນເພີ່ມເຕີມ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:237
+#: includes/freemius-strings.php:3027
+#, php-format
+msgid "%s tracking cookie after the first visit to maximize earnings potential."
+msgstr "ຄຸກກີ້ຕິດຕາມ %s ຫຼັງຈາກການເຂົ້າຊົມຄັ້ງທຳອິດ ເພື່ອເພີ່ມລາຍໄດ້ທີ່ອາດຈະໄດ້ຮັບໃຫ້ສູງສຸດ."
+
+#: includes/freemius-strings.php:241
+#: includes/freemius-strings.php:3203
+msgid "Affiliation"
+msgstr "ຄວາມສໍາພັນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:246
+#: includes/freemius-strings.php:4652
+#, php-format
+msgid "Once your license expires you can still use the Free version but you will NOT have access to the %s features."
+msgstr "ເມື່ອໃບອະນຸຍາດຂອງທ່ານໝົດອາຍຸ ທ່ານຍັງສາມາດໃຊ້ງານເວີຊັນຟຣີໄດ້ ແຕ່ທ່ານຈະບໍ່ສາມາດເຂົ້າເຖິງຟີເຈີ %s ໄດ້ອີກຕໍ່ໄປ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:251
+#: includes/freemius-strings.php:4658
+#, php-format
+msgid "Once your license expires you will no longer be able to use the %s, unless you activate it again with a valid premium license."
+msgstr "ເມື່ອໃບອະນຸຍາດຂອງທ່ານໝົດອາຍຸ ທ່ານຈະບໍ່ສາມາດໃຊ້ງານ %s ໄດ້ອີກຕໍ່ໄປ ເວັ້ນເສຍແຕ່ວ່າທ່ານຈະເປີດໃຊ້ງານມັນອີກຄັ້ງດ້ວຍໃບອະນຸຍາດພຣີມຽມທີ່ຖືກຕ້ອງ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:256
+#: includes/freemius-strings.php:5917
+#, php-format
+msgid "You can still enjoy all %1$s features but you will not have access to %2$s security & feature updates, nor support."
+msgstr "ທ່ານຍັງສາມາດນຳໃຊ້ຄຸນສົມບັດທັງໝົດຂອງ %1$s ໄດ້ຢູ່, ແຕ່ທ່ານຈະບໍ່ສາມາດເຂົ້າເຖິງການອັບເດດຄວາມປອດໄພ & ຄຸນສົມບັດຂອງ %2$s, ຫຼື ການຊ່ວຍເຫຼືອໄດ້ອີກຕໍ່ໄປ."
+
+#: includes/freemius-strings.php:260
+#: includes/freemius-strings.php:5366
+msgid "Thanks for upgrading."
+msgstr "ຂອບໃຈທີ່ອັບເກຣດ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:265
+#: includes/freemius-strings.php:3209
+#, php-format
+msgid "After your free %1$s, pay as little as %2$s"
+msgstr "ຫຼັງຈາກ %1$s ຟຣີຂອງທ່ານ, ຈ່າຍໜ້ອຍສຸດພຽງແຕ່ %2$s"
+
+#: includes/freemius-strings.php:269
+#: includes/freemius-strings.php:3214
+msgid "Agree & Activate License"
+msgstr "ຍອມຮັບ & ເປີດໃຊ້ງານໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:273
+#: includes/freemius-strings.php:4071
+msgid "I Agree - Change User"
+msgstr "ຂ້ອຍເຫັນດີ - ປ່ຽນຜູ້ໃຊ້"
+
+#: includes/freemius-strings.php:277
+#: includes/freemius-strings.php:3219
+msgid "All Requests"
+msgstr "ຄຳຮ້ອງຂໍທັງໝົດ"
+
+#: includes/freemius-strings.php:281
+#: includes/freemius-strings.php:3224
+msgid "All Types"
+msgstr "ທຸກປະເພດ"
+
+#: includes/freemius-strings.php:285
+#: includes/freemius-strings.php:6136
+msgid "allow"
+msgstr "ອະນຸຍາດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:290
+#: includes/freemius-strings.php:5982
+#, php-format
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving the %s."
+msgstr "ທ່ານໄດ້ເລືອກເຂົ້າຮ່ວມການຕິດຕາມການນຳໃຊ້ຂອງພວກເຮົາແລ້ວ, ເຊິ່ງຊ່ວຍໃຫ້ພວກເຮົາສືບຕໍ່ປັບປຸງ %s ໃຫ້ດີຂຶ້ນ."
+
+#: includes/freemius-strings.php:294
+#: includes/freemius-strings.php:5987
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving them."
+msgstr "ທ່ານໄດ້ສະໝັກໃຈຍິນຍອມເຂົ້າຮ່ວມການຕິດຕາມການນຳໃຊ້ຂອງພວກເຮົາແລ້ວ ຊຶ່ງຊ່ວຍໃຫ້ພວກເຮົາສືບຕໍ່ປັບປຸງພວກມັນໃຫ້ດີຂຶ້ນ."
+
+#: includes/freemius-strings.php:298
+#: includes/freemius-strings.php:3240
+msgid "Amount"
+msgstr "ຈຳນວນ"
+
+#: includes/freemius-strings.php:302
+#: includes/freemius-strings.php:6469
+msgctxt "as once a year"
+msgid "Annual"
+msgstr "ປະຈຳປີ"
+
+#: includes/freemius-strings.php:306
+#: includes/freemius-strings.php:6474
+msgctxt "as once a year"
+msgid "Annually"
+msgstr "ຕໍ່ປີ"
+
+#: includes/freemius-strings.php:310
+#: includes/freemius-strings.php:3277
+msgid "Anonymous feedback"
+msgstr "ຄຳຄິດເຫັນແບບບໍ່ບົ່ງບອກຕົວຕົນ"
+
+#: includes/freemius-strings.php:314
+#: includes/freemius-strings.php:6404
+msgctxt "as application program interface"
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:318
+#: includes/freemius-strings.php:3287
+msgid "Apply on all sites in the network."
+msgstr "ນຳໃຊ້ກັບທຸກເວັບໄຊໃນເຄືອຂ່າຍ."
+
+#: includes/freemius-strings.php:322
+#: includes/freemius-strings.php:3282
+msgid "Apply on all pending sites."
+msgstr "ນຳໃຊ້ກັບທຸກເວັບໄຊທີ່ລໍຖ້າຢູ່."
+
+#: includes/freemius-strings.php:326
+#: includes/freemius-strings.php:3292
+msgid "Apply to become an affiliate"
+msgstr "ສະໝັກເພື່ອເປັນພັນທະມິດ"
+
+#: includes/freemius-strings.php:330
+#: includes/freemius-strings.php:3297
+msgid "Approve & Start Trial"
+msgstr "ອະນຸມັດ ແລະ ເລີ່ມຕົ້ນການທົດລອງໃຊ້"
+
+#: includes/freemius-strings.php:334
+#: includes/freemius-strings.php:4357
+msgid "Kindly tell us the reason so we can improve."
+msgstr "ກະລຸນາບອກເຫດຜົນໃຫ້ພວກເຮົາທາບ ເພື່ອທີ່ພວກເຮົາຈະສາມາດນຳໄປປັບປຸງໃຫ້ດີຂຶ້ນ."
+
+#: includes/freemius-strings.php:338
+#: includes/freemius-strings.php:3898
+msgid "Enter the email address you've used for the upgrade below and we will resend you the license key."
+msgstr "ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວທີ່ທ່ານໄດ້ໃຊ້ສຳລັບການອັບເກຣດຢູ່ດ້ານລຸ່ມນີ້ ແລະ ພວກເລົາຈະສົ່ງລະຫັດໃບອະນຸຍາດໃຫ້ທ່ານຄືນໃໝ່."
+
+#: includes/freemius-strings.php:342
+#: includes/freemius-strings.php:3893
+msgid "Enter the email address you've used during the purchase and we will resend you the license key."
+msgstr "ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວທີ່ທ່ານໄດ້ນຳໃຊ້ໃນລະຫວ່າງການຊື້ ແລະ ພວກເຂົາຈະສົ່ງລະຫັດໃບອະນຸຍາດໃຫ້ທ່ານຄືນໃໝ່."
+
+#: includes/freemius-strings.php:346
+#: includes/freemius-strings.php:3328
+msgid "Associate with the license owner's account."
+msgstr "ເຊື່ອມໂຍງກັບບັນຊີຂອງເຈົ້າຂອງໃບອະນຸຍາດ."
+
+#: includes/freemius-strings.php:350
+#: includes/freemius-strings.php:6514
+msgctxt "as the plugin author"
+msgid "Author"
+msgstr "ຜູ້ຂຽນ"
+
+#: includes/freemius-strings.php:354
+#: includes/freemius-strings.php:4220
+msgid "Invalid module ID."
+msgstr "ລະຫັດໂມດູນບໍ່ຖືກຕ້ອງ."
+
+#: includes/freemius-strings.php:358
+#: includes/freemius-strings.php:5922
+msgid "You do not have a valid license to access the premium version."
+msgstr "ທ່ານບໍ່ມີສິດອະນຸຍາດທີ່ຖືກຕ້ອງເພື່ອເຂົ້າເຖິງເວີຊັນພຣີມຽມ."
+
+#: includes/freemius-strings.php:362
+#: includes/freemius-strings.php:3333
+msgid "Auto installation only works for opted-in users."
+msgstr "ການຕິດຕັ້ງແບບອັດຕະໂນມັດແມ່ນໃຊ້ໄດ້ສະເພາະກັບຜູ້ໃຊ້ທີ່ໄດ້ສະໝັກໃຈເຂົ້າຮ່ວມເທົ່ານັ້ນ."
+
+#: includes/freemius-strings.php:366
+#: includes/freemius-strings.php:4900
+msgid "Premium version already active."
+msgstr "ເວີຊັນພຣີມຽມເປີດໃຊ້ງານຢູ່ແລ້ວ."
+
+#: includes/freemius-strings.php:370
+#: includes/freemius-strings.php:4890
+msgid "Premium add-on version already installed."
+msgstr "ໄດ້ຕິດຕັ້ງເວີຊັນເສີມພຣີມຽມແລ້ວ."
+
+#: includes/freemius-strings.php:374
+#: includes/freemius-strings.php:4859
+msgid "Plugin is a \"Serviceware\" which means it does not have a premium code version."
+msgstr "ປລັກອິນແມ່ນ \"Serviceware\" ຢ່າງໜຶ່ງ ແມ່່ນໝາຍຄວາມວ່າມັນບໍ່ມີເວີຊັນໂຄ້ດແບບພຣີມຽມ."
+
+#: includes/freemius-strings.php:378
+#: includes/freemius-strings.php:3344
+msgid "Automatic Installation"
+msgstr "ການຕິດຕັ້ງອັດຕະໂນມັດ"
+
+#: includes/freemius-strings.php:382
+#: includes/freemius-strings.php:6622
+msgctxt "timer for auto-disabling debug"
+msgid "Auto off in:"
+msgstr "ປິດອັດໂນມັດໃນ:"
+
+#: includes/freemius-strings.php:386
+#: includes/freemius-strings.php:3349
+msgid "Average Rating"
+msgstr "ຄະແນນສະເລ່ຍ"
+
+#: includes/freemius-strings.php:390
+#: includes/freemius-strings.php:3354
+msgid "Awesome"
+msgstr "ຍອດຢ້ຽມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:395
+#: includes/freemius-strings.php:6142
+#, php-format
+msgid "based on %s"
+msgstr "ອີງຕາມ %s"
+
+#: includes/freemius-strings.php:399
+#: includes/freemius-strings.php:3359
+msgid "Become an affiliate"
+msgstr "ມາເປັນຄູ່ຮ່ວມງານ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:404
+#: includes/freemius-strings.php:4438
+#, php-format
+msgid "Like the %s? Become our ambassador and earn cash ;-)"
+msgstr "ມັກ %s ບໍ? ເປັນທູດຂອງພວກເຮົາ ແລະ ຮັບເງິນສົດ ;-)"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:409
+#: includes/freemius-strings.php:4045
+#, php-format
+msgid "Hey there, did you know that %1$s has an affiliate program? If you like the %2$s you can become our ambassador and earn some cash!"
+msgstr "ສະບາຍດີ, ທ່ານຮູ້ບໍວ່າ %1$s ມີໂຄງການພັນທະມິດ? ຖ້າທ່ານມັກ %2$s ທ່ານສາມາດກາຍເປັນທູດຂອງພວກເຮົາ ແລະ ຫາເງິນສົດໄດ້!"
+
+#: includes/freemius-strings.php:413
+#: includes/freemius-strings.php:6556
+msgctxt "e.g. the best product"
+msgid "Best"
+msgstr "ດີທີ່ສຸດ"
+
+#: includes/freemius-strings.php:417
+#: includes/freemius-strings.php:3364
+msgid "Beta"
+msgstr "ເບຕ້າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:422
+#: includes/freemius-strings.php:3267
+#, php-format
+msgid "An update to a Beta version will replace your installed version of %s with the latest Beta release - use with caution, and not on production sites. You have been warned."
+msgstr "ການອັບເດດເປັນເວີຊັນເບຕ້າຈະປ່ຽນແທນເວີຊັນທີ່ຕິດຕັ້ງໄວ້ຂອງ %s ດ້ວຍເວີຊັນເບຕ້າຫຼ້າສຸດ - ກະລຸນາໃຊ້ດ້ວຍຄວາມລະມັດລະວັງ ແລະ ບໍ່ຄວນໃຊ້ໃນເວັບໄຊຕົວຈິງ (Production). ທ່ານໄດ້ຖືກເຕືອນແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:427
+#: includes/freemius-strings.php:6551
+#, php-format
+msgctxt "e.g. billed monthly"
+msgid "Billed %s"
+msgstr "ຮຽກເກັບເງິນແລ້ວ %s"
+
+#: includes/freemius-strings.php:431
+#: includes/freemius-strings.php:3369
+msgid "Billing"
+msgstr "ການຮຽກເກັບເງິນ"
+
+#: includes/freemius-strings.php:435
+#: includes/freemius-strings.php:3374
+msgid "Billing & Invoices"
+msgstr "ການຮຽກເກັບເງິນ ແລະ ໃບເກັບເງິນ"
+
+#: includes/freemius-strings.php:439
+#: includes/freemius-strings.php:6424
+msgctxt "as connection blocked"
+msgid "Blocked"
+msgstr "ຖືກບລັອກ"
+
+#: includes/freemius-strings.php:443
+#: includes/freemius-strings.php:3379
+msgid "Blocking"
+msgstr "ກຳລັງບລັອກ"
+
+#: includes/freemius-strings.php:447
+#: includes/freemius-strings.php:3384
+msgid "Blog ID"
+msgstr "ລະຫັດບລັອກ"
+
+#: includes/freemius-strings.php:451
+#: includes/freemius-strings.php:3389
+msgid "Body"
+msgstr "ເນື້ອຫາ"
+
+#: includes/freemius-strings.php:455
+#: includes/freemius-strings.php:5859
+msgid "Yes - both addresses are mine"
+msgstr "ແມ່ນແລ້ວ - ທີ່ຢູ່ທັງສອງແມ່ນຂອງຂ້ອຍ"
+
+#: includes/freemius-strings.php:459
+#: includes/freemius-strings.php:3394
+msgid "Bundle"
+msgstr "ຊຸດໂປຣແກຣມ"
+
+#: includes/freemius-strings.php:463
+#: includes/freemius-strings.php:3399
+msgid "Bundle Plan"
+msgstr "ແຜນການລວມຊຸດ"
+
+#: includes/freemius-strings.php:467
+#: includes/freemius-strings.php:3404
+msgid "Business name"
+msgstr "ຊື່ທຸລະກິດ"
+
+#: includes/freemius-strings.php:471
+#: includes/freemius-strings.php:3414
+msgid "Buy license"
+msgstr "ຊື້ໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:475
+#: includes/freemius-strings.php:3409
+msgid "Buy a license now"
+msgstr "ຊື້ໃບອະນຸຍາດດຽວນີ້"
+
+#: includes/freemius-strings.php:479
+#: includes/freemius-strings.php:3453
+msgid "Cancel"
+msgstr "ຍົກເລີກ"
+
+#: includes/freemius-strings.php:483
+#: includes/freemius-strings.php:3476
+msgid "Cancel Installation"
+msgstr "ຍົກເລີກການຕິດຕັ້ງ"
+
+#: includes/freemius-strings.php:487
+#: includes/freemius-strings.php:3481
+msgid "Cancel Subscription"
+msgstr "ຍົກເລີກການສະໝັກໃຊ້ບໍລິການ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:492
+#: includes/freemius-strings.php:4179
+#, php-format
+msgid "In case you are NOT planning on using this %1$s on this site (or any other site) - would you like to cancel the %2$s as well?"
+msgstr "ໃນກໍລະນີທີ່ທ່ານ **ບໍ່** ມີແຜນທີ່ຈະໃຊ້ %1$s ນີ້ໃນເວັບໄຊນີ້ (ຫລື ເວັບໄຊອື່ນໃດກໍຕາມ) - ທ່ານຕ້ອງການຍົກເລີກ %2$s ນີ້ພ້ອມເລີຍບໍ່?"
+
+#: includes/freemius-strings.php:496
+#: includes/freemius-strings.php:3486
+msgid "Cancel Trial"
+msgstr "ຍົກເລີກການທົດລອງໃຊ້"
+
+#: includes/freemius-strings.php:500
+#: includes/freemius-strings.php:3513
+msgid "Cancelling the trial will immediately block access to all premium features. Are you sure?"
+msgstr "ການຍົກເລີກການທົດລອງໃຊ້ຈະຣະງັບການເຂົ້າເຖິງຄຸນສົມບັດພິເສດທັງໝົດທັນທີ. ທ່ານແນ່ໃຈບໍ່?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:505
+#: includes/freemius-strings.php:3459
+#, php-format
+msgid "Cancel %s & Proceed"
+msgstr "ຍົກເລີກ %s ແລະ ດຳເນີນການຕໍ່"
+
+#: includes/freemius-strings.php:509
+#: includes/freemius-strings.php:3491
+msgid "Cancelled"
+msgstr "ຍົກເລີກແລ້ວ"
+
+#: includes/freemius-strings.php:513
+#: includes/freemius-strings.php:3508
+msgid "Cancelling the subscription"
+msgstr "ກຳລັງຍົກເລີກການສະໝັກໃຊ້"
+
+#: includes/freemius-strings.php:517
+#: includes/freemius-strings.php:3448
+msgid "Can't find your license key?"
+msgstr "ບໍ່ພົບລະຫັດໃບອະນຸຍາດຂອງທ່ານບໍ?"
+
+#: includes/freemius-strings.php:521
+#: includes/freemius-strings.php:3518
+msgid "Change License"
+msgstr "ປ່ຽນໃບອະນຸຍາດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:526
+#: includes/freemius-strings.php:3057
+#, php-format
+msgid "A confirmation email was just sent to %s. You must confirm the update within the next 4 hours. If you cannot find the email, please check your spam folder."
+msgstr "ອີເມວຢືນຢັນໄດ້ຖືກສົ່ງໄປທີ່ %s ແລ້ວ. ທ່ານຕ້ອງຢືນຢັນການອັບເດດພາຍໃນ 4 ຊົ່ວໂມງຂ້າງໜ້າ. ຖ້າທ່ານບໍ່ພົບອີເມວ, ກະລຸນາ ກວດສອບໃນໂຟນເດີຂີ້ເຫຍື້ອຂອງທ່ານ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:531
+#: includes/freemius-strings.php:3051
+#, php-format
+msgid "A confirmation email was just sent to %s. The email owner must confirm the update within the next 4 hours."
+msgstr "ອີເມວຢືນຢັນໄດ້ຖືກສົ່ງໄປຍັງ %s ແລ້ວ. ເຈົ້າຂອງອີເມວຕ້ອງຢືນຢັນການອັບເດດພາຍໃນ 4 ຊົ່ວໂມງຂ້າງໜ້າ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:536
+#: includes/freemius-strings.php:2949
+#, php-format
+msgid "%s is the new owner of the account."
+msgstr "%s ເປັນເຈົ້າຂອງໃໝ່ຂອງບັນຊີນີ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:541
+#: includes/freemius-strings.php:5361
+#, php-format
+msgid "Thanks for confirming the ownership change. An email was just sent to %s for final approval."
+msgstr "ຂອບໃຈທີ່ຢືນຢັນການປ່ຽນແປງຄວາມເປັນເຈົ້າຂອງ. ອີເມວຖືກສົ່ງໄປຫາ %s ແລ້ວເພື່ອຂໍການອະນຸມັດຂັ້ນສຸດທ້າຍ."
+
+#: includes/freemius-strings.php:545
+#: includes/freemius-strings.php:3523
+msgid "Change Ownership"
+msgstr "ປ່ຽນແປງເຈົ້າຂອງ"
+
+#: includes/freemius-strings.php:549
+#: includes/freemius-strings.php:3528
+msgid "Change Plan"
+msgstr "ປ່ຽນແຜນບໍລິການ"
+
+#: includes/freemius-strings.php:553
+#: includes/freemius-strings.php:3533
+msgid "Change User"
+msgstr "ປ່ຽນຜູ້ໃຊ້"
+
+#: includes/freemius-strings.php:557
+#: includes/freemius-strings.php:3419
+msgid "By changing the user, you agree to transfer the account ownership to:"
+msgstr "ໂດຍການປ່ຽນແປງຜູ້ໃຊ້, ທ່ານຕົກລົງເຫັນດີທີ່ຈະໂອນການເປັນເຈົ້າຂອງບັນຊີໃຫ້ກັບ:"
+
+#: includes/freemius-strings.php:561
+#: includes/freemius-strings.php:6321
+msgctxt "Plugin installer section title"
+msgid "Changelog"
+msgstr "ປະວັດການປ່ຽນແປງ"
+
+#: includes/freemius-strings.php:565
+#: includes/freemius-strings.php:3538
+msgid "Changing user, please wait"
+msgstr "ກຳລັງປ່ຽນຜູ້ໃຊ້, ກະລຸນາລໍຖ້າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:570
+#: includes/freemius-strings.php:4132
+#, php-format
+msgid "If you didn't get the email, try checking your spam folder or search for emails from %4$s."
+msgstr "ຖ້າທ່ານບໍ່ໄດ້ຮັບອີເມວ, ໃຫ້ລອງກວດເບິ່ງໂຟນເດີສະປາມຂອງທ່ານ ຫຼື ຄົ້ນຫາອີເມວຈາກ %4$s."
+
+#: includes/freemius-strings.php:574
+#: includes/freemius-strings.php:3543
+msgid "Checkout"
+msgstr "ຊໍາລະເງິນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:579
+#: includes/freemius-strings.php:3549
+#, php-format
+msgid "Choose up to %s site(s) to activate the license on."
+msgstr "ເລືອກສູງສຸດ %s ເວັບໄຊເພື່ອເປີດໃຊ້ງານໄລເຊນ."
+
+#: includes/freemius-strings.php:583
+#: includes/freemius-strings.php:3554
+msgid "City"
+msgstr "ເມືອງ"
+
+#: includes/freemius-strings.php:587
+#: includes/freemius-strings.php:3559
+msgid "Clear API Cache"
+msgstr "ລ້າງແຄຊ API"
+
+#: includes/freemius-strings.php:591
+#: includes/freemius-strings.php:3564
+msgid "Clear Updates Transients"
+msgstr "ລ້າງຂໍ້ມູນຊົ່ວຄາວຂອງການອັບເດດ"
+
+#: includes/freemius-strings.php:595
+#: includes/freemius-strings.php:6301
+msgctxt "Part of an activation link message."
+msgid "Click here"
+msgstr "ກົດທີ່ນີ້"
+
+#: includes/freemius-strings.php:599
+#: includes/freemius-strings.php:3574
+msgid "Click here to use the plugin anonymously"
+msgstr "ຄລິກທີ່ນີ້ເພື່ອໃຊ້ປລັກອິນແບບບໍ່ເປີດເຜີຍຕົວຕົນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:604
+#: includes/freemius-strings.php:3580
+#, php-format
+msgid "Click to see reviews that provided a rating of %s"
+msgstr "ຄລິກເພື່ອເບິ່ງຄຳຕິຊົມທີ່ໃຫ້ຄະແນນ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:609
+#: includes/freemius-strings.php:2937
+#, php-format
+msgid "%s is my client's email address"
+msgstr "%s ແມ່ນທີ່ຢູ່ອີເມວຂອງລູກຄ້າຂອງຂ້ອຍ"
+
+#: includes/freemius-strings.php:613
+#: includes/freemius-strings.php:3591
+msgid "Code"
+msgstr "ລະຫັດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:618
+#: includes/freemius-strings.php:2919
+#, php-format
+msgid "%s commission when a customer purchases a new license."
+msgstr "ຄ່າຄອມມິດຊັ່ນ %s ເມື່ອລູກຄ້າຊື້ໃບອະນຸຍາດໃໝ່."
+
+#: includes/freemius-strings.php:622
+#: includes/freemius-strings.php:3323
+msgid "As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days."
+msgstr "ເນື່ອງຈາກພວກເຮົາສະຫງວນເວລາ 30 ວັນສໍາລັບການຄືນເງິນທີ່ເປັນໄປໄດ້, ພວກ​ເຮົາຈຶ່ງຈ່າຍຄ່າຄອມມິດຊັ່ນທີ່ມີອາຍຸເກີນ 30 ວັນເທົ່ານັ້ນ."
+
+#: includes/freemius-strings.php:626
+#: includes/freemius-strings.php:3596
+msgid "Communication"
+msgstr "ການສື່ສານ"
+
+#: includes/freemius-strings.php:630
+#: includes/freemius-strings.php:3601
+msgid "Compatible up to"
+msgstr "ເຂົ້າກັນໄດ້ເຖິງ"
+
+#: includes/freemius-strings.php:634
+#: includes/freemius-strings.php:6147
+msgid "complete the opt-in"
+msgstr "ສຳເລັດການສະໝັກຮັບ"
+
+#: includes/freemius-strings.php:638
+#: includes/freemius-strings.php:6419
+msgctxt "as congratulations"
+msgid "Congrats"
+msgstr "ຂໍສະແດງຄວາມຍິນດີ"
+
+#: includes/freemius-strings.php:642
+#: includes/freemius-strings.php:4544
+msgid "Never miss an important update"
+msgstr "ບໍ່ພາດການອັບເດດທີ່ ສຳຄັນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:647
+#: includes/freemius-strings.php:5327
+#, php-format
+msgid "Thank you for updating to %1$s v%2$s!"
+msgstr "ຂອບໃຈທີ່ອັບເດດເປັນ %1$s v%2$s!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:652
+#: includes/freemius-strings.php:4679
+#, php-format
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info. This will help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "ເປີດໃຊ້ເພື່ອຮັບການແຈ້ງເຕືອນທາງອີເມວ ສຳລັບການອັບເດດຄວາມປອດໄພ & ຄຸນສົມບັດ, ເນື້ອຫາການຮຽນຮູ້, ແລະ ຂໍ້ສະເໜີໃນບາງໂອກາດ, ແລະ ເພື່ອແບ່ງປັນຂໍ້ມູນສະພາບແວດລ້ອມ WordPress ພື້ນຖານບາງຢ່າງ. ສິ່ງນີ້ຈະຊ່ວຍໃຫ້ພວກເຮົາເຮັດໃຫ້ %s ເຂົ້າກັນໄດ້ຫຼາຍຂຶ້ນກັບເວັບໄຊຂອງທ່ານ ແລະ ເຮັດວຽກຕາມທີ່ທ່ານຕ້ອງການໄດ້ດີຍິ່ງຂຶ້ນ."
+
+#: includes/freemius-strings.php:656
+#: includes/freemius-strings.php:4673
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info."
+msgstr "ເລືອກຮັບການແຈ້ງເຕືອນທາງອີເມວສໍາລັບການອັບເດດຄວາມປອດໄພ & ຄຸນສົມບັດ, ເນື້ອຫາການຮຽນຮູ້, ແລະ ຂໍ້ສະເໜີໃນບາງໂອກາດ, ແລະ ເພື່ອແບ່ງປັນຂໍ້ມູນສະພາບແວດລ້ອມ WordPress ພື້ນຖານບາງຢ່າງ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:661
+#: includes/freemius-strings.php:4144
+#, php-format
+msgid "If you skip this, that's okay! %1$s will still work just fine."
+msgstr "ຖ້າທ່ານຂ້າມຂັ້ນຕອນນີ້ ກໍບໍ່ເປັນຫຍັງ! %1$s ຈະຍັງເຮັດວຽກໄດ້ຕາມປົກກະຕິ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:666
+#: includes/freemius-strings.php:5757
+#, php-format
+msgid "We have introduced this opt-in so you never miss an important update and help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "ພວກເຮົາໄດ້ເພີ່ມການເລືອກເຂົ້າຮ່ວມນີ້ ເພື່ອໃຫ້ທ່ານບໍ່ພາດການອັບເດດທີ່ສຳຄັນ ແລະ ຊ່ວຍພວກເຮົາເຮັດໃຫ້ %s ເຂົ້າກັນໄດ້ກັບເວັບໄຊຂອງທ່ານຫຼາຍຂຶ້ນ ແລະ ເຮັດສິ່ງທີ່ທ່ານຕ້ອງການໄດ້ດີຂຶ້ນ."
+
+#: includes/freemius-strings.php:670
+#: includes/freemius-strings.php:5773
+msgid "We're excited to introduce the Freemius network-level integration."
+msgstr "ພວກເຮົາມີຄວາມຍິນດີທີ່ຈະແນະນຳການເຊື່ອມຕໍ່ໃນລະດັບເຄືອຂ່າຍຂອງ Freemius."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:675
+#: includes/freemius-strings.php:3847
+#, php-format
+msgid "During the update process we detected %s site(s) in the network that are still pending your attention."
+msgstr "ໃນລະຫວ່າງຂະບວນການອັບເດດ ພວກເຮົາກວດພົບ %s ເວັບໄຊໃນເຄືອຂ່າຍທີ່ຍັງຕ້ອງການຄວາມສົນໃຈຈາກທ່ານ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:680
+#: includes/freemius-strings.php:3841
+#, php-format
+msgid "During the update process we detected %d site(s) that are still pending license activation."
+msgstr "ໃນລະຫວ່າງຂະບວນການອັບເດດ ພວກເຮົາພົບເຫັນ %d ເວັບໄຊທ໌ທີ່ຍັງລໍຖ້າການເປີດໃຊ້ງານອັບເດດໃບອະນຸຍາດ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:685
+#: includes/freemius-strings.php:4162
+#, php-format
+msgid "If you'd like to use the %s on those sites, please enter your license key below and click the activation button."
+msgstr "ຖ້າທ່ານຕ້ອງການໃຊ້ %s ໃນເວັບໄຊເຫຼົ່ານັ້ນ, ກະລຸນາໃສ່ລະຫັດໃບອະນຸຍາດຂອງທ່ານລຸ່ມນີ້ ແລະ ຄລິກປຸ່ມເປີດໃຊ້ງານ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:690
+#: includes/freemius-strings.php:3235
+#, php-format
+msgid "Alternatively, you can skip it for now and activate the license later, in your %s's network-level Account page."
+msgstr "ອີກທາງເລືອກໜຶ່ງ, ທ່ານສາມາດຂ້າມມັນໄປກ່ອນ ແລະ ເປີດໃຊ້ງານໄລເຊນໃນພາຍຫຼັງ ໄດ້ທີ່ໜ້າບັນຊີລະດັບເຄືອຂ່າຍ %s ຂອງທ່ານ."
+
+#: includes/freemius-strings.php:694
+#: includes/freemius-strings.php:6429
+msgctxt "as connection was successful"
+msgid "Connected"
+msgstr "ເຊື່ອມຕໍ່ແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:699
+#: includes/freemius-strings.php:4646
+#, php-format
+msgid "Once you are done, deactivate the %s and activate it again."
+msgstr "ເມື່ອທ່ານເຮັດແລ້ວ, ໃຫ້ປິດການໃຊ້ງານ %s ແລ້ວເປີດໃຊ້ມັນອີກຄັ້ງ."
+
+#: includes/freemius-strings.php:703
+#: includes/freemius-strings.php:3606
+msgid "Contact"
+msgstr "ຕິດຕໍ່ຫາພວກເຮົາ"
+
+#: includes/freemius-strings.php:707
+#: includes/freemius-strings.php:4813
+msgid "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:"
+msgstr "ກະລຸນາແຈ້ງໃຫ້ພວກເຮົາຮູ້ ຖ້າທ່ານຕ້ອງການໃຫ້ພວກເຮົາຕິດຕໍ່ຫາທ່ານສຳລັບການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດ, ເນື້ອຫາດ້ານການສຶກສາ, ແລະ ຂໍ້ສະເໜີເປັນຄັ້ງຄາວ:"
+
+#: includes/freemius-strings.php:711
+#: includes/freemius-strings.php:3611
+msgid "Contact Support"
+msgstr "ຕິດຕໍ່ຝ່າຍຊ່ວຍເຫຼືອ"
+
+#: includes/freemius-strings.php:715
+#: includes/freemius-strings.php:5219
+msgid "Sorry for the inconvenience and we are here to help if you give us a chance."
+msgstr "ຂໍອະໄພໃນຄວາມບໍ່ສະດວກ ແລະ ພວກເຮົາພ້ອມທີ່ຈະຊ່ວຍເຫຼືອທ່ານ ເພື່ອໃຫ້ທ່ານມອບໂອກາດໃຫ້ພວກເຮົາ."
+
+#: includes/freemius-strings.php:719
+#: includes/freemius-strings.php:3616
+msgid "Contact Us"
+msgstr "ຕິດຕໍ່ຫາພວກເຮົາ"
+
+#: includes/freemius-strings.php:723
+#: includes/freemius-strings.php:4777
+msgid "Please contact us here"
+msgstr "ກະລຸນາຕິດຕໍ່ພວກເຮົາທີ່ນີ້"
+
+#: includes/freemius-strings.php:727
+#: includes/freemius-strings.php:4782
+msgid "Please contact us with the following message:"
+msgstr "ກະລຸນາຕິດຕໍ່ເຮົາໂດຍສົ່ງຂໍ້ຄວາມຕໍ່ໄປນີ້:"
+
+#: includes/freemius-strings.php:731
+#: includes/freemius-strings.php:3621
+msgid "Continue"
+msgstr "ສືບຕໍ່"
+
+#: includes/freemius-strings.php:735
+#: includes/freemius-strings.php:3626
+msgid "Contributors"
+msgstr "ຜູ້ປະກອບສ່ວນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:740
+#: includes/freemius-strings.php:3632
+#, php-format
+msgid "Couldn't activate %s."
+msgstr "ບໍ່ສາມາດເປີດໃຊ້ງານ %s ໄດ້."
+
+#: includes/freemius-strings.php:744
+#: includes/freemius-strings.php:3637
+msgid "Country"
+msgstr "ປະເທດ"
+
+#: includes/freemius-strings.php:748
+#: includes/freemius-strings.php:3642
+msgid "Cron Type"
+msgstr "ປະເພດຄຣອນ"
+
+#: includes/freemius-strings.php:752
+#: includes/freemius-strings.php:5768
+msgid "We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server."
+msgstr "ພວກ ພວກ ເຮົາ ໃຊ້ ໄລບຣາຣີ PHP cURL ສຳລັບ ການ ໂທ API, ເຊິ່ງ ເປັນ ໄລບຣາຣີ ທົ່ວໄປ ຫຼາຍ ແລະ ປົກກະຕິ ແລ້ວ ແມ່ນ ໄດ້ ຖືກ ຕິດຕັ້ງ ແລະ ເປີດ ໃຊ້ງານ ໄວ້ ພ້ອມ ແລ້ວ. ແຕ່ ໜ້າ ເສຍດາຍ, cURL ບໍ່ ໄດ້ ຖືກ ເປີດ ໃຊ້ງານ (ຫຼື ຖືກ ປິດ ໄວ້) ຢູ່ ເຊີບເວີ ຂອງ ທ່ານ."
+
+#: includes/freemius-strings.php:756
+#: includes/freemius-strings.php:6152
+msgid "data"
+msgstr "ຂໍ້ມູນ"
+
+#: includes/freemius-strings.php:760
+#: includes/freemius-strings.php:3699
+msgid "Debug mode was successfully enabled and will be automatically disabled in 60 min. You can also disable it earlier by clicking the \"Stop Debug\" link."
+msgstr "ເປີດໃຊ້ງານໂໝດດີບັກສຳເລັດແລ້ວ ແລະ ຈະຖືກປິດໃຊ້ງານໂດຍອັດໂນມັດໃນ 60 ນາທີ. ທ່ານຍັງສາມາດປິດໃຊ້ງານກ່ອນເວລານີ້ໄດ້ໂດຍການຄລິກທີ່ລິ້ງ \"Stop Debug\"."
+
+#: includes/freemius-strings.php:764
+#: includes/freemius-strings.php:3653
+msgid "Date"
+msgstr "ວັນທີ"
+
+#: includes/freemius-strings.php:768
+#: includes/freemius-strings.php:3658
+msgid "Deactivate"
+msgstr "ປິດການນຳໃຊ້"
+
+#: includes/freemius-strings.php:772
+#: includes/freemius-strings.php:3668
+msgid "Deactivate the free version"
+msgstr "ປິດການໃຊ້ງານເວີຊັນຟຣີ"
+
+#: includes/freemius-strings.php:776
+#: includes/freemius-strings.php:3663
+msgid "Deactivate License"
+msgstr "ປິດໃຊ້ງານໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:780
+#: includes/freemius-strings.php:3684
+msgid "Deactivating your license will block all premium features, but will enable activating the license on another site. Are you sure you want to proceed?"
+msgstr "ການປິດການນຳໃຊ້ສິດອະນຸຍາດຂອງທ່ານຈະເປັນການບລັອກຄຸນສົມບັດພິເສດທັງໝົດ ແຕ່ຈະເຮັດໃຫ້ສາມາດເປີດໃຊ້ງານສິດອະນຸຍາດໃນເວັບໄຊອື່ນໄດ້. ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການດຳເນີນການຕໍ່?"
+
+#: includes/freemius-strings.php:784
+#: includes/freemius-strings.php:3689
+msgid "Deactivation"
+msgstr "ການປິດໃຊ້ງານ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:789
+#: includes/freemius-strings.php:5854
+#, php-format
+msgid "Yes - %s"
+msgstr "ແມ່ນແລ້ວ - %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:794
+#: includes/freemius-strings.php:5276
+#, php-format
+msgid "Submit & %s"
+msgstr "ສົ່ງ ແລະ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:799
+#: includes/freemius-strings.php:3679
+#, php-format
+msgid "Deactivating or uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "ການປິດໃຊ້ງານ ຫຼື ການຖອນການຕິດຕັ້ງ %s ຈະເປັນການປິດການນຳໃຊ້ສິດອະນຸຍາດໂດຍອັດຕະໂນມັດ ໂດຍທ່ານຈະສາມາດນຳໃຊ້ມັນກັບເວັບໄຊອື່ນໄດ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:804
+#: includes/freemius-strings.php:4138
+#, php-format
+msgid "If you have a moment, please let us know why you are %s"
+msgstr "ຖ້າທ່ານມີເວລາ, ກະລຸນາໃຫ້ພວກເຮົາຮູ້ວ່າເປັນຫຍັງທ່ານຈຶ່ງ %s"
+
+#: includes/freemius-strings.php:808
+#: includes/freemius-strings.php:3694
+msgid "Debug Log"
+msgstr "ບັນທຶກການແກ້ໄຂຂໍ້ຜິດພາດ"
+
+#: includes/freemius-strings.php:812
+#: includes/freemius-strings.php:6414
+msgctxt "as code debugging"
+msgid "Debugging"
+msgstr "ການແກ້ໄຂຂໍ້ຜິດພາດ"
+
+#: includes/freemius-strings.php:816
+#: includes/freemius-strings.php:6167
+msgid "delegate"
+msgstr "ມອບໝາຍສິດ"
+
+#: includes/freemius-strings.php:820
+#: includes/freemius-strings.php:4126
+msgid "If you click it, this decision will be delegated to the sites administrators."
+msgstr "ຖ້າທ່ານຄລິກໃສ່ມັນ, ການຕັດສິນໃຈນີ້ຈະຖືກມອບໝາຍໃຫ້ແກ່ຜູູ້ດູແລເວັບໄຊ."
+
+#: includes/freemius-strings.php:824
+#: includes/freemius-strings.php:3704
+msgid "Delegate to Site Admins"
+msgstr "ມອບໝາຍໃຫ້ຜູ້ິດທານເວັບໄຊ"
+
+#: includes/freemius-strings.php:828
+#: includes/freemius-strings.php:3709
+msgid "Delegate to Site Admins & Continue"
+msgstr "ມອບສິດໃຫ້ຜູ້ດູແລລະບົບເວັບໄຊ & ດຳເນີນການຕໍ່"
+
+#: includes/freemius-strings.php:832
+#: includes/freemius-strings.php:3714
+msgid "Delegating, please wait"
+msgstr "ກຳລັງມອບໝາຍ, ກະລຸນາລໍຖ້າ"
+
+#: includes/freemius-strings.php:836
+#: includes/freemius-strings.php:6632
+msgctxt "verb"
+msgid "Delete"
+msgstr "ລົບ"
+
+#: includes/freemius-strings.php:840
+#: includes/freemius-strings.php:3719
+msgid "Delete All Accounts"
+msgstr "ລຶບລ້າງບັນຊີທັງໝົດ"
+
+#: includes/freemius-strings.php:844
+#: includes/freemius-strings.php:3308
+msgid "Are you sure you want to delete all Freemius data?"
+msgstr "ທ່ານແນ່ໃຈບໍວ່າຕ້ອງການລຶບຂໍ້ມູນ Freemius ທັງໝົດ?"
+
+#: includes/freemius-strings.php:848
+#: includes/freemius-strings.php:6326
+msgctxt "Plugin installer section title"
+msgid "Description"
+msgstr "ລາຍລະອຽດ"
+
+#: includes/freemius-strings.php:852
+#: includes/freemius-strings.php:3724
+msgid "Details"
+msgstr "ລາຍລະອຽດ"
+
+#: includes/freemius-strings.php:856
+#: includes/freemius-strings.php:6223
+msgid "seems like the key you entered doesn't match our records."
+msgstr "ເບິ່ງຄືວ່າລະຫັດທີ່ທ່ານປ້ອນເຂົ້າບໍ່ົງກັບບັນທຶກຂອງພວກເຮົາ."
+
+#: includes/freemius-strings.php:860
+#: includes/freemius-strings.php:3729
+msgid "Diagnostic Info"
+msgstr "ຂໍ້ມູນການວິນິດໄສ"
+
+#: includes/freemius-strings.php:864
+#: includes/freemius-strings.php:3740
+msgid "Disabling white-label mode"
+msgstr "ກຳລັງປິດໃຊ້ງານໂໝດປ້າຍກຳກັບສຳຮອງ"
+
+#: includes/freemius-strings.php:868
+#: includes/freemius-strings.php:3745
+msgid "Disconnect"
+msgstr "ຕັດການເຊື່ອມຕໍ່"
+
+#: includes/freemius-strings.php:872
+#: includes/freemius-strings.php:3318
+msgid "Are you sure you would like to proceed with the disconnection?"
+msgstr "ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການສືບຕໍ່ການຕັດການເຊື່ອມຕໍ່ນີ້?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:877
+#: includes/freemius-strings.php:4150
+#, php-format
+msgid "If you wish to cancel your %1$s plan's subscription instead, please navigate to the %2$s and cancel it there."
+msgstr "ຖ້າທ່ານຕ້ອງການຍົກເລີກການສະໝັກໃຊ້ແຜນ %1$s ຂອງທ່ານແທນ, ກະລຸນາໄປທີ່ %2$s ແລະ ຍົກເລີກມັນຢູ່ທີ່ນັ້ນ."
+
+#: includes/freemius-strings.php:881
+#: includes/freemius-strings.php:6409
+msgctxt "as close a window"
+msgid "Dismiss"
+msgstr "ບໍ່ສົນໃຈ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:886
+#: includes/freemius-strings.php:6173
+#, php-format
+msgid "do %1$sNOT%2$s send me security & feature updates, educational content and offers."
+msgstr "ຢ່າ %1$sສົ່ງ%2$sການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດ, ເນື້ອຫາການສຶກສາ ແລະ ຂໍ້ສະເໜີໃຫ້ຂ້ອຍ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:891
+#: includes/freemius-strings.php:3888
+#, php-format
+msgid "Enter the domain of your website or other websites from where you plan to promote the %s."
+msgstr "ປ້ອນໂດເມນຂອງເວັບໄຊຂອງທ່ານ ຫຼື ເວັບໄຊອື່ນໆ ທີ່ທ່ານວາງແຜນຈະໃຊ້ເພື່ອໂປຣໂມດ %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:896
+#: includes/freemius-strings.php:5822
+#, php-format
+msgid "Where are you going to promote the %s?"
+msgstr "ທ່ານຈະໂປຣໂມດ %s ຢູ່ໃສ?"
+
+#: includes/freemius-strings.php:900
+#: includes/freemius-strings.php:3756
+msgid "Domain is required."
+msgstr "ຕ້ອງ​ການ​ໂດ​ເມນ."
+
+#: includes/freemius-strings.php:904
+#: includes/freemius-strings.php:3772
+msgid "Donate to this plugin"
+msgstr "ບໍລິຈາກໃຫ້ປລັກອິນນີ້"
+
+#: includes/freemius-strings.php:908
+#: includes/freemius-strings.php:3777
+msgid "Done"
+msgstr "ສໍາເລັດແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:913
+#: includes/freemius-strings.php:3762
+#, php-format
+msgid "Don't cancel %s - I'm still interested in getting security & feature updates, as well as be able to contact support."
+msgstr "ຢ່າພັກເຟີ %s - ຂ້າພະເຈົ້າຍັງມີຄວາມສົນໃຈທີ່ຈະຮັບການອັບເດດຄວາມປອດໄພ & ຄຸນສົມບັດຕ່າງໆ, ລວມທັງຍັງສາມາດຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນໄດ້."
+
+#: includes/freemius-strings.php:917
+#: includes/freemius-strings.php:3767
+msgid "Don't have a license key?"
+msgstr "ບໍ່ມີຣາຊັນສິດນຳໃຊ້ບໍ?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:922
+#: includes/freemius-strings.php:5958
+#, php-format
+msgid "You might have missed it, but you don't have to share any data and can just %s the opt-in."
+msgstr "ທ່ານອາດຈະພາດມັນໄປ, ແຕ່ທ່ານບໍ່ ຈຳ ເປັນຕ້ອງແບ່ງປັນຂໍ້ມູນໃດໆ ແລະ ສາມາດ %s ການເລືອກເຂົ້າຮ່ວມໄດ້."
+
+#: includes/freemius-strings.php:926
+#: includes/freemius-strings.php:6637
+msgctxt "verb"
+msgid "Downgrade"
+msgstr "ຫຼຸດຂັ້ນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:931
+#: includes/freemius-strings.php:2877
+#, php-format
+msgid "%1$s will immediately stop all future recurring payments and your %2$s plan license will expire in %3$s."
+msgstr "%1$s ຈະຢຸດການຈ່າຍເງິນແບບ Periodic ທີ່ເກີດຂຶ້ນຊ້ຳໃນອະນາຄົດທັງໝົດທັນທີ ແລະ ສິດການນຳໃຊ້ແຜນ %2$s ຂອງທ່ານຈະໝົດອາຍຸໃນ %3$s."
+
+#: includes/freemius-strings.php:935
+#: includes/freemius-strings.php:3782
+msgid "Downgrading"
+msgstr "ກຳລັງລົດລະດັບ"
+
+#: includes/freemius-strings.php:939
+#: includes/freemius-strings.php:3787
+msgid "Downgrading your plan"
+msgstr "ກຳລັງລົດລະດັບແຜນບໍລິການຂອງທ່ານ"
+
+#: includes/freemius-strings.php:943
+#: includes/freemius-strings.php:3792
+msgid "Download"
+msgstr "ດາວໂຫຼດ"
+
+#: includes/freemius-strings.php:947
+#: includes/freemius-strings.php:6434
+msgctxt "as download latest version"
+msgid "Download Latest"
+msgstr "ດາວໂຫຼດເວີຊັນຫຼ້າສຸດ"
+
+#: includes/freemius-strings.php:951
+#: includes/freemius-strings.php:6439
+msgctxt "as download latest version"
+msgid "Download Latest Free Version"
+msgstr "ດາວໂຫລດເວີຊັນຟຣີຫຼ້າສຸດ"
+
+#: includes/freemius-strings.php:955
+#: includes/freemius-strings.php:3814
+msgid "Download the latest version"
+msgstr "ດາວໂຫລດເວີຊັນຫຼ້າສຸດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:960
+#: includes/freemius-strings.php:3809
+#, php-format
+msgid "Download the latest %s version"
+msgstr "ດາວໂຫລດເວີຊັນ %s ຫຼ້າສຸດ"
+
+#: includes/freemius-strings.php:964
+#: includes/freemius-strings.php:3803
+msgid "Download Paid Version"
+msgstr "ດາວໂຫຼດເວີຊັນທີ່ຊຳລະເງິນແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:969
+#: includes/freemius-strings.php:3798
+#, php-format
+msgid "Download %s Version"
+msgstr "ດາວໂຫລດເວີຊັນ %s"
+
+#: includes/freemius-strings.php:973
+#: includes/freemius-strings.php:3819
+msgid "Downloaded"
+msgstr "ດາວໂຫຼດແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:978
+#: includes/freemius-strings.php:3825
+#, php-format
+msgid "Due to the new %1$sEU General Data Protection Regulation (GDPR)%2$s compliance requirements it is required that you provide your explicit consent, again, confirming that you are onboard :-)"
+msgstr "ເນື່ອງ​ຈາກ​ຂໍ້​ກຳ​ນົດ​ການ​ປະ​ຕິ​ບັດ​ຕາມ %1$sກົດ​ລະ​ບຽບ​ການ​ປົກ​ປ້ອງ​ຂໍ້ມູນ​ທົ່ວ​ໄປ​ຂອງ​ສະ​ຫະ​ພາບ​ຢຸ​ໂຣບ (GDPR)%2$s ໃໝ່, ມັນ​ຈຶ່ງ​ຮຽກ​ຮ້ອງ​ໃຫ້​ທ່ານ​ໃຫ້​ຄວາມ​ຍິນ​ຍອມ​ຢ່າງ​ຈະ​ແຈ້ງ​ອີກ​ຄັ້ງ, ເພື່ອ​ຢືນ​ຢັນ​ວ່າ​ທ່ານ​ຍັງ​ສືບ​ຕໍ່​ໃຊ້​ບໍ​ລິ​ການ :-)"
+
+#: includes/freemius-strings.php:982
+#: includes/freemius-strings.php:3835
+msgid "Duplicate Website"
+msgstr "ຄັດລອກເວັບໄຊ"
+
+#: includes/freemius-strings.php:986
+#: includes/freemius-strings.php:6642
+msgctxt "verb"
+msgid "Edit"
+msgstr "ແກ້ໄຂ"
+
+#: includes/freemius-strings.php:990
+#: includes/freemius-strings.php:3852
+msgid "Email"
+msgstr "ອີເມວ"
+
+#: includes/freemius-strings.php:994
+#: includes/freemius-strings.php:3857
+msgid "Email address"
+msgstr "ທີ່ຢູ່ອີເມວ"
+
+#: includes/freemius-strings.php:998
+#: includes/freemius-strings.php:3862
+msgid "Email address is required."
+msgstr "ຈຳເປັນຕ້ອງມີທີ່ຢູ່ອີເມວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1003
+#: includes/freemius-strings.php:2943
+#, php-format
+msgid "%s is my email address"
+msgstr "%s ແມ່ນທີ່ຢູ່ອີເມວຂອງຂ້ອຍ"
+
+#: includes/freemius-strings.php:1007
+#: includes/freemius-strings.php:3867
+msgid "Email address update"
+msgstr "ການອັບເດດທີ່ຢູ່ອີເມວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1012
+#: includes/freemius-strings.php:3303
+#, php-format
+msgid "Are both %1$s and %2$s your email addresses?"
+msgstr "ທັງ %1$s ແລະ %2$s ແມ່ນທີ່ຢູ່ອີເມວຂອງທ່ານແມ່ນບໍ?"
+
+#: includes/freemius-strings.php:1016
+#: includes/freemius-strings.php:5746
+msgid "We couldn't find your email address in the system, are you sure it's the right address?"
+msgstr "ພວກເຮົາບໍ່ພົບທີ່ຢູ່ອີເມວຂອງທ່ານໃນລະບົບ, ທ່ານແນ່ໃຈບໍ່ວ່າມັນແມ່ນທີ່ຢູ່ທີ່ຖືກຕ້ອງ?"
+
+#: includes/freemius-strings.php:1020
+#: includes/freemius-strings.php:6038
+msgid "Your email has been successfully verified - you are AWESOME!"
+msgstr "ອີເມວຂອງທ່ານໄດ້ຮັບການຢັ້ງຢືນສຳເລັດແລ້ວ - ທ່ານສຸດຍອດແທ້ໆ!"
+
+#: includes/freemius-strings.php:1024
+#: includes/freemius-strings.php:4427
+msgid "License key is empty."
+msgstr "ລະຫັດອະນຸຍາດຫວ່າງເປົ່າ."
+
+#: includes/freemius-strings.php:1028
+#: includes/freemius-strings.php:3872
+msgid "Enabling white-label mode"
+msgstr "ກຳລັງເປີດໃຊ້ງານໂໝດປ້າຍຂາວ"
+
+#: includes/freemius-strings.php:1032
+#: includes/freemius-strings.php:3877
+msgid "End"
+msgstr "ສິ້ນສຸດ"
+
+#: includes/freemius-strings.php:1036
+#: includes/freemius-strings.php:3882
+msgid "Enter email address"
+msgstr "ປ້ອນທີ່ຢູ່ອີເມວ"
+
+#: includes/freemius-strings.php:1040
+#: includes/freemius-strings.php:3903
+msgid "Enter the new email address"
+msgstr "ປ້ອນທີ່ຢູ່ອີເມວໃໝ່"
+
+#: includes/freemius-strings.php:1044
+#: includes/freemius-strings.php:3908
+msgid "Error"
+msgstr "ຂໍ້ຜິດພາດ"
+
+#: includes/freemius-strings.php:1048
+#: includes/freemius-strings.php:6449
+msgctxt "as expiration date"
+msgid "Expiration"
+msgstr "ວັນໝົດອາຍຸ"
+
+#: includes/freemius-strings.php:1052
+#: includes/freemius-strings.php:3918
+msgid "Expired"
+msgstr "ໝົດອາຍຸ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1057
+#: includes/freemius-strings.php:3924
+#, php-format
+msgid "Expires in %s"
+msgstr "ໝົດອາຍຸໃນ %s"
+
+#: includes/freemius-strings.php:1061
+#: includes/freemius-strings.php:3929
+msgid "Extensions"
+msgstr "ສ່ວນຂະຫຍາຍ"
+
+#: includes/freemius-strings.php:1065
+#: includes/freemius-strings.php:3939
+msgid "Extra domains where you will be marketing the product from."
+msgstr "ໂດເມນເພີ່ມເຕີມທີ່ທ່ານຈະໃຊ້ເພື່ອການຕະຫຼາດຜະລິດຕະພັນ."
+
+#: includes/freemius-strings.php:1069
+#: includes/freemius-strings.php:3934
+msgid "Extra Domains"
+msgstr "ໂດເມນເພີ່ມເຕີມ"
+
+#: includes/freemius-strings.php:1073
+#: includes/freemius-strings.php:4003
+msgid "Freemius SDK couldn't find the plugin's main file. Please contact sdk@freemius.com with the current error."
+msgstr "Freemius SDK ບໍ່​ສາ​ມາດ​ຊອກ​ຫາ​ໄຟລ໌​ຫຼັກ​ຂອງ​ປລັກ​ອິນ​ໄດ້. ກະລຸນາ​ຕິດ​ຕໍ່​ຫາ sdk@freemius.com ພ້ອມ​ກັບ​ຂໍ້​ຜິດ​ພາດ​ປະ​ຈຸ​ບັນ."
+
+#: includes/freemius-strings.php:1077
+#: includes/freemius-strings.php:6331
+msgctxt "Plugin installer section title"
+msgid "FAQ"
+msgstr "ຄຳຖາມທີ່ພົບຂຶ້ນຂັ້ນເລື້ອຍໆ"
+
+#: includes/freemius-strings.php:1081
+#: includes/freemius-strings.php:6336
+msgctxt "Plugin installer section title"
+msgid "Features & Pricing"
+msgstr "ຄຸນສົມບັດ ແລະ ລາຄາ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1086
+#: includes/freemius-strings.php:5763
+#, php-format
+msgid "We made a few tweaks to the %1$s, %2$s"
+msgstr "ພວກ​ເຮົາ​ໄດ້​ປັບ​ແຕ່ງ %1$s, %2$s ເລັກ​ນ້ອຍ"
+
+#: includes/freemius-strings.php:1090
+#: includes/freemius-strings.php:3944
+msgid "File"
+msgstr "ໄຟລ໌"
+
+#: includes/freemius-strings.php:1094
+#: includes/freemius-strings.php:3949
+msgid "Filter"
+msgstr "ກອງ"
+
+#: includes/freemius-strings.php:1098
+#: includes/freemius-strings.php:4808
+msgid "Please follow these steps to complete the upgrade"
+msgstr "ກະລຸນາປະຕິບັດຕາມຂັ້ນຕອນເຫຼົ່ານີ້ເພື່ອສຳເລັດການອັບເກຣດ"
+
+#: includes/freemius-strings.php:1102
+#: includes/freemius-strings.php:3978
+msgid "Free"
+msgstr "ບໍ່ເສຍຄ່າ"
+
+#: includes/freemius-strings.php:1106
+#: includes/freemius-strings.php:3182
+msgid "Add-on must be deployed to WordPress.org or Freemius."
+msgstr "ສ່ວນເສີມຕ້ອງຖືກນຳໄປໃຊ້ໃນ WordPress.org ຫຼື Freemius."
+
+#: includes/freemius-strings.php:1110
+#: includes/freemius-strings.php:3983
+msgid "Free Trial"
+msgstr "ທົດລອງໃຊ້ຟຣີ"
+
+#: includes/freemius-strings.php:1114
+#: includes/freemius-strings.php:3988
+msgid "Free version"
+msgstr "ເວີຊັນຟຣີ"
+
+#: includes/freemius-strings.php:1118
+#: includes/freemius-strings.php:3993
+msgid "Freemius API"
+msgstr "Freemius API"
+
+#: includes/freemius-strings.php:1122
+#: includes/freemius-strings.php:3998
+msgid "Freemius Debug"
+msgstr "ການແກ້ໄຂຂໍ້ຜິດພາດ Freemius"
+
+#: includes/freemius-strings.php:1126
+#: includes/freemius-strings.php:4008
+msgid "Freemius State"
+msgstr "ສະຖານະ Freemius"
+
+#: includes/freemius-strings.php:1130
+#: includes/freemius-strings.php:4018
+msgid "Full name"
+msgstr "ຊື່ເຕັມ"
+
+#: includes/freemius-strings.php:1134
+#: includes/freemius-strings.php:4023
+msgid "Function"
+msgstr "ຟັງຊັນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1139
+#: includes/freemius-strings.php:4034
+#, php-format
+msgid "Get updates for bleeding edge Beta versions of %s."
+msgstr "ຮັບການອັບເດດສຳລັບເວີຊັນເບຕ້າລ່າສຸດຂອງ %s."
+
+#: includes/freemius-strings.php:1143
+#: includes/freemius-strings.php:4039
+msgid "Have a license key?"
+msgstr "ທ່ານມີຄີອານຸຍາດບໍ?"
+
+#: includes/freemius-strings.php:1147
+#: includes/freemius-strings.php:6383
+msgctxt "advance notice of something that will need attention."
+msgid "Heads up"
+msgstr "ແຈ້ງເຕືອນ"
+
+#: includes/freemius-strings.php:1151
+#: includes/freemius-strings.php:6561
+msgctxt "exclamation"
+msgid "Hey"
+msgstr "ສະບາຍດີ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1156
+#: includes/freemius-strings.php:6572
+#, php-format
+msgctxt "greeting"
+msgid "Hey %s,"
+msgstr "ສະບາຍດີ %s,"
+
+#: includes/freemius-strings.php:1160
+#: includes/freemius-strings.php:6647
+msgctxt "verb"
+msgid "Hide"
+msgstr "ຊ່ອນ"
+
+#: includes/freemius-strings.php:1164
+#: includes/freemius-strings.php:6617
+msgctxt "something somebody says when they are thinking about what you have just said."
+msgid "Hmm"
+msgstr "ອືມ"
+
+#: includes/freemius-strings.php:1168
+#: includes/freemius-strings.php:4061
+msgid "How to upload and activate?"
+msgstr "ວິທີການອັບໂຫລດ ແລະ ເປີດໃຊ້ງານ?"
+
+#: includes/freemius-strings.php:1172
+#: includes/freemius-strings.php:4115
+msgid "ID"
+msgstr "ລະຫັດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1177
+#: includes/freemius-strings.php:5905
+#, php-format
+msgid "You are already running the %s in a trial mode."
+msgstr "ທ່ານກຳລັງນຳໃຊ້ %s ໃນໂໝດທົດລອງໃຊ້ຢູ່ແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1182
+#: includes/freemius-strings.php:4173
+#, php-format
+msgid "In %s"
+msgstr "ໃນ %s"
+
+#: includes/freemius-strings.php:1186
+#: includes/freemius-strings.php:4184
+msgid "Install Free Version Now"
+msgstr "ຕິດຕັ້ງເວີຊັນຟຣີດຽວນີ້"
+
+#: includes/freemius-strings.php:1190
+#: includes/freemius-strings.php:4189
+msgid "Install Free Version Update Now"
+msgstr "ຕິດຕັ້ງການອັບເດດເວີຊັນຟຣີດຽວນີ້"
+
+#: includes/freemius-strings.php:1194
+#: includes/freemius-strings.php:4194
+msgid "Install Now"
+msgstr "ຕິດຕັ້ງດຽວນີ້"
+
+#: includes/freemius-strings.php:1198
+#: includes/freemius-strings.php:4199
+msgid "Install Update Now"
+msgstr "ຕິດຕັ້ງການອັບເດດດຽວນີ້"
+
+#: includes/freemius-strings.php:1202
+#: includes/freemius-strings.php:6341
+msgctxt "Plugin installer section title"
+msgid "Installation"
+msgstr "ການຕິດຕັ້ງ"
+
+#: includes/freemius-strings.php:1206
+#: includes/freemius-strings.php:6577
+msgctxt "installed add-on"
+msgid "Installed"
+msgstr "ຕິດຕັ້ງແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1211
+#: includes/freemius-strings.php:3246
+#, php-format
+msgid "An automated download and installation of %1$s (paid version) from %2$s will start in %3$s. If you would like to do it manually - click the cancellation button now."
+msgstr "ການດາວໂຫຼດ ແລະ ການຕິດຕັ້ງແບບອັດຕະໂນມັດຂອງ %1$s (ສະບັບເສຍເງິນ) ຈາກ %2$s ຈະເລີ່ມຕົ້ນໃນ %3$s. ຖ້າທ່ານຕ້ອງການເຮັດດ້ວຍຕົນເອງ - ກະລຸນາຄລິກປຸ່ມຍົກເລີກດຽວນີ້."
+
+#: includes/freemius-strings.php:1215
+#: includes/freemius-strings.php:5428
+msgid "The installation process has started and may take a few minutes to complete. Please wait until it is done - do not refresh this page."
+msgstr "ຂະບວນການຕິດຕັ້ງໄດ້ເລີ່ມຕົ້ນຂຶ້ນແລ້ວ ແລະ ອາດຈະໃຊ້ເວລາສອງສາມນາທີຈຶ່ງຈະສຳເລັດ. ກະລຸນາລໍຖ້າຈົນກວ່າຈະສຳເລັດ - ຢ່າຣີເຟຣດໜ້ານີ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1220
+#: includes/freemius-strings.php:4205
+#, php-format
+msgid "Installing plugin: %s"
+msgstr "ກຳລັງຕິດຕັ້ງປລັກອິນ: %s"
+
+#: includes/freemius-strings.php:1224
+#: includes/freemius-strings.php:4210
+msgid "Invalid clone resolution action."
+msgstr "ການກະທຳການແກ້ໄຂການໂຄນບໍ່ຖືກຕ້ອງ."
+
+#: includes/freemius-strings.php:1228
+#: includes/freemius-strings.php:4215
+msgid "Invalid domain"
+msgstr "ໂດເມນບໍ່ຖືກຕ້ອງ"
+
+#: includes/freemius-strings.php:1232
+#: includes/freemius-strings.php:4225
+msgid "Invalid new user ID or email address."
+msgstr "ລະຫັດຜູ້ໃຊ້ ຫຼື ທີ່ຢູ່ອີເມວໃໝ່ບໍ່ຖືກຕ້ອງ."
+
+#: includes/freemius-strings.php:1236
+#: includes/freemius-strings.php:4230
+msgid "Invalid site details collection."
+msgstr "ການເກັບກຳລາຍລະອຽດຂອງເວັບໄຊບໍ່ຖືກຕ້ອງ."
+
+#: includes/freemius-strings.php:1240
+#: includes/freemius-strings.php:4235
+msgid "Invoice"
+msgstr "ໃບແຈ້ງໜີ້"
+
+#: includes/freemius-strings.php:1244
+#: includes/freemius-strings.php:4258
+msgid "Is Active"
+msgstr "ເປີດໃຊ້ງານຢູ່"
+
+#: includes/freemius-strings.php:1248
+#: includes/freemius-strings.php:4337
+msgid "Keep Sharing"
+msgstr "ຮັກສາການແບ່ງປັນໄວ້"
+
+#: includes/freemius-strings.php:1252
+#: includes/freemius-strings.php:4347
+msgid "Key"
+msgstr "ລະຫັດລັບ"
+
+#: includes/freemius-strings.php:1256
+#: includes/freemius-strings.php:4362
+msgid "Last"
+msgstr "ຫຼ້າສຸດ"
+
+#: includes/freemius-strings.php:1260
+#: includes/freemius-strings.php:4372
+msgid "Last license"
+msgstr "ໃບອະນຸຍາດຫຼ້າສຸດ"
+
+#: includes/freemius-strings.php:1264
+#: includes/freemius-strings.php:4367
+msgid "Last Updated"
+msgstr "ັບປຸງຫຼ້າສຸດ"
+
+#: includes/freemius-strings.php:1268
+#: includes/freemius-strings.php:4377
+msgid "Latest Free Version Installed"
+msgstr "ໄດ້ຕິດຕັ້ງເວີຊັນຟຣີຫຼ້າສຸດແລ້ວ"
+
+#: includes/freemius-strings.php:1272
+#: includes/freemius-strings.php:4382
+msgid "Latest Version Installed"
+msgstr "ຕິດຕັ້ງເວີຊັນຫຼ້າສຸດແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1277
+#: includes/freemius-strings.php:6259
+#, php-format
+msgid "the latest %s version here"
+msgstr "ເວີຊັນ %s ລ່າສຸດຢູ່ທີ່ນີ້"
+
+#: includes/freemius-strings.php:1281
+#: includes/freemius-strings.php:4387
+msgid "Learn more"
+msgstr "ຮຽນຮູ້ເພີ່ມເຕີມ"
+
+#: includes/freemius-strings.php:1285
+#: includes/freemius-strings.php:4392
+msgid "Length"
+msgstr "ຄວາມຍາວ"
+
+#: includes/freemius-strings.php:1289
+#: includes/freemius-strings.php:6077
+msgid "Your license was successfully activated."
+msgstr "ໃບອະນຸຍາດຂອງທ່ານໄດ້ຮັບການເປີດໃຊ້ງານສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:1293
+#: includes/freemius-strings.php:4274
+msgid "It looks like the license could not be activated."
+msgstr "ເບິ່ງຄືວ່າບໍ່ສາມາດເປີດນຳໃຊ້ສິດອະນຸຍາດໄດ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1298
+#: includes/freemius-strings.php:3021
+#, php-format
+msgid "%s to activate the license once you get it."
+msgstr "%s ເພື່ອເປີດໃຊ້ງານໃບອະນຸຍາດເມື່ອທ່ານໄດ້ຮັບມັນແລ້ວ."
+
+#: includes/freemius-strings.php:1302
+#: includes/freemius-strings.php:4402
+msgid "License Agreement"
+msgstr "ສັນຍາອະນຸຍາດ"
+
+#: includes/freemius-strings.php:1306
+#: includes/freemius-strings.php:6054
+msgid "Your license has been cancelled. If you think it's a mistake, please contact support."
+msgstr "ໃບອະນຸຍາດຂອງທ່ານຖືກຍົກເລີກແລ້ວ. ຖ້າທ່ານຄິດວ່າມັນເປັນຄວາມຜິດພາດ, ກະລຸນາຕິດຕໍ່ພະແນກຊ່ວຍເຫຼືອ."
+
+#: includes/freemius-strings.php:1310
+#: includes/freemius-strings.php:4279
+msgid "It looks like the license deactivation failed."
+msgstr "ເບິ່ງຄືວ່າການປິດໃຊ້ງານໃບອະນຸຍາດບໍ່ສຳເລັດ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1315
+#: includes/freemius-strings.php:6083
+#, php-format
+msgid "Your license was successfully deactivated, you are back to the %s plan."
+msgstr "ລິຂະສິດຂອງທ່ານໄດ້ຖືກປິດໃຊ້ງານຮຽບຮ້ອຍແລ້ວ, ຕອນນີ້ທ່ານກັບຄືນສູ່ແຜນ %s ແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1320
+#: includes/freemius-strings.php:6011
+#, php-format
+msgid "Your %s license was successfully deactivated."
+msgstr "ສິດການນຳໃຊ້ %s ຂອງທ່ານໄດ້ຖືກປິດການໃຊ້ງານຮຽບຮ້ອຍແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1325
+#: includes/freemius-strings.php:6072
+#, php-format
+msgid "Your license has expired. You can still continue using the free %s forever."
+msgstr "ໃບອະນຸຍາດຂອງທ່ານໝົດອາຍຸແລ້ວ. ທ່ານຍັງສາມາດນຳໃຊ້ %s ຟຣີຕໍ່ໄປໄດ້ຕະຫຼອດກາລ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1330
+#: includes/freemius-strings.php:6060
+#, php-format
+msgid "Your license has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "ໃບອະນຸຍາດຂອງທ່ານໄດ້ໝົດອາຍຸແລ້ວ. %1$sອັບເກຣດດຽວນີ້%2$s ເພື່ອສືບຕໍ່ໃຊ້ງານ %3$s ໂດຍບໍ່ມີການຂັດຈັງຫວະ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1335
+#: includes/freemius-strings.php:6066
+#, php-format
+msgid "Your license has expired. You can still continue using all the %s features, but you'll need to renew your license to continue getting updates and support."
+msgstr "ໃບອະນຸຍາດຂອງທ່ານໝົດອາຍຸແລ້ວ. ທ່ານຍັງສາມາດນຳໃຊ້ຟີເຈີທັງໝົດຂອງ %s ຕໍ່ໄປໄດ້, ແຕ່ທ່ານຈະຕ້ອງຕໍ່ອາຍຸໃບອະນຸຍາດຂອງທ່ານເພື່ອຮັບການອັບເດດ ແລະ ການບໍລິການຊ່ວຍເຫຼືອຕໍ່ໄປ."
+
+#: includes/freemius-strings.php:1339
+#: includes/freemius-strings.php:4407
+msgid "License ID"
+msgstr "ໄດ ເອັສ ບີ"
+
+#: includes/freemius-strings.php:1343
+#: includes/freemius-strings.php:4417
+msgid "License issues?"
+msgstr "ບັນຫາໃບອະນຸຍາດ?"
+
+#: includes/freemius-strings.php:1347
+#: includes/freemius-strings.php:5156
+msgid "Single Site License"
+msgstr "ສິດທິການນຳໃຊ້ເວັບໄຊດ່ຽວ"
+
+#: includes/freemius-strings.php:1351
+#: includes/freemius-strings.php:5596
+msgid "Unlimited Licenses"
+msgstr "ສິດທິການໃຊ້ງານບໍ່ຈຳກັດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1356
+#: includes/freemius-strings.php:5612
+#, php-format
+msgid "Up to %s Sites"
+msgstr "ສູງສຸດ %s ເວັບໄຊ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1361
+#: includes/freemius-strings.php:4269
+#, php-format
+msgid "Is this your client's site? %s if you wish to hide sensitive info like your email, license key, prices, billing address & invoices from the WP Admin."
+msgstr "ນີ້ແມ່ນເວັບໄຊຂອງລູກຄ້າຂອງທ່ານແມ່ນບໍ? %s ຖ້າທ່ານຕ້ອງການເຊື່ອງຂໍ້ມູນທີ່ລະອຽດອ່ອນເຊັ່ນ: ອີເມວ, ກຸນແຈອະນຸຍາດ, ລາຄາ, ທີ່ຢູ່ໃບບິນ ແລະ ໃບເກັບເງິນຈາກ WP Admin."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1366
+#: includes/freemius-strings.php:6005
+#, php-format
+msgid "Your %1$s license was flagged as white-labeled to hide sensitive information from the WP Admin (e.g. your email, license key, prices, billing address & invoices). If you ever wish to revert it back, you can easily do it through your %2$s. If this was a mistake you can also %3$s."
+msgstr "ໃບອະນຸຍາດ %1$s ຂອງທ່ານຖືກລະບຸວ່າເປັນແບບ white-label ເພື່ອເຊື່ອງຂໍ້ມູນທີ່ສຳຄັນຈາກ WP Admin (ເຊັ່ນ: ອີເມວ, ລະຫັດໃບອະນຸຍາດ, ລາຄາ, ທີ່ຢູ່ຮຽກເກັບເງິນ ແລະ ໃບແຈ້ງໜີ້ຂອງທ່ານ). ຖ້າທ່ານຕ້ອງການປ່ຽນກັບຄືນ, ທ່ານສາມາດເຮັດໄດ້ຢ່າງງ່າຍດາຍຜ່ານ %2$s ຂອງທ່ານ. ຖ້ານີ້ແມ່ນຄວາມຜິດພາດ ທ່ານກໍສາມາດ %3$s ໄດ້ເຊັ່ນກັນ."
+
+#: includes/freemius-strings.php:1370
+#: includes/freemius-strings.php:4432
+msgid "Lifetime"
+msgstr "ຕະຫຼອດຊີວິດ"
+
+#: includes/freemius-strings.php:1374
+#: includes/freemius-strings.php:4443
+msgid "Load DB Option"
+msgstr "ໂຫຼດຕົວເລືອກຖານຂໍ້ມູນ"
+
+#: includes/freemius-strings.php:1378
+#: includes/freemius-strings.php:4448
+msgid "Localhost"
+msgstr "ໂລຄາໂຮສຕ໌"
+
+#: includes/freemius-strings.php:1382
+#: includes/freemius-strings.php:4453
+msgid "Log"
+msgstr "ບັນທຶກການເຮັດວຽກ"
+
+#: includes/freemius-strings.php:1386
+#: includes/freemius-strings.php:4458
+msgid "Logger"
+msgstr "ຕົວບັນທຶກຂໍ້ມູນ"
+
+#: includes/freemius-strings.php:1390
+#: includes/freemius-strings.php:4463
+msgid "Long-Term Duplicate"
+msgstr "ສຳເນົາໄລຍະຍາວ"
+
+#: includes/freemius-strings.php:1394
+#: includes/freemius-strings.php:4468
+msgid "Message"
+msgstr "ຂໍ້ຄວາມ"
+
+#: includes/freemius-strings.php:1398
+#: includes/freemius-strings.php:4473
+msgid "Method"
+msgstr "ວິທີການ"
+
+#: includes/freemius-strings.php:1402
+#: includes/freemius-strings.php:4488
+msgid "Migrate Options to Network"
+msgstr "ຍ້າຍຕົວເລືອກໄປຫາເຄືອຂ່າຍ"
+
+#: includes/freemius-strings.php:1406
+#: includes/freemius-strings.php:4478
+msgid "Migrate"
+msgstr "ຍ້າຍຂໍ້ມູນ"
+
+#: includes/freemius-strings.php:1410
+#: includes/freemius-strings.php:4483
+msgid "Migrate License"
+msgstr "ໂຍກຍ້າຍສິດອະນຸຍາດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1415
+#: includes/freemius-strings.php:4253
+#, php-format
+msgid "Is %2$s the new home of %4$s?"
+msgstr "%2$s ເປັນບ້ານໃໝ່ຂອງ %4$s ແລ້ວບໍ?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1420
+#: includes/freemius-strings.php:5871
+#, php-format
+msgid "Yes, %%2$s is replacing %%4$s. I would like to migrate my %s from %%4$s to %%2$s."
+msgstr "ແມ່ນແລ້ວ, %%2$s ກຳລັງແທນທີ່ %%4$s. ຂ້ອຍຕ້ອງການຍ້າຍ %s ຂອງຂ້ອຍຈາກ %%4$s ໄປຫາ %%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1425
+#: includes/freemius-strings.php:2955
+#, php-format
+msgid "%s minimum payout amount."
+msgstr "ຈຳນວນເງິນຈ່າຍຂັ້ນຕ່ຳ %s."
+
+#: includes/freemius-strings.php:1429
+#: includes/freemius-strings.php:6464
+msgctxt "as monthly period"
+msgid "mo"
+msgstr "ໂມ"
+
+#: includes/freemius-strings.php:1433
+#: includes/freemius-strings.php:4493
+msgid "Mobile apps"
+msgstr "ແອັບພລິເຄຊັນມືຖື"
+
+#: includes/freemius-strings.php:1437
+#: includes/freemius-strings.php:4498
+msgid "Module"
+msgstr "ໂມດູນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1442
+#: includes/freemius-strings.php:2889
+#, php-format
+msgid "%s Installs"
+msgstr "%s ການຕິດຕັ້ງ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1447
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s Licenses"
+msgstr "%s ໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:1451
+#: includes/freemius-strings.php:5445
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "ຊຸດປລັກອິນຣີໂມດບໍ່ມີໂຟນເດີທີ່ມີສະລັກທີ່ຕ້ອງການ ແລະ ການປ່ຽນຊື່ບໍ່ສຳເລັດ."
+
+#: includes/freemius-strings.php:1455
+#: includes/freemius-strings.php:4503
+msgid "Module Path"
+msgstr "ເສັ້ນທາງໂມດູນ"
+
+#: includes/freemius-strings.php:1459
+#: includes/freemius-strings.php:4508
+msgid "Module Type"
+msgstr "ປະເພດໂມດູນ"
+
+#: includes/freemius-strings.php:1463
+#: includes/freemius-strings.php:6444
+msgctxt "as every month"
+msgid "Monthly"
+msgstr "ປະຈຳເດືອນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1468
+#: includes/freemius-strings.php:4519
+#, php-format
+msgid "More information about %s"
+msgstr "ຂໍ້ມູນເພີ່ມເຕີມກ່ຽວກັບ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1473
+#: includes/freemius-strings.php:5865
+#, php-format
+msgid "Yes - move all my data and assets from %1$s to %2$s"
+msgstr "ແມ່ນແລ້ວ - ຍ້າຍຂໍ້ມູນ ແລະ ຊັບສິນທັງໝົດຂອງຂ້ອຍຈາກ %1$s ໄປຍັງ %2$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1478
+#: includes/freemius-strings.php:4597
+#, php-format
+msgid "No - only move this site's data to %s"
+msgstr "ບໍ່ - ຍ້າຍສະເພາະຂໍ້ມູນຂອງເວັບໄຊນີ້ໄປທີ່ %s ເທົ່ານັ້ນ"
+
+#: includes/freemius-strings.php:1482
+#: includes/freemius-strings.php:6592
+msgctxt "milliseconds"
+msgid "ms"
+msgstr "ມິລິວິນາທີ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1487
+#: includes/freemius-strings.php:5434
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of %3$s:%1$s"
+msgstr "ຜະລິດຕະພັນລຸ່ມນີ້ຖືກປ່ຽນເປັນໂໝດປອດໄພແລ້ວ ຍ້ອນພວກເຮົາສັງເກດເຫັນວ່າ %2$s ເປັນສໍາເນົາທີ່ຄືກັນເປ໊ະຂອງ %3$s:%1$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1492
+#: includes/freemius-strings.php:5440
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of these sites:%3$s%1$s"
+msgstr "ຜະລິດຕະພັນລຸ່ມນີ້ຖືກປ່ຽນເປັນໂໝດປອດໄພແລ້ວ ຍ້ອນພວກເຮົາສັງເກດເຫັນວ່າ %2$s ເປັນສຳເນົາທີ່ຄືກັນທຸກຢ່າງຂອງເວັບໄຊເຫຼົ່ານີ້:%3$s%1$s"
+
+#: includes/freemius-strings.php:1496
+#: includes/freemius-strings.php:4524
+msgid "Name"
+msgstr "ຊື່"
+
+#: includes/freemius-strings.php:1500
+#: includes/freemius-strings.php:4829
+msgid "Please provide your full name."
+msgstr "ກະລຸນາລະບຸຊື່ເຕັມຂອງທ່ານ."
+
+#: includes/freemius-strings.php:1504
+#: includes/freemius-strings.php:6088
+msgid "Your name was successfully updated."
+msgstr "ຊື່ຂອງທ່ານໄດ້ຖືກອັບເດດສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:1508
+#: includes/freemius-strings.php:4534
+msgid "Network Blog"
+msgstr "ບລັອກເຄືອຂ່າຍ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1513
+#: includes/freemius-strings.php:3039
+#, php-format
+msgid "%1$sClick here%2$s to choose the sites where you'd like to activate the license on."
+msgstr "%1$sຄລິກບ່ອນນີ້%2$s ເພື່ອເລືອກເວັບໄຊທີ່ທ່ານຕ້ອງການເປີດໃຊ້ງານໄລເຊນ."
+
+#: includes/freemius-strings.php:1517
+#: includes/freemius-strings.php:4539
+msgid "Network User"
+msgstr "ຜູ້ໃຊ້ເຄືອຂ່າຍ"
+
+#: includes/freemius-strings.php:1521
+#: includes/freemius-strings.php:4554
+msgid "New"
+msgstr "ໃຫມ່"
+
+#: includes/freemius-strings.php:1525
+#: includes/freemius-strings.php:6193
+msgid "new Beta version"
+msgstr "ເວີຊັນເບຕ້າໃໝ່"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1530
+#: includes/freemius-strings.php:4247
+#, php-format
+msgid "Is %2$s a new website?"
+msgstr "%2$s ເປັນເວັບໄຊໃໝ່ແມ່ນບໍ?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1535
+#: includes/freemius-strings.php:5883
+#, php-format
+msgid "Yes, %2$s is a new and different website that is separate from %4$s."
+msgstr "ແມ່ນແລ້ວ, %2$s ເປັນເວັບໄຊທ໌ໃໝ່ ແລະ ແຕກຕ່າງ ເຊິ່ງແຍກອອກຈາກ %4$s."
+
+#: includes/freemius-strings.php:1539
+#: includes/freemius-strings.php:4300
+msgid "It requires license activation."
+msgstr "ມັນຮຽກຮ້ອງໃຫ້ມີການເປີດໃຊ້ງານສິດອະນຸຍາດ."
+
+#: includes/freemius-strings.php:1543
+#: includes/freemius-strings.php:6198
+msgid "new version"
+msgstr "ເວີຊັນໃໝ່"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1548
+#: includes/freemius-strings.php:5483
+#, php-format
+msgid "There is a new version of %s available."
+msgstr "ມີ %s ເວີຊັນໃໝ່ໃຫ້ໃຊ້ງານແລ້ວ."
+
+#: includes/freemius-strings.php:1552
+#: includes/freemius-strings.php:4564
+msgid "New Website"
+msgstr "ເວັບໄຊທ໌ໃໝ່"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1557
+#: includes/freemius-strings.php:4570
+#, php-format
+msgid "Newer Free Version (%s) Installed"
+msgstr "ຕິດຕັ້ງເວີຊັນຟຣີໃໝ່ກວ່າ (%s) ແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1562
+#: includes/freemius-strings.php:4576
+#, php-format
+msgid "Newer Version (%s) Installed"
+msgstr "ຕິດຕັ້ງເວີຊັນໃໝ່ກວ່າ (%s) ແລ້ວ"
+
+#: includes/freemius-strings.php:1566
+#: includes/freemius-strings.php:5504
+msgid "This plugin requires a newer version of PHP."
+msgstr "ປລັກອິນນີ້ຮຽນຮ້ອງເວີຊັນ PHP ທີ່ໃໝ່ກວ່າ."
+
+#: includes/freemius-strings.php:1570
+#: includes/freemius-strings.php:4586
+msgid "Next"
+msgstr "ຖັດໄປ"
+
+#: includes/freemius-strings.php:1574
+#: includes/freemius-strings.php:4591
+msgid "No"
+msgstr "ບໍ່"
+
+#: includes/freemius-strings.php:1578
+#: includes/freemius-strings.php:4295
+msgid "It looks like your site currently doesn't have an active license."
+msgstr "ເບິ່ງຄືວ່າເວັບໄຊຂອງທ່ານບໍ່ມີໃບອະນຸຍາດທີ່ນຳໃຊ້ນຳຢູ່."
+
+#: includes/freemius-strings.php:1582
+#: includes/freemius-strings.php:5741
+msgid "We can't see any active licenses associated with that email address, are you sure it's the right address?"
+msgstr "ພວກເຮົາບໍ່ພົບໃບອະນຸຍາດທີ່ມີຜົນນຳໃຊ້ໃດໆ ທີ່ເຊື່ອມໂຍງກັບທີ່ຢູ່ອີເມວນັ້ນ, ທ່ານແນ່ໃຈບໍວ່າແມ່ນທີ່ຢູ່ທີ່ຖືກຕ້ອງ?"
+
+#: includes/freemius-strings.php:1586
+#: includes/freemius-strings.php:4619
+msgid "No credit card required"
+msgstr "ບໍ່ຈຳເປັນຕ້ອງໃຊ້ບັດເຄຣດິດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1591
+#: includes/freemius-strings.php:4614
+#, php-format
+msgid "No commitment for %s days - cancel anytime!"
+msgstr "ບໍ່ມີພັນທະສັນຍາເປັນເວລາ %s ວັນ - ຍົກເລີກໄດ້ຕະຫຼອດເວລາ!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1596
+#: includes/freemius-strings.php:4608
+#, php-format
+msgid "No commitment for %s - cancel anytime"
+msgstr "ບໍ່ມີພັນທະສັນຍາສຳລັບ %s - ຍົກເລີກໄດ້ທຸກເມື່ອ"
+
+#: includes/freemius-strings.php:1600
+#: includes/freemius-strings.php:4624
+msgid "No expiration"
+msgstr "ບໍ່ມີວັນໝົດອາຍຸ"
+
+#: includes/freemius-strings.php:1604
+#: includes/freemius-strings.php:4602
+msgid "No ID"
+msgstr "ບໍ່ມີລະຫັດ ID"
+
+#: includes/freemius-strings.php:1608
+#: includes/freemius-strings.php:6281
+msgctxt "API connectivity state is unknown"
+msgid "No requests yet"
+msgstr "ຍັງບໍ່ມີຄຳຮ້ອງເທື່ອ"
+
+#: includes/freemius-strings.php:1612
+#: includes/freemius-strings.php:6489
+msgctxt "as secret encryption key missing"
+msgid "No Secret"
+msgstr "ບໍ່ມີຄວາມລັບ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1617
+#: includes/freemius-strings.php:4635
+#, php-format
+msgid "None of the %s's plans supports a trial period."
+msgstr "ບໍ່ມີແຜນການໃດໆຂອງ %s ທີ່ຮອງຮັບໄລຍະທົດລອງໃຊ້."
+
+#: includes/freemius-strings.php:1621
+#: includes/freemius-strings.php:4629
+msgid "Non-expiring"
+msgstr "ບໍ່ມີວັນໝົດອາຍຸ"
+
+#: includes/freemius-strings.php:1625
+#: includes/freemius-strings.php:5494
+msgid "This plugin has not been marked as compatible with your version of WordPress."
+msgstr "ປລັກອິນນີ້ຍັງບໍ່ທັນໄດ້ຮັບການລະບຸວ່າສາມາດໃຊ້ງານຮ່ວມກັບ WordPress ເວີຊັນຂອງທ່ານໄດ້."
+
+#: includes/freemius-strings.php:1629
+#: includes/freemius-strings.php:5499
+msgid "This plugin has not been tested with your current version of WordPress."
+msgstr "ປລັກອິນນີ້ຍັງບໍ່ທັນໄດ້ຮັບການທົດສອບກັບ WordPress ເວີຊັນປັດຈຸບັນຂອງທ່ານເທື່ອ."
+
+#: includes/freemius-strings.php:1633
+#: includes/freemius-strings.php:6203
+msgid "not verified"
+msgstr "ບໍ່ທັນໄດ້ຢັ້ງຢືນ"
+
+#: includes/freemius-strings.php:1637
+#: includes/freemius-strings.php:6519
+msgctxt "as turned off"
+msgid "Off"
+msgstr "ປິດ"
+
+#: includes/freemius-strings.php:1641
+#: includes/freemius-strings.php:4640
+msgid "O.K"
+msgstr "ຕົກລົງ"
+
+#: includes/freemius-strings.php:1645
+#: includes/freemius-strings.php:6524
+msgctxt "as turned on"
+msgid "On"
+msgstr "ເປີດ"
+
+#: includes/freemius-strings.php:1649
+#: includes/freemius-strings.php:6479
+msgctxt "as once a year"
+msgid "Once"
+msgstr "ເທື່ອໜຶ່ງ"
+
+#: includes/freemius-strings.php:1653
+#: includes/freemius-strings.php:6566
+msgctxt "exclamation"
+msgid "Oops"
+msgstr "ອວຸສ"
+
+#: includes/freemius-strings.php:1657
+#: includes/freemius-strings.php:4663
+msgid "Opt In"
+msgstr "ຕົກລົງຮັບການອັບເດດ"
+
+#: includes/freemius-strings.php:1661
+#: includes/freemius-strings.php:3229
+msgid "Allow & Continue"
+msgstr "ອະນຸຍາດ ແລະ ດຳເນີນການຕໍ່"
+
+#: includes/freemius-strings.php:1665
+#: includes/freemius-strings.php:4668
+msgid "Opt Out"
+msgstr "ຖອນຕົວອອກ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1670
+#: includes/freemius-strings.php:5131
+#, php-format
+msgid "Sharing diagnostic data with %s helps to provide functionality that's more relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the plugin should be translated and tailored to."
+msgstr "ການແບ່ງປັນຂໍ້ມູນການວິນິດໄສກັບ %s ຊ່ວຍໃຫ້ສາມາດສະໜອງຟັງຊັນທີ່ກ່ຽວຂ້ອງກັບເວັບໄຊຂອງທ່ານຫຼາຍຂຶ້ນ, ຫລີກລ້ຽງຄວາມເຂົ້າກັນບໍ່ໄດ້ຂອງເວີຊັນ WordPress ຫຼື PHP ທີ່ສາມາດເຮັດໃຫ້ເວັບໄຊຂອງທ່ານພັງໄດ້, ແລະ ຮັບຮູ້ວ່າພາສາ ແລະ ພາກພື້ນໃດທີ່ປລັກອິນຄວນຖືກແປ ແລະ ປັບແຕ່ງໃຫ້ເໝາະສົມ."
+
+#: includes/freemius-strings.php:1674
+#: includes/freemius-strings.php:5136
+msgid "Sharing your name and email allows us to keep you in the loop about new features and important updates, warn you about security issues before they become public knowledge, and send you special offers."
+msgstr "ການແບ່ງປັນຊື່ ແລະ ອີເມວຂອງທ່ານຊ່ວຍໃຫ້ພວກເຮົາສາມາດແຈ້ງໃຫ້ທ່ານຮູ້ກ່ຽວກັບຄຸນສົມບັດໃໝ່ ແລະ ການອັບເດດທີ່ສຳຄັນ, ເຕືອນທ່ານກ່ຽວກັບບັນຫາຄວາມປອດໄພກ່ອນທີ່ມັນຈະກາຍເປັນສາທາລະນະ, ແລະ ສົ່ງຂໍ້ສະເໜີພິເສດໃຫ້ທ່ານ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1679
+#: includes/freemius-strings.php:3735
+#, php-format
+msgid "Diagnostic data will no longer be sent from %1$s to %2$s."
+msgstr "ຂໍ້ມູນການວິນິດໄສຈະບໍ່ຖືກສົ່ງຈາກ %1$s ໄປຍັງ %2$s ອີກຕໍ່ໄປ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1684
+#: includes/freemius-strings.php:4685
+#, php-format
+msgid "Opt in to make \"%s\" better!"
+msgstr "ເປີດໃຊ້ງານເພື່ອເຮັດໃຫ້ \"%s\" ດີຂຶ້ນ!"
+
+#: includes/freemius-strings.php:1688
+#: includes/freemius-strings.php:4690
+msgid "Opting in"
+msgstr "ກຳລັງສະໝັກໃຈເຂົ້າຮ່ວມ"
+
+#: includes/freemius-strings.php:1692
+#: includes/freemius-strings.php:4695
+msgid "Opting out"
+msgstr "ການຍົກເລີກການເຂົ້າຮ່ວມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1697
+#: includes/freemius-strings.php:3973
+#, php-format
+msgid "For ongoing compatibility with your website, you can optionally allow %s to:"
+msgstr "ເພື່ອຄວາມສາມາດເຂົ້າກັນໄດ້ຢ່າງຕໍ່ເນື່ອງກັບເວັບໄຊທ໌ຂອງທ່ານ, ທ່ານສາມາດເລືອກອະນຸຍາດໃຫ້ %s:"
+
+#: includes/freemius-strings.php:1701
+#: includes/freemius-strings.php:2108
+#: includes/freemius-strings.php:4705
+msgid "Other"
+msgstr "ອື່ນໆ"
+
+#: includes/freemius-strings.php:1705
+#: includes/freemius-strings.php:6346
+msgctxt "Plugin installer section title"
+msgid "Other Notes"
+msgstr "ບັນທຶກອື່ນໆ"
+
+#: includes/freemius-strings.php:1709
+#: includes/freemius-strings.php:4710
+msgid "Owner Email"
+msgstr "ອີເມວເຈົ້າຂອງຮ້ານ"
+
+#: includes/freemius-strings.php:1713
+#: includes/freemius-strings.php:4715
+msgid "Owner ID"
+msgstr "ລະຫັດເຈົ້າຂອງ"
+
+#: includes/freemius-strings.php:1717
+#: includes/freemius-strings.php:4720
+msgid "Owner Name"
+msgstr "ຊື່ເຈົ້າຂອງ"
+
+#: includes/freemius-strings.php:1721
+#: includes/freemius-strings.php:4730
+msgid "Paid add-on must be deployed to Freemius."
+msgstr "ສ່ວນເສີມແບບເສຍເງິນຕ້ອງໄດ້ຮັບການນຳໃຊ້ກັບ Freemius."
+
+#: includes/freemius-strings.php:1725
+#: includes/freemius-strings.php:6454
+msgctxt "as file/folder path"
+msgid "Path"
+msgstr "ເສັ້ນທາງ"
+
+#: includes/freemius-strings.php:1729
+#: includes/freemius-strings.php:4745
+msgid "Payments"
+msgstr "ການຈ່າຍເງິນ"
+
+#: includes/freemius-strings.php:1733
+#: includes/freemius-strings.php:4750
+msgid "Payouts are in USD and processed monthly via PayPal."
+msgstr "ການຈ່າຍເງິນແມ່ນເປັນ USD ແລະ ຖືກປະມວນຜົນທຸກໆເດືອນຜ່ານ PayPal."
+
+#: includes/freemius-strings.php:1737
+#: includes/freemius-strings.php:4735
+msgid "PayPal account email address"
+msgstr "ທີ່ຢູ່ອີເມວບັນຊີ PayPal"
+
+#: includes/freemius-strings.php:1741
+#: includes/freemius-strings.php:4740
+msgid "PayPal email address is required."
+msgstr "ຈຳເປັນຕ້ອງມີທີ່ຢູ່ອີເມວ PayPal."
+
+#: includes/freemius-strings.php:1745
+#: includes/freemius-strings.php:4725
+msgid "PCI compliant"
+msgstr "ສອດຄ່ອງຕາມມາດຕະຖານ PCI"
+
+#: includes/freemius-strings.php:1749
+#: includes/freemius-strings.php:5711
+msgid "View Diagnostic Info"
+msgstr "ເບິ່ງຂໍ້ມູນການວິນິດໄສ"
+
+#: includes/freemius-strings.php:1753
+#: includes/freemius-strings.php:5827
+msgid "WordPress & PHP versions, site language & title"
+msgstr "ເວີຊັນ WordPress ແລະ PHP, ພາສາ ແລະ ຊື່ເວັບໄຊ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1758
+#: includes/freemius-strings.php:5526
+#, php-format
+msgid "To avoid breaking your website due to WordPress or PHP version incompatibilities, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "ເພື່ອຫຼີກເວັ້ນການເຮັດໃຫ້ເວັບໄຊທ໌ຂອງທ່ານເສຍຫາຍເນື່ອງຈາກຄວາມເຂົ້າກັນບໍ່ໄດ້ຂອງ WordPress ຫຼື ເວີຊັນ PHP, ແລະ ຮັບຮູ້ວ່າພາສາ & ພາກພື້ນໃດທີ່ຄວນແປ ແລະ ປັບແຕ່ງ %s ໃຫ້ເໝາະສົມ."
+
+#: includes/freemius-strings.php:1762
+#: includes/freemius-strings.php:5716
+msgid "View License Essentials"
+msgstr "ເບິ່ງຂໍ້ມູນສຳຄັນຂອງໃບອະນຸຍາດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1767
+#, php-format
+msgid "Homepage URL, %s version, SDK version"
+msgstr "URL ຫນ້າຫຼັກ, ເວີຊັນ %s, ເວີຊັນ SDK"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1772
+#: includes/freemius-strings.php:5549
+#, php-format
+msgid "To let you manage & control where the license is activated and ensure %s security & feature updates are only delivered to websites you authorize."
+msgstr "ເພື່ອໃຫ້ທ່ານສາມາດຈັດການ ແລະ ຄວບຄຸມບ່ອນທີ່ມີການເປີດໃຊ້ງານໃບອະນຸຍາດ ພ້ອມທັງຮັບປະກັນວ່າການອັບເດດຄວາມປອດໄພ & ຄຸນສົມບັດຂອງ %s ຈະຖືກສົ່ງໄປຫາເວັບໄຊທ໌ທີ່ທ່ານໄດ້ຮັບອະນຸຍາດເທົ່ານັ້ນ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1777
+#: includes/freemius-strings.php:3648
+#, php-format
+msgid "Current %s & SDK versions, and if active or uninstalled"
+msgstr "%s ປະຈຸບັນ & ເວີຊັນ SDK, ແລະ ຖ້າຫາກວ່າມັນເປີດໃຊ້ງານ ຫຼື ຖອນການຕິດຕັ້ງແລ້ວ"
+
+#: includes/freemius-strings.php:1781
+#: includes/freemius-strings.php:4263
+msgid "Is active, deactivated, or uninstalled"
+msgstr "ເປີດໃຊ້ງານ, ປິດການໃຊ້ງານ, ຫຼື ຖອນການຕິດຕັ້ງແລ້ວ"
+
+#: includes/freemius-strings.php:1785
+#: includes/freemius-strings.php:5721
+msgid "View Plugins & Themes List"
+msgstr "ເບິ່ງລາຍການປລັກອິນ ແລະ ຫົວຂໍ້ເວັບໄຊ"
+
+#: includes/freemius-strings.php:1789
+#: includes/freemius-strings.php:4581
+msgid "Newsletter"
+msgstr "ຈົດໝາຍຂ່າວ"
+
+#: includes/freemius-strings.php:1793
+#: includes/freemius-strings.php:5627
+msgid "Updates, announcements, marketing, no spam"
+msgstr "ການອັບເດດ, ປະກາດ, ການຕະຫຼາດ, ບໍ່ມີສະແປມ"
+
+#: includes/freemius-strings.php:1797
+#: includes/freemius-strings.php:5701
+msgid "View Basic Profile Info"
+msgstr "ເບິ່ງຂໍ້ມູນໂປຣໄຟລ໌ພື້ນຖານ"
+
+#: includes/freemius-strings.php:1801
+#: includes/freemius-strings.php:6016
+msgid "Your WordPress user's: first & last name, and email address"
+msgstr "ຊື່, ນາມສະກຸນ ແລະ ທີ່ຢູ່ອີເມວ ຂອງຜູ້ໃຊ້ WordPress ຂອງທ່ານ"
+
+#: includes/freemius-strings.php:1805
+#: includes/freemius-strings.php:4549
+msgid "Never miss important updates, get security warnings before they become public knowledge, and receive notifications about special offers and awesome new features."
+msgstr "ຢ່າພາດການອັບເດດທີ່ສຳຄັນ, ຮັບການເຕືອນໄພດ້ານຄວາມປອດໄພກ່ອນທີ່ມັນຈະກາຍເປັນຂ່າວສານສາທາລະນະ, ແລະ ຮັບການແຈ້ງເຕືອນກ່ຽວກັບຂໍ້ສະເໜີພິເສດ ແລະ ຟີເຈີໃໝ່ທີ່ຍອດຢ້ຽມ."
+
+#: includes/freemius-strings.php:1809
+#: includes/freemius-strings.php:5706
+msgid "View Basic Website Info"
+msgstr "ເບິ່ງຂໍ້ມູນເວັບໄຊພື້ນຖານ"
+
+#: includes/freemius-strings.php:1813
+#: includes/freemius-strings.php:4050
+msgid "Homepage URL & title, WP & PHP versions, and site language"
+msgstr "URL ແລະ ຫົວຂໍ້ໜ້າຫຼັກ, ເວີຊັນ WP ແລະ PHP, ແລະ ພາສາຂອງເວັບໄຊ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1818
+#: includes/freemius-strings.php:5555
+#, php-format
+msgid "To provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "ເພື່ອສະໜອງຟັງຊັນເພີ່ມເຕີມທີ່ກ່ຽວຂ້ອງກັບເວັບໄຊທ໌ຂອງທ່ານ, ຫຼີກເວັ້ນຄວາມເຂົ້າກັນບໍ່ໄດ້ຂອງເວີຊັນ WordPress ຫຼື PHP ທີ່ສາມາດເຮັດໃຫ້ເວັບໄຊທ໌ຂອງທ່ານພັງໄດ້, ແລະ ຮັບຮູ້ວ່າພາສາ & ພາກພື້ນໃດທີ່ຄວນແປ ແລະ ປັບແຕ່ງ %s ໃຫ້ເໝາະສົມ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1823
+#: includes/freemius-strings.php:3045
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">Click here to learn more about updating PHP</a>."
+msgstr "<a href=\"%s\" target=\"_blank\">ຄລິກທີ່ນີ້ເພື່ອຮຽນຮູ້ເພີ່ມເຕີມກ່ຽວກັບການອັບເດດ PHP</a>."
+
+#: includes/freemius-strings.php:1827
+#: includes/freemius-strings.php:5805
+msgid "What price would you feel comfortable paying?"
+msgstr "ທ່ານສະດວກຈ່າຍໃນລາຄາເທົ່າໃດ?"
+
+#: includes/freemius-strings.php:1831
+#: includes/freemius-strings.php:5794
+msgid "What feature?"
+msgstr "ຄຸນສົມບັດໃດ?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1836
+#: includes/freemius-strings.php:5816
+#, php-format
+msgid "What's the %s's name?"
+msgstr "ຊື່ຂອງ %s ແມ່ນຫຍັງ?"
+
+#: includes/freemius-strings.php:1840
+#: includes/freemius-strings.php:4352
+msgid "Kindly share what didn't work so we can fix it for future users..."
+msgstr "ກະລຸນາແບ່ງປັນສິ່ງທີ່ໃຊ້ການບໍ່ໄດ້ ເພື່ອໃຫ້ພວກເຮົາສາມາດແກ້ໄຂມັນສຳລັບຜູ້ໃຊ້ໃນອະນາຄົດ..."
+
+#: includes/freemius-strings.php:1844
+#: includes/freemius-strings.php:5789
+msgid "What did you expect?"
+msgstr "ທ່ານຄາດຫວັງຫຍັງ?"
+
+#: includes/freemius-strings.php:1848
+#: includes/freemius-strings.php:5810
+msgid "What you've been looking for?"
+msgstr "ສິ່ງທີ່ທ່ານກຳລັງຊອກຫາແມ່ນບໍ?"
+
+#: includes/freemius-strings.php:1852
+#: includes/freemius-strings.php:6484
+msgctxt "as product pricing plan"
+msgid "Plan"
+msgstr "ແຜນການ"
+
+#: includes/freemius-strings.php:1856
+#: includes/freemius-strings.php:6093
+msgid "Your plan was successfully activated."
+msgstr "ແຜນບໍລິການຂອງທ່ານຖືກເປີດໃຊ້ງານສໍາເລັດແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1861
+#: includes/freemius-strings.php:6099
+#, php-format
+msgid "Your plan was successfully changed to %s."
+msgstr "ແພັກເກັດຂອງທ່ານຖືກປ່ຽນເປັນ %s ສຳເລັດແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1866
+#: includes/freemius-strings.php:4098
+#, php-format
+msgid "I have upgraded my account but when I try to Sync the License, the plan remains %s."
+msgstr "ຂ້ອຍໄດ້ອັບເກຣດບັນຊີແລ້ວ ແຕ່ເມື່ອຂ້ອຍພະຍາຍາມຊິງຄ໌ໃບອະນຸຍາດ ແຜນຍັງຄົງເປັນ %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1871
+#: includes/freemius-strings.php:4290
+#, php-format
+msgid "It looks like you are still on the %s plan. If you did upgrade or change your plan, it's probably an issue on our side - sorry."
+msgstr "ເບິ່ງຄືວ່າທ່ານຍັງຢູ່ໃນແພັກເກດ %s ຢູ່. ຖ້າທ່ານໄດ້ອັບເກຣດ ຫຼື ປ່ຽນແພັກເກດຂອງທ່ານແລ້ວ, ມັນອາດຈະເປັນບັນຫາທາງຝັ່ງພວກເຮົາ - ຂໍອະໄພນຳ."
+
+#: includes/freemius-strings.php:1875
+#: includes/freemius-strings.php:4772
+msgid "Plan ID"
+msgstr "ລະຫັດແພັກເກດ"
+
+#: includes/freemius-strings.php:1879
+#: includes/freemius-strings.php:6104
+msgid "Your plan was successfully upgraded."
+msgstr "ແພັກເກດຂອງທ່ານໄດ້ຮັບການອັບເກຣດສຳເລັດແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1884
+#: includes/freemius-strings.php:6116
+#, php-format
+msgid "Your subscription was successfully cancelled. Your %1$s plan license will expire in %2$s."
+msgstr "ການສະໝັກໃຊ້ຂອງທ່ານໄດ້ຖືກຍົກເລີກສຳເລັດແລ້ວ. ໃບອະນຸຍາດແຜນ %1$s ຂອງທ່ານຈະໝົດອາຍຸໃນອີກ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1889
+#: includes/freemius-strings.php:4767
+#, php-format
+msgid "Plan %s does not support a trial period."
+msgstr "ແຜນ %s ບໍ່ຮອງຮັບໄລຍະທົດລອງໃຊ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1894
+#: includes/freemius-strings.php:4788
+#, php-format
+msgid "Please download %s."
+msgstr "ກະລຸນາດາວໂຫຼດ %s."
+
+#: includes/freemius-strings.php:1898
+#: includes/freemius-strings.php:4834
+msgid "Please wait"
+msgstr "ກະລຸນາຖ້າສັກຄູ່"
+
+#: includes/freemius-strings.php:1902
+#: includes/freemius-strings.php:4839
+msgid "Plugin"
+msgstr "ປລັກອິນ"
+
+#: includes/freemius-strings.php:1906
+#: includes/freemius-strings.php:4844
+msgid "Plugin Homepage"
+msgstr "ໜ້າຫຼັກຂອງປລັກອິນ"
+
+#: includes/freemius-strings.php:1910
+#: includes/freemius-strings.php:4849
+msgid "Plugin ID"
+msgstr "ID ປັ໊ກອິນ"
+
+#: includes/freemius-strings.php:1914
+#: includes/freemius-strings.php:4854
+msgid "Plugin Install"
+msgstr "ການຕິດຕັ້ງປລັກອິນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1919
+#: includes/freemius-strings.php:2961
+#, php-format
+msgid "%s opt-in was successfully completed."
+msgstr "%s ການສະໝັກຮັບໄດ້ສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:1923
+#: includes/freemius-strings.php:4864
+msgid "Plugins"
+msgstr "ປລັກອິນ"
+
+#: includes/freemius-strings.php:1927
+#: includes/freemius-strings.php:4874
+msgid "Plugins page"
+msgstr "ໜ້າປລັກອິນ"
+
+#: includes/freemius-strings.php:1931
+#: includes/freemius-strings.php:4869
+msgid "Plugins & Themes Sync"
+msgstr "ການຊິ້ງຂໍ້ມູນປລັກອິນ ແລະ ທີມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1936
+#: includes/freemius-strings.php:2853
+#, php-format
+msgid " The %1$s's %2$sdownload link%3$s, license key, and installation instructions have been sent to %4$s. If you can't find the email after 5 min, please check your spam box."
+msgstr "ລິ້ງດາວໂຫຼດ %2$s, ກະແຈອະນຸຍາດ ແລະ ຄຳແນະນຳການຕິດຕັ້ງຂອງ %1$s ໄດ້ຖືກສົ່ງໄປທີ່ %4$s ແລ້ວ %3$s. ຖ້າທ່ານບໍ່ເຫັນອີເມວຫຼັງຈາກ 5 ນາທີ, ກະລຸນາກວດສອບກ່ອງຈົດໝາຍຂີ້ເຫຍື້ອຂອງທ່ານ."
+
+#: includes/freemius-strings.php:1940
+#: includes/freemius-strings.php:4879
+msgid "Premium"
+msgstr "ພຣີມຽມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1945
+#: includes/freemius-strings.php:4885
+#, php-format
+msgid "Premium %s version was successfully activated."
+msgstr "ເປີດໃຊ້ງານ %s ເວີຊັນພຣີມຽມສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:1949
+#: includes/freemius-strings.php:4342
+msgid "Keep automatic updates"
+msgstr "ຮັກສາການອັບເດດອັດຕະໂນມັດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1954
+#: includes/freemius-strings.php:5537
+#, php-format
+msgid "To ensure that security & feature updates are automatically delivered directly to your WordPress Admin Dashboard while protecting your license from unauthorized abuse, %2$s needs to view the website’s homepage URL, %1$s version, SDK version, and whether the %1$s is active."
+msgstr "ເພື່ອໃຫ້ແນ່ໃຈວ່າການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດຕ່າງໆ ຖືກສົ່ງໂດຍອັດໂນມັດໂດຍກົງຫາ ແຜງຄວບຄຸມຜູ້ດູແລລະບົບ WordPress ຂອງທ່ານ ໃນຂະນະທີ່ປົກປ້ອງໃບອະນຸຍາດຂອງທ່ານຈາກການນຳໃຊ້ໂດຍບໍ່ໄດ້ຮັບອະນຸຍາດ, %2$s ຈຳເປັນຕ້ອງເບິ່ງ URL ໜ້າທຳອິດຂອງເວັບໄຊ, ເວີຊັນ %1$s, ເວີຊັນ SDK, ແລະ ເບິ່ງວ່າ %1$s ກຳລັງນຳໃຊ່ຢູ່ຫຼືບໍ່."
+
+#: includes/freemius-strings.php:1958
+#: includes/freemius-strings.php:4895
+msgid "Premium version"
+msgstr "ເວີຊັນພຣີມຽມ"
+
+#: includes/freemius-strings.php:1962
+#: includes/freemius-strings.php:6597
+msgctxt "noun"
+msgid "Price"
+msgstr "ລາຄາ"
+
+#: includes/freemius-strings.php:1966
+#: includes/freemius-strings.php:4905
+msgid "Pricing"
+msgstr "ລາຄາ"
+
+#: includes/freemius-strings.php:1970
+#: includes/freemius-strings.php:4818
+msgid "Please note that we will not be able to grandfather outdated pricing for renewals/new subscriptions after a cancellation. If you choose to renew the subscription manually in the future, after a price increase, which typically occurs once a year, you will be charged the updated price."
+msgstr "ກະລຸນາຮັບຊາບວ່າ ພວກເສົາຈະບໍ່ສາມາດຮັກສາລາຄາເກົ່າທີ່ໝົດອາຍຸແລ້ວສຳລັບການຕໍ່ອາຍຸ/ການສະໝັກໃຊ້ໃໝ່ ຫຼັງຈາກທີ່ມີການຍົກເລີກໄດ້. ຖ້າທ່ານເລືອກທີ່ຈະຕໍ່ອາຍຸການສະໝັກໃຊ້ດ້ວຍຕົນເອງໃນອະນາຄົດ ຫຼັງຈາກທີ່ມີການປັບຂຶ້ນລາຄາ ເຊິ່ງປົກກະຕິແລ້ວຈະເກີດຂຶ້ນປີລະຄັ້ງ ທ່ານຈະຖືກຄິດໄລ່ເງິນຕາມລາຄາໃໝ່ທີ່ໄດ້ອັບເດດແລ້ວ."
+
+#: includes/freemius-strings.php:1974
+#: includes/freemius-strings.php:4910
+msgid "Privacy Policy"
+msgstr "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ"
+
+#: includes/freemius-strings.php:1978
+#: includes/freemius-strings.php:4915
+msgid "Proceed"
+msgstr "ດຳເນີນການຕໍ່"
+
+#: includes/freemius-strings.php:1982
+#: includes/freemius-strings.php:3313
+msgid "Are you sure you want to proceed?"
+msgstr "ທ່ານ,ແນ່ໃຈບໍ່ວ່າຕ້ອງການສືບຕໍ່?"
+
+#: includes/freemius-strings.php:1986
+#: includes/freemius-strings.php:4920
+msgid "Process ID"
+msgstr "ລະຫັດຂະບວນການ"
+
+#: includes/freemius-strings.php:1990
+#: includes/freemius-strings.php:4925
+msgid "Processing"
+msgstr "ກຳລັງດຳເນີນການ"
+
+#: includes/freemius-strings.php:1994
+#: includes/freemius-strings.php:4930
+msgid "Processing, please wait and do not close or refresh this window..."
+msgstr "ກຳລັງປະມວນຜົນ, ກະລຸນາລໍຖ້າ ແລະ ຢ່າປິດ ຫຼື ຣີເຟຣດໜ້າຈໍນີ້..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1999
+#: includes/freemius-strings.php:2907
+#, php-format
+msgid "%s and its add-ons"
+msgstr "%s ແລະ ຕົວເສີມຂອງມັນ"
+
+#: includes/freemius-strings.php:2003
+#: includes/freemius-strings.php:6316
+msgctxt "Part of the message that tells the user to check their spam folder for a specific email."
+msgid "the product's support email address"
+msgstr "ທີ່ຢູ່ອີເມວຊັບພອດຂອງຜະລິດຕະພັນ"
+
+#: includes/freemius-strings.php:2007
+#: includes/freemius-strings.php:4940
+msgid "Program Summary"
+msgstr "ບົດສະຫຼຸບໂປຣແກຣມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2012
+#: includes/freemius-strings.php:4824
+#, php-format
+msgid "Please provide details on how you intend to promote %s (please be as specific as possible)."
+msgstr "ກະລຸນາໃຫ້ລາຍລະອຽດກ່ຽວກັບວິທີທີ່ທ່ານຕັ້ງໃຈຈະສົ່ງເສີມ %s (ກະລຸນາລະບຸໃຫ້ຈະແຈ້ງທີ່ສຸດເທົ່າທີ່ຈະເປັນໄປໄດ້)."
+
+#: includes/freemius-strings.php:2016
+#: includes/freemius-strings.php:4066
+msgid "How will you promote us?"
+msgstr "ທ່ານຈະໂຄສະນາພວກພວກເຮົາແນວໃດ?"
+
+#: includes/freemius-strings.php:2020
+#: includes/freemius-strings.php:4945
+msgid "Promotion methods"
+msgstr "ວິທີການສົ່ງເສີມການຂາຍ"
+
+#: includes/freemius-strings.php:2024
+#: includes/freemius-strings.php:4950
+msgid "Province"
+msgstr "ແຂວງ"
+
+#: includes/freemius-strings.php:2028
+#: includes/freemius-strings.php:4955
+msgid "Public Key"
+msgstr "ຄີສາທາລະນະ"
+
+#: includes/freemius-strings.php:2032
+#: includes/freemius-strings.php:6662
+msgctxt "verb"
+msgid "Purchase"
+msgstr "ຊື້"
+
+#: includes/freemius-strings.php:2036
+#: includes/freemius-strings.php:4960
+msgid "Purchase License"
+msgstr "ຊື້ສິດອະນຸຍາດ"
+
+#: includes/freemius-strings.php:2040
+#: includes/freemius-strings.php:4965
+msgid "Purchase More"
+msgstr "ຊື້ເພີ່ມຕື່ມ"
+
+#: includes/freemius-strings.php:2044
+#: includes/freemius-strings.php:4970
+msgid "Quick Feedback"
+msgstr "ຄຳຄິດເຫັນດ່ວນ"
+
+#: includes/freemius-strings.php:2048
+#: includes/freemius-strings.php:4975
+msgid "Quota"
+msgstr "ໂຄຕ້າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2053
+#: includes/freemius-strings.php:5388
+#, php-format
+msgid "The %s broke my site"
+msgstr "%s ໄດ້ເຮັດໃຫ້ເວັບໄຊຂອງຂ້ອຍໃຊ້ການບໍ່ໄດ້"
+
+#: includes/freemius-strings.php:2057
+#: includes/freemius-strings.php:4076
+msgid "I can't pay for it anymore"
+msgstr "ຂ້ອຍບໍ່ສາມາດຈ່າຍຄ່າອັນນີ້ໄດ້ອີກຕໍ່ໄປແລ້ວ"
+
+#: includes/freemius-strings.php:2061
+#: includes/freemius-strings.php:4081
+msgid "I couldn't understand how to make it work"
+msgstr "ຂ້ອຍບໍ່ເຂົ້າໃຈວິທີເຮັດໃຫ້ມັນໃຊ້ງານໄດ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2066
+#: includes/freemius-strings.php:5394
+#, php-format
+msgid "The %s didn't work"
+msgstr "%s ໃຊ້ງານບໍ່ໄດ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2071
+#: includes/freemius-strings.php:5400
+#, php-format
+msgid "The %s didn't work as expected"
+msgstr "%s ບໍ່ໄດ້ຜົນຕາມທີ່ຄາດໄວ້"
+
+#: includes/freemius-strings.php:2075
+#: includes/freemius-strings.php:4086
+msgid "I don't like to share my information with you"
+msgstr "ຂ້ອຍບໍ່ມັກແບ່ງປັນຂໍ້ມູນຂອງຂ້ອຍໃຫ້ທ່ານ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2080
+#: includes/freemius-strings.php:4092
+#, php-format
+msgid "I found a better %s"
+msgstr "ຂ້ອຍພົບ %s ທີ່ດີກວ່າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2085
+#: includes/freemius-strings.php:5406
+#, php-format
+msgid "The %s is great, but I need specific feature that you don't support"
+msgstr "%s ນັ້ນດີເລີດແລ້ວ, ແຕ່ຂ້ອຍຕ້ອງການຄຸນສົມບັດສະເພາະທີ່ເຈົ້າບໍ່ຮອງຮັບ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2090
+#: includes/freemius-strings.php:4110
+#, php-format
+msgid "I only needed the %s for a short period"
+msgstr "ຂ້ອຍຕ້ອງການພຽງແຕ່ %s ສຳລັບໄລຍະເວລາສັ້ນໆເທົ່ານັ້ນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2095
+#: includes/freemius-strings.php:4104
+#, php-format
+msgid "I no longer need the %s"
+msgstr "ຂ້ອຍບໍ່ຕ້ອງການ %s ອີກຕໍ່ໄປແລ້ວ"
+
+#: includes/freemius-strings.php:2099
+#: includes/freemius-strings.php:4316
+msgid "It's not what I was looking for"
+msgstr "ມັນບໍ່ແມ່ນສິ່ງທີ່ຂ້ອຍກຳລັງຊອກຫາ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2104
+#: includes/freemius-strings.php:5412
+#, php-format
+msgid "The %s is not working"
+msgstr "%s ບໍ່ເຮັດວຽກ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2113
+#: includes/freemius-strings.php:5418
+#, php-format
+msgid "The %s suddenly stopped working"
+msgstr "%s ໄດ້ຢຸດການເຮັດວຽກຢ່າງກະທັນຫັນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2118
+#: includes/freemius-strings.php:4311
+#, php-format
+msgid "It's a temporary %s - I'm troubleshooting an issue"
+msgstr "ມັນເປັນການຊົ່ວຄາວ %s - ຂ້ອຍກຳລັງແກ້ໄຂບັນຫາຢູ່"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2123
+#: includes/freemius-strings.php:4986
+#, php-format
+msgid "Redirecting, please <a href=\"%1$s\">click here</a> if you're stuck..."
+msgstr "ກຳລັງໂອນຍ້າຍ, ກະລຸນາ <a href=\"%1$s\">ຄລິກທີ່ນີ້</a> ຖ້າທ່ານຕິດຂັດ..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2128
+#: includes/freemius-strings.php:4992
+#, php-format
+msgid "Refer new customers to our %1$s and earn %2$s commission on each successful sale you refer!"
+msgstr "ແນະນຳລູກຄ້າໃໝ່ໃຫ້ກັບ %1$s ຂອງພວກເຮົາ ແລະ ຮັບຄ່ານາຍໜ້າ %2$s ຕໍ່ກັບການຂາຍທີ່ສົມບູນທຸກຄັ້ງທີ່ທ່ານແນະນຳ!"
+
+#: includes/freemius-strings.php:2136
+#: includes/freemius-strings.php:5002
+msgid "Renew license"
+msgstr "ຕໍ່ອາຍຸສິດອະນຸຍາດ"
+
+#: includes/freemius-strings.php:2140
+#: includes/freemius-strings.php:5007
+msgid "Renew your license now"
+msgstr "ຕໍ່ອາຍຸໃບອະນຸຍາດຂອງທ່ານດຽວນີ້"
+
+#: includes/freemius-strings.php:2144
+#: includes/freemius-strings.php:4028
+msgid "Get commission for automated subscription renewals."
+msgstr "ຮັບຄ່າຄອມມິດຊັນສຳລັບການຕໍ່ອາຍຸການສະໝັກໃຊ້ແບບອັດຕະໂນມັດ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2149
+#: includes/freemius-strings.php:3339
+#, php-format
+msgid "Auto renews in %s"
+msgstr "ຕໍ່ອາຍຸອັດຕະໂນມັດໃນອີກ %s"
+
+#: includes/freemius-strings.php:2153
+#: includes/freemius-strings.php:5012
+msgid "Requests"
+msgstr "ການຮ້ອງຂໍ"
+
+#: includes/freemius-strings.php:2157
+#: includes/freemius-strings.php:5017
+msgid "Required"
+msgstr "ຈຳເປັນຕ້ອງມີ"
+
+#: includes/freemius-strings.php:2161
+#: includes/freemius-strings.php:5022
+msgid "Requires PHP Version"
+msgstr "ຕ້ອງໃຊ້ເວີຊັນ PHP"
+
+#: includes/freemius-strings.php:2165
+#: includes/freemius-strings.php:5027
+msgid "Requires WordPress Version"
+msgstr "ຕ້ອງ​ການເວີ​ຊັນ WordPress"
+
+#: includes/freemius-strings.php:2169
+#: includes/freemius-strings.php:4980
+msgid "Re-send activation email"
+msgstr "ສົ່ງອີເມວເປີດໃຊ້ງານອີກຄັ້ງ"
+
+#: includes/freemius-strings.php:2173
+#: includes/freemius-strings.php:5032
+msgid "Reset Deactivation Snoozing"
+msgstr "ຣີເຊັດການປິດການນຳໃຊ້ທີ່ກຳລັງງຽບໄວ້"
+
+#: includes/freemius-strings.php:2177
+#: includes/freemius-strings.php:5037
+msgid "Result"
+msgstr "ຜົນໄດ້ຮັບ"
+
+#: includes/freemius-strings.php:2181
+#: includes/freemius-strings.php:6218
+msgid "revert it now"
+msgstr "ສົ່ງຄືນໃນຕອນນີ້"
+
+#: includes/freemius-strings.php:2185
+#: includes/freemius-strings.php:6351
+msgctxt "Plugin installer section title"
+msgid "Reviews"
+msgstr "ຣີວິວ"
+
+#: includes/freemius-strings.php:2189
+#: includes/freemius-strings.php:6361
+msgctxt "a positive response"
+msgid "Right on"
+msgstr "ຖືກຕ້ອງແລ້ວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2194
+#: includes/freemius-strings.php:5053
+#, php-format
+msgid "Save %s"
+msgstr "ບັນທຶກ %s"
+
+#: includes/freemius-strings.php:2198
+#: includes/freemius-strings.php:5058
+msgid "Saved"
+msgstr "ບັນທຶກແລ້ວ"
+
+#: includes/freemius-strings.php:2202
+#: includes/freemius-strings.php:5063
+msgid "Scheduled Crons"
+msgstr "ຄຣອນທີ່ໄດ້ກຳນົດເວລາໄວ້"
+
+#: includes/freemius-strings.php:2206
+#: includes/freemius-strings.php:5068
+msgid "Screenshots"
+msgstr "ພາບໜ້າຈໍ"
+
+#: includes/freemius-strings.php:2210
+#: includes/freemius-strings.php:5042
+msgid "SDK"
+msgstr "SDK"
+
+#: includes/freemius-strings.php:2214
+#: includes/freemius-strings.php:5047
+msgid "SDK Path"
+msgstr "ເສັ້ນທາງ SDK"
+
+#: includes/freemius-strings.php:2218
+#: includes/freemius-strings.php:6494
+msgctxt "as software development kit versions"
+msgid "SDK Versions"
+msgstr "ເວີຊັນ SDK"
+
+#: includes/freemius-strings.php:2222
+#: includes/freemius-strings.php:5073
+msgid "Search by address"
+msgstr "ຄົ້ນຫາຕາມທີ່ຢູ່"
+
+#: includes/freemius-strings.php:2226
+#: includes/freemius-strings.php:6612
+msgctxt "seconds"
+msgid "sec"
+msgstr "ວິນາທີ"
+
+#: includes/freemius-strings.php:2230
+#: includes/freemius-strings.php:5078
+msgid "Secret Key"
+msgstr "ຄີລັບ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2235
+#: includes/freemius-strings.php:5084
+#, php-format
+msgid "Secure HTTPS %s page, running from an external domain"
+msgstr "ໜ້າ HTTPS %s ທີ່ປອດໄພ, ເຮັດວຽກຈາກໂດເມນພາຍນອກ"
+
+#: includes/freemius-strings.php:2239
+#: includes/freemius-strings.php:5104
+msgid "Select Country"
+msgstr "ເລືອກປະເທດ"
+
+#: includes/freemius-strings.php:2243
+#: includes/freemius-strings.php:5109
+msgid "Send License Key"
+msgstr "ສົ່ງຄີອານຸຍາດ"
+
+#: includes/freemius-strings.php:2247
+#: includes/freemius-strings.php:6228
+msgid "send me security & feature updates, educational content and offers."
+msgstr "ສົ່ງການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດ, ເນື້ອຫາດ້ານການສຶກສາ ແລະ ຂໍ້ສະເໜີຕ່າງໆໃຫ້ຂ້ອຍ."
+
+#: includes/freemius-strings.php:2251
+#: includes/freemius-strings.php:6459
+msgctxt "as in the process of sending an email"
+msgid "Sending email"
+msgstr "ກຳລັງສົ່ງອີເມວ"
+
+#: includes/freemius-strings.php:2255
+#: includes/freemius-strings.php:5114
+msgid "Sending license key"
+msgstr "ກຳລັງສົ່ງລະຫັດສິດໃຊ້ງານ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2260
+#: includes/freemius-strings.php:6110
+#, php-format
+msgid "Your server is blocking the access to Freemius' API, which is crucial for %1$s synchronization. Please contact your host to whitelist the following domains:%2$s"
+msgstr "ເຊີເວີຂອງທ່ານກຳລັງບລັອກການເຂົ້າເຖິງ API ຂອງ Freemius ເຊິ່ງເປັນສິ່ງສຳຄັນສຳລັບການຊິ້ງຂໍ້ມູນ %1$s. ກະລຸນາຕິດຕໍ່ຜູ້ໃຫ້ບໍລິການໂຮສກິ້ງຂອງທ່ານເພື່ອອະນຸຍາດໂດເມນຕໍ່ໄປນີ້ໃນບັນຊີລາຍຊື່ທີ່ປອດໄພ:%2$s"
+
+#: includes/freemius-strings.php:2264
+#: includes/freemius-strings.php:3913
+msgid "Error received from the server:"
+msgstr "ເກີດຂໍ້ຜິດພາດຈາກເຊີບເວີ:"
+
+#: includes/freemius-strings.php:2268
+#: includes/freemius-strings.php:5119
+msgid "Set DB Option"
+msgstr "ຕັ້ງຄ່າຕົວເລືອກ DB"
+
+#: includes/freemius-strings.php:2272
+#: includes/freemius-strings.php:6667
+msgctxt "verb"
+msgid "Show"
+msgstr "ສະແດງ"
+
+#: includes/freemius-strings.php:2276
+#: includes/freemius-strings.php:5141
+msgid "Show error details"
+msgstr "ສະແດງລາຍລະອຽດຂໍ້ຜິດພາດ"
+
+#: includes/freemius-strings.php:2280
+#: includes/freemius-strings.php:5146
+msgid "Simulate Network Upgrade"
+msgstr "ຈຳລອງການອັບເກຣດເຄືອຂ່າຍ"
+
+#: includes/freemius-strings.php:2284
+#: includes/freemius-strings.php:5151
+msgid "Simulate Trial Promotion"
+msgstr "ຈຳລອງໂປຣໂມຊັນທົດລອງໃຊ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2289
+#: includes/freemius-strings.php:2871
+#, php-format
+msgid "%1$s has been placed into safe mode because we noticed that %2$s is an exact copy of %3$s."
+msgstr "%1$s ຖືກຈັດໃສ່ໃນຮູບແບບປອດໄພ ເນື່ອງຈາກພວກເຮົາສັງເກດເຫັນວ່າ %2$s ເປັນສຳເນົາທີ່ຄືກັນທຸກປະການຂອງ %3$s."
+
+#: includes/freemius-strings.php:2293
+#: includes/freemius-strings.php:5161
+msgid "Site ID"
+msgstr "ລະຫັດເວັບໄຊ"
+
+#: includes/freemius-strings.php:2297
+#: includes/freemius-strings.php:5171
+msgid "Sites"
+msgstr "ເວັບໄຊ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2302
+#: includes/freemius-strings.php:5177
+#, php-format
+msgid "Skip & %s"
+msgstr "ຂ້າມ ແລະ %s"
+
+#: includes/freemius-strings.php:2306
+#: includes/freemius-strings.php:5182
+msgid "Skipping, please wait"
+msgstr "ກຳລັງຂ້າມ, ກະລຸນາຖ້າລໍຖ້າ"
+
+#: includes/freemius-strings.php:2310
+#: includes/freemius-strings.php:5187
+msgid "Slug"
+msgstr "ສະລັກ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2315
+#: includes/freemius-strings.php:5193
+#, php-format
+msgid "Snooze & %s"
+msgstr "ງ້ວງນອນ & %s"
+
+#: includes/freemius-strings.php:2319
+#: includes/freemius-strings.php:5198
+msgid "Snooze this panel during troubleshooting"
+msgstr "ປິດແຜງນີ້ໄວ້ຊົ່ວຄາວໃນລະຫວ່າງການແກ້ໄຂບັນຫາ"
+
+#: includes/freemius-strings.php:2323
+#: includes/freemius-strings.php:5203
+msgid "Snooze this panel for"
+msgstr "ງົດການແຈ້ງເຕືອນແຜງຄວບຄຸມນີ້ເປັນເວລາ"
+
+#: includes/freemius-strings.php:2327
+#: includes/freemius-strings.php:5214
+msgid "Social media (Facebook, Twitter, etc.)"
+msgstr "ສື່ສັງຄົມອອນໄລນ໌ (Facebook, Twitter, ແລະ ອື່ນໆ)"
+
+#: includes/freemius-strings.php:2331
+#: includes/freemius-strings.php:5229
+msgid "Start"
+msgstr "ເລີ່ມຕົ້ນ"
+
+#: includes/freemius-strings.php:2335
+#: includes/freemius-strings.php:5234
+msgid "Start Debug"
+msgstr "ເລີ່ມການດີບັກ"
+
+#: includes/freemius-strings.php:2339
+#: includes/freemius-strings.php:6529
+msgctxt "call to action"
+msgid "Start free trial"
+msgstr "ເລີ່ມຕົ້ນການທົດລອງໃຊ້ຟຣີ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2344
+#: includes/freemius-strings.php:5245
+#, php-format
+msgid "Start my free %s"
+msgstr "ເລີ່ມຕົ້ນ %s ຟຣີຂອງຂ້ອຍ"
+
+#: includes/freemius-strings.php:2348
+#: includes/freemius-strings.php:6238
+msgid "start the trial"
+msgstr "ເລີ່ມຕົ້ນການທົດລອງໃຊ້"
+
+#: includes/freemius-strings.php:2352
+#: includes/freemius-strings.php:5239
+msgid "Start Trial"
+msgstr "ເລີ່ມຕົ້ນການທົດລອງໃຊ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2357
+#: includes/freemius-strings.php:5894
+#, php-format
+msgid "You are 1-click away from starting your %1$s-day free trial of the %2$s plan."
+msgstr "ທ່ານຢູ່ຫ່າງພຽງ 1 ຄລິກເທົ່ານັ້ນຈາກການເລີ່ມຕົ້ນການທົດລອງໃຊ້ຟຣີ %1$s ມື້ຂອງແຜນ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2362
+#: includes/freemius-strings.php:3961
+#, php-format
+msgid "For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %1$s to periodically send data to %2$s to check for version updates and to validate your trial."
+msgstr "ເພື່ອໃຫ້ສອດຄ່ອງກັບຄຳແນະນຳຂອງ WordPress.org, ກ່ອນທີ່ພວກເຮົາຈະເລີ່ມການທົດລອງໃຊ້ ພວກເຮົາມີຄວາມຈຳເປັນຕ້ອງຂໍໃຫ້ທ່ານຍິນຍອມສົ່ງຂໍ້ມູນຜູ້ໃຊ້ ແລະ ຂໍ້ມູນເວັບໄຊທີ່ບໍ່ມີຄວາມອ່ອນໄຫວຂອງທ່ານ, ເຊິ່ງຈະຊ່ວຍໃຫ້ %1$s ສາມາດສົ່ງຂໍ້ມູນໄປຫາ %2$s ເປັນໄລຍະ ເພື່ອກວດສອບການອັບເດດເວີຊັນ ແລະ ຢືນຢັນການທົດລອງໃຊ້ຂອງທ່ານ."
+
+#: includes/freemius-strings.php:2366
+#: includes/freemius-strings.php:5250
+msgid "Starting trial"
+msgstr "ກຳລັງເລີ່ມຕົ້ນການທົດລອງໃຊ້"
+
+#: includes/freemius-strings.php:2370
+#: includes/freemius-strings.php:5255
+msgid "State"
+msgstr "ສະຖານະ"
+
+#: includes/freemius-strings.php:2374
+#: includes/freemius-strings.php:4803
+msgid "Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential)."
+msgstr "ກະລຸນາ ຢ່າລັງເລທີ່ຈະແບ່ງປັນສະຖິຕິເວັບໄຊ ຫຼື ສື່ສັງຄົມອອນລາຍທີ່ກ່ຽວຂ້ອງ, ຕົວຢ່າງ: ຈຳນວນຜູ້ເຂົ້າຊົມເວັບໄຊທີ່ບໍ່ຊ້ຳກັນຕໍ່ເດືອນ, ຈຳນວນຜູ້ສະໝັກຮັບອີເມວ, ຜູ້ຕິດຕາມ ແລະ ອື່ນໆ (ພວກເຮົາຈະຮັກສາຂໍ້ມູນນີ້ເປັນຄວາມລັບ)."
+
+#: includes/freemius-strings.php:2378
+#: includes/freemius-strings.php:5778
+msgid "Website, email, and social media statistics (optional)"
+msgstr "ສະຖິຕິເວັບໄຊ, ອີເມວ ແລະ ສື່ສັງຄົມອອນລາຍ (ທາງເລືອກ)"
+
+#: includes/freemius-strings.php:2382
+#: includes/freemius-strings.php:5260
+msgid "Stay Connected"
+msgstr "ເຊື່ອມຕໍ່ຢູ່ສະເໝີ"
+
+#: includes/freemius-strings.php:2386
+#: includes/freemius-strings.php:5265
+msgid "Stop Debug"
+msgstr "ຢຸດການແກ້ໄຂຂໍ້ຜິດພາດ"
+
+#: includes/freemius-strings.php:2390
+#: includes/freemius-strings.php:5270
+msgid "Submit"
+msgstr "ສົ່ງຄຳຮ້ອງ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2395
+#: includes/freemius-strings.php:5543
+#, php-format
+msgid "To enter the debug mode, please enter the secret key of the license owner (UserID = %d), which you can find in your \"My Profile\" section of your User Dashboard:"
+msgstr "ເພື່ອເຂົ້າສູ່ໂໝດດີບັກ, ກະລຸນາໃສ່ລະຫັດລັບຂອງເຈົ້າຂອງໃບອະນຸຍາດ (UserID = %d), ເຊິ່ງທ່ານສາມາດພົບໄດ້ໃນສ່ວນ \"ໂປຣໄຟລ໌ຂອງຂ້ອຍ\" ຂອງແຜງຄວບຄຸມຜູ້ໃຊ້:"
+
+#: includes/freemius-strings.php:2399
+#: includes/freemius-strings.php:4798
+msgid "Please enter the license key to enable the debug mode:"
+msgstr "ກະລຸນາປ້ອນລະຫັດໃບອະນຸຍາດເພື່ອເປີດໃຊ້ງານໂໝດດີບັກ:"
+
+#: includes/freemius-strings.php:2403
+#: includes/freemius-strings.php:5281
+msgid "Submitting"
+msgstr "ກຳລັງສົ່ງ"
+
+#: includes/freemius-strings.php:2407
+#: includes/freemius-strings.php:5089
+msgid "Seems like we are having some temporary issue with your subscription cancellation. Please try again in few minutes."
+msgstr "ເບິ່ງຄືວ່າເຮົາກຳລັງປະສົບບັນຫາຊົ່ວຄາວບາງຢ່າງກ່ຽວກັບການຍົກເລີກການສະໝັກໃຊ້ຂອງທ່ານ. ກະລຸນາລອງໃໝ່ອີກຄັ້ງໃນອີກສອງສາມນາທີ."
+
+#: includes/freemius-strings.php:2411
+#: includes/freemius-strings.php:5166
+msgid "Site successfully opted in."
+msgstr "ໄດ້ລົງທະບຽນເຂົ້າເວັບໄຊສຳເລັດແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2416
+#: includes/freemius-strings.php:5451
+#, php-format
+msgid "The upgrade of %s was successfully completed."
+msgstr "ການອັບເກຣດ %s ໄດ້ສຳເລັດຢ່າງຈົບງາມ."
+
+#: includes/freemius-strings.php:2424
+#: includes/freemius-strings.php:5296
+msgid "Support Forum"
+msgstr "ເວທີປຶກສາຫາລີຊ່ວຍເຫຼືອ"
+
+#: includes/freemius-strings.php:2428
+#: includes/freemius-strings.php:6248
+msgid "switching"
+msgstr "ກຳລັງສະຫຼັບ"
+
+#: includes/freemius-strings.php:2432
+#: includes/freemius-strings.php:6286
+msgctxt "ASCII arrow left icon"
+msgid "&#x2190;"
+msgstr "&#x2190;"
+
+#: includes/freemius-strings.php:2436
+#: includes/freemius-strings.php:6291
+msgctxt "ASCII arrow right icon"
+msgid "&#x27a4;"
+msgstr "&#x27a4;"
+
+#: includes/freemius-strings.php:2440
+#: includes/freemius-strings.php:6504
+msgctxt "as synchronize"
+msgid "Sync"
+msgstr "ຊິ້ງຂໍ້ມູນ"
+
+#: includes/freemius-strings.php:2444
+#: includes/freemius-strings.php:5301
+msgid "Sync Data From Server"
+msgstr "ຊິ້ງຂໍ້ມູນຈາກເຊີບເວີ"
+
+#: includes/freemius-strings.php:2448
+#: includes/freemius-strings.php:6509
+msgctxt "as synchronize license"
+msgid "Sync License"
+msgstr "ຊິ້ງອຸປະຖອນ"
+
+#: includes/freemius-strings.php:2452
+#: includes/freemius-strings.php:5306
+msgid "Tax / VAT ID"
+msgstr "ໝາຍເລກປະຈຳຕົວຜູ້ເສຍພາສີ / ມູນຄ່າເພີ່ມ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2457
+#: includes/freemius-strings.php:5946
+#, php-format
+msgid "You marked this website, %1$s, as a temporary duplicate of %2$s."
+msgstr "ທ່ານໄດ້ໝາຍເວັບໄຊນີ້, %1$s, ເປັນສະເນົາຊົ່ວຄາວຂອງ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2462
+#: includes/freemius-strings.php:5952
+#, php-format
+msgid "You marked this website, %s, as a temporary duplicate of these sites"
+msgstr "ທ່ານໄດ້ໝາຍເວັບໄຊນີ້, %s, ເປັນບົດສຳເນົາຊົ່ວຄາວຂອງເວັບໄຊເຫຼົ່ານີ້"
+
+#: includes/freemius-strings.php:2466
+#: includes/freemius-strings.php:5349
+msgid "Thank you!"
+msgstr "ຂອບໃຈ!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2471
+#: includes/freemius-strings.php:5339
+#, php-format
+msgid "Thank you so much for using %s!"
+msgstr "ຂອບໃຈຫຼາຍໆທີ່ໃຊ້ບໍລິການ %s!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2476
+#: includes/freemius-strings.php:5333
+#, php-format
+msgid "Thank you so much for using %s and its add-ons!"
+msgstr "ຂອບໃຈຫຼາຍໆທີ່ໃຊ້ງານ %s ແລະ ສ່ວນເສີມຂອງມັນ!"
+
+#: includes/freemius-strings.php:2480
+#: includes/freemius-strings.php:5344
+msgid "Thank you so much for using our products!"
+msgstr "ຂອບໃຈຫຼາຍໆທີ່ນຳໃຊ້ຜະລິດຕະພັນຂອງພວກເຮົາ!"
+
+#: includes/freemius-strings.php:2484
+#: includes/freemius-strings.php:5371
+msgid "Thanks!"
+msgstr "ຂອບໃຈ!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2489
+#: includes/freemius-strings.php:5784
+#, php-format
+msgid "Welcome to %s! To get started, please enter your license key:"
+msgstr "ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ %s! ເພື່ອເລີ່ມຕົ້ນ, ກະລຸນາປ້ອນລະຫັດໃບອະນຸຍາດຂອງທ່ານ:"
+
+#: includes/freemius-strings.php:2493
+#: includes/freemius-strings.php:5376
+msgid "Thanks, please wait"
+msgstr "ຂອບໃຈ, ກະລຸນາລໍຖ້າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2498
+#: includes/freemius-strings.php:5355
+#, php-format
+msgid "Thanks %s!"
+msgstr "ຂອບໃຈ %s!"
+
+#: includes/freemius-strings.php:2502
+#: includes/freemius-strings.php:5423
+msgid "The following products'"
+msgstr "ຜະລິດຕະພັນຕໍ່ໄປນີ້ຂອງ"
+
+#: includes/freemius-strings.php:2506
+#: includes/freemius-strings.php:6311
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "the installation instructions"
+msgstr "ຄຳແນະນຳການຕິດຕັ້ງ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2511
+#: includes/freemius-strings.php:6270
+#, php-format
+msgctxt "\"The <product_label>\", e.g.: \"The plugin\""
+msgid "The %s's"
+msgstr "%s ຂອງ"
+
+#: includes/freemius-strings.php:2515
+#: includes/freemius-strings.php:5456
+msgid "Theme"
+msgstr "ຮູບແບບສີສັນ"
+
+#: includes/freemius-strings.php:2519
+#: includes/freemius-strings.php:5461
+msgid "Theme Switch"
+msgstr "ປ່ຽນທີມ"
+
+#: includes/freemius-strings.php:2523
+#: includes/freemius-strings.php:5466
+msgid "Themes"
+msgstr "ຮູບແບບສີສັນ"
+
+#: includes/freemius-strings.php:2527
+#: includes/freemius-strings.php:5471
+msgid "Themes page"
+msgstr "ໜ້າຫົວຂໍ້ຮູບແບບເວັບໄຊ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2532
+#: includes/freemius-strings.php:5510
+#, php-format
+msgid "This will allow %s to"
+msgstr "ອັນນີ້ຈະອະນຸຍາດໃຫ້ %s ສາມາດ"
+
+#: includes/freemius-strings.php:2536
+#: includes/freemius-strings.php:5515
+msgid "Timestamp"
+msgstr "ເວລາປະທັບຕາ"
+
+#: includes/freemius-strings.php:2540
+#: includes/freemius-strings.php:5520
+msgid "Title"
+msgstr "ຫົວຂໍ້"
+
+#: includes/freemius-strings.php:2544
+#: includes/freemius-strings.php:5311
+msgid "Terms of Service"
+msgstr "ເງື່ອນໄຂການໃຫ້ບໍລິການ"
+
+#: includes/freemius-strings.php:2548
+#: includes/freemius-strings.php:5560
+msgid "Total"
+msgstr "ທັງໝົດ"
+
+#: includes/freemius-strings.php:2552
+#: includes/freemius-strings.php:5565
+msgid "Town"
+msgstr "ເມືອງ"
+
+#: includes/freemius-strings.php:2556
+#: includes/freemius-strings.php:5094
+msgid "Seems like we are having some temporary issue with your trial cancellation. Please try again in few minutes."
+msgstr "ເບິ່ງຄືວ່າເຮົາກຳລັງປະສົບບັນຫາຊົ່ວຄາວໃນການຍົກເລີກການທົດລອງໃຊ້ຂອງທ່ານ. ກະລຸນາລອງໃໝ່ອີກຄັ້ງໃນອີກສອງສາມນາທີ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2561
+#: includes/freemius-strings.php:5999
+#, php-format
+msgid "Your %s free trial was successfully cancelled."
+msgstr "ການທົດລອງໃຊ້ຟຣີ %s ຂອງທ່ານໄດ້ຖືກຍົກເລີກສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:2565
+#: includes/freemius-strings.php:4284
+msgid "It looks like you are not in trial mode anymore so there's nothing to cancel :)"
+msgstr "ເບິ່ງຄືວ່າທ່ານບໍ່ໄດ້ຢູ່ໃນຮູບແບບທົດລອງແລ້ວ ດັ່ງນັ້ນຈຶ່ງບໍ່ມີຫຍັງຕ້ອງຍົກເລີກ :)"
+
+#: includes/freemius-strings.php:2569
+#: includes/freemius-strings.php:6049
+msgid "Your free trial has expired. You can still continue using all our free features."
+msgstr "ໄລຍະທົດລອງໃຊ້ຟຣີຂອງທ່ານໄດ້ໝົດອາຍຸແລ້ວ. ທ່ານຍັງສາມາດສືບຕໍ່ໃຊ້ງານຄຸນສົມບັດຟຣີທັງໝົດຂອງພວກເຮົາໄດ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2574
+#: includes/freemius-strings.php:6044
+#, php-format
+msgid "Your free trial has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "ໄລຍະທົດລອງໃຊ້ຟຣີຂອງທ່ານໄດ້ໝົດອາຍຸແລ້ວ. %1$sອັບເກຣດດຽວນີ້%2$s ເພື່ອສືບຕໍ່ໃຊ້ງານ %3$s ໂດຍບໍ່ມີການຕິດຂັດ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2579
+#: includes/freemius-strings.php:4761
+#, php-format
+msgid "Plan %s do not exist, therefore, can't start a trial."
+msgstr "ແຜນ %s ບໍ່ມີຢູ່, ດັ່ງນັ້ນ ຈຶ່ງບໍ່ສາມາດເລີ່ມຕົ້ນການທົດລອງໃຊ້ໄດ້."
+
+#: includes/freemius-strings.php:2583
+#: includes/freemius-strings.php:6121
+msgid "Your trial has been successfully started."
+msgstr "ການທົດລອງໃຊ້ຂອງທ່ານໄດ້ເລີ່ມຕົ້ນສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:2587
+#: includes/freemius-strings.php:5888
+msgid "You already utilized a trial before."
+msgstr "ທ່ານໄດ້ໃຊ້ຊຸດທົດລອງມາກ່ອນແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2592
+#: includes/freemius-strings.php:4056
+#, php-format
+msgid "How do you like %1$s so far? Test all our %2$s premium features with a %3$d-day free trial."
+msgstr "ທ່ານມັກ %1$s ປານໃດແລ້ວ? ທົດລອງໃຊ້ຄຸນສົມບັດພິເສດ %2$s ທັງໝົດຂອງພວກເຮົາ ດ້ວຍການທົດລອງໃຊ້ຟຣີ %3$d ວັນ."
+
+#: includes/freemius-strings.php:2596
+#: includes/freemius-strings.php:5575
+msgid "Type"
+msgstr "ປະເພດ"
+
+#: includes/freemius-strings.php:2600
+#: includes/freemius-strings.php:5580
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບລະບົບໄຟລ໌ໄດ້. ກະລຸນາຢືນຢັນຂໍ້ມູນປະຈຳຕົວຂອງທ່ານ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2605
+#: includes/freemius-strings.php:5489
+#, php-format
+msgid "There was an unexpected API error while processing your request. Please try again in a few minutes and if it still doesn't work, contact the %s's author with the following:"
+msgstr "ເກີດຂໍ້ຜິດພາດ API ທີ່ບໍ່ຄາດຄິດໃນຂະນະທີ່ກຳລັງປະມວນຜົນຄຳຮ້ອງຂໍຂອງທ່ານ. ກະລຸນາລອງໃໝ່ອີກຄັ້ງໃນອີກຈັກໜ່ອຍ ແລະ ຖ້າມັນຍັງໃຊ້ບໍ່ໄດ້, ກະລຸນາຕິດຕໍ່ຜູ້ຂຽນຂອງ %s ພ້ອມກັບຂໍ້ມູນຕໍ່ໄປນີ້:"
+
+#: includes/freemius-strings.php:2609
+#: includes/freemius-strings.php:5585
+msgid "Unexpected error, try again in 5 minutes. If the error persists, please contact support."
+msgstr "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຄາດຄິດ, ກະລຸນາລອງໃໝ່ອີກຄັ້ງໃນ 5 ນາທີ. ຖ້າຂໍ້ຜິດພາດຍັງມີຢູ່, ກະລຸນາຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2614
+#: includes/freemius-strings.php:5591
+#, php-format
+msgid "Uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "ການຖອນການຕິດຕັ້ງ %s ຈະເປັນການປິດການນຳໃຊ້ສິດອະນຸຍາດໂດຍອັດຕະໂນມັດ, ເຊິ່ງທ່ານສາມາດນຳໄປໃຊ້ໃນເວັບໄຊອື່ນໄດ້."
+
+#: includes/freemius-strings.php:2618
+#: includes/freemius-strings.php:3261
+msgid "An unknown error has occurred."
+msgstr "ເກີດຄວາມຜິດພາດທີ່ບໍ່ຮູ້ຈັກ."
+
+#: includes/freemius-strings.php:2622
+#: includes/freemius-strings.php:5606
+msgid "Unlimited commissions."
+msgstr "ຄ່າຄອມມິດຊັນບໍ່ຈຳກັດ."
+
+#: includes/freemius-strings.php:2626
+#: includes/freemius-strings.php:5601
+msgid "Unlimited Updates"
+msgstr "ອັບເດດບໍ່ຈຳກັດ"
+
+#: includes/freemius-strings.php:2630
+#: includes/freemius-strings.php:6677
+msgctxt "verb"
+msgid "Update"
+msgstr "ອັບເດດ"
+
+#: includes/freemius-strings.php:2634
+#: includes/freemius-strings.php:5843
+msgid "Would you like to proceed with the update?"
+msgstr "ທ່ານຕ້ອງການດຳເນີນການອັບເດດຕໍ່ໄປບໍ?"
+
+#: includes/freemius-strings.php:2638
+#: includes/freemius-strings.php:5617
+msgid "Update"
+msgstr "ອັບເດດ"
+
+#: includes/freemius-strings.php:2642
+#: includes/freemius-strings.php:5622
+msgid "Update License"
+msgstr "ອັບເດດສິດການໃຊ້ງານ"
+
+#: includes/freemius-strings.php:2646
+#: includes/freemius-strings.php:5632
+msgid "Upgrade"
+msgstr "ອັບເກຣດ"
+
+#: includes/freemius-strings.php:2650
+#: includes/freemius-strings.php:4167
+msgid "Important Upgrade Notice:"
+msgstr "ແຈ້ງການອັບເກຣດທີ່ສຳຄັນ:"
+
+#: includes/freemius-strings.php:2654
+#: includes/freemius-strings.php:5637
+msgid "Upload and activate the downloaded version"
+msgstr "ອັບໂຫຼດ ແລະ ເປີດໃຊ້ງານເວີຊັນທີ່ດາວໂຫລດມາແລ້ວ"
+
+#: includes/freemius-strings.php:2658
+#: includes/freemius-strings.php:5642
+msgid "User Dashboard"
+msgstr "ກະດານຄວບຄຸມຂອງຜູ້ໃຊ້"
+
+#: includes/freemius-strings.php:2662
+#: includes/freemius-strings.php:5224
+msgid "Sorry, we could not complete the email update. Another user with the same email is already registered."
+msgstr "ຂໍອະໄພ, ພວກ​ເຮົາ​ບໍ່​ສາ​ມາດ​ອັບ​ເດດ​ອີ​ເມວ​ໃຫ້​ສຳ​ເລັດ​ໄດ້. ມີ​ຜູ້​ໃຊ້​ງານ​ຄົນ​ອື່ນ​ທີ່​ໃຊ້​ອີ​ເມວ​ດຽວ​ກັນ​ນີ້​ໄດ້​ລົງ​ທະ​ບຽນ​ແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2667
+#: includes/freemius-strings.php:4156
+#, php-format
+msgid "If you would like to give up the ownership of the %1$s's account to %2$s click the Change Ownership button."
+msgstr "ຖ້າທ່ານຕ້ອງການໂອນສິດຄວາມເປັນເຈົ້າຂອງບັນຊີ %1$s ໃຫ້ແກ່ %2$s ກະລຸນາຄລິກປຸ່ມປ່ຽນຄວາມເປັນເຈົ້າຂອງ."
+
+#: includes/freemius-strings.php:2671
+#: includes/freemius-strings.php:5647
+msgid "User ID"
+msgstr "ລະຫັດຜູ້ໃຊ້"
+
+#: includes/freemius-strings.php:2675
+#: includes/freemius-strings.php:5652
+msgid "User key"
+msgstr "ລະຫັດຜູ້ໃຊ້"
+
+#: includes/freemius-strings.php:2679
+#: includes/freemius-strings.php:5657
+msgid "Users"
+msgstr "ຜູ້ໃຊ້"
+
+#: includes/freemius-strings.php:2683
+#: includes/freemius-strings.php:5662
+msgid "Value"
+msgstr "ຄ່າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2688
+#: includes/freemius-strings.php:5668
+#, php-format
+msgid "Verification mail was just sent to %s. If you can't find it after 5 min, please check your spam box."
+msgstr "ອີເມວຢືນຢັນໄດ້ຖືກສົ່ງໄປຍັງ %s ແລ້ວ. ຖ້າທ່ານບໍ່ພົບມັນຫຼັງຈາກ 5 ນາທີ, ກະລຸນາກວດສອບກ່ອງຈົດໝາຍຂີ້ເຫຍື້ອຂອງທ່ານ."
+
+#: includes/freemius-strings.php:2692
+#: includes/freemius-strings.php:5673
+msgid "Verified"
+msgstr "ຢັ້ງຢືນແລ້ວ"
+
+#: includes/freemius-strings.php:2696
+#: includes/freemius-strings.php:5678
+msgid "Verify Email"
+msgstr "ຢັ້ງຢືນອີເມວ"
+
+#: includes/freemius-strings.php:2700
+#: includes/freemius-strings.php:6607
+msgctxt "product version"
+msgid "Version"
+msgstr "ເວີຊັນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2705
+#: includes/freemius-strings.php:5684
+#, php-format
+msgid "Version %s was released."
+msgstr "ເວີຊັນ %s ໄດ້ຖືກປ່ອຍອອກມາແລ້ວ."
+
+#: includes/freemius-strings.php:2709
+#: includes/freemius-strings.php:5726
+msgid "View details"
+msgstr "ເບິ່ງລາຍລະອຽດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2714
+#: includes/freemius-strings.php:3586
+#, php-format
+msgid "Click to view full-size screenshot %d"
+msgstr "ຄລິກເພື່ອເບິ່ງຮູບໜ້າຈໍຂະໜາດເຕັມ %d"
+
+#: includes/freemius-strings.php:2718
+#: includes/freemius-strings.php:5731
+msgid "View paid features"
+msgstr "ເບິ່ງຄຸນສົມບັດແບບເສຍເງິນ"
+
+#: includes/freemius-strings.php:2722
+#: includes/freemius-strings.php:5736
+msgid "Warning"
+msgstr "ຄຳເຕືອນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2727
+#: includes/freemius-strings.php:5800
+#, php-format
+msgid "What is your %s?"
+msgstr "%s ຂອງທ່ານແມ່ນຫຍັງ?"
+
+#: includes/freemius-strings.php:2731
+#: includes/freemius-strings.php:6356
+msgctxt "Used to express elation, enthusiasm, or triumph (especially in electronic communication)."
+msgid "W00t"
+msgstr "ຍິນດີດ້ວຍ"
+
+#: includes/freemius-strings.php:2735
+#: includes/freemius-strings.php:5832
+msgid "WordPress.org Plugin Page"
+msgstr "ໜ້າປລັກອິນ WordPress.org"
+
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:4305
+msgid "It seems like one of the authentication parameters is wrong. Update your Public Key, Secret Key & User ID, and try again."
+msgstr "ເບິ່ງຄືວ່າພາາຣາແມເຕີການພິສູດຢືນຢັນອັນໜຶ່ງບໍ່ຖືກຕ້ອງ. ກະລຸນາອັບເດດ Public Key, Secret Key & User ID ຂອງທ່ານ ແລ້ວລອງໃໝ່ອີກຄັ້ງ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2744
+#: includes/freemius-strings.php:2901
+#, php-format
+msgid "%s ago"
+msgstr "ຜ່ານມາ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2749
+#: includes/freemius-strings.php:6389
+#, php-format
+msgctxt "as 5 licenses left"
+msgid "%s left"
+msgstr "ເຫຼືອ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2754
+#: includes/freemius-strings.php:2967
+#, php-format
+msgid "%s or higher"
+msgstr "%s ຫຼື ສູງກວ່າ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2759
+#: includes/freemius-strings.php:3033
+#, php-format
+msgid "%s's paid features"
+msgstr "ຄຸນສົມບັດແບບເສຍເງິນຂອງ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2764
+#: includes/freemius-strings.php:6545
+#, php-format
+msgctxt "e.g. Professional Plan"
+msgid "%s Plan"
+msgstr "ແຜນ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2769
+#: includes/freemius-strings.php:2973
+#, php-format
+msgid "%s rating"
+msgstr "ການຈັດອັນດັບ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2774
+#: includes/freemius-strings.php:2979
+#, php-format
+msgid "%s ratings"
+msgstr "%s ການໃຫ້ຄະແນນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2779
+#: includes/freemius-strings.php:2985
+#, php-format
+msgid "%s sec"
+msgstr "%s ວິນາທີ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2784
+#: includes/freemius-strings.php:2991
+#, php-format
+msgid "%s star"
+msgstr "%s ດາວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2789
+#: includes/freemius-strings.php:2997
+#, php-format
+msgid "%s stars"
+msgstr "%s ດາວ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2794
+#: includes/freemius-strings.php:3003
+#, php-format
+msgid "%s time"
+msgstr "%s ເວລາ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2799
+#: includes/freemius-strings.php:3009
+#, php-format
+msgid "%s times"
+msgstr "%s ຄັ້ງ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2804
+#: includes/freemius-strings.php:5940
+#, php-format
+msgid "You have successfully updated your %s."
+msgstr "ທ່ານໄດ້ອັບເດດ %s ຂອງທ່ານສຳເລັດແລ້ວ."
+
+#: includes/freemius-strings.php:2808
+#: includes/freemius-strings.php:6399
+msgctxt "as annual period"
+msgid "year"
+msgstr "ປີ"
+
+#: includes/freemius-strings.php:2812
+#: includes/freemius-strings.php:6582
+msgctxt "interjection expressing joy or exuberance"
+msgid "Yee-haw"
+msgstr "ຢີ້ຮາວ"
+
+#: includes/freemius-strings.php:2816
+#: includes/freemius-strings.php:5848
+msgid "Yes"
+msgstr "ແມ່ນແລ້ວ"
+
+#: includes/freemius-strings.php:2820
+#: includes/freemius-strings.php:5899
+msgid "You are all good!"
+msgstr "ເຈົ້າ​ທຸກ​ຢ່າງ​ຮຽບຮ້ອຍ​ແລ້ວ!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2825
+#: includes/freemius-strings.php:5911
+#, php-format
+msgid "You are just one step away - %s"
+msgstr "ທ່ານ​ຫ່າງ​ໄພ​ພຽງ​ແຕ່​ກ້າວ​ດຽວ​ເທົ່າ​ນັ້ນ - %s"
+
+#: includes/freemius-strings.php:2829
+#: includes/freemius-strings.php:5099
+msgid "Seems like you got the latest release."
+msgstr "ເບິ່ງຄືວ່າທ່ານໄດ້ຮັບເວີຊັນຫຼ້າສຸດແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2834
+#: includes/freemius-strings.php:5964
+#, php-format
+msgid "You should receive %3$s for %1$s to your mailbox at %2$s in the next 5 minutes."
+msgstr "ທ່ານຄວນຈະໄດ້ຮັບ %3$s ສຳລັບ %1$s ໃນກ່ອງຈົດໝາຍຂອງທ່ານທີ່ %2$s ພາຍໃນ 5 ນາທີຕໍ່ໜ້ານີ້."
+
+#: includes/freemius-strings.php:2838
+#: includes/freemius-strings.php:6126
+msgid "ZIP / Postal Code"
+msgstr "ລະຫັດໄປສະນີ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2847
+#, php-format
+msgid " %1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s ເພື່ອເຂົ້າເຖິງການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດ ເວີຊັນ %2$s ພ້ອມທັງການຊ່ວຍເຫຼືອ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2913
+#, php-format
+msgid "%1$s automatic security & feature updates and paid functionality will keep working without interruptions until %2$s (or when your license expires, whatever comes first)."
+msgstr "ການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດແບບອັດຕະໂນມັດ %1$s ພ້ອມທັງຟັງຊັນທີ່ຕ້ອງຈ່າຍເງິນຈະສືບຕໍ່ເຮັດວຽກໂດຍບໍ່ມີການຂັດຈັງຫວະຈົນເຖິງວັນທີ %2$s (ຫຼື ເມື່ອໃບອະນຸຍາດຂອງທ່ານໝົດອາຍຸ, ອັນໃດມາກ່ອນກວ່ານັ້ນ)."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3015
+#, php-format
+msgid "%1$s to access version %2$s security & feature updates, and support."
+msgstr "%1$s ເພື່ອເຂົ້າເຖິງການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດຂອງເວີຊັນ %2$s ພ້ອມທັງການຊ່ວຍເຫຼືອ."
+
+#: includes/freemius-strings.php:3067
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:3251
+msgid "An unknown error has occurred while trying to set the user's beta mode."
+msgstr "ເກີດຄວາມຜິດພາດທີ່ບໍ່ຮູ້ຈັກໃນຂະນະທີ່ພະຍາຍາມຕັ້ງຄ່າໂໝດເບຕ້າຂອງຜູ້ໃຊ້."
+
+#: includes/freemius-strings.php:3256
+msgid "An unknown error has occurred while trying to toggle the license's white-label mode."
+msgstr "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຮູ້ຈັກໃນຂະນະທີ່ພະຍາຍາມສະຫຼັບໂໝດປ້າຍຂາວຂອງໃບອະນຸຍາດ."
+
+#: includes/freemius-strings.php:3272
+msgid "Annual"
+msgstr "ປະຈຳປີ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3425
+#, php-format
+msgid "By clicking \"Opt Out\", %s will no longer be able to view your name and email."
+msgstr "ໂດຍການຄລິກໃສ່ \"ປະຕິເສດການຮັບ\", %s ຈະບໍ່ສາມາດເບິ່ງຊື່ ແລະ ອີເມວຂອງທ່ານໄດ້ອີກຕໍ່ໄປ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3431
+#, php-format
+msgid "By clicking \"Opt Out\", diagnostic data will no longer be sent to %s."
+msgstr "ໂດຍການຄິກ \"ປະຕິເສດ\", ຂໍ້ມູນການວິເຄາະຈະບໍ່ຖືກສົ່ງໄປຫາ %s ອີກຕໍ່ໄປ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3437
+#, php-format
+msgid "By disconnecting the website, previously shared diagnostic data about %1$s will be deleted and no longer visible to %2$s."
+msgstr "ເມື່ອຕັດການເຊື່ອມຕໍ່ເວັບໄຊ, ຂໍ້ມູນການບົ່ງມະຕິທີ່ເຄີຍຖືກແບ່ງປັນກ່ຽວກັບ %1$s ຈະຖືກລຶບອອກ ແລະ ຈະບໍ່ສາມາດເຫັນໄດ້ໂດຍ %2$s ອີກຕໍ່ໄປ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3443
+#, php-format
+msgid "By opting out from sharing this information with the updates server, you’ll have to check for new %1$s releases and manually download & install them. Not just a hassle, but missing an update can put your site at risk and cause undue compatibility issues, so we highly recommend keeping these essential permissions on."
+msgstr "ໂດຍການເລືອກບໍ່ແບ່ງປັນຂໍ້ມູນນີ້ກັບເຊີບເວີອັບເດດ, ທ່ານຈະຕ້ອງກວດສອບການປ່ອຍເວີຊັນໃໝ່ຂອງ %1$s ແລະດາວໂຫຼດ ແລະຕິດຕັ້ງພວກມັນດ້ວຍຕົນເອງ. ມັນບໍ່ພຽງແຕ່ເປັນຄວາມຫຍຸ້ງຍາກເທົ່ານັ້ນ, ແຕ່ການພາດການອັບເດດອາດເຮັດໃຫ້ເວັບໄຊຂອງທ່ານຕົກຢູ່ໃນຄວາມສ່ຽງ ແລະເຮັດໃຫ້ເກີດບັນຫາຄວາມເຂົ້າກັນໄດ້ທີ່ບໍ່ຈຳເປັນ, ດັ່ງນັ້ນພວກເຮົາຈຶ່ງແນະນຳຢ່າງຍິ່ງໃຫ້ຮັກສາສິດອະນຸຍາດທີ່ຈຳເປັນເຫຼົ່ານີ້ໄວ້."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3465
+#, php-format
+msgid "Cancel %1$s - I no longer need any security & feature updates, nor support for %2$s because I'm not planning to use the %3$s on this, or any other site."
+msgstr "ຍົກເລີກ %1$s - ຂ້ອຍບໍ່ຕ້ອງການການອັບເດດຄວາມປອດໄພ & ຄຸນສົມບັດ, ຫຼືການຊ່ວຍເຫຼືອສຳລັບ %2$s ອີກຕໍ່ໄປ ເພາະຂ້ອຍບໍ່ມີແຜນທີ່ຈະໃຊ້ %3$s ໃນເວັບໄຊນີ້ ຫຼື ເວັບໄຊອື່ນໆ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3471
+#, php-format
+msgid "Cancel %s?"
+msgstr "ຍົກເລີກ %s ຫຼືບໍ່?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3497
+#, php-format
+msgid "Cancelling %s"
+msgstr "ກຳລັງຍົກເລີກ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3503
+#, php-format
+msgid "Cancelling %s..."
+msgstr "ກຳລັງຍົກເລີກ %s..."
+
+#: includes/freemius-strings.php:3569
+msgid "Click here"
+msgstr "ກົດບ່ອນນີ້"
+
+#: includes/freemius-strings.php:3673
+msgid "Deactivating"
+msgstr "ກຳລັງປິດໃຊ້ງານ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3751
+#, php-format
+msgid "Disconnecting the website will permanently remove %s from your User Dashboard's account."
+msgstr "ການຕັດການເຊື່ອມຕໍ່ເວັບໄຊທ໌ຈະລຶບ %s ອອກຈາກບັນຊີແຜງຄວບຄຸມຜູ້ໃຊ້ຂອງທ່ານຢ່າງຖາວອນ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3955
+#, php-format
+msgid "For automatic delivery of security & feature updates, and license management & protection, %s needs to:"
+msgstr "ສຳລັບການສົ່ງມອບອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດໂດຍອັດຕະໂນມັດ, ລວມທັງການຈັດການ ແລະ ປົກປ້ອງໄລເຊນ, %s ຈໍາເປັນຕ້ອງ:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3967
+#, php-format
+msgid "For delivery of security & feature updates, and license management, %s needs to"
+msgstr "ສຳລັບການສົ່ງການອັບເດດຄວາມປອດໄພ ແລະ ຄຸນສົມບັດຕ່າງໆ, ພ້ອມທັງການຈັດການສິດອະນຸຍາດ, %s ຈຳເປັນຕ້ອງ"
+
+#: includes/freemius-strings.php:4013
+msgid "Freemius is our licensing and software updates engine"
+msgstr "Freemius ແມ່ນເຄື່ອງຈັກອອກໃບອະນຸຍາດ ແລະ ການອັບເດດຊອບແວຂອງພວກເຮົາ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4121
+#, php-format
+msgid "If this is a long term duplicate, to keep automatic updates and paid functionality after %1$s, please %2$s."
+msgstr "ຖ້າຫາກວ່ານີ້ເປັນການຊໍ້າຊ້ອນໃນໄລຍະຍາວ, ເພື່ອຮັກສາການອັບເດດອັດຕະໂນມັດ ແລະ ຟັງຊັນການຈ່າຍເງິນຫຼັງຈາກ %1$s, ກະລຸນາ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4241
+#, php-format
+msgid "Is %2$s a duplicate of %4$s?"
+msgstr "%2$s ເປັນສໍາເນົາຊ້ຳຂອງ %4$s ແລ້ວບໍ?"
+
+#: includes/freemius-strings.php:4321
+msgid "Join the Beta Program"
+msgstr "ເຂົ້າຮ່ວມໂຄງການເບຕ້າ"
+
+#: includes/freemius-strings.php:4326
+msgid "Join the Beta program"
+msgstr "ເຂົ້າຮ່ວມໂຄງການເບຕ້າ"
+
+#: includes/freemius-strings.php:4397
+msgid "License"
+msgstr "ໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:4412
+msgid "License Key"
+msgstr "ລະຫັດອະນຸຍາດ"
+
+#: includes/freemius-strings.php:4422
+msgid "License key"
+msgstr "ລະຫັດໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:4513
+msgid "Monthly"
+msgstr "ປະຈຳເດືອນ"
+
+#: includes/freemius-strings.php:4529
+msgid "Names, slugs, versions, and if active or not"
+msgstr "ຊື່, ເຄື່ອງໝາຍສະຫຼຸບ (slugs), ເວີຊັ່ນ, ແລະ ວ່າມີການເຄື່ອນໄຫວຢູ່ຫຼືບໍ່"
+
+#: includes/freemius-strings.php:4559
+msgid "New Version Available"
+msgstr "ມີເວີຊັນໃໝ່ໃຫ້ໃຊ້ງານ"
+
+#: includes/freemius-strings.php:4700
+msgid "Optional"
+msgstr "ທາງເລືອກ"
+
+#: includes/freemius-strings.php:4755
+msgid "Plan"
+msgstr "ແຜນການ"
+
+#: includes/freemius-strings.php:4935
+msgid "Products"
+msgstr "ຜະລິດຕະພັນ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5125
+#, php-format
+msgid "Sharing diagnostic data helps to provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break the website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "ການແບ່ງປັນຂໍ້ມູນການວິນິດໄສຊ່ວຍໃຫ້ມີຟັງຊັນເພີ່ມເຕີມທີ່ກ່ຽວຂ້ອງກັບເວັບໄຊທ໌ຂອງທ່ານ, ຫຼີກເວັ້ນຄວາມບໍ່ເຂົ້າກັນຂອງເວີຊັນ WordPress ຫຼື PHP ທີ່ສາມາດເຮັດໃຫ້ເວັບໄຊທ໌ເສຍຫາຍ, ແລະຮັບຮູ້ວ່າພາສາ ແລະ ພາກພື້ນໃດທີ່ %s ຄວນຖືກແປ ແລະ ປັບແຕ່ງໃຫ້ເໝາະສົມ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5209
+#, php-format
+msgid "So you can reuse the license when the %s is no longer active."
+msgstr "ດັ່ງນັ້ນທ່ານຈຶ່ງສາມາດນຳໃຊ້ສິດອະນຸຍາດນັ້ນຄືນໃໝ່ໄດ້ ເມື່ອ %s ບໍ່ມີການເຄື່ອນໄຫວແລ້ວ."
+
+#: includes/freemius-strings.php:5286
+msgid "Subscription"
+msgstr "ການສະໝັກໃຊ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5382
+#, php-format
+msgid "The %1$s will be periodically sending essential license data to %2$s to check for security and feature updates, and verify the validity of your license."
+msgstr "%1$s ຈະສົ່ງຂໍ້ມູນໃບອະນຸຍາດທີ່ຈຳເປັນໄປຍັງ %2$s ເປັນໄລຍະໆ ເພື່ອື່ກວດສອບຄວາມປອດໄພ ແລະ ການອັບເດດຄຸນສົມບັດ ພ້ອມທັງກວດສອບຄວາມຖືກຕ້ອງຂອງໃບອະນຸຍາດຂອງທ່ານ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5477
+#, php-format
+msgid "There is a %1$s of %2$s available."
+msgstr "ມີ %1$s ຂອງ %2$s ພ້ອມໃຫ້ໃຊ້ງານ."
+
+#: includes/freemius-strings.php:5531
+msgid "To ensure compatibility and avoid conflicts with your installed plugins and themes."
+msgstr "ເພື່ອຮັບປະກັນຄວາມເຂົ້າກັນໄດ້ ແລະ ຫຼີກເວັ້ນຂໍ້ຂັດແຍ່ງກັບປລັກອິນ ແລະ ທີມທີ່ໄດ້ຕິດຕັ້ງໄວ້ຂອງທ່ານ."
+
+#: includes/freemius-strings.php:5570
+msgid "Trial"
+msgstr "ທົດລອງໃຊ້"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5690
+#, php-format
+msgid "View %s State"
+msgstr "ເບິ່ງສະຖານະ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5696
+#, php-format
+msgid "View Basic %s Info"
+msgstr "ເບິ່ງຂໍ້ມູນພື້ນຖານ %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5877
+#, php-format
+msgid "Yes, %2$s is a duplicate of %4$s for the purpose of testing, staging, or development."
+msgstr "ແມ່ນແລ້ວ, %2$s ເປັນສຳເນົາຊ້ຳຂອງ %4$s ສຳລັບຈຸດປະສົງໃນການທົດສອບ, ການຈັດຕັ້ງ, ຫຼື ການພັດທະນາ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5928
+#, php-format
+msgid "You have a %s license."
+msgstr "ທ່ານມີໃບອະນຸຍາດ %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5934
+#, php-format
+msgid "You have purchased a %s license."
+msgstr "ທ່ານໄດ້ຊື້ໃບອະນຸຍາດ %s ແລ້ວ."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5970
+#: includes/freemius-strings.php:5976
+#, php-format
+msgid "You should receive a confirmation email for %1$s to your mailbox at %2$s. Please make sure you click the button in that email to %3$s."
+msgstr "ທ່ານຄວນຈະໄດ້ຮັບອີເມວຢືນຢັນສຳລັບ %1$s ໄປຍັງກ່ອງຈົດໝາຍຂອງທ່ານທີ່ %2$s. ກະລຸນາໃຫ້ແນ່ໃຈວ່າທ່ານຄລິກປຸ່ມໃນອີເມວສະບັບນັ້ນເພື່ອ %3$s."
+
+#: includes/freemius-strings.php:6157
+msgid "days"
+msgstr "ວັນ"
+
+#: includes/freemius-strings.php:6162
+msgid "deactivating"
+msgstr "ກຳລັງປິດໃຊ້ງານ"
+
+#: includes/freemius-strings.php:6178
+msgid "hour"
+msgstr "ຊົ່ວໂມງ"
+
+#: includes/freemius-strings.php:6183
+msgid "hours"
+msgstr "ຊົ່ວໂມງ"
+
+#: includes/freemius-strings.php:6188
+msgid "license"
+msgstr "ໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:6208
+msgid "optional"
+msgstr "ທາງເລືອກ"
+
+#: includes/freemius-strings.php:6213
+msgid "products"
+msgstr "ຜະລິດຕະພັນ"
+
+#: includes/freemius-strings.php:6233
+msgid "skip"
+msgstr "ຂ້າມ"
+
+#: includes/freemius-strings.php:6243
+msgid "subscription"
+msgstr "ການສະໝັກໃຊ້"
+
+#: includes/freemius-strings.php:6264
+msgid "trial"
+msgstr "ລອງໃຊ້ງານ"
+
+#: includes/freemius-strings.php:6296
+msgctxt "Clone resolution admin notice products list label"
+msgid "Products"
+msgstr "ຜະລິດຕະພັນ"
+
+#: includes/freemius-strings.php:6394
+msgctxt "as activating plugin"
+msgid "Activating"
+msgstr "ກຳລັງເປີດໃຊ້ງານ"
+
+#: includes/freemius-strings.php:6499
+msgctxt "as software license"
+msgid "License"
+msgstr "ໃບອະນຸຍາດ"
+
+#: includes/freemius-strings.php:6534
+msgctxt "close a window"
+msgid "Dismiss"
+msgstr "ຍົກເລີກ"
+
+#: includes/freemius-strings.php:6539
+msgctxt "close window"
+msgid "Dismiss"
+msgstr "ປິດອ່ານ"
+
+#: includes/freemius-strings.php:6587
+msgctxt "like websites"
+msgid "Sites"
+msgstr "ເວັບໄຊ"
+
+#: includes/freemius-strings.php:6602
+msgctxt "noun"
+msgid "Pricing"
+msgstr "ລາຄາ"
+
+#: includes/freemius-strings.php:6627
+msgctxt "trial period"
+msgid "Trial"
+msgstr "ທົດລອງໃຊ້"
+
+#: includes/freemius-strings.php:6652
+msgctxt "verb"
+msgid "Opt In"
+msgstr "ຕົກລົງຮັບການສັ່ງຊື້"
+
+#: includes/freemius-strings.php:6657
+msgctxt "verb"
+msgid "Opt Out"
+msgstr "ບໍ່ຮັບເອົາ"
+
+#: includes/freemius-strings.php:6672
+msgctxt "verb"
+msgid "Skip"
+msgstr "ຂ້າມ"
+
+#: includes/freemius-strings.php:6682
+msgctxt "verb"
+msgid "Upgrade"
+msgstr "ອັບເກຣດ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:6688
+#, php-format
+msgctxt "x-ago"
+msgid "%s ago"
+msgstr "ຜ່ານມາ %s"

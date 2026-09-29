@@ -44,6 +44,8 @@ final class Plugin {
 	 */
 	private function register(): void {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
+		// The licensing SDK's opt-in screen and notices, in the site's language (57 locales).
+		Freemius_I18n::register();
 
 		$settings = Settings::get();
 
@@ -58,6 +60,28 @@ final class Plugin {
 		};
 		add_action( 'admin_init', $refresh );
 		add_action( 'upgrader_process_complete', $refresh );
+
+		// The standard page cache for servers that are not LiteSpeed (LOCKED PLAN §1). Checked on
+		// admin page loads (a few stat() calls once it is installed) and rewritten on every save.
+		$page_cache = static function () use ( $lscache ): void {
+			// ⛔ Not on admin-ajax: a loopback (the warm-up runner's) can be in flight while this
+			// plugin is being deactivated, and would put back what deactivation removed (D28306).
+			if ( wp_doing_ajax() ) {
+				return;
+			}
+			Page_Cache::sync( Settings::get(), $lscache->is_litespeed_server() || $lscache->is_lscache_plugin_active() );
+		};
+		add_action( 'admin_init', $page_cache );
+		add_action(
+			'update_option_' . Settings::OPTION,
+			static function () use ( $lscache ): void {
+				$settings = Settings::get();
+				if ( Page_Cache::is_ready() ) {
+					Page_Cache::write_config( $settings );
+				}
+				Page_Cache::sync( $settings, $lscache->is_litespeed_server() || $lscache->is_lscache_plugin_active() );
+			}
+		);
 
 		( new Purge_Controller( $lscache, $settings ) )->register();
 		// Reports plugin/theme/core changes to the panel so the speed timeline can
@@ -92,6 +116,7 @@ final class Plugin {
 
 		if ( is_admin() ) {
 			( new Admin( new Object_Cache( $settings ), $lscache ) )->register();
+			Upsell::register();
 		}
 	}
 
@@ -130,6 +155,7 @@ final class Plugin {
 	public static function deactivate(): void {
 		( new Object_Cache( Settings::get() ) )->disable();
 		Htaccess::remove();
+		Page_Cache::uninstall();
 		// ⛔ A cron event survives deactivation unless it is removed. Leaving it would
 		// keep firing a hook whose handler no longer exists — a warning in the customer's
 		// log every hour, for ever, from a plugin they turned off.

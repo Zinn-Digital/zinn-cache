@@ -84,6 +84,14 @@ final class Purge_Controller {
 	 * @return void
 	 */
 	public function register(): void {
+		/**
+		 * Purge exactly what a plan names: `do_action( 'zinn_cache_purge_plan', array( 'urls' => …, 'tags' => …, 'purge_all' => … ) )`.
+		 *
+		 * An explicit request (Zinn® Cache Pro's WooCommerce stock and price changes, an object-cache
+		 * flush), so it is honoured even when automatic purging is switched off.
+		 */
+		add_action( 'zinn_cache_purge_plan', array( $this, 'purge_plan' ), 10, 1 );
+
 		if ( empty( $this->settings['auto_purge_enabled'] ) ) {
 			return;
 		}
@@ -119,6 +127,28 @@ final class Purge_Controller {
 		if ( ! empty( $this->settings['purge_on_upgrade'] ) ) {
 			add_action( 'upgrader_process_complete', array( $this, 'purge_all' ) );
 		}
+	}
+
+	/**
+	 * Purge a plan handed to the `zinn_cache_purge_plan` action.
+	 *
+	 * @param mixed $plan `{purge_all?:bool, urls?:string[], tags?:string[]}`.
+	 * @return void
+	 */
+	public function purge_plan( $plan ): void {
+		if ( ! is_array( $plan ) ) {
+			return;
+		}
+		if ( ! empty( $plan['purge_all'] ) ) {
+			$this->dispatch( Purge_Planner::everything() );
+			return;
+		}
+		$this->dispatch(
+			Purge_Planner::targets(
+				array_map( 'strval', (array) ( $plan['urls'] ?? array() ) ),
+				array_map( 'strval', (array) ( $plan['tags'] ?? array() ) )
+			)
+		);
 	}
 
 	/**

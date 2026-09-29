@@ -56,6 +56,12 @@ final class Cli {
 	public static function status( array $args, array $assoc_args ): void {
 		unset( $args );
 		$report = ( new Object_Cache( Settings::get() ) )->status_report();
+		// Appended, never interleaved: hosts alert on the object-cache fields above by name (V1).
+		// `disk` is decidable from the CLI; `litespeed` is not (the server is known only to a web
+		// request), so an enabled cache without the disk drop-in reports `server`.
+		$pages                      = Page_Cache::stats();
+		$report['page_cache']       = empty( Settings::get()['lscache_enabled'] ) ? 'off' : ( Page_Cache::is_ready() ? 'disk' : 'server' );
+		$report['page_cache_pages'] = $pages['pages'];
 
 		if ( 'json' === ( $assoc_args['format'] ?? 'table' ) ) {
 			\WP_CLI::line( (string) wp_json_encode( $report ) );

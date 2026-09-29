@@ -21,8 +21,8 @@ msgstr "https://zinndigital.com/wordpress-plugins/zinn-cache"
 
 #. Description of the plugin
 #: zinn-cache.php
-msgid "For sites hosted with Zinn Digital®. Controls the page cache your Zinn® server already provides — smart auto-purge on content change, a signed purge endpoint for your own tools, a Redis object-cache toggle and safe WordPress/WooCommerce exclusions. This is a cache controller, not a cache engine. Hosting elsewhere? Install Zinn® Cache Engine instead."
-msgstr "Zinn Digital® వద్ద హోస్ట్ చేయబడిన సైట్‌ల కోసం. మీ Zinn® సర్వర్ ఇప్పటికే అందించే పేజ్ క్యాగ్‌ను ఇది నియంత్రిస్తుంది — కంటెంట్ మారినప్పుడు స్మార్ట్ ఆటో-పర్జ్, మీ స్వంత టూల్స్ కోసం సైన్డ్ పర్జ్ ఎండ్‌పాయింట్, Redis ఆబ్జెక్ట్-క్యాష్ టోగుల్ మరియు సురక్షితమైన WordPress/WooCommerce మినహాయింపులు. ఇది క్యాష్ కంట్రోలర్, క్యాష్ ఇంజిన్ కాదు. వేరే చోట హోస్ట్ చేస్తున్నారా? బదులుగా Zinn® Cache Engine ని ఇన్‌స్టాల్ చేయండి."
+msgid "A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works."
+msgstr "ఏదైనా WordPress సైట్ కోసం పేజ్ క్యాష్ మరియు Redis ఆబ్జెక్ట్ క్యాష్. LiteSpeed సర్వర్ క్యాష్ ఉన్నచోట దాన్ని, లేనిచోట ఇతర ప్రాంతాలలో తన స్వంత డిస్క్ క్యాష్‌ను ఉపయోగిస్తుంది, మార్పు ప్రభావితం చేసే వాటిని మాత్రమే తొలగిస్తుంది మరియు దాని Redis కనెక్షన్ పనిచేస్తుందని రుజువు చేస్తుంది."
 
 #. Author of the plugin
 #: zinn-cache.php
@@ -69,12 +69,12 @@ msgid "Full-page cache"
 msgstr "పూర్తి-పేజీ కాష్"
 
 #: includes/class-admin.php:148
-msgid "Served by LiteSpeed at the web server, before WordPress runs. This is where nearly all the speed comes from."
-msgstr "WordPress రన్ కావడానికి ముందు, వెబ్ సర్వర్‌లో LiteSpeed ద్వారా అందించబడుతుంది. వేగమంతా దాదాపు ఇక్కడి నుంచే వస్తుంది."
+msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
+msgstr "LiteSpeed సర్వర్‌లో, WordPress నడవడానికి ముందే వెబ్ సర్వర్ ద్వారా పేజీలు అందించబడతాయి. ఇతర సర్వర్‌లలో, ఈ ప్లగిన్ ప్రతి పేజీని ఒక ఫైల్‌గా స్టోర్ చేస్తుంది మరియు WordPress లోడ్ కావడానికి ముందే దాన్ని అందిస్తుంది. దాదాపు మొత్తం స్పీడ్ దీని నుండే వస్తుంది."
 
 #: includes/class-admin.php:154
-msgid "Send LiteSpeed cache-control and tag headers on cacheable pages"
-msgstr "కాష్ చేయదగిన పేజీలలో LiteSpeed క్యాష్-కంట్రోల్ మరియు ట్యాగ్ హెడర్‌లను పంపండి"
+msgid "Cache pages for visitors who are not signed in"
+msgstr "సైన్ ఇన్ చేయని సందర్శకుల కోసం పేజీలను క్యాష్ చేయండి"
 
 #: includes/class-admin.php:160
 msgid "How long a page stays cached"
@@ -253,139 +253,143 @@ msgstr "ప్రతి కాష్ చేయబడిన పేజీ తొ�
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "ఆబ్జెక్ట్ క్యాష్ ఇన్‌స్టాల్ చేయబడింది, కానీ అది దేన్నీ నిల్వ చేయడం లేదు."
 
-#: includes/class-admin.php:428
-msgid "The page cache is on, but this server is not LiteSpeed."
-msgstr "పేజీ కాష్ ఆన్‌లో ఉంది, కానీ ఈ సర్వర్ LiteSpeed కాదు."
+#: includes/class-admin.php:433
+msgid "The page cache is on, but pages are not being stored yet."
+msgstr "పేజ్ క్యాష్ ఆన్ చేయబడింది, కానీ పేజీలు ఇంకా నిల్వ చేయబడుతున్నాయి."
 
-#: includes/class-admin.php:429
-msgid "The cache headers are being sent and nothing is reading them, so pages are not actually being cached. Ask your host whether LiteSpeed is available, or move to Zinn® hosting where it is standard."
-msgstr "కాష్ హెడర్‌లు పంపబడుతున్నాయి మరియు వాటిని ఏదీ చదవడం లేదు, కాబట్టి పేజీలు వాస్తవంగా కాష్ చేయబడటం లేదు. LiteSpeed అందుబాటులో ఉందో లేదో మీ హోస్ట్‌ని అడగండి లేదా అది స్టాండర్డ్‌గా ఉండే Zinn® హోసింగ్‌కు మారండి."
+#: includes/class-admin.php:434
+msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
+msgstr "WordPress ఇంకా పేజీ-క్యాషే డ్రాప్-ఇన్‌ను లోడ్ చేయలేదు. ఇది తర్వాత పేజీ లోడ్ అయినప్పుడు ప్రారంభమవుతుంది; ఒకవేళ కాకపోతే, wp-config.phpలో WP_CACHE నికి true అని ఉందో లేదో సరిచూసుకోండి."
 
-#: includes/class-admin.php:437
+#: includes/class-admin.php:443
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ఆబ్జెక్ట్ క్యాష్ ఆన్ చేయబడింది, కానీ ఈ సర్వర్‌లో Redis మద్దతు లేదు."
 
-#: includes/class-admin.php:438
+#: includes/class-admin.php:444
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ఎక్స్‌టెన్షన్ ఇన్‌స్టాల్ చేయబడలేదు, కాబట్టి డ్రాప్-ఇన్‌ని ఉపయోగించలేము మరియు WordPress దాని స్వంత ఇన్‌-మెమరీ క్యాష్‌కి మారుతోంది. phpredisని ప్రారంభించమని మీ హోస్ట్‌ని అడగండి."
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Nothing is being cached."
 msgstr "ఏదీ క్యాష్ చేయబడటం లేదు."
 
-#: includes/class-admin.php:447
+#: includes/class-admin.php:453
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "రెండు క్యాచీలు స్విచ్ ఆఫ్ చేయబడ్డాయి, కాబట్టి ఈ ప్లగ్ఇన్ సైట్‌ను వేగవంతం చేయడం లేదు."
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Caching is active on this site."
 msgstr "ఈ సైట్‌లో క్యాచింగ్ యాక్టివ్‌గా ఉంది."
 
-#: includes/class-admin.php:489
+#: includes/class-admin.php:495
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis వినియోగదారు పేరు లేదా పాస్‌వర్డ్‌ను తిరస్కరించింది. wp-config.phpలో లేదా ఈ స్క్రీన్‌పై ఉన్న Redis ఆధారాలను తనిఖీ చేయండి."
 
-#: includes/class-admin.php:491
+#: includes/class-admin.php:497
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis లాగిన్‌ను అంగీకరించింది కానీ ఈ సైట్ దాని కీలను నిల్వ చేయడానికి అనుమతించదు. ఈ సైట్ యొక్క కీ ప్రిఫిక్స్ కోసం Redis వినియోగదారుకు అనుమతి అవసరం."
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis డేటాబేస్ సంఖ్యను తిరస్కరించింది. Redis డేటాబేస్ సెట్టింగ్‌ను తనిఖీ చేయండి."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:501
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis మెమరీ అయిపోయింది మరియు కొత్త డేటాను తిరస్కరిస్తోంది."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:503
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ఎక్స్‌టెన్షన్ ఇన్‌స్టాల్ చేయబడలేదు, కాబట్టి WordPress దాని స్వంత ఇన్‌-మెమరీ క్యాశ్‌ను ఉపయోగిస్తోంది. phpredisని ప్రారంభించమని మీ హోస్ట్‌ను అడగండి."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:505
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "wp-config.php లో WP_REDIS_DISABLED సెట్ చేయబడింది, కాబట్టి ఆబ్జెక్ట్ కాష్ నిలిపివేయబడింది."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Redis సర్వర్‌ను చేరుకోలేకపోయింది. Redis హోస్ట్ మరియు పోర్ట్‌ను, అలాగే Redis రన్ అవుతోందో లేదో తనిఖీ చేయండి."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:509
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis దానికి ఇప్పుడే వ్రాసిన విలువను తిరిగి ఇవ్వలేదు. Redis సర్వర్ లాగ్‌లను తనిఖీ చేయండి."
 
-#: includes/class-admin.php:518
+#: includes/class-admin.php:524
 msgid "Web server"
 msgstr "వెబ్ సర్వర్"
 
-#: includes/class-admin.php:520
-msgid "LiteSpeed — page caching available"
-msgstr "LiteSpeed — పేజ్ క్యాషింగ్ అందుబాటులో ఉంది"
+#: includes/class-admin.php:526
+msgid "LiteSpeed — pages are cached by the web server"
+msgstr "LiteSpeed — వెబ్ సర్వర్ ద్వారా పేజీలు క్యాష్ చేయబడతాయి"
 
-#: includes/class-admin.php:521
-msgid "not LiteSpeed — page caching unavailable"
-msgstr "LiteSpeed కాదు — పేజీ క్యాచింగ్ అందుబాటులో లేదు"
+#: includes/class-admin.php:527
+msgid "not LiteSpeed — pages are cached on disk by this plugin"
+msgstr "LiteSpeed కాదు — పేజీలు ఈ ప్లగిన్ ద్వారా డిస్క్‌లో క్యాష్ చేయబడతాయి"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:530
+msgid "Pages stored on disk"
+msgstr "డిస్క్‌లో నిల్వ చేయబడిన పేజీలు"
+
+#: includes/class-admin.php:534
 msgid "Redis support"
 msgstr "Redis మద్దతు"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:536
 msgid "phpredis is installed"
 msgstr "phpredis ఇన్‌స్టాల్ చేయబడింది"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:537
 msgid "phpredis is not installed"
 msgstr "phpredis ఇన్‌స్టాల్ చేయబడలేదు"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:540
 msgid "Page lifetime"
 msgstr "పేజీ జీవితకాలం"
 
-#: includes/class-admin.php:605
+#: includes/class-admin.php:615
 msgid "You are not allowed to purge the cache."
 msgstr "కాష్‌ను పర్జ్ చేయడానికి మీకు అనుమతి లేదు."
 
-#: includes/class-admin.php:611
+#: includes/class-admin.php:621
 msgid "Cache purge requested."
 msgstr "కాష్ పర్జ్ అభ్యర్థించబడింది."
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:649
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® క్యాచీ: మరొక ఆబ్జెక్ట్-క్యాచే డ్రాప్-ఇన్ ఇన్‌స్టాల్ చేయబడింది, కాబట్టి Redis ఆబ్జెక్ట్ క్యాచీ ఈ ప్లగ్ఇన్ ద్వారా నిర్వహించబడదు."
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:663
 msgid "detected"
 msgstr "గుర్తించబడింది"
 
-#: includes/class-admin.php:654
+#: includes/class-admin.php:664
 msgid "not detected"
 msgstr "గుర్తించబడలేదు"
 
-#: includes/class-admin.php:658
+#: includes/class-admin.php:668
 msgid "phpredis extension missing"
 msgstr "phpredis ఎక్స్‌టెన్షన్ లేదు"
 
-#: includes/class-admin.php:660
+#: includes/class-admin.php:670
 msgid "installed, not storing anything"
 msgstr "ఇన్‌స్టాల్ చేయబడింది, ఏదీ నిల్వ చేయడం లేదు"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:672
 msgid "active, managed by your host"
 msgstr "యాక్టివ్, మీ హోస్ట్ ద్వారా నిర్వహించబడుతుంది"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:674
 msgid "active"
 msgstr "క్రియాశీలం"
 
-#: includes/class-admin.php:666
+#: includes/class-admin.php:676
 msgid "inactive"
 msgstr "నిష్క్రియం"
 
-#: includes/class-admin.php:671
+#: includes/class-admin.php:681
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed కాష్:"
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:683
 msgid "Redis object cache:"
 msgstr "Redis ఆబ్జెక్ట్ కాష్:"
 
@@ -417,6 +421,18 @@ msgstr "ఆబ్జెక్ట్-కాష్ డ్రాప్-ఇన్‌
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress ఫైల్‌సిస్టమ్ రాయదగినది కాదు, కాబట్టి ఆబ్జెక్ట్-కాష్ డ్రాప్-ఇన్‌ను నిర్వహించలేకపోయింది."
 
+#: includes/class-page-cache.php:291
+msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
+msgstr "మొదటి పేజ్-క్యాచే ప్లగ్ఇన్ wp-content/advanced-cache.phpని ఇన్‌స్టాల్ చేసింది. ముందుగా ఆ ప్లగ్ఇన్‌ని తొలగించండి లేదా దాని పేజ్ క్యాచేని ఉపయోగించడం కొనసాగించండి."
+
+#: includes/class-page-cache.php:294
+msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
+msgstr "wp-content/cache/zinn-cache ఫోల్డర్‌లోకి రాయడం సాధ్యపడలేదు, కాబట్టి పేజీలను క్యాష్ చేయడం సాధ్యం కాదు."
+
+#: includes/class-page-cache.php:301
+msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
+msgstr "wp-content/advanced-cache.php ఫైల్‌ను వ్రాయలేకపోయాము, కాబట్టి పేజీలను క్యాష్ చేయలేము."
+
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
 msgstr "Zinn Digital® విడుదల గమనికలను చూడండి."
@@ -434,6 +450,64 @@ msgstr "Zinn® అప్‌డేట్ సేవ (%s) నుండి అప్
 #: includes/class-updater.php:327
 msgid "The downloaded update failed its integrity check and was not installed."
 msgstr "డౌన్‌లోడ్ చేయబడిన నవీకరణ దాని సమగ్రతా తనిఖీలో విఫలమైంది మరియు ఇన్‌స్టాల్ చేయబడలేదు."
+
+#: includes/class-upsell.php:85
+msgid "Go Pro"
+msgstr "ప్రోకి వెళ్లండి"
+
+#: includes/class-upsell.php:112
+msgid "A cache analytics screen: hit ratio, memory, keys and the slowest cache commands."
+msgstr "ఒక క్యాష్ అనలిటిక్స్ స్క్రీన్: హిట్ నిష్పత్తి, మెమరీ, కీలు మరియు అత్యంత నెమ్మదైన క్యాష్ కమాండ్‌లు."
+
+#: includes/class-upsell.php:113
+msgid "A slow-query and uncached-call finder that names the plugin or theme responsible."
+msgstr "దీనికి కారణమైన ప్లగ్ఇన్ లేదా థీమ్‌ను గుర్తించే స్లో-క్వరీ మరియు అన్‌కాష్డ్-కాల్ ఫైండర్."
+
+#: includes/class-upsell.php:114
+msgid "An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer."
+msgstr "అత్యంత తరచుగా ఉపయోగించే కీస్‌ కోసం Redis ముందు మెమరీలోని APCu టైర్, అలాగే ప్రిఫెచింగ్, కంప్రెషన్ మరియు igbinary సీరియలైజర్."
+
+#: includes/class-upsell.php:115
+msgid "Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together."
+msgstr "పోస్ట్స్, టర్మ్స్ మరియు WooCommerce ఉత్పత్తుల కోసం ట్యాగ్-ఆధారిత ప్రూజింగ్, తద్వారా మార్పు చెందినది మాత్రమే క్లియర్ చేయబడుతుంది, మరియు పేజీ మరియు ఆబ్జెక్ట్ కాచెస్ రెండూ కలిపి ప్రూజ్ చేయబడతాయి."
+
+#: includes/class-upsell.php:116
+msgid "Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript."
+msgstr "పూర్తిగా తొలగించిన తర్వాత ఆటోమేటిక్ క్యాష్ వార్మ్-అప్, WebP మరియు AVIF చిత్రాలు, ఉపయోగించని CSS తొలగింపు మరియు ఆలస్యమైన JavaScript."
+
+#: includes/class-upsell.php:117
+msgid "Scheduled database clean-up with a preview, and per-page cache rules."
+msgstr "ప్రీవ్యూ మరియు ప్రతి పేజీ క్యాష్ నిబంధనలతో షెడ్యూల్ చేయబడిన డేటాబేస్ క్లీన్-అప్."
+
+#: includes/class-upsell.php:118
+msgid "Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills."
+msgstr "హిట్ నిష్పత్తి పడిపోయినప్పుడు లేదా మెమరీ నిండిపోయినప్పుడు మీ Zinn Digital® డ్యాష్‌బోర్డ్‌లో కాష్ హెల్త్ హెచ్చరికలు."
+
+#: includes/class-upsell.php:132
+msgid "Everything on the other tabs is free and stays free. Pro installs on top of this plugin and adds:"
+msgstr "అవుట్ ట్యాబ్‌లలోని ప్రతిదీ ఉచితం మరియు ఉచితంగానే ఉంటుంది. ప్రో అనేది ఈ ప్లగ్ఇన్ పైన ఇన్‌స్టాల్ అవుతుంది మరియు వీటిని జోడిస్తుంది:"
+
+#: includes/class-upsell.php:134
+msgid "See what Pro costs"
+msgstr "ప్రో ధర ఎంత అవుతుందో చూడండి"
+
+#. translators: 1: yearly price for one site, 2: for five sites, 3: for unlimited sites (each already formatted, e.g. $49).
+#: includes/class-upsell.php:138
+#, php-format
+msgid "Every plan starts with a 14-day free trial, no card needed: %1$s a year for one site, %2$s for five sites, %3$s for unlimited sites."
+msgstr "ప్రతి ప్లాన్ 14 రోజుల ఉచిత ట్రయల్‌తో ప్రారంభమవుతుంది, కార్డ్ అవసరం లేదు: ఒక సైట్‌కు సంవత్సరానికి %1$s, ఐదు సైట్‌లకు %2$s, అపరిమిత సైట్‌లకు %3$s."
+
+#: includes/class-wp-config.php:66
+msgid "wp-config.php was not found, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "wp-config.php కనుగొనబడలేదు, కాబట్టి WP_CACHE ని ఆన్ చేయడం సాధ్యం కాలేదు. దానికి define( 'WP_CACHE', true ); ని జోడించండి."
+
+#: includes/class-wp-config.php:72
+msgid "wp-config.php already defines WP_CACHE as false, so the page cache cannot start. Change it to true."
+msgstr "wp-config.php ఇప్పటికే WP_CACHE ని false గా నిర్వచించింది, కాబట్టి పేజ్ క్యాష్ ప్రారంభం కాలేదు. దాన్ని true కి మార్చండి."
+
+#: includes/class-wp-config.php:79
+msgid "wp-config.php is not writable, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
+msgstr "wp-config.php వ్రాయదగినది కాదు, కాబట్టి WP_CACHE ని ఆన్ చేయడం సాధ్యం కాలేదు. దానికి define( 'WP_CACHE', true ); ని జోడించండి."
 
 #: includes/class-zinn-cache-admin-fields.php:580
 msgid "Stored. Type a new value to replace it."
@@ -460,6 +534,8 @@ msgid "Remove this row"
 msgstr "ఈ అడ్డు వరుసను తీసివేయి"
 
 #: includes/class-zinn-cache-admin-fields.php:725
+#: includes/freemius-strings.php:2132
+#: includes/freemius-strings.php:4997
 msgid "Remove"
 msgstr "తీసివేయి"
 
@@ -503,6 +579,8 @@ msgid "Settings sections"
 msgstr "సెట్టింగ్స్ విభాగాలు"
 
 #: includes/class-zinn-cache-admin-ui.php:871
+#: includes/freemius-strings.php:2420
+#: includes/freemius-strings.php:5291
 msgid "Support"
 msgstr "మద్దతు"
 
@@ -740,3 +818,4067 @@ msgstr "నా స్వంత రంగులు మరియు పరిమ�
 #: includes/class-zinn-cache-style-presets.php:127
 msgid "Leave this off and the preset is used exactly as it is."
 msgstr "దీన్ని ఆఫ్ చేసి ఉంచండి మరియు ప్రీసెట్ ఉన్నదున్నట్లుగా ఉపయోగించబడుతుంది."
+
+#: includes/freemius-strings.php:21
+#: includes/freemius-strings.php:6306
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "a license key"
+msgstr "లైసెన్స్ కీ"
+
+#: includes/freemius-strings.php:25
+#: includes/freemius-strings.php:3062
+msgid "A user has not yet been associated with the license, which is necessary to prevent unauthorized activation. To assign the license to your user, you agree to share your WordPress user's full name and email address."
+msgstr "అధికారిక రహిత సక్రియం నివారించడానికి అవసరమైన లైసెన్స్‌తో ఇంకా ఏ వినియోగదారుడూ అనుబంధించబడలేదు. మీ వినియోగదారునికి లైసెన్స్‌ను కేటాయించడానికి, మీ WordPress వినియోగదారు పూర్తి పేరు మరియు ఇమెయిల్ చిరునామాను పంచుకోవడానికి మీరు అంగీకరిస్తున్నారు."
+
+#: includes/freemius-strings.php:29
+#: includes/freemius-strings.php:6253
+msgid "the above-mentioned sites"
+msgstr "పైన పేర్కొన్న సైట్‌లు"
+
+#: includes/freemius-strings.php:33
+#: includes/freemius-strings.php:3072
+msgid "Account"
+msgstr "ఖాతా"
+
+#: includes/freemius-strings.php:37
+#: includes/freemius-strings.php:3077
+msgid "Account Details"
+msgstr "ఖాతా వివరాలు"
+
+#: includes/freemius-strings.php:41
+#: includes/freemius-strings.php:3082
+msgid "Account is pending activation. Please check your email and click the link to activate your account and then submit the affiliate form again."
+msgstr "ఖాతా సక్రియం కావడానికి వేచి ఉంది. దయచేసి మీ ఇమెయిల్‌ని తనిఖీ చేసి, మీ ఖాతాను సక్రియం చేయడానికి లింక్‌పై క్లిక్ చేయండి మరియు ఆపై అనుబంధ (అఫిలియేట్) ఫారమ్‌ను మళ్లీ సమర్పించండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:46
+#: includes/freemius-strings.php:5838
+#, php-format
+msgid "Would you like to merge %1$s into %2$s?"
+msgstr "%1$sని %2$sలో విలీనం చేయాలనుకుంటున్నారా?"
+
+#: includes/freemius-strings.php:50
+#: includes/freemius-strings.php:3087
+msgid "Actions"
+msgstr "చర్యలు"
+
+#: includes/freemius-strings.php:54
+#: includes/freemius-strings.php:3092
+msgid "Activate"
+msgstr "క్రియాశీలకం చేయి"
+
+#: includes/freemius-strings.php:58
+#: includes/freemius-strings.php:62
+#: includes/freemius-strings.php:3115
+msgid "Activate Free Version"
+msgstr "ఉచిత వెర్షన్‌ను సక్రియం చేయి"
+
+#: includes/freemius-strings.php:66
+#: includes/freemius-strings.php:3120
+msgid "Activate License"
+msgstr "లైసెన్స్‌ను సక్రియం చేయి"
+
+#: includes/freemius-strings.php:70
+#: includes/freemius-strings.php:6131
+msgid "activate a license here"
+msgstr "లైసెన్స్‌ను ఇక్కడ యాక్టివేట్ చేయండి"
+
+#: includes/freemius-strings.php:74
+#: includes/freemius-strings.php:4793
+msgid "Please enter the license key that you received in the email right after the purchase:"
+msgstr "కొనుగోలు చేసిన వెంటనే మీకు ఇమెయిల్‌లో వచ్చిన లైసెన్స్ కీని దయచేసి నమోదు చేయండి:"
+
+#: includes/freemius-strings.php:78
+#: includes/freemius-strings.php:3130
+msgid "Activate license on all sites in the network."
+msgstr "నెట్‌వర్క్‌లోని అన్ని సైట్‌లలో లైసెన్స్‌ని సక్రియం చేయండి."
+
+#: includes/freemius-strings.php:82
+#: includes/freemius-strings.php:3125
+msgid "Activate license on all pending sites."
+msgstr "పెండింగ్‌లో ఉన్న అన్ని సైట్‌లలో లైసెన్స్‌ని సక్రియం చేయండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:87
+#: includes/freemius-strings.php:2859
+#, php-format
+msgid " The paid version of %1$s is already installed. Please activate it to start benefiting from the %2$s features. %3$s"
+msgstr "%1$s యొక్క పెయిడ్ వెర్షన్ ఇప్పటికే ఇన్‌స్టాల్ చేయబడింది. %2$s ఫీచర్‌ల ప్రయోజనాలను పొందడం ప్రారంభించడానికి దయచేసి దీన్ని సక్రియం చేయండి. %3$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:92
+#: includes/freemius-strings.php:2865
+#, php-format
+msgid " The paid version of %1$s is already installed. Please navigate to the %2$s to activate it and start benefiting from the %3$s features."
+msgstr "%1$s యొక్క పెయిడ్ వెర్షన్ ఇప్పటికే ఇన్‌స్టాల్ చేయబడింది. దాన్ని సక్రియం చేయడానికి మరియు %3$s ఫీచర్‌ల ప్రయోజనాలను పొందడం ప్రారంభించడానికి దయచేసి %2$sకి వెళ్లండి."
+
+#: includes/freemius-strings.php:96
+#: includes/freemius-strings.php:3135
+msgid "Activate this add-on"
+msgstr "ఈ యాడ్-ఆన్‌ను సక్రియం చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:101
+#: includes/freemius-strings.php:3098
+#, php-format
+msgid "Activate %s"
+msgstr "%sని సక్రియం చేయి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:106
+#: includes/freemius-strings.php:3110
+#, php-format
+msgid "Activate %s features"
+msgstr "%s ఫీచర్‌లను సక్రియం చేయి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:111
+#: includes/freemius-strings.php:6276
+#, php-format
+msgctxt "%s - plugin name. As complete \"PluginX\" activation now"
+msgid "Complete \"%s\" Activation Now"
+msgstr "\"%s\" యాక్టివేషన్‌ను ఇప్పుడే పూర్తి చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:116
+#: includes/freemius-strings.php:3104
+#, php-format
+msgid "Activate %s Plan"
+msgstr "%s ప్రణాళికను సక్రియం చేయి"
+
+#: includes/freemius-strings.php:120
+#: includes/freemius-strings.php:3140
+msgid "Activated"
+msgstr "సక్రియం చేయబడింది"
+
+#: includes/freemius-strings.php:124
+#: includes/freemius-strings.php:3145
+msgid "Activating"
+msgstr "సక్రియం చేస్తోంది"
+
+#: includes/freemius-strings.php:128
+#: includes/freemius-strings.php:3150
+msgid "Activating license"
+msgstr "లైసెన్స్‌ను సక్రియం చేస్తోంది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:133
+#: includes/freemius-strings.php:6022
+#, php-format
+msgid "Your account was successfully activated with the %s plan."
+msgstr "మీ ఖాతా %s ప్లాన్‌తో విజయవంతంగా సక్రియం చేయబడింది."
+
+#: includes/freemius-strings.php:137
+#: includes/freemius-strings.php:6366
+msgctxt "active add-on"
+msgid "Active"
+msgstr "సక్రియంగా ఉంది"
+
+#: includes/freemius-strings.php:141
+#: includes/freemius-strings.php:3167
+msgid "Add another domain"
+msgstr "మొదటి డొమైన్‌ను జోడించు"
+
+#: includes/freemius-strings.php:145
+#: includes/freemius-strings.php:3177
+msgid "Add-Ons"
+msgstr "యాడ్-ఆన్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:150
+#: includes/freemius-strings.php:3156
+#, php-format
+msgid "Add Ons for %s"
+msgstr "%s కోసం యాడ్-ఆన్‌లు"
+
+#: includes/freemius-strings.php:154
+#: includes/freemius-strings.php:5751
+msgid "We couldn't load the add-ons list. It's probably an issue on our side, please try to come back in few minutes."
+msgstr "యాడ్-ఆన్‌ల జాబితాను మేము లోడ్ చేయలేకపోయాము. ఇది బహుశా మా వైపు నుండి వచ్చిన సమస్య కావచ్చు, దయచేసి కొన్ని నిమిషాల తర్వాత మళ్లీ ప్రయత్నించండి."
+
+#: includes/freemius-strings.php:158
+#: includes/freemius-strings.php:3172
+msgid "Add-On"
+msgstr "యాడ్-ఆన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:163
+#: includes/freemius-strings.php:2931
+#, php-format
+msgid "%s is a premium only add-on. You have to purchase a license first before activating the plugin."
+msgstr "%s అనేది ప్రీమియం-మాత్రమే యాడ్-ఆన్. ప్లగిన్‌ను సక్రియం చేయడానికి ముందు మీరు తప్పక లైసెన్స్‌ను కొనుగోలు చేయాలి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:168
+#: includes/freemius-strings.php:2883
+#, php-format
+msgid "%s Add-on was successfully purchased."
+msgstr "%s యాడ్-ఆన్ విజయవంతంగా కొనుగోలు చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:173
+#: includes/freemius-strings.php:5993
+#, php-format
+msgid "Your %s Add-on plan was successfully upgraded."
+msgstr "మీ %s యాడ్-ఆన్ ప్లాన్ విజయవంతంగా అప్‌గ్రేడ్ చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:178
+#: includes/freemius-strings.php:2925
+#, php-format
+msgid "%s free trial was successfully cancelled. Since the add-on is premium only it was automatically deactivated. If you like to use it in the future, you'll have to purchase a license."
+msgstr "%s ఉచిత ట్రయల్ విజయవంతంగా రద్దు చేయబడింది. యాడ్-ఆన్ ప్రీమియం మాత్రమే కాబట్టి ఇది స్వయంచాలకంగా నిలిపివేయబడింది. భవిష్యత్తులో దీన్ని ఉపయోగించాలనుకుంటే, మీరు లైసెన్స్‌ను కొనుగోలు చేయాల్సి ఉంటుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:183
+#: includes/freemius-strings.php:6378
+#, php-format
+msgctxt "addonX cannot run..."
+msgid "%s cannot run without the plugin."
+msgstr "ప్లగిన్ లేకుండా %s అమలు కాలేదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:188
+#: includes/freemius-strings.php:6372
+#, php-format
+msgctxt "addonX cannot run without pluginY"
+msgid "%1$s cannot run without %2$s."
+msgstr "%2$s లేకుండా %1$s అమలు కాలేదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:193
+#: includes/freemius-strings.php:4332
+#, php-format
+msgid "Just letting you know that the add-ons information of %s is being pulled from an external server."
+msgstr "%s యొక్క యాడ్-ఆన్‌ల సమాచారం బాహ్య సర్వర్ నుండి లాగబడుతోందని మీకు తెలియజేస్తున్నాము."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:198
+#: includes/freemius-strings.php:3162
+#, php-format
+msgid "Add Ons of module %s"
+msgstr "%s మోడ్యూల్ యొక్క యాడ్-ఆన్‌లు"
+
+#: includes/freemius-strings.php:202
+#: includes/freemius-strings.php:3187
+msgid "Address"
+msgstr "చిరునామా"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:207
+#: includes/freemius-strings.php:3193
+#, php-format
+msgid "Address Line %d"
+msgstr "చిరునామా లైన్ %d"
+
+#: includes/freemius-strings.php:211
+#: includes/freemius-strings.php:3198
+msgid "Affiliate"
+msgstr "అఫిలియేట్"
+
+#: includes/freemius-strings.php:215
+#: includes/freemius-strings.php:3830
+msgid "Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support."
+msgstr "మా అఫిలియేట్ నిబంధనల ఉల్లంఘన కారణంగా, మేము మీ అఫిలియేట్ ఖాతాను తాత్కాలికంగా బ్లాక్ చేయాలని నిర్ణయించుకున్నాము. మీకు ఏైనా ప్రశ్నలు ఉంటే, దయచేసి సపోర్ట్‌ను సంప్రదించండి."
+
+#: includes/freemius-strings.php:219
+#: includes/freemius-strings.php:6033
+msgid "Your affiliation account was temporarily suspended."
+msgstr "మీ అఫిలియేట్ ఖాతా తాత్కాలికంగా సస్పెండ్ చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:224
+#: includes/freemius-strings.php:6028
+#, php-format
+msgid "Your affiliate application for %1$s has been accepted! Log in to your affiliate area at: %2$s."
+msgstr "%1$s కోసం మీ అఫిలియేట్ దరఖాస్తు ఆమోదించబడింది! మీ అఫిలియేట్ ఏరియాకి లాగిన్ చేయండి: %2$s."
+
+#: includes/freemius-strings.php:228
+#: includes/freemius-strings.php:5316
+msgid "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days."
+msgstr "మా అఫిలియేట్ ప్రోగ్రామ్ కోసం దరఖాస్తు చేసినందుకు ధన్యవాదాలు, దురదృష్టవశాత్తు, ఈ సమయంలో మీ దరఖాస్తును తిరస్కరించాలని మేము నిర్ణయించుకున్నాము. దయచేసి 30 రోజుల తర్వాత మళ్లీ ప్రయత్నించండి."
+
+#: includes/freemius-strings.php:232
+#: includes/freemius-strings.php:5321
+msgid "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information."
+msgstr "మా అఫిలియేట్ ప్రోగ్రామ్ కోసం దరఖాస్తు చేసినందుకు ధన్యవాదాలు, మేము రాబోయే 14 రోజుల్లో మీ వివరాలను పరిశీలిస్తాము మరియు తదుపరి సమాచారంతో మిమ్మల్ని సంప్రదిస్తాము."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:237
+#: includes/freemius-strings.php:3027
+#, php-format
+msgid "%s tracking cookie after the first visit to maximize earnings potential."
+msgstr "సంపాదన సామర్థ్యాన్ని పెంచుకోవడానికి మొదటి సందర్శన తర్వాత %s ట్రాకింగ్ కుకీ."
+
+#: includes/freemius-strings.php:241
+#: includes/freemius-strings.php:3203
+msgid "Affiliation"
+msgstr "అఫిలియేషన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:246
+#: includes/freemius-strings.php:4652
+#, php-format
+msgid "Once your license expires you can still use the Free version but you will NOT have access to the %s features."
+msgstr "మీ లైసెన్స్ గడువు ముగిసినప్పటికీ మీరు ఉచిత సంస్కరణను ఉపయోగించవచ్చు కానీ మీకు %s ఫీచర్‌లకు యాక్సెస్ ఉండదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:251
+#: includes/freemius-strings.php:4658
+#, php-format
+msgid "Once your license expires you will no longer be able to use the %s, unless you activate it again with a valid premium license."
+msgstr "మీ లైసెన్స్ గడువు ముగిసిన తర్వాత, చెల్లుబాటు అయ్యే ప్రీమియం లైసెన్స్‌తో దాన్ని మళ్లీ సక్రియం చేయకపోతే, మీరు ఇకపై %s ని ఉపయోగించలేరు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:256
+#: includes/freemius-strings.php:5917
+#, php-format
+msgid "You can still enjoy all %1$s features but you will not have access to %2$s security & feature updates, nor support."
+msgstr "మీరు ఇప్పటికీ అన్ని %1$s ఫీచర్‌లను ఆస్వాదించవచ్చు, కానీ మీకు %2$s భద్రత & ఫీచర్ అప్‌డేట్‌లు మరియు మద్దతు అందుబాటులో ఉండవు."
+
+#: includes/freemius-strings.php:260
+#: includes/freemius-strings.php:5366
+msgid "Thanks for upgrading."
+msgstr "అప్‌గ్రేడ్ చేసినందుకు ధన్యవాదాలు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:265
+#: includes/freemius-strings.php:3209
+#, php-format
+msgid "After your free %1$s, pay as little as %2$s"
+msgstr "మీ ఉచిత %1$s తర్వాత, కేవలం %2$s నుండి చెల్లించండి"
+
+#: includes/freemius-strings.php:269
+#: includes/freemius-strings.php:3214
+msgid "Agree & Activate License"
+msgstr "అంగీకరించండి & లైసెన్స్‌ను సక్రియం చేయండి"
+
+#: includes/freemius-strings.php:273
+#: includes/freemius-strings.php:4071
+msgid "I Agree - Change User"
+msgstr "నేను అంగీకరిస్తున్నాను - వినియోగదారుడిని మార్చండి"
+
+#: includes/freemius-strings.php:277
+#: includes/freemius-strings.php:3219
+msgid "All Requests"
+msgstr "అన్ని అభ్యర్థనలు"
+
+#: includes/freemius-strings.php:281
+#: includes/freemius-strings.php:3224
+msgid "All Types"
+msgstr "అన్ని రకాలు"
+
+#: includes/freemius-strings.php:285
+#: includes/freemius-strings.php:6136
+msgid "allow"
+msgstr "అనుమతించు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:290
+#: includes/freemius-strings.php:5982
+#, php-format
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving the %s."
+msgstr "మీరు ఇప్పటికే మా వినియోగ-ట్రాకింగ్‌ను ఎంచుకున్నారు, ఇది %s ని మెరుగుపరచడంలో మాకు సహాయపడుతుంది."
+
+#: includes/freemius-strings.php:294
+#: includes/freemius-strings.php:5987
+msgid "You've already opted-in to our usage-tracking, which helps us keep improving them."
+msgstr "మీరు మా వినియోగ-ట్రాకింగ్‌ను ఇప్పటికే ఎంచుకున్నారు, ఇది వాటిని మెరుగుపరచడంలో మాకు సహాయపడుతుంది."
+
+#: includes/freemius-strings.php:298
+#: includes/freemius-strings.php:3240
+msgid "Amount"
+msgstr "మొత్తం"
+
+#: includes/freemius-strings.php:302
+#: includes/freemius-strings.php:6469
+msgctxt "as once a year"
+msgid "Annual"
+msgstr "వార్షిక"
+
+#: includes/freemius-strings.php:306
+#: includes/freemius-strings.php:6474
+msgctxt "as once a year"
+msgid "Annually"
+msgstr "వార్షికంగా"
+
+#: includes/freemius-strings.php:310
+#: includes/freemius-strings.php:3277
+msgid "Anonymous feedback"
+msgstr "అనామక ఫీడ్‌బ్యాక్"
+
+#: includes/freemius-strings.php:314
+#: includes/freemius-strings.php:6404
+msgctxt "as application program interface"
+msgid "API"
+msgstr "ఏపీఐ"
+
+#: includes/freemius-strings.php:318
+#: includes/freemius-strings.php:3287
+msgid "Apply on all sites in the network."
+msgstr "నెట్‌వర్క్‌లోని అన్ని సైట్‌లపై వర్తింపజేయండి."
+
+#: includes/freemius-strings.php:322
+#: includes/freemius-strings.php:3282
+msgid "Apply on all pending sites."
+msgstr "పెండింగ్‌లో ఉన్న అన్ని సైట్‌లకు వర్తింపజేయండి."
+
+#: includes/freemius-strings.php:326
+#: includes/freemius-strings.php:3292
+msgid "Apply to become an affiliate"
+msgstr "అఫిలియేట్ కావడానికి దరఖాస్తు చేసుకోండి"
+
+#: includes/freemius-strings.php:330
+#: includes/freemius-strings.php:3297
+msgid "Approve & Start Trial"
+msgstr "ఆమోదించండి & ట్రయల్ ప్రారంభించండి"
+
+#: includes/freemius-strings.php:334
+#: includes/freemius-strings.php:4357
+msgid "Kindly tell us the reason so we can improve."
+msgstr "దయచేసి మేము మెరుగుపడేందుకు కారణాన్ని తెలపండి."
+
+#: includes/freemius-strings.php:338
+#: includes/freemius-strings.php:3898
+msgid "Enter the email address you've used for the upgrade below and we will resend you the license key."
+msgstr "దయచేసి మీరు అప్‌గ్రేడ్ కోసం ఉపయోగించిన ఇమెయిల్ చిరునామాను క్రింద నమోదు చేయండి, మేము మీకు లైసెన్స్ కీని మళ్లీ పంపుతాము."
+
+#: includes/freemius-strings.php:342
+#: includes/freemius-strings.php:3893
+msgid "Enter the email address you've used during the purchase and we will resend you the license key."
+msgstr "కొనుగోలు సమయంలో మీరు ఉపయోగించిన ఇమెయిల్ చిరునామాను నమోదు చేయండి మరియు మేము మీకు లైసెన్స్ కీని మళ్లీ పంపుతాము."
+
+#: includes/freemius-strings.php:346
+#: includes/freemius-strings.php:3328
+msgid "Associate with the license owner's account."
+msgstr "లైసెన్స్ యజమాని ఖాతాతో అనుసంధానించండి."
+
+#: includes/freemius-strings.php:350
+#: includes/freemius-strings.php:6514
+msgctxt "as the plugin author"
+msgid "Author"
+msgstr "రచయిత"
+
+#: includes/freemius-strings.php:354
+#: includes/freemius-strings.php:4220
+msgid "Invalid module ID."
+msgstr "చెల్లని మోడ్యూల్ ఐడి."
+
+#: includes/freemius-strings.php:358
+#: includes/freemius-strings.php:5922
+msgid "You do not have a valid license to access the premium version."
+msgstr "ప్రీమియం వెర్షన్‌ను యాక్సెస్ చేయడానికి మీకు చెల్లుబాటు అయ్యే లైసెన్స్ లేదు."
+
+#: includes/freemius-strings.php:362
+#: includes/freemius-strings.php:3333
+msgid "Auto installation only works for opted-in users."
+msgstr "ఆటో ఇన్‌స్టాలేషన్ ఎంచుకున్న వినియోగదారులకు మాత్రమే పనిచేస్తుంది."
+
+#: includes/freemius-strings.php:366
+#: includes/freemius-strings.php:4900
+msgid "Premium version already active."
+msgstr "ప్రీమియం వెర్షన్ ఇప్పటికే సక్రియంగా ఉంది."
+
+#: includes/freemius-strings.php:370
+#: includes/freemius-strings.php:4890
+msgid "Premium add-on version already installed."
+msgstr "ప్రీమియం యాడ్-ఆన్ వెర్షన్ ఇప్పటికే ఇన్‌స్టాల్ చేయబడింది."
+
+#: includes/freemius-strings.php:374
+#: includes/freemius-strings.php:4859
+msgid "Plugin is a \"Serviceware\" which means it does not have a premium code version."
+msgstr "ప్లగ్ఇన్ అనేది \"సర్వీస్‌వేర్\", అనగా దీనికి ప్రీమియం కోడ్ వెర్షన్ ఉండదు."
+
+#: includes/freemius-strings.php:378
+#: includes/freemius-strings.php:3344
+msgid "Automatic Installation"
+msgstr "ఆటోమేటిక్ ఇన్‌స్టాలేషన్"
+
+#: includes/freemius-strings.php:382
+#: includes/freemius-strings.php:6622
+msgctxt "timer for auto-disabling debug"
+msgid "Auto off in:"
+msgstr "ఆటో ఆఫ్‌లో ఉండటానికి సమయం:"
+
+#: includes/freemius-strings.php:386
+#: includes/freemius-strings.php:3349
+msgid "Average Rating"
+msgstr "సగటు రేటింగ్"
+
+#: includes/freemius-strings.php:390
+#: includes/freemius-strings.php:3354
+msgid "Awesome"
+msgstr "అద్భుతం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:395
+#: includes/freemius-strings.php:6142
+#, php-format
+msgid "based on %s"
+msgstr "%s ఆధారంగా"
+
+#: includes/freemius-strings.php:399
+#: includes/freemius-strings.php:3359
+msgid "Become an affiliate"
+msgstr "అఫిలియేట్ అవ్వండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:404
+#: includes/freemius-strings.php:4438
+#, php-format
+msgid "Like the %s? Become our ambassador and earn cash ;-)"
+msgstr "%s నచ్చిందా? మా అంబాసిడర్ అవ్వండి మరియు నగదు సంపాదించండి ;-)"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:409
+#: includes/freemius-strings.php:4045
+#, php-format
+msgid "Hey there, did you know that %1$s has an affiliate program? If you like the %2$s you can become our ambassador and earn some cash!"
+msgstr "నమస్కారం, %1$sకి అఫిలియేట్ ప్రోగ్రామ్ ఉందని మీకు తెలుసా? మీకు %2$s నచ్చితే మా అంబాసిడర్‌గా మారి కొంత నగదు సంపాదించవచ్చు!"
+
+#: includes/freemius-strings.php:413
+#: includes/freemius-strings.php:6556
+msgctxt "e.g. the best product"
+msgid "Best"
+msgstr "ఉత్తమం"
+
+#: includes/freemius-strings.php:417
+#: includes/freemius-strings.php:3364
+msgid "Beta"
+msgstr "బీటా"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:422
+#: includes/freemius-strings.php:3267
+#, php-format
+msgid "An update to a Beta version will replace your installed version of %s with the latest Beta release - use with caution, and not on production sites. You have been warned."
+msgstr "Beta వెర్షన్‌కి అప్‌డేట్ చేయడం వల్ల ఇన్‌స్టాల్ చేయబడిన మీ %s వెర్షన్ తాజా Beta విడుదలతో భర్తీ చేయబడుతుంది - జాగ్రత్తగా ఉపయోగించండి, ప్రొడక్షన్ సైట్‌లలో ఉపయోగించవద్దు. మీకు ముందే హెచ్చరిక ఇవ్వబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:427
+#: includes/freemius-strings.php:6551
+#, php-format
+msgctxt "e.g. billed monthly"
+msgid "Billed %s"
+msgstr "%s కి బిల్ చేయబడింది"
+
+#: includes/freemius-strings.php:431
+#: includes/freemius-strings.php:3369
+msgid "Billing"
+msgstr "బిల్లింగ్"
+
+#: includes/freemius-strings.php:435
+#: includes/freemius-strings.php:3374
+msgid "Billing & Invoices"
+msgstr "బిల్లెట్ మరియు ఇన్‌వాయిస్‌లు"
+
+#: includes/freemius-strings.php:439
+#: includes/freemius-strings.php:6424
+msgctxt "as connection blocked"
+msgid "Blocked"
+msgstr "నిరోధించబడింది"
+
+#: includes/freemius-strings.php:443
+#: includes/freemius-strings.php:3379
+msgid "Blocking"
+msgstr "నిషేధిస్తోంది"
+
+#: includes/freemius-strings.php:447
+#: includes/freemius-strings.php:3384
+msgid "Blog ID"
+msgstr "బ్లాగ్ ఐడీ"
+
+#: includes/freemius-strings.php:451
+#: includes/freemius-strings.php:3389
+msgid "Body"
+msgstr "బాడీ"
+
+#: includes/freemius-strings.php:455
+#: includes/freemius-strings.php:5859
+msgid "Yes - both addresses are mine"
+msgstr "అవును - రెండు చిరునామాలు నావే"
+
+#: includes/freemius-strings.php:459
+#: includes/freemius-strings.php:3394
+msgid "Bundle"
+msgstr "బండిల్"
+
+#: includes/freemius-strings.php:463
+#: includes/freemius-strings.php:3399
+msgid "Bundle Plan"
+msgstr "బండిల్ ప్లాన్"
+
+#: includes/freemius-strings.php:467
+#: includes/freemius-strings.php:3404
+msgid "Business name"
+msgstr "వ్యాపార పేరు"
+
+#: includes/freemius-strings.php:471
+#: includes/freemius-strings.php:3414
+msgid "Buy license"
+msgstr "లైసెన్స్‌ను కొనుగోలు చేయండి"
+
+#: includes/freemius-strings.php:475
+#: includes/freemius-strings.php:3409
+msgid "Buy a license now"
+msgstr "ఇప్పుడే లైసెన్స్‌ను కొనుగోలు చేయండి"
+
+#: includes/freemius-strings.php:479
+#: includes/freemius-strings.php:3453
+msgid "Cancel"
+msgstr "రద్దు చేయి"
+
+#: includes/freemius-strings.php:483
+#: includes/freemius-strings.php:3476
+msgid "Cancel Installation"
+msgstr "ఇన్‌స్టాలేషన్‌ను రద్దు చేయి"
+
+#: includes/freemius-strings.php:487
+#: includes/freemius-strings.php:3481
+msgid "Cancel Subscription"
+msgstr "చందాను రద్దు చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:492
+#: includes/freemius-strings.php:4179
+#, php-format
+msgid "In case you are NOT planning on using this %1$s on this site (or any other site) - would you like to cancel the %2$s as well?"
+msgstr "ఒకవేళ మీరు ఈ %1$sని ఈ సైట్‌లో (లేదా వేరే ఏ సైట్‌లోనైనా) ఉపయోగించాలని అనుకోకపోతే - మీరు ఈ %2$sని కూడా రద్దు చేయాలనుకుంటున్నారా?"
+
+#: includes/freemius-strings.php:496
+#: includes/freemius-strings.php:3486
+msgid "Cancel Trial"
+msgstr "ట్రయల్‌ రద్దు చేయి"
+
+#: includes/freemius-strings.php:500
+#: includes/freemius-strings.php:3513
+msgid "Cancelling the trial will immediately block access to all premium features. Are you sure?"
+msgstr "ట్రయల్ రద్దు చేయడం వల్ల అన్ని ప్రీమియం ఫీచర్‌లకు యాక్సెస్ వెంటనే నిరోధించబడుతుంది. మీరు ఖచ్చితంగా అనుకుంటున్నారా?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:505
+#: includes/freemius-strings.php:3459
+#, php-format
+msgid "Cancel %s & Proceed"
+msgstr "%s రద్దు చేయి & కొనసాగించు"
+
+#: includes/freemius-strings.php:509
+#: includes/freemius-strings.php:3491
+msgid "Cancelled"
+msgstr "రద్దు చేయబడింది"
+
+#: includes/freemius-strings.php:513
+#: includes/freemius-strings.php:3508
+msgid "Cancelling the subscription"
+msgstr "చందాను రద్దు చేస్తోంది"
+
+#: includes/freemius-strings.php:517
+#: includes/freemius-strings.php:3448
+msgid "Can't find your license key?"
+msgstr "మీ లైసెన్స్ కీ దొరకలేదా?"
+
+#: includes/freemius-strings.php:521
+#: includes/freemius-strings.php:3518
+msgid "Change License"
+msgstr "లైసెన్స్‌ని మార్చండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:526
+#: includes/freemius-strings.php:3057
+#, php-format
+msgid "A confirmation email was just sent to %s. You must confirm the update within the next 4 hours. If you cannot find the email, please check your spam folder."
+msgstr "ఒక నిర్ధారణ ఇమెయిల్ ఇప్పుడే %s కి పంపబడింది. మీరు రాబోయే 4 గంటలలోపు నవీకరణను నిర్ధారించాలి. మీకు ఇమెయిల్ కనిపించకపోతే, దయచేసి మీ స్పామ్ ఫోల్డర్‌ను తనిఖీ చేయండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:531
+#: includes/freemius-strings.php:3051
+#, php-format
+msgid "A confirmation email was just sent to %s. The email owner must confirm the update within the next 4 hours."
+msgstr "నిర్ధారణ ఇమెయిల్ ఇప్పుడే %s కి పంపబడింది. ఇమెయిల్ యజమాని రాబోయే 4 గంటల్లోగా అప్‌డేట్‌ను నిర్ధారించాలి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:536
+#: includes/freemius-strings.php:2949
+#, php-format
+msgid "%s is the new owner of the account."
+msgstr "%s ఖాతా యొక్క కొత్త యజమాని."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:541
+#: includes/freemius-strings.php:5361
+#, php-format
+msgid "Thanks for confirming the ownership change. An email was just sent to %s for final approval."
+msgstr "యాజమాన్య మార్పును నిర్ధారించినందుకు ధన్యవాదాలు. తుది ఆమోదం కోసం ఇప్పుడే %sకి ఒక ఇమెయిల్ పంపబడింది."
+
+#: includes/freemius-strings.php:545
+#: includes/freemius-strings.php:3523
+msgid "Change Ownership"
+msgstr "యాజమాన్యాన్ని మార్చండి"
+
+#: includes/freemius-strings.php:549
+#: includes/freemius-strings.php:3528
+msgid "Change Plan"
+msgstr "ప్లాన్ మార్చుకోండి"
+
+#: includes/freemius-strings.php:553
+#: includes/freemius-strings.php:3533
+msgid "Change User"
+msgstr "వినియోగదారుని మార్చండి"
+
+#: includes/freemius-strings.php:557
+#: includes/freemius-strings.php:3419
+msgid "By changing the user, you agree to transfer the account ownership to:"
+msgstr "వినియోగదారుని మార్చడం ద్వారా, మీరు ఖాతా యాజమాన్యాన్ని వీరికి బదిలీ చేయడానికి అంగీకరిస్తున్నారు:"
+
+#: includes/freemius-strings.php:561
+#: includes/freemius-strings.php:6321
+msgctxt "Plugin installer section title"
+msgid "Changelog"
+msgstr "మార్పుల జాబితా"
+
+#: includes/freemius-strings.php:565
+#: includes/freemius-strings.php:3538
+msgid "Changing user, please wait"
+msgstr "userని మారుస్తోంది, దయచేసి వేచి ఉండండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:570
+#: includes/freemius-strings.php:4132
+#, php-format
+msgid "If you didn't get the email, try checking your spam folder or search for emails from %4$s."
+msgstr "మీకు ఈమెయిల్ అందకపోతే, మీ స్పామ్ ఫోల్డర్‌ను తనిఖీ చేయండి లేదా %4$s నుండి వచ్చిన ఈమెయిల్‌ల కోసం వెతకండి."
+
+#: includes/freemius-strings.php:574
+#: includes/freemius-strings.php:3543
+msgid "Checkout"
+msgstr "చెక్‌అవుట్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:579
+#: includes/freemius-strings.php:3549
+#, php-format
+msgid "Choose up to %s site(s) to activate the license on."
+msgstr "లైసెన్స్‌ను యాక్టివేట్ చేయడానికి గరిష్టంగా %s సైట్లను ఎంచుకోండి."
+
+#: includes/freemius-strings.php:583
+#: includes/freemius-strings.php:3554
+msgid "City"
+msgstr "నగరం"
+
+#: includes/freemius-strings.php:587
+#: includes/freemius-strings.php:3559
+msgid "Clear API Cache"
+msgstr "API క్యాష్‌ను క్లియర్ చేయి"
+
+#: includes/freemius-strings.php:591
+#: includes/freemius-strings.php:3564
+msgid "Clear Updates Transients"
+msgstr "అప్‌డేట్ ట్రాన్సియెంట్లను క్లియర్ చేయి"
+
+#: includes/freemius-strings.php:595
+#: includes/freemius-strings.php:6301
+msgctxt "Part of an activation link message."
+msgid "Click here"
+msgstr "ఇక్కడ క్లిక్ చేయండి"
+
+#: includes/freemius-strings.php:599
+#: includes/freemius-strings.php:3574
+msgid "Click here to use the plugin anonymously"
+msgstr "ప్లగిన్‌ను అనామకంగా ఉపయోగించడానికి ఇక్కడ క్లిక్ చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:604
+#: includes/freemius-strings.php:3580
+#, php-format
+msgid "Click to see reviews that provided a rating of %s"
+msgstr "%s రేటింగ్ అందించిన సమీక్షలను చూడటానికి క్లిక్ చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:609
+#: includes/freemius-strings.php:2937
+#, php-format
+msgid "%s is my client's email address"
+msgstr "%s నా క్లయింట్ ఈమెయిల్ చిరునామా"
+
+#: includes/freemius-strings.php:613
+#: includes/freemius-strings.php:3591
+msgid "Code"
+msgstr "కోడ్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:618
+#: includes/freemius-strings.php:2919
+#, php-format
+msgid "%s commission when a customer purchases a new license."
+msgstr "కస్టమర్ కొత్త లైసెన్స్‌ను కొనుగోలు చేసినప్పుడు %s కమిషన్."
+
+#: includes/freemius-strings.php:622
+#: includes/freemius-strings.php:3323
+msgid "As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days."
+msgstr "మేము సంభావ్య రిఫండ్‌ల కోసం 30 రోజులు కేటాయిస్తున్నందున, 30 రోజుల కంటే పాతవైన కమీషన్‌లను మాత్రమే మేము చెల్లిస్తాము."
+
+#: includes/freemius-strings.php:626
+#: includes/freemius-strings.php:3596
+msgid "Communication"
+msgstr "కమ్యూనికేషన్"
+
+#: includes/freemius-strings.php:630
+#: includes/freemius-strings.php:3601
+msgid "Compatible up to"
+msgstr "దీని వరకు అనుకూలం"
+
+#: includes/freemius-strings.php:634
+#: includes/freemius-strings.php:6147
+msgid "complete the opt-in"
+msgstr "ఆప్ట్-ఇన్‌ను పూర్తి చేయండి"
+
+#: includes/freemius-strings.php:638
+#: includes/freemius-strings.php:6419
+msgctxt "as congratulations"
+msgid "Congrats"
+msgstr "అభినందనలు"
+
+#: includes/freemius-strings.php:642
+#: includes/freemius-strings.php:4544
+msgid "Never miss an important update"
+msgstr "మరిచిపోలేని ముఖ్యమైన అప్‌డేట్‌ను ఎప్పటికీ మిస్ కాకండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:647
+#: includes/freemius-strings.php:5327
+#, php-format
+msgid "Thank you for updating to %1$s v%2$s!"
+msgstr "%1$s v%2$sకి అప్‌డేట్ చేసినందుకు ధన్యవాదాలు!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:652
+#: includes/freemius-strings.php:4679
+#, php-format
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info. This will help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "భద్రతా & ఫీచర్ అప్‌డేట్లు, విద్యా సంబంధిత కంటెంట్ మరియు అప్పుడప్పుడు అందించే ఆఫర్‌ల కోసం ఈమెయిల్ నోటిఫికేషన్‌లను పొందడానికి మరియు కొన్ని ప్రాథమిక WordPress ఎన్విరాన్‌మెంట్ సమాచారాన్ని పంచుకోవడానికి ఆప్ట్ ఇన్ చేయండి. మీ సైట్‌తో %s మరింత అనుకూలంగా ఉండేలా మరియు మీకు కావలసిన వాటిని మెరుగ్గా అందించడంలో ఇది మాకు సహాయపడుతుంది."
+
+#: includes/freemius-strings.php:656
+#: includes/freemius-strings.php:4673
+msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info."
+msgstr "భద్రతా & ఫీచర్ అప్‌డేట్‌లు, విద్యా సంబంధిత కంటెంట్ మరియు అప్పుడప్పుడు వచ్చే ఆఫర్‌ల కోసం ఇమెయిల్ నోటిఫికేషన్‌లను పొందడానికి మరియు కొన్ని ప్రాథమిక WordPress ఎన్విరాన్‌మెంట్ సమాచారాన్ని పంచుకోవడానికి ఆప్ట్ ఇన్ చేయండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:661
+#: includes/freemius-strings.php:4144
+#, php-format
+msgid "If you skip this, that's okay! %1$s will still work just fine."
+msgstr "మీరు దీన్ని దాటవేస్తే, పర్వాలేదు! %1$s ఇప్పటికీ సరిగ్గా పని చేస్తుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:666
+#: includes/freemius-strings.php:5757
+#, php-format
+msgid "We have introduced this opt-in so you never miss an important update and help us make the %s more compatible with your site and better at doing what you need it to."
+msgstr "మేము ఈ ఆప్ట్-ఇన్‌ను పరిచయం చేసాము, తద్వారా మీరు ఏ ముఖ్యమైన అప్‌డేట్‌ను మిస్ అవ్వరు మరియు %s ను మీ సైట్‌కు మరింత అనుకూలంగా, ఇంకా మీ అవసరాలకు మెరుగ్గా పనిచేసేలా చేయడానికి మాకు సహాయపడతారు."
+
+#: includes/freemius-strings.php:670
+#: includes/freemius-strings.php:5773
+msgid "We're excited to introduce the Freemius network-level integration."
+msgstr "ఫ్రీమియస్ (Freemius) నెట్‌వర్క్-స్థాయి ఇంటిగ్రేషన్‌ను పరిచయం చేయడానికి మేము సంతోషిస్తున్నాము."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:675
+#: includes/freemius-strings.php:3847
+#, php-format
+msgid "During the update process we detected %s site(s) in the network that are still pending your attention."
+msgstr "నవీకరణ ప్రక్రియ సమయంలో మీ దృష్టి ఇంకా అవసరమైన %s సైట్(లను) నెట్‌వర్క్‌లో మేము గుర్తించాము."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:680
+#: includes/freemius-strings.php:3841
+#, php-format
+msgid "During the update process we detected %d site(s) that are still pending license activation."
+msgstr "అప్‌డేట్ ప్రక్రియ సమయంలో లైసెన్స్ యాక్టివేషన్ కోసం ఇంకా పెండింగ్‌లో ఉన్న %d సైట్(లను) మేము గుర్తించాము."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:685
+#: includes/freemius-strings.php:4162
+#, php-format
+msgid "If you'd like to use the %s on those sites, please enter your license key below and click the activation button."
+msgstr "ఆ సైట్‌లలో మీరు %sని ఉపయోగించాలనుకుంటే, దయచేసి దిగువన మీ లైసెన్స్ కీని నమోదు చేసి, యాక్టివేషన్ బటన్‌ను క్లిక్ చేయండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:690
+#: includes/freemius-strings.php:3235
+#, php-format
+msgid "Alternatively, you can skip it for now and activate the license later, in your %s's network-level Account page."
+msgstr "లేదా, మీరు దీన్ని ప్రస్తుతానికి దాటవేసి, మీ %s యొక్క నెట్‌వర్క్-స్థాయి ఖాతా పేజీలో లైసెన్స్‌ను తర్వాత సక్రియం చేయవచ్చు."
+
+#: includes/freemius-strings.php:694
+#: includes/freemius-strings.php:6429
+msgctxt "as connection was successful"
+msgid "Connected"
+msgstr "కనెక్ట్ చేయబడింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:699
+#: includes/freemius-strings.php:4646
+#, php-format
+msgid "Once you are done, deactivate the %s and activate it again."
+msgstr "మీరు పూర్తి చేసిన తర్వాత, %s ని నిష్క్రియం చేసి, మళ్లీ సక్రియం చేయండి."
+
+#: includes/freemius-strings.php:703
+#: includes/freemius-strings.php:3606
+msgid "Contact"
+msgstr "సంప్రదించండి"
+
+#: includes/freemius-strings.php:707
+#: includes/freemius-strings.php:4813
+msgid "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:"
+msgstr "భద్రత & ఫీచర్ అప్‌డేట్‌లు, విద్యా విషయాలు మరియు అప్పుడప్పుడు అందించే ఆఫర్‌ల కోసం మేము మిమ్మల్ని సంప్రదించాలనుకుంటే దయచేసి మాకు తెలియజేయండి:"
+
+#: includes/freemius-strings.php:711
+#: includes/freemius-strings.php:3611
+msgid "Contact Support"
+msgstr "మద్దతును సంప్రదించండి"
+
+#: includes/freemius-strings.php:715
+#: includes/freemius-strings.php:5219
+msgid "Sorry for the inconvenience and we are here to help if you give us a chance."
+msgstr "అసౌకర్యానికి క్షమించండి, మరియు మీరు మాకు అవకాశం ఇస్తే సహాయం చేయడానికి మేము సిద్ధంగా ఉన్నాము."
+
+#: includes/freemius-strings.php:719
+#: includes/freemius-strings.php:3616
+msgid "Contact Us"
+msgstr "మమ్మల్ని సంప్రదించండి"
+
+#: includes/freemius-strings.php:723
+#: includes/freemius-strings.php:4777
+msgid "Please contact us here"
+msgstr "దయచేసి మమ్మల్ని ఇక్కడ సంప్రదించండి"
+
+#: includes/freemius-strings.php:727
+#: includes/freemius-strings.php:4782
+msgid "Please contact us with the following message:"
+msgstr "దయచేసి క్రింది సందేశంతో మమ్మల్ని సంప్రదించండి:"
+
+#: includes/freemius-strings.php:731
+#: includes/freemius-strings.php:3621
+msgid "Continue"
+msgstr "కొనసాగించు"
+
+#: includes/freemius-strings.php:735
+#: includes/freemius-strings.php:3626
+msgid "Contributors"
+msgstr "సహాయకులు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:740
+#: includes/freemius-strings.php:3632
+#, php-format
+msgid "Couldn't activate %s."
+msgstr "%s ని సక్రియం చేయలేకపోయింది."
+
+#: includes/freemius-strings.php:744
+#: includes/freemius-strings.php:3637
+msgid "Country"
+msgstr "దేశం"
+
+#: includes/freemius-strings.php:748
+#: includes/freemius-strings.php:3642
+msgid "Cron Type"
+msgstr "క్రాన్ రకం"
+
+#: includes/freemius-strings.php:752
+#: includes/freemius-strings.php:5768
+msgid "We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server."
+msgstr "మేము API కాల్‌ల కోసం PHP cURL లైబ్రరీని ఉపయోగిస్తాము, ఇది చాలా సాధారణమైన లైబ్రరీ మరియు సాధారణంగా డిఫాల్ట్‌గా ఇన్‌స్టాల్ చేయబడి యాక్టివేట్ చేయబడుతుంది. దురదృష్టవశాత్తు, మీ సర్వర్‌లో cURL యాక్టివేట్ చేయబడలేదు (లేదా డిసేబుల్ చేయబడింది)."
+
+#: includes/freemius-strings.php:756
+#: includes/freemius-strings.php:6152
+msgid "data"
+msgstr "డేటా"
+
+#: includes/freemius-strings.php:760
+#: includes/freemius-strings.php:3699
+msgid "Debug mode was successfully enabled and will be automatically disabled in 60 min. You can also disable it earlier by clicking the \"Stop Debug\" link."
+msgstr "డీబగ్ మోడ్ విజయవంతంగా ప్రారంభించబడింది మరియు 60 నిమిషాలలో స్వయంచాలకంగా నిలిపివేయబడుతుంది. \"స్టాప్ డీబగ్\" లింక్‌ని క్లిక్ చేయడం ద్వారా మీరు దీన్ని ముందుగానే నిలిపివేయవచ్చు."
+
+#: includes/freemius-strings.php:764
+#: includes/freemius-strings.php:3653
+msgid "Date"
+msgstr "తేదీ"
+
+#: includes/freemius-strings.php:768
+#: includes/freemius-strings.php:3658
+msgid "Deactivate"
+msgstr "నిష్క్రియం చేయండి"
+
+#: includes/freemius-strings.php:772
+#: includes/freemius-strings.php:3668
+msgid "Deactivate the free version"
+msgstr "ఉచిత సంస్కరణను నిలిపివేయండి"
+
+#: includes/freemius-strings.php:776
+#: includes/freemius-strings.php:3663
+msgid "Deactivate License"
+msgstr "లైసెన్స్‌ను నిలిపివేయి"
+
+#: includes/freemius-strings.php:780
+#: includes/freemius-strings.php:3684
+msgid "Deactivating your license will block all premium features, but will enable activating the license on another site. Are you sure you want to proceed?"
+msgstr "మీ లైసెన్స్‌ను నిష్క్రియం చేయడం వల్ల అన్ని ప్రీమియం ఫీచర్‌లు నిలిచిపోతాయి, అయితే వేరే సైట్‌లో లైసెన్స్‌ను సక్రియం చేయడానికి వీలవుతుంది. మీరు ఖచ్చితంగా ముందుకు వెళ్లాలనుకుంటున్నారా?"
+
+#: includes/freemius-strings.php:784
+#: includes/freemius-strings.php:3689
+msgid "Deactivation"
+msgstr "నిష్క్రియం చేయడం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:789
+#: includes/freemius-strings.php:5854
+#, php-format
+msgid "Yes - %s"
+msgstr "అవును - %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:794
+#: includes/freemius-strings.php:5276
+#, php-format
+msgid "Submit & %s"
+msgstr "సమర్పించండి & %s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:799
+#: includes/freemius-strings.php:3679
+#, php-format
+msgid "Deactivating or uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "%s ని నిష్క్రియం చేయడం లేదా అన్‌ఇన్‌స్టాల్ చేయడం ద్వారా లైసెన్స్ స్వయంచాలకంగా నిలిపివేయబడుతుంది, దీన్ని మీరు వేరొక సైట్‌లో ఉపయోగించగలరు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:804
+#: includes/freemius-strings.php:4138
+#, php-format
+msgid "If you have a moment, please let us know why you are %s"
+msgstr "మీకు కాస్త సమయం ఉంటే, మీరు ఎందుకు %s అవుతున్నారో దయచేసి మాకు తెలియజేయండి"
+
+#: includes/freemius-strings.php:808
+#: includes/freemius-strings.php:3694
+msgid "Debug Log"
+msgstr "డీబగ్ లాగ్"
+
+#: includes/freemius-strings.php:812
+#: includes/freemius-strings.php:6414
+msgctxt "as code debugging"
+msgid "Debugging"
+msgstr "డీబగ్గింగ్"
+
+#: includes/freemius-strings.php:816
+#: includes/freemius-strings.php:6167
+msgid "delegate"
+msgstr "డెలిగేట్ చేయి"
+
+#: includes/freemius-strings.php:820
+#: includes/freemius-strings.php:4126
+msgid "If you click it, this decision will be delegated to the sites administrators."
+msgstr "మీరు దీనిపై క్లిక్ చేస్తే, ఈ నిర్ణయం సైట్ నిర్వాహకులకు కేటాయించబడుతుంది."
+
+#: includes/freemius-strings.php:824
+#: includes/freemius-strings.php:3704
+msgid "Delegate to Site Admins"
+msgstr "సైట్ అడ్మిన్‌లకు కేటాయించండి"
+
+#: includes/freemius-strings.php:828
+#: includes/freemius-strings.php:3709
+msgid "Delegate to Site Admins & Continue"
+msgstr "సైట్ అడ్మిన్‌లకు కేటాయించండి & కొనసాగించండి"
+
+#: includes/freemius-strings.php:832
+#: includes/freemius-strings.php:3714
+msgid "Delegating, please wait"
+msgstr "డెలిగేట్ చేస్తోంది, దయచేసి వేచి ఉండండి"
+
+#: includes/freemius-strings.php:836
+#: includes/freemius-strings.php:6632
+msgctxt "verb"
+msgid "Delete"
+msgstr "తొలగించు"
+
+#: includes/freemius-strings.php:840
+#: includes/freemius-strings.php:3719
+msgid "Delete All Accounts"
+msgstr "అన్ని ఖాతాలను తొలగించు"
+
+#: includes/freemius-strings.php:844
+#: includes/freemius-strings.php:3308
+msgid "Are you sure you want to delete all Freemius data?"
+msgstr "మీరు అన్ని Freemius డేటాను తొలగించాలనుకుంటున్నారని ఖచ్చితంగా అనుకుంటున్నారా?"
+
+#: includes/freemius-strings.php:848
+#: includes/freemius-strings.php:6326
+msgctxt "Plugin installer section title"
+msgid "Description"
+msgstr "వివరణ"
+
+#: includes/freemius-strings.php:852
+#: includes/freemius-strings.php:3724
+msgid "Details"
+msgstr "వివరాలు"
+
+#: includes/freemius-strings.php:856
+#: includes/freemius-strings.php:6223
+msgid "seems like the key you entered doesn't match our records."
+msgstr "మీరు నమోదు చేసిన కీ మా రికార్డులతో సరిపోలినట్లు లేదు."
+
+#: includes/freemius-strings.php:860
+#: includes/freemius-strings.php:3729
+msgid "Diagnostic Info"
+msgstr "డయాగ్నస్టిక్ సమాచారం"
+
+#: includes/freemius-strings.php:864
+#: includes/freemius-strings.php:3740
+msgid "Disabling white-label mode"
+msgstr "వైట్-లేబుల్ మోడ్‌ను నిలిపివేస్తోంది"
+
+#: includes/freemius-strings.php:868
+#: includes/freemius-strings.php:3745
+msgid "Disconnect"
+msgstr "అనుసంధానం తొలగించు"
+
+#: includes/freemius-strings.php:872
+#: includes/freemius-strings.php:3318
+msgid "Are you sure you would like to proceed with the disconnection?"
+msgstr "దయచేసి డిస్‌కనెక్షన్‌తో ముందుకు వెళ్లాలనుకుంటున్నారని మీరు ఖచ్చితంగా అనుకుంటున్నారా?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:877
+#: includes/freemius-strings.php:4150
+#, php-format
+msgid "If you wish to cancel your %1$s plan's subscription instead, please navigate to the %2$s and cancel it there."
+msgstr "ఒకవేళ మీరు బదులుగా మీ %1$s ప్లాన్ సబ్‌స్క్రిప్షన్‌ని రద్దు చేయాలనుకుంటే, దయచేసి %2$sకి వెళ్లి అక్కడ దాన్ని రద్దు చేయండి."
+
+#: includes/freemius-strings.php:881
+#: includes/freemius-strings.php:6409
+msgctxt "as close a window"
+msgid "Dismiss"
+msgstr "తీసివేయి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:886
+#: includes/freemius-strings.php:6173
+#, php-format
+msgid "do %1$sNOT%2$s send me security & feature updates, educational content and offers."
+msgstr "నాకు భద్రతా & ఫీచర్ అప్‌డేట్లు, విద్యా సంబంధిత విషయాలు మరియు ఆఫర్‌లను %1$sపంపవద్దు%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:891
+#: includes/freemius-strings.php:3888
+#, php-format
+msgid "Enter the domain of your website or other websites from where you plan to promote the %s."
+msgstr "%sని ప్రచారం చేయాలని మీరు భావిస్తున్న మీ వెబ్‌సైట్ లేదా ఇతర వెబ్‌సైట్ల డొమైన్‌ను నమోదు చేయండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:896
+#: includes/freemius-strings.php:5822
+#, php-format
+msgid "Where are you going to promote the %s?"
+msgstr "మీరు %s ని ఎక్కడ ప్రచారం చేయాలనుకుంటున్నారు?"
+
+#: includes/freemius-strings.php:900
+#: includes/freemius-strings.php:3756
+msgid "Domain is required."
+msgstr "డొమైన్ అవసరం."
+
+#: includes/freemius-strings.php:904
+#: includes/freemius-strings.php:3772
+msgid "Donate to this plugin"
+msgstr "ఈ ప్లగిన్‌కు విరాళం ఇవ్వండి"
+
+#: includes/freemius-strings.php:908
+#: includes/freemius-strings.php:3777
+msgid "Done"
+msgstr "పూర్తయింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:913
+#: includes/freemius-strings.php:3762
+#, php-format
+msgid "Don't cancel %s - I'm still interested in getting security & feature updates, as well as be able to contact support."
+msgstr "%s రద్దు చేయవద్దు - సెక్యూరిటీ మరియు ఫీచర్ అప్‌డేట్‌లను పొందడంపై అలాగే సపోర్ట్‌ను సంప్రదించగలగడంపై నాకు ఇంకా ఆసక్తి ఉంది."
+
+#: includes/freemius-strings.php:917
+#: includes/freemius-strings.php:3767
+msgid "Don't have a license key?"
+msgstr "లైసెన్స్ కీ లేదా?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:922
+#: includes/freemius-strings.php:5958
+#, php-format
+msgid "You might have missed it, but you don't have to share any data and can just %s the opt-in."
+msgstr "మీరు దీన్ని కోల్పోయి ఉండవచ్చు, కానీ మీరు ఎలాంటి డేటాను పంచుకోవాల్సిన అవసరం లేదు మరియు ఆప్ట్-ఇన్‌ను కేవలం %s చేయవచ్చు."
+
+#: includes/freemius-strings.php:926
+#: includes/freemius-strings.php:6637
+msgctxt "verb"
+msgid "Downgrade"
+msgstr "తగ్గించుకోండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:931
+#: includes/freemius-strings.php:2877
+#, php-format
+msgid "%1$s will immediately stop all future recurring payments and your %2$s plan license will expire in %3$s."
+msgstr "%1$s భవిష్యత్తులో పునరావృతమయ్యే అన్ని చెల్లింపులను వెంటనే నిలిపివేస్తుంది మరియు మీ %2$s ప్లాన్ లైసెన్స్ %3$sలో ముగుస్తుంది."
+
+#: includes/freemius-strings.php:935
+#: includes/freemius-strings.php:3782
+msgid "Downgrading"
+msgstr "డౌన్‌గ్రేడ్ చేస్తోంది"
+
+#: includes/freemius-strings.php:939
+#: includes/freemius-strings.php:3787
+msgid "Downgrading your plan"
+msgstr "మీ ప్లాన్‌ను డౌన్‌గ్రేడ్ చేస్తోంది"
+
+#: includes/freemius-strings.php:943
+#: includes/freemius-strings.php:3792
+msgid "Download"
+msgstr "డౌన్‌లోడ్ చేయి"
+
+#: includes/freemius-strings.php:947
+#: includes/freemius-strings.php:6434
+msgctxt "as download latest version"
+msgid "Download Latest"
+msgstr "తాజాదాన్ని డౌన్‌లోడ్ చేయి"
+
+#: includes/freemius-strings.php:951
+#: includes/freemius-strings.php:6439
+msgctxt "as download latest version"
+msgid "Download Latest Free Version"
+msgstr "తాజా ఉచిత సంస్కరణను డౌన్‌లోడ్ చేయి"
+
+#: includes/freemius-strings.php:955
+#: includes/freemius-strings.php:3814
+msgid "Download the latest version"
+msgstr "తాజా వెర్షన్‌ను డౌన్‌లోడ్ చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:960
+#: includes/freemius-strings.php:3809
+#, php-format
+msgid "Download the latest %s version"
+msgstr "తాజా %s వెర్షన్‌ను డౌన్‌లోడ్ చేయండి"
+
+#: includes/freemius-strings.php:964
+#: includes/freemius-strings.php:3803
+msgid "Download Paid Version"
+msgstr "పెయిడ్ వెర్షన్‌ను డౌన్‌లోడ్ చేయి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:969
+#: includes/freemius-strings.php:3798
+#, php-format
+msgid "Download %s Version"
+msgstr "%s వెర్షన్‌ని డౌన్‌లోడ్ చేయండి"
+
+#: includes/freemius-strings.php:973
+#: includes/freemius-strings.php:3819
+msgid "Downloaded"
+msgstr "దిగుమతి చేసుకున్నది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:978
+#: includes/freemius-strings.php:3825
+#, php-format
+msgid "Due to the new %1$sEU General Data Protection Regulation (GDPR)%2$s compliance requirements it is required that you provide your explicit consent, again, confirming that you are onboard :-)"
+msgstr "కొత్త %1$sEU సాధారణ డేటా రక్షణ నియమావళి (GDPR)%2$s అనుపాలన అవసరాల కారణంగా, మీరు మాతో ఉన్నారని నిర్ధారిస్తూ మీ స్పష్టమైన సమ్మతిని మళ్లీ అందించడం తప్పనిసరి :-)"
+
+#: includes/freemius-strings.php:982
+#: includes/freemius-strings.php:3835
+msgid "Duplicate Website"
+msgstr "వెబ్‌సైట్‌ను నకలు చేయి"
+
+#: includes/freemius-strings.php:986
+#: includes/freemius-strings.php:6642
+msgctxt "verb"
+msgid "Edit"
+msgstr "సవరించు"
+
+#: includes/freemius-strings.php:990
+#: includes/freemius-strings.php:3852
+msgid "Email"
+msgstr "ఈమెయిల్"
+
+#: includes/freemius-strings.php:994
+#: includes/freemius-strings.php:3857
+msgid "Email address"
+msgstr "ఈమెయిల్ చిరునామా"
+
+#: includes/freemius-strings.php:998
+#: includes/freemius-strings.php:3862
+msgid "Email address is required."
+msgstr "ఇమెయిల్ చిరునామా అవసరం."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1003
+#: includes/freemius-strings.php:2943
+#, php-format
+msgid "%s is my email address"
+msgstr "%s నా ఇమెయిల్ చిరునామా"
+
+#: includes/freemius-strings.php:1007
+#: includes/freemius-strings.php:3867
+msgid "Email address update"
+msgstr "ఈమెయిల్ చిరునామా నవీకరణ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1012
+#: includes/freemius-strings.php:3303
+#, php-format
+msgid "Are both %1$s and %2$s your email addresses?"
+msgstr "%1$s మరియు %2$s రెండూ మీ ఈమెయిల్ చిరునామాలేనా?"
+
+#: includes/freemius-strings.php:1016
+#: includes/freemius-strings.php:5746
+msgid "We couldn't find your email address in the system, are you sure it's the right address?"
+msgstr "మా సిస్టమ్‌లో మీ ఈమెయిల్ చిరునామా మాకు లభించలేదు, ఇది సరైన చిరునామా అని మీకు ఖచ్చితంగా తెలుసా?"
+
+#: includes/freemius-strings.php:1020
+#: includes/freemius-strings.php:6038
+msgid "Your email has been successfully verified - you are AWESOME!"
+msgstr "మీ ఇమెయిల్ విజయవంతంగా ధృవీకరించబడింది - మీరు అద్భుతమైనవారు!"
+
+#: includes/freemius-strings.php:1024
+#: includes/freemius-strings.php:4427
+msgid "License key is empty."
+msgstr "లైసెన్స్ కీ ఖాళీగా ఉంది."
+
+#: includes/freemius-strings.php:1028
+#: includes/freemius-strings.php:3872
+msgid "Enabling white-label mode"
+msgstr "వైట్-లేబుల్ మోడ్‌ని ప్రారంభిస్తోంది"
+
+#: includes/freemius-strings.php:1032
+#: includes/freemius-strings.php:3877
+msgid "End"
+msgstr "ముగింపు"
+
+#: includes/freemius-strings.php:1036
+#: includes/freemius-strings.php:3882
+msgid "Enter email address"
+msgstr "ఈమెయిల్ చిరునామాను నమోదు చేయండి"
+
+#: includes/freemius-strings.php:1040
+#: includes/freemius-strings.php:3903
+msgid "Enter the new email address"
+msgstr "కొత్త ఇమెయిల్ చిరునామాను నమోదు చేయండి"
+
+#: includes/freemius-strings.php:1044
+#: includes/freemius-strings.php:3908
+msgid "Error"
+msgstr "లోపం"
+
+#: includes/freemius-strings.php:1048
+#: includes/freemius-strings.php:6449
+msgctxt "as expiration date"
+msgid "Expiration"
+msgstr "గడువు ముగింపు"
+
+#: includes/freemius-strings.php:1052
+#: includes/freemius-strings.php:3918
+msgid "Expired"
+msgstr "గడువు ముగిసింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1057
+#: includes/freemius-strings.php:3924
+#, php-format
+msgid "Expires in %s"
+msgstr "%s లో ముగుస్తుంది"
+
+#: includes/freemius-strings.php:1061
+#: includes/freemius-strings.php:3929
+msgid "Extensions"
+msgstr "ఎక్స్‌టెన్షన్‌లు"
+
+#: includes/freemius-strings.php:1065
+#: includes/freemius-strings.php:3939
+msgid "Extra domains where you will be marketing the product from."
+msgstr "మీరు ఉత్పత్తిని మార్కెటింగ్ చేసే అదనపు డొమైన్‌లు."
+
+#: includes/freemius-strings.php:1069
+#: includes/freemius-strings.php:3934
+msgid "Extra Domains"
+msgstr "అదనపు డొమైన్‌లు"
+
+#: includes/freemius-strings.php:1073
+#: includes/freemius-strings.php:4003
+msgid "Freemius SDK couldn't find the plugin's main file. Please contact sdk@freemius.com with the current error."
+msgstr "Freemius SDK ప్లగిన్ యొక్క ప్రధాన ఫైల్‌ను కనుగొనలేకపోయింది. దయచేసి ప్రస్తుత లోపంతో sdk@freemius.com ని సంప్రదించండి."
+
+#: includes/freemius-strings.php:1077
+#: includes/freemius-strings.php:6331
+msgctxt "Plugin installer section title"
+msgid "FAQ"
+msgstr "తరచుగా అడిగే ప్రశ్నలు"
+
+#: includes/freemius-strings.php:1081
+#: includes/freemius-strings.php:6336
+msgctxt "Plugin installer section title"
+msgid "Features & Pricing"
+msgstr "ఫీచర్లు & ధరలు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1086
+#: includes/freemius-strings.php:5763
+#, php-format
+msgid "We made a few tweaks to the %1$s, %2$s"
+msgstr "మేము %1$s, %2$sకి కొన్ని మార్పులు చేసాము"
+
+#: includes/freemius-strings.php:1090
+#: includes/freemius-strings.php:3944
+msgid "File"
+msgstr "ఫైల్"
+
+#: includes/freemius-strings.php:1094
+#: includes/freemius-strings.php:3949
+msgid "Filter"
+msgstr "ఫిల్టర్ చేయి"
+
+#: includes/freemius-strings.php:1098
+#: includes/freemius-strings.php:4808
+msgid "Please follow these steps to complete the upgrade"
+msgstr "అప్‌గ్రేడ్‌ను పూర్తి చేయడానికి దయచేసి ఈ దశలను అనుసరించండి"
+
+#: includes/freemius-strings.php:1102
+#: includes/freemius-strings.php:3978
+msgid "Free"
+msgstr "ఉచితం"
+
+#: includes/freemius-strings.php:1106
+#: includes/freemius-strings.php:3182
+msgid "Add-on must be deployed to WordPress.org or Freemius."
+msgstr "యాడ్-ఆన్ WordPress.org లేదా Freemiusకి డిప్లాయ్ చేయబడాలి."
+
+#: includes/freemius-strings.php:1110
+#: includes/freemius-strings.php:3983
+msgid "Free Trial"
+msgstr "ఉచిత ట్రయిల్"
+
+#: includes/freemius-strings.php:1114
+#: includes/freemius-strings.php:3988
+msgid "Free version"
+msgstr "ఉచిత వెర్షన్"
+
+#: includes/freemius-strings.php:1118
+#: includes/freemius-strings.php:3993
+msgid "Freemius API"
+msgstr "Freemius API"
+
+#: includes/freemius-strings.php:1122
+#: includes/freemius-strings.php:3998
+msgid "Freemius Debug"
+msgstr "Freemius డిబగ్"
+
+#: includes/freemius-strings.php:1126
+#: includes/freemius-strings.php:4008
+msgid "Freemius State"
+msgstr "Freemius స్థితి"
+
+#: includes/freemius-strings.php:1130
+#: includes/freemius-strings.php:4018
+msgid "Full name"
+msgstr "పూర్తి పేరు"
+
+#: includes/freemius-strings.php:1134
+#: includes/freemius-strings.php:4023
+msgid "Function"
+msgstr "ఫంక్షన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1139
+#: includes/freemius-strings.php:4034
+#, php-format
+msgid "Get updates for bleeding edge Beta versions of %s."
+msgstr "%s యొక్క అత్యాధునిక బీటా వెర్షన్‌ల కోసం అప్‌డేట్‌లను పొందండి."
+
+#: includes/freemius-strings.php:1143
+#: includes/freemius-strings.php:4039
+msgid "Have a license key?"
+msgstr "లైసెన్స్ కీ ఉందా?"
+
+#: includes/freemius-strings.php:1147
+#: includes/freemius-strings.php:6383
+msgctxt "advance notice of something that will need attention."
+msgid "Heads up"
+msgstr "గమనిక"
+
+#: includes/freemius-strings.php:1151
+#: includes/freemius-strings.php:6561
+msgctxt "exclamation"
+msgid "Hey"
+msgstr "హే"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1156
+#: includes/freemius-strings.php:6572
+#, php-format
+msgctxt "greeting"
+msgid "Hey %s,"
+msgstr "హే %s,"
+
+#: includes/freemius-strings.php:1160
+#: includes/freemius-strings.php:6647
+msgctxt "verb"
+msgid "Hide"
+msgstr "దాచు"
+
+#: includes/freemius-strings.php:1164
+#: includes/freemius-strings.php:6617
+msgctxt "something somebody says when they are thinking about what you have just said."
+msgid "Hmm"
+msgstr "ఖచ్చితంగా"
+
+#: includes/freemius-strings.php:1168
+#: includes/freemius-strings.php:4061
+msgid "How to upload and activate?"
+msgstr "అప్‌లోడ్ చేసి యాక్టివేట్ చేయడం ఎలా?"
+
+#: includes/freemius-strings.php:1172
+#: includes/freemius-strings.php:4115
+msgid "ID"
+msgstr "ఐడీ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1177
+#: includes/freemius-strings.php:5905
+#, php-format
+msgid "You are already running the %s in a trial mode."
+msgstr "మీరు ఇప్పటికే %sని ట్రయల్ మోడ్‌లో నడుపుతున్నారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1182
+#: includes/freemius-strings.php:4173
+#, php-format
+msgid "In %s"
+msgstr "%s లో"
+
+#: includes/freemius-strings.php:1186
+#: includes/freemius-strings.php:4184
+msgid "Install Free Version Now"
+msgstr "ఉచిత వెర్షన్‌ను ఇప్పుడే ఇన్‌స్టాల్ చేయండి"
+
+#: includes/freemius-strings.php:1190
+#: includes/freemius-strings.php:4189
+msgid "Install Free Version Update Now"
+msgstr "ఉచిత వెర్షన్ అప్‌డేట్‌ను ఇప్పుడే ఇన్‌స్టాల్ చేయండి"
+
+#: includes/freemius-strings.php:1194
+#: includes/freemius-strings.php:4194
+msgid "Install Now"
+msgstr "ఇప్పుడే ఇన్‌స్టాల్ చేయండి"
+
+#: includes/freemius-strings.php:1198
+#: includes/freemius-strings.php:4199
+msgid "Install Update Now"
+msgstr "ఇన్‌స్టాల్ అప్‌డేట్ నౌ"
+
+#: includes/freemius-strings.php:1202
+#: includes/freemius-strings.php:6341
+msgctxt "Plugin installer section title"
+msgid "Installation"
+msgstr "ఇన్‌స్టాలేషన్"
+
+#: includes/freemius-strings.php:1206
+#: includes/freemius-strings.php:6577
+msgctxt "installed add-on"
+msgid "Installed"
+msgstr "ఇన్‌స్టాల్ చేయబడింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1211
+#: includes/freemius-strings.php:3246
+#, php-format
+msgid "An automated download and installation of %1$s (paid version) from %2$s will start in %3$s. If you would like to do it manually - click the cancellation button now."
+msgstr "%2$s నుండి %1$s (పెయిడ్ వెర్షన్) ఆటోమేటిక్ డౌన్‌లోడ్ మరియు ఇన్‌స్టాలేషన్ %3$s లో ప్రారంభమవుతుంది. మీరు దీన్ని మాన్యువల్‌గా చేయాలనుకుంటే - ఇప్పుడే రద్దు చేయండి బటన్‌ను క్లిక్ చేయండి."
+
+#: includes/freemius-strings.php:1215
+#: includes/freemius-strings.php:5428
+msgid "The installation process has started and may take a few minutes to complete. Please wait until it is done - do not refresh this page."
+msgstr "ఇన్‌స్టాలేషన్ ప్రక్రియ ప్రారంభమైంది మరియు పూర్తి కావడానికి కొన్ని నిమిషాలు పట్టవచ్చు. దయచేసి ఇది పూర్తయ్యే వరకు వేచి ఉండండి - ఈ పేజీని రిఫ్రెష్ చేయవద్దు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1220
+#: includes/freemius-strings.php:4205
+#, php-format
+msgid "Installing plugin: %s"
+msgstr "ప్లగిన్‌ను ఇన్‌స్టాల్ చేస్తోంది: %s"
+
+#: includes/freemius-strings.php:1224
+#: includes/freemius-strings.php:4210
+msgid "Invalid clone resolution action."
+msgstr "చెల్లని క్లోన్ రిజల్యూషన్ చర్య."
+
+#: includes/freemius-strings.php:1228
+#: includes/freemius-strings.php:4215
+msgid "Invalid domain"
+msgstr "చెల్లని డొమైన్"
+
+#: includes/freemius-strings.php:1232
+#: includes/freemius-strings.php:4225
+msgid "Invalid new user ID or email address."
+msgstr "చెల్లని క్రొత్త వినియోగదారు ఐడి లేదా ఇమెయిల్ చిరునామా."
+
+#: includes/freemius-strings.php:1236
+#: includes/freemius-strings.php:4230
+msgid "Invalid site details collection."
+msgstr "చెల్లని సైట్ వివరాల సేకరణ."
+
+#: includes/freemius-strings.php:1240
+#: includes/freemius-strings.php:4235
+msgid "Invoice"
+msgstr "ఇన్వాయిస్"
+
+#: includes/freemius-strings.php:1244
+#: includes/freemius-strings.php:4258
+msgid "Is Active"
+msgstr "క్రియశీలకంగా ఉందా"
+
+#: includes/freemius-strings.php:1248
+#: includes/freemius-strings.php:4337
+msgid "Keep Sharing"
+msgstr "షేరింగ్ కొనసాగించండి"
+
+#: includes/freemius-strings.php:1252
+#: includes/freemius-strings.php:4347
+msgid "Key"
+msgstr "కీ"
+
+#: includes/freemius-strings.php:1256
+#: includes/freemius-strings.php:4362
+msgid "Last"
+msgstr "చివరిది"
+
+#: includes/freemius-strings.php:1260
+#: includes/freemius-strings.php:4372
+msgid "Last license"
+msgstr "చివరి లైసెన్స్"
+
+#: includes/freemius-strings.php:1264
+#: includes/freemius-strings.php:4367
+msgid "Last Updated"
+msgstr "చివరిగా నవీకరించబడింది"
+
+#: includes/freemius-strings.php:1268
+#: includes/freemius-strings.php:4377
+msgid "Latest Free Version Installed"
+msgstr "తాజా ఉచిత వెర్షన్ ఇన్‌స్టాల్ చేయబడింది"
+
+#: includes/freemius-strings.php:1272
+#: includes/freemius-strings.php:4382
+msgid "Latest Version Installed"
+msgstr "తాజా వెర్షన్ ఇన్‌స్టాల్ చేయబడింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1277
+#: includes/freemius-strings.php:6259
+#, php-format
+msgid "the latest %s version here"
+msgstr "ఇక్కడ తాజా %s వెర్షన్ ఉంది"
+
+#: includes/freemius-strings.php:1281
+#: includes/freemius-strings.php:4387
+msgid "Learn more"
+msgstr "మరింత తెలుసుకోండి"
+
+#: includes/freemius-strings.php:1285
+#: includes/freemius-strings.php:4392
+msgid "Length"
+msgstr "పొడవు"
+
+#: includes/freemius-strings.php:1289
+#: includes/freemius-strings.php:6077
+msgid "Your license was successfully activated."
+msgstr "మీ లైసెన్స్ విజయవంతంగా సక్రియం చేయబడింది."
+
+#: includes/freemius-strings.php:1293
+#: includes/freemius-strings.php:4274
+msgid "It looks like the license could not be activated."
+msgstr "లైసెన్స్ యాక్టివేట్ కాలేనట్లుగా ఉంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1298
+#: includes/freemius-strings.php:3021
+#, php-format
+msgid "%s to activate the license once you get it."
+msgstr "లైసెన్స్ పొందిన తర్వాత దానిని యాక్టివేట్ చేయడానికి %s."
+
+#: includes/freemius-strings.php:1302
+#: includes/freemius-strings.php:4402
+msgid "License Agreement"
+msgstr "లైసెన్స్ ఒప్పందం"
+
+#: includes/freemius-strings.php:1306
+#: includes/freemius-strings.php:6054
+msgid "Your license has been cancelled. If you think it's a mistake, please contact support."
+msgstr "మీ లైసెన్స్ రద్దు చేయబడింది. ఇది పొరపాటు అని మీరు భావిస్తే, దయచేసి మద్దతు బృందాన్ని సంప్రదించండి."
+
+#: includes/freemius-strings.php:1310
+#: includes/freemius-strings.php:4279
+msgid "It looks like the license deactivation failed."
+msgstr "లైసెన్స్ నిష్క్రియాకరణం విఫలమైనట్లు కనిపిస్తోంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1315
+#: includes/freemius-strings.php:6083
+#, php-format
+msgid "Your license was successfully deactivated, you are back to the %s plan."
+msgstr "మీ లైసెన్స్ విజయవంతంగా నిష్క్రియం చేయబడింది, మీరు తిరిగి %s ప్లాన్‌కు మారారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1320
+#: includes/freemius-strings.php:6011
+#, php-format
+msgid "Your %s license was successfully deactivated."
+msgstr "మీ %s లైసెన్స్ విజయవంతంగా నిష్క్రియం చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1325
+#: includes/freemius-strings.php:6072
+#, php-format
+msgid "Your license has expired. You can still continue using the free %s forever."
+msgstr "మీ లైసెన్స్ గడువు ముగిసింది. మీరు ఇప్పటికీ ఉచిత %sని ఎప్పటికీ ఉపయోగించడం కొనసాగించవచ్చు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1330
+#: includes/freemius-strings.php:6060
+#, php-format
+msgid "Your license has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "మీ లైసెన్స్ గడువు ముగిసింది. %3$sను ఆటంకాలు లేకుండా ఉపయోగించడం కొనసాగించడానికి, దయచేసి ఇప్పుడే %1$sఅప్‌గ్రేడ్ చేయండి%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1335
+#: includes/freemius-strings.php:6066
+#, php-format
+msgid "Your license has expired. You can still continue using all the %s features, but you'll need to renew your license to continue getting updates and support."
+msgstr "మీ లైసెన్స్ గడువు ముగిసింది. మీరు ఇప్పటికీ అన్ని %s ఫీచర్‌లను ఉపయోగించవచ్చు, అయితే అప్‌డేట్‌లు మరియు మద్దతును పొందడం కొనసాగించడానికి మీరు మీ లైసెన్స్‌ను పునరుద్ధరించుకోవాలి."
+
+#: includes/freemius-strings.php:1339
+#: includes/freemius-strings.php:4407
+msgid "License ID"
+msgstr "లైసెన్స్ ఐడీ"
+
+#: includes/freemius-strings.php:1343
+#: includes/freemius-strings.php:4417
+msgid "License issues?"
+msgstr "లైసెన్స్ సమస్యలా?"
+
+#: includes/freemius-strings.php:1347
+#: includes/freemius-strings.php:5156
+msgid "Single Site License"
+msgstr "సింగిల్ సైట్ లైసెన్స్"
+
+#: includes/freemius-strings.php:1351
+#: includes/freemius-strings.php:5596
+msgid "Unlimited Licenses"
+msgstr "అపరిమిత లైసెన్స్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1356
+#: includes/freemius-strings.php:5612
+#, php-format
+msgid "Up to %s Sites"
+msgstr "గరిష్టంగా %s సైట్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1361
+#: includes/freemius-strings.php:4269
+#, php-format
+msgid "Is this your client's site? %s if you wish to hide sensitive info like your email, license key, prices, billing address & invoices from the WP Admin."
+msgstr "ఇది మీ క్లయింట్ సైటా? WP అడ్మిన్ నుండి మీ ఇమెయిల్, లైసెన్స్ కీ, ధరలు, బిల్లింగ్ చిరునామా & ఇన్‌వాయిస్‌ల వంటి సున్నితమైన సమాచారాన్ని దాచాలనుకుంటే %s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1366
+#: includes/freemius-strings.php:6005
+#, php-format
+msgid "Your %1$s license was flagged as white-labeled to hide sensitive information from the WP Admin (e.g. your email, license key, prices, billing address & invoices). If you ever wish to revert it back, you can easily do it through your %2$s. If this was a mistake you can also %3$s."
+msgstr "సున్నితమైన సమాచారాన్ని (ఉదా. మీ ఇమెయిల్, లైసెన్స్ కీ, ధరలు, బిల్లింగ్ చిరునామా & ఇన్‌వాయిస్‌లు) WP అడ్మిన్ నుండి దాచిపెట్టడానికి మీ %1$s లైసెన్స్ వైట్-లేబుల్ చేయబడినట్లు గుర్తించబడింది. మీరు ఎప్పుడైనా దీన్ని మళ్లీ మార్చాలనుకుంటే, మీ %2$s ద్వారా దీన్ని సులభంగా చేయవచ్చు. ఇది పొరపాటు అయితే మీరు %3$s కూడా చేయవచ్చు."
+
+#: includes/freemius-strings.php:1370
+#: includes/freemius-strings.php:4432
+msgid "Lifetime"
+msgstr "జీవితకాలం"
+
+#: includes/freemius-strings.php:1374
+#: includes/freemius-strings.php:4443
+msgid "Load DB Option"
+msgstr "DB ఎంపికను లోడ్ చేయండి"
+
+#: includes/freemius-strings.php:1378
+#: includes/freemius-strings.php:4448
+msgid "Localhost"
+msgstr "స్థానికహోస్ట్"
+
+#: includes/freemius-strings.php:1382
+#: includes/freemius-strings.php:4453
+msgid "Log"
+msgstr "లాగ్"
+
+#: includes/freemius-strings.php:1386
+#: includes/freemius-strings.php:4458
+msgid "Logger"
+msgstr "లాగర్"
+
+#: includes/freemius-strings.php:1390
+#: includes/freemius-strings.php:4463
+msgid "Long-Term Duplicate"
+msgstr "దీర్ఘకాలిక డూప్లికేట్"
+
+#: includes/freemius-strings.php:1394
+#: includes/freemius-strings.php:4468
+msgid "Message"
+msgstr "సందేశం"
+
+#: includes/freemius-strings.php:1398
+#: includes/freemius-strings.php:4473
+msgid "Method"
+msgstr "పద్ధతి"
+
+#: includes/freemius-strings.php:1402
+#: includes/freemius-strings.php:4488
+msgid "Migrate Options to Network"
+msgstr "నెట్‌వర్క్‌కు ఎంపికలను వలస వెళ్ళు"
+
+#: includes/freemius-strings.php:1406
+#: includes/freemius-strings.php:4478
+msgid "Migrate"
+msgstr "వలస వెళ్ళు"
+
+#: includes/freemius-strings.php:1410
+#: includes/freemius-strings.php:4483
+msgid "Migrate License"
+msgstr "లైసెన్స్‌ను మైగ్రేట్ చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1415
+#: includes/freemius-strings.php:4253
+#, php-format
+msgid "Is %2$s the new home of %4$s?"
+msgstr "%2$s అనేది %4$s యొక్క కొత్త నివాసమా?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1420
+#: includes/freemius-strings.php:5871
+#, php-format
+msgid "Yes, %%2$s is replacing %%4$s. I would like to migrate my %s from %%4$s to %%2$s."
+msgstr "అవును, %%4$s స్థానంలో %%2$s వస్తోంది. నా %sని %%4$s నుండి %%2$sకి మైగ్రేట్ చేయాలనుకుంటున్నాను."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1425
+#: includes/freemius-strings.php:2955
+#, php-format
+msgid "%s minimum payout amount."
+msgstr "%s కనిష్ట చెల్లింపు మొత్తం."
+
+#: includes/freemius-strings.php:1429
+#: includes/freemius-strings.php:6464
+msgctxt "as monthly period"
+msgid "mo"
+msgstr "మో"
+
+#: includes/freemius-strings.php:1433
+#: includes/freemius-strings.php:4493
+msgid "Mobile apps"
+msgstr "మొబైల్ యాప్‌లు"
+
+#: includes/freemius-strings.php:1437
+#: includes/freemius-strings.php:4498
+msgid "Module"
+msgstr "మాడ్యూల్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1442
+#: includes/freemius-strings.php:2889
+#, php-format
+msgid "%s Installs"
+msgstr "%s ఇన్‌స్టాల్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1447
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s Licenses"
+msgstr "%s లైసెన్స్‌లు"
+
+#: includes/freemius-strings.php:1451
+#: includes/freemius-strings.php:5445
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "రిమోట్ ప్లగిన్ ప్యాకేజీలో కావలసిన స్లగ్‌తో కూడిన ఫోల్డర్ లేదు మరియు పేరు మార్చడం కూడా పని చేయలేదు."
+
+#: includes/freemius-strings.php:1455
+#: includes/freemius-strings.php:4503
+msgid "Module Path"
+msgstr "మాడ్యూల్ పాత్"
+
+#: includes/freemius-strings.php:1459
+#: includes/freemius-strings.php:4508
+msgid "Module Type"
+msgstr "మాడ్యూల్ రకం"
+
+#: includes/freemius-strings.php:1463
+#: includes/freemius-strings.php:6444
+msgctxt "as every month"
+msgid "Monthly"
+msgstr "నెలవారీ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1468
+#: includes/freemius-strings.php:4519
+#, php-format
+msgid "More information about %s"
+msgstr "%s గురించిన మరిన్ని వివరాలు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1473
+#: includes/freemius-strings.php:5865
+#, php-format
+msgid "Yes - move all my data and assets from %1$s to %2$s"
+msgstr "అవును - నా డేటా మరియు అసెట్‌లన్నింటిని %1$s నుండి %2$sకి తరలించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1478
+#: includes/freemius-strings.php:4597
+#, php-format
+msgid "No - only move this site's data to %s"
+msgstr "కాదు - ఈ సైట్ డేటాను మాత్రమే %sకి తరలించండి"
+
+#: includes/freemius-strings.php:1482
+#: includes/freemius-strings.php:6592
+msgctxt "milliseconds"
+msgid "ms"
+msgstr "మిసెం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1487
+#: includes/freemius-strings.php:5434
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of %3$s:%1$s"
+msgstr "%2$s అనేది %3$s యొక్క ఖచ్చితమైన కాపీ అని మేము గమనించినందున దిగువ ఉత్పత్తులు సేఫ్ మోడ్‌లో ఉంచబడ్డాయి:%1$s"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1492
+#: includes/freemius-strings.php:5440
+#, php-format
+msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of these sites:%3$s%1$s"
+msgstr "%2$s ఈ సైట్‌ల యొక్క ఖచ్చితమైన కాపీ అని మేము గమనించినందున క్రింది ఉత్పత్తులు సేఫ్ మోడ్‌లో ఉంచబడ్డాయి:%3$s%1$s"
+
+#: includes/freemius-strings.php:1496
+#: includes/freemius-strings.php:4524
+msgid "Name"
+msgstr "పేరు"
+
+#: includes/freemius-strings.php:1500
+#: includes/freemius-strings.php:4829
+msgid "Please provide your full name."
+msgstr "దయచేసి మీ పూర్తి పేరును అందించండి."
+
+#: includes/freemius-strings.php:1504
+#: includes/freemius-strings.php:6088
+msgid "Your name was successfully updated."
+msgstr "మీ పేరు విజయవంతంగా నవీకరించబడింది."
+
+#: includes/freemius-strings.php:1508
+#: includes/freemius-strings.php:4534
+msgid "Network Blog"
+msgstr "నెట్‌వర్క్ బ్లాగ్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1513
+#: includes/freemius-strings.php:3039
+#, php-format
+msgid "%1$sClick here%2$s to choose the sites where you'd like to activate the license on."
+msgstr "లైసెన్స్‌ను సక్రియం చేయాలనుకుంటున్న సైట్‌లను ఎంచుకోవడానికి %1$sఇక్కడ క్లిక్ చేయండి%2$s."
+
+#: includes/freemius-strings.php:1517
+#: includes/freemius-strings.php:4539
+msgid "Network User"
+msgstr "నెట్‌వర్క్ యూజర్"
+
+#: includes/freemius-strings.php:1521
+#: includes/freemius-strings.php:4554
+msgid "New"
+msgstr "కొత్తది"
+
+#: includes/freemius-strings.php:1525
+#: includes/freemius-strings.php:6193
+msgid "new Beta version"
+msgstr "కొత్త బీటా వెర్షన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1530
+#: includes/freemius-strings.php:4247
+#, php-format
+msgid "Is %2$s a new website?"
+msgstr "%2$s కొత్త వెబ్‌సైటా?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1535
+#: includes/freemius-strings.php:5883
+#, php-format
+msgid "Yes, %2$s is a new and different website that is separate from %4$s."
+msgstr "అవును, %2$s అనేది %4$s నుండి వేరుగా ఉన్న ఒక కొత్త మరియు భిన్నమైన వెబ్‌సైట్."
+
+#: includes/freemius-strings.php:1539
+#: includes/freemius-strings.php:4300
+msgid "It requires license activation."
+msgstr "దీనికి లైసెన్స్ యాక్టివేషన్ అవసరం."
+
+#: includes/freemius-strings.php:1543
+#: includes/freemius-strings.php:6198
+msgid "new version"
+msgstr "కొత్త వెర్షన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1548
+#: includes/freemius-strings.php:5483
+#, php-format
+msgid "There is a new version of %s available."
+msgstr "%s యొక్క క్రొత్త వెర్షన్ అందుబాటులో ఉంది."
+
+#: includes/freemius-strings.php:1552
+#: includes/freemius-strings.php:4564
+msgid "New Website"
+msgstr "కొత్త వెబ్‌సైట్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1557
+#: includes/freemius-strings.php:4570
+#, php-format
+msgid "Newer Free Version (%s) Installed"
+msgstr "కొత్త ఉచిత వెర్షన్ (%s) ఇన్‌స్టాల్ చేయబడింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1562
+#: includes/freemius-strings.php:4576
+#, php-format
+msgid "Newer Version (%s) Installed"
+msgstr "కొత్త వెర్షన్ (%s) ఇన్‌స్టాల్ చేయబడింది"
+
+#: includes/freemius-strings.php:1566
+#: includes/freemius-strings.php:5504
+msgid "This plugin requires a newer version of PHP."
+msgstr "ఈ ప్లగిన్‌కు PHP యొక్క కొత్త వెర్షన్ అవసరం."
+
+#: includes/freemius-strings.php:1570
+#: includes/freemius-strings.php:4586
+msgid "Next"
+msgstr "తదుపరి"
+
+#: includes/freemius-strings.php:1574
+#: includes/freemius-strings.php:4591
+msgid "No"
+msgstr "కాదు"
+
+#: includes/freemius-strings.php:1578
+#: includes/freemius-strings.php:4295
+msgid "It looks like your site currently doesn't have an active license."
+msgstr "మీ సైట్‌కి ప్రస్తుతం సక్రియ లైసెన్స్ లేనట్లుగా ఉంది."
+
+#: includes/freemius-strings.php:1582
+#: includes/freemius-strings.php:5741
+msgid "We can't see any active licenses associated with that email address, are you sure it's the right address?"
+msgstr "ఆ ఈమెయిల్ చిరునామాకు క్రియాశీలక లైసెన్స్‌లు ఏవీ మాకు కనిపించడం లేదు, ఇది సరైన చిరునామా అని మీకు ఖచ్చితంగా తెలుసా?"
+
+#: includes/freemius-strings.php:1586
+#: includes/freemius-strings.php:4619
+msgid "No credit card required"
+msgstr "క్రెడిట్ కార్డ్ అవసరం లేదు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1591
+#: includes/freemius-strings.php:4614
+#, php-format
+msgid "No commitment for %s days - cancel anytime!"
+msgstr "%s రోజుల పాటు ఎలాంటి కట్టుబాట్లు లేవు - ఎప్పుడైనా రద్దు చేయవచ్చు!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1596
+#: includes/freemius-strings.php:4608
+#, php-format
+msgid "No commitment for %s - cancel anytime"
+msgstr "%sకి ఎలాంటి బద్ధత లేదు - ఎప్పుడైనా రద్దు చేసుకోండి"
+
+#: includes/freemius-strings.php:1600
+#: includes/freemius-strings.php:4624
+msgid "No expiration"
+msgstr "కాలపరిమితి లేదు"
+
+#: includes/freemius-strings.php:1604
+#: includes/freemius-strings.php:4602
+msgid "No ID"
+msgstr "ID లేదు"
+
+#: includes/freemius-strings.php:1608
+#: includes/freemius-strings.php:6281
+msgctxt "API connectivity state is unknown"
+msgid "No requests yet"
+msgstr "ఇంకా ఎలాంటి అభ్యర్థనలు లేవు"
+
+#: includes/freemius-strings.php:1612
+#: includes/freemius-strings.php:6489
+msgctxt "as secret encryption key missing"
+msgid "No Secret"
+msgstr "రహస్యం లేదు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1617
+#: includes/freemius-strings.php:4635
+#, php-format
+msgid "None of the %s's plans supports a trial period."
+msgstr "%s యొక్క ఏ ప్లాన్‌లు ట్రయల్ కాలానికి మద్దతు ఇవ్వవు."
+
+#: includes/freemius-strings.php:1621
+#: includes/freemius-strings.php:4629
+msgid "Non-expiring"
+msgstr "గడువు లేని"
+
+#: includes/freemius-strings.php:1625
+#: includes/freemius-strings.php:5494
+msgid "This plugin has not been marked as compatible with your version of WordPress."
+msgstr "ఈ ప్లగ్ఇన్ మీ WordPress వెర్షన్‌తో అనుకూలంగా ఉన్నట్లు గుర్తించబడలేదు."
+
+#: includes/freemius-strings.php:1629
+#: includes/freemius-strings.php:5499
+msgid "This plugin has not been tested with your current version of WordPress."
+msgstr "ఈ ప్లగ్ఇన్ మీ ప్రస్తుత WordPress వెర్షన్‌తో పరీక్షించబడలేదు."
+
+#: includes/freemius-strings.php:1633
+#: includes/freemius-strings.php:6203
+msgid "not verified"
+msgstr "ధృవీకరించబడలేదు"
+
+#: includes/freemius-strings.php:1637
+#: includes/freemius-strings.php:6519
+msgctxt "as turned off"
+msgid "Off"
+msgstr "ఆఫ్"
+
+#: includes/freemius-strings.php:1641
+#: includes/freemius-strings.php:4640
+msgid "O.K"
+msgstr "సరే"
+
+#: includes/freemius-strings.php:1645
+#: includes/freemius-strings.php:6524
+msgctxt "as turned on"
+msgid "On"
+msgstr "ఆన్"
+
+#: includes/freemius-strings.php:1649
+#: includes/freemius-strings.php:6479
+msgctxt "as once a year"
+msgid "Once"
+msgstr "ఒకసారి"
+
+#: includes/freemius-strings.php:1653
+#: includes/freemius-strings.php:6566
+msgctxt "exclamation"
+msgid "Oops"
+msgstr "అయ్యో"
+
+#: includes/freemius-strings.php:1657
+#: includes/freemius-strings.php:4663
+msgid "Opt In"
+msgstr "ఆప్ట్ ఇన్ చేయండి"
+
+#: includes/freemius-strings.php:1661
+#: includes/freemius-strings.php:3229
+msgid "Allow & Continue"
+msgstr "అనుమతించండి & కొనసాగించండి"
+
+#: includes/freemius-strings.php:1665
+#: includes/freemius-strings.php:4668
+msgid "Opt Out"
+msgstr "అవుట్-అవుట్ అవ్వండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1670
+#: includes/freemius-strings.php:5131
+#, php-format
+msgid "Sharing diagnostic data with %s helps to provide functionality that's more relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the plugin should be translated and tailored to."
+msgstr "డయాగ్నస్టిక్ డేటాను %s తో పంచుకోవడం వలన మీ వెబ్‌సైట్‌కు మరింత సరిపోయే ఫంక్షనాలిటీ అందించడానికి, మీ వెబ్‌సైట్‌ను పాడుచేసే WordPress లేదా PHP వెర్షన్ అసంగతతలను నివారించడానికి, మరియు ప్లగ్ఇన్ ఏ భాషలు & ప్రాంతాల కోసం అనువదించబడాలో మరియు సర్దుబాటు చేయాలో గుర్తించడానికి సహాయపడుతుంది."
+
+#: includes/freemius-strings.php:1674
+#: includes/freemius-strings.php:5136
+msgid "Sharing your name and email allows us to keep you in the loop about new features and important updates, warn you about security issues before they become public knowledge, and send you special offers."
+msgstr "మీ పేరు మరియు ఇమెయిల్‌ను పంచుకోవడం ద్వారా కొత్త ఫీచర్లు మరియు ముఖ్యమైన అప్‌డేట్‌ల గురించి మీకు ఎప్పటికప్పుడు సమాచారం అందించడానికి, భద్రతా సమస్యలు బహిరంగం కాకముందే మిమ్మల్ని అప్రమత్తం చేయడానికి మరియు ప్రత్యేక ఆఫర్‌లను పంపడానికి మాకు వీలవుతుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1679
+#: includes/freemius-strings.php:3735
+#, php-format
+msgid "Diagnostic data will no longer be sent from %1$s to %2$s."
+msgstr "%1$s నుండి %2$sకి డయాగ్నస్టిక్ డేటా ఇకపై పంపబడదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1684
+#: includes/freemius-strings.php:4685
+#, php-format
+msgid "Opt in to make \"%s\" better!"
+msgstr "\"%s\" ని మెరుగుపరచడానికి ఆప్ట్ ఇన్ చేయండి!"
+
+#: includes/freemius-strings.php:1688
+#: includes/freemius-strings.php:4690
+msgid "Opting in"
+msgstr "సమ్మతిస్తున్నారు"
+
+#: includes/freemius-strings.php:1692
+#: includes/freemius-strings.php:4695
+msgid "Opting out"
+msgstr "వైదొలుగుతోంది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1697
+#: includes/freemius-strings.php:3973
+#, php-format
+msgid "For ongoing compatibility with your website, you can optionally allow %s to:"
+msgstr "మీ వెబ్‌సైట్‌తో నిరంతర అనుకూలత కోసం, మీరు ఐచ్ఛికంగా %s వీటికి అనుమతించవచ్చు:"
+
+#: includes/freemius-strings.php:1701
+#: includes/freemius-strings.php:2108
+#: includes/freemius-strings.php:4705
+msgid "Other"
+msgstr "ఇతర"
+
+#: includes/freemius-strings.php:1705
+#: includes/freemius-strings.php:6346
+msgctxt "Plugin installer section title"
+msgid "Other Notes"
+msgstr "ఇTర గమనికలు"
+
+#: includes/freemius-strings.php:1709
+#: includes/freemius-strings.php:4710
+msgid "Owner Email"
+msgstr "యజమాని ఇమెయిల్"
+
+#: includes/freemius-strings.php:1713
+#: includes/freemius-strings.php:4715
+msgid "Owner ID"
+msgstr "యజమాని ఐడి"
+
+#: includes/freemius-strings.php:1717
+#: includes/freemius-strings.php:4720
+msgid "Owner Name"
+msgstr "యజమాని పేరు"
+
+#: includes/freemius-strings.php:1721
+#: includes/freemius-strings.php:4730
+msgid "Paid add-on must be deployed to Freemius."
+msgstr "చెల్లించిన యాడ్-ఆన్‌ను Freemiusలో డిప్లాయ్ చేయాలి."
+
+#: includes/freemius-strings.php:1725
+#: includes/freemius-strings.php:6454
+msgctxt "as file/folder path"
+msgid "Path"
+msgstr "మార్గం"
+
+#: includes/freemius-strings.php:1729
+#: includes/freemius-strings.php:4745
+msgid "Payments"
+msgstr "చెల్లింపులు"
+
+#: includes/freemius-strings.php:1733
+#: includes/freemius-strings.php:4750
+msgid "Payouts are in USD and processed monthly via PayPal."
+msgstr "పేఅవుట్‌లు USDలో ఉంటాయి మరియు PayPal ద్వారా నెలవారీగా ప్రాసెస్ చేయబడతాయి."
+
+#: includes/freemius-strings.php:1737
+#: includes/freemius-strings.php:4735
+msgid "PayPal account email address"
+msgstr "PayPal ఖాతా ఇమెయిల్ చిరునామా"
+
+#: includes/freemius-strings.php:1741
+#: includes/freemius-strings.php:4740
+msgid "PayPal email address is required."
+msgstr "PayPal ఇమెయిల్ చిరునామా అవసరం."
+
+#: includes/freemius-strings.php:1745
+#: includes/freemius-strings.php:4725
+msgid "PCI compliant"
+msgstr "PCI కంప్లైంట్"
+
+#: includes/freemius-strings.php:1749
+#: includes/freemius-strings.php:5711
+msgid "View Diagnostic Info"
+msgstr "డయాగ్నస్టిక్ సమాచారాన్ని వీక్షించండి"
+
+#: includes/freemius-strings.php:1753
+#: includes/freemius-strings.php:5827
+msgid "WordPress & PHP versions, site language & title"
+msgstr "WordPress & PHP వెర్షన్‌లు, సైట్ భాష & శీర్షిక"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1758
+#: includes/freemius-strings.php:5526
+#, php-format
+msgid "To avoid breaking your website due to WordPress or PHP version incompatibilities, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "వర్డ్‌ప్రెస్ (WordPress) లేదా PHP వెర్షన్ అసంగతతల కారణంగా మీ వెబ్‌సైట్ పాడవకుండా నివారించడానికి మరియు %s ఏ భాషలు & ప్రాంతాల కోసం అనువదించబడి రూపొందించాలో గుర్తించడానికి."
+
+#: includes/freemius-strings.php:1762
+#: includes/freemius-strings.php:5716
+msgid "View License Essentials"
+msgstr "లైసెన్స్ ముఖ్యమైన అంశాలను వీక్షించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1767
+#, php-format
+msgid "Homepage URL, %s version, SDK version"
+msgstr "హోమ్‌పేజీ URL, %s వెర్షన్, SDK వెర్షన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1772
+#: includes/freemius-strings.php:5549
+#, php-format
+msgid "To let you manage & control where the license is activated and ensure %s security & feature updates are only delivered to websites you authorize."
+msgstr "లైసెన్స్ ఎక్కడ యాక్టివేట్ చేయబడిందో నిర్వహించడానికి మరియు నియంత్రించడానికి మిమ్మల్ని అనుమతించడానికి మరియు %s భద్రత & ఫీచర్ అప్‌డేట్‌లు మీరు అధికారం ఇచ్చే వెబ్‌సైట్‌లకు మాత్రమే అందేలా చూసేందుకు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1777
+#: includes/freemius-strings.php:3648
+#, php-format
+msgid "Current %s & SDK versions, and if active or uninstalled"
+msgstr "ప్రస్తుత %s & SDK వెర్షన్‌లు, మరియు అవి యాక్టివ్‌లో ఉన్నాయా లేదా అన్‌ఇన్‌స్టాల్ చేయబడ్డాయా"
+
+#: includes/freemius-strings.php:1781
+#: includes/freemius-strings.php:4263
+msgid "Is active, deactivated, or uninstalled"
+msgstr "క్రియలో ఉంది, నిష్క్రియం చేయబడింది లేదా అన్‌ఇన్‌స్టాల్ చేయబడింది"
+
+#: includes/freemius-strings.php:1785
+#: includes/freemius-strings.php:5721
+msgid "View Plugins & Themes List"
+msgstr "ప్లగిన్‌లు & థీమ్‌ల జాబితాను వీక్షించండి"
+
+#: includes/freemius-strings.php:1789
+#: includes/freemius-strings.php:4581
+msgid "Newsletter"
+msgstr "వార్తాపత్రిక"
+
+#: includes/freemius-strings.php:1793
+#: includes/freemius-strings.php:5627
+msgid "Updates, announcements, marketing, no spam"
+msgstr "నవీకరణలు, ప్రకటనలు, మార్కెటింగ్, స్పామ్ లేదు"
+
+#: includes/freemius-strings.php:1797
+#: includes/freemius-strings.php:5701
+msgid "View Basic Profile Info"
+msgstr "ప్రాథమిక ప్రొఫైల్ సమాచారాన్ని వీక్షించండి"
+
+#: includes/freemius-strings.php:1801
+#: includes/freemius-strings.php:6016
+msgid "Your WordPress user's: first & last name, and email address"
+msgstr "మీ WordPress వినియోగదారుని: మొదటి & చివరి పేరు, మరియు ఇమెయిల్ చిరునామా"
+
+#: includes/freemius-strings.php:1805
+#: includes/freemius-strings.php:4549
+msgid "Never miss important updates, get security warnings before they become public knowledge, and receive notifications about special offers and awesome new features."
+msgstr "ముఖ్యమైన అప్‌డేట్‌లను ఎప్పటికీ కోల్పోకండి, భద్రతా హెచ్చరికలు పబ్లిక్ కాకముందే వాటిని పొందండి మరియు ప్రత్యేక ఆఫర్‌లు మరియు అద్భుతమైన కొత్త ఫీచర్‌ల గురించి నోటిఫికేషన్‌లను స్వీకరించండి."
+
+#: includes/freemius-strings.php:1809
+#: includes/freemius-strings.php:5706
+msgid "View Basic Website Info"
+msgstr "ప్రాథమిక వెబ్‌సైట్ సమాచారాన్ని వీక్షించండి"
+
+#: includes/freemius-strings.php:1813
+#: includes/freemius-strings.php:4050
+msgid "Homepage URL & title, WP & PHP versions, and site language"
+msgstr "హోమ్‌పేజీ URL & శీర్షిక, WP & PHP వెర్షన్‌లు మరియు సైట్ భాష"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1818
+#: includes/freemius-strings.php:5555
+#, php-format
+msgid "To provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "మీ వెబ్‌సైట్‌కి సంబంధించిన అదనపు కార్యాచరణను అందించడానికి, మీ వెబ్‌సైట్‌ను పాడుచేసే WordPress లేదా PHP వెర్షన్ అసంగతతలను నివారించడానికి మరియు %s ఏ భాషలు & ప్రాంతాల కోసం అనువదించబడాలో గుర్తించడానికి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1823
+#: includes/freemius-strings.php:3045
+#, php-format
+msgid "<a href=\"%s\" target=\"_blank\">Click here to learn more about updating PHP</a>."
+msgstr "<a href=\"%s\" target=\"_blank\">PHP ని అప్‌డేట్ చేయడం గురించి మరింత తెలుసుకోవడానికి ఇక్కడ క్లిక్ చేయండి</a>."
+
+#: includes/freemius-strings.php:1827
+#: includes/freemius-strings.php:5805
+msgid "What price would you feel comfortable paying?"
+msgstr "మీరు ఎంత ధర చెల్లించడానికి ఇష్టపడతారు?"
+
+#: includes/freemius-strings.php:1831
+#: includes/freemius-strings.php:5794
+msgid "What feature?"
+msgstr "ఏ ఫీచర్?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1836
+#: includes/freemius-strings.php:5816
+#, php-format
+msgid "What's the %s's name?"
+msgstr "%s పేరు ఏమిటి?"
+
+#: includes/freemius-strings.php:1840
+#: includes/freemius-strings.php:4352
+msgid "Kindly share what didn't work so we can fix it for future users..."
+msgstr "దయచేసి ఏది పని చేయలేదో పంచుకోండి, తద్వారా మేము భవిష్యత్తు వినియోగదారుల కోసం దాన్ని సరిచేయగలము..."
+
+#: includes/freemius-strings.php:1844
+#: includes/freemius-strings.php:5789
+msgid "What did you expect?"
+msgstr "మీరు ఏమి ఆశించారు?"
+
+#: includes/freemius-strings.php:1848
+#: includes/freemius-strings.php:5810
+msgid "What you've been looking for?"
+msgstr "మీరు వెతుకుతున్నది ఇదేనా?"
+
+#: includes/freemius-strings.php:1852
+#: includes/freemius-strings.php:6484
+msgctxt "as product pricing plan"
+msgid "Plan"
+msgstr "ప్లాన్"
+
+#: includes/freemius-strings.php:1856
+#: includes/freemius-strings.php:6093
+msgid "Your plan was successfully activated."
+msgstr "మీ ప్లాన్ విజయవంతంగా సక్రియం చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1861
+#: includes/freemius-strings.php:6099
+#, php-format
+msgid "Your plan was successfully changed to %s."
+msgstr "మీ ప్లాన్ విజయవంతంగా %sకి మార్చబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1866
+#: includes/freemius-strings.php:4098
+#, php-format
+msgid "I have upgraded my account but when I try to Sync the License, the plan remains %s."
+msgstr "నేను నా ఖాతాను అప్‌గ్రేడ్ చేశాను, కానీ నేను లైసెన్స్‌ను సింక్ చేయడానికి ప్రయత్నించినప్పుడు, ప్లాన్ %s గానే ఉంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1871
+#: includes/freemius-strings.php:4290
+#, php-format
+msgid "It looks like you are still on the %s plan. If you did upgrade or change your plan, it's probably an issue on our side - sorry."
+msgstr "మీరు ఇంకా %s ప్లాన్‌లోనే ఉన్నట్లున్నారు. మీరు మీ ప్లాన్‌ను అప్‌గ్రేడ్ చేసి ఉంటే లేదా మార్చుకుంటే, ఇది బహుశా మా వైపు నుండి వచ్చిన సమస్య అయి ఉండవచ్చు - క్షమించండి."
+
+#: includes/freemius-strings.php:1875
+#: includes/freemius-strings.php:4772
+msgid "Plan ID"
+msgstr "ప్లాన్ ఐడీ"
+
+#: includes/freemius-strings.php:1879
+#: includes/freemius-strings.php:6104
+msgid "Your plan was successfully upgraded."
+msgstr "మీ ప్లాన్ విజయవంతంగా అప్‌గ్రేడ్ చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1884
+#: includes/freemius-strings.php:6116
+#, php-format
+msgid "Your subscription was successfully cancelled. Your %1$s plan license will expire in %2$s."
+msgstr "మీ చందా విజయవంతంగా రద్దు చేయబడింది. మీ %1$s ప్లాన్ లైసెన్స్ %2$sలో గడువు ముగుస్తుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1889
+#: includes/freemius-strings.php:4767
+#, php-format
+msgid "Plan %s does not support a trial period."
+msgstr "ప్లాన్ %s ట్రయల్ పీరియడ్‌కు మద్దతు ఇవ్వదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1894
+#: includes/freemius-strings.php:4788
+#, php-format
+msgid "Please download %s."
+msgstr "దయచేసి %sని డౌన్‌లోడ్ చేయండి."
+
+#: includes/freemius-strings.php:1898
+#: includes/freemius-strings.php:4834
+msgid "Please wait"
+msgstr "దయచేసి వేచి ఉండండి"
+
+#: includes/freemius-strings.php:1902
+#: includes/freemius-strings.php:4839
+msgid "Plugin"
+msgstr "ప్లగ్ఇన్"
+
+#: includes/freemius-strings.php:1906
+#: includes/freemius-strings.php:4844
+msgid "Plugin Homepage"
+msgstr "ప్లగ్ఇన్ హోమ్‌పేజీ"
+
+#: includes/freemius-strings.php:1910
+#: includes/freemius-strings.php:4849
+msgid "Plugin ID"
+msgstr "ప్లగిన్ ఐడీ"
+
+#: includes/freemius-strings.php:1914
+#: includes/freemius-strings.php:4854
+msgid "Plugin Install"
+msgstr "ప్లగిన్ ఇన్‌స్టాల్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1919
+#: includes/freemius-strings.php:2961
+#, php-format
+msgid "%s opt-in was successfully completed."
+msgstr "%s ఆప్-ఇన్ విజయవంతంగా పూర్తయింది."
+
+#: includes/freemius-strings.php:1923
+#: includes/freemius-strings.php:4864
+msgid "Plugins"
+msgstr "ప్లగిన్‌లు"
+
+#: includes/freemius-strings.php:1927
+#: includes/freemius-strings.php:4874
+msgid "Plugins page"
+msgstr "ప్లగిన్‌ల పేజీ"
+
+#: includes/freemius-strings.php:1931
+#: includes/freemius-strings.php:4869
+msgid "Plugins & Themes Sync"
+msgstr "ప్లగిన్లు & థీమ్‌ల సింక్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1936
+#: includes/freemius-strings.php:2853
+#, php-format
+msgid " The %1$s's %2$sdownload link%3$s, license key, and installation instructions have been sent to %4$s. If you can't find the email after 5 min, please check your spam box."
+msgstr "%1$s యొక్క %2$sడౌన్‌లోడ్ లింక్%3$s, లైసెన్స్ కీ మరియు ఇన్‌స్టాలేషన్ సూచనలు %4$sకి పంపబడ్డాయి. 5 నిమిషాల తర్వాత కూడా మీకు ఇమెయిల్ కనిపించకపోతే, దయచేసి మీ స్పామ్ బాక్స్‌ను తనిఖీ చేయండి."
+
+#: includes/freemius-strings.php:1940
+#: includes/freemius-strings.php:4879
+msgid "Premium"
+msgstr "ప్రీమియం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1945
+#: includes/freemius-strings.php:4885
+#, php-format
+msgid "Premium %s version was successfully activated."
+msgstr "ప్రీమియం %s వెర్షన్ విజయవంతంగా సక్రియం చేయబడింది."
+
+#: includes/freemius-strings.php:1949
+#: includes/freemius-strings.php:4342
+msgid "Keep automatic updates"
+msgstr "ఆటోమేటిక్ అప్‌డేట్‌లను ఉంచుకోండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1954
+#: includes/freemius-strings.php:5537
+#, php-format
+msgid "To ensure that security & feature updates are automatically delivered directly to your WordPress Admin Dashboard while protecting your license from unauthorized abuse, %2$s needs to view the website’s homepage URL, %1$s version, SDK version, and whether the %1$s is active."
+msgstr "భద్రత మరియు ఫీచర్ అప్‌డేట్‌లు మీ WordPress Admin Dashboardకి స్వయంచాలకంగా అందేలా చూడటానికి మరియు అనధికారిక దుర్వినియోగం నుండి మీ లైసెన్స్‌ను రక్షించడానికి, మీ వెబ్‌సైట్ హోమ్‌పేజ్ URL, %1$s వెర్షన్, SDK వెర్షన్ మరియు %1$s యాక్టివ్‌గా ఉందా లేదా అనే వివరాలను %2$s చూడవలసి ఉంటుంది."
+
+#: includes/freemius-strings.php:1958
+#: includes/freemius-strings.php:4895
+msgid "Premium version"
+msgstr "ప్రీమియం వెర్షన్"
+
+#: includes/freemius-strings.php:1962
+#: includes/freemius-strings.php:6597
+msgctxt "noun"
+msgid "Price"
+msgstr "ధర"
+
+#: includes/freemius-strings.php:1966
+#: includes/freemius-strings.php:4905
+msgid "Pricing"
+msgstr "ధరల నిర్ణయం"
+
+#: includes/freemius-strings.php:1970
+#: includes/freemius-strings.php:4818
+msgid "Please note that we will not be able to grandfather outdated pricing for renewals/new subscriptions after a cancellation. If you choose to renew the subscription manually in the future, after a price increase, which typically occurs once a year, you will be charged the updated price."
+msgstr "దయచేసి గమనించండి, రద్దు చేసిన తర్వాత పునరుద్ధరణలు/కొత్త సభ్యత్వాల కోసం పాత ధరలను మేము కొనసాగించలేము. ధరల పెంపు తర్వాత, సాధారణంగా సంవత్సరానికి ఒకసారి జరిగే ఈ ప్రక్రియలో, భవిష్యత్తులో మీరు మీ సభ్యత్వాన్ని మాన్యువల్‌గా పునరుద్ధరించాలని ఎంచుకుంటే, మీకు అప్‌డేట్ చేసిన ధర వర్తిస్తుంది."
+
+#: includes/freemius-strings.php:1974
+#: includes/freemius-strings.php:4910
+msgid "Privacy Policy"
+msgstr "గోప్యతా విధానం"
+
+#: includes/freemius-strings.php:1978
+#: includes/freemius-strings.php:4915
+msgid "Proceed"
+msgstr "కొనసాగించు"
+
+#: includes/freemius-strings.php:1982
+#: includes/freemius-strings.php:3313
+msgid "Are you sure you want to proceed?"
+msgstr "మీరు ముందుకు వెళ్లాలనుకుంటున్నారని ఖచ్చితంగా అనుకుంటున్నారా?"
+
+#: includes/freemius-strings.php:1986
+#: includes/freemius-strings.php:4920
+msgid "Process ID"
+msgstr "ప్రోసెస్ ID"
+
+#: includes/freemius-strings.php:1990
+#: includes/freemius-strings.php:4925
+msgid "Processing"
+msgstr "ప్రాసెస్ చేస్తోంది"
+
+#: includes/freemius-strings.php:1994
+#: includes/freemius-strings.php:4930
+msgid "Processing, please wait and do not close or refresh this window..."
+msgstr "ప్రాసెస్ చేయబడుతోంది, దయచేసి వేచి ఉండండి మరియు ఈ విండోను మూసివేయవద్దు లేదా రిఫ్రెష్ చేయవద్దు..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:1999
+#: includes/freemius-strings.php:2907
+#, php-format
+msgid "%s and its add-ons"
+msgstr "%s మరియు దాని యాడ్-ఆన్‌లు"
+
+#: includes/freemius-strings.php:2003
+#: includes/freemius-strings.php:6316
+msgctxt "Part of the message that tells the user to check their spam folder for a specific email."
+msgid "the product's support email address"
+msgstr "ఉత్పత్తి యొక్క మద్దతు ఇమెయిల్ చిరునామా"
+
+#: includes/freemius-strings.php:2007
+#: includes/freemius-strings.php:4940
+msgid "Program Summary"
+msgstr "ప్రోగ్రామ్ సారాంశం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2012
+#: includes/freemius-strings.php:4824
+#, php-format
+msgid "Please provide details on how you intend to promote %s (please be as specific as possible)."
+msgstr "దయచేసి మీరు %sని ఏ విధంగా ప్రచారం చేయాలనుకుంటున్నారో వివరాలను అందించండి (దయచేసి వీలైనంత నిర్దిష్టంగా ఉండండి)."
+
+#: includes/freemius-strings.php:2016
+#: includes/freemius-strings.php:4066
+msgid "How will you promote us?"
+msgstr "మీరు మాకు ఎలా ప్రచారం చేస్తారు?"
+
+#: includes/freemius-strings.php:2020
+#: includes/freemius-strings.php:4945
+msgid "Promotion methods"
+msgstr "ప్రచార పద్ధతులు"
+
+#: includes/freemius-strings.php:2024
+#: includes/freemius-strings.php:4950
+msgid "Province"
+msgstr "రాష్ట్రం"
+
+#: includes/freemius-strings.php:2028
+#: includes/freemius-strings.php:4955
+msgid "Public Key"
+msgstr "పబ్లిక్ కీ"
+
+#: includes/freemius-strings.php:2032
+#: includes/freemius-strings.php:6662
+msgctxt "verb"
+msgid "Purchase"
+msgstr "కొనుగోలు చేయి"
+
+#: includes/freemius-strings.php:2036
+#: includes/freemius-strings.php:4960
+msgid "Purchase License"
+msgstr "లైసెన్స్‌ను కొనుగోలు చేయండి"
+
+#: includes/freemius-strings.php:2040
+#: includes/freemius-strings.php:4965
+msgid "Purchase More"
+msgstr "మరిన్ని కొనుగోలు చేయండి"
+
+#: includes/freemius-strings.php:2044
+#: includes/freemius-strings.php:4970
+msgid "Quick Feedback"
+msgstr "త్వరిత అభిప్రాయం"
+
+#: includes/freemius-strings.php:2048
+#: includes/freemius-strings.php:4975
+msgid "Quota"
+msgstr "కోటా"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2053
+#: includes/freemius-strings.php:5388
+#, php-format
+msgid "The %s broke my site"
+msgstr "%s నా సైట్‌ను పాడుచేసింది"
+
+#: includes/freemius-strings.php:2057
+#: includes/freemius-strings.php:4076
+msgid "I can't pay for it anymore"
+msgstr "నేను ఇకపై దాని కోసం చెల్లించలేను"
+
+#: includes/freemius-strings.php:2061
+#: includes/freemius-strings.php:4081
+msgid "I couldn't understand how to make it work"
+msgstr "ఇది ఎలా పనిచేయాలో నాకు అర్థం కాలేదు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2066
+#: includes/freemius-strings.php:5394
+#, php-format
+msgid "The %s didn't work"
+msgstr "%s పని చేయలేదు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2071
+#: includes/freemius-strings.php:5400
+#, php-format
+msgid "The %s didn't work as expected"
+msgstr "%s ఊహించిన విధంగా పనిచేయలేదు"
+
+#: includes/freemius-strings.php:2075
+#: includes/freemius-strings.php:4086
+msgid "I don't like to share my information with you"
+msgstr "నేను నా సమాచారాన్ని మీతో పంచుకోవడానికి ఇష్టపడను"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2080
+#: includes/freemius-strings.php:4092
+#, php-format
+msgid "I found a better %s"
+msgstr "నేను ఒక మెరుగైన %s కనుగొన్నాను"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2085
+#: includes/freemius-strings.php:5406
+#, php-format
+msgid "The %s is great, but I need specific feature that you don't support"
+msgstr "%s చాలా బాగుంది, కానీ మీరు మద్దతు ఇవ్వని ఒక నిర్దిష్ట ఫీచర్ నాకు కావాలి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2090
+#: includes/freemius-strings.php:4110
+#, php-format
+msgid "I only needed the %s for a short period"
+msgstr "నేను %sని తక్కువ కాలానికి మాత్రమే ఉపయోగించాల్సి వచ్చింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2095
+#: includes/freemius-strings.php:4104
+#, php-format
+msgid "I no longer need the %s"
+msgstr "నాకు ఇకపై %s అవసరం లేదు"
+
+#: includes/freemius-strings.php:2099
+#: includes/freemius-strings.php:4316
+msgid "It's not what I was looking for"
+msgstr "ఇది నేను వెతుకుతున్నది కాదు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2104
+#: includes/freemius-strings.php:5412
+#, php-format
+msgid "The %s is not working"
+msgstr "%s పని చేయడం లేదు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2113
+#: includes/freemius-strings.php:5418
+#, php-format
+msgid "The %s suddenly stopped working"
+msgstr "%s అకస్మాత్తుగా పని చేయడం ఆగిపోయింది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2118
+#: includes/freemius-strings.php:4311
+#, php-format
+msgid "It's a temporary %s - I'm troubleshooting an issue"
+msgstr "ఇది తాత్కాలిక %s - నేను ఒక సమస్యను పరిష్కరిస్తున్నాను"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2123
+#: includes/freemius-strings.php:4986
+#, php-format
+msgid "Redirecting, please <a href=\"%1$s\">click here</a> if you're stuck..."
+msgstr "మళ్లించబడుతోంది, మీరు చిక్కుకుపోతే దయచేసి <a href=\"%1$s\">ఇక్కడ క్లిక్ చేయండి</a>..."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2128
+#: includes/freemius-strings.php:4992
+#, php-format
+msgid "Refer new customers to our %1$s and earn %2$s commission on each successful sale you refer!"
+msgstr "కొత్త కస్టమర్‌లను మా %1$sకి రిఫర్ చేయండి మరియు మీరు రిఫర్ చేసే ప్రతి విజయవంతమైన విక్రయంపై %2$s కమిషన్‌ను ఆర్జించండి!"
+
+#: includes/freemius-strings.php:2136
+#: includes/freemius-strings.php:5002
+msgid "Renew license"
+msgstr "లైసెన్స్‌ను పునరుద్ధరించండి"
+
+#: includes/freemius-strings.php:2140
+#: includes/freemius-strings.php:5007
+msgid "Renew your license now"
+msgstr "మీ లైసెన్స్‌ను ఇప్పుడే పునరుద్ధరించండి"
+
+#: includes/freemius-strings.php:2144
+#: includes/freemius-strings.php:4028
+msgid "Get commission for automated subscription renewals."
+msgstr "ఆటోమేటెడ్ సబ్‌స్క్రిప్షన్ రెన్యూవల్స్‌పై కమిషన్ పొందండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2149
+#: includes/freemius-strings.php:3339
+#, php-format
+msgid "Auto renews in %s"
+msgstr "%s లో స్వయంచాలకంగా పునరుద్ధరించబడుతుంది"
+
+#: includes/freemius-strings.php:2153
+#: includes/freemius-strings.php:5012
+msgid "Requests"
+msgstr "అభ్యర్థనలు"
+
+#: includes/freemius-strings.php:2157
+#: includes/freemius-strings.php:5017
+msgid "Required"
+msgstr "అవసరం"
+
+#: includes/freemius-strings.php:2161
+#: includes/freemius-strings.php:5022
+msgid "Requires PHP Version"
+msgstr "PHP వెర్షన్ అవసరం"
+
+#: includes/freemius-strings.php:2165
+#: includes/freemius-strings.php:5027
+msgid "Requires WordPress Version"
+msgstr "వర్డ్‌ప్రెస్ (WordPress) వెర్షన్ అవసరం"
+
+#: includes/freemius-strings.php:2169
+#: includes/freemius-strings.php:4980
+msgid "Re-send activation email"
+msgstr "యాక్టివేషన్ ఇమెయిల్‌ను మళ్లీ పంపండి"
+
+#: includes/freemius-strings.php:2173
+#: includes/freemius-strings.php:5032
+msgid "Reset Deactivation Snoozing"
+msgstr "డీయాక్టివేషన్ స్నూజింగ్‌ని రీసెట్ చేయి"
+
+#: includes/freemius-strings.php:2177
+#: includes/freemius-strings.php:5037
+msgid "Result"
+msgstr "ఫలితం"
+
+#: includes/freemius-strings.php:2181
+#: includes/freemius-strings.php:6218
+msgid "revert it now"
+msgstr "దీన్ని ఇప్పుడే వెనక్కి మార్చండి"
+
+#: includes/freemius-strings.php:2185
+#: includes/freemius-strings.php:6351
+msgctxt "Plugin installer section title"
+msgid "Reviews"
+msgstr "సమీక్షలు"
+
+#: includes/freemius-strings.php:2189
+#: includes/freemius-strings.php:6361
+msgctxt "a positive response"
+msgid "Right on"
+msgstr "సరిగ్గా"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2194
+#: includes/freemius-strings.php:5053
+#, php-format
+msgid "Save %s"
+msgstr "%s ని సేవ్ చేయండి"
+
+#: includes/freemius-strings.php:2198
+#: includes/freemius-strings.php:5058
+msgid "Saved"
+msgstr "సేవ్ చేయబడింది"
+
+#: includes/freemius-strings.php:2202
+#: includes/freemius-strings.php:5063
+msgid "Scheduled Crons"
+msgstr "షెడ్యూల్డ్ క్రోన్‌లు"
+
+#: includes/freemius-strings.php:2206
+#: includes/freemius-strings.php:5068
+msgid "Screenshots"
+msgstr "స్క్రీన్‌షాట్‌లు"
+
+#: includes/freemius-strings.php:2210
+#: includes/freemius-strings.php:5042
+msgid "SDK"
+msgstr "SDK"
+
+#: includes/freemius-strings.php:2214
+#: includes/freemius-strings.php:5047
+msgid "SDK Path"
+msgstr "SDK పాత్"
+
+#: includes/freemius-strings.php:2218
+#: includes/freemius-strings.php:6494
+msgctxt "as software development kit versions"
+msgid "SDK Versions"
+msgstr "SDK వెర్షన్‌లు"
+
+#: includes/freemius-strings.php:2222
+#: includes/freemius-strings.php:5073
+msgid "Search by address"
+msgstr "చిరునామా ద్వారా శోధించండి"
+
+#: includes/freemius-strings.php:2226
+#: includes/freemius-strings.php:6612
+msgctxt "seconds"
+msgid "sec"
+msgstr "సెకన్లు"
+
+#: includes/freemius-strings.php:2230
+#: includes/freemius-strings.php:5078
+msgid "Secret Key"
+msgstr "రహస్య కీ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2235
+#: includes/freemius-strings.php:5084
+#, php-format
+msgid "Secure HTTPS %s page, running from an external domain"
+msgstr "బాహ్య డొమైన్ నుండి రన్ అవుతున్న సురక్షిత HTTPS %s పేజీ"
+
+#: includes/freemius-strings.php:2239
+#: includes/freemius-strings.php:5104
+msgid "Select Country"
+msgstr "దేశాన్ని ఎంచుకోండి"
+
+#: includes/freemius-strings.php:2243
+#: includes/freemius-strings.php:5109
+msgid "Send License Key"
+msgstr "లైసెన్స్ కీని పంపుము"
+
+#: includes/freemius-strings.php:2247
+#: includes/freemius-strings.php:6228
+msgid "send me security & feature updates, educational content and offers."
+msgstr "భద్రతా & ఫీచర్ నవీకరణలు, విద్యా సంబంధిత విషయాలు మరియు ఆఫర్‌లను నాకు పంపండి."
+
+#: includes/freemius-strings.php:2251
+#: includes/freemius-strings.php:6459
+msgctxt "as in the process of sending an email"
+msgid "Sending email"
+msgstr "ఇమెయిల్ పంపుతోంది"
+
+#: includes/freemius-strings.php:2255
+#: includes/freemius-strings.php:5114
+msgid "Sending license key"
+msgstr "లైసెన్స్ కీని పంపుతోంది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2260
+#: includes/freemius-strings.php:6110
+#, php-format
+msgid "Your server is blocking the access to Freemius' API, which is crucial for %1$s synchronization. Please contact your host to whitelist the following domains:%2$s"
+msgstr "%1$s సమకాలీకరణకు అత్యంత ముఖ్యమైన Freemius APIకి మీ సర్వర్ యాక్సెస్‌ను నిరోధిస్తోంది. క్రింది డొమైన్‌లను వైట్‌లిస్ట్ చేయడానికి దయచేసి మీ హోస్ట్ ని సంప్రదించండి:%2$s"
+
+#: includes/freemius-strings.php:2264
+#: includes/freemius-strings.php:3913
+msgid "Error received from the server:"
+msgstr "సర్వర్ నుండి లోపం స్వీకరించబడింది:"
+
+#: includes/freemius-strings.php:2268
+#: includes/freemius-strings.php:5119
+msgid "Set DB Option"
+msgstr "DB ఎంపికను సెట్ చేయి"
+
+#: includes/freemius-strings.php:2272
+#: includes/freemius-strings.php:6667
+msgctxt "verb"
+msgid "Show"
+msgstr "చూపించు"
+
+#: includes/freemius-strings.php:2276
+#: includes/freemius-strings.php:5141
+msgid "Show error details"
+msgstr "లోపం వివరాలను చూపించు"
+
+#: includes/freemius-strings.php:2280
+#: includes/freemius-strings.php:5146
+msgid "Simulate Network Upgrade"
+msgstr "నెట్‌వర్క్ అప్‌గ్రేడ్‌ను అనుకరించండి"
+
+#: includes/freemius-strings.php:2284
+#: includes/freemius-strings.php:5151
+msgid "Simulate Trial Promotion"
+msgstr "ట్రయల్ ప్రమోషన్‌ను అనుకరించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2289
+#: includes/freemius-strings.php:2871
+#, php-format
+msgid "%1$s has been placed into safe mode because we noticed that %2$s is an exact copy of %3$s."
+msgstr "%1$s సేఫ్ మోడ్‌లోకి ఉంచబడింది, ఎందుకంటే %2$s అనేది %3$s యొక్క ఖచ్చితమైన కాపీ అని మేము గమనించాము."
+
+#: includes/freemius-strings.php:2293
+#: includes/freemius-strings.php:5161
+msgid "Site ID"
+msgstr "సైట్ ఐడీ"
+
+#: includes/freemius-strings.php:2297
+#: includes/freemius-strings.php:5171
+msgid "Sites"
+msgstr "సైట్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2302
+#: includes/freemius-strings.php:5177
+#, php-format
+msgid "Skip & %s"
+msgstr "దాటవేయి & %s"
+
+#: includes/freemius-strings.php:2306
+#: includes/freemius-strings.php:5182
+msgid "Skipping, please wait"
+msgstr "దాటవేయబడుతోంది, దయచేసి వేచి ఉండండి"
+
+#: includes/freemius-strings.php:2310
+#: includes/freemius-strings.php:5187
+msgid "Slug"
+msgstr "స్లగ్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2315
+#: includes/freemius-strings.php:5193
+#, php-format
+msgid "Snooze & %s"
+msgstr "స్నూజ్ & %s"
+
+#: includes/freemius-strings.php:2319
+#: includes/freemius-strings.php:5198
+msgid "Snooze this panel during troubleshooting"
+msgstr "సమస్య పరిష్కారం సమయంలో ఈ ప్యానెల్‌ను తాత్కాలికంగా ఆపివేయి"
+
+#: includes/freemius-strings.php:2323
+#: includes/freemius-strings.php:5203
+msgid "Snooze this panel for"
+msgstr "ఈ ప్యానెల్‌ను దీని కోసం తాత్కాలికంగా ఆపు:"
+
+#: includes/freemius-strings.php:2327
+#: includes/freemius-strings.php:5214
+msgid "Social media (Facebook, Twitter, etc.)"
+msgstr "సోషల్ మీడియా (ఫేస్‌బుక్, ట్విట్టర్ మొదలైనవి)"
+
+#: includes/freemius-strings.php:2331
+#: includes/freemius-strings.php:5229
+msgid "Start"
+msgstr "ప్రారంభం"
+
+#: includes/freemius-strings.php:2335
+#: includes/freemius-strings.php:5234
+msgid "Start Debug"
+msgstr "డీబగ్గ్‌ని ప్రారంభించండి"
+
+#: includes/freemius-strings.php:2339
+#: includes/freemius-strings.php:6529
+msgctxt "call to action"
+msgid "Start free trial"
+msgstr "ఉచిత ట్రయల్ ప్రారంభించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2344
+#: includes/freemius-strings.php:5245
+#, php-format
+msgid "Start my free %s"
+msgstr "నా ఉచిత %sని ప్రారంభించండి"
+
+#: includes/freemius-strings.php:2348
+#: includes/freemius-strings.php:6238
+msgid "start the trial"
+msgstr "ట్రయల్‌ని ప్రారంభించండి"
+
+#: includes/freemius-strings.php:2352
+#: includes/freemius-strings.php:5239
+msgid "Start Trial"
+msgstr "ట్రయల్ ప్రారంభించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2357
+#: includes/freemius-strings.php:5894
+#, php-format
+msgid "You are 1-click away from starting your %1$s-day free trial of the %2$s plan."
+msgstr "%2$s ప్లాన్ యొక్క మీ %1$s-రోజు ఉచిత ట్రయల్‌ను ప్రారంభించడానికి మీరు కేవలం 1-క్లిక్ దూరంలో ఉన్నారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2362
+#: includes/freemius-strings.php:3961
+#, php-format
+msgid "For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %1$s to periodically send data to %2$s to check for version updates and to validate your trial."
+msgstr "WordPress.org మార్గదర్శకాలకు అనుగుణంగా, ట్రయల్ ప్రారంభించే ముందు మీ యూజర్ మరియు సున్నితమైనవి కాని సైట్ సమాచారంతో మీరు ఆప్ట్-ఇన్ చేయవలసిందిగా మేము కోరుతున్నాము, దీని ద్వారా వెర్షన్ అప్‌డేట్‌లను తనిఖీ చేయడానికి మరియు మీ ట్రయల్‌ను ధృవీకరించడానికి %1$s క్రమసంచితంగా %2$sకి డేటాను పంపడానికి అనుమతిస్తుంది."
+
+#: includes/freemius-strings.php:2366
+#: includes/freemius-strings.php:5250
+msgid "Starting trial"
+msgstr "ట్రయల్ ప్రారంభమవుతోంది"
+
+#: includes/freemius-strings.php:2370
+#: includes/freemius-strings.php:5255
+msgid "State"
+msgstr "స్థితి"
+
+#: includes/freemius-strings.php:2374
+#: includes/freemius-strings.php:4803
+msgid "Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential)."
+msgstr "దయచేసి సంబంధిత వెబ్‌సైట్ లేదా సోషల్ మీడియా గణాంకాలను అందించడానికి సంకోచించకండి, ఉదా. నెలవారీ ప్రత్యేక సైట్ సందర్శనలు, ఇమెయిల్ చందాదారుల సంఖ్య, అనుచరులు మొదలైనవి (మేము ఈ సమాచారాన్ని గోప్యంగా ఉంచుతాము)."
+
+#: includes/freemius-strings.php:2378
+#: includes/freemius-strings.php:5778
+msgid "Website, email, and social media statistics (optional)"
+msgstr "వెబ్‌సైట్, ఈమెయిల్ మరియు సోషల్ మీడియా గణాంకాలు (ఐచ్ఛికం)"
+
+#: includes/freemius-strings.php:2382
+#: includes/freemius-strings.php:5260
+msgid "Stay Connected"
+msgstr "కనెక్ట్ అయి ఉండండి"
+
+#: includes/freemius-strings.php:2386
+#: includes/freemius-strings.php:5265
+msgid "Stop Debug"
+msgstr "డీబగ్‌ను ఆపు చేయి"
+
+#: includes/freemius-strings.php:2390
+#: includes/freemius-strings.php:5270
+msgid "Submit"
+msgstr "సమర్పించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2395
+#: includes/freemius-strings.php:5543
+#, php-format
+msgid "To enter the debug mode, please enter the secret key of the license owner (UserID = %d), which you can find in your \"My Profile\" section of your User Dashboard:"
+msgstr "డీబగ్ మోడ్‌లోకి ప్రవేశించడానికి, దయచేసి లైసెన్స్ యజమాని యొక్క రహస్య కీని నమోదు చేయండి (UserID = %d), దీన్ని మీరు మీ యూజర్ డ్యాష్‌బోర్డ్‌లోని \"నా ప్రొఫైల్\" విభాగంలో కనుగొనవచ్చు:"
+
+#: includes/freemius-strings.php:2399
+#: includes/freemius-strings.php:4798
+msgid "Please enter the license key to enable the debug mode:"
+msgstr "డెబగ్ మోడ్‌ని ప్రారంభించడానికి దయచేసి లైసెన్స్ కీని నమోదు చేయండి:"
+
+#: includes/freemius-strings.php:2403
+#: includes/freemius-strings.php:5281
+msgid "Submitting"
+msgstr "సమర్పిస్తోంది"
+
+#: includes/freemius-strings.php:2407
+#: includes/freemius-strings.php:5089
+msgid "Seems like we are having some temporary issue with your subscription cancellation. Please try again in few minutes."
+msgstr "మీ సబ్‌స్క్రిప్షన్ రద్దు చేయడంలో తాత్కాలిక సమస్య ఏర్పడినట్లుంది. దయచేసి కొన్ని నిమిషాల తర్వాత మళ్లీ ప్రయత్నించండి."
+
+#: includes/freemius-strings.php:2411
+#: includes/freemius-strings.php:5166
+msgid "Site successfully opted in."
+msgstr "సైట్ విజయవంతంగా నమోదు చేయబడింది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2416
+#: includes/freemius-strings.php:5451
+#, php-format
+msgid "The upgrade of %s was successfully completed."
+msgstr "%s యొక్క అప్‌గ్రేడ్ విజయవంతంగా పూర్తయింది."
+
+#: includes/freemius-strings.php:2424
+#: includes/freemius-strings.php:5296
+msgid "Support Forum"
+msgstr "సపోర్ట్ ఫోరమ్"
+
+#: includes/freemius-strings.php:2428
+#: includes/freemius-strings.php:6248
+msgid "switching"
+msgstr "మారిపోతోంది"
+
+#: includes/freemius-strings.php:2432
+#: includes/freemius-strings.php:6286
+msgctxt "ASCII arrow left icon"
+msgid "&#x2190;"
+msgstr "&#x2190;"
+
+#: includes/freemius-strings.php:2436
+#: includes/freemius-strings.php:6291
+msgctxt "ASCII arrow right icon"
+msgid "&#x27a4;"
+msgstr "&#x27a4;"
+
+#: includes/freemius-strings.php:2440
+#: includes/freemius-strings.php:6504
+msgctxt "as synchronize"
+msgid "Sync"
+msgstr "సమకాలీకరించు"
+
+#: includes/freemius-strings.php:2444
+#: includes/freemius-strings.php:5301
+msgid "Sync Data From Server"
+msgstr "సర్వర్ నుండి డేటాను సింక్ చేయండి"
+
+#: includes/freemius-strings.php:2448
+#: includes/freemius-strings.php:6509
+msgctxt "as synchronize license"
+msgid "Sync License"
+msgstr "లైసెన్స్‌ను సింక్ చేయండి"
+
+#: includes/freemius-strings.php:2452
+#: includes/freemius-strings.php:5306
+msgid "Tax / VAT ID"
+msgstr "పన్ను / వ్యాట్ ఐడీ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2457
+#: includes/freemius-strings.php:5946
+#, php-format
+msgid "You marked this website, %1$s, as a temporary duplicate of %2$s."
+msgstr "మీరు ఈ వెబ్‌సైట్, %1$sని, %2$sకి తాత్కాలిక డూప్లికేట్‌గా గుర్తించారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2462
+#: includes/freemius-strings.php:5952
+#, php-format
+msgid "You marked this website, %s, as a temporary duplicate of these sites"
+msgstr "మీరు ఈ వెబ్‌సైట్ %sని ఈ సైట్‌ల తాత్కాలిక డూప్లికేట్‌గా గుర్తించారు"
+
+#: includes/freemius-strings.php:2466
+#: includes/freemius-strings.php:5349
+msgid "Thank you!"
+msgstr "ధన్యవాదాలు!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2471
+#: includes/freemius-strings.php:5339
+#, php-format
+msgid "Thank you so much for using %s!"
+msgstr "%sని ఉపయోగించినందుకు చాలా ధన్యవాదాలు!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2476
+#: includes/freemius-strings.php:5333
+#, php-format
+msgid "Thank you so much for using %s and its add-ons!"
+msgstr "%s మరియు దాని యాడ్-ఆన్‌లను ఉపయోగించినందుకు మీకు చాలా ధన్యవాదాలు!"
+
+#: includes/freemius-strings.php:2480
+#: includes/freemius-strings.php:5344
+msgid "Thank you so much for using our products!"
+msgstr "మా ఉత్పత్తులను ఉపయోగించినందుకు మీకు చాలా ధన్యవాదాలు!"
+
+#: includes/freemius-strings.php:2484
+#: includes/freemius-strings.php:5371
+msgid "Thanks!"
+msgstr "ధన్యవాదాలు!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2489
+#: includes/freemius-strings.php:5784
+#, php-format
+msgid "Welcome to %s! To get started, please enter your license key:"
+msgstr "%sకి స్వాగతం! ప్రారంభించడానికి, దయచేసి మీ లైసెన్స్ కీని నమోదు చేయండి:"
+
+#: includes/freemius-strings.php:2493
+#: includes/freemius-strings.php:5376
+msgid "Thanks, please wait"
+msgstr "ధన్యవాదాలు, దయచేసి వేచి ఉండండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2498
+#: includes/freemius-strings.php:5355
+#, php-format
+msgid "Thanks %s!"
+msgstr "ధన్యవాదాలు %s!"
+
+#: includes/freemius-strings.php:2502
+#: includes/freemius-strings.php:5423
+msgid "The following products'"
+msgstr "కింది ఉత్పత్తుల"
+
+#: includes/freemius-strings.php:2506
+#: includes/freemius-strings.php:6311
+msgctxt "Part of the message telling the user what they should receive via email."
+msgid "the installation instructions"
+msgstr "ఇన్‌స్టాలేషన్ సూచనలు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2511
+#: includes/freemius-strings.php:6270
+#, php-format
+msgctxt "\"The <product_label>\", e.g.: \"The plugin\""
+msgid "The %s's"
+msgstr "%s యొక్క"
+
+#: includes/freemius-strings.php:2515
+#: includes/freemius-strings.php:5456
+msgid "Theme"
+msgstr "థీమ్"
+
+#: includes/freemius-strings.php:2519
+#: includes/freemius-strings.php:5461
+msgid "Theme Switch"
+msgstr "థీమ్ మార్చుకోండి"
+
+#: includes/freemius-strings.php:2523
+#: includes/freemius-strings.php:5466
+msgid "Themes"
+msgstr "థీమ్‌లు"
+
+#: includes/freemius-strings.php:2527
+#: includes/freemius-strings.php:5471
+msgid "Themes page"
+msgstr "థీమ్స్ పేజీ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2532
+#: includes/freemius-strings.php:5510
+#, php-format
+msgid "This will allow %s to"
+msgstr "ఇది %s ని అనుమతిస్తుంది"
+
+#: includes/freemius-strings.php:2536
+#: includes/freemius-strings.php:5515
+msgid "Timestamp"
+msgstr "సమయ ముద్రిక"
+
+#: includes/freemius-strings.php:2540
+#: includes/freemius-strings.php:5520
+msgid "Title"
+msgstr "శీర్షిక"
+
+#: includes/freemius-strings.php:2544
+#: includes/freemius-strings.php:5311
+msgid "Terms of Service"
+msgstr "సేవా నిబంధనలు"
+
+#: includes/freemius-strings.php:2548
+#: includes/freemius-strings.php:5560
+msgid "Total"
+msgstr "మొత్తం"
+
+#: includes/freemius-strings.php:2552
+#: includes/freemius-strings.php:5565
+msgid "Town"
+msgstr "నగరం"
+
+#: includes/freemius-strings.php:2556
+#: includes/freemius-strings.php:5094
+msgid "Seems like we are having some temporary issue with your trial cancellation. Please try again in few minutes."
+msgstr "మీ ట్రయల్ రద్దు చేయడంలో తాత్కాలిక సమస్య ఏర్పడినట్లుంది. దయచేసి కొన్ని నిమిషాల తర్వాత మళ్లీ ప్రయత్నించండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2561
+#: includes/freemius-strings.php:5999
+#, php-format
+msgid "Your %s free trial was successfully cancelled."
+msgstr "మీ %s ఉచిత ట్రయల్ విజయవంతంగా రద్దు చేయబడింది."
+
+#: includes/freemius-strings.php:2565
+#: includes/freemius-strings.php:4284
+msgid "It looks like you are not in trial mode anymore so there's nothing to cancel :)"
+msgstr "మీరు ఇక ట్రయల్ మోడ్‌లో ఉన్నట్లు కనిపించడం లేదు కాబట్టి రద్దు చేయడానికి ఏమీ లేదు :)"
+
+#: includes/freemius-strings.php:2569
+#: includes/freemius-strings.php:6049
+msgid "Your free trial has expired. You can still continue using all our free features."
+msgstr "మీ ఉచిత ట్రయల్ గడువు ముగిసింది. మీరు ఇప్పటికీ మా ఉచిత ఫీచర్‌లన్నింటినీ ఉపయోగించడం కొనసాగించవచ్చు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2574
+#: includes/freemius-strings.php:6044
+#, php-format
+msgid "Your free trial has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
+msgstr "మీ ఉచిత ట్రయల్ గడువు ముగిసింది. ఎటువంటి అంతరాయాలు లేకుండా %3$sను ఉపయోగించడం కొనసాగించడానికి %1$sఇప్పుడే అప్‌గ్రేడ్ చేయండి%2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2579
+#: includes/freemius-strings.php:4761
+#, php-format
+msgid "Plan %s do not exist, therefore, can't start a trial."
+msgstr "%s ప్లాన్ ఉనికిలో లేదు, అందువల్ల, ట్రయల్‌ను ప్రారంభించడం సాధ్యం కాదు."
+
+#: includes/freemius-strings.php:2583
+#: includes/freemius-strings.php:6121
+msgid "Your trial has been successfully started."
+msgstr "మీ ట్రయల్ విజయవంతంగా ప్రారంభించబడింది."
+
+#: includes/freemius-strings.php:2587
+#: includes/freemius-strings.php:5888
+msgid "You already utilized a trial before."
+msgstr "మీరు అంతకుముందు ట్రయల్‌ని ఉపయోగించారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2592
+#: includes/freemius-strings.php:4056
+#, php-format
+msgid "How do you like %1$s so far? Test all our %2$s premium features with a %3$d-day free trial."
+msgstr "ఇంతవరకు %1$s మీకు ఎలా నచ్చింది? %3$d-రోజుల ఉచిత ట్రయల్‌తో మా అన్ని %2$s ప్రీమియం ఫీచర్‌లను పరీక్షించండి."
+
+#: includes/freemius-strings.php:2596
+#: includes/freemius-strings.php:5575
+msgid "Type"
+msgstr "రకం"
+
+#: includes/freemius-strings.php:2600
+#: includes/freemius-strings.php:5580
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "ఫైల్‌సిస్టమ్‌కి కనెక్ట్ కాలేకపోతోంది. దయచేసి మీ ఆధారాలను ధృవీకరించండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2605
+#: includes/freemius-strings.php:5489
+#, php-format
+msgid "There was an unexpected API error while processing your request. Please try again in a few minutes and if it still doesn't work, contact the %s's author with the following:"
+msgstr "మీ అభ్యర్థనను ప్రాసెస్ చేస్తున్నప్పుడు ఊహించని API లోపం సంభవించింది. దయచేసి కొన్ని నిమిషాల తర్వాత మళ్లీ ప్రయత్నించండి మరియు ఇది ఇప్పటికీ పని చేయకపోతే, కింది వాటితో %s రచయితను సంప్రదించండి:"
+
+#: includes/freemius-strings.php:2609
+#: includes/freemius-strings.php:5585
+msgid "Unexpected error, try again in 5 minutes. If the error persists, please contact support."
+msgstr "అనుకోని లోపం సంభవించింది, 5 నిమిషాల తర్వాత మళ్లీ ప్రయత్నించండి. లోపం అలాగే ఉంటే, దయచేసి మద్దతు బృందాన్ని సంప్రదించండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2614
+#: includes/freemius-strings.php:5591
+#, php-format
+msgid "Uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
+msgstr "%s ని అన్‌ఇన్‌స్టాల్ చేయడం వలన లైసెన్స్ స్వయంచాలకంగా నిలిపివేయబడుతుంది, దీన్ని మీరు వేరొక సైట్‌లో ఉపయోగించగలరు."
+
+#: includes/freemius-strings.php:2618
+#: includes/freemius-strings.php:3261
+msgid "An unknown error has occurred."
+msgstr "తెలియని లోపం సంభవించింది."
+
+#: includes/freemius-strings.php:2622
+#: includes/freemius-strings.php:5606
+msgid "Unlimited commissions."
+msgstr "అపరిమిత కమీషన్‌లు."
+
+#: includes/freemius-strings.php:2626
+#: includes/freemius-strings.php:5601
+msgid "Unlimited Updates"
+msgstr "అపరిమిత అప్‌డేట్‌లు"
+
+#: includes/freemius-strings.php:2630
+#: includes/freemius-strings.php:6677
+msgctxt "verb"
+msgid "Update"
+msgstr "నవీకరించు"
+
+#: includes/freemius-strings.php:2634
+#: includes/freemius-strings.php:5843
+msgid "Would you like to proceed with the update?"
+msgstr "మీరు అప్‌డేట్‌తో ముందుకు వెళ్లాలనుకుంటున్నారా?"
+
+#: includes/freemius-strings.php:2638
+#: includes/freemius-strings.php:5617
+msgid "Update"
+msgstr "నవీకరించు"
+
+#: includes/freemius-strings.php:2642
+#: includes/freemius-strings.php:5622
+msgid "Update License"
+msgstr "లైసెన్స్ అప్‌డేట్ చేయండి"
+
+#: includes/freemius-strings.php:2646
+#: includes/freemius-strings.php:5632
+msgid "Upgrade"
+msgstr "అప్‌గ్రేడ్ చేయండి"
+
+#: includes/freemius-strings.php:2650
+#: includes/freemius-strings.php:4167
+msgid "Important Upgrade Notice:"
+msgstr "ముఖ్యమైన అప్‌గ్రేడ్ గమనిక:"
+
+#: includes/freemius-strings.php:2654
+#: includes/freemius-strings.php:5637
+msgid "Upload and activate the downloaded version"
+msgstr "డౌన్‌లోడ్ చేసిన సంస్కరణను అప్‌లోడ్ చేసి సక్రియం చేయండి"
+
+#: includes/freemius-strings.php:2658
+#: includes/freemius-strings.php:5642
+msgid "User Dashboard"
+msgstr "యూజర్ డ్యాష్‌బోర్డ్"
+
+#: includes/freemius-strings.php:2662
+#: includes/freemius-strings.php:5224
+msgid "Sorry, we could not complete the email update. Another user with the same email is already registered."
+msgstr "క్షమించండి, మేము ఇమెయిల్ అప్‌డేట్‌ను పూర్తి చేయలేకపోయాము. అదే ఇమెయిల్‌తో మరొక వినియోగదారు ఇప్పటికే రిజిస్టర్ అయి ఉన్నారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2667
+#: includes/freemius-strings.php:4156
+#, php-format
+msgid "If you would like to give up the ownership of the %1$s's account to %2$s click the Change Ownership button."
+msgstr "%1$s యొక్క అకౌంట్ యాజమాన్యాన్ని %2$sకి అందించాలనుకుంటే యాజమాన్యాన్ని మార్చు బటన్‌ను క్లిక్ చేయండి."
+
+#: includes/freemius-strings.php:2671
+#: includes/freemius-strings.php:5647
+msgid "User ID"
+msgstr "యూజర్ ఐడీ"
+
+#: includes/freemius-strings.php:2675
+#: includes/freemius-strings.php:5652
+msgid "User key"
+msgstr "యూజర్ కీ"
+
+#: includes/freemius-strings.php:2679
+#: includes/freemius-strings.php:5657
+msgid "Users"
+msgstr "సభ్యులు"
+
+#: includes/freemius-strings.php:2683
+#: includes/freemius-strings.php:5662
+msgid "Value"
+msgstr "విలువ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2688
+#: includes/freemius-strings.php:5668
+#, php-format
+msgid "Verification mail was just sent to %s. If you can't find it after 5 min, please check your spam box."
+msgstr "ధృవీకరణ ఇమెయిల్ ప్రస్తుతం %sకి పంపబడింది. 5 నిమిషాల తర్వాత అది కనిపించకపోతే, దయచేసి మీ స్పామ్ బాక్స్‌ను తనిఖీ చేయండి."
+
+#: includes/freemius-strings.php:2692
+#: includes/freemius-strings.php:5673
+msgid "Verified"
+msgstr "ధృవీకరించబడింది"
+
+#: includes/freemius-strings.php:2696
+#: includes/freemius-strings.php:5678
+msgid "Verify Email"
+msgstr "ఇమెయిల్‌ను ధృవీకరించండి"
+
+#: includes/freemius-strings.php:2700
+#: includes/freemius-strings.php:6607
+msgctxt "product version"
+msgid "Version"
+msgstr "వెర్షన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2705
+#: includes/freemius-strings.php:5684
+#, php-format
+msgid "Version %s was released."
+msgstr "సంస్కరణ %s విడుదల చేయబడింది."
+
+#: includes/freemius-strings.php:2709
+#: includes/freemius-strings.php:5726
+msgid "View details"
+msgstr "వివరాలను వీక్షించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2714
+#: includes/freemius-strings.php:3586
+#, php-format
+msgid "Click to view full-size screenshot %d"
+msgstr "పూర్తి పరిమాణ స్క్రీన్‌షాట్ %d ని వీక్షించడానికి క్లిక్ చేయండి"
+
+#: includes/freemius-strings.php:2718
+#: includes/freemius-strings.php:5731
+msgid "View paid features"
+msgstr "చెల్లించిన ఫీచర్లను వీక్షించండి"
+
+#: includes/freemius-strings.php:2722
+#: includes/freemius-strings.php:5736
+msgid "Warning"
+msgstr "హెచ్చరిక"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2727
+#: includes/freemius-strings.php:5800
+#, php-format
+msgid "What is your %s?"
+msgstr "మీ %s ఏమిటి?"
+
+#: includes/freemius-strings.php:2731
+#: includes/freemius-strings.php:6356
+msgctxt "Used to express elation, enthusiasm, or triumph (especially in electronic communication)."
+msgid "W00t"
+msgstr "వూట్"
+
+#: includes/freemius-strings.php:2735
+#: includes/freemius-strings.php:5832
+msgid "WordPress.org Plugin Page"
+msgstr "WordPress.org ప్లగిన్ పేజీ"
+
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:4305
+msgid "It seems like one of the authentication parameters is wrong. Update your Public Key, Secret Key & User ID, and try again."
+msgstr "ప్రామాణీకరణ పారామీటర్లలో ఒకటి తప్పుగా ఉన్నట్లుంది. మీ పబ్లిక్ కీ, సీక్రెట్ కీ మరియు యూజర్ ఐడీని అప్‌డేట్ చేసి, మళ్లీ ప్రయత్నించండి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2744
+#: includes/freemius-strings.php:2901
+#, php-format
+msgid "%s ago"
+msgstr "%s క్రితం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2749
+#: includes/freemius-strings.php:6389
+#, php-format
+msgctxt "as 5 licenses left"
+msgid "%s left"
+msgstr "%s మిగిలి ఉంది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2754
+#: includes/freemius-strings.php:2967
+#, php-format
+msgid "%s or higher"
+msgstr "%s లేదా అంతకంటే ఎక్కువ"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2759
+#: includes/freemius-strings.php:3033
+#, php-format
+msgid "%s's paid features"
+msgstr "%s యొక్క పెయిడ్ ఫీచర్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2764
+#: includes/freemius-strings.php:6545
+#, php-format
+msgctxt "e.g. Professional Plan"
+msgid "%s Plan"
+msgstr "%s ప్లాన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2769
+#: includes/freemius-strings.php:2973
+#, php-format
+msgid "%s rating"
+msgstr "%s రేటింగ్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2774
+#: includes/freemius-strings.php:2979
+#, php-format
+msgid "%s ratings"
+msgstr "%s రేటింగ్‌లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2779
+#: includes/freemius-strings.php:2985
+#, php-format
+msgid "%s sec"
+msgstr "%s సెకను"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2784
+#: includes/freemius-strings.php:2991
+#, php-format
+msgid "%s star"
+msgstr "%s నక్షత్రం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2789
+#: includes/freemius-strings.php:2997
+#, php-format
+msgid "%s stars"
+msgstr "%s నక్షత్రాలు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2794
+#: includes/freemius-strings.php:3003
+#, php-format
+msgid "%s time"
+msgstr "%s సమయం"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2799
+#: includes/freemius-strings.php:3009
+#, php-format
+msgid "%s times"
+msgstr "%s సార్లు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2804
+#: includes/freemius-strings.php:5940
+#, php-format
+msgid "You have successfully updated your %s."
+msgstr "మీరు మీ %sని విజయవంతంగా నవీకరించారు."
+
+#: includes/freemius-strings.php:2808
+#: includes/freemius-strings.php:6399
+msgctxt "as annual period"
+msgid "year"
+msgstr "సంవత్సరం"
+
+#: includes/freemius-strings.php:2812
+#: includes/freemius-strings.php:6582
+msgctxt "interjection expressing joy or exuberance"
+msgid "Yee-haw"
+msgstr "ఈ-హా"
+
+#: includes/freemius-strings.php:2816
+#: includes/freemius-strings.php:5848
+msgid "Yes"
+msgstr "అవును"
+
+#: includes/freemius-strings.php:2820
+#: includes/freemius-strings.php:5899
+msgid "You are all good!"
+msgstr "మీరు పూర్తిగా సిద్ధంగా ఉన్నారు!"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2825
+#: includes/freemius-strings.php:5911
+#, php-format
+msgid "You are just one step away - %s"
+msgstr "మీరు కేవలం ఒక్క అడుగు దూరంలో ఉన్నారు - %s"
+
+#: includes/freemius-strings.php:2829
+#: includes/freemius-strings.php:5099
+msgid "Seems like you got the latest release."
+msgstr "మీకు సరికొత్త విడుదల లభించినట్లుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2834
+#: includes/freemius-strings.php:5964
+#, php-format
+msgid "You should receive %3$s for %1$s to your mailbox at %2$s in the next 5 minutes."
+msgstr "రాబోయే 5 నిమిషాల్లో %2$s వద్ద ఉన్న మీ మెయిల్‌బాక్స్‌కు %1$s కోసం మీరు %3$s అందుకోవాలి."
+
+#: includes/freemius-strings.php:2838
+#: includes/freemius-strings.php:6126
+msgid "ZIP / Postal Code"
+msgstr "జిప్ / పోస్టల్ కోడ్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2847
+#, php-format
+msgid " %1$s to access version %2$s security & feature updates, and support."
+msgstr "భద్రతా & ఫీచర్ నవీకరణలు మరియు మద్దతును పొందడానికి %1$s, వెర్షన్ %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:2913
+#, php-format
+msgid "%1$s automatic security & feature updates and paid functionality will keep working without interruptions until %2$s (or when your license expires, whatever comes first)."
+msgstr "%1$s ఆటోమేటిక్ సెక్యూరిటీ & ఫీచర్ అప్‌డేట్‌లు మరియు పెయిడ్ ఫంక్షనాలిటీ %2$s వరకు (లేదా మీ లైసెన్స్ గడువు ముగిసే వరకు, ఏది ముందుగా వస్తే అది) ఎలాంటి అంతరాయాలు లేకుండా పనిచేస్తూనే ఉంటాయి."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3015
+#, php-format
+msgid "%1$s to access version %2$s security & feature updates, and support."
+msgstr "భద్రత & ఫీచర్ నవీకరణలు మరియు మద్దతును పొందడానికి %1$s వెర్షన్ %2$s."
+
+#: includes/freemius-strings.php:3067
+msgid "API"
+msgstr "API"
+
+#: includes/freemius-strings.php:3251
+msgid "An unknown error has occurred while trying to set the user's beta mode."
+msgstr "యూజర్ యొక్క బీటా మోడ్‌ను సెట్ చేయడానికి ప్రయత్నిస్తున్నప్పుడు ఒక తెలియని లోపం సంభవించింది."
+
+#: includes/freemius-strings.php:3256
+msgid "An unknown error has occurred while trying to toggle the license's white-label mode."
+msgstr "లైసెన్స్ యొక్క వైట్-లేబుల్ మోడ్‌ను టోగుల్ చేయడానికి ప్రయత్నిస్తున్నప్పుడు తెలియని లోపం సంభవించింది."
+
+#: includes/freemius-strings.php:3272
+msgid "Annual"
+msgstr "వార్షిక"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3425
+#, php-format
+msgid "By clicking \"Opt Out\", %s will no longer be able to view your name and email."
+msgstr "\"ఆప్ట్ అవుట్\" పై క్లిక్ చేయడం ద్వారా, %s ఇకపై మీ పేరు మరియు ఇమెయిల్‌ను వీక్షించలేరు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3431
+#, php-format
+msgid "By clicking \"Opt Out\", diagnostic data will no longer be sent to %s."
+msgstr "\"ఆప్ట్ అవుట్\" పై క్లిక్ చేయడం ద్వారా, రోగనిర్ధారణ డేటా ఇకపై %sకి పంపబడదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3437
+#, php-format
+msgid "By disconnecting the website, previously shared diagnostic data about %1$s will be deleted and no longer visible to %2$s."
+msgstr "వెబ్‌సైట్‌ను డిస్‌కనెక్ట్ చేయడం ద్వారా, %1$s గురించిన గతంలో భాగస్వామ్యం చేయబడిన డయాగ్నస్టిక్ డేటా తొలగించబడుతుంది మరియు ఇకపై %2$sకి కనిపించదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3443
+#, php-format
+msgid "By opting out from sharing this information with the updates server, you’ll have to check for new %1$s releases and manually download & install them. Not just a hassle, but missing an update can put your site at risk and cause undue compatibility issues, so we highly recommend keeping these essential permissions on."
+msgstr "ఈ సమాచారాన్ని అప్‌డేట్స్ సర్వర్‌తో పంచుకోవడం నుండి నిలిపివేయడం ద్వారా, మీరు కొత్త %1$s విడుదలల కోసం తనిఖీ చేసి, వాటిని మాన్యువల్‌గా డౌన్‌లోడ్ చేసి ఇన్‌స్టాల్ చేయాలి. ఇది ఇబ్బందికరంగా ఉండటమే కాకుండా, అప్‌డేట్‌ను కోల్పోవడం మీ సైట్‌ను ప్రమాదంలో పడేయవచ్చు మరియు అనవసరమైన అనుకూలత సమస్యలను కలిగించవచ్చు, కాబట్టి ఈ అవసరమైన అనుమతులను ఆన్ చేసి ఉంచాలని మేము గట్టిగా సిఫార్సు చేస్తున్నాము."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3465
+#, php-format
+msgid "Cancel %1$s - I no longer need any security & feature updates, nor support for %2$s because I'm not planning to use the %3$s on this, or any other site."
+msgstr "%1$s రద్దు చేయి - %3$sని ఈ సైట్‌లో లేదా వేరే ఏ సైట్‌లోనూ ఉపయోగించాలని నేను అనుకోనందున, నాకు ఇకపై భద్రత & ఫీచర్ అప్‌డేట్‌లు లేదా %2$s కోసం మద్దతు అవసరం లేదు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3471
+#, php-format
+msgid "Cancel %s?"
+msgstr "%sని రద్దు చేయాలా?"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3497
+#, php-format
+msgid "Cancelling %s"
+msgstr "%s రద్దు చేయబడుతోంది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3503
+#, php-format
+msgid "Cancelling %s..."
+msgstr "%s రద్దు చేయబడుతోంది..."
+
+#: includes/freemius-strings.php:3569
+msgid "Click here"
+msgstr "ఇక్కడ క్లిక్ చేయండి"
+
+#: includes/freemius-strings.php:3673
+msgid "Deactivating"
+msgstr "ని్రియాతీకరిస్తోంది"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3751
+#, php-format
+msgid "Disconnecting the website will permanently remove %s from your User Dashboard's account."
+msgstr "వెబ్‌సైట్‌ను డిస్‌కనెక్ట్ చేయడం ద్వారా మీ యూజర్ డ్యాష్‌బోర్డ్ ఖాతా నుండి %s శాశ్వతంగా తొలగించబడుతుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3955
+#, php-format
+msgid "For automatic delivery of security & feature updates, and license management & protection, %s needs to:"
+msgstr "భద్రతా & ఫీచర్ అప్‌డేట్‌ల ఆటోమేటిక్ డెలివరీ మరియు లైసెన్స్ నిర్వహణ & రక్షణ కోసం, %s ఈ క్రింది వాటిని చేయాలి:"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:3967
+#, php-format
+msgid "For delivery of security & feature updates, and license management, %s needs to"
+msgstr "భద్రత & ఫీచర్ అప్‌డేట్‌ల డెలివరీ మరియు లైసెన్స్ నిర్వహణ కోసం, %s అవసరం ఉంది"
+
+#: includes/freemius-strings.php:4013
+msgid "Freemius is our licensing and software updates engine"
+msgstr "Freemius అనేది మా లైసెన్సింగ్ మరియు సాఫ్ట్‌వేర్ అప్‌డేట్‌ల ఇంజిన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4121
+#, php-format
+msgid "If this is a long term duplicate, to keep automatic updates and paid functionality after %1$s, please %2$s."
+msgstr "ఇది దీర్ఘకాలిక డూప్లికేట్ అయితే, %1$s తర్వాత స్వయంచాలక నవీకరణలు మరియు పెయిడ్ ఫంక్షనాలిటీని ఉంచడానికి, దయచేసి %2$s."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:4241
+#, php-format
+msgid "Is %2$s a duplicate of %4$s?"
+msgstr "%2$s అనేది %4$s యొక్క నకిలీ (డూప్లికేట్) కాదా?"
+
+#: includes/freemius-strings.php:4321
+msgid "Join the Beta Program"
+msgstr "బీటా కార్యక్రమంలో చేరండి"
+
+#: includes/freemius-strings.php:4326
+msgid "Join the Beta program"
+msgstr "బీటా ప్రోగ్రామ్‌లో చేరండి"
+
+#: includes/freemius-strings.php:4397
+msgid "License"
+msgstr "లైసెన్స్"
+
+#: includes/freemius-strings.php:4412
+msgid "License Key"
+msgstr "లైసెన్స్ కీ"
+
+#: includes/freemius-strings.php:4422
+msgid "License key"
+msgstr "లైసెన్స్ కీ"
+
+#: includes/freemius-strings.php:4513
+msgid "Monthly"
+msgstr "నెలవారీ"
+
+#: includes/freemius-strings.php:4529
+msgid "Names, slugs, versions, and if active or not"
+msgstr "పేర్లు, స్లగ్‌లు, వెర్షన్‌లు మరియు సక్రియంగా ఉన్నాయా లేదా అనేది"
+
+#: includes/freemius-strings.php:4559
+msgid "New Version Available"
+msgstr "కొత్త వెర్షన్ అందుబాటులో ఉంది"
+
+#: includes/freemius-strings.php:4700
+msgid "Optional"
+msgstr "ఐచ్ఛికం"
+
+#: includes/freemius-strings.php:4755
+msgid "Plan"
+msgstr "ప్లాన్"
+
+#: includes/freemius-strings.php:4935
+msgid "Products"
+msgstr "ఉత్పత్తులు"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5125
+#, php-format
+msgid "Sharing diagnostic data helps to provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break the website, and recognize which languages & regions the %s should be translated and tailored to."
+msgstr "నిర్ధారణ (డయాగ్నోస్టిక్) డేటాను పంచుకోవడం అనేది మీ వెబ్‌సైట్‌కు సంబంధించిన అదనపు కార్యాచరణను అందించడానికి, వెబ్‌సైట్‌ను నిలిపివేసే WordPress లేదా PHP వెర్షన్ అసంగతతలను నివారించడానికి మరియు ఏ భాషలు & ప్రాంతాలకు %s అనువదించబడాలో మరియు సరిపోల్చబడాలో గుర్తించడానికి సహాయపడుతుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5209
+#, php-format
+msgid "So you can reuse the license when the %s is no longer active."
+msgstr "%s ఇకపై క్రియాశీలకంగా లేనప్పుడు మీరు లైసెన్స్‌ను మళ్లీ ఉపయోగించుకోవచ్చు."
+
+#: includes/freemius-strings.php:5286
+msgid "Subscription"
+msgstr "సబ్‌స్క్రిప్షన్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5382
+#, php-format
+msgid "The %1$s will be periodically sending essential license data to %2$s to check for security and feature updates, and verify the validity of your license."
+msgstr "భద్రత మరియు ఫీచర్ అప్‌డేట్‌ల కోసం తనిఖీ చేయడానికి మరియు మీ లైసెన్స్ యొక్క చెల్లుబాటును ధృవీకరించడానికి %1$s ఎప్పటికప్పుడు అవసరమైన లైసెన్స్ డేటాను %2$sకి పంపుతుంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5477
+#, php-format
+msgid "There is a %1$s of %2$s available."
+msgstr "%1$s యొక్క %2$s అందుబాటులో ఉంది."
+
+#: includes/freemius-strings.php:5531
+msgid "To ensure compatibility and avoid conflicts with your installed plugins and themes."
+msgstr "అనుకూలతను నిర్ధారించడానికి మరియు ఇన్‌స్టాల్ చేయబడిన ప్లగిన్‌లు మరియు థీమ్‌లతో వైరుధ్యాలను నివారించడానికి."
+
+#: includes/freemius-strings.php:5570
+msgid "Trial"
+msgstr "ట్రయల్"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5690
+#, php-format
+msgid "View %s State"
+msgstr "%s స్థితిని వీక్షించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5696
+#, php-format
+msgid "View Basic %s Info"
+msgstr "బేసిక్ %s సమాచారాన్ని వీక్షించండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5877
+#, php-format
+msgid "Yes, %2$s is a duplicate of %4$s for the purpose of testing, staging, or development."
+msgstr "అవును, పరీక్ష, స్టేజింగ్ లేదా అభివృద్ధి ప్రయోజనం కోసం %2$s అనేది %4$s యొక్క డూప్లికేట్."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5928
+#, php-format
+msgid "You have a %s license."
+msgstr "మీకు %s లైసెన్స్ ఉంది."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5934
+#, php-format
+msgid "You have purchased a %s license."
+msgstr "మీరు %s లైసెన్స్‌ను కొనుగోలు చేసారు."
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:5970
+#: includes/freemius-strings.php:5976
+#, php-format
+msgid "You should receive a confirmation email for %1$s to your mailbox at %2$s. Please make sure you click the button in that email to %3$s."
+msgstr "%1$s కోసం నిర్ధారణ ఇమెయిల్ మీ %2$s లోని ఇన్‌బాక్స్‌కు అందాలి. దయచేసి %3$s చేయడానికి ఆ ఇమెయిల్‌లోని బటన్‌ను క్లిక్ చేశారని నిర్ధారించుకోండి."
+
+#: includes/freemius-strings.php:6157
+msgid "days"
+msgstr "రోజులు"
+
+#: includes/freemius-strings.php:6162
+msgid "deactivating"
+msgstr "ని్రియతారలను నిష్క్రియం చేస్తోంది"
+
+#: includes/freemius-strings.php:6178
+msgid "hour"
+msgstr "గంట"
+
+#: includes/freemius-strings.php:6183
+msgid "hours"
+msgstr "గంటలు"
+
+#: includes/freemius-strings.php:6188
+msgid "license"
+msgstr "లైసెన్స్"
+
+#: includes/freemius-strings.php:6208
+msgid "optional"
+msgstr "ఐచ్ఛికం"
+
+#: includes/freemius-strings.php:6213
+msgid "products"
+msgstr "ఉత్పత్తులు"
+
+#: includes/freemius-strings.php:6233
+msgid "skip"
+msgstr "దాటవేయి"
+
+#: includes/freemius-strings.php:6243
+msgid "subscription"
+msgstr "చందా"
+
+#: includes/freemius-strings.php:6264
+msgid "trial"
+msgstr "ట్రయల్"
+
+#: includes/freemius-strings.php:6296
+msgctxt "Clone resolution admin notice products list label"
+msgid "Products"
+msgstr "ఉత్పత్తులు"
+
+#: includes/freemius-strings.php:6394
+msgctxt "as activating plugin"
+msgid "Activating"
+msgstr "యాక్టివేట్ చేస్తోంది"
+
+#: includes/freemius-strings.php:6499
+msgctxt "as software license"
+msgid "License"
+msgstr "లైసెన్స్"
+
+#: includes/freemius-strings.php:6534
+msgctxt "close a window"
+msgid "Dismiss"
+msgstr "రద్దు చేయి"
+
+#: includes/freemius-strings.php:6539
+msgctxt "close window"
+msgid "Dismiss"
+msgstr "తీసివేయండి"
+
+#: includes/freemius-strings.php:6587
+msgctxt "like websites"
+msgid "Sites"
+msgstr "సైట్‌లు"
+
+#: includes/freemius-strings.php:6602
+msgctxt "noun"
+msgid "Pricing"
+msgstr "ధరలు"
+
+#: includes/freemius-strings.php:6627
+msgctxt "trial period"
+msgid "Trial"
+msgstr "ట్రయల్"
+
+#: includes/freemius-strings.php:6652
+msgctxt "verb"
+msgid "Opt In"
+msgstr "ఆప్ట్ ఇన్ చేయండి"
+
+#: includes/freemius-strings.php:6657
+msgctxt "verb"
+msgid "Opt Out"
+msgstr "వైదొలగండి"
+
+#: includes/freemius-strings.php:6672
+msgctxt "verb"
+msgid "Skip"
+msgstr "దాటవేయి"
+
+#: includes/freemius-strings.php:6682
+msgctxt "verb"
+msgid "Upgrade"
+msgstr "అప్‌గ్రేడ్ చేయండి"
+
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/freemius-strings.php:6688
+#, php-format
+msgctxt "x-ago"
+msgid "%s ago"
+msgstr "%s క్రితం"

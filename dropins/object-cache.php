@@ -1,7 +1,7 @@
 <?php
 /**
  * Zinn Cache object-cache drop-in — a persistent WordPress object cache backed by Redis (phpredis).
- * Drop-in revision: 2
+ * Drop-in revision: 3
  *
  * This file is copied to `wp-content/object-cache.php` by the Zinn Cache plugin. WordPress loads it
  * very early (before most of core), so it must be self-contained and must never fatal: when the
@@ -49,7 +49,24 @@ class WP_Object_Cache {
 	 *
 	 * @var int
 	 */
-	public const REVISION = 2;
+	public const REVISION = 3;
+
+	/**
+	 * The first bytes of a value written by the Zinn® Cache Pro extension (compressed or otherwise
+	 * encoded). Without the extension such a value is unreadable here, so it is treated as a MISS:
+	 * WordPress rebuilds it and this drop-in writes it back in its own format. It is never
+	 * unserialized as if it were ours.
+	 *
+	 * @var string
+	 */
+	public const EXT_MARKER = "\x00zcp";
+
+	/**
+	 * Where Zinn® Cache Pro describes its extension (written only while Pro is active and licensed).
+	 *
+	 * @var string
+	 */
+	public const EXT_SPEC = 'zinn-cache-pro-extension.php';
 
 	/**
 	 * Key (under the site's prefix) used by the write/read health probe.
@@ -165,6 +182,18 @@ class WP_Object_Cache {
 	private array $config = array();
 
 	/**
+	 * The Zinn® Cache Pro extension, or null (the free behaviour).
+	 *
+	 * ⭐ One object that the drop-in asks at a handful of fixed points (encode, decode, the APCu
+	 * tier in front of a read, writes and deletes, flushes, the end of the request). The drop-in
+	 * stays the only `object-cache.php`, so a host that installs it (Zinn Digital® does, managed)
+	 * never has to swap it when a site gains or loses Pro.
+	 *
+	 * @var object|null
+	 */
+	private $ext = null;
+
+	/**
 	 * Build the cache, load configuration, and attempt the Redis connection.
 	 */
 	public function __construct() {
@@ -223,6 +252,142 @@ class WP_Object_Cache {
 		if ( ! ( defined( 'WP_REDIS_DISABLED' ) && WP_REDIS_DISABLED ) ) {
 			$this->connect();
 		}
+
+		$this->load_extension();
+	}
+
+	/**
+	 * Load the Zinn® Cache Pro extension when Pro says it is active and licensed.
+	 *
+	 * ⛔ Every failure leaves the free behaviour in place: a missing or stale spec, a missing file,
+	 * a class that is not there, or anything the extension throws while starting. The spec carries
+	 * an expiry that Pro renews while its licence is valid, so a Pro plugin deleted without being
+	 * deactivated (or a licence that ends) switches the extension off by itself.
+	 *
+	 * @return void
+	 */
+	private function load_extension(): void {
+		$spec_file = ( defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR : '' ) . '/' . self::EXT_SPEC;
+		if ( ! is_file( $spec_file ) ) {
+			return;
+		}
+		try {
+			$spec = include $spec_file;
+			if ( ! is_array( $spec ) || (int) ( $spec['expires'] ?? 0 ) < time() || ! is_string( $spec['file'] ?? null ) || ! is_file( $spec['file'] ) ) {
+				return;
+			}
+			require_once $spec['file'];
+			if ( class_exists( 'Zinn_Cache_Pro_Object_Cache_Extension', false ) ) {
+				$this->ext = new Zinn_Cache_Pro_Object_Cache_Extension( $this, (array) ( $spec['config'] ?? array() ) );
+				register_shutdown_function( array( $this->ext, 'request_end' ) );
+			}
+		} catch ( \Throwable $e ) {
+			$this->ext = null;
+		}
+	}
+
+	/**
+	 * The loaded Pro extension, or null.
+	 *
+	 * @return object|null
+	 */
+	public function extension() {
+		return $this->ext;
+	}
+
+	/**
+	 * The live phpredis connection, or null (for the Pro extension's reads of server statistics).
+	 *
+	 * @return \Redis|null
+	 */
+	public function redis_connection(): ?\Redis {
+		return $this->is_connected() ? $this->redis : null;
+	}
+
+	/**
+	 * The full Redis key of a cache key (for the Pro extension).
+	 *
+	 * @param int|string $key   Cache key.
+	 * @param string     $group Cache group.
+	 * @return string
+	 */
+	public function redis_key( $key, string $group ): string {
+		return $this->build_key( $key, $group );
+	}
+
+	/**
+	 * The prefix every key of this site starts with (for the Pro extension).
+	 *
+	 * @return string
+	 */
+	public function key_prefix(): string {
+		return $this->global_prefix . $this->key_salt;
+	}
+
+	/**
+	 * Put a value read elsewhere (the Pro extension's prefetch) into the in-request cache.
+	 *
+	 * @param int|string $key   Cache key.
+	 * @param string     $group Cache group.
+	 * @param mixed      $value Value.
+	 * @return void
+	 */
+	public function prime( $key, string $group, $value ): void {
+		$this->cache[ $this->normalize_group( $group ) ][ $key ] = $value;
+	}
+
+	/**
+	 * Whether a group is non-persistent (for the Pro extension).
+	 *
+	 * @param string $group Cache group.
+	 * @return bool
+	 */
+	public function is_non_persistent( string $group ): bool {
+		return $this->is_non_persistent_group( $this->normalize_group( $group ) );
+	}
+
+	/**
+	 * Serialise a value in this drop-in's own format (for the Pro extension to wrap).
+	 *
+	 * @param mixed $value Value.
+	 * @return string
+	 */
+	public function base_serialize( $value ): string {
+		return $this->serialize_value( $value );
+	}
+
+	/**
+	 * Reverse {@see base_serialize()} (for the Pro extension).
+	 *
+	 * @param mixed $raw Raw value.
+	 * @return mixed
+	 */
+	public function base_unserialize( $raw ) {
+		return $this->unserialize_value( $raw );
+	}
+
+	/**
+	 * Decode a raw Redis value into [found, value].
+	 *
+	 * @param mixed  $raw   Raw value from Redis (false when absent).
+	 * @param string $group Cache group.
+	 * @return array{0:bool,1:mixed}
+	 */
+	private function decode_raw( $raw, string $group ): array {
+		if ( false === $raw ) {
+			return array( false, false );
+		}
+		if ( is_string( $raw ) && 0 === strncmp( $raw, self::EXT_MARKER, strlen( self::EXT_MARKER ) ) ) {
+			if ( null === $this->ext ) {
+				return array( false, false );
+			}
+			try {
+				return $this->ext->decode( $raw, $group );
+			} catch ( \Throwable $e ) {
+				return array( false, false );
+			}
+		}
+		return array( true, $this->unserialize_value( $raw ) );
 	}
 
 	/**
@@ -356,8 +521,18 @@ class WP_Object_Cache {
 			return false;
 		}
 
+		$full = $this->build_key( $key, $group );
+		$l1   = null === $this->ext ? null : $this->ext->l1_get( $full, $group );
+		if ( is_array( $l1 ) ) {
+			$this->cache[ $group ][ $key ] = $l1[0];
+			$found                         = true;
+			++$this->cache_hits;
+			return $this->copy_value( $l1[0] );
+		}
+
+		$started = null === $this->ext ? 0.0 : microtime( true );
 		try {
-			$raw = $this->redis->get( $this->build_key( $key, $group ) );
+			$raw = $this->redis->get( $full );
 		} catch ( \Exception $e ) {
 			$this->handle_exception();
 			$found = false;
@@ -365,13 +540,19 @@ class WP_Object_Cache {
 			return false;
 		}
 
-		if ( false === $raw ) {
+		list( $ok, $value ) = $this->decode_raw( $raw, $group );
+		if ( null !== $this->ext ) {
+			$this->ext->observe( 'get', $group, microtime( true ) - $started, $ok, $full );
+		}
+		if ( ! $ok ) {
 			$found = false;
 			++$this->cache_misses;
 			return false;
 		}
 
-		$value                         = $this->unserialize_value( $raw );
+		if ( null !== $this->ext ) {
+			$this->ext->l1_set( $full, $group, $value );
+		}
 		$this->cache[ $group ][ $key ] = $value;
 		$found                         = true;
 		++$this->cache_hits;
@@ -409,12 +590,16 @@ class WP_Object_Cache {
 		}
 
 		if ( array() !== $needed ) {
-			$raws = false;
+			$raws    = false;
+			$started = null === $this->ext ? 0.0 : microtime( true );
 
 			try {
 				$raws = $this->redis->mget( array_values( $needed ) );
 			} catch ( \Exception $e ) {
 				$this->handle_exception();
+			}
+			if ( null !== $this->ext ) {
+				$this->ext->observe( 'mget', $group, microtime( true ) - $started, is_array( $raws ), (string) reset( $needed ) );
 			}
 
 			$index = 0;
@@ -422,13 +607,13 @@ class WP_Object_Cache {
 				$raw = is_array( $raws ) && array_key_exists( $index, $raws ) ? $raws[ $index ] : false;
 				++$index;
 
-				if ( false === $raw ) {
+				list( $ok, $value ) = $this->decode_raw( $raw, $group );
+				if ( ! $ok ) {
 					++$this->cache_misses;
 					$values[ $key ] = false;
 					continue;
 				}
 
-				$value                         = $this->unserialize_value( $raw );
 				$this->cache[ $group ][ $key ] = $value;
 				++$this->cache_hits;
 				$values[ $key ] = $this->copy_value( $value );
@@ -460,6 +645,9 @@ class WP_Object_Cache {
 			return $existed;
 		}
 
+		if ( null !== $this->ext ) {
+			$this->ext->l1_delete( $this->build_key( $key, $group ) );
+		}
 		try {
 			$count = (int) $this->redis->del( $this->build_key( $key, $group ) );
 		} catch ( \Exception $e ) {
@@ -581,6 +769,9 @@ class WP_Object_Cache {
 	 */
 	public function flush(): bool {
 		$this->cache = array();
+		if ( null !== $this->ext ) {
+			$this->ext->flushed( '' );
+		}
 
 		if ( ! $this->is_connected() ) {
 			return true;
@@ -617,6 +808,9 @@ class WP_Object_Cache {
 		$group = $this->normalize_group( $group );
 
 		unset( $this->cache[ $group ] );
+		if ( null !== $this->ext ) {
+			$this->ext->flushed( $group );
+		}
 
 		if ( ! $this->is_connected() || $this->is_non_persistent_group( $group ) ) {
 			return true;
@@ -1091,12 +1285,17 @@ class WP_Object_Cache {
 	 */
 	private function write_to_redis( $key, $data, string $group, int $expire ): void {
 		$full       = $this->build_key( $key, $group );
-		$serialized = $this->serialize_value( $data );
+		$serialized = null === $this->ext ? $this->serialize_value( $data ) : $this->ext->encode( $data, $group );
+		$started    = null === $this->ext ? 0.0 : microtime( true );
 
 		if ( $expire > 0 ) {
 			$this->redis->setex( $full, $expire, $serialized );
 		} else {
 			$this->redis->set( $full, $serialized );
+		}
+		if ( null !== $this->ext ) {
+			$this->ext->observe( 'set', $group, microtime( true ) - $started, true, $full );
+			$this->ext->l1_delete( $full );
 		}
 	}
 
