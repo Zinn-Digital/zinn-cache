@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.7.3
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -167,9 +167,6 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
-
-= 1.7.3 =
-* Freemius's own packages now match ours byte for byte: the upload that failed on 2026-09-29 is fixed, and nothing else changes.
 
 = 1.7.2 =
 * Never stops the site if the bundled Freemius SDK is missing: the cache keeps working without it, and `wp zinn-cache status` reports freemius=false.
