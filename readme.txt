@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.7.3
+Stable tag: 1.7.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,18 @@ cache purges can be mirrored to it and the Zinn® dashboard can show what change
   **permalink**, and the **links found in its content** so link placements can be tracked from your
   Zinn® dashboard. This is post-derived data: titles and the URLs a post links to. The post body
   itself is never sent, and no visitor data is included.
+
+* **Hosting-customer Pro discount (only on sites Zinn Digital® hosts).** The settings screen shows
+  administrators a card offering hosting customers a personal discount code for Zinn® Cache Pro.
+  Nothing is sent when the page loads. Only when an administrator presses the card's button does the
+  site send one request to Zinn Digital® at `https://api.zinndigital.com/v1/wp/pro-discount/<site id>`,
+  containing the plugin's slug, the word `issue` and the administrator's WordPress language, signed
+  with the site's own key. The site's address and key come from constants the platform
+  writes into wp-config.php on the sites it hosts; the card reuses only the host and site id of the
+  address, which ends in `/v1/wp/plugin-update/<site id>`, and never sends anything to that address
+  itself. On any other site they do not exist and the card is never shown. The answer is the
+  customer's code and a Freemius checkout link, to which the browser is then sent. The card is not
+  shown once Zinn® Cache Pro is active.
 
 * **Freemius (only if you opt in).** The plugin bundles the Freemius SDK, which handles the opt-in,
   the upgrade path to Zinn® Cache Pro and licences. Nothing is sent until you opt in on the screen
@@ -167,6 +179,15 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.7.6 =
+* Readme: the WordPress.org edition keeps its disclosure of the hosting-customer discount request, and says plainly that the card never contacts the platform's update address.
+
+= 1.7.5 =
+* New: on a site hosted by Zinn Digital®, the settings screen offers hosting customers a personal discount code for their first payment of Zinn® Cache Pro. It is not shown once Pro is active, or on any site Zinn Digital® does not host.
+
+= 1.7.4 =
+* Fixed: this plugin's .htaccess rules are written above WordPress's own rewrite rules, where they take effect on every page (before, a block could land below WordPress's catch-all and only apply to the home page); a block written below them earlier is moved on the next admin page load.
 
 = 1.7.3 =
 * Freemius's own packages now match ours byte for byte: the upload that failed on 2026-09-29 is fixed, and nothing else changes.
