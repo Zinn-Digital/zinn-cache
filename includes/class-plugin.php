@@ -72,6 +72,10 @@ final class Plugin {
 			Page_Cache::sync( Settings::get(), $lscache->is_litespeed_server() || $lscache->is_lscache_plugin_active() );
 		};
 		add_action( 'admin_init', $page_cache );
+		// Move a no-cache block written below WordPress's catch-all (before 1.7.4) above it.
+		if ( ! empty( $settings['lscache_enabled'] ) ) {
+			add_action( 'admin_init', array( Htaccess::class, 'repair_position' ) );
+		}
 		add_action(
 			'update_option_' . Settings::OPTION,
 			static function () use ( $lscache ): void {

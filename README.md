@@ -22,7 +22,7 @@ Everything in Zinn® Cache keeps working without it.
 
 | | |
 |---|---|
-| Version | `1.7.3` |
+| Version | `1.7.4` |
 | Requires WordPress | 6.6 or later |
 | Tested up to | WordPress **7.1** |
 | Requires PHP | 8.2 or later |
