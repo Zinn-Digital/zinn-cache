@@ -69,7 +69,10 @@ final class Page_Cache {
 	public static function host_dir( string $host ): string {
 		$host = strtolower( $host );
 		$host = (string) preg_replace( '/:\d+$/', '', $host );
-		return (string) preg_replace( '/[^a-z0-9.-]/', '', $host );
+		$host = (string) preg_replace( '/[^a-z0-9.-]/', '', $host );
+		// ⛔ A host of only dots (`.`, `..`) is a directory reference, not a name: every caller
+		// treats '' as "no host, do nothing", and the drop-in refuses the same shape.
+		return '' === trim( $host, '.' ) ? '' : $host;
 	}
 
 	/**

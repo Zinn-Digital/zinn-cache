@@ -65,14 +65,26 @@ function zinn_cache_advanced_cache_serve() {
 
 	$host = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( (string) $_SERVER['HTTP_HOST'] ) : '';
 	$host = (string) preg_replace( '/[^a-z0-9.-]/', '', (string) preg_replace( '/:\d+$/', '', $host ) );
-	if ( '' === $host ) {
+	// ⛔ The host names ONE directory under pages/, so it must be a name and nothing else. The
+	// filter above already drops every separator; what it leaves possible is a Host header of
+	// only dots (`.` or `..`), which is a directory REFERENCE — `pages/../<key>` — not a name.
+	// No stored page lives there, so it served nothing, but a path built from a request header
+	// is refused on its shape rather than on what happens to be on disk today. `basename()`
+	// states the same "one segment" guarantee in the form static analysis can follow.
+	$host = basename( $host );
+	if ( '' === trim( $host, '.' ) ) {
 		return;
 	}
+	// The request path reaches the filename only as `md5( $path )`. The three `nosemgrep` marks
+	// below rest on one fact: md5() returns exactly 32 characters of [0-9a-f], so no request
+	// can put a separator or a dot into the key (the taint rule cannot know a hash's alphabet).
+	// Re-check if the key ever becomes anything but a hash of the path — the raw path, a slug,
+	// or a query-string part would make the finding true.
 	$base = $root . '/pages/' . $host . '/' . md5( $path );
-	if ( ! is_file( $base . '.json' ) || ! is_file( $base . '.html' ) ) {
+	if ( ! is_file( $base . '.json' ) || ! is_file( $base . '.html' ) ) { // nosemgrep: php.lang.security.injection.tainted-filename.tainted-filename -- md5() key, see above.
 		return;
 	}
-	$meta = json_decode( (string) file_get_contents( $base . '.json' ), true );
+	$meta = json_decode( (string) file_get_contents( $base . '.json' ), true ); // nosemgrep: php.lang.security.injection.tainted-filename.tainted-filename -- md5() key, see above.
 	if ( ! is_array( $meta ) || (int) ( $meta['expires'] ?? 0 ) <= time() || (string) ( $meta['url'] ?? '' ) !== $path ) {
 		return;
 	}
@@ -86,7 +98,7 @@ function zinn_cache_advanced_cache_serve() {
 	header( 'X-Zinn-Cache: HIT' );
 	header( 'Age: ' . max( 0, time() - (int) ( $meta['created'] ?? time() ) ) );
 	if ( 'HEAD' !== $method ) {
-		readfile( $base . '.html' );
+		readfile( $base . '.html' ); // nosemgrep: php.lang.security.injection.tainted-filename.tainted-filename -- md5() key, see above.
 	}
 	exit;
 }
