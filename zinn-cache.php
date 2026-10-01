@@ -3,7 +3,7 @@
  * Plugin Name:       Zinn® Cache
  * Plugin URI:        https://zinndigital.com/wordpress-plugins/zinn-cache
  * Description:       A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works.
- * Version:           1.7.7
+ * Version:           1.8.0
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            Neil Lock — CEO, Zinn Digital® Ltd
@@ -34,7 +34,7 @@ namespace Zinn\Cache;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '1.7.7';
+const VERSION = '1.8.0';
 
 define( 'ZINN_CACHE_VERSION', VERSION );
 define( 'ZINN_CACHE_FILE', __FILE__ );

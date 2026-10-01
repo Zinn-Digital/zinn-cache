@@ -122,6 +122,10 @@ final class Admin {
 						'title'  => __( 'Exclusions', 'zinn-cache' ),
 						'fields' => array( __CLASS__, 'exclusion_fields' ),
 					),
+					'agents'     => array(
+						'title'  => __( 'AI agents (MCP)', 'zinn-cache' ),
+						'fields' => array( __CLASS__, 'agent_fields' ),
+					),
 				) + array_filter( array( 'pro' => Upsell::tab() ) ),
 				'actions'    => array(
 					array(
@@ -132,6 +136,28 @@ final class Admin {
 					),
 				),
 			)
+		);
+	}
+
+	/**
+	 * The AI agents (MCP) switch, then the connection details (docs/901).
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	public static function agent_fields(): array {
+		return array(
+			array(
+				'key'            => 'mcp',
+				'type'           => 'toggle',
+				'label'          => __( 'AI agents (MCP)', 'zinn-cache' ),
+				'checkbox_label' => __( 'Allow AI agents (MCP)', 'zinn-cache' ),
+				'description'    => __( 'Off: the tools below and their REST routes are not registered at all.', 'zinn-cache' ),
+				'default'        => true,
+			),
+			array(
+				'type' => 'html',
+				'html' => Mcp\Abilities::panel_html(),
+			),
 		);
 	}
 

@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Cache"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Cache pagină"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Cache de obiecte"
 
@@ -56,340 +57,356 @@ msgstr "Se șterge"
 msgid "Exclusions"
 msgstr "Excluderi"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Agenți AI (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Golește tot acum"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Fiecare pagină din cache este ștearsă și va fi regenerată pe măsură ce vizitatorii sosesc. Doriți să continuați?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Permiteți agenții AI (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Inactiv: instrumentele de mai jos și rutele lor REST nu sunt înregistrate deloc."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Cache pe pagină întreagă"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Pe un server LiteSpeed, paginile sunt servite de serverul web înainte ca WordPress să ruleze. Pe orice alt server, acest plugin stochează fiecare pagină ca fișier și o servește înainte ca WordPress să se încarce. De aici provine aproape toată viteza."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Puneți în cache paginile pentru vizitatorii care nu sunt autentificați"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Cât timp rămâne cacheuită o pagină"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Secunde. O săptămână se potrivește majorității site-urilor; un site de știri care publică din oră în oră are nevoie de mult mai puțin."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Cât timp browserul unui vizitator păstrează imaginile și scripturile"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Secunde. Se aplică numai imaginilor, fișierelor CSS și JavaScript — niciodată paginilor. Setați la 0 pentru a lăsa acest lucru în seama gazdei dvs."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Vizitatori autentificați"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Nu servi niciodată o pagină stocată în cache unui vizitator autentificat"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Activat este opțiunea sigură și implicită. Dezactivați-o doar dacă știți că fiecare pagină din cache este identică pentru fiecare utilizator autentificat; un site cu membri este motivul obișnuit pentru a nu o face."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Durate de viață diferite pentru conținut diferit"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "De exemplu: paginile de produse ale unui magazin timp de o oră, în timp ce tot restul rămâne o săptămână."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Adăugați o regulă"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Tip de conținut"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Secunde"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Cache de obiecte (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Gazda dumneavoastră rulează un cache de obiecte Redis privat pentru acest site și îl menține configurat. Nu este nimic de configurat aici; starea din partea de sus a acestui ecran arată dacă funcționează."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Stochează în cache rezultatele interogărilor bazei de date. Ajută cel mai mult pe un magazin aglomerat sau pe un site cu mult trafic de la utilizatori autentificați, unde cache-ul de pagină nu poate face acest lucru."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Instalați fișierul drop-in pentru cache-ul de obiecte Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Este necesară extensia phpredis. Dacă lipsește, caseta de deasupra acestui ecran va indica acest lucru."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Gazdă Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Port Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Bază de date Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Atribuiți fiecărui site de pe un Redis partajat propriul număr, altfel își vor goli reciproc memoria cache."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Utilizator Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Numai pentru un server Redis cu utilizatori ACL (Redis 6 sau o versiune ulterioară). Lăsați gol pentru a vă autentifica doar cu parola."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Parolă Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Lăsați gol dacă Redis al dumneavoastră nu are nevoie de una."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Prefix cheie"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "O alternativă la un număr de bază de date separat atunci când nu puteți avea unul."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Golire automată inteligentă"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Ștergeți automat paginile afectate când conținutul se schimbă"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "După actualizări"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Șterge totul după o actualizare de nucleu, de plugin sau de temă"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "După un comentariu"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Ștergeți pagina unei postări atunci când un comentariu la aceasta este aprobat"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Dezactivați această opțiune într-o secțiune de comentarii foarte aglomerată, unde poate goli cache-ul aceleiași pagini de sute de ori pe oră."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "A nu se memora în cache niciodată"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Setările implicite sensibile pentru WordPress și WooCommerce sunt aplicate întotdeauna – coșul, finalizarea comenzii, contul meu și orice sesiune în care utilizatorul este autentificat nu sunt niciodată cache-uite, indiferent de ce se află mai jos."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Adrese"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Câte o cale pe rând, de exemplu <code>/basket</code>. Un <code>*</code> la sfârșit se potrivește cu tot ce se află sub acesta."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Parametri de interogare"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "O pagină care conține unul dintre acestea nu este niciodată memorată în cache – de exemplu, un token de previzualizare unică."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Cookie-uri"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Un vizitator care poartă unul dintre acestea primește întotdeauna o pagină proaspătă."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Fiecare pagină cache a fost ștearsă. Acestea vor fi regenerate pe măsură ce vizitatorii sosesc."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Cache-ul de obiecte este instalat, dar nu stochează nimic."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Cache-ul paginii este activat, dar paginile nu sunt încă stocate."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress nu a încărcat încă componenta page-cache. Aceasta va porni la următoarea încărcare a paginii; dacă nu pornește, verificați dacă WP_CACHE este setat la true în wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Cache-ul de obiecte este activat, dar acest server nu are suport pentru Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Extensia phpredis nu este instalată, așa că modulul drop-in nu poate fi utilizat, iar WordPress revine la propria memorie cache internă. Solicitați furnizorului de găspduire să activeze phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Nu se stochează nimic în cache."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Ambele module cache sunt dezactivate, așa că acest plugin nu face ca site-ul să se încarce mai repede."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Caching-ul este activ pe acest site."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis a respins numele de utilizator sau parola. Verificați credențialele Redis în wp-config.php sau pe acest ecran."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis a acceptat autentificarea, dar nu permite acestui site să-și stocheze cheile. Utilizatorul Redis are nevoie de permisiuni pentru prefixul de chei al acestui site."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis a refuzat numărul bazei de date. Verificați setarea bazei de date Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis nu mai are memorie disponibilă și refuză datele noi."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Extensia phpredis nu este instalată, așa că WordPress își folosește propriul cache în memorie. Rugați furnizorul de hosting să activeze phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED este setat în wp-config.php, așa că memoria cache a obiectelor este dezactivată."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Serverul Redis nu a putut fi accesat. Verificați gazda și portul Redis și asigurați-vă că Redis rulează."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis nu a returnat valoarea care tocmai a fost scrisă în acesta. Verificați jurnalele serverului Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Server web"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — paginile sunt stocate în cache de către serverul web"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "nu LiteSpeed — paginile sunt stocate în cache pe disc de acest modul"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Pagini stocate pe disc"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Suport Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis este instalat"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis nu este instalat"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Durata de viață a paginii"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Nu aveți permisiunea de a goli cache-ul."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Golirea cache-ului a fost solicitată."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: un alt modul de cache pentru obiecte este instalat, astfel încât cache-ul de obiecte Redis nu este gestionat de acest plugin."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "detectat"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "nedetectat"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "extensia phpredis lipsește"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "instalat, nu se stochează nimic"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "activ, gestionat de către furnizorul dvs. de găzduire"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "activ"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "inactiv"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "Cache LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Cache de obiecte Redis:"
 
@@ -421,15 +438,15 @@ msgstr "Nu s-a putut elimina drop-in-ul pentru cache-ul de obiecte."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Sistemul de fișiere WordPress nu permite scrierea, așa că drop-in-ul pentru cache-ul de obiecte nu a putut fi gestionat."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Un alt modul de cache pentru pagini a instalat wp-content/advanced-cache.php. Eliminați mai întâi acel modul sau continuați să utilizați cache-ul său de pagini."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Folderul wp-content/cache/zinn-cache nu a putut fi scris, așa că paginile nu pot fi puse în cache."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "Nu s-a putut scrie wp-content/advanced-cache.php, așa că paginile nu pot fi stocate în cache."
 
@@ -4917,3 +4934,109 @@ msgstr "Treceți la nivelul superior"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "acum %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Acțiunea nu a putut fi finalizată. Încercați din nou, iar dacă eșecul persistă, contactați administratorul site-ului."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "O valoare obligatorie lipsește sau are un format greșit. Verificați schema de intrare a funcționalității."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Site-ul a refuzat cererea."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Permiteți asistenților AI precum Claude, Cursor sau VS Code să lucreze la acest site pentru dumneavoastră prin MCP (Model Context Protocol). Aceștia se conectează ca utilizator WordPress cu o parolă de aplicație și pot face doar ceea ce are voie să facă respectivul utilizator."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Agenții AI necesită WordPress 6.9 sau o versiune ulterioară. Actualizați WordPress pentru a le utiliza."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Adresă de conexiune (punct final MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Creați o parolă de aplicație pentru utilizatorul dvs."
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Adăugați acest text în setările MCP ale aplicației dvs. de inteligență artificială, împreună cu numele de utilizator și parola respectivă:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: introduceți aceeași înregistrare sub „servers” în .vscode/mcp.json, nu sub „mcpServers”."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Instrumente pe care un agent AI le poate folosi aici (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Ghidul utilizatorului: Agenți AI și MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Documentație pentru dezvoltatori: capacități, REST și MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Verificați și goliți memoria cache a acestui site și modificați setările acesteia cu Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Starea cache-ului de pagini și obiecte, golirea și setările acestuia."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Citește starea cache-ului"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Returnează starea în care cache-ul de pagini și cache-ul de obiecte sunt activate și funcționale, câte pagini sunt în cache, precum și numărul de conexiuni și de hituri ale cache-ului de obiecte."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Citiți setările de cache"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Returnează fiecare setare de cache. Parola Redis nu este returnată niciodată, ci doar dacă una este salvată."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Modificați setările pentru cache"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Modifică setările trimise și le păstrează pe celelalte (memoria cache pentru pagini, durata menținerii paginilor în cache, memoria cache pentru obiecte și conexiunea sa Redis, regulile de golire și excluderile. Valorile sunt verificate și corectate exact ca pe ecranul Cache."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Reveniți la setările implicite ale cache-ului"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Resetează fiecare setare de cache la valorile implicite, la fel ca butonul Reset. Parola salvată pentru Redis este, de asemenea, eliminată."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Citiți raportul de diagnosticare"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Returnează raportul de diagnosticare solicitat de asistență: versiuni, limitele serverului, starea cache-ului și erorile recente. Nu conține parole sau chei."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Goliți memoria cache"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Șterge paginile din cache: totul (all: true), anumite adrese (urls) sau tot ce este etichetat (tags). Pagini sunt reconstruite pe măsură ce vizitatorii sosesc."

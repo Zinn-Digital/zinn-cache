@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "التخزين المؤقت"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "التخزين المؤقت للصفحات"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "التخزين المؤقت للكائنات"
 
@@ -56,340 +57,356 @@ msgstr "جاري التطهير"
 msgid "Exclusions"
 msgstr "الاستثناءات"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "وكلاء الذكاء الاصطناعي (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "تفريغ كل شيء الآن"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "يتم التخلص من كل صفحة مخزنة مؤقتاً وسيتم إعادة إنشائها مع وصول الزوار. هل تريد المتابعة؟"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "السحابة الذكية (MCP) للوكلاء الذكيين"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "متوقف: الأدوات أدناه ومسارات REST الخاصة بها غير مسجلة على الإطلاق."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "التخزين المؤقت للصفحة بالكامل"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "على خادم LiteSpeed، يتم تقديم الصفحات بواسطة خادم الويب قبل تشغيل WordPress. وعلى أي خادم آخر، يقوم هذا الملحق بتخزين كل صفحة كملف وتقديمها قبل تحميل WordPress. ومن هنا تأتي السرعة بأكملها تقريبًا."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "تخزين الصفحات مؤقتاً للزوار الذين لم يسجلوا الدخول"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "المدة التي تظل فيها الصفحة مخزنة مؤقتاً"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "ثوانٍ. يناسب أسبوع معظم المواقع؛ بينما تحتاج مواقع الأخبار التي تنشر محتوى على مدار الساعة إلى أقل من ذلك بكثير."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "المدة التي يحتفظ خلالها متصفح الزائر بالصور والبرامج النصية"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "ثوانٍ. ينطبق على الصور وCSS وJavaScript فقط — ولا ينطبق أبداً على الصفحات. اضبطه على 0 لترك ذلك لمستضيفك."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "الزوار المُسجِّل دخولهم"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "لا تقم أبدًا بتخزين مؤقت للصفحات للزوار الذين قاموا بتسجيل الدخول"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "التفعيل هو الإجابة الآمنة والإعداد الافتراضي. لا تقم بإيقافه إلا إذا كنت متأكدًا من أن كل صفحة مخبأة متطابقة تمامًا لكل مستخدم مسجل الدخول، وعادة ما يكون موقع العضوية هو السبب وراء عدم القيام بذلك."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "أعمار مختلفة لمحتوى مختلف"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "على سبيل المثال: صفحات منتجات المتجر لمدة ساعة، بينما يبقى كل شيء آخر لمدة أسبوع."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "إضافة قاعدة"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "نوع المحتوى"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "ثوانٍ"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "التخزين المؤقت للكائنات (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "يُدير مستضيفك ذاكرة تخزين مؤقت كائنية خاصة من نوع Redis لهذا الموقع ويحافظ على تكوينها. ليس هناك ما يجب إعداده هنا؛ تُظهر الحالة في أعلى هذه الشاشة ما إذا كانت تعمل."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "يقوم بتخزين نتائج استعلامات قاعدة البيانات مؤقتاً. يساعد هذا بشكل كبير في المتجر المزدحم أو الموقع الذي يشهد حركة مرور كثيرة للمستخدمين المسجلين، حيث لا تستطيع ذاكرة التخزين المؤقت للصفحات القيام بذلك."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "تثبيت ملف ذاكرة التخزين المؤقت للكائنات Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "يتطلب إضافة phpredis. إذا كانت مفقودة، فإن المربع الموجود أعلى هذه الشاشة يشير إلى ذلك."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "مضيف Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "منفذ Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "قاعدة بيانات Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "اعمل على منح كل موقع على مثيل Redis مشترك رقماً خاصاً به، وإلا فسيقوم كل موقع بمحو ذاكرة التخزين المؤقت للآخر."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "اسم مستخدم Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "فقط لخادم Redis الذي يضم مستخدمي ACL (إصدار Redis 6 أو أحدث). اترك الحقل فارغاً لتسجيل الدخول باستخدام كلمة المرور وحدها."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "كلمة مرور Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "اتركه فارغاً إذا كان Redis الخاص بك لا يحتاج إلى واحد."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "بادئة المفتاح"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "بديل لرقم قاعدة بيانات منفصل عندما يتعذر توفر رقم واحد."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "التفريغ التلقائي الذكي"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "مسح الصفحات المتأثرة تلقائياً عند تغيير المحتوى"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "بعد التحديثات"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "مسح كل شيء بعد تحديث النواة، أو المكون الإضافي، أو القالب"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "بعد تعليق"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "إفراغ صفحة المنشور عند الموافقة على تعليق عليه"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "أوقف تشغيل هذه الميزة في قسم تعليقات نشط للغاية، حيث يمكنها مسح الصفحة نفسها مئات المرات في الساعة."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "لا تقم بتخزين هذه مؤقتاً مطلقاً"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "يتم دائمًا تطبيق الإعدادات الافتراضية المعقولة لـ WordPress و WooCommerce - حيث لا يتم تخزين عربة التسوق، والدفع، وحسابي، وأي جلسة تسجيل دخول مؤقتًا أبدًا، بغض النظر عن محتوى ما يلي."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "عناوين البريد الإلكتروني"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "مسار واحد في كل سطر، على سبيل المثال <code>/basket</code>. الرمز <code>*</code> اللاحق يطابق كل ما يقع تحته."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "معلمات الاستعلام"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "الصفحة التي تحمل أياً من هذه العناصر لا يتم تخزينها مؤقتاً أبداً - على سبيل المثال، رمز معاينة لمرة واحدة."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "ملفات تعريف الارتباط"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "دائماً ما يتم تقديم صفحة جديدة كلياً لأي زائر يحمل إحداها."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "تم حذف كل صفحة مخبأة. سيتم إعادة إنشائها مع وصول الزوار."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "تخزين كاش الكائنات مثبت، ولكنه لا يقوم بتخزين أي شيء."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "ذاكرة التخزين المؤقت للصفحة مفعلة، ولكن لا يتم تخزين الصفحات حتى الآن."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "لم يحمل WordPress ملحق ذاكرة التخزين المؤقت للصفحة بعد. سيتم تشغيله عند تحميل الصفحة التالية؛ وإذا لم يحدث ذلك، فتأكد من أن WP_CACHE مضبوط على القيمة true في ملف wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ذاكرة الكائن مفعلة، ولكن هذا الخادم لا يدعم Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "امتداد phpredis غير مثبت، لذلك لا يمكن استخدام الإضافة المؤقتة ويعود WordPress إلى استخدام ذاكرة التخزين المؤقت الخاصة به في الذاكرة. اطلب من مستضيفك تمكين phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "لا يتم تخزين أي شيء مؤقتاً."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "كلا التخزينين المؤقتين متوقفان، لذا فإن هذا الملحق لا يجعل الموقع أسرع."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "التخزين المؤقت نشط على هذا الموقع."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "رفض Redis اسم المستخدم أو كلمة المرور. تحقق من بيانات اعتماد Redis في wp-config.php أو على هذه الشاشة."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "قبل Redis تسجيل الدخول ولكن لا يسمح لهذا الموقع بتخزين مفاتيحه. يحتاج مستخدم Redis إلى إذن لبادئة مفاتيح هذا الموقع."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "رفض Redis رقم قاعدة البيانات. تحقق من إعداد قاعدة بيانات Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "نفدت ذاكرة Redis وتم رفض البيانات الجديدة."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "امتداد phpredis غير مثبت، لذلك يستخدم WordPress ذاكرة التخزين المؤقت الداخلية الخاصة به. اطلب من مستضيفك تمكين phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "تم تعيين WP_REDIS_DISABLED في ملف wp-config.php، لذلك تم إيقاف تشغيل ذاكرة التخزين المؤقت للكائنات."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "تعذر الاتصال بخادم Redis. تحقق من مضيف ومنفذ Redis، وتأكد من أن Redis قيد التشغيل."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "لم يعرض Redis القيمة التي تمّت كتابتها للتو فيه. تحقق من سجلات خادم Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "خادم الويب"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — يتم تخزين الصفحات مؤقتاً بواسطة خادم الويب"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "ليس LiteSpeed — يتم تخزين الصفحات مؤقتاً على القرص بواسطة هذا المكون الإضافي"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "الصفحات المخزنة على القرص"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "دعم Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "تم تثبيت phpredis"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "إضافة phpredis غير مثبتة"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "عمر الصفحة"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "لا يُسمح لك بتفريغ التخزين المؤقت."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "تم طلب تفريغ التخزين المؤقت."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "ذاكرة تخزين مؤقت لـ Zinn®: تم تثبيت مكون إضافي آخر لذاكرة التخزين المؤقت للكائنات، لذا فإن ذاكرة تخزين الكائنات Redis لا تتم إدارتها بواسطة هذا المكون الإضافي."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "تم اكتشافه"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "لم يتم اكتشافه"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "امتداد phpredis غير موجود"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "مثبت، لا يتم تخزين أي شيء"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "نشط، مدار من قبل مستضيفك"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "نشط"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "غير نشط"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "التخزين المؤقت في LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "التخزين المؤقت للكائنات عبر Redis:"
 
@@ -421,15 +438,15 @@ msgstr "تعذّرت إزالة مكوّن التخزين المؤقت للكا�
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "نظام ملفات WordPress غير قابل للكتابة، لذا تعذّرت إدارة مكوّن التخزين المؤقت للكائنات."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "قام ملحق آخر لذاكرة التخزين المؤقت للصفحات بتثبيت wp-content/advanced-cache.php. قم بإزالة هذا الملحق أولاً، أو استمر في استخدام ذاكرة التخزين المؤقت للصفحات الخاصة به."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "تعذر الكتابة في المجلد wp-content/cache/zinn-cache، لذا لا يمكن تخزين الصفحات مؤقتاً."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "تعذر الكتابة إلى wp-content/advanced-cache.php، لذا لا يمكن تخزين الصفحات مؤقتاً."
 
@@ -4920,3 +4937,109 @@ msgstr "ترقية"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "قبل %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "تعذر إكمال الإجراء. حاول مرة أخرى، وإذا استمر الفشل، فاتصل بمسؤول الموقع."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "قيمة مطلوبة مفقودة أو ذات تنسيق خاطئ. تحقق من مخطط إدخال المهارة."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "رفض الموقع الطلب."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "دع مساعدين الذكاء الاصطناعي مثل Claude أو Cursor أو VS Code يعملون على هذا الموقع نيابةً عنك من خلال بروتوكول سياق النموذج (MCP). إنهم يسجلون الدخول كمستخدم WordPress باستخدام كلمة مرور التطبيق ويمكنهم فعل ما يُسمح لهذا المستخدم فعله فقط."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "تحتاج وكلاء الذكاء الاصطناعي إلى WordPress 6.9 أو إصدار أحدث. قم بتحديث WordPress لاستخدامها."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "عنوان الاتصال (نقطة نهاية MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "إنشاء كلمة مرور تطبيق للمستخدم الخاص بك"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "أضف هذا إلى إعدادات بروتوكول السياق (MCP) الخاصة بتطبيق الذكاء الاصطناعي الخاص بك، مع اسم المستخدم الخاص بك وكلمة المرور تلك:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: ضع المدخل نفسه تحت \"servers\" في .vscode/mcp.json وليس تحت \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "الأادوات التي يمكن لوكيل الذكاء الاصطناعي استخدامها هنا (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "دليل المستخدم: وكلاء الذكاء الاصطناعي و MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "وثائق المطورين: القدرات، وREST وMCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "تحقق من ذاكرة التخزين المؤقت لهذا الموقع وقم بتفريغها وتغيير إعداداتها باستخدام Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "حالة التخزين المؤقت للصفحات والعناصر، ومسح الذاكرة المؤقتة، والإعدادات."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "قراءة حالة التخزين المؤقت"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "يعيد ما إذا كان ذاكرة التخزين المؤقت للصفحات وذاكرة التخزين المؤقت للكائنات مفعلتين وتعملان، وعدد الصفحات المخزنة مؤقتاً، وأرقام الاتصال والاص اصابة لذاكرة التخزين المؤقت للكائنات."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "قراءة إعدادات التخزين المؤقت"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "يُرجع كل إعدادات ذاكرة التخزين المؤقت. لا يتم إرجاع كلمة مرور Redis أبداً، بل يُرجع فقط ما إذا كان قد تم حفظ كلمة مرور أم لا."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "تغيير إعدادات التخزين المؤقت"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "يغير الإعدادات التي ترسلها ويحتفظ ببقية الإعدادات (ذاكرة تخزين مؤقت للصفحات، والمدة التي تظل فيها الصفحات مخزنة مؤقتاً، وذاكرة تخزين مؤقت للكائنات وتوصيل Redis الخاص بها، وقواعد التطهير والاستثناءات). يتم التحقق من القيم وتصحيحها تماماً كما هو الحال في شاشة التخزين المؤقت."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "أعد إعدادات ذاكرة التخزين المؤقت إلى وضعها الافتراضي"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "يعيد ضبط كل إعداد من إعدادات التخزين المؤقت إلى وضعها الافتراضي، مثلما يفعل زر إعادة الضبط. تتم إزالة كلمة مرور Redis المحفوظة أيضاً."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "قراءة تقرير التشخيص"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "يُعيد تقرير التشخيص الذي يطلبه الدعم: الإصدارات، وحدود الخادم، وحالة ذاكرة التخزين المؤقت، والأخطاء الأخيرة. وهو لا يتضمن أي كلمات مرور أو مفاتيح."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "إفراغ ذاكرة التخزين المؤقت"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "يعمل على حذف الصفحات المخزنة مؤقتاً: الكل (all: true)، أو بعض العناوين (urls)، أو كل ما تحمل وسماً معيناً (tags). تُعاد بناء الصفحات مع وصول الزوار."

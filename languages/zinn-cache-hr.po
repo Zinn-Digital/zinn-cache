@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Predmemorija"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Predmemorija stranice"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Predmemorija objekta"
 
@@ -56,340 +57,356 @@ msgstr "Čišćenje"
 msgid "Exclusions"
 msgstr "Isključenja"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "AI agenti (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Očisti sve odmah"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Svaka spremljena stranica bit će odbačena i ponovno izrađena kako posjetitelji budu dolazili. Želite li nastaviti?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Dopusti AI agentima (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Isključeno: alati u nastavku i njihove REST rute uopće nisu registrirani."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Predmemorija cijele stranice"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Na LiteSpeed poslužitelju, stranice poslužuje web poslužitelj prije nego što se WordPress pokrene. Na bilo kojem drugom poslužitelju, ovaj dodatak sprema svaku stranicu kao datoteku i poslužuje je prije nego što se WordPress učita. Od toga dolazi gotovo sva brzina."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Predmemorirajte stranice za posjetitelje koji nisu prijavljeni"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Koliko dugo stranica ostaje u predmemoriji"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Sekunde. Tjedan dana odgovara većini web-mjesta; vijestima koje objavljuju svakog sata potrebno je znatno manje."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Koliko dugo posjetiteljev preglednik čuva slike i skripte"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Sekunde. Odnosi se samo na slike, CSS i JavaScript — nikada na stranice. Postavite na 0 da biste to prepustili svom pružatelju hostinga."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Prijavljeni posjetitelji"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Nikada ne poslužujte predmemoriranu stranicu prijavljenom posjetitelju"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Uključeno je siguran odgovor i zadana postavka. Isključite ga samo ako znate da je svaka spremljena stranica potpuno identična za svakog prijavljenog korisnika – članske stranice uobičajeni su razlog za to."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Različiti životni vijek za različite sadržaje"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Na primjer: stranice s proizvodima trgovine na sat vremena, dok sve ostalo ostaje tjedan dana."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Dodaj pravilo"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Vrsta sadržaja"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Sekunde"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Objektna predmemorija (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Vaš poslužitelj pokreće privatnu Redis objektnu predmemoriju za ovu web-lokaciju i održava je konfiguriranom. Ovdje se ništa ne mora postavljati; status na vrhu ovog zaslona prikazuje radi li ispravno."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Pohranjuje rezultate upita baze podataka u predmemoriju. Najviše pomaže u prometnoj trgovini ili na web-mjestu s puno prijavljenog prometa, gdje predmemorija stranice ne može pomoći."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Instalirajte Redis dodatak za predmemoriju objekata"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Potrebna je phpredis ekstenzija. Ako nedostaje, okvir iznad ovog zaslona to prikazuje."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis poslužitelj (host)"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis priključak (port)"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis baza podataka"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Dodijelite svakoj stranici na zajedničkom Redis vlastiti broj kako ne bi međusobno brisale predmemoriju."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Korisničko ime za Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Samo za Redis poslužitelj s ACL korisnicima (Redis 6 ili noviji). Ostavite prazno za prijavu samo pomoću lozinke."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis lozinka"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Ostavite prazno ako vaš Redis nije potreban."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Prefiks ključa"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Alternativa zasebnom broju baze podataka kada ga ne možete imati."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Pametno automatsko čišćenje"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Automatski očisti zahvaćene stranice kada se sadržaj promijeni"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Nakon ažuriranja"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Očistite sve nakon ažuriranja jezgre, dodatka ili teme"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Nakon komentara"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Očistite stranicu objave kada je komentar na nju odobren"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Isključite ovo u odjeljku s komentarima koji je vrlo posjećen, gdje se ista stranica može očistiti stotine puta na sat."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Nikad ne predmemoriraj ove"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Razumne zadane postavke za WordPress i WooCommerce uvijek se primjenjuju – košarica, naplata, moj-račun i svaka prijavljena sesija nikada se ne predmemoriraju, bez obzira na sve što je ispod."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Adrese"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Jedna staza po retku, na primjer <code>/basket</code>. Vodeća <code>*</code> podudara se sa svemu ispod nje."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Parametri upita"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Stranica koja sadrži jednu od ovih nikada se ne predmemorira – na primjer, jednokratni token za pretpregled."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Kolačići"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Posjetitelju koji nosi jedan od ovih uvijek se poslužuje svježa stranica."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Svaka predmemorirana stranica je uklonjena. Bit će ponovno izrađene kako posjetitelji budu dolazili."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Predmemorija objekata je instalirana, ali ništa ne sprema."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Predmemorija stranice je uključena, ali stranice se još ne spremaju."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress još nije učitao dodatak za predmemoriju stranice (page-cache drop-in). Pokrenut će se pri sljedećem učitavanju stranice; ako se to ne dogodi, provjerite je li WP_CACHE postavljen na true u datoteci wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Predmemorija objekata je uključena, ali ovaj poslužitelj nema podršku za Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Proširenje phpredis nije instalirano, pa se dodatak ne može koristiti i WordPress se vraća na vlastitu predmemoriju u memoriji. Zatražite od svog pružatelja usluga udomljavanja da omogući phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Ništa se ne predmemorira."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Oba su predmemoriranja isključena, tako da ovaj dodatak ne ubrzava web-mjesto."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Predmemoriranje je aktivno na ovoj web-lokaciji."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis je odbio korisničko ime ili lozinku. Provjerite Redis vjerodajnice u datoteci wp-config.php ili na ovom zaslonu."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis je prihvatio prijavu, ali ovom web-mjestu ne dopušta pohranu ključeva. Korisniku sustava Redis potrebna je dozvola za prefiks ključa ovog web-mjesta."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis je odbio broj baze podataka. Provjerite postavkama baze podataka za Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis je ostao bez memorije i odbija nove podatke."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Proširenje phpredis nije instalirano, stoga WordPress koristi vlastitu memorijsku predmemoriju. Zatražite od svog davatelja hostinga da omogući phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED je postavljeno u wp-config.php, pa je predmemorija objekata isključena."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Poslužitelj za Redis nije dostupan. Provjerite host i port za Redis te radi li Redis."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis nije vratio vrijednost koja mu je upravo upisana. Provjerite zapisnike poslužitelja Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Web-poslužitelj"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — stranice se predmemoriraju na web poslužitelju"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "nije LiteSpeed — stranice se spremaju u predmemoriju na disku pomoću ovog dodatka"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Stranice pohranjene na disku"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Podrška za Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis je instaliran"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis nije instaliran"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Vijek stranice"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Nemate dopuštenje za čišćenje predmemorije."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Zatraženo je čišćenje predmemorije."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: instaliran je drugi dodatak za predmemoriju objekata, tako da Redis predmemorijom objekata ne upravlja ovaj dodatak."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "otkriveno"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "nije otkriveno"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "nedostaje phpredis ekstenzija"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "instalirano, ništa se ne pohranjuje"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "aktivan, upravlja vaš poslužitelj"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "aktivno"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "neaktivno"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed predmemorija:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis objektna predmemorija:"
 
@@ -421,15 +438,15 @@ msgstr "Nije bilo moguće ukloniti object-cache drop-in."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress datotečni sustav nije zapisiv, pa object-cache drop-in nije bilo moguće postaviti."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Još jedan dodatak za predmemoriju stranice instalirao je wp-content/advanced-cache.php. Prvo uklonite taj dodatak ili nastavite koristiti njegovu predmemoriju stranice."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Mapa wp-content/cache/zinn-cache se ne može zapisati, pa se stranice ne mogu predmemorirati."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "Datoteku wp-content/advanced-cache.php nije bilo moguće zapisati, pa se stranice ne mogu pohraniti u predmemoriju."
 
@@ -4917,3 +4934,109 @@ msgstr "Nadogradite"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "prije %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Radnja nije mogla biti dovršena. Pokušajte ponovno, a ako i dalje ne uspijeva, obratite se administratoru web-mjesta."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Obvezna vrijednost nedostaje ili je pogrešnog oblika. Provjerite ulaznu shemu funkcije."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Stranica je odbila zahtjev."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Dopustite AI asistentima kao što su Claude, Cursor ili VS Code da rade na ovoj web-lokaciji umjesto vas putem protokola MCP (Model Context Protocol). Oni se prijavljuju kao WordPress korisnik s lozinkom aplikacije i mogu učiniti samo ono što je tom korisniku dopušteno."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "AI agenti trebaju WordPress 6.9 ili noviju verziju. Ažurirajte WordPress kako biste ih mogli koristiti."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Adresa povezivanja (MCP krajnja točka)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Izradite lozinku aplikacije za svog korisnika"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Dodajte ovo u MCP postavke svoje AI aplikacije, zajedno sa svojim korisničkim imenom i tom lozinkom:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: stavite isti unos pod \"servers\" u .vscode/mcp.json, a ne pod \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Alati koje AI agent ovdje može koristiti (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Korisnički vodič: AI agenti i MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Dokumentacija za razvojne inženjere: mogućnosti, REST i MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Provjerite i očistite predmemoriju ove web-lokacije te promijenite njezine postavke predmemorije pomoću alata Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Status predmemorije stranica i objekata, čišćenje i postavke."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Pročitajte status predmemorije"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Vraća informaciju o tome jesu li predmemorija stranica i predmemorija objekata uključene i rade li, koliko je stranica predmemorirano te podatke o vezi i broju pogodaka predmemorije objekata."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Pročitajte postavke predmemorije"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Vraća sve postavke predmemorije. Lozinka za Redis se nikada ne vraća, već samo informacija je li spremljena."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Promijenite postavke predmemorije"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Mijenja postavke koje pošaljete, a ostatak zadržava (predmemoriju stranice, koliko dugo stranice ostaju u predmemoriji, predmemoriju objekata i njezinu Redis vezu, pravila čišćenja i izuzeća). Vrijednosti se provjeravaju i korigiraju potpuno isto kao na zaslonu predmemorije."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Vratite postavke predmemorije na zadane vrijednosti"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Vraća svaku postavku predmemorije na zadanu vrijednost, kao što to čini gumb Reset. Spremljena Redis lozinka također se uklanja."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Pročitajte dijagnostičko izvješće"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Vraća dijagnostičko izvješće koje podrška traži: verzije, ograničenja poslužitelja, stanje predmemorije i nedavne pogreške. Ono ne sadrži lozinke ni ključeve."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Očisti predmemoriju"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Odbacuje predmemorirane stranice: sve (all: true), neke adrese (urls) ili sve označeno (tags). Stranice se ponovno grade kako posjetitelji pristižu."

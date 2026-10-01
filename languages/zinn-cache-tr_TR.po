@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Önbellek"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Sayfa önbelleği"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Nesne önbelleği"
 
@@ -56,341 +57,357 @@ msgstr "Temizleniyor"
 msgid "Exclusions"
 msgstr "Hariç Tutulanlar"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Yapay zeka aracıları (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Her şeyi şimdi temizle"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Önbelleğe alınan her sayfa silinir ve ziyaretçiler geldikçe yeniden oluşturulur. Devam edilsin mi?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Yapay zeka ajanlarına izin ver (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Kapalı: aşağıdaki araçlar ve REST rotaları hiçbir şekilde kayıtlı değil."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Tam sayfa önbelleği"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Bir LiteSpeed sunucusunda sayfalar, WordPress çalışmadan önce web sunucusu tarafından sunulur. Başka herhangi bir sunucuda bu eklenti, her sayfayı bir dosya olarak depolar ve WordPress yüklenmeden önce sunar. Hızın neredeyse tamamı buradan gelmektedir."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Oturum açmamış ziyaretçiler için sayfaları önbelleğe al"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Bir sayfanın önbellekte kalma süresi"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Saniye. Çoğu site için bir hafta uygundur; saat başı yayın yapan bir haber sitesinin çok daha azına ihtiyacı vardır."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Ziyaretçinin tarayıcısının görselleri ve betikleri ne süreyle saklayacağı"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Saniye. Yalnızca görsellere, CSS ve JavaScript'e uygulanır; hiçbir zaman sayfalara uygulanmaz. Barındırıcınıza bırakmak için 0 olarak ayarlayın."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Giriş yapmış ziyaretçiler"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Oturum açmış bir ziyaretçiye hiçbir zaman önbelleğe alınmış bir sayfa sunmayın"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Açık konumu güvenli olan ve varsayılan ayardır. Önbelleğe alınan her sayfanın oturum açmış tüm kullanıcılar için tamamen aynı olduğundan eminseniz kapatın; bunun yapılmamasının olağan nedeni bir üyelik sitesi olmasıdır."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Farklı içerikler için farklı yaşam süreleri"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Örneğin: diğer her şey bir hafta kalırken, bir mağazanın ürün sayfaları bir saat."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Kural ekle"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "İçerik türü"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Saniye"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Nesne önbelleği (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Barındırıcınız bu site için özel bir Redis nesne önbelleği çalıştırır ve yapılandırılmış halde tutar. Burada ayarlanacak hiçbir şey yoktur; bu ekranın üst kısmındaki durum çalışıp çalışmadığını gösterir."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Veritabanı sorgularının sonuçlarını önbelleğe alır. Sayfa önbelleğinin yardımcı olamadığı, yoğun bir mağazada veya çok sayıda oturum açmış trafiğin olduğu bir sitede en çok yardımcı olur."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis nesne önbelleği eklentisini kurun"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis uzantısı gereklidir. Eksikse, bu ekranın üzerindeki kutu bunu belirtir."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis sunucusu"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis bağlantı noktası"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis veritabanı"
 
 #. zinn-i18n: human translation — the machine translator refused this string
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Paylaşılan bir Redis üzerindeki her siteye kendi numarasını verin; aksi halde siteler birbirlerinin önbelleğini temizler."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Redis kullanıcı adı"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Yalnızca ACL kullanıcılarına sahip bir Redis sunucusu için (Redis 6 veya üzeri). Yalnızca şifreyle oturum açmak için boş bırakın."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis şifresi"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Redis'iniz için gerekmiyorsa boş bırakın."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Anahtar öneki"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Ayrı bir veritabanı numarasına sahip olamadığınız durumlarda bu duruma alternatif bir çözüm."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Akıllı otomatik temizleme"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "İçerik değiştiğinde etkilenen sayfaları otomatik olarak temizle"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Güncellemelerden sonra"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Bir çekirdek, eklenti veya tema güncellemesinden sonra her şeyi temizle"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Bir yorumdan sonra"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Bir gönderiye yapılan bir yorum onaylandığında gönderinin sayfasını temizle"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Yüzlerce kez saatte aynı sayfayı temizleyebileceği çok yoğun bir yorum bölümünde bunu kapatın."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Bunları asla önbelleğe alma"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Makul WordPress ve WooCommerce varsayılanları her zaman uygulanır; sepet, ödeme, hesabım ve oturum açmış hiçbir oturum, aşağıda ne olursa olsun asla önbelleğe alınmaz."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Adresler"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Her satıra bir yol, örneğin <code>/basket</code>. Sonda yer alan bir <code>*</code> işareti, altındaki her şeyle eşleşir."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Sorgu parametreleri"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Bunlardan birini içeren bir sayfa asla önbelleğe alınmaz; örneğin tek seferlik bir önizleme belirteci."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Çerezler"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Bunlardan birini taşıyan bir ziyaretçiye her zaman taze bir sayfa sunulur."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Önbelleğe alınmış tüm sayfalar silindi. Ziyaretçiler geldikçe yeniden oluşturulacaklar."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Nesne önbelleği yüklü, ancak hiçbir şey depolamıyor."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Sayfa önbelleği açık, ancak sayfalar henüz depolanmıyor."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress henüz sayfa önbelleği eklentisini (drop-in) yüklemedi. Sonraki sayfa yüklemesinde başlayacaktır; başlamazsa, wp-config.php dosyasında WP_CACHE değerinin true olup olmadığını kontrol edin."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Nesne önbelleği açık, ancak bu sunucuda Redis desteği yok."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis eklentisi kurulu değil, bu nedenle drop-in kullanılamıyor ve WordPress kendi bellek içi önbelleğine geri dönüyor. Barındırma sağlayıcınızdan phpredis'i etkinleştirmesini isteyin."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Hiçbir şey önbelleğe alınmıyor."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Her iki önbellek de kapalı olduğundan, bu eklenti siteyi daha hızlı hale getirmiyor."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Bu sitede önbellekleme etkin."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis kullanıcı adını veya parolasını reddetti. wp-config.php dosyasındaki veya bu ekrandaki Redis kimlik bilgilerini kontrol edin."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis oturum açma işlemini kabul etti ancak bu sitenin anahtarlarını depolamasına izin vermiyor. Redis kullanıcısının bu sitenin anahtar öneki için izne ihtiyacı var."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis veri tabanı numarasını reddetti. Redis veri tabanı ayarını kontrol edin."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis bellek tüketim sınırına ulaştı ve yeni verileri reddediyor."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis uzantısı yüklü değil, bu nedenle WordPress kendi bellek içi önbelleğini kullanıyor. Barındırma sağlayıcınızdan phpredis özelliğini etkinleştirmesini isteyin."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "wp-config.php içinde WP_REDIS_DISABLED ayarlanmış, bu nedenle nesne önbelleği kapalıdır."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Redis sunucusuna ulaşılamadı. Redis ana bilgisayarını ve bağlantı noktasını ve Redis'in çalışıp çalışmadığını kontrol edin."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis az önce yazılan değeri geri döndürmedi. Redis sunucusunun günlüklerini kontrol edin."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Web sunucusu"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — sayfalar web sunucusu tarafından önbelleğe alınır"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "LiteSpeed değil — sayfalar bu eklenti tarafından diske önbelleğe alınır"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Diskte saklanan sayfalar"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Redis desteği"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis yüklü"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis yüklü değil"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Sayfa ömrü"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Önbelleği temizleme izniniz yok."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Önbellek temizleme talep edildi."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: Başka bir nesne önbelleği eklentisi yüklü olduğundan, Redis nesne önbelleği bu eklenti tarafından yönetilmiyor."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "algılandı"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "algılanmadı"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "phpredis uzantısı eksik"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "kurulu, hiçbir şey depolanmıyor"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "etkin, barındırıcınız tarafından yönetiliyor"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "etkin"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "etkin değil"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed önbelleği:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis nesne önbelleği:"
 
@@ -422,15 +439,15 @@ msgstr "Nesne önbelleği drop-in dosyası kaldırılamadı."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress dosya sistemi yazılabilir olmadığından nesne önbelleği drop-in dosyası yönetilemedi."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Başka bir sayfa önbelleği eklentisi wp-content/advanced-cache.php dosyasını yüklemiş. Önce o eklentiyi kaldırın veya sayfa önbelleğini kullanmaya devam edin."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "wp-content/cache/zinn-cache klasörüne yazılamadı, bu nedenle sayfalar önbelleğe alınamıyor."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php dosyası yazılamadı, bu nedenle sayfalar önbelleğe alınamıyor."
 
@@ -4917,3 +4934,109 @@ msgstr "Yükselt"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s önce"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "İşlem tamamlanamadı. Tekrar deneyin; hata devam ederse site yöneticisiyle iletişime geçin."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Gerekli bir değer eksik veya yanlış biçimde. Yeteneğin girdi şemasını kontrol edin."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Site isteği reddetti."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Claude, Cursor veya VS Code gibi yapay zeka asistanlarının MCP (Model Context Protocol) aracılığıyla bu sitenizde sizin için çalışmasına izin verin. Bir uygulama şifresiyle WordPress kullanıcı olarak oturum açarlar ve yalnızca o kullanıcının yapmasına izin verilen şeyleri yapabilirler."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Yapay zeka ajanları WordPress 6.9 veya sonraki bir sürümünü gerektirir. Bunları kullanmak için WordPress'i güncelleyin."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Bağlantı adresi (MCP uç noktası)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Kullanıcınız için bir uygulama parolası oluşturun"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Bunu kullanıcı adınız ve ilgili parola ile birlikte AI uygulamanızın MCP ayarlarına ekleyin:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: \"mcpServers\" altına değil, .vscode/mcp.json içindeki \"servers\" altına aynı girdiyi ekleyin."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Bir yapay zeka aracisinin burada kullanabileceği araçlar (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Kullanıcı kılavuzu: Yapay zeka ajanları ve MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Geliştirici belgeleri: yetenekler, REST ve MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Zinn® Cache ile bu sitenin önbelleğini kontrol edin ve temizleyin, önbellek ayarlarını değiştirin."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Sayfa ve nesne önbellek durumu, temizleme ve ayarlar."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Önbellek durumunu oku"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Sayfa önbelleğinin ve nesne önbelleğinin açık ve çalışır durumda olup olmadığını, kaç sayfanın önbelleğe alındığını ve nesne önbelleğinin bağlantı ve isabet sayılarını döndürür."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Önbellek ayarlarını oku"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Tüm önbellek ayarlarını döndürür. Redis şifresi asla döndürülmez, yalnızca bir tane kaydedilip kaydedilmediği döndürülür."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Önbellek ayarlarını değiştir"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Gönderdiğiniz ayarları değiştirir ve geri kalanını (sayfa önbelleği, sayfaların ne kadar süre önbellekte kalacağı, nesne önbelleği ve Redis bağlantısı, temizleme kuralları ve hariç tutulanlar) korur. Değerler, Önbellek ekranındakilerle tamamen aynı şekilde kontrol edilir ve düzeltilir."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Önbellek ayarlarını varsayılan değerlerine geri yükleyin"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Önbellek ayarlarının tümünü, Sıfırla düğmesinin yaptığı gibi varsayılan değerlerine geri döndürür. Kaydedilmiş olan Redis şifresi de silinir."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Tanılama raporunu oku"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Destek ekibinin istediği tanılama raporunu döndürür: sürümler, sunucu sınırları, önbellek durumu ve son hatalar. Parola veya anahtar barındırmaz."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Önbelleği temizle"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Önbelleğe alınan sayfaları siler: tümü (all: true), bazı adresler (urls) veya etiketlenen her şey (tags). Sayfalar, ziyaretçiler geldikçe yeniden oluşturulur."

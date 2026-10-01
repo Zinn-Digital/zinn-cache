@@ -99,6 +99,11 @@ final class Plugin {
 		// unscheduled, unless the deploy footprint configured it.
 		( new Link_Scanner() )->register();
 		( new Rest_Controller( $lscache ) )->register();
+		// AI agents (MCP, docs/901): the cache's actions as WordPress abilities, through the shared
+		// MCP kit and the bundled WordPress MCP adapter. Signed-in users only, each checked per call.
+		require_once ZINN_CACHE_DIR . 'includes/mcp-kit/load.php';
+		require_once ZINN_CACHE_DIR . 'includes/mcp/class-abilities.php';
+		Mcp\Abilities::boot();
 		// ⛔ No one-click wp-admin login is registered here. It lived here until 2026-09-18
 		// and has moved to `zinn-footprint`, which is app-only and never submitted.
 		//

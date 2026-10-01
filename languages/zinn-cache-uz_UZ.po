@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Kesh"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Sahifa kesh xotirasi"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Obyekt keshi"
 
@@ -56,340 +57,356 @@ msgstr "Tozalanmoqda"
 msgid "Exclusions"
 msgstr "Istisnolar"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "AI agentlar (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Hozir hamma narsani tozalash"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Keshidlangan har bir sahifa o'chirib tashlanadi va tashrif buyuruvchilar kelishi bilan qaytadan yaratiladi. Davom etasizmi?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "AI agentlariga ruxsat berish (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "O'chirilgan: quyidagi vositalar va ularning REST marshrutlari umuman ro'yxatga olinmagan."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "To'liq sahifali kesh"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "LiteSpeed serverida sahifalar WordPress ishlashidan oldin veb-server tomonidan uzatiladi. Har qanday boshqa serverda esa bu plagin har bir sahifani fayl sifatida saqlaydi va WordPress yuklanishidan oldin taqdim etadi. Deyarli barcha tezlik shu yerda hosil bo'ladi."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Tizimga kirmagan tashrif buyuruvchilar uchun sahifalarni keshlash"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Sahifa qancha vaqt keshda saqlanishi"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Soniya. Ko'pchilik saytlar uchun bir hafta yetarli; soatiga yangilik e'lon qiladigan yangiliklar saytiga esa bundan ancha kam kerak bo'ladi."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Tashrif buyuruvchining brauzeri rasmlar va skriptlarni qancha vaqt davomida saqlashi"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Soniya. Faqat tasvirlar, CSS va JavaScript uchun amal qiladi — sahifalarga hech qachon. Buni xostingizga qoldirish uchun 0 ga o'rnating."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Tizimga kirgan tashrif buyuruvchilar"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Tizimga kirgan tashrif buyuruvchiga hech qachon keshirilgan sahifani ko‘rsatmang"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "\"Yoqilgan\" xavfsiz javob va standart hisoblanadi. Uni faqat har bir keshga saqlangan sahifa tizimga kirgan har bir foydalanuvchi uchun bir xil ekanligini aniq bilsangizgina o'chiring — a'zolik sayti buni qilmaslikning odatiy sababidir."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Turli xil kontent uchun har xil yashash muddati"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Masalan: doʻkonning mahsulot sahifalari bir soatga, qolgan hamma narsa esa bir haftaga qoladi."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Qoida qo'shish"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Kontent turi"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Soniya"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Obyekt keshi (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Sizning xostingiz ushbu sayt uchun shaxsiy Redis obyekt keshini ishga tushiradi va uni sozlangan holda saqlaydi. Bu yerda hech narsa sozlash talab etilmaydi; ushbu ekranning yuqori qismidagi holat uning ishlayotganini ko'rsatadi."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Ma'lumotlar bazasi so'rovlari natijalarini keshlaydi. Bu sahifa keshi ishlamaydigan gavjum do'konda yoki ko'p sonli tizimga kirgan foydalanuvchilarga ega saytda eng ko'p yordam beradi."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis obyekt-kesh plaginini o'rnating"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis kengaytmasini talab qiladi. Agar u yetishmasa, bu ekrandagi yuqoridagi quti bu haqda xabar beradi."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis host"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis port"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis maʼlumotlar bazasi"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Umumiy Redis’dagi har bir saytga o‘z raqamini bering, aks holda ular bir-birining keshini tozalab yuboradi."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Redis foydalanuvchi nomi"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Faqat ACL foydalanuvchilariga ega Redis serveri uchun (Redis 6 yoki undan keyingi versiyalar). Faqat parol bilan kirish uchun bo'sh qoldiring."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis paroli"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Agar Redis'ingiz uchun bu kerak bo'lmasa, bo'sh qoldiring."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Kalit prefiksi"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Aloohida ma'lumotlar bazasi raqami bo'lmagan holatda uning o'rnini bosuvchi muqobil variant."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Aqlli avtomatik tozalash"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Kontent o'zgarganda ta'sirlangan sahifalarni avtomatik tozalash"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Yangilanishlardan keyin"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Yadro, plagin yoki mavzu yangilanganidan keyin hamma narsani tozalang"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Izohdan keyin"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Unga yozilgan izoh tasdiqlanganda post sahifasini tozalash"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Uni juda gavjum izohlar bo‘limida o‘chirib qo‘ying, bu yerda u bir soat ichida yuzlab marta bir xil sahifani tozalashi mumkin."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Bularni hech qachon keshlash mumkin emas"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Har doim oqilona WordPress va WooCommerce standartlari qoʻllaniladi — savat, buyurtma berish, mening hisobim va har qanday kirish seansi nima boʻlishidan qatʼiy nazar hech qachon keshlanmaydi."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Manzillar"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Har bir qatorda bitta yoʻl, masalan, <code>/basket</code>. Oxiridagi <code>*</code> belgisi uning ostidagi hamma narsaga mos keladi."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "So'rov parametrlari"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Ushbu belgiga ega sahifa hech qachon keshlanmaydi — masalan, bir martalik ko‘rib chiqish tokeni."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Cookie-fayllar"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Bulardan birini olib yurgan tashrif buyuruvchiga har doim yangi sahifa taqdim etiladi."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Keshdagi barcha sahifalar oʻchirib yuborildi. Ular tashrif buyuruvchilar kelishi bilan qayta tiklanadi."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Obekt kesh o'rnatilgan, biroq u hech narsani saqlamayapti."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Sahifa kesh xotirasi yoqilgan, ammo sahifalar hali saqlanmayapti."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress sahifa keshini (page-cache) hali yuklamagan. U keyingi sahifa yuklanishida boshlanadi; aks holda, wp-config.php faylida WP_CACHE qiymati true ekanligini tekshiring."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Obyekt keshi yoqilgan, biroq bu serverda Redis qoʻllab-quvvatlanmaydi."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis kengaytmasi o'rnatilmagan, shuning uchun plagin ishlatib bo'lmaydi va WordPress o'zining xotiradagi keshiga o'tmoqda. Xosting provayderingizdan phpredis'ni yoqishni so'rang."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Hech qanday keshlanish amalga oshirilmayapti."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Ikkala kesh ham o'chirilgan, shuning uchun bu plagin saytni tezlashtirayotgani yo'q."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Ushbu saytda keshlash faol."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis foydalanuvchi nomini yoki parolni rad etdi. wp-config.php faylidagi yoki ushbu ekrandagi Redis hisob maʼlumotlarini tekshiring."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis kirishni qabul qildi, lekin bu saytga oʻz kalitlarini saqlashga ruxsat bermayapti. Redis foydalanuvchisi ushbu saytning kalit prefiksi uchun ruxsatga ega boʻlishi kerak."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis ma'lumotlar bazasi raqamini rad etdi. Redis ma'lumotlar bazasi sozlamasini tekshiring."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis xotirasi tugagan va yangi ma'lumotlarni qabul qilishni rad etmoqda."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis kengaytmasi o'rnatilmagan, shuning uchun WordPress o'zining xotiradagi keshidan foydalanmoqda. phpredis'ni yoqishni xosting provayderingizdan so'rang."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "wp-config.php faylida WP_REDIS_DISABLED o'rnatilgan, shuning uchun obyekt kesh o'chirilgan."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Redis serveriga ulanib bo'lmadi. Redis xosti va portini hamda Redis ishlayotganini tekshiring."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis endigina yozilgan qiymatni qaytarmadi. Redis serverining jurnallarini tekshiring."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Veb-server"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — sahifalar veb-server tomonidan keshlanadi"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "LiteSpeed emas — sahifalar ushbu plagin yordamida diskda keshlanadi"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Diskda saqlangan sahifalar"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Redis qo‘llab-quvvatlashi"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis o'rnatilgan"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis oʻrnatilmagan"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Sahifa amal qilish muddati"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Sizga keshni tozalashga ruxsat berilmagan."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Keshni tozalash soʻraldi."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Kesh: boshqa obyekt-kesh plagin o'rnatilgan, shuning uchun Redis obyekt keshi ushbu plagin tomonidan boshqarilmaydi."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "aniqlandi"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "aniqlanmadi"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "phpredis kengaytmasi yoʻq"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "o‘rnatilgan, hech narsa saqlanmayapti"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "faol, xostingiz tomonidan boshqariladi"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "faol"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "faol emas"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed keshi:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis obyekt keshi:"
 
@@ -421,15 +438,15 @@ msgstr "Obyekt-kesh drop-in olib tashlab boʻlmadi."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress fayl tizimiga yozib boʻlmaydi, shuning uchun obyekt-kesh drop-in boshqarib boʻlmadi."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Boshqa sahifa kesh plagini wp-content/advanced-cache.php faylini oʻrnatdi. Avval oʻsha plaginni oʻchiring yoki uning sahifa keshidan foydalanishda davom eting."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "`wp-content/cache/zinn-cache` papkasiga yozib bo‘lmadi, shuning uchun sahifalarni keshlab bo‘lmaydi."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php yozib bo'lmadi, shuning uchun sahifalarni keshlash mumkin emas."
 
@@ -4916,3 +4933,109 @@ msgstr "Yangilash"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s oldin"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Amalni bajarib bo‘lmadi. Qaytadan urinib ko‘ring, agar xatolik takrorlanaversa, sayt maʼmuriga murojaat qiling."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Kerakli qiymat yo'q yoki noto'g'ri shaklda. Funksiyaning kirish sxemasini tekshiring."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Sayt so‘rovni rad etdi."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Claude, Cursor yoki VS Code kabi sun'iy intellekt yordamchilariga MCP (Model Context Protocol) orqali ushbu saytda ishlashiga ruxsat bering. Ular dasturiy parolga ega WordPress foydalanuvchisi sifatida tizimga kiradi va faqat o‘sha foydalanuvchiga ruxsat etilgan amallarni bajarishi mumkin."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Sun'iy intellekt agentlari uchun WordPress 6.9 yoki undan keyingi versiyasi talab qilinadi. Ulardan foydalanish uchun WordPress'ni yangilang."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "U ulanish manzili (MCP yakuniy nuqtasi)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Foydalanuvchingiz uchun dastur parolini yarating"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Buni foydalanuvchi nomingiz va ushbu parol bilan birga sun'iy intellekt ilovangizning MCP sozlamalariga qo'shing:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: bir xil yozuvni \"mcpServers\" ostiga emas, balki .vscode/mcp.json faylidagi \"servers\" ostiga qo'ying."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Bu yerda sun'iy intellekt agenti foydalanishi mumkin bo'lgan vositalar (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Foydalanuvchi qoʻllanmasi: AI agentlari va MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Dasturchi hujjatlari: imkoniyatlar, REST va MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Zinn® Cache yordamida ushbu sayt keshini tekshiring va tozalang hamda uning kesh sozlamalarini o‘zgartiring."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Sahifa va obyekt keshi holati, tozalash va sozlamalar."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Kesh holatini oʻqish"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Sahifa kesh va obyekt kesh yoqilgan va ishlayotganini, qancha sahifa keshga olinganini hamda obyekt keshning ulanish va hit ko'rsatkichlarini qaytaradi."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Kesh sozlamalarini o'qish"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Barcha kesh sozlamalarini qaytaradi. Redis paroli hech qachon qaytarilmaydi, faqat uning saqlangan yoki saqlanmagani ko‘rsatiladi."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Kesh sozlamalarini o'zgartirish"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Siz yuborgan sozlamalarni o'zgartiradi va qolganlarini (sahifa keshini, sahifalar qancha vaqt keshda saqlanishini, obyekt keshini va uning Redis ulanishini, tozalash qoidalari va istisnolarini) saqlab qoladi. Qiymatlar Kesh ekranidagi kabi tekshiriladi va to'g'rilanadi."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Kesh sozlamalarini standart holatiga qaytarish"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Tiklash tugmasi kabi, har bir kesh sozlamasini o'chi holatiga qaytaradi. Saqlangan Redis paroli ham o'chiriladi."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Diagnostika hisobotini o‘qish"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Qo‘llab-quvvatlash xizmati so‘ragan diagnostika hisobotini qaytaradi: versiyalar, server cheklovlari, kesh holati va oxirgi xatolar. Unda parollar yoki kalitlar saqlanmaydi."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Keshni tozalash"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Keshdan saqlangan sahifalarni o'chirib tashlaydi: hammasi (all: true), ayrim manzillar (urls) yoki teglangan barcha sahifalar (tags). Sahifalar tashrif buyuruvchilar kelishi bilan qayta tuziladi."

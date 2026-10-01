@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Akiba ya muda"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Kache ya ukurasa"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Akiba ya vitu"
 
@@ -56,340 +57,356 @@ msgstr "Inafuta"
 msgid "Exclusions"
 msgstr "Vizuvi"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Mawakala wa AI (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Safisha kila kitu sasa"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Kila ukurasa uliowekwa kwenye akiba unafutwa na utajengwa upya kadiri wageni wanavyowili. Unataka kuendelea?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Ruhusu mawakala wa AI (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Imezimwa: zana zilizoorodheshwa hapa chini na njia zao za REST hazijasajiliwa kabisa."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Kache ya ukurasa mzima"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Kwenye seva ya LiteSpeed, kurasa hutolewa na seva ya mtandao kabla WordPress haijaanza kufanya kazi. Kwenye seva nyingine yoyote, programu jalizi hii huhifadhi kila ukurasa kama faili na kuutoa kabla WordPress haijapakia. Hapa ndipo kasi yote takriban inakotoka."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Hifadhi kurasa kwenye kache kwa wageni ambao hawajaingia kwenye akaunti"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Muda ambao ukurasa unakaa kwenye kache"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Sekunde. Wiki moja inafaa tovuti nyingi; tovuti ya habari inayochapisha kila saa inahitaji muda mfupi zaidi."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Muda ambao kivinjari cha mgeni huweka picha na hati tumizi"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Sekunde. Inahusu picha, CSS na JavaScript pekee — haihusu kurasa kamwe. Weka 0 ili kuiachia mwenyeji wako."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Wagenzi walioingia kwenye mfumo"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Kamwe usimhudumie mgeni aliyeingia kwenye akaunti yake ukurasa uliowekwa kwenye kache"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "On ndiyo jibu salama na chaguo-msingi. Izimie tu ikiwa unajua kwamba kila kurasa iliyohifadhiwa kwenye kashia ni sawa kwa kila mtumiaji aliyeingia — tovuti ya uanachama ndiyo sababu ya kawaida ya kutofanya hivyo."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Muda tofauti wa maisha kwa maudhui tofauti"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Kwa mfano: kurasa za bidhaa za duka kwa saa moja, wakati kila kitu kingine kinakaa wiki moja."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Ongeza sheria"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Aina ya maudhui"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Sekunde"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Akiba ya vitu (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Mwenyeji wako anaendesha akiba binafsi ya vitu vya Redis kwa tovuti hii na kuiweka ikiwa imesanidiwa. Hakuna cha kusanidi hapa; hali iliyo juu ya skrini hii inaonyesha ikiwa inafanya kazi."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Huweka akiba matokeo ya hoja za hifadhidata. Inasaidia zaidi kwenye duka lenye shughuli nyingi au tovuti yenye trafiki kubwa ya walioingia kwenye akaunti, ambapo akiba ya kurasa haiwezi kusaidia."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Sakinisha kijenzi cha kache ya vitu cha Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Inahitaji kiendelezi cha phpredis. Ikiwa haipo, sanduku lililo juu ya skrini hii linaeleza hivyo."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Mwenyeji wa Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Mlango wa Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Hifadhidata ya Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Mpe kila tovuti kwenye Redis inayoshirikiwa nambari yake yenyewe, la sivyo zitafuta kashi za kila moja."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Jina la mtumiaji la Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Ni kwa ajili ya seva ya Redis yenye watumiaji wa ACL (Redis 6 au toleo jipya zaidi). Acha wazi ili uingie ukitumia nenosiri pekee."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Nenosiri la Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Acha wazi ikiwa Redis yako haihitaji moja."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Kiambishi awali cha kitufe"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Njia mbadala ya nambari tofauti ya hifadhidata wakati huwezi kuwa nayo."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Usafishaji-otomatiki wa akili"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Futa kiotomatiki kurasa zilizoathiriwa wakati maudhui yanabadilika"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Baada ya sasisho"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Futa kila kitu baada ya sasisho la mfumo mkuu, programu-jalizi au mandhari"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Baada ya maoni"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Futa ukurasa wa chapisho wakati maoni juu yake yameidhinishwa"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Zima hii kwenye sehemu ya maoni yenye shughuli nyingi, ambapo inaweza kufuta ukurasa huo huo mamia ya mara kwa saa."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Usihifadhi kamwe kwenye akiba haya"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Viwango maalum vya WordPress na WooCommerce vinatumika kila wakati—kikapu, malipo, akaunti yangu na kipindi chochote kilichoingia havihifadhiwa kwenye kache kamwe, chochote kilicho hapa chini."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Anwani"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Njia moja kwa kila mstari, kwa mfano <code>/basket</code>. <code>*</code> inayofuata mwishoni inalingana na kila kitu kilicho chini yake."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Vigezo vya ulizo"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Ukurasa wenye mojawapo ya haya hauhifadhiwi kamwe kwenye kache — kwa mfano, ishara ya hakiki ya mara moja tu."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Vidakuzi"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Mgeni anayebeba moja ya hizi daima hutumiwa ukurasa mpya."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Kila ukurasa uliowekwa kwenye akiba umefutwa. Zitajengwa upya kadiri wageni wanavyofika."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Akiba ya vitu imesakinishwa, lakini haihifadhi chochote."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Kache ya ukurasa imewashwa, bado kurasa hazijahifadhiwa."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress bado haijapakia kidondusha cha kache ya ukurasa. Huanza kwenye upakiaji wa ukurasa unaofuata; ikiwa haifanyi hivyo, angalia kwamba WP_CACHE ni ya kweli katika wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Akiba ya vitu imewashwa, lakini seva hii haina usaidizi wa Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Upanuzi wa phpredis haujasakinishwa, kwa hivyo programu jalizi ya kuangusha haitumiki na WordPress inarejelea akiba yake ya kumbukumbu ya ndani. Mwombe mwenyeji wako kuwezesha phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Hakuna kinachowekwa kwenye akiba."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Kache zote mbili zimezimwa, kwa hivyo programu jalizi hii haifanyi tovuti iwe ya kasi zaidi."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Uhifadhi wa akiba umewashwa kwenye tovuti hii."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis imekataa jina la mtumiaji au nenosiri. Angalia kitambulisho cha Redis katika wp-config.php au kwenye skrini hii."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis imekubali kuingia lakini hairuhusu tovuti hii kuhifadhi funguo zake. Mtumiaji wa Redis anahitaji ruhusa kwa kiambishi awali cha ufunguo wa tovuti hii."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis imekataa nambari ya hifadhidata. Angalia mpangilio wa hifadhidata ya Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis imeishiwa na kumbukumbu na inakataa data mpya."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Kiendelezi cha phpredis hakijasakinishwa, kwa hiyo WordPress inatumia kache yake ya ndani ya kumbukumbu. Mwombe mwenyeji wako wa wavuti awezeshe phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED imewekwa katika wp-config.php, kwa hiyo akiba ya kitu imezimwa."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Seva ya Redis haikuwezekana kufikiwa. Angalia mwenyeji na bandari ya Redis, na uhakikishe kuwa Redis inafanya kazi."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis haijarudisha thamani ambayo imetoka tu kuandikwa ndani yake. Angalia kumbukumbu za seva ya Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Seva ya mtandao"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — kurasa zinahifadhiwa kwenye kache na seva ya wavuti"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "si LiteSpeed — kurasa zinahifadhiwa kwenye diski na programu-jalizi hii"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Kurasa zilizohifadhiwa kwenye diski"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Usaidizi wa Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis imewekwa"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis haijasakinishwa"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Muda wa kuishi wa ukurasa"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Huna ruhusa ya kusafisha akiba."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Ombi la kusafisha akiba limewasilishwa."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: kache nyingine ya vitu imewekwa, kwa hivyo kache ya vitu ya Redis haisimamiwi na programu-jalizi hii."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "kimegunduliwa"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "hakijagunduliwa"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "kiendelezi cha phpredis hakipo"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "imesakinishwa, haihifadhi chochote"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "inayotumika, inasimamiwa na mwenyeji wako"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "amilifu"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "haifanyi kazi"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "Akiba ya LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Akiba ya vitu ya Redis:"
 
@@ -421,15 +438,15 @@ msgstr "Haikuweza kuondoa kiendeshi cha akiba ya vitu."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Mfumo wa faili wa WordPress hauwezi kuandikwa, kwa hivyo kiendeshi cha akiba ya vitu hakikuweza kusimamiwa."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Programu jalizi nyingine ya akiba ya kurasa imeweka wp-content/advanced-cache.php. Ondoa programu jalizi hiyo kwanza, au uendelee kutumia akiba yake ya kurasa."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Folda ya wp-content/cache/zinn-cache haikuweza kuandikwa, kwa hivyo kurasa haziwezi kuwekwa kwenye kache."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php haikuwezi kuandikwa, kwa hiyo kurasa haziwezi kuwekwa kwenye akiba."
 
@@ -4916,3 +4933,109 @@ msgstr "Boresha"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s iliyopita"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Kitendo hakikuweza kukamilishwa. Jaribu tena, na ikiwa kitaendelea kushindwa, wasiliana na msimamizi wa tovuti."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Thamani inayohitajika inakosekana au ina umbizo lisilo sahihi. Angalia mpango wa ingizo wa uwezo huo."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Tovuti imekataa ombi hilo."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Ruhusu wasaidizi wa AI kama vile Claude, Cursor au VS Code wafanye kazi kwenye tovuti hii kwa ajili yako kupitia MCP (Model Context Protocol). Wanaingia kama mtumiaji wa WordPress aliye na nenosiri la programu na wanaweza kufanya tu kile ambacho mtumiaji huyo anaruhusiwa kufanya."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Wakala wa AI wanahitaji WordPress 6.9 au matoleo ya baadaye. Sasisha WordPress ili uweze kuitumia."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Anwani ya muunganisho (Sehemu ya mwisho ya MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Undaa nenosiri la programu kwa mtumiaji wako"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Ongeza hii kwenye mipangilio ya MCP ya programu yako ya AI, pamoja na jina lako la mtumiaji na nenosiri hilo:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: weka ingizo lile lile chini ya \"servers\" katika .vscode/mcp.json, sio chini ya \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Zana ambazo wakala wa AI anaweza kutumia hapa (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Mwongozo wa mtumiaji: Mawakala wa AI na MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Nyaraka za watengenezaji: uwezo, REST na MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Angalia na ufute kashi ya tovuti hii na ubadilishe mipangilio yake ya kashi ukitumia Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Hali ya kache ya ukurasa na kipengee, usafishaji na mipangilio."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Soma hali ya kache"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Inarejesha iwapo akiba ya kurasa na akiba ya vitu vimewashwa na vinafanya kazi, ni kurasa ngapi zilizohifadhiwa kwenye akiba, na muunganisho wa akiba ya vitu na nambari za kupigwa."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Soma mipangilio ya kache"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Inarejesha kila mpangilio wa kache. Nenosiri la Redis halirudishwi kamili, bali linaonyesha tu iwapo limehifadhiwa."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Badilisha mipangilio ya kache"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Inabadilisha mipangilio unayotuma na kuweka iliyobaki (akiba ya ukurasa, muda ambao kurasa hukaa kwenye akiba, akiba ya kitu na muunganisho wake wa Redis, sheria za kufuta na vizuizi). Thamani zinakaguliwa na kusahihishwa kikamilifu kama ilivyo kwenye skrini ya Akiba."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Rejesha mipangilio ya kache kwenye hali yao ya awali"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Hurejesha kila mpangilio wa kache kwenye hali yake chaguomsingi, kama ifanyavyo kitufe cha Kuweka upya. Nenosiri lililohifadhiwa la Redis nalo linaondolewa."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Soma ripoti ya utambuzi"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Inarudisha ripoti ya utambuzi ambayo usaidizi unaomba: matoleo, vikomo vya seva, hali ya akiba (cache) na hitilafu za hivi karibuni. Haina nywila wala funguo zozote."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Futa akiba"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Inakata kurasa zilizohifadhiwa kwenye kache: kila kitu (all: true), anwani fulani (urls) au kila kitu kilicho na lebo (tags). Kurasa hujengwa upya wageni wanapowasili."

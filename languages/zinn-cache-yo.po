@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Keshìsi"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Ìpamọ́ ojú ewé"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Àtòjọ ìkójọpọ̀ nǹkan"
 
@@ -56,340 +57,356 @@ msgstr "Ń yọ kúrò"
 msgid "Exclusions"
 msgstr "Àwọn ohun tí a yọ kúrò"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Awọn aṣoju AI (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Sọ ohun gbogbo di mímọ́ báyìí"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Gbogbo ojú-ewé tí a ti fipamọ́ ni a ti sùn nù yóò sì tún jẹ́ mímọ̀ bí àwọn alábàákẹ́gbẹ́ ṣe ń dé. Ṣé o fẹ́ tẹ̀ síwájú?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Gba awọn oluranlọwọ AI laaye (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Pipa: Awọn irinṣẹ ti o wa ni isalẹ ati awọn ọna REST wọn ko forukọsilẹ rara."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Ímọ́lẹ̀ ojú-ewé kíkún"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Lori sẹ́fà LiteSpeed, àwọn ojúewé ni a n gbé kalẹ̀ nipasẹ sẹ́fà wẹẹbu ṣáájú ki WordPress tó bẹ̀rẹ̀ sí í ṣiṣẹ́. Lori eyikeyi sẹ́fà miiran, plọọgi-in yii n tọju ojuewé kọọkan gẹgẹ bi faili kan ti o si n gbe e kale ṣáájú ki WordPress tó kojọ. Eyi ni ibi ti o fẹrẹ jẹ pe gbogbo iyara ti wa."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Ṣe kaṣi (cache) àwọn ojú-ewé fún àwọn alábèwò tí kò tíì wọlé"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Bii pẹlu pẹlu ti oju-iwe kan fi duro ninu kaṣi (cached)"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Àwọn ìṣẹ́jú ààyá. Ọ̀sẹ̀ kan dára fún ọ̀pọ̀ jù lọ àwọn ojú òpó wẹ́bù; ojú òpó ìròyìn tí ó ń tẹ àwọn ìròyìn jáde ní ẹ̀kọ̀ọ̀kan wá ààyá tí ó kéré púpọ̀."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Bẹ́ẹ̀ ni àkókò tí ẹ̀rọ àwárí alábẹ̀wò kan máa ń tọ́jú àwọn àwòrán àti àwọn ìwé àkọsílẹ (scripts) sílẹ̀"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Àwọn ìṣẹ́jú-àáyá. Ó kan àwọn àwòrán, CSS àti JavaScript nìkan — kì í ṣe àwọn ojú ewé láéláé. Ṣètò sí 0 láti fi èyí sílẹ̀ fún ilé-iṣẹ́ tí ó gbà yín sí orí ayélujára (host)."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Awọn alejo tiwọle"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Máṣe fi ojú ẹ̀rọ ìpamọ́ hàn fún àlejò tí ó ti wọlé"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Tí ó bá wà nílẹ̀ jẹ́ ìdáhùn aláìléwu àti aṣàyàn ìpilẹ̀. Pa á rẹ́ nìkan bí o bá mọ̀ pé gbogbo ojú ewé tí a kó pamọ́ jẹ́ ọ̀kan náà fún olùwọlé kọ̀ọ̀kan — ojú ààyè ọmọ ẹgbẹ́ ni ìdí déédé tí a kò fi ń ṣe é."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Àwọn àkókò ìgbé ayé tó yàtọ̀ fún àwọn ohun àkóópọ̀ tó yàtọ̀"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Fún àpẹẹrẹ: ojú ìwé ọjà ilé ìtajà fún wákàtí kan, nígbà tí ohun gbogbo yòókù wà fún ọ̀sẹ̀ kan."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Fi kún òfin kan"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Irú akópa"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Àáyá"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Ìpamọ́-nǹkan (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Olùgbalejo rẹ nṣiṣẹ ibi aṣoju nkan Redis aladani kan fun aaye yii o si tọju rẹ ni mimu. Ko si ohun kan lati ṣeto nibi; ipo ti o wa ni oke iboju yii fihan boya o n ṣiṣẹ."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Ó n ṣe àkójọpọ̀ àwọn àbájáde ìbéèrè ibùpamọ́ data. Ó máa ń ran àwọn ilé ìtajà tí ó ní àwọn oníbàárà púpọ̀ lọ́wọ́ jù lọ, níbi tí àkójọpọ̀ ojú ewé kò ti lè ṣeé ṣe."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Fi olùpaṣepọ̀ aṣefojúri Redis sori"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "O nilo ėrė siu phpredis. Ti o ba sonu, apoti ti o wa loke iboju yii sọ bẹẹ."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Olùgbàlejò Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Èbúté Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Àkójọ-ìsọfúnni Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Fun aaye kọọkan lori Redis ti a pin ni nọmba tirẹ, tabi wọn yoo nu kaṣe ara wọn kuro."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Orukọ olumulo Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Fun ṣeewa Redis nìkan pẹ̀lú àwọn olùlò ACL (Redis 6 tàbí àfikún). Fi sílẹ̀ ní ṣofo láti wọlé pẹ̀lú ọ̀rọ̀ aṣínà nìkan."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Ọ̀rọ̀ aṣínà Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Fi o si lasan ti Redis rẹ ko ba nilo rẹ."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Àlẹ̀mọ́ kọ́kọ́"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Yiyan miiran si nọmba ibi ipamọ dataọtọ nigbati o ko le ni ọkan."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Ìsọ-di-mímọ́ aládàáṣe olóye"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Pa àwọn ojú-ewé tí ó kan náà rẹ́ fúnrarẹ̀ nígbà tí àkóópọ̀ bá yípadà"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Lẹhin awọn imudojuiwọn"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Pa ohun gbogbo rẹ kuro lẹhin imudojuiwọn kòkòó, pilogi tabi akori"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Lẹ́yìn àlàyé"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Pa oju-iwe ifiweranṣẹ kan nu nigbati asọye lori rẹ ba fọwọsi"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Paa eyi ti lori abala ọrọ iwọye ti o pọ pupọ, nibiti o ti le nù oju-iwe kan naa kuro ni ọọdunrun igba ninu wakati kan."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Má ṣe kó awọn wọnyi pamọ́ síbi ìpamọ́ (cache) kankan"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Awon iye aiyipada ti o ye ti WordPress ati WooCommerce ni a n lo nigbagbogbo — kete, ibi isanwo, iroyin mi ati eyikeyi igba wiwọle ti a fowo si ni a ki nfi pamọ lailai, ohunkohun ti o ba wa ni isalẹ."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Àwọn àdírẹ́sì"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Ọ̀nà kan fún ìlà kọ̀ọ̀kan, fún àpẹẹrẹ <code>/basket</code>. <code>*</code> tó wà ní ìparí máa ń bá ohun gbogbo tó wà lábẹ́ rẹ̀ mu."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Àwọn ìpìlẹ̀ ìbéèrè"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Ojú-ewé tí ó ní ọ̀kan nínú wọ̀nyí kò ní ń ṣe ìpamọ́ rárá — fún àpẹẹrẹ àmì àkọ́kọ́-ààyè ẹ̀kejì kan."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Àwọn kuki"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Awon alejo ti o ni ọkan ninu awọn wọnyi ni a n fun ni oju-iwe titun ni gbogbo igba."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Gbogbo ojú-ewé tí a ti fi pamọ́ fún ìgbà díẹ̀ ni a ti sọ nù. Wọn yoo tun sọ di tuntun bí àwọn alábẹ̀wò ṣe ń dé."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "A ti fi ibi-itoju ohun elo sori ẹrọ, ṣugbọn ko n tọju ohunkohun."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Akọọlẹ pamọ ti oju-iwe wa tan, ṣugbodun a ko tii n ṣafipamọ awọn oju-iwe naa sibẹ."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress kò tíì gbé drop-in ìpamọ́ ojú-ewé (page-cache) sórí ayélujára náà. Ó máa bẹ̀rẹ̀ nígbà tí ojú-ewé tí ó kàn bá ń kó; bí kò bá ṣe bẹ́ẹ̀, ṣàyẹ̀wò pé WP_CACHE jẹ́ otítọ́ (true) nínú wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Àpò ìpamọ́ ohun púpọ̀ wà l'ọ́wọ́, ṣùgbọ́n sẹ̀fà yìí kò ní ìtìlẹ́yìn Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Àì śe ètò-àfíkùn phpredis ni a fi sí i, nítorí náà àìśe ètò náà kò jé kí a lè lò ó, sísí àyè sí WordPress sì ń lo ìpàmó ìrántí ara rẹ. Bèrè lọ́wọ́ olùgbàkà rẹ láti jẹ kí phpredis sisẹ́."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Kò sí ohun tí a ń fi pamọ́ sínú káṣì."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Àwọn àtúnṣe méjèèjì ti pa, nítorí náà àfikún yìí kò mú kí ojú-wẹ́bù náà yára síi."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Ìpamọ́ wà ní sísẹ́ lórí ojú òpó wẹ́bù yìí."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis kọ orúkọ olùṣe tàbí ọ̀rọ̀ aṣínà náà. Ṣàyẹ̀wò àwọn ẹ̀rí ìdánimọ̀ Redis nínú wp-config.php tàbí lórí iboju yìí."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis gbawọ fun wíwọlé ṣugbọn kò gba aaye yii laaye lati fipamọ awọn bọtini rẹ. Olumulo Redis nilo aṣẹ fun aami-iwaju bọtini aaye yii."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis kọ nọmba ibi ipamọ data naa. Ṣayẹwo eto ibi ipamọ data Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis ti ni iranti ti o tan ti o si n kọ data titun."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "A ko fi ìgbòkègbòó phpredis sori ẹrọ, nitorina WordPress n lo àfikún ìpamọ́ rẹ̀ ninu iranti. Bi olùgbàlejò rẹ lati jẹ ki phpredis ṣiṣẹ."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "A ti ṣeto WP_REDIS_DISABLED ninu wp-config.php, nitorina a ti pa ibi ipamọ ohun (object cache) mọ."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Ko le de ba sẹ́wà Redis. Ṣàyẹ̀wò olùgbàgbọ́ àti èbúté Redis, kí o sì rí i pé Redis ń ṣiṣẹ́ lọ́wọ́."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis kò dáye tí a ṣẹ̀ṣẹ̀ kọ sínú rẹ̀ padà. Ṣàyẹ̀wò àwọn àkọsílẹ̀ ẹ̀rọ ìṣẹ̀ṣẹ Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Sẹ́fà wẹ́bù"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — olupin webu nṣe ikojọpọ kaṣe fun awọn oju-iwe naa"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "kii iṣẹ LiteSpeed — awọn oju-iwe ti wa ni ipamọ sori disk nipasẹ afikun yii"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Àwọn ojúewé tí a ti fi pamọ́ sórí disk"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Àtìlẹ́yìn Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "a fi phpredis sori ẹrọ"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis ko ni iṣagbega"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Akoko aye oju-iwe"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "A kò gbà ọ́ láàyè láti sọ ìpamọ́ di mímọ́."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "A ti béèrè fún sísọ ìpamọ́ di mímọ́."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: a fi ohun elo ìpamọ́ ohun àmúṣelọ́wọ́ mìíràn sori, nitorina a ko n ṣakoso ohun elo ìpamọ́ ohun àmúṣelọ́wọ́ Redis nipasẹ àfikún yii."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "a rí i"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "a kò rí i"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "ẹ̀yà-àfikún phpredis kò sí"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "ti fi sori ẹrọ, ko fipamọ ohunkohun"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "ti n ṣiṣẹ, ti olugbalejo rẹ nṣakoso rẹ"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "ń ṣiṣẹ́"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "kò ń ṣiṣẹ́"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "Ìpamọ́ LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Ìpamọ́-nǹkan Redis:"
 
@@ -421,15 +438,15 @@ msgstr "A kò lè yọ drop-in ìpamọ́-nǹkan kúrò."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "A kò lè kọ sínú ètò-fáìlì WordPress, nítorí náà a kò lè ṣàkóso drop-in ìpamọ́-nǹkan."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Płọgìnnì cache ojú-ewé mìíràn ti fi wp-content/advanced-cache.php sori ẹrọ. Yọ plọgìnnì yẹn kuro kọkọ, tabi tẹsiwaju lati lo cache ojú-ewé rẹ̀."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "A ko le kọ sí inú fọ́lídà wp-content/cache/zinn-cache, nítorí náà a ko le fi pamọ́ fún àwọn ojú ewé."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "A kò lè kọ wp-content/advanced-cache.php, nítorí náà a kò lè fi ojú èwé pamọ́ (cache)."
 
@@ -4915,3 +4932,109 @@ msgstr "Ṣe agbega"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s sẹ́yìn"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "A ò lè parí ìṣe náà. Gbìyànjú lẹ́ẹ̀kan sí i, tíkò bá ṣiṣẹ́, kàn sí alábòjútó ojú-òpó wẹ́bù náà."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Iye ti o nilo ti sonu tabi o ni fọọmu ti ko tọ. Ṣayẹwo schema titẹ sii ti agbara naa."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Ojula kọ ìbéèrè náà silẹ."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Jẹ́ kí àwọn olùrànlọ́wọ́ AI bí i Claude, Cursor tàbí VS Code ṣiṣẹ́ lórí ojú-wẹ́bù yìí fún ọ nípasẹ̀ MCP (Model Context Protocol). Wọ́n ń wọlé gẹ́gẹ́ bí olùlò WordPress pẹ̀lú ọ̀rọ̀ aṣínà ìṣètò (application password) wọ́n sì lè ṣe ohun tí a yọ̀ǹda fún olùlò yẹn nìkan."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Àwọn aṣojú AI nílò WordPress 6.9 tàbí àwọn tí ó tẹ̀ lé e. Ṣe ìgbékalẹ̀ WordPress sí ìpele tuntun láti lò wọ́n."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Àdírẹ́sì ìsopọ̀ (opin MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Ṣẹda ọ̀rọ̀ aṣínà ìṣàfilọ́lẹ̀ kan fún olùṣe rẹ"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Fi eyi kun eto MCP ti ohun elo AI rẹ, pẹlu orukọ olumulo rẹ ati ọrọ igbaniwọle yẹn:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: fi akọsilẹ kanna si abẹ \"servers\" ninu .vscode/mcp.json, kii ṣe labẹ \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Àwọn irinṣẹ́ tí ẹnìkejí AI lè lò níhìn-ín (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Itọsọna olumulo: Awọn aṣoju AI ati MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Àwọn ìwé ìtọ́nisọ́nà fún olùgbóòkè: àwọn agbára, REST àti MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Ṣàyẹ̀wò kí o sì sọ ètò ìpamọ́ ojú-ewé yìí di mímọ́, kí o sì yí àwọn ètò ìpamọ́ rẹ̀ padà pẹ̀lú Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Ipo kafeeti oju-ewe ati ohun elo, fifi nu kuro ati awọn eto."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Ka ipo kaṣe naa"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Ó ń dá àbájáde padà nípa bóyá ìpamọ́ ojú-ewé àti ìpamọ́ ohun-èlò wà lórí tí wọ́n sì ń ṣiṣẹ́, iye ojú-ewé tí a kó pamọ́, àti asopọ̀ ìpamọ́ ohun-èlò àti àwọn nọ́mbà ìkọlù."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Ka awọn eto cache"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Ó dá gbogbo ètò cache ayélujára padà. Ọ̀rọ̀ aṣínà Redis kò ní padà wá rárá, èyí tó hàn nìkan ni bóyá a ti fi pamọ́."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Yi awọn eto kaṣe pada"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Ó yí àwọn ètò tí o rán padà tí ó sì pa àwọn ìyókù mọ́ (ìpamọ́ ojú-ewé, bí ojú-ewé ṣe pẹ́ tó nínú ìpamọ́, ìpamọ́ ohun púpọ̀ àti àsopọ̀ Redis rẹ̀, àwọn òfin ìpamọ́ àti àwọn ìyàsọtọ̀). A ṣàyẹ̀wò àwọn iye náà a sì tún wọn ṣe gẹ́gẹ́ gẹ́gẹ́ bí ó wà lórí ojú-ìwé Ìpamọ́."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Da awọn eto kaṣe pada si awọn iye aiyipada wọn"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Ó mú gbogbo ètò káṣì padà sí ipò ìbẹ̀rẹ̀ wọn, gẹ́gẹ́ bí bọ́tìnnì Reset ṣe ń ṣe. Wọ́n tún yọ ọ̀rọ̀ aṣínà Redis tí a fipamọ́ kúrò pẹ̀lú."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Ka ìròyìn àyẹ̀wò rẹ̀"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Ó dá ìjábọ̀ àyẹ̀wò tí ìtìlẹ́yìn béèrè padà: àwọn àtẹ̀jáde, àwọn àlà sẹ̀fà (server limits), ipò cache àti àwọn àṣìṣe àìpẹ́ yìí. Kò ní àwọn ọ̀rọ̀ aṣínà (passwords) tàbí bọ́tìnnì (keys) kankan nínú."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Pa kaṣé náà nù"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Ó sọ àwọn ojú-ewé tí ó ti pamọ́ sílẹ̀ nù: ohun gbogbo (all: true), àwọn àdírẹ́sì kan (urls) tàbí ohun gbogbo tí a fi àmì sí (tags). A tún àwọn ojú-ewé náà kọ́ bí àwọn alábẹ̀wò ṣe ń dé."

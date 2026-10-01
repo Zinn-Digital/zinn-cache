@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Khasanah"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Cache halaman"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Kerosokan objek"
 
@@ -56,340 +57,356 @@ msgstr "Sedang mengosongkan"
 msgid "Exclusions"
 msgstr "Pengecualian"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Ejen AI (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Bersihkan segala-galanya sekarang"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Setiap halaman yang di-cache akan dibuang dan akan dibina semula semasa pelawat tiba. Teruskan?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Benarkan ejen AI (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Tutup: alat di bawah dan laluan REST mereka sama sekali tidak didaftarkan."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Cache halaman penuh"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Pada pelayan LiteSpeed, halaman dihidangkan oleh pelayan web sebelum WordPress berjalan. Pada mana-mana pelayan lain, palam ini menyimpan setiap halaman sebagai fail dan menghidangkannya sebelum WordPress dimuatkan. Dari sinilah hampir semua kelajuan diperoleh."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Simpan cache halaman untuk pelawat yang belum log masuk"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Berapa lama sesawang kekal dalam cache"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Saat. Seminggu sesuai untuk kebanyakan tapak; tapak berita yang menerbitkan setiap jam memerlukan masa yang jauh lebih singkat."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Berapa lama pelayar pelawat menyimpan imej dan skrip"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Saat. Terpakai untuk imej, CSS dan JavaScript sahaja — tidak pernah untuk halaman. Tetapkan kepada 0 untuk menyerahkan ini kepada hos anda."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Pelawat yang telah log masuk"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Jangan sekali-kali menghidangkan halaman yang dalam cache kepada pelawat yang telah log masuk"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Hidup adalah jawapan yang selamat dan lalai. Matikannya hanya jika anda tahu setiap halaman dalam cache adalah sepunya untuk setiap pengguna yang log masuk – tapak keahlian adalah sebab biasa untuk tidak melakukannya."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Jangka hayat berbeza untuk kandungan yang berbeza"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Contohnya: halaman produk kedai selama sejam, manakala yang lain kekal seminggu."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Tambah peraturan"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Jenis kandungan"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Saat"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Cache objek (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Hos anda menjalankan cache objek Redis peribadi untuk tapak ini dan mengekalkannya dikonfigurasikan. Tiada apa yang perlu disediakan di sini; status di bahagian atas skrin ini menunjukkan sama ada ia berfungsi."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Mencache keputusan pertanyaan pangkalan data. Ia paling membantu pada kedai yang sibuk atau tapak dengan banyak trafik yang log masuk, di mana cache halaman tidak dapat melakukannya."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Pasang drop-in cache objek Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Memerlukan sambungan phpredis. Jika ia tiada, kotak di atas skrin ini akan memberitahu anda."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Hos Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Port Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Pangkalan data Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Berikan nombor tersendiri kepada setiap tapak pada Redis yang dikongsi, atau ia akan memadamkan cache antara satu sama lain."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Nama pengguna Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Hanya untuk pelayan Redis dengan pengguna ACL (Redis 6 atau terkini). Biarkan kosong untuk log masuk menggunakan kata laluan sahaja."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Kata laluan Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Biarkan kosong jika Redis anda tidak memerlukannya."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Awalan kunci"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Alternatif kepada nombor pangkalan data yang berasingan apabila anda tidak mempunyainya."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Auto-pembersihan pintar"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Kosongkan halaman yang terjejas secara automatik apabila kandungan berubah"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Selepas kemas kini"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Kosongkan semuanya selepas kemas kini teras, palam atau tema"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Selepas ulasan"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Kosongkan halaman siaran apabila ulasan mengenainya diluluskan"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Matikan ini pada bahagian komen yang sangat sibuk, di mana ia boleh mengosongkan halaman yang sama beratus-ratus kali sejam."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Jangan cache ini"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Tetapan lalai WordPress dan WooCommerce yang munasabah sentiasa diguna pakai — troli, pembayaran, akaun-saya dan sebarang sesi log masuk tidak akan sekali-kali dicache, walau apa pun di bawah."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Alamat"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Satu laluan setiap baris, contohnya <code>/basket</code>. Simbol <code>*</code> di hujung memadankan segala-galanya di bawahnya."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Parameter pertanyaan"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Halaman yang membawa salah satu daripadanya tidak pernah dikos-simpan — contohnya token pratonton sekali guna."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Kuki"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Pelawat yang membawa salah satu daripadanya sentiasa dihidangkan dengan halaman baharu."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Setiap halaman yang dicache telah dibuang. Halaman tersebut akan dibina semula apabila pelawat tiba."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Cache objek telah dipasang, tetapi ia tidak menyimpan apa-apa."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Cache halaman dihidupkan, tetapi halaman masih belum disimpan lagi."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress belum memuatkan drop-in cache halaman. Ia bermula pada muat halaman seterusnya; jika tidak, semak sama ada WP_CACHE adalah true dalam wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Cache objek dihidupkan, tetapi pelayan ini tiada sokongan Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Sambungan phpredis tidak dipasang, jadi pemalam drop-in tidak boleh digunakan dan WordPress kembali menggunakan cache dalam memori miliknya sendiri. Sila minta hos anda untuk mendayakan phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Tiada yang sedang dicache."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Kedua-dua cache dimatikan, jadi palam ni tidak menjadikan tapak web itu lebih pantas."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Pengeosan aktif pada tapak ini."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis menolak nama pengguna atau kata laluan. Semak kelayakan Redis dalam wp-config.php atau pada skrin ini."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis menerima log masuk tetapi tidak membenarkan tapak ini menyimpan kekunci miliknya. Pengguna Redis memerlukan kebenaran untuk awalan kekunci tapak ini."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis menolak nombor pangkalan data. Semak tetapan pangkalan data Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis kehabisan memori dan menolak data baharu."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Sambungan phpredis tidak dipasang, jadi WordPress menggunakan cache dalam memori sendiri. Sila minta hos anda untuk mendayakan phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED ditetapkan dalam wp-config.php, jadi cache objek dimatikan."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Pelayan Redis tidak dapat dihubungi. Semak hos dan port Redis, serta pastikan Redis sedang berjalan."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis tidak membalas nilai yang baru sahaja ditulis kepadanya. Semak log pelayan Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Pelayan web"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — halaman dicache oleh pelayan web"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "bukan LiteSpeed — halaman dicache pada cakera oleh palam in"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Halaman yang disimpan pada cakera"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Sokongan Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis telah dipasang"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis tidak dipasang"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Tempoh hayat halaman"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Anda tidak dibenarkan membersihkan cache."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Pembersihan cache telah diminta."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: satu lagi drop-in cache objek telah dipasang, jadi cache objek Redis tidak diuruskan oleh plugin ini."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "dikesan"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "tidak dikesan"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "sambungan phpredis tiada"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "dipasang, tidak menyimpan apa-apa"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "aktif, diuruskan oleh hos anda"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "aktif"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "tidak aktif"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "Cache LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Cache objek Redis:"
 
@@ -421,15 +438,15 @@ msgstr "Tidak dapat mengalih keluar drop-in cache objek."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Sistem fail WordPress tidak boleh ditulis, jadi drop-in cache objek tidak dapat diurus."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Plugin cache halaman yang lain telah memasang wp-content/advanced-cache.php. Buang plugin tersebut dahulu, atau teruskan menggunakan cache halamannya."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Folder wp-content/cache/zinn-cache tidak dapat ditulis, jadi halaman tidak boleh dicache."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php tidak dapat ditulis, jadi halaman tidak boleh disendirikan."
 
@@ -4915,3 +4932,109 @@ msgstr "Naik taraf"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s yang lalu"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Tindakan tersebut tidak dapat diselesaikan. Cuba lagi, dan jika ia terus gagal, hubungi pentadbir tapak."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Nilai yang diperlukan hilang atau mempunyai bentuk yang salah. Semak skema input keupayaan tersebut."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Tapak web telah menolak permintaan tersebut."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Biarkan pembantu AI seperti Claude, Cursor atau VS Code berusaha pada tapak ini untuk anda melalui MCP (Model Context Protocol). Mereka log masuk sebagai pengguna WordPress dengan kata laluan aplikasi dan hanya boleh melakukan perkara yang dibenarkan oleh pengguna tersebut."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Ejen AI memerlukan WordPress 6.9 atau lebih baharu. Kemas kini WordPress untuk menggunakannya."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Alamat sambungan (titik akhir MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Buatkan kata laluan aplikasi untuk pengguna anda"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Tambahkan ini pada tetapan MCP apl AI anda, berserta nama pengguna dan kata laluan tersebut:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: letak entri yang sama di bawah \"servers\" dalam .vscode/mcp.json, bukan di bawah \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Alat yang boleh digunakan oleh ejen AI di sini (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Panduan pengguna: Ejen AI dan MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Dokumen pembangun: keupayaan, REST dan MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Semak dan kosongkan cache tapak ini serta tukar tetapan cachenya dengan Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Status, pembersihan, dan tetapan cache halaman dan objek."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Baca status cache"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Mengembalikan sama ada cache halaman dan cache objek dihidupkan dan berfungsi, berapa banyak halaman yang dicache, serta nombor sambungan dan hit cache objek."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Baca tetapan cache"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Memulangkan setiap tetapan cache. Kata laluan Redis tidak pernah dipulangkan, hanya sama ada satu telah disimpan."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Tukar tetapan cache"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Mengubah tetapan yang anda hantar dan mengekalkan selebihnya (singgahan halaman, tempoh halaman kekal disinggah, singgahan objek dan sambungan Redis miliknya, peraturan pembersihan serta pengecualian). Nilai disemak dan Betulkan persis seperti pada skrin Singgahan."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Pulihkan tetapan cache kepada lalai asal mereka"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Mengembalikan setiap tetapan cache kepada lalai, seperti yang dilakukan oleh butang Tetapkan Semula. Kata laluan Redis yang disimpan turut dialih keluar."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Baca laporan diagnostik"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Menghasilkan laporan diagnostik yang diminta oleh sokongan: versi, had pelayan, keadaan cache dan ralat terkini. Ia tidak mengandungi kata laluan atau kunci."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Kosongkan cache"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Membuang halaman yang telah di-cache: semuanya (all: true), beberapa alamat (urls) atau segala sesuatu yang mempunyai tag (tags). Halaman dibina semula apabila pelawat tiba."

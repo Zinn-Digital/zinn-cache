@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "מטמון"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "מטמון עמודים"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "מטמון אובייקטים"
 
@@ -56,340 +57,356 @@ msgstr "מרוקן"
 msgid "Exclusions"
 msgstr "החרגות"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "סוכני בינה מלאכותית (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "נקה את הכל עכשיו"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "כל עמוד המטמון נמחק וייבנה מחדש כאשר מבקרים יגיעו. להמשיך?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "התרת סוכני בינה מלאכותית (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "כבוי: הכלי להלן ונתיבי ה-REST שלהם אינם רשומים כלל."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "מטמון עמוד מלא"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "בשרת LiteSpeed, העמודים מוגשים על ידי שרת האינטרנט לפני ש־WordPress רץ. בשרת אחר כלשהו, תוסף זה מאחסן כל עמוד כקובץ ומגיש אותו לפני ש־WordPress נטען. מכאן נובעת כמעט כל המהירות."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "הסתר עמודים במטמון עבור מבקרים שאינם מחוברים"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "הזמן שבו עמוד נשאר במטמון"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "שניות. שבוע מתאים לרוב האתרים; אתר חדשות המפרסם מדי שעה דורש הרבה פחות."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "הזמן שבו הדפדפן של המבקר שומר תמונות וסקריפטים"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "שניות. חל על תמונות, CSS ו-JavaScript בלבד — לעולם לא על עמודים. הגדר ל-0 כדי להשאיר זאת לאחסון האתר שלך."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "מבקרים מחוברים"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "לעולם אל תגיש דף מטמון למבקר מחובר"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "\"פעיל\" היא התשובה הבאה בטוחה והברירת מחדל. כבה זאת רק אם אתה יודע שכל עמוד שמור במטמון זהה עבור כל משתמש מחובר – אתר חברויות הוא הסיבה הרגילה שלא לעשות זאת."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "מחזורי חיים שונים עבור תוכן שונה"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "לדוגמה: דפי המוצרים של חנות למשך שעה, בזמן שכל השאר נשאר שבוע."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "הוסף כלל"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "סוג תוכן"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "שניות"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "מטמון אובייקטים (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "המארח שלך מפעיל מטמון אובייקטים פרטי מסוג Redis עבור אתר זה ושומר עליו מוגדר. אין מה להגדיר כאן; המצב בראש מסך זה מראה אם הוא פועל."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "מטמן את תוצאות שאילתות מסד הנתונים. פעולה זו מסייעת במיוחד בחנות עמוסה או באתר עם תנועה רבה של משתמשים מחוברים, שבהם מטמן הדפים אינו יכול לסייע."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "התקן את תוסף מטמון האובייטים של Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "דרושה הרחבת phpredis. אם היא חסרה, התיבה שמעל מסך זה תציין זאת."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "מארח Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "פורט Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "מסד נתונים של Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "תן לכל אתר ב-Redis משותף מספר משלו, או שהם ינקו זה לזה את המטמון."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "שם משתמש של Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "רק עבור שרת Redis עם משתמשי ACL (Redis 6 או גרסה מתקדמת יותר). השאירו ריק כדי להתחבר באמצעות הסיסמה בלבד."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "סיסמת Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "השאר ריק אם ה-Redis שלך אינו זקוק לכך."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "קידומת מפתח"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "חלופה למספר מסד נתונים נפרד כאשר אי אפשר להחזיק בו."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "ניקוי אוטומטי חכם"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "נקה עמודים מושפעים באופן אוטומטי כאשר תוכן משתנה"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "לאחר עדכונים"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "נקה את כל מה שאחרי עדכון ליבה, תוסף או ערכת נושא"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "לאחר תגובה"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "נקה את עמוד הפוסט כאשר תגובה עליו מאושרת"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "כבה זאת באזור תגובות עמוס מאוד, שבו היא עשויה לנקות את אותו עמוד מאות פעמים בשעה."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "לעולם אל תבצע מטמון לאלה"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "ברירות המחדל ההגיוניות של WordPress ו-WooCommerce מיושלות תמיד — עגלת הקניות, קופה, חשבון שלי וכל הפעלה של משתמש מחובר אינם עוברים מטמון לעולם, ללא קשר למה שמופיע להלן."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "כתובות"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "נתיב אחד בכל שורה, לדוגמה <code>/basket</code>. התו <code>*</code> בסוף התואם לכל מה שמתחתיו."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "פרמטרי שאילתות"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "עמוד הנושא אסימון כזה לעולם אינו נשמר במטמון — לדוגמה, אסימון תצוגה מקדימה חד-פעמי."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "קובצי עוגיות"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "למבקר הנושא אחד מאלה תמיד מוגש עמוד טרי."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "כל הדפים המטומטמים פונו. הם ייבנו מחדש ככל שיגיעו מבקרים."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "מטמון האובייקטים מותקן, אך אינו שומר דבר."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "מטמון העמודים מופעל, אך עמודים טרם נשמרים."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "וורדפרס (WordPress) טרם טענה את קובץ ה-drop-in של מטמון העמודים. הוא יופעל בטעינת העמוד הבאה; אם לא, יש לוודא שערכו של WP_CACHE הוא true בקובץ wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "מטמון האובייקט פועל, אך לשרת זה אין תמיכה ב-Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "הרחבת phpredis אינה מותקנת, ולכן לא ניתן להשתמש בתוסף ו-WordPress חוזרת למטמון הפנימי שלה בזיכרון. יש לבקש מארח האתר לאפשר את phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "שום דבר אינו מטומן במטמון."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "שני המטמונים כבויים, כך שתוסף זה אינו מאיץ את האתר."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "התאמון פעיל באתר זה."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis סירב לשם המשתמש או לסיסמה. בדוק את פרטי ההתחברות של Redis בתוך wp-config.php או במסך זה."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis אישר את ההתחברות אך אינו מאפשר לאתר זה לאחסן את מפתחותיו. משתמש Redis זקוק להרשאה עבור קידומת המפתחות של אתר זה."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis סירב למספר מסד הנתונים. בדוק את הגדרת מסד הנתונים של Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis אזל מהזיכרון והוא מסרב לקבל נתונים חדשים."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "תוספת ה-phpredis אינה מותקנת, ולכן WordPress משתמשת במטמון הפנימי שלה בזיכרון. בקשו ממארח האתר שלכם להפעיל את phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED מוגדר בקובץ wp-config.php, ולכן מטמון האובייקט כבוי."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "לא ניתן היה ליצור קשר עם שרת ה-Redis. בדוק את מארח ה-Redis ואת היציאה, וודא ש-Redis פועל."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis לא החזיר את הערך שזה עתה נכתב אליו. בדוק את יומני הרישום של שרת Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "שרת אינטרנט"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — הדפים מנוהלים במטמון על ידי שרת האינטרנט"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "לא LiteSpeed — הדפים מנוהלים במטמון על ידי תוסף זה בכונן הקשיח"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "דפים מאוחסנים בדיסק"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "תמיכה ב-Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis מותקן"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis אינו מותקן"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "משך חיי העמוד"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "אינך רשאי לנקות את המטמון."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "התקבלה בקשה לניקוי המטמון."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: מודול מטמון עצמים אחר מותקן, ולכן מטמון העצמים של Redis אינו מנוהל על ידי תוסף זה."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "זוהה"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "לא זוהה"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "הרחבת phpredis חסרה"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "מותקן, לא שומר שום דבר"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "פעיל, מנוהל על ידי המארח שלך"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "פעיל"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "לא פעיל"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "מטמון LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "מטמון אובייקטים של Redis:"
 
@@ -421,15 +438,15 @@ msgstr "לא ניתן היה להסיר את תוסף ה-drop-in של מטמון
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "מערכת הקבצים של WordPress אינה ניתנת לכתיבה, ולכן לא ניתן היה לנהל את תוסף ה-drop-in של מטמון האובייקטים."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "תוסף מטמון עמודים אחר התקין את wp-content/advanced-cache.php. הסר את התסף ההוא תחילה, או המשך להשתמש במטמון העמודים שלו."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "לא ניתן לכתוב אל התיקייה wp-content/cache/zinn-cache, ולכן לא ניתן לשמור עמודים במטמון."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "לא ניתן לכתוב את הקובץ wp-content/advanced-cache.php, ולכן לא ניתן לשמור עמודים במטמון."
 
@@ -4917,3 +4934,109 @@ msgstr "שדרג"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "לפני %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "לא ניתן היה להשלים את הפעולה. נסה שוב, ואם הבעיה נמשכת, פנה למנהל האתר."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "ערך נדרש חסר או שהתבנית שלו שגויה. בדוק את סכמת הקלט של היכולת."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "האתר סירב לבקשה."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "אפשר לעוזרים מבוססי בינה מלאכותית כמו Claude, Cursor או VS Code לעבוד באתר זה עבורך באמצעות MCP (Model Context Protocol). הם מתחברים כמשתמש ב-WordPress באמצעות סיסמת יישום ויכולים לבצע רק את הפעולות שמותר לאותו משתמש לבצע."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "סוכני בינה מלאכותית דורשים WordPress 6.9 או גרסה מתקדמת יותר. עדכנו את WordPress כדי להשתמש בהם."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "כתובת התחברות (קצה של MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "צור סיסמת יישום עבור המשתמש שלך"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "הוסף את זה להגדרות ה-MCP של אפליקציית ה-AI שלך, יחד עם שם המשתמש שלך והסיסמה הזו:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: הכניסו את אותה רשומה תחת \"servers\" בקוֹד .vscode/mcp.json, ולא תחת \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "כלים שסוכן בינה מלאכותית יכול להשתמש בהם כאן (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "מדריך למשתמש: סוכני בינה מלאכותית ו-MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "תיעוד למפתחים: יכולות, REST ו-MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "בדוק ונקה את המטמון של אתר זה ושנה את הגדרות המטמון שלו באמצעות Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "מצב מטמון עמודים ועצמים, ניקוי והגדרות."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "קרא את סטטוס המטמון"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "מחזיר האם מטמון העמודים ומטמון האובייקטים מופעלים ופועלים, כמה עמודים שמורים במטמון, ואת נתוני החיבור ומספרי הפגיעות של מטמון האובייקטים."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "קרא את הגדרות מטמון"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "מחזיר את כל הגדרות המטמון. סיסמת ה-Redis לעולם אינה מוחזרת, אלא רק האם קיימת סיסמא שמורה."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "שנה את הגדרות המטמון"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "משנה את ההגדרות שאתה שולח ושומר את השאר (מטמון עמודים, משך שמירת העמודים במטמון, מטמון האובייקטים וחיבור ה-Redis שלהם, חוקי ניקוי והחרגות). הערכים נבדקים ומתוקנים בדיוק כמו במסך המטמון."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "החזר את הגדרות מטמון לברירת המחדל שלהן"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "מחזיר את כל הגדרות המטמון לברירת המחדל שלהן, בדיוק כמו לחצן האיפוס (Reset). גם סיסמת ה-Redis השמורה תוסר."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "קרא את דוח האבחון"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "מפיק את דוח האבחון שנציגי התמיכה מבקשים: גרסאות, מגבלות שרת, מצב המטמון ושגיאות אחרונות. הוא אינו כולל סיסמאות או מפתחות."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "נקה את המטמון"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "מנקה עמודים במטמון: הכל (all: true), כתובות מסוימות (urls) או כל מה שתויג (tags). העמודים נבנים מחדש כאשר מבקרים מגיעים."

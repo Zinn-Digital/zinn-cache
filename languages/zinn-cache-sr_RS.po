@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Кеш"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Кеш странице"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Кеш објеката"
 
@@ -56,340 +57,356 @@ msgstr "Čišćenje"
 msgid "Exclusions"
 msgstr "Isključenja"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "AI agenti (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Isprazni sve odmah"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Svaka keširana stranica je odbačena i biće ponovo napravljena kako posetioci budu dolazili. Da nastavite?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Dozvoli AI agentima (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Isključeno: alati u nastavku i njihove REST rute uopšte nisu registrovani."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Keširanje cele stranice"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Na LiteSpeed serveru veb-server isporučuje stranice pre nego što se WordPress pokrene. Na bilo kom drugom serveru, ovaj dodatak čuva svaku stranicu kao datoteku i isporučuje je pre nego što se WordPress učita. Odatle potiče gotovo sva brzina."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Кэширајте странице за посетиоце који нису пријављени"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Koliko dugo stranica ostaje keširana"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Sekunde. Nedelja dana odgovara većini sajtova; vestima koje objavljuju svakog sata potrebno je mnogo manje."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Koliko dugo pregledač posetioca čuva slike i skripte"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Sekunde. Važi samo za slike, CSS i JavaScript — nikada za stranice. Podesite na 0 da biste ovo prepustili svom hosting provajderu."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Prijavljeni posetioci"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Nikada nemojte prikazivati keširanu stranicu prijavljenom posetiocu"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Uključeno je bezbedan odgovor i podrazumevana opcija. Isključite ga samo ako znate da je svaka keširana stranica identična za svakog prijavljenog korisnika – sajt sa članarinama je uobičajen razlog da se to ne učini."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Različiti vekovi trajanja za različite sadržaje"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Na primer: stranice proizvoda jedne prodavnice na sat vremena, dok sve ostalo ostaje nedelju dana."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Dodaj pravilo"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Тип садржаја"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Sekunde"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Keš objekata (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Vaš domaćin pokreće privatni Redis keš objekata za ovaj sajt i održava ga konfigurisanim. Ovde nema ničega za podešavanje; status na vrhu ovog ekrana pokazuje da li on radi."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Kešira rezultate upita baze podataka. Najviše pomaže u radu prometne prodavnice ili sajta sa puno prijavljenog saobraćaja, gde keš stranice ne može da pomogne."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Instalirajte Redis dodatak za keširanje objekata"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Potrebna je phpredis ekstenzija. Ako nedostaje, polje iznad ovog ekrana će to prikazati."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis host"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis port"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis baza podataka"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Dodajte svakom sajtu na deljenom Redis sopstveni broj, inače će brisati keš jedni drugima."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Redis korisničko ime"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Samo za Redis server sa ACL korisnicima (Redis 6 ili noviji). Ostavite prazno za prijavu samo sa lozinkom."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis lozinka"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Ostavite prazno ako vaš Redis nije potreban."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Ključni prefiks"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Alternativa zasebnom broju baze podataka kada ga ne možete imati."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Pametno automatsko pražnjenje"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Automatski očisti zahvaćene stranice kada se sadržaj promeni"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Nakon ažuriranja"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Očistite sve nakon ažuriranja jezgra, dodatka ili teme"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Nakon komentara"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Очистите страницу објаве када се коментар на њу одобри"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Isključite ovo u veoma aktivnoj sekciji komentara, gde može da osvežava istu stranicu stotine puta na sat."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Nikada ne keširaj ove"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Razumne podrazumevane vrednosti za WordPress i WooCommerce se uvek primenjuju — korpa, naplata, moj nalog i svaka prijavljena sesija se nikada ne keširaju, bez obzira na sve."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Адресе"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Jedna putanja po liniji, na primer <code>/basket</code>. Znak <code>*</code> na kraju se poklapa sa svim pod njim."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Parametri upita"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Stranica koja nosi jednu od ovih nikada se ne kešira – na primer jednokratni token za pregled."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Kolačići"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Posetiocu koji nosi jednu od ovih uvek se servira sveža stranica."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Svaka keširana stranica je odbačena. Biće ponovo generisane kako posetioci budu dolazili."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Кеш објеката је инсталиран, али ништа не складишти."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Keš stranice je uključen, ali stranice se još uvek ne čuvaju."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress još uvek nije učitao page-cache dodatak. On se pokreće pri sledećem učitavanju stranice; ako se to ne desi, proverite da li je WP_CACHE podešen na true u wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Keš objekata je uključen, ali ovaj server nema podršku za Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Phpredis ekstenzija nije instalirana, tako da se dodatak ne može koristiti i WordPress prelazi na sopstveni keš u memoriji. Zatražite od svog hosting provajdera da omogući phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Ništa se ne kešira."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Oba keša su isključena, tako da ovaj dodatak ne ubrzava sajt."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Keširanje je aktivno na ovom sajtu."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis je odbio korisničko ime ili lozinku. Proverite Redis akreditive u wp-config.php ili na ovom ekranu."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis je prihvatio prijavu, ali ne dozvoljava ovom sajtu da skladišti svoje ključeve. Korisniku servisa Redis je potrebna dozvola za prefiks ključeva ovog sajta."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis je odbio broj baze podataka. Proverite podešavanje Redis baze podataka."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis nema dovoljno memorije i odbija nove podatke."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Phpredis ekstenzija nije instalirana, pa WordPress koristi sopstveni keš u memoriji. Zatražite od svog hosting provajdera da omogući phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED je podešen u wp-config.php, tako da je keš objekata isključen."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Nije moguće uspostaviti vezu sa Redis serverom. Proverite Redis host i port, kao i da li je Redis pokrenut."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis nije vratio vrednost koja mu je upravo upisana. Proverite dnevnike Redis servera."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Veb-server"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — stranice kešira veb-server"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "nije LiteSpeed — ovaj priključak kešira stranice na disku"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Stranice sačuvane na disku"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Podrška za Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis je instaliran"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis nije instaliran"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Trajanje stranice"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Nije vam dozvoljeno da ispraznite keš."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Zatraženo je pražnjenje keša."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: instaliran je drugi dodatak za keširanje objekata, tako da Redis keš objekata nije pod upravom ovog dodatka."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "otkriveno"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "nije otkriveno"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "phpredis ekstenzija nedostaje"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "instalirano, ništa se ne skladišti"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "aktivan, upravlja vaš domaćin"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "aktivno"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "neaktivno"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed keš:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis keš objekata:"
 
@@ -421,15 +438,15 @@ msgstr "Nije moguće ukloniti drop-in za keš objekata."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress datotečni sistem nije upisiv, pa se drop-in za keš objekata nije mogao upravljati."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Drugi dodatak za keširanje stranica je instalirao wp-content/advanced-cache.php. Uklonite taj dodatak prvo ili nastavite da koristite njegov keš stranica."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Folder wp-content/cache/zinn-cache se nije mogao zapisati, pa se stranice ne mogu keširati."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php se nije mogao zapisati, tako da se stranice ne mogu кеširati."
 
@@ -4917,3 +4934,109 @@ msgstr "Nadogradite"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "pre %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Radnja nije mogla biti završena. Pokušajte ponovo, pa ako i dalje ne uspeva, obratite se administratoru sajta."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Potrebna vrednost nedostaje ili je pogrešnog formata. Proverite ulaznu šemu funkcije."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Sajt je odbio zahtev."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Дозволите AI асистентима као што су Claude, Cursor или VS Code да раде на овом сајту уместо вас преко MCP (Model Context Protocol). Они се пријављују као WordPress корисник помоћу апликационе лозинке и могу да раде само оно што је том кориснику дозвољено."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "AI agencima je potreban WordPress 6.9 ili noviji. Ažurirajte WordPress da biste ih koristili."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Adresa za povezivanje (MCP krajnja tačka)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Napravite aplikativnu lozinku za svog korisnika"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Dodajte ovo u MCP podešavanja vaše AI aplikacije, zajedno sa vašim korisničkim imenom i tom lozinkom:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: stavite isti unos pod \"servers\" u .vscode/mcp.json, a ne pod \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Alatke koje AI agent ovde može da koristi (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Korisničko uputstvo: AI agenti i MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Dokumentacija za programere: mogućnosti, REST i MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Proverite i obrišite keš ovog sajta i promenite njegova podešavanja keša pomoću alata Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Status, čišćenje i podešavanja keša stranica i objekata."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Pročitajte status keša"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Vraća informaciju o tome da li su keš stranica i keš objekata uključeni i da li rade, koliko je stranica keširano, kao i podatke o konekciji i broju pogodaka za keš objekata."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Pročitajte podešavanja keša"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Vraća svako podešavanje keša. Redis lozinka se nikada ne vraća, već samo podatak da li je sačuvana."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Promenite podešavanja keša"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Menja podešavanja koja pošaljite i zadržava ostala (keš stranice, koliko dugo stranice ostaju u kešu, keš objekata i njegovu Redis vezu, pravila brisanja i izuzetke). Vrednosti se provera i ispravljaju tačno kao na ekranu Keš."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Vratite podešavanja keša na podrazumevane vrednosti"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Vraća sva podešavanja keša na podrazumevane vrednosti, isto kao dugme Reset. Sačuvana Redis lozinka se takođe uklanja."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Прочитај извештај о дијагностици"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Vraća izveštaj o dijagnostici koji podrška traži: verzije, ograničenja servera, stanje keša i nedavne greške. Ne sadrži lozinke ni ključeve."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Očisti keš"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Poništava keširane stranice: sve (all: true), neke adrese (urls) ili sve sa oznakama (tags). Stranice se ponovo generišu kako posetioci pristižu."

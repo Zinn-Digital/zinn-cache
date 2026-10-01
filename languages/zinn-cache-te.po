@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "కాష్"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "పేజీ క్యాష్"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "ఆబ్జెక్ట్ క్యాష్"
 
@@ -56,340 +57,356 @@ msgstr "తొలగిస్తోంది"
 msgid "Exclusions"
 msgstr "మినహాయింపులు"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "AI ఏజెంట్లు (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "ఇప్పుడు ప్రతిదీ పర్జ్ చేయండి"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "కాష్ చేయబడిన ప్రతి పేజీ తొలగించబడుతుంది మరియు సందర్శకులు వచ్చినప్పుడు మళ్లీ సృష్టించబడుతుంది. కొనసాగించాలా?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "AI ఏజెంట్‌లను అనుమతించండి (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "ఆఫ్: దిగువ ఉన్న సాధనాలు మరియు వాటి REST రూట్‌లు అసలు రిజిస్టర్ కాలేదు."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "పూర్తి-పేజీ కాష్"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "LiteSpeed సర్వర్‌లో, WordPress నడవడానికి ముందే వెబ్ సర్వర్ ద్వారా పేజీలు అందించబడతాయి. ఇతర సర్వర్‌లలో, ఈ ప్లగిన్ ప్రతి పేజీని ఒక ఫైల్‌గా స్టోర్ చేస్తుంది మరియు WordPress లోడ్ కావడానికి ముందే దాన్ని అందిస్తుంది. దాదాపు మొత్తం స్పీడ్ దీని నుండే వస్తుంది."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "సైన్ ఇన్ చేయని సందర్శకుల కోసం పేజీలను క్యాష్ చేయండి"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "పేజీ ఎంతకాలం క్యాష్‌లో ఉంటుంది"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "సెకన్లు. చాలా సైట్‌లకు ఒక వారం సరిపోతుంది; గంటకోసారి ప్రచురించే వార్తల సైట్‌కి చాలా తక్కువ కావాలి."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "సందర్శకుని బ్రౌజర్ చిత్రాలు మరియు స్క్రిప్ట్‌లను ఎంతసేపు ఉంచుతుంది"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "సెకన్లు. చిత్రాలు, CSS మరియు జావాస్క్రిప్ట్‌కి మాత్రమే వర్తిస్తుంది — పేజీలకు ఎప్పటికీ వర్తించదు. దీన్ని మీ హోస్ట్ కేటాయించడానికి 0కి సెట్ చేయండి."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "సైన్-ఇన్ చేసిన సందర్శకులు"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "సైన్ ఇన్ చేసిన సందర్శకుడికి ఎప్పుడూ క్యాష్ చేయబడిన పేజీని అందించవద్దు"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "\"ఆన్\" అనేది సురక్షితమైన సమాధానం మరియు డిఫాల్ట్ ఎంపిక. ప్రతి లాగిన్ అయిన వినియోగదారుకు క్యాష్ చేయబడిన ప్రతి పేజీ ఒకే విధంగా ఉంటుందని మీకు ఖచ్చితంగా తెలిస్తే మాత్రమే దీన్ని ఆఫ్‌ చేయండి — మెంబర్‌షిప్ సైట్ అనేది సాధారణంగా దీన్ని ఆఫ్‌ చేయకపోవడానికి కారణం."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "వేర్వేరు కంటెంట్ కోసం వేర్వేరు లైఫ్‌టైమ్‌లు"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "ఉదాహరణకు: మిగిలినవన్నీ ఒక వారం పాటు ఉన్నప్పటికీ, ఒక దుకాణం యొక్క ఉత్పత్తి పేజీలు ఒక గంట పాటు."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "ఒక నియమాన్ని జోడించండి"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "కంటెంట్ రకం"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "సెకన్లు"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "ఆబ్జెక్ట్ కాష్ (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "ఈ సైట్ కోసం మీ హోస్ట్ ప్రైవేట్ Redis ఆబ్జెక్ట్ క్యాచెను రన్ చేస్తుంది మరియు దానిని కాన్ఫిగర్ చేసి ఉంచుతుంది. ఇక్కడ సెటప్ చేయడానికి ఏమీ లేదు; ఇది పనిచేస్తుందో లేదో ఈ స్క్రీన్ పైభాగంలో ఉన్న స్థితి చూపుతుంది."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "డేటాబేస్ క్వెరీల ఫలితాలను కాష్ చేస్తుంది. పేజ్ కాష్ చేయలేని రద్దీగా ఉండే షాప్‌లో లేదా చాలా మంది లాగిన్ అయిన ట్రాఫిక్ ఉన్న సైట్‌లో ఇది చాలా ఉపయోగపడుతుంది."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis ఆబ్జెక్ట్-కాష్ డ్రాప్-ఇన్‌ను ఇన్‌స్టాల్ చేయండి"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis ఎక్స్‌టెన్షన్ అవసరం. ఇది లేకపోతే, ఈ స్క్రీన్ పైన ఉన్న బాక్స్ ఆ విషయాన్ని తెలియజేస్తుంది."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis హోస్ట్"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis పోర్ట్"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis డేటాబేస్"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "ప్రతి సైట్‌కు ఒక షేర్డ్ Redisలో దాని స్వంత నంబర్‌ను ఇవ్వండి, లేకపోతే అవి ఒకదాని క్యాశ్‌ను మరొకటి తొలగిస్తాయి."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Redis వినియోగదారు పేరు"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "ACL వినియోగదారులు ఉన్న Redis సర్వర్ కోసం మాత్రమే (Redis 6 లేదా అంతకంటే తర్వాతి వెర్షన్). కేవలం పాస్‌వర్డ్‌తో లాగిన్ అవ్వడానికి దీన్ని ఖాళీగా వదలండి."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis పాస్‌వర్డ్"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "మీ Redisకి అవసరం లేకపోతే ఖాళీగా వదలండి."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "కీ ప్రిఫిక్స్"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "ప్రత్యేకమైన డేటాబేస్ నంబర్ అందుబాటులో లేనప్పుడు దానికి ప్రత్యామ్నాయం."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "స్మార్ట్ ఆటో-పర్జ్"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "కంటెంట్ మారినప్పుడు ప్రభావిత పేజీలను స్వయంచాలకంగా క్లియర్ చేయండి"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "అప్‌డేట్‌ల తర్వాత"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "కోర్, ప్లగిన్ లేదా థీమ్ అప్‌డేట్ తర్వాత ప్రతిదీ క్లియర్ చేయండి"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "వ్యాఖ్య తర్వాత"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "ఒక పోస్ట్ పై కామెంట్ ఆమోదించబడినప్పుడు ఆ పోస్ట్ పేజీని క్లియర్ చేయండి"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "చాలా రద్దీగా ఉండే కామెంట్ విభాగంలో దీన్ని ఆపివేయండి, ఇక్కడ ఇది ఒక గంటలో వందల సార్లు అదే పేజీని క్లియర్ చేయగలదు."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "వీటిని ఎప్పుడూ క్యాష్ చేయవద్దు"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "సెన్సిబుల్ WordPress మరియు WooCommerce డిఫాల్ట్‌లు ఎల్లప్పుడూ వర్తింపజేయబడతాయి — కింద ఏది ఉన్నప్పటికీ, కార్ట్, చెక్‌అవుట్, నా-ఖాతా మరియు సైన్-ఇన్ చేసిన సెషన్ ఎప్పుడూ క్యాష్ చేయబడవు."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "చిరునామాలు"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "ప్రతి పంక్తికి ఒక మార్గం చొప్పున ఇవ్వండి, ఉదాహరణకు <code>/basket</code>. చివర ఉండే <code>*</code> దాని క్రింద ఉన్న ప్రతిదానితో సరిపోలుతుంది."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "ప్రశ్న పారామితులు"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "వీటిలో ఒకటి ఉన్న పేజీ ఎప్పటికీ క్యాష్ చేయబడదు — ఉదాహరణకు ఒకసారి మాత్రమే ఉపయోగించే ప్రివ్యూ టోకెన్."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "కుకీలు"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "వీటిలో ఒకదాన్ని కలిగి ఉన్న సందర్శకుడికి ఎల్లప్పుడూ తాజా పేజీ అందించబడుతుంది."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "ప్రతి కాష్ చేయబడిన పేజీ తొలగించబడింది. సందర్శకులు వచ్చినప్పుడు అవి మళ్లీ సృష్టించబడతాయి."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "ఆబ్జెక్ట్ క్యాష్ ఇన్‌స్టాల్ చేయబడింది, కానీ అది దేన్నీ నిల్వ చేయడం లేదు."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "పేజ్ క్యాష్ ఆన్ చేయబడింది, కానీ పేజీలు ఇంకా నిల్వ చేయబడుతున్నాయి."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress ఇంకా పేజీ-క్యాషే డ్రాప్-ఇన్‌ను లోడ్ చేయలేదు. ఇది తర్వాత పేజీ లోడ్ అయినప్పుడు ప్రారంభమవుతుంది; ఒకవేళ కాకపోతే, wp-config.phpలో WP_CACHE నికి true అని ఉందో లేదో సరిచూసుకోండి."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ఆబ్జెక్ట్ క్యాష్ ఆన్ చేయబడింది, కానీ ఈ సర్వర్‌లో Redis మద్దతు లేదు."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ఎక్స్‌టెన్షన్ ఇన్‌స్టాల్ చేయబడలేదు, కాబట్టి డ్రాప్-ఇన్‌ని ఉపయోగించలేము మరియు WordPress దాని స్వంత ఇన్‌-మెమరీ క్యాష్‌కి మారుతోంది. phpredisని ప్రారంభించమని మీ హోస్ట్‌ని అడగండి."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "ఏదీ క్యాష్ చేయబడటం లేదు."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "రెండు క్యాచీలు స్విచ్ ఆఫ్ చేయబడ్డాయి, కాబట్టి ఈ ప్లగ్ఇన్ సైట్‌ను వేగవంతం చేయడం లేదు."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "ఈ సైట్‌లో క్యాచింగ్ యాక్టివ్‌గా ఉంది."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis వినియోగదారు పేరు లేదా పాస్‌వర్డ్‌ను తిరస్కరించింది. wp-config.phpలో లేదా ఈ స్క్రీన్‌పై ఉన్న Redis ఆధారాలను తనిఖీ చేయండి."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis లాగిన్‌ను అంగీకరించింది కానీ ఈ సైట్ దాని కీలను నిల్వ చేయడానికి అనుమతించదు. ఈ సైట్ యొక్క కీ ప్రిఫిక్స్ కోసం Redis వినియోగదారుకు అనుమతి అవసరం."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis డేటాబేస్ సంఖ్యను తిరస్కరించింది. Redis డేటాబేస్ సెట్టింగ్‌ను తనిఖీ చేయండి."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis మెమరీ అయిపోయింది మరియు కొత్త డేటాను తిరస్కరిస్తోంది."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis ఎక్స్‌టెన్షన్ ఇన్‌స్టాల్ చేయబడలేదు, కాబట్టి WordPress దాని స్వంత ఇన్‌-మెమరీ క్యాశ్‌ను ఉపయోగిస్తోంది. phpredisని ప్రారంభించమని మీ హోస్ట్‌ను అడగండి."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "wp-config.php లో WP_REDIS_DISABLED సెట్ చేయబడింది, కాబట్టి ఆబ్జెక్ట్ కాష్ నిలిపివేయబడింది."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Redis సర్వర్‌ను చేరుకోలేకపోయింది. Redis హోస్ట్ మరియు పోర్ట్‌ను, అలాగే Redis రన్ అవుతోందో లేదో తనిఖీ చేయండి."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis దానికి ఇప్పుడే వ్రాసిన విలువను తిరిగి ఇవ్వలేదు. Redis సర్వర్ లాగ్‌లను తనిఖీ చేయండి."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "వెబ్ సర్వర్"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — వెబ్ సర్వర్ ద్వారా పేజీలు క్యాష్ చేయబడతాయి"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "LiteSpeed కాదు — పేజీలు ఈ ప్లగిన్ ద్వారా డిస్క్‌లో క్యాష్ చేయబడతాయి"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "డిస్క్‌లో నిల్వ చేయబడిన పేజీలు"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Redis మద్దతు"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis ఇన్‌స్టాల్ చేయబడింది"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis ఇన్‌స్టాల్ చేయబడలేదు"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "పేజీ జీవితకాలం"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "కాష్‌ను పర్జ్ చేయడానికి మీకు అనుమతి లేదు."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "కాష్ పర్జ్ అభ్యర్థించబడింది."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® క్యాచీ: మరొక ఆబ్జెక్ట్-క్యాచే డ్రాప్-ఇన్ ఇన్‌స్టాల్ చేయబడింది, కాబట్టి Redis ఆబ్జెక్ట్ క్యాచీ ఈ ప్లగ్ఇన్ ద్వారా నిర్వహించబడదు."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "గుర్తించబడింది"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "గుర్తించబడలేదు"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "phpredis ఎక్స్‌టెన్షన్ లేదు"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "ఇన్‌స్టాల్ చేయబడింది, ఏదీ నిల్వ చేయడం లేదు"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "యాక్టివ్, మీ హోస్ట్ ద్వారా నిర్వహించబడుతుంది"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "క్రియాశీలం"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "నిష్క్రియం"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed కాష్:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis ఆబ్జెక్ట్ కాష్:"
 
@@ -421,15 +438,15 @@ msgstr "ఆబ్జెక్ట్-కాష్ డ్రాప్-ఇన్‌
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress ఫైల్‌సిస్టమ్ రాయదగినది కాదు, కాబట్టి ఆబ్జెక్ట్-కాష్ డ్రాప్-ఇన్‌ను నిర్వహించలేకపోయింది."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "మొదటి పేజ్-క్యాచే ప్లగ్ఇన్ wp-content/advanced-cache.phpని ఇన్‌స్టాల్ చేసింది. ముందుగా ఆ ప్లగ్ఇన్‌ని తొలగించండి లేదా దాని పేజ్ క్యాచేని ఉపయోగించడం కొనసాగించండి."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "wp-content/cache/zinn-cache ఫోల్డర్‌లోకి రాయడం సాధ్యపడలేదు, కాబట్టి పేజీలను క్యాష్ చేయడం సాధ్యం కాదు."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php ఫైల్‌ను వ్రాయలేకపోయాము, కాబట్టి పేజీలను క్యాష్ చేయలేము."
 
@@ -4916,3 +4933,109 @@ msgstr "అప్‌గ్రేడ్ చేయండి"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s క్రితం"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "ఈ చర్యను పూర్తి చేయడం సాధ్యం కాలేదు. మళ్లీ ప్రయత్నించండి, ఒకవేళ ఇది విఫలమవుతూనే ఉంటే, సైట్ నిర్వాహకులను సంప్రదించండి."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "అవసరమైన విలువ లేదు లేదా తప్పు రూపంలో ఉంది. ఎబిలిటీ యొక్క ఇన్‌పుట్ స్కీమాను తనిఖీ చేయండి."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "సైట్ అభ్యర్థనను తిరస్కరించింది."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Claude, Cursor లేదా VS Code వంటి AI అసిస్టెంట్‌లను MCP (మోడల్ కాంటెక్స్ట్ ప్రొటోకాల్) ద్వారా మీ కోసం ఈ సైట్‌లో పని చేయనివ్వండి. అవి అప్లికేషన్ పాస్‌వర్డ్‌తో WordPress వినియోగదారుగా సైన్ ఇన్ చేస్తాయి మరియు ఆ వినియోగదారుకి దేనికి అనుమతి ఉందో అది మాత్రమే చేయగలవు."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "AI ఏజెంట్లకు WordPress 6.9 లేదా తర్వాతి వెర్షన్ అవసరం. వాటిని ఉపయోగించడానికి WordPress ని అప్‌డేట్ చేయండి."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "కనెక్షన్ చిరునామా (MCP ముగింపు బిందువు)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "మీ వినియోగదారు కోసం అప్లికేషన్ పాస్‌వర్డ్‌ను సృష్టించండి"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "దీన్ని మీ వినియోగదారు పేరు మరియు ఆ పాస్‌వర్డ్‌తో పాటు మీ AI యాప్ MCP సెట్టింగ్‌లకు జోడించండి:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: \"mcpServers\" కింద కాకుండా, .vscode/mcp.json లో \"servers\" కింద అదే ఎంట్రీని ఉంచండి."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "ఇక్కడ AI ఏజెంట్ ఉపయోగించగల టూల్స్ (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "యూజర్ గైడ్: AI ఏజెంట్లు మరియు MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "డెవలపర్ డాక్స్: సామర్థ్యాలు, REST మరియు MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Zinn® Cache ద్వారా ఈ సైట్ యొక్క కాష్‌ను తనిఖీ చేయండి, తొలగించండి మరియు దాని కాష్ సెట్టింగ్‌లను మార్చండి."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "పేజీ మరియు ఆబ్జెక్ట్ కాష్ స్థితి, పర్జింగ్ మరియు సెట్టింగ్‌లు."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "కాష్ స్థితిని చదవండి"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "పేజ్ క్యాష్ మరియు ఆబ్జెక్ట్ క్యాష్ ఆన్ అయి పనిచేస్తున్నాయా లేదా, ఎన్ని పేజీలు క్యాష్ చేయబడ్డాయి మరియు ఆబ్జెక్ట్ క్యాష్ యొక్క కనెక్షన్ మరియు హిట్ సంఖ్యలను ఇది అందిస్తుంది."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "కాష్ సెట్టింగ్‌లను చదవండి"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "ప్రతి క్యాష్ సెట్టింగ్‌ను అందిస్తుంది. Redis పాస్‌వర్డ్ ఎప్పటికీ తిరిగి ఇవ్వబడదు, కేవలం ఒకటి సేవ్ చేయబడిందా లేదా అనేది మాత్రమే చూపబడుతుంది."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "కాష్ సెట్టింగ్‌లను మార్చండి"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "మీరు పంపే సెట్టింగ్‌లను మారుస్తుంది మరియు మిగిలిన వాటిని (పేజ్ క్యాష్, పేజీలు ఎంతకాలం క్యాష్‌లో ఉంటాయి, ఆబ్జెక్ట్ క్యాష్ మరియు దాని Redis కనెక్షన్, పర్జింగ్ నియమాలు మరియు మినహాయింపులు) అలాగే ఉంచుతుంది. క్యాష్ స్క్రీన్‌పై ఉన్నట్లే విలువలు తనిఖీ చేయబడి, సరిదిద్దబడతాయి."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "కాష్ సెట్టింగ్‌లను వాటి డిఫాల్ట్‌లకు తిరిగి అమర్చండి"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "రీసెట్ బటన్ మాదిరిగానే ప్రతి కాష్ సెట్టింగ్‌ను దాని డిఫాల్ట్‌కి మారుస్తుంది. సేవ్ చేసిన Redis పాస్‌వర్డ్ కూడా తొలగించబడుతుంది."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "డయాగ్నోస్టిక్స్ నివేదికను చదవండి"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "సపోర్ట్ కోరిన డయాగ్నస్టిక్స్ నివేదికను అందిస్తుంది: వెర్షన్‌లు, సర్వర్ పరిమితులు, క్యాష్ స్థితి మరియు ఇటీవలి లోపాలు. దీనిలో పాస్‌వర్డ్‌లు లేదా కీలు ఉండవు."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "కాష్‌ను క్లియర్ చేయండి"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "కాష్ చేసిన పేజీలను తొలగిస్తుంది: అన్నీ (all: true), కొన్ని చిరునామాలు (urls) లేదా ట్యాగ్ చేయబడిన అన్నీ (tags). సందర్శకులు వచ్చినప్పుడు పేజీలు మళ్లీ నిర్మించబడతాయి."

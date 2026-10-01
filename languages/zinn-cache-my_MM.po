@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "ကတ်ရှ်"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "စာမျက်နှာ ကက်ရှ်"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Object cache"
 
@@ -56,340 +57,356 @@ msgstr "ရှင်းလင်းနေသည်"
 msgid "Exclusions"
 msgstr "ခြွင်းချက်များ"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "AI အေးဂျင့်များ (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "အားလုံးကို ယခု ရှင်းလင်းရန်"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "သိမ်းဆည်းထားသော စာမျက်နှာအားလုံးကို ဖျက်ပစ်ပြီး လာရောက်ကြည့်ရှုသူများ ရောက်ရှိလာသည့်အခါ ပြန်လည်တည်ဆောက်ပါမည်။ ဆက်လုပ်မည်လား။"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "AI အေးဂျင့်များ (MCP) ကို ခွင့်ပြုပါ"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "ပိတ်ထားသည် - အောက်ပါကိရိယာများနှင့် ၎င်းတို့၏ REST လမ်းကြောင်းများကို လုံးဝမှတ်ပုံမတင်ထားပါ။"
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "စာမျက်နှာအပြည့် ကက်ရှ်"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "LiteSpeed ဆာဗာတွင် WordPress မလည်ပတ်မီ ဝဘ်ဆာဗာမှ စာမျက်နှာများကို ဝန်ဆောင်မှုပေးသည်။ အခြားမည်သည့်ဆာဗာတွင်မဆို ဤပလပ်အင်သည် စာမျက်နှာတစ်ခုစီကို ဖိုင်တစ်ခုအဖြစ် သိမ်းဆည်းပြီး WordPress မတင်မီ ဝန်ဆောင်မှုပေးသည်။ ဤနေရာမှပင် အမြန်နှုန်းအားလုံးနီးပါး ရရှိလာခြင်း ဖြစ်သည်။"
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "ဝင်ရောက်ထားခြင်းမရှိသေးသော ဧည့်သည်များအတွက် စာမျက်နှာများကို ကက်ရှ် (Cache) ပြုလုပ်ပါ"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "စာမျက်နှာတစ်ခုကို ကက်ရှ် (cache) လုပ်ထားသည့် ကာလ"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "စက္ကန့်ပိုင်း။ ဝဘ်ဆိုက်အများစုအတွက် တစ်ပတ်လျှင် သင့်လျော်သည်; နာရီတိုင်း ထုတ်ဝေသည့် သတင်းဝဘ်ဆိုက်တစ်ခုကမူ ၎င်းထက် များစွာနည်းပါးသည်ကို လိုလားသည်။"
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "ဧည့်သည်တစ်ဦး၏ ဘရောက်ဆာက ပုံများနှင့် စာများကို မည်မျှကြာအောင် သိမ်းဆည်းထားမည်နည်း"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "စက္ကန့်။ ပုံများ၊ CSS နှင့် JavaScript များအတွက်သာ အကျုံးဝင်ပြီး စာမျက်နှာများအတွက် လုံးဝမဟုတ်ပါ။ ဤအရာကို သင့်ဟို့စ်ထံတွင်သာ ထားရှိရန် ၀ သို့ သတ်မှတ်ပါ။"
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "ဝင်ရောက်ထားသော ဧည့်သည်များ"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "ဝင်ရောက်ထားသော ဧည့်သည်တစ်ဦးအား ကက်ရှ်လုပ်ထားသော စာမျက်နှာကို မည်သည့်အခါမျှ မပြပါနှင့်"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "ဖွင့်ထားခြင်းသည် လုံခြုံစိတ်ချရသော အဖြေဖြစ်ပြီး မူလအတိုင်း သတ်မှတ်ချက်လည်း ဖြစ်သည်။ လက်မှတ်ထိုးဝင်ထားသည့် အသုံးပြုသူတိုင်းအတွက် ကက်ရှ်လုပ်ထားသော စာမျက်နှာအားလုံးသည် အတူတူပင်ဖြစ်ကြောင်း အသေအချာသိမှသာလျှင် ၎င်းကို ပိတ်ပါ။ အဖွဲ့ဝင်ဝက်ဘ်ဆိုက်တစ်ခုဆိုလျှင် မပိတ်ရသည့် သာမန်အကြောင်းရင်း ဖြစ်တတ်သည်။"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "အကြောင်းအရာအမျိုးမျိုးအတွက် သက်တမ်းအမျိုးမျိုး"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "ဥပမာအားဖြင့် ကျန်ရှိသော အရာအားလုံးက တစ်ပတ်ကြာချိန်တွင်၊ ဆိုင်တစ်ဆိုင်၏ ကုန်ပစ္စည်းစာမျက်နှာများသည် တစ်နာရီကြာပါသည်။"
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "စည်းမျဉ်းတစ်ခု ထည့်ပါ"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "ပါဝင်မှု အမျိုးအစား"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "စက္ကန့်"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Object cache (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "သင့်၏ Host သည် ဤဆိုက်အတွက် သီးသန့် Redis အရာဝတ္ထု Cache တစ်ခုကို လည်ပတ်ပေးထားပြီး ၎င်းကို စီစဉ်သတ်မှတ်ပေးထားပါသည်။ ဤနေရာတွင် စနစ်တကျ ပြင်ဆင်သတ်မှတ်ရန် ဘာမျှမလိုပါ၊ ဤမျက်နှာပြင်၏ အပေါ်ဆုံးရှိ အခြေအနေက ၎င်းလုပ်ဆောင်နေခြင်း ရှိမရှိကို ဖော်ပြပေးပါသည်။"
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "ဒေတာဘေ့စ် မေးမြန်းချက်များ၏ ရလဒ်များကို ကက်ရှ်ပြုလုပ်ပေးသည်။ ၎င်းသည် စာမျက်နှာ ကက်ရှ်ဖြင့် မလုပ်ဆောင်နိုင်သော အလုပ်များသော စတိုးဆိုင်တစ်ခု သို့မဟုတ် အကောင့်ဝင်ထားသော အသွားအလာ များပြားသည့် ဆိုက်တစ်ခုတွင် အများဆုံး အထောက်အကူ ဖြစ်စေသည်။"
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis object-cache drop-in ကို ထည့်သွင်းပါ"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis extension လိုအပ်ပါသည်။ ၎င်းမရှိပါက ဤမျက်နှာပြင်၏ အထက်ပါဘောက်စ်တွင် ဖော်ပြထားမည်ဖြစ်သည်။"
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis host"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis port"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis database"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "shared Redis ရှိ ဆိုက်တစ်ခုစီကို ၎င်းတို့၏ကိုယ်ပိုင်နံပါတ် သတ်မှတ်ပေးပါ၊ သို့မဟုတ်ပါက ၎င်းတို့သည် တစ်ခုနှင့်တစ်ခု၏ ကက်ရှ် (cache) ကို ဖျက်ပစ်လိမ့်မည်။"
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Redis အသုံးပြုသူအမည်"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "ACL အသုံးပြုသူများရှိသည့် Redis ဆာဗာအတွက်သာ (Redis 6 သို့မဟုတ် နောက်ပိုင်း)။ စကားဝှက်တစ်ခုတည်းဖြင့် ဝင်ရောက်ရန် နေရာလွတ်ထားပါ။"
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis စကားဝှက်"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "သင့်ရဲ့ Redis က မလိုဘူးဆိုရင် အလွတ်ထားခဲ့ပါ။"
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "သော့ ရှေ့ဆက်စာလုံး"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "သီးသန့် ဒေတာဘေ့စ်နံပါတ်တစ်ခု မရရှိနိုင်သည့်အခါ အစားထိုး အသုံးပြုနိုင်သော နည်းလမ်းတစ်ခု။"
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "စမတ် အလိုအလျောက် ရှင်းလင်းမှု"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "အကြောင်းအရာ ပြောင်းလဲသည့်အခါ ထိခိုက်ခံရသော စာမျက်နှာများကို အလိုအလျောက် ရှင်းလင်းပါ"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "အပ်ဒိတ်များပြီးနောက်"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "core၊ plugin သို့မဟုတ် theme အပ်ဒိတ်လုပ်ပြီးနောက် အားလုံးကို ရှင်းလင်းပါ"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "မှတ်ချက်တစ်ခုပြီးနောက်"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "ပို့စ်တစ်ခုတွင် မှတ်ချက်တစ်ခုကို အတည်ပြုလိုက်သောအခါ ယင်းပို့စ်၏ စာမျက်နှာကို ရှင်းလင်းပါ"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "အလွန်အမင်း စည်ကားသော မှတ်ချက်ကဏ္ဍမျိုးတွင် ၎င်းကို ပိတ်ထားပါ၊ ဤနေရာတွင် စာမျက်နှာတစ်ခုတည်းကို တစ်နာရီလျှင် အကြိမ်ရာပေါင်းများစွာ ရှင်းလင်းပစ်နိုင်ပါသည်။"
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "ဤအရာများကို မည်သည့်အခါမျှ ကက်ရှ် (cache) မလုပ်ပါနှင့်"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "အောက်တွင် မည်သို့ပင်ရှိစေကာမူ အဓိပ္ပါယ်ရှိသော WordPress နှင့် WooCommerce မူရင်းဆက်တင်များကို အမြဲတမ်းအသုံးပြုပါသည် - ခြင်းတောင်း၊ ငွေရှင်းခြင်း၊ ကျွန်ုပ်၏အကောင့်နှင့် အကောင့်ဝင်ထားသည့် မည်သည့်ဆက်ရှင်ကိုမျှ ကက်ရှ်မလုပ်ပါ။"
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "လိပ်စာများ"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "လိုင်းတစ်လိုင်းလျှင် လမ်းကြောင်းတစ်ခု၊ ဥပမာအားဖြင့် <code>/basket</code>။ အမြီးတွင် <code>*</code> ပါရှိပါက ၎င်းအောက်ရှိ အရာအားလုံးနှင့် ကိုက်ညီမည်။"
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "မေးမြန်းချက် ကန့်သတ်ချက်များ"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "ဤကဲ့သို့သော အရာတစ်ခုပါရှိသည့် စာမျက်နှာကို မည်သည့်အခါမျှ ကက်ရှ်မလုပ်ပါ (ဥပမာ- တစ်ကြိမ်သုံး ကြိုတင်ကြည့်ရှုသည့် တိုကင်)။"
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "ကွတ်ကီးများ"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "ဤသို့သော အရာတစ်ခုကိုင်ဆောင်ထားသော ဧည့်သည်တစ်ဦးအား အမြဲတမ်း ပိုမိုဆန်းသစ်သော စာမျက်နှာတစ်ခုကို ပံ့ပိုးပေးပါသည်။"
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "ဇာတ်ကွက်သိမ်းထားသော စာမျက်နှာအားလုံးကို ဖယ်ရှားပြီးပါပြီ။ ဝင်ရောက်ကြည့်ရှုသူများ လာရောက်သည့်အခါ ထိုစာမျက်နှာများကို ပြန်လည်တည်ဆောက်သွားပါမည်။"
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "အော့ဘ်ဂျက် ကက်ရှ်ကို ထည့်သွင်းထားသော်လည်း ဘာကိုမျှ သိမ်းဆည်းမထားပါ။"
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "စာမျက်နှာ ကက်ရှ်ကို ဖွင့်ထားသော်လည်း စာမျက်နှာများကို ယခုထိ သိမ်းဆည်းမထားပါ။"
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress သည် page-cache drop-in ကို မတင်ရသေးပါ။ ၎င်းသည် နောက်စာမျက်နှာဖွင့်ချိန်တွင် စတင်မည်ဖြစ်ပြီး၊ မစတင်ပါက wp-config.php တွင် WP_CACHE သည် true ဖြစ်နေကြောင်း စစ်ဆေးပါ။"
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Object cache ပွင့်နေသော်လည်း ဤဆာဗာတွင် Redis ထောက်ပံ့မှု မရှိပါ။"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis တိုးချဲ့မှုကို ထည့်သွင်းမထားပါ၊ ထို့ကြောင့် drop-in ကို အသုံးမပြုနိုင်ပါ၊ WordPress သည် ၎င်း၏ကိုယ်ပိုင် memory အတွင်း ကက်ရှ်သို့ ပြန်လည်ရောက်ရှိနေပါသည်။ phpredis ကို ဖွင့်ပေးရန် သင့်ဟိုစ်အား တောင်းဆိုပါ။"
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "ဘာမှ ကက်ရှ်မလုပ်ထားပါ။"
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "ကက်ရှ် (cache) နှစ်ခုလုံးကို ပိတ်ထားသဖြင့် ဤပလပ်ဂင်သည် ဝဘ်ဆိုက်ကို ပိုမိုမြန်ဆန်စေမည် မဟုတ်ပါ။"
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "ဤဆိုက်တွင် ကက်ရှ်လုပ်ဆောင်ချက် (Caching) ကို ဖွင့်ထားသည်။"
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis သည် အသုံးပြုသူအမည် သို့မဟုတ် စကားဝှက်ကို ငြင်းပယ်ခဲ့သည်။ wp-config.php တွင် သို့မဟုတ် ဤမျက်နှာပြင်ပေါ်ရှိ Redis အထောက်အထားများကို စစ်ဆေးပါ။"
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis သည် ဝင်ရောက်မှုကို လက်ခံခဲ့သော်လည်း ဤဆိုက်အား ၎င်း၏ သော့များကို သိမ်းဆည်းခွင့်မပြုပါ။ Redis အသုံးပြုသူသည် ဤဆိုက်၏ သော့ ရှေ့ဆက် (key prefix) အတွက် ခွင့်ပြုချက် လိုအပ်ပါသည်။"
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis သည် ဒေတာဘေ့စ်နံပါတ်ကို ငြင်းပယ်ခဲ့သည်။ Redis ဒေတာဘေ့စ် ဆက်တင်ကို စစ်ဆေးပါ။"
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis သည် မန်မိုရီ ကုန်ဆုံးသွားပြီဖြစ်ပြီး အချက်အလက်အသစ်များကို လက်ခံရန် ငြင်းဆိုနေပါသည်။"
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis တိုးချဲ့မှုကို ထည့်သွင်းမထားပါ၊ ထို့ကြောင့် WordPress သည် ၎င်း၏ကိုယ်ပိုင် memory အတွင်း ကက်ရှ်ကို အသုံးပြုနေပါသည်။ phpredis ကို ဖွင့်ပေးရန် သင့်ဟိုစ်အား တောင်းဆိုပါ။"
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "wp-config.php တွင် WP_REDIS_DISABLED ကို သတ်မှတ်ထားသောကြောင့် အော်ဘက်ဂျက် ကက်ရှ်ကို ပိတ်ထားသည်။"
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Redis ဆာဗာသို့ ချိတ်ဆက်၍ မရပါ။ Redis host နှင့် port အပြင် Redis အလုပ်လုပ်နေခြင်း ရှိမရှိ စစ်ဆေးပါ။"
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis သည် ယခုလေးတင် ရေးသားခဲ့သော တန်ဖိုးကို ပြန်မပေးခဲ့ပါ။ Redis ဆာဗာ၏ မှတ်တမ်းများကို စစ်ဆေးပါ။"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "ဝဘ်ဆာဗာ"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — စာမျက်နှာများကို ဝဘ်ဆာဗာမှ ကက်ရှ် (cache) လုပ်ထားသည်"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "LiteSpeed မဟုတ်ပါ — ဤပလပ်အင်ဖြင့် စာမျက်နှာများကို ဒစ်စခ်ပေါ်တွင် ကက်ရှ်ပြုလုပ်ထားသည်"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "ဒစ်ဂျစ်တယ်တွင် သိုလှောင်ထားသော စာမျက်နှာများ"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Redis ပံ့ပိုးမှု"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis ကို ထည့်သွင်းပြီးပါပြီ"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis ကို မထည့်သွင်းထားပါ"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "စာမျက်နှာ သက်တမ်းကာလ"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "သင့်တွင် cache ကို ရှင်းလင်းခွင့် မရှိပါ။"
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Cache ရှင်းလင်းရန် တောင်းဆိုပြီးပါပြီ။"
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: အခြားသော object-cache drop-in တစ်ခုကို ထည့်သွင်းထားသောကြောင့် Redis object cache ကို ဤ ပလပ်အင်ဖြင့် စီမံခန့်ခွဲထားခြင်း မရှိပါ။"
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "တွေ့ရှိသည်"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "မတွေ့ရှိပါ"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "phpredis extension မရှိပါ"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "ထည့်သွင်းပြီး၊ ဘာမျှသိမ်းဆည်းမထားပါ"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "တက်ကြွနေပါသည်၊ သင့်ဟို့စ်မှ စီမံခန့်ခွဲသည်"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "အသုံးပြုနေသည်"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "အသုံးမပြုပါ"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed cache:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis object cache:"
 
@@ -421,16 +438,16 @@ msgstr "object-cache drop-in ကို ဖယ်ရှား၍ မရပါ။"
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress filesystem ကို ရေးသား၍ မရသဖြင့် object-cache drop-in ကို စီမံခန့်ခွဲ၍ မရပါ။"
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "အခြားစာမျက်နှာ-ကက်ရှ် ပလပ်အင်တစ်ခုက wp-content/advanced-cache.php ကို ထည့်သွင်းထားပြီးဖြစ်သည်။ ထိုပလပ်အင်ကို အရင်ဖယ်ရှားပါ၊ သို့မဟုတ် ၎င်း၏စာမျက်နှာ ကက်ရှ်ကို ဆက်လက်အသုံးပြုပါ။"
 
 #. zinn-i18n: human translation — the machine translator refused this string
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "wp-content/cache/zinn-cache ဖိုင်တွဲကို ရေးသား၍ မရသောကြောင့် စာမျက်နှာများကို cache မလုပ်နိုင်ပါ။"
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php ကို ရေးသား၍မရပါ၊ ထို့ကြောင့် စာမျက်နှာများကို ကက်ချ် (cache) လုပ်၍ မရပါ။"
 
@@ -4916,3 +4933,109 @@ msgstr "မြှင့်တင်ရန်"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s ကတည်းက"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "လုပ်ဆောင်မှုကို မပြီးမြောက်နိုင်ပါ။ ထပ်ကြိုးစားကြည့်ပါ၊ ဆက်လက်၍ အဆင်မပြေပါက ဆိုဒ်၏ စီမံခန့်ခွဲသူထံ ဆက်သွယ်ပါ။"
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "လိုအပ်သော တန်ဖိုးတစ်ခု ပျောက်ဆုံးနေသည် သို့မဟုတ် ပုံစံ မှားယွင်းနေသည်။ ၎င်းစွမ်းရည်၏ ထည့်သွင်းမှု ပုံစံခွက်ကို စစ်ဆေးပါ။"
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "ဆိုဒ်က တောင်းဆိုချက်ကို ငြင်းပယ်လိုက်သည်။"
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Claude၊ Cursor သို့မဟုတ် VS Code ကဲ့သို့သော AI အကူအညီပေးစနစ်များကို MCP (Model Context Protocol) မှတစ်ဆင့် ဤဆိုက်အတွက် လုပ်ဆောင်ခွင့်ပြုပါ။ ၎င်းတို့သည် အပလီကေးရှင်းစကားဝှက်ဖြင့် WordPress အသုံးပြုသူတစ်ဦးအနေဖြင့် ဝင်ရောက်ကြပြီး ယင်းအသုံးပြုသူလုပ်ဆောင်ခွင့်ပြုထားသည်များကိုသာ လုပ်ဆောင်နိုင်သည်။"
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "AI agents များသည် WordPress 6.9 သို့မဟုတ် နောက်ပိုင်းဗားရှင်း လိုအပ်သည်။ ၎င်းတို့ကို အသုံးပြုရန် WordPress ကို အပ်ဒိတ်လုပ်ပါ။"
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "ချိတ်ဆက်မှုလိပ်စာ (MCP အဆုံးသတ်မှတ်)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "သင့်အသုံးပြုသူအတွက် အပလီကေးရှင်းစကားဝှက်တစ်ခု ဖန်တီးပါ"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "သင်၏ အသုံးပြုသူအမည်နှင့် ထိုစကားဝှက်တို့နှင့်အတူ၊ ၎င်းကို သင့် AI အက်ပ်၏ MCP ဆက်တင်များတွင် ထည့်ပါ -"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: \"servers\" အောက်တွင် .vscode/mcp.json ရှိ တူညီသော စာရင်းသွင်းမှုကို ထည့်ပါ၊ \"mcpServers\" အောက်တွင် မဟုတ်ပါ။"
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "ဤနေရာတွင် AI ကိုယ်စားလှယ် အသုံးပြုနိုင်သည့် ကိရိယာများ (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "အသုံးပြုသူ လမ်းညွှန်ချက်- AI ကိုယ်စားလှယ်များနှင့် MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "ဆော့ဖ်ဝဲရေးသားသူများအတွက် စာရွက်စာတမ်းများ- စွမ်းဆောင်ရည်များ၊ REST နှင့် MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Zinn® Cache ဖြင့် ဤဆိုက်၏ ကက်ရှ်ကို စစ်ဆေး၍ ရှင်းလင်းပြီး ၎င်း၏ ကက်ရှ် ဆက်တင်များကို ပြောင်းလဲပါ။"
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "စာမျက်နှာနှင့် အရာဝတ္ထု ကက်ရှ် အခြေအနေ၊ ရှင်းလင်းခြင်းနှင့် ဆက်တင်များ။"
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Cache အခြေအနေကို ဖတ်ရှုပါ"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "စာမျက်နှာ ကက်ရှ်နှင့် အရာဝတ္ထု ကက်ရှ်တို့ ဖွင့်ထားပြီး အလုပ်လုပ်နေခြင်း ရှိမရှိ၊ ကက်ရှ်လုပ်ထားသော စာမျက်နှာ အရေအတွက်နှင့် အရာဝတ္ထု ကက်ရှ်၏ ချိတ်ဆက်မှုနှင့် ဟစ် (hit) အရေအတွက်တို့ကို ပြန်ပေးသည်။"
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "ကက်ရှ် ဆက်တင်များကို ဖတ်ရန်"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "ကက်ရှ် ဆက်တင်အားလုံးကို ပြန်ပေးသည်။ Redis စကားဝှက်ကို ဘယ်သောအခါမှ ပြန်မပေးပါ၊ တစ်ခု သိမ်းဆည်းထားခြင်း ရှိမရှိကိုသာ ပြန်ပေးသည်။"
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "cache ဆက်တင်များကို ပြောင်းလဲပါ"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "သင်ပေးပို့သော ဆက်တင်များကို ပြောင်းလဲပြီး ကျန်ရှိသည်များကို ထိန်းသိမ်းထားသည် (စာမျက်နှာ ကက်ရှ်၊ စာမျက်နှာများ ကက်ရှ်တွင် မည်မျှကြာအောင် နေမည်၊ အော့ဘ်ဂျက် ကက်ရှ်နှင့် ၎င်း၏ Redis ချိတ်ဆက်မှု၊ ရှင်းလင်းရေး စည်းမျဉ်းများနှင့် ဖယ်ထုတ်မှုများ)။ တန်ဖိုးများကို ကက်ရှ် မျက်နှာပြင်တွင်ကဲ့သို့ အတိအကျ စစ်ဆေးပြီး ပြင်ဆင်ပေးသည်။"
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "ကက်ရှ် ဆက်တင်များကို မူလသတ်မှတ်ချက်များသို့ ပြန်ထားပါ"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Redis ခလုတ်ကို အသုံးပြုထားသကဲ့သို့ ကက်ရှ် (cache) ဆက်တင်အားလုံးကို မူလအတိုင်း ပြန်လည်ထားရှိပေးပါသည်။ သိမ်းဆည်းထားသော Redis စကားဝှက်ကိုလည်း ဖယ်ရှားပါမည်။"
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "ရောဂါရှာဖွေရေး အစီရင်ခံစာကို ဖတ်ရှုပါ"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "ပံ့ပိုးကူညီရေးအဖွဲ့ တောင်းဆိုသော ရောဂါရှာဖွေရေး အစီရင်ခံစာကို ပြန်ပေးသည် - ဗားရှင်းများ၊ ဆာဗာ ကန့်သတ်ချက်များ၊ ကက်ရှ် အခြေအနေနှင့် မကြာသေးမီက အမှားအယွင်းများ။ ၎င်းတွင် စကားဝှက်များ သို့မဟုတ် သော့များ မပါဝင်ပါ။"
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "ကက်ရှ်ကို ရှင်းလင်းရန်"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "သိမ်းဆည်းထားသော စာမျက်နှာများကို ဖျက်ပစ်သည် - အားလုံး (all: true)၊ လိပ်စာအချို့ (urls) သို့မဟုတ် တက်ဂ်လုပ်ထားသမျှ (tags)။ ဧည့်သည်များ ရောက်လာသည်နှင့်အမျှ စာမျက်နှာများကို ပြန်လည်တည်ဆောက်သည်။"

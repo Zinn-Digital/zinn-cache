@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Кэш"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Кэши саҳифа"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Кэши объектҳо"
 
@@ -56,340 +57,356 @@ msgstr "Тоза карда истодааст"
 msgid "Exclusions"
 msgstr "Истисноҳо"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Агентҳои AI (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Ҳозир ҳама чизро тоза кунед"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Ҳар як саҳифаи ҳифзшуда (кешшуда) нест карда мешавад ва бо ташриф овардани меҳмонон аз нав сохта мешавад. Идома медиҳед?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Иҷозаи агентҳои AI (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Хомӯш: абзорҳои зер ва масирҳои REST-и онҳо тамоман сабти ном нашудаанд."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Кэши тамоми саҳифа"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Дар сервери LiteSpeed, саҳифаҳо пеш аз он ки WordPress кор кунад, аз ҷониби сервери вест пешниҳод карда мешаванд. Дар дигар серверҳо, ин плагин ҳар як саҳифаро ҳамчун файл захира мекунад ва пеш аз бор шудани WordPress онро пешниҳод мекунад. Суръат асосан аз ҳамин манбаъ меояд."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Саҳифаҳоро барои меҳмононе, ки ворид нашудаанд, кэш кунед"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Саҳифа то кай дар кэш нигоҳ дошта мешавад"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Сонияҳо. Як ҳафта барои аксари сайтҳо мувофиқ аст; як сайти хабарӣ, ки ҳар соат нашр мекунад, ба муҳлати хеле камтар ниёз дорад."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Мӯҳлате, ки равзанаи гузориши боздидкунанда тасвирҳо ва сенарияҳоро нигоҳ медорад"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Сонияҳо. Танҳо ба тасвирҳо, CSS ва JavaScript дахл дорад — ҳеҷ гоҳ ба саҳифаҳо намерасад. Барои ба мизбони худ вогузор кардани ин кор, онро ба 0 гузоред."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Боздидкунандагони воридшуда"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Ба ҳеҷ ваҷҳ саҳифаи кэшшударо ба меҳмони воридшуда пешниҳод накунед"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Фаъол гузоштан посухи бехатар ва пешфарз аст. Онро танҳо дар сурати хомӯш кунед, ки агар шумо боварӣ дошта бошед, ки ҳар як саҳифаи кэшшуда барои ҳар як корбари воридшуда якхела аст — сомонаи узвият одатан сабаби хомӯш кардани он мебошад."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Мӯҳлатҳои гуногун барои мундариҷаи гуногун"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Масалан: саҳифаҳои маҳсулоти мағоза дар давоми як соат, дар ҳоле ки ҳама чизи дигар як ҳафта боқӣ мемонад."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Илова кардани қоида"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Намуди мундариҷа"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Сонияҳо"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Кэши объектӣ (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Мизбони шумо як кэши хусусии объекти Redis-ро барои ин сайт идора мекунад ва онро танзимшуда нигоҳ медорад. Дар ин ҷо ягон чиз барои танзим кардан вуҷуд надорад; вазъияти болои ин экран нишон медиҳад, ки оё он кор карда истодааст."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Натиҷаҳои дархостҳои пойгоҳи додаҳоро дар хотираи пинҳонӣ (кэш) маҳфуз медорад. Он бештар дар мағозаҳои серкор ё сомонаҳое, ки боздидкунандагони воридшудаи зиёд доранд ва кэши саҳифа дар онҳо кӯмак карда наметавонад, муфид аст."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Насб кардани drop-in object-cache-и Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Ба васеъкунии phpredis эҳтиёҷ дорад. Агар он набошад, қуттии болои ин экран инро нишон медиҳад."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Хости Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Порти Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Пойгоҳи додаҳои Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Барои ҳар як сомона дар Redis-и муштарак рақами худро диҳед, вагарна онҳо кэши якдигарро тоза мекунанд."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Номи корбарии Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Танҳо барои сервери Redis бо корбарони ACL (Redis 6 ё дертар). Барои ворид шудан танҳо бо гузарвожа холӣ гузоред."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Пароли Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Агар Redis-и шумо ба он эҳтиёҷ надошта бошад, холӣ гузоред."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Пешванди калид"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Алтернатива ба рақами пойгоҳи додаи алоҳида, вақте ки шумо онро надоред."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Тозакунии худкори ҳушманд"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Ҳангоми тағйир ёфтани мундариҷа саҳифаҳои зарардидаро ба таври худкор тоза кунед"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Баъди навсозиҳо"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Ҳама чизро пас аз навсозии ядро, плагин ё мавзӯъ тоза кунед"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Пас аз шарҳ"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Ҳангоми тасдиқи шарҳ дар саҳифаи паём онро тоза кунед"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Инро дар бахши шарҳҳои хеле серкор хомӯш кунед, ки дар он ҷо он метавонад ҳамон саҳифаро дар як соат садҳо маротиба тоза кунад."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "Инҳоро ҳеҷ гоҳ кэш накунед"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Танзимоти пешфарзи оқилонаи WordPress ва WooCommerce ҳамеша татбиқ карда мешаванд — сабад, пардохт, кабинети шахсӣ (my-account) ва дигар сессияҳои воридшуда, сарфи назар аз он ки дар зер оварда шудааст, ҳеҷ гоҳ кэш карда намешаванд."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Суроғаҳо"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Як масир дар як сатр, масалан <code>/basket</code>. Аломати <code>*</code> дар охир ҳамаи чизҳои зери онро мувофиқ мекунад."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Параметрҳои дархост"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Саҳифае, ки яке аз инҳоро дорад, ҳеҷ гоҳ кэш намешавад — масалан, нишони пешнамоиши якдафъаина."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Кукиҳо"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Ба меҳмоне, ки яке аз инҳоро дорад, ҳамеша саҳифаи тоза пешниҳод мешавад."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Ҳама саҳифаҳои кэшшуда нест карда шудаанд. Онҳо бо омадани меҳмонон аз нав сохта хоҳанд шуд."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Kesh-obyekt nasb шудааст, амoo он чизеро захира намекунад."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Кэши саҳифа фаъол аст, аммо саҳифаҳо ҳанӯз захира шуда истодаанд."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress то ин дам бастаи кэши саҳифаро бор накардааст. Он ҳангоми боркунии навбатии саҳифа оғоз мешавад; агар ин тавр нашавад, санҷед, ки WP_CACHE дар файли wp-config.php дуруст (true) аст ё на."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Кэши объекти фаъол аст, аммо ин сервер дастгирии Redis-ро надорад."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Васеъкунии phpredis насб нашудааст, аз ин рӯ модули иловагӣ истифода шуда наметавонад ва WordPress ба кэши хотираи дохилии худ бармегардад. Аз мизбони худ хоҳиш кунед, ки phpredis-ро фаъол созад."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "Ҳеҷ чиз дар хотираи пинҳонӣ (кэш) маҳфуз шуда истодааст."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Ҳарду кэш хомӯш карда шудаанд, бинобар ин ин плагин сайт ро тезтар намекунад."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "Кэш дар ин сайт фаъол аст."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis номи корбар ё гузарвожаро рад кард. Маълумоти воридшавии Redis-ро дар wp-config.php ё дар ин экран санҷед."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis воридшавиро қабул кард, аммо ба ин сомона иҷозат намедиҳад, ки калидҳои худро захира кунад. Корбари Redis барои пешванди калиди ин сомона ба иҷозат ниёз дорад."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis рақами пойгоҳи додаҳоро рад кард. Танзимоти пойгоҳи додаҳои Redis-ро тафтиш кунед."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis хотираи холӣ надорад ва маълумоти навро қабул намекунад."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Васеъкунии phpredis насб нашудааст, аз ин рӯ WordPress кэши дохилии худро истифода мебарад. Аз мизбони худ хоҳиш кунед, ки phpredis-ро фаъол созад."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED дар wp-config.php танзим шудааст, аз ин рӯ кэши объектӣ хомӯш карда шудааст."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Ба сервери Redis дастрасӣ пайдо карда нашуд. Мизбон ва порти Redis-ро санҷед ва боварӣ ҳосил кунед, ки Redis кор карда истодааст."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis қиmиматеро, ки тоза ба он навишта шуда буд, барнагардонд. Журналҳои (logs) сервери Redis-ро тафтиш кунед."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Сервери веб"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — саҳифаҳо аз ҷониби сервери вест кеш карда мешаванд"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "на LiteSpeed — саҳифаҳо аз ҷониби ин плагин дар диск кэш карда мешаванд"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Саҳифаҳои дар диск захирашуда"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Дастгирии Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis насб карда шудааст"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis насб нашудааст"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Мӯҳлати саҳифа"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "Шумо иҷозати тоза кардани кэшро надоред."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Дархости тозакунии кэш фиристода шуд."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: боз як касши объектии дарунсохт насб шудааст, бинобар ин касши объектии Redis аз ҷониби ин плагин идора карда намешавад."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "муайян шуд"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "муайян нашуд"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "тавсеаи phpredis мавҷуд нест"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "насбшуда, ҳеҷ чиз захира намешавад"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "фаъол, аз ҷониби мизбони шумо идора карда мешавад"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "фаъол"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "ғайрифаъол"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "Кэши LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Кэши объектии Redis:"
 
@@ -421,15 +438,15 @@ msgstr "drop-in-и кэши объектиро нест кардан имкон�
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Системаи файлии WordPress барои навиштан дастрас нест, бинобар ин drop-in-и кэши объектиро идора кардан имконнопазир буд."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Як плагини дигари кэши саҳифа wp-content/advanced-cache.php-ро насб кардааст. Аввал он плагинро нест кунед ё истифодаи кэши саҳифаи онро идома диҳед."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Ҷузвдони wp-content/cache/zinn-cache навишта намешавад, аз ин рӯ саҳифаҳоро дар кэш захира кардан ғайриимкон аст."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php -ро навишта наметавонӣ, аз ин рӯ саҳифаҳоро бо Кэш нигоҳ дошта намешавад."
 
@@ -4915,3 +4932,109 @@ msgstr "Навсозӣ"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s пеш"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "Амалро анҷом додан муяссар нашуд. Добораи кӯшиш кунед ва агар хатогӣ такрор ёбад, ба администратори сайт муроҷиат кунед."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Қиммати зарурӣ мавҷуд нест ё шакли нодуруст дорад. Нақшаи вуруди қобилиятро санҷед."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "Сайт дархостро рад кард."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Ба ёрикунандагони сунъӣ ба монанди Claude, Cursor ё VS Code иҷозат диҳед, ки тавассути MCP (Model Context Protocol) дар ин сайт барои шумо кор кунанд. Онҳо ҳамчун корбари WordPress бо гузарвожаи барнома ворид мешаванд ва танҳо корҳоеро иҷро карда метавонанд, ки ба он корбар иҷозат дода шудааст."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Агентҳои AI ба WordPress 6.9 ё навтар ниёз доранд. Барои истифодаи онҳо WordPress-ро навсозӣ кунед."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Суроғаи пайвастшавӣ (нуқтаи ниҳоии MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Барои корбари худ рамзи барнома созед"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Инро ба танзимоти MCP-и барномаи сунъии худ бо номи корбарӣ ва он гузарвожа илова кунед:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: ҳамон сабтро дар зери «servers» дар .vscode/mcp.json ҷойгир кунед, на дар зери «mcpServers»."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Афзорҳое, ки як агенти AI дар ин ҷо истифода бурда метавонад (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Дастури корбар: Агентҳои AI ва MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Ҳуҷҷатҳои таҳиягар: қобилиятҳо, REST ва MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Кэши ин сайт санҷида ва тоза карда шавад ва танзимоти кэши он бо Zinn® Cache тағйир дода шавад."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Вазъи кэши саҳифа ва объектҳо, тозакунӣ ва танзимот."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Ҳолати кэшро хонед"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Оё кэши саҳифа ва кэши объект фаъол ва коршоям будани онҳо, инчунин чанд саҳифа кэш шудааст ва рақамҳои пайвастшавӣ ва пахши кэши объектро бармегардонад."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Хондани танзимоти кэш"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Ҳамаи танзимоти кэшро бармегардонад. Рамзи убури Redis ҳеҷ гоҳ баргардонида намешавад, танҳо он ки ягон рамз захира шудааст ё не."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Тағйир додани танзимоти кэш"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Тағйироти фиристодаи шуморо татбиқ мекунад ва боқимондаро нигоҳ медорад (кэши саҳифа, мӯҳлати кэш шудани саҳифаҳо, кэши объектҳо ва пайвасти Redis-и он, қоидаҳои тозакунӣ ва истисноҳо). Қиматҳо дақиқан ба монанди экрани кэш санҷида ва ислоҳ карда мешаванд."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Танзимоти кешро ба ҳолати пешфарз баргардонед"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Ҳамаи танзимоти кэшро, мисли тугмаи Бозсозӣ, ба ҳолати пешфарз бармегардонад. Рамзи захирашудаи Redis низ нест карда мешавад."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Хондани ҳисоботи ташхисӣ"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Гузориши ташхисеро, ки дастгирии техникӣ дархост мекунад, бармегардонад: версияҳо, маҳдудиятҳои сервер, ҳолати кэш ва хатогиҳои охирин. Он ҳеҷ гуна рамз ё калидҳоро дар бар намегирад."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Тоза кардани кэш"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Саҳифаҳои кэшшударо нест мекунад: ҳама чиз (all: true), баъзе суроғаҳо (urls) ё ҳамаи чизҳои бо тэг қайдшуда (tags). Саҳифаҳо ҳангоми омадани меҳмонон аз нав сохта мешаванд."

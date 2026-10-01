@@ -64,6 +64,8 @@ final class Settings {
 			'cache_logged_out_only' => true,
 			'purge_on_comment'      => true,
 			'ttl_overrides'         => array(),
+			// AI agents (MCP): on by default for administrators (owner Q2, 2026-09-30).
+			'mcp'                   => true,
 		);
 	}
 
@@ -98,6 +100,7 @@ final class Settings {
 			'cache_logged_out_only' => self::to_bool( $raw['cache_logged_out_only'] ?? $defaults['cache_logged_out_only'] ),
 			'purge_on_comment'      => self::to_bool( $raw['purge_on_comment'] ?? $defaults['purge_on_comment'] ),
 			'ttl_overrides'         => self::to_ttl_overrides( $raw['ttl_overrides'] ?? array() ),
+			'mcp'                   => self::to_bool( $raw['mcp'] ?? $defaults['mcp'] ),
 		);
 	}
 

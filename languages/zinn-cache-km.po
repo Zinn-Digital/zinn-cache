@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "ឃ្លាំងសម្ងាត់"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "ឃ្លាំងសម្ងាត់ទំព័រ"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "ឃ្លាំងសម្ងាត់អូបជេក"
 
@@ -56,340 +57,356 @@ msgstr "កំពុងសម្អាត"
 msgid "Exclusions"
 msgstr "ករណីលើកលែង"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "ភ្នាក់ងារ AI (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "សម្អាតគ្រប់យ៉ាងឥឡូវនេះ"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "ទំព័រដែលបានឃ្លាំងសម្ងាត់នីមួយៗត្រូវបានលុបចោលហើយនឹងត្រូវបង្កើតឡើងវិញនៅពេលដែលអ្នកទស្សនាចូលមក។ បន្តឬទេ?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "អនុញ្ញាតឱ្យភ្នាក់ងារ AI (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "បិទ៖ ឧបករណ៍ខាងក្រោម និង REST ផ្លូវរបស់ពួកវា​មិនត្រូវបានចុះឈ្មោះទាល់តែសោះ។"
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "ឃ្លាំងសម្ងាត់ទំព័រពេញ"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "នៅលើម៉ាស៊ីនបម្រើ LiteSpeed ទំព័រត្រូវបានផ្តល់ជូនដោយម៉ាស៊ីនបម្រើបណ្តាញមុនពេល WordPress ដំណើរការ។ នៅលើម៉ាស៊ីនបម្រើផ្សេងទៀត ប័ណ្ណបន្ថែមនេះរក្សាទុកទំព័រនីមួយៗជាឯកសារ ហើយផ្តល់ជូនវាមុនពេល WordPress ផ្ទុក។ នេះជាកន្លែងដែលល្បឿនស្ទើរតែទាំងអស់ទទួលបានពី។"
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "រក្សាទុកទំព័រក្នុង Cache សម្រាប់អ្នកចូលមើលដែលមិនទាន់បានចូលប្រើប្រាស់"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "រយៈពេលដែលទំព័រមួយរក្សាទុកក្នុងឃ្លាំងសម្ងាត់"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "វិនាទី។ មួយសប្តាហ៍គឺសមរម្យសម្រាប់គេហទំព័រភាគច្រើន ប៉ុន្តែគេហទំព័រព័ត៌មានដែលចេញផ្សាយរៀងរាល់ម៉ោងត្រូវការរយៈពេលខ្លីជាងនេះឆ្ងាយណាស់។"
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "រយៈពេលដែលកម្មវិធីរុករករបស់អ្នកទស្សនារក្សារូបភាព និងស្គ្រីបទុក"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "វិនាទី។ អនុវត្តចំពោះតែរូបភាព, CSS និង JavaScript ប៉ុណ្ណោះ — មិនដែលអនុវត្តចំពោះទំព័រឡើយ។ កំណត់ទៅ 0 ដើម្បីទុកភារកិច្ចនេះជូនម៉ាស៊ីនបម្រើវ៉ែបរបស់អ្នក។"
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "អ្នកទស្សនាដែលបានចូលគណនី"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "កុំបង្ហាញទំព័រដែលបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ (cache) ដល់អ្នកទស្សនាដែលបានចូលគណនីឱ្យសោះ"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "\"បើក\" គឺជាចម្លើយដែលមានសុវត្ថិភាព និងជាជម្រើសលំនាំដើម។ បិទវាលុះត្រាតែអ្នកដឹងថាទំព័រដែលបានកែច្នៃទុក (cached) នីមួយៗគឺដូចគ្នាបេះបិទសម្រាប់អ្នកប្រើប្រាស់ដែលបានចូលប្រើប្រាស់គ្រប់រូប — គេហទំព័រសមាជិកភាពគឺជាហេតុផលធម្មតាមួយដែលមិនត្រូវបិទវា។"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "អាយុកាលផ្សេងៗគ្នាសម្រាប់មាតិកាផ្សេងៗគ្នា"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "ឧទាហរណ៍៖ ទំព័រផលិតផលរបស់ហាងមួយរយៈពេលមួយម៉ោង ខណៈពេលដែលអ្វីៗផ្សេងទៀតនៅសល់រយៈពេលមួយសប្តាហ៍។"
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "បន្ថែមច្បាប់មួយ"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "ប្រភេទមាតិកា"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "វិនាទី"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Object cache (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "ម៉ាស៊ីនបម្រើរបស់អ្នកដំណើរការឃ្លាំងសម្ងាត់វត្ថុ Redis ឯកជនមួយសម្រាប់គេហទំព័រនេះ ហើយរក្សាវាឱ្យកំណត់រចនាសម្ព័ន្ធរួចជាស្រេច។ មិនមានអ្វីត្រូវរៀបចំនៅទីនេះទេ ស្ថានភាពនៅផ្នែកខាងលើនៃអេក្រង់នេះបង្ហាញថាតើវាដំណើរការឬអត់។"
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "រក្សាទុកលទ្ធផលនៃការសំណួរទិន្នន័យក្នុងឃ្លាំងសម្ងាត់។ វាជួយច្រើនបំផុតនៅលើហាងដែលមានអ្នកប្រើប្រាស់ច្រើន ឬគេហទំព័រដែលមានចរាចរណ៍ចូលមើលច្រើន ដែលឃ្លាំងសម្ងាត់ទំព័រមិនអាចធ្វើបាន។"
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "ដំឡើងប្លាកអ៊ីនឃ្លាំងផ្ទុកវត្ថុ Redis object-cache"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "ទាមទារផ្នែកបន្ថែម phpredis។ ប្រសិនបើវាខ្វះខាត ប្រអប់នៅខាងលើអេក្រង់នេះនឹងបង្ហាញការជូនដំណឹង។"
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis host"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis port"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "មូលដ្ឋានទិន្នន័យ Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "សូមផ្ដល់លេខរៀងដាច់ដោយឡែកពីគ្នាសម្រាប់គេហទំព័រនីមួយៗនៅលើ Redis ដែលប្រើប្រាស់រួមគ្នា បើមិនដូច្នេះទេពួកវាលុបឃ្លាំងសម្ងាត់របស់គ្នាទៅវិញទៅមក។"
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "ឈ្មោះអ្នកប្រើប្រាស់ Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "សម្រាប់តែម៉ាស៊ីនបម្រើ Redis ដែលមានអ្នកប្រើប្រាស់ ACL (Redis 6 ឬជំនាន់ក្រោយ)។ ទុកទទេដើម្បីចូលដោយប្រើពាក្យសម្ងាត់តែមួយមុខ។"
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "ពាក្យសម្ងាត់ Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "ទុកទទេប្រសិនបើ Redis របស់អ្នកមិនត្រូវការវា។"
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "បុព្វបទសោ"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "ជម្រើសជំនួសលេខមូលដ្ឋានទិន្នន័យដាច់ដោយឡែកមួយ នៅពេលដែលអ្នកមិនអាចមានវាបាន។"
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "ការសម្អាតស្វ័យប្រវត្តិដ៏ឆ្លាតវៃ"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "សម្អាតទំព័រដែលរងផលប៉ះពាល់ដោយស្វ័យប្រវត្តិនៅពេលមាតិកាផ្លាស់ប្តូរ"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "ក្រោយពេលអាប់ដេត"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "សម្អាតអ្វីៗទាំងអស់បន្ទាប់ពីការអាប់ដេតស្នូល កម្មវិធីជំនួយ ឬស្បែក"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "បន្ទាប់ពីមតិយោបល់មួយ"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "ជម្រះទំព័ររបស់ការផ្សាយមួយនៅពេលដែលមតិយោបល់លើវាត្រូវបានអនុម័ត"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "បិទមុខងារនេះនៅលើផ្នែកមតិយោបល់ដែលមានសកម្មភាពមមាញឹកខ្លាំង ដែលវាអាចសម្អាតទំព័រដដែលនេះរាប់រយដងក្នុងមួយម៉ោង។"
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "កុំឃ្លាំងសម្ងាត់ទាំងនេះ"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "ការកំណត់លំនាំដើមដ៏សមហេតុផលរបស់ WordPress និង WooCommerce ត្រូវបានអនុវត្តជានិច្ច គឺកន្ត្រកទំនិញ ទំព័រទូទាត់ប្រាក់ ទំព័រគណនីរបស់ខ្ញុំ និងរាល់សម័យប្រើប្រាស់ដែលបានចុះឈ្មោះចូល គឺមិនត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ (cache) ឡើយ មិនថាមានអ្វីនៅខាងក្រោមនេះទេ។"
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "អាសយដ្ឋាន"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "ផ្លូវមួយក្នុងមួយជួរ ឧទាហរណ៍ <code>/basket</code>។ សញ្ញា <code>*</code> នៅចុងបញ្ចប់ត្រូវគ្នាទៅនឹងអ្វីៗទាំងអស់នៅក្រោមវា។"
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "ប៉ារ៉ាវេត្រសំណសួរ"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "ទំព័រដែលមានផ្ទុកកាតឥណទានមួយក្នុងចំណោមទាំងនេះមិនត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ (cache) ទេ។"
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "ឃូឃី"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "អ្នកទស្សនាដែលមានរបស់ទាំងនេះ តែងតែទទួលបានទំព័រថ្មីស្រឡាងជានិច្ច។"
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "ទំព័រដែលបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ទាំងអស់ត្រូវបានលុបចោលហើយ។ ពួកវានឹងត្រូវបង្កើតឡើងវិញនៅពេលដែលអ្នកទស្សនាចូលមក។"
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "ឃ្លាំងសម្ងាត់វត្ថុត្រូវបានដំឡើងហើយ ប៉ុន្តែវាមិនកំពុងរក្សាទុកអ្វីនោះទេ។"
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "ឃ្លាំងសម្ងាត់ទំព័រត្រូវបានបើក ប៉ុន្តែទំព័រនានាមិនទាន់ត្រូវបានរក្សាទុកនៅឡើយទេ។"
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress មិនទាន់បានផ្ទុក page-cache drop-in ទេ។ វាចាប់ផ្តើមនៅពេលផ្ទុកទំព័របន្ទាប់; បើមិនដូច្នេះទេ សូមពិនិត្យមើលថា WP_CACHE គឺ true នៅក្នុង wp-config.php។"
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "ឃ្លាំងសម្ងាត់វត្ថុត្រូវបានបើក ប៉ុន្តែម៉ាស៊ីនបម្រើនេះមិនគាំទ្រ Redis ទេ។"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "ផ្នែកបន្ថែម phpredis មិនទាន់បានដំឡើងទេ ដូច្នេះ drop-in មិនអាចប្រើប្រាស់បានឡើយ ហើយ WordPress កំពុងត្រឡប់ទៅប្រើអង្គចងចាំបណ្តោះអាសន្នផ្ទាល់ខ្លួនរបស់វាវិញ។ សូមស្នើឱ្យអ្នកផ្តល់សេវាហូសស្ទីង (host) របស់អ្នកបើកដំណើរការ phpredis។"
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "គ្មានអ្វីត្រូវបានដាក់ក្នុងឃ្លាំងសម្ងាត់ទេ។"
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "ឃ្លាំងសម្ងាត់ទាំងពីរត្រូវបានបិទ ដូច្នេះកម្មវិធីជំនួយនេះមិនធ្វើឱ្យគេហទំព័រដំណើរការលឿនជាងមុនទេ។"
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "ការរក្សាទុកក្នុងឃ្លាំងសម្ងាត់សកម្មនៅលើគេហទំព័រនេះ។"
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis បានច្រានចោលឈ្មោះអ្នកប្រើប្រាស់ ឬពាក្យសម្ងាត់។ សូមពិនិត្យមើលព័ត៌មានសម្ងាត់ Redis នៅក្នុង wp-config.php ឬនៅលើអេក្រង់នេះ។"
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis បានទទួលយកការចូលប្រើប្រាស់ ប៉ុន្តែមិនអនុញ្ញាតឱ្យគេហទំព័រនេះរក្សាទុកកូនសោរបស់វាឡើយ។ អ្នកប្រើប្រាស់ Redis ត្រូវការការអនុញ្ញាតសម្រាប់បុព្វបទកូនសោរបស់គេហទំព័រនេះ។"
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis បានបដិសេធលេខមូលដ្ឋានទិន្នន័យ។ សូមពិនិត្យមើលការកំណត់មូលដ្ឋានទិន្នន័យ Redis ។"
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis គឺអស់អង្គចងចាំហើយ និងកំពុងបដិសេធទិន្នន័យថ្មី។"
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "ផ្នែកបន្ថែម phpredis មិនត្រូវបានដំឡើងទេ ដូច្នេះ WordPress កំពុងប្រើប្រាស់ឃ្លាំងសម្ងាត់ក្នុងអង្គចងចាំផ្ទាល់របស់វា។ សូមស្នើឱ្យអ្នកបង្ហោះគេហទំព័ររបស់អ្នកបើកដំណើរការ phpredis។"
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED ត្រូវ​បាន​កំណត់​ក្នុង wp-config.php ដូច្នេះ​ឃ្លាំង​សម្ងាត់​វត្ថុ​ត្រូវ​បាន​បិទ។"
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "មិនអាចទាក់ទងម៉ាស៊ីនបម្រើ Redis បានទេ។ សូមពិនិត្យមើលហូស និងច្រករបស់ Redis ហើយពិនិត្យមើលថាតើ Redis កំពុងដំណើរការដែរឬទេ។"
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis មិនបានបញ្ជូនតម្លៃដែលទើបតែត្រូវបានសរសេរចូលទៅក្នុងវាវិញទេ។ សូមពិនិត្យមើលកំណត់ហេតុរបស់ម៉ាស៊ីនបម្រើ Redis។"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "សេវាបម្រើគេហទំព័រ"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — ទំព័រនានាត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ដោយម៉ាស៊ីនបម្រើបណ្ដាញ"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "មិនមែន LiteSpeed ទេ — ទំព័រត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់នៅលើថាសដោយកម្មវិធីជំនួយនេះ"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "ទំព័រដែលបានរក្សាទុកនៅលើថាស"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "ការគាំទ្រ Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis ត្រូវ​បាន​ដំឡើង​រួច​ហើយ"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis មិនទាន់ត្រូវបានដំឡើងនៅឡើយទេ"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "អាយុកាលទំព័រ"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "អ្នកមិនត្រូវបានអនុញ្ញាតឱ្យសម្អាត cache ទេ។"
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "បានស្នើសុំសម្អាត cache។"
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache៖ មាន object-cache drop-in ផ្សេងទៀតត្រូវបានដំឡើង ដូច្នេះ object cache របស់ Redis មិនត្រូវបានគ្រប់គ្រងដោយកម្មវិធីជំនួយនេះទេ។"
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "បានរកឃើញ"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "រកមិនឃើញ"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "បាត់ផ្នែកបន្ថែម phpredis"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "បានដំឡើង មិនរក្សាទុកអ្វីទាំងអស់"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "សកម្ម ដែលគ្រប់គ្រងដោយអ្នកបង្ហោះគេហទំព័ររបស់អ្នក"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "សកម្ម"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "អសកម្ម"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed cache៖"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis object cache៖"
 
@@ -421,15 +438,15 @@ msgstr "មិនអាចលុប object-cache drop-in បានឡើយ។"
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "ប្រព័ន្ធឯកសារ WordPress មិនអាចសរសេរបានទេ ដូច្នេះមិនអាចគ្រប់គ្រង object-cache drop-in បានឡើយ។"
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "កម្មវិធីជំនួយឃ្លាំងសម្ងាត់ទំព័រផ្សេងទៀតបានដំឡើង wp-content/advanced-cache.php។ សូមលុបកម្មវិធីជំនួយនោះជាមុនសិន ឬបន្តប្រើប្រាស់ឃ្លាំងសម្ងាត់ទំព័ររបស់វា។"
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "មិនអាចសរសេរថាំពាំ (write) ថតឯកសារ wp-content/cache/zinn-cache បានទេ ដូច្នេះទំព័រនានាមិនអាចត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ឡើយ។"
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "មិនអាចសរសេរឯកសារ wp-content/advanced-cache.php បានទេ ដូច្នេះទំព័រនានាមិនអាចត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ (cache) ទេ។"
 
@@ -4915,3 +4932,109 @@ msgstr "ដំឡើងកម្រិត"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s មុន"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "សកម្មភាពនេះមិនអាចបញ្ចប់បានទេ។ សូមព្យាយាមម្តងទៀត ហើយប្រសិនបើវានៅតែបរាជ័យ សូមទាក់ទងអ្នកគ្រប់គ្រងគេហទំព័រ។"
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "តម្លៃដែលទាមទារត្រូវបានបាត់បង់ ឬមានទម្រង់ខុស។ សូមពិនិត្យមើលគ្រោងការណ៍បញ្ចូលរបស់សមត្ថភាព។"
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "គេហទំព័រ​បាន​បដិសេធ​សំណើ​នេះ។"
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "សូមឱ្យជំនួយការ AI ដូចជា Claude, Cursor ឬ VS Code ធ្វើការលើគេហទំព័រនេះសម្រាប់អ្នកតាមរយៈ MCP (Model Context Protocol)។ ពួកវាចូលប្រើជាអ្នកប្រើប្រាស់ WordPress ជាមួយនឹងពាក្យសម្ងាត់កម្មវិធី ហើយអាចធ្វើបានតែអ្វីដែលអ្នកប្រើប្រាស់នោះត្រូវបានអនុញ្ញាតឱ្យធ្វើប៉ុណ្ណោះ។"
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "ភ្នាក់ងារ AI ត្រូវការ WordPress 6.9 ឬជំនាន់ថ្មីជាងនេះ។ សូមអាប់ដេត WordPress ដើម្បីប្រើប្រាស់ពួកវា។"
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "អាសយដ្ឋានតភ្ជាប់ (MCP endpoint)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "បង្កើតពាក្យសម្ងាត់កម្មវិធីសម្រាប់អ្នកប្រើប្រាស់របស់អ្នក"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "បន្ថែមវាទៅក្នុងការកំណត់ MCP របស់កម្មវិធី AI របស់អ្នក ជាមួយឈ្មោះអ្នកប្រើប្រាស់ និងពាក្យសម្ងាត់នោះ៖"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code៖ សូមដាក់ធាតុដូចគ្នាខាងក្រោម \"servers\" ក្នុង .vscode/mcp.json មិនមែនក្រោម \"mcpServers\" ទេ។"
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "ឧបករណ៍ដែលភ្នាក់ងារ AI អាចប្រើនៅទីនេះ (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "សៀវភៅណែនាំអ្នកប្រើប្រាស់៖ ភ្នាក់ងារ AI និង MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "ឯកសារសម្រាប់អ្នកអភិវឌ្ឍន៍៖ សមត្ថភាព REST និង MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "ពិនិត្យ និងសម្អាតឃែជរបស់គេហទំព័រនេះ ហើយផ្លាស់ប្តូរការកំណត់ឃែជរបស់វាជាមួយ Zinn® Cache។"
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "ស្ថានភាព ការសម្អាត និងការកំណត់ឃ្លាំងសម្ងាត់ទំព័រ និងវត្ថុ។"
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "អានស្ថានភាពឃ្លាំងសម្ងាត់"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "បញ្ជាក់ថាតើឃ្លាំងសម្ងាត់ទំព័រ និងឃ្លាំងសម្ងាត់វត្ថុបើកដំណើរការ និងកំពុងដំណើរការដែរឬទេ តើទំព័រចំនួនប៉ុន្មានត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់ និងការតភ្ជាប់របស់ឃ្លាំងសម្ងាត់វត្ថុព្រមទាំងចំនួនការចូលមើល។"
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "អានការកំណត់ឃែស"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "ត្រឡប់មកវិញនូវការកំណត់ឃ្លាំងសម្ងាត់ទាំងអស់។ ពាក្យសម្ងាត់ Redis មិនដែលត្រូវបានត្រឡប់មកវិញទេ មានតែព័ត៌មានថាវាត្រូវបានរក្សាទុកដែរឬទេប៉ុណ្ណោះ។"
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "ផ្លាស់ប្តូរការកំណត់ឃែរ"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "ផ្លាស់ប្តូរការកំណត់ដែលអ្នកផ្ញើ និងរក្សាទុកផ្នែកដែលនៅសល់ (ឃ្លាំងសម្ងាត់ទំព័រ តើទំព័រត្រូវបានរក្សាទុកក្នុងឃ្លាំងសម្ងាត់រយៈពេលប៉ុន្មាន ឃ្លាំងសម្ងាត់វត្ថុ និងការតភ្ជាប់ Redis របស់វាខ្សែកោងសម្អាត និងការលើកលែង)។ តម្លៃត្រូវបានពិនិត្យ និងកែតម្រូវយ៉ាងពិតប្រាកដដូចនៅលើអេក្រង់ឃ្លាំងសម្ងាត់។"
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "ដាក់ការកំណត់ឃ្លាំងសម្ងាត់ត្រឡប់ទៅជាលំនាំដើមវិញ"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "ដាក់ការកំណត់ឃ្លាំងសម្ងាត់ទាំងអស់ឱ្យត្រឡប់ទៅជាលំនាំដើមវិញ ដូចប៊ូតុងកំណត់ឡើងវិញដែរ។ ពាក្យសម្ងាត់ Redis ដែលបានរក្សាទុកក៏ត្រូវបានលុបចេញផងដែរ។"
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "អានរបាយការណ៍រោគវិនិច្ឆ័យ"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "បញ្ជូនរបាយការណ៍រោគវិនិច្ឆ័យដែលផ្នែកជំនួយស្នើសុំ៖ កំណែ, កម្រិតកំណត់របស់ម៉ាស៊ីនមេ, ស្ថានភាពឃ្លាំងសម្ងាត់ និងកំហុសថ្មីៗ។ វា​មិន​មាន​ពាក្យសម្ងាត់ ឬ​សោ​ណាមួយ​ឡើយ។"
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "សម្អាតឃ្លាំងសម្ងាត់"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "បោះបង់ទំព័រដែលបានឃ្លាំងសម្ងាត់៖ ទាំងអស់ (all: true), អាសយដ្ឋានមួយចំនួន (urls) ឬអ្វីៗទាំងអស់ដែលមានស្លាក (tags)។ ទំព័រត្រូវបានបង្កើតឡើងវិញនៅពេលដែលអ្នកទស្សនាចូលមកដល់។"

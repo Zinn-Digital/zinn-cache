@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "መሸጎጫ"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "የገጽ መሸጎጫ"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "የቁስ መሸጎጫ (Object cache)"
 
@@ -56,340 +57,356 @@ msgstr "በማጽዳት ላይ"
 msgid "Exclusions"
 msgstr "ገለልተኞች"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "የAI ወኪሎች (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "አሁን ሁሉንም አጽዳ"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "የተሸጎጠው (cached) ገጽ ሁሉ ተሰርዟል እና ጎብኚዎች ሲመጡ እንደገና ይገነባል። መቀጠል ይፈልጋሉ?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "AI ወኪሎችን ፍቀድ (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "ጠፍቷል፡ ከዚህ በታች ያሉ መሣሪያዎች እና የREST መንገዶቻቸው በጭራሽ አልተመዘገቡም።"
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "ሙሉ ገጽ መሸጎጫ"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "በLiteSpeed ሰቨር ላይ ገጾች የሚቀርቡት ዋርድፕረስ (WordPress) ከመሮጡ በፊት በዌብ ሰቨር ነው። በሌላ በማንኛውም ሰቨር ላይ ይህ ተሰኪ እያንዳንዱን ገጽ እንደ ፋይል ያከማቻል እና ዋርድፕረስ ከመጫኑ በፊት ያቀርበዋል። ፈጣንነቱ አብዛኛው የሚመነጨው ከዚህ ነው።"
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "ሳይገቡ ለሚጎበኙ ተጠቃሚዎች ገጾችን መዝግብ (Cache) አድርግ"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "አንድ ገጽ በመሸጎጫ (cache) ውስጥ የሚቆይበት ጊዜ"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "ሰከንዶች። ለአብዛኛዎቹ ድር ጣቢያዎች አንድ ሳምንት ይመጥናል፤ በሰዓት የሚለጥፍ የዜና ጣቢያ ግን ከዚህ በጣም ያነሰ ይፈልጋል።"
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "የጎብኚ አሳሽ ምስሎችን እና ስክሪፕቶችን የሚያቆይበት ጊዜ"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "ሰከንዶች። ለምስሎች፣ ለ CSS እና ለ JavaScript ብቻ የሚሰራ ነው — በገጾች ላይ ፈጽሞ አይሰራም። ይህንን ለአስተናጋጅዎ ለመተው ወደ 0 ያዋቅሩት።"
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "የገቡ ጎብኚዎች"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "በገቡ (signed-in) ጎብኚዎች ላይ የተሸጎጠ (cached) ገጽ በጭራሽ አያቅርቡ"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "በርቷል የሚለው ደህንነቱ የተጠበቀው መልስ እና ነባሪው ነው። እያንዳንዱ መሸጎጫ (cached) ገጽ ለገቡ ሁሉም ተጠቃሚዎች አንድ አይነት መሆኑን ከታወቀ ብቻ ያጥፉት፤ የአባልነት ድር ጣቢያ አለማጥፋት የተለመደ ምክንያት ነው።"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "ለተለያዩ ይዘቶች የተለያየ የዕድሜ ዘመን"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "ለምሳሌ፡ የሱቅ የምርት ገጾች ለአንድ ሰዓት፣ ሌላው ሁሉ ለአንድ ሳምንት ሲቆይ።"
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "ደንብ ጨምር"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "የይዘት ዓይነት"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "ሰከንዶች"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "የነገር መሸጎጫ (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "የእርስዎ አስተናጋጅ ለዚህ ድር ጣቢያ የግል Redis የዕቃ ማከማቻ (object cache) ያሄዳል እና የተዋቀረ ሆኖ እንዲቆይ ያደርጋል። እዚህ የሚዋቀር ምንም ነገር የለም፤ የዚህ ማያ ገጽ ላይኛው ክፍል ላይ ያለው ሁኔታ እየሰራ መሆኑን ወይም አለመሆኑን ያሳያል።"
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "የውሂብ ጎታ (database) ጥያቄዎችን ውጤቶች ሸፍኖ (cache) ያስቀምጣል። የገጽ መሸጎጫ (page cache) ሊሠራባቸው በማይችላቸው፣ ሥራ በበዛባቸው ሱቆች ወይም ብዙ የተገቡ (signed-in) ተጠቃሚዎች ባሉባቸው ድረ-ገጾች ላይ ከፍተኛ ጥቅም አለው።"
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "የ Redis ኦብጀክት-መሸጎጫ (object-cache) ድሮፕ-ኢን ይጫኑ"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "የ php-redis ቅጥያ ያስፈልጋል። ከጠፋ፣ ከዚህ ማያ ገጽ በላይ ያለው ሳጥን ይህንኑ ያሳያል።"
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "የ Redis አስተናጋጅ"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "የ Redis ወደብ"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "የ Redis ዳታቤዝ"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "በተጋራ Redis ላይ ላለ እያንዳንዱ ጣቢያ የራሱን ቁጥር ይስጡ፣ ካልሆነ ግን አንዱ የሌላውን መሸጎጫ (cache) ያጸዳል።"
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "የRedis የተጠቃሚ ስም"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "ለኤሲኤል ተጠቃሚዎች ላላቸው የ Redis አገልጋይ ብቻ (Redis 6 ወይም ከዚያ በኋላ)። በይለፍ ቃል ብቻ ለመግባት ባዶ ይተውት።"
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "የRedis የይለፍ ቃል"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "የእርስዎ Redis የማያስፈልገው ከሆነ ባዶ ይተውት።"
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "የቁልፍ ቅድመ ቅጥያ"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "የተለየ የዳታቤዝ ቁጥር ማግኘት በማይችሉበት ጊዜ የሚሆን አማራጭ።"
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "ዘመናዊ ራስ-ማጽዳት"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "ይዘቱ ሲቀየር የተነኩ ገጾችን በራስ-ሰር አጽዳ"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "ከዝማኔዎች በኋላ"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "ከኮር፣ ተሰኪ ወይም ጭብጥ ዝማኔ በኋላ ሁሉንም ነገር ያጽዱ"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "አስተያየት በኋላ"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "በፖስታ ላይ ያለ አስተያየት ሲጸድቅ የፖስታውን ገጽ ያጽዱ"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "ይህንን በሰዓት በመቶዎች የሚቆጠሩ ጊዜዎችን ተመሳሳይ ገጽ ማጽዳት በሚችልበት እጅግ በጣም ሥራ የበዛበት የአስተያየት ክፍል ላይ ያጥፉት።"
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "እነዚህን በጭራሽ አትሸፍን (cache አታድርግ)"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "ምርጥ የ WordPress እና WooCommerce ነባሪዎች ሁልጊዜ ይተገበራሉ — ጋሪ፣ ክፍያ፣ የእኔ-መለያ እና ማንኛውም የገቡበት ክፍለ ጊዜ ከዚህ በታች ምንም ይሁን ምን በጭራሽ መሸጎጫ ውስጥ አይገቡም።"
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "አድራሻዎች"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "በአንድ መስመር አንድ መንገድ፣ ለምሳሌ <code>/basket</code>። <code>*</code> የሚያልቅ ምልክት ከእሱ በታች ያሉትን ሁሉንም ይዛመዳል።"
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "የጥያቄ መለኪያዎች"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "ከእነዚህ ውስጥ አንዱን የያዘ ገጽ ፈጽሞ መሸጎሪያ (cached) አይደረግም — ለምሳሌ የአንድ ጊዜ የቅድመ-ዕይታ ቶከን።"
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "ኩኪዎች"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "ከእነዚህ ውስጥ አንዱን ይዞ የሚመጣ ጎብኚ ሁል ጊዜ አዲስ ገጽ ይቀርብለታል።"
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "ሁሉም መሸጎጫ (cached) ገጾች ተሰርዘዋል። ጎብኚዎች ሲመጡ እንደገና ይገነባሉ።"
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "የቁሰል መሸጎጫው ተጭኗል፣ ነገር ግን ምንም ነገር አያስቀምጥም።"
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "የገጽ መሸጎጫው በርቷል፣ ነገር ግን ገጾቹ እስካሁን አልተከማቹም።"
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress የገጽ-መሸጎጫ (page-cache) ጠብታ-ውስጥ እስካሁን አልጫነም። በሚቀጥለው ገጽ ጭነት ይጀምራል; ካልሆነ, WP_CACHE በ wp-config.php ውስጥ እውነት (true) መሆኑን ይፈትሹ።"
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "የዕቃ መሸጎጫው በርቷል፣ ነገር ግን ይህ ሰርቨር የRedis ድጋፍ የለውም።"
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "የ php-redis ቅጥያ አልተጫነም፣ ስለዚህ የድሮፕ-ኢን (drop-in) መጠቀም አይቻልም እና WordPress ወደ ራሱ የማስታወሻ ውስጥ መሸጎጫ (in-memory cache) እየተመለሰ ነው። php-redis እንዲያነቁ አስተናጋጅዎን (host) ይጠይቁ።"
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "ምንም መሸጎሪያ (ካሺንግ) አልተደረገም።"
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "ሁለቱም መሸጎጫዎች ጠፍተዋል፣ ስለዚህ ይህ ተሰኪ ጣቢያውን ፈጣን አያደርገውም።"
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "መሸጎጫው በዚህድ ጣቢያ ላይ ገቢራዊ ሆኗል።"
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis የተጠቃሚ ስም ወይም የይለፍ ቃል አልቀበልም ብሏል። በ wp-config.php ውስጥ ያሉትን ወይም በዚህ ማያ ገጽ ላይ ያሉትን የ Redis ምስክርነቶች ያረጋግጡ።"
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis መግቢያውን ተቀብሏል ነገር ግን ይህ ድር ጣቢያ ቁልፎቹን እንዲያከማች አይፈቅድም። የ Redis ተጠቃሚ ለዚህ ድር ጣቢያ ቁልፍ ቅድመ ቅጥያ ፈቃድ ያስፈልገዋል።"
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis የመረጃ ቋቱን ቁጥር አልቀበልም ብሏል። የRedis መረጃ ቋት ቅንብሩን ያረጋግጡ።"
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis የማህደረ ትውስታ (memory) እጥረት አጋጥሞታል እና አዳዲስ መረጃዎችን መቀበል እያቆመ ነው።"
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "የphpredis ቅጥያ አልተጫነም፣ ስለዚህ WordPress የራሱን የማስታወስ ችሎታ መሸጎጫ (in-memory cache) እየተጠቀመ ነው። phpredis እንዲያነቁ አስተናጋጅዎን (host) ይጠይቁ።"
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED በ wp-config.php ውስጥ ተቀናብሯል፣ ስለዚህ የኦብጀክት መሸጎጫ (object cache) ጠፍቷል።"
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "የRedis አገልጋዩን ማግኘት አልተቻለም። የRedis አስተናጋጅ እና ፖርት ትክክለኛ መሆናቸውን፣ እንዲሁም Redis እየሰራ መሆኑን ያረጋግጡ።"
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis የተፃፈውን ዋጋ አልመለሰም። የ Redis ሰርቨር መዝገቦችን (logs) ይፈትሹ።"
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "ድረ ገጽ አገልጋይ"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — ገጾች በድር አገልጋዩ የተሸጎጡ (ካሽ የተደረጉ) ናቸው"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "LiteSpeed አይደለም — ገጾች በዚህ ተሰኪ በዲስክ ላይ መሸጎሪያ ይደረግባቸዋል"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "በዲስክ ላይ የተከማቹ ገጾች"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "የRedis ድጋፍ"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis ተጭኗል"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis አልተጫነም"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "የገጽ ዕድሜ ክልል"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "መሸጎጫውን እንዲያጸዱ አይፈቀድልዎትም።"
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "የመሸጎጫ ማጽዳት ተጠይቋል።"
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache፦ ሌላ የኦብጀክት-ኬሽ ድሮፕ-ኢን ተጭኗል፣ ስለዚህ የRedis ኦብጀክት ኬሽ በዚህ ፕለጊን አይተዳደርም።"
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "ተገኝቷል"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "አልተገኘም"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "የ phpredis ቅጥያ የለም"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "ተጭኗል፣ ምንም አልተቀመጠም"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "ገባሪ፣ በአስተናጋጅዎ የሚተዳደር"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "ንቁ"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "ንቁ ያልሆነ"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "የ LiteSpeed መሸጎጫ:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "የ Redis የነገር መሸጎጫ:"
 
@@ -421,15 +438,15 @@ msgstr "የነገር-መሸጎጫ drop-in ማስወገድ አልተቻለም።"
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "የ WordPress ፋይል ስርዓቱ ሊጻፍ የሚችል አይደለም፣ ስለዚህ የነገር-መሸጎጫ drop-in ሊተዳደር አልቻለም።"
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "ሌላ የገጽ-መሸጎጫ (page-cache) ተሰኪ wp-content/advanced-cache.php ጫኗል። እባክዎ መጀመሪያ ያንን ተሰኪ ያስወግዱ፣ ወይም የገጽ መሸጎጫውን መጠቀሙን ይቀጥሉ።"
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "የwp-content/cache/zinn-cache ፎልደር ሊጻፍ ስላልቻለ ገጾችን በካሽ (cache) ማስቀመጥ አይቻልም።"
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php ሊጻፍ አልቻለም፣ ስለዚህ ገጾች መሸጎጥ (cache ማድረግ) አይችሉም።"
 
@@ -4916,3 +4933,109 @@ msgstr "አሻሽል"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "ከ%s በፊት"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "ድርጊቱን ማጠናቀቅ አልተቻለም። እንደገና ይሞክሩ፣ እና ችግሩ ከቀጠለ፣ የጣቢያውን አስተዳዳሪ ያግኙ።"
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "የሚያስፈልግ እሴት ጠፍቷል ወይም የተሳሳተ ቅርጽ አለው። የክህሎቱን የግብአት መዋቅር (ስኬማ) ያረጋግጡ።"
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "ጣቢያው ጥያቄውን አልቀበልም ብሏል።"
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "እንደ Claude፣ Cursor ወይም VS Code ያሉ አርቴፊሻል ኢንተለጀንስ (AI) ረዳቶች በMCP (Model Context Protocol) በኩል በዚህድ ላይ እንዲሠሩ ያድርጉ። እነሱ እንደ WordPress ተጠቃሚ ከመተግበሪያ የይለፍ ቃል ጋር በመግባት ያ ተጠቃሚ እንዲሠራ የተፈቀደለትን ብቻ ማከናወን ይችላሉ።"
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "የAI ወኪሎች WordPress 6.9 ወይም ከዚያ በላይ ያስፈልጋቸዋል። ለመጠቀም WordPressን ያዘምኑ።"
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "የግንኙነት አድራሻ (MCP መጨረሻ ነጥብ)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "ለተጠቃሚዎ የመተግበሪያ የይለፍ ቃል ይፍጠሩ"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "ይህንን የተጠቃሚ ስምዎን እና ያንን የይለፍ ቃል በመጠቀም ወደ AI መተግበሪያዎ የMCP ቅንብሮች ያክሉት፡"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code፡ ተeው ግቤት በ .vscode/mcp.json ውስጥ ስር \"servers\" እንጂ \"mcpServers\" ስር አያስቀምጡ።"
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "እዚህ ጋር የአይአይ ኤጀንት ሊጠቀምባቸው የሚችላቸው መሳሪያዎች (%d)፦"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "የተጠቃሚ መመሪያ፡ የAI ወኪሎች እና MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "የዴቨሎፐር ሰነዶች፡ ችሎታዎች፣ REST እና MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "በ Zinn® Cache አማካኝነት የዚህን ድረ-ገጽ መሸጎጫ (cache) ያረጋግጡ፣ ያጽዱ እና መሸጎጫ ቅንብሮቹን ይቀይሩ።"
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "የገጽ እና የነገር (object) መሸጎጫ (cache) ሁኔታ፣ ማጽዳት እና ቅንብሮች።"
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "የመሸጎጫ (cache) ሁኔታውን አንብብ"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "የገጽ መሸጎጫው (cache) እና የዕቃ መሸጎጫው (object cache) በርተዋል እና እየሰሩ መሆናቸውን፣ ምን ያህል ገጾች እንደተሸጎጡ፣ እንዲሁም የዕቃ መሸጎጫውን የግንኙነት እና የሂት (hit) ብዛት ይመልሳል።"
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "የመሸጎጫ ቅንብሮችን አንብብ"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "እያንዳንዱን የመሸጎጫ ቅንብር ይመልሳል። የ Redis የይለፍ ቃል በጭራሽ አይመለስም፣ የተቀመጠ መሆኑ ብቻ ነው።"
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "የመሸጎጫ ቅንብሮችን ይቀይሩ"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "የምትልካቸውን ቅንብሮች ይቀይራል እና የቀሩትን ይጠብቃል (የገጽ መሸጎጫ፣ ገጾች ለምን ያህል ጊዜ እንደሚሸጎጡ፣ የቁስ መሸጎጫ እና የ Redis ግንኙነቱ፣ የማጽዳት ደንቦች እና ማግለያዎች)። እሴቶቹ ልክ እንደ መሸጎጫ ማያ ገጽ ላይ ይታረማሉ እና ይረጋገጣሉ።"
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "የመሸጎጫ (cache) ቅንብሮቹን ወደ ነባሪ እሴታቸው መልስ አድርግ"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "እንደ ዳግም አስጀምር አዝራር ሁሉንም የመሸጎጫ መቼቶች ወደ ነባሪው ይመልሳል። የተቀመጠው የ Redis የይለፍ ቃልም ይጠፋል።"
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "የምርመራ ሪፖርቱን አንብብ"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "የድጋፍ ሰጪ ቡድኑ የሚጠይቀውን የምርመራ ሪፖርት ይመልሳል፡ ስሪቶች፣ የአገልጋይ ገደቦች፣ የመሸጎጫ ሁኔታ እና የቅርብ ጊዜ ስህተቶች። የለወጡ የለባቸውም ወይም የይለፍ ቃሎችን ወይም ቁልፎችን አልያዘም።"
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "መሸጎጫውን አጽዳ"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "የመሸጎጫ ገጾችን ያስወግዳል፡ ሁሉንም (all: true)፣ የተወሰኑ አድራሻዎችን (urls) ወይም በታግ የተደረጉትን (tags)። ጎብኚዎች ሲመጡ ገጾች እንደገና ይገነባሉ።"

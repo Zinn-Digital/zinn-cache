@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "Caché"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "Caché de página"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "Caché de objetos"
 
@@ -56,340 +57,356 @@ msgstr "Purgando"
 msgid "Exclusions"
 msgstr "Exclusiones"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "Agentes de IA (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "Purgar todo ahora"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "Se descartará cada página en caché y se volverá a generar a medida que lleguen los visitantes. ¿Desea continuar?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "Permitir agentes de IA (MCP)"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "Desactivado: las herramientas a continuación y sus rutas REST no están registradas en absoluto."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "Caché de página completa"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "En un servidor LiteSpeed, las páginas son servidas por el servidor web antes de que se ejecute WordPress. En cualquier otro servidor, este plugin almacena cada página como un archivo y la sirve antes de que se cargue WordPress. De aquí proviene casi toda la velocidad."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Almacenar en caché las páginas para los visitantes que no hayan iniciado sesión"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "Cuánto tiempo permanece almacenada en caché una página"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Segundos. Una semana es adecuada para la mayoría de los sitios; un sitio de noticias que publica cada hora necesita mucho menos."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "El tiempo que el navegador de un visitante conserva las imágenes y los scripts"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Segundos. Se aplica únicamente a imágenes, CSS y JavaScript; nunca a páginas. Establézcalo en 0 para dejar esto en manos de su proveedor de alojamiento."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "Visitantes con sesión iniciada"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Nunca sirva una página en caché a un visitante que haya iniciado sesión"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Activado es la opción segura y predeterminada. Desactívelo únicamente si sabe que cada página almacenada en caché es idéntica para todos los usuarios que hayan iniciado sesión; un sitio web de membresía es el motivo habitual para no hacerlo."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "Diferentes tiempos de vida para contenido diferente"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Por ejemplo: las páginas de productos de una tienda durante una hora, mientras que todo lo demás se mantiene durante una semana."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "Añadir una regla"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "Tipo de contenido"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "Segundos"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "Caché de objetos (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Su servidor ejecuta una caché de objetos Redis privada para este sitio y la mantiene configurada. No hay nada que configurar aquí; el estado en la parte superior de esta pantalla muestra si está funcionando."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Almacena en caché los resultados de las consultas de bases de datos. Resulta de gran ayuda en una tienda con mucho tráfico o en un sitio web con una gran cantidad de usuarios autenticados, donde la caché de página no puede actuar."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Instalar el complemento de caché de objetos Redis"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Necesita la extensión phpredis. Si falta, el recuadro situado encima de esta pantalla lo indica."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Host de Redis"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Puerto de Redis"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Base de datos de Redis"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Asigne a cada sitio en un Redis compartido su propio número, o borrarán la caché de los demás."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Nombre de usuario de Redis"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Solo para un servidor Redis con usuarios ACL (Redis 6 o posterior). Déjelo en blanco para iniciar sesión solo con la contraseña."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Contraseña de Redis"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "Déjelo en blanco si su Redis no necesita uno."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "Prefijo de clave"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Una alternativa a un número de base de datos independiente cuando no puede tener uno."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "Purga automática inteligente"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "Borrar automáticamente las páginas afectadas cuando el contenido cambie"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "Tras las actualizaciones"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "Borrar todo después de una actualización de núcleo, plugin o tema"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "Después de un comentario"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Vaciar la página de una publicación cuando se apruebe un comentario en ella"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Desactive esto en una sección de comentarios muy concurrida, donde puede borrar la misma página cientos de veces por hora."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "No almacenar en caché nunca"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Se aplican siempre valores predeterminados sensatos para WordPress y WooCommerce: el carrito, el pago, «mi cuenta» y cualquier sesión iniciada nunca se almacenan en caché, independientemente de lo que haya debajo."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "Direcciones"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Una ruta por línea, por ejemplo <code>/basket</code>. Un <code>*</code> al final coincide con todo lo que se encuentra debajo."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "Parámetros de consulta"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Una página que lleva uno de estos nunca se almacena en caché; por ejemplo, un token de vista previa de un solouso."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "Cookies"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "A un visitante que porte una de estas siempre se le sirve una página nueva."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Todas las páginas en caché han sido eliminadas. Se reconstruirán a medida que lleguen los visitantes."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "El caché de objetos está instalado, pero no está almacenando nada."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "La caché de páginas está activada, pero aún no se están guardando páginas."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress aún no ha cargado el complemento de caché de páginas. Se inicia en la siguiente carga de página; si no lo hace, compruebe que WP_CACHE está en true en wp-config.php."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "El caché de objetos está activado, pero este servidor no es compatible con Redis."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "La extensión phpredis no está instalada, por lo que no se puede usar el componente desplegable y WordPress está recurriendo a su propia caché en memoria. Solicite a su proveedor de alojamiento que habilite phpredis."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "No se está almacenando nada en caché."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Ambos cachés están desactivados, por lo que este plugin no está haciendo que el sitio sea más rápido."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "La caché está activa en este sitio."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis rechazó el nombre de usuario o la contraseña. Comprueba las credenciales de Redis en wp-config.php o en esta pantalla."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis aceptó el inicio de sesión pero no permite que este sitio almacene sus claves. El usuario de Redis necesita permiso para el prefijo de clave de este sitio."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis ha rechazado el número de base de datos. Compruebe la configuración de la base de datos Redis."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis se ha quedado sin memoria y está rechazando nuevos datos."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "La extensión phpredis no está instalada, por lo que WordPress utiliza su propia caché en memoria. Solicite a su proveedor de alojamiento que habilite phpredis."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED está establecido en wp-config.php, por lo que la caché de objetos está desactivada."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "No se pudo contactar con el servidor Redis. Compruebe el host y el puerto de Redis, y que Redis esté en ejecución."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis no devolvió el valor que se acaba de escribir en él. Compruebe los registros del servidor Redis."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "Servidor web"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed: las páginas son almacenadas en caché por el servidor web"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "no LiteSpeed — las páginas se almacenan en caché en el disco mediante este complemento"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "Páginas almacenadas en disco"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Soporte para Redis"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis está instalado"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis no está instalado"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "Duración de la página"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "No tienes permiso para purgar la caché."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "Purga de caché solicitada."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Caché Zinn®: hay otro complemento de caché de objetos instalado, por lo que la caché de objetos de Redis no está gestionada por este plugin."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "detectado"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "no detectado"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "falta la extensión phpredis"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "instalado, sin almacenar nada"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "activo, administrado por su proveedor de alojamiento"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "activo"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "inactivo"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "Caché de LiteSpeed:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Caché de objetos de Redis:"
 
@@ -421,15 +438,15 @@ msgstr "No se pudo eliminar el complemento (drop-in) de caché de objetos."
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "El sistema de archivos de WordPress no admite escritura, por lo que no se pudo gestionar el complemento (drop-in) de caché de objetos."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Otro complemento de caché de páginas ha instalado wp-content/advanced-cache.php. Elimine ese complemento primero o siga usando su caché de páginas."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "No se pudo escribir en la carpeta wp-content/cache/zinn-cache, por lo que las páginas no se pueden almacenar en caché."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "No se pudo escribir el archivo wp-content/advanced-cache.php, por lo que las páginas no se pueden almacenar en caché."
 
@@ -4917,3 +4934,109 @@ msgstr "Actualizar"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "hace %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "No se pudo completar la acción. Inténtelo de nuevo y, si el problema persiste, póngase en contacto con el administrador del sitio."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "Falta un valor obligatorio o tiene un formato incorrecto. Compruebe el esquema de entrada de la función."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "El sitio rechazó la solicitud."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Permita que los asistentes de inteligencia artificial como Claude, Cursor o VS Code trabajen en este sitio para usted a través de MCP (Model Context Protocol). Estos inician sesión como un usuario de WordPress con una contraseña de aplicación y solo pueden realizar aquello que dicho usuario tenga permitido hacer."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "Los agentes de inteligencia artificial necesitan WordPress 6.9 o una versión posterior. Actualice WordPress para usarlos."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "Dirección de conexión (punto de enlace de MCP)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "Cree una contraseña de aplicación para su usuario"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "Añada esto a la configuración de MCP de su aplicación de IA, con su nombre de usuario y esa contraseña:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: coloque la misma entrada en \"servers\" en .vscode/mcp.json, no en \"mcpServers\"."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "Herramientas que un agente de IA puede usar aquí (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "Guía del usuario: agentes de IA y MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "Documentación para desarrolladores: capacidades, REST y MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Compruebe y purgue la caché de este sitio y modifique su configuración de caché con Zinn® Cache."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "Estado, purga y configuración de caché de páginas y objetos."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "Leer el estado de la caché"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "Devuelve si la caché de páginas y la caché de objetos están activas y funcionando, cuántas páginas están en caché y los números de conexión y de aciertos de la caché de objetos."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "Leer la configuración de caché"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "Devuelve cada configuración de caché. La contraseña de Redis nunca se devuelve, solo si hay una guardada."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "Cambiar la configuración de caché"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "Modifica la configuración que envía y conserva el resto (la caché de páginas, el tiempo que las páginas permanecen en caché, la caché de objetos y su conexión Redis, las reglas de purga y las exclusiones). Los valores se comprueban y corrigen exactamente igual que en la pantalla Caché."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "Restablecer la configuración de la caché a sus valores predeterminados"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "Restaura cada configuración de caché a su valor predeterminado, al igual que el botón Restablecer. La contraseña de Redis guardada también se elimina."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "Leer el informe de diagnóstico"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "Devuelve el informe de diagnóstico que solicita el soporte técnico: versiones, límites del servidor, el estado de la caché y los errores recientes. No contiene contraseñas ni claves."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "Vaciar la caché"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "Elimina las páginas almacenadas en caché: todo (all: true), algunas direcciones (urls) o todo lo etiquetado (tags). Las páginas se vuelven a generar a medida que llegan los visitantes."

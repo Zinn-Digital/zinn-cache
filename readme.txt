@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.7.7
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -179,6 +179,9 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
 == Changelog ==
+
+= 1.8.0 =
+* AI agents (MCP) and REST: read the cache status, purge, change every setting and read the diagnostics from AI apps, with your WordPress permissions (administrators). On by default; switch under Cache → AI agents (MCP).
 
 = 1.7.7 =
 * Hardened: the page cache refuses a request whose Host header is only dots, so a stored page is only ever read from, or written to, that host's own folder. No stored page could be reached this way before; the request is now refused on its shape.

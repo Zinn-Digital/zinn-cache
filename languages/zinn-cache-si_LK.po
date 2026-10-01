@@ -11,6 +11,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: zinn-cache.php
+#: includes/mcp/class-abilities.php:55
 msgid "Zinn® Cache"
 msgstr "Zinn® Cache"
 
@@ -39,12 +40,12 @@ msgid "Cache"
 msgstr "කැෂී (Cache)"
 
 #: includes/class-admin.php:110
-#: includes/class-admin.php:153
+#: includes/class-admin.php:179
 msgid "Page cache"
 msgstr "පිටු හැඹිලිය"
 
 #: includes/class-admin.php:114
-#: includes/class-admin.php:238
+#: includes/class-admin.php:264
 msgid "Object cache"
 msgstr "වස්තු හැඹිලිය"
 
@@ -56,340 +57,356 @@ msgstr "මකා දමමින්"
 msgid "Exclusions"
 msgstr "ව්යතිරේක"
 
-#: includes/class-admin.php:129
+#: includes/class-admin.php:126
+#: includes/class-admin.php:152
+#: includes/mcp-kit/class-server.php:216
+msgid "AI agents (MCP)"
+msgstr "AI නියෝජිතයන් (MCP)"
+
+#: includes/class-admin.php:133
 msgid "Purge everything now"
 msgstr "දැන් සියල්ල පිරිසිදු කරන්න"
 
-#: includes/class-admin.php:130
+#: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
 msgstr "හැම හැඹිලිගත කළ පිටුවක්ම ඉවත් කර ඇති අතර අමුත්තන් පැමිණෙන විට ඒවා නැවත සකස් කරනු ලැබේ. ඉදිරියට යන්න අවශ්‍යද?"
 
-#: includes/class-admin.php:147
+#: includes/class-admin.php:153
+#: includes/mcp-kit/class-server.php:225
+msgid "Allow AI agents (MCP)"
+msgstr "AI නියෝජිතයන්ට (MCP) ඉඩ දෙන්න"
+
+#: includes/class-admin.php:154
+#: includes/mcp-kit/class-server.php:227
+msgid "Off: the tools below and their REST routes are not registered at all."
+msgstr "අක්‍රියයි: පහත මෙවලම් සහ ඒවායේ REST මාර්ග කිසිවක් ලියාපදිංචි කර නොමැත."
+
+#: includes/class-admin.php:173
 msgid "Full-page cache"
 msgstr "පූර්ණ-පිටු හැඹිලිය"
 
-#: includes/class-admin.php:148
+#: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "LiteSpeed සේවාදායකයක් මත, WordPress ධාවනය වීමට පෙර වෙබ් සේවාදායකය මඟින් පිටු සපයනු ලැබේ. වෙනත් ඕනෑම සේවාදායකයක් මත, මෙම ප්ලගිනය මඟින් එක් එක් පිටුව ගොනුවක් ලෙස ගබඩා කර WordPress පූරණය වීමට පෙර එය සපයයි. සියලුම වේගය පාහේ ලැබෙන්නේ මෙතැනිනි."
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
 msgstr "ඇතුළු වී නොමැති පාරිභෝගිකයින් සඳහා පිටු හැඹිලිගත කරන්න (Cache කරන්න)"
 
-#: includes/class-admin.php:160
+#: includes/class-admin.php:186
 msgid "How long a page stays cached"
 msgstr "පිටුවක් හැඹිලිගත කර (cached) තබා ගන්නා කාලය"
 
-#: includes/class-admin.php:161
+#: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "තත්පර. බොහෝ වෙබ් අඩවි සඳහා සතියක් ගැළපේ; පැයෙන් පැයට ප්‍රකාශයට පත් කරන පුවත් අඩවියකට ඊට වඩා බෙහෙවින් අඩු කාලයක් අවශ්‍ය වේ."
 
-#: includes/class-admin.php:170
+#: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "අමුත්තෙකුගේ බ්‍රවුසරය පින්තූර සහ ස්ක්‍රිප්ට් කොපමණ කාලයක් තබා ගන්නේද යන්න"
 
-#: includes/class-admin.php:171
+#: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "තත්පර. අදාළ වන්නේ පින්තූර, CSS සහ JavaScript සඳහා පමණි — කිසි විටෙකත් පිටු සඳහා නොවේ. මෙය ඔබේ සත්කාරක (host) වෙත පැවරීමට 0 ලෙස සකසන්න."
 
-#: includes/class-admin.php:179
+#: includes/class-admin.php:205
 msgid "Signed-in visitors"
 msgstr "ඇතුළු වූ පාරිභෝගිකයින්"
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "පුරනය වූ අමුත්තෙකුට කිසි විටෙකත් හැඹිලිගත කළ (cached) පිටුවක් පෙන්වන්න එපා"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "ආරක්ෂිත පිළිතුර සහ පෙරනිමිය වන්නේ 'On' ය. හැම පුරනය වූ පරිශීලකයෙක් සඳහාම කැෂි කළ සෑම පිටුවක්ම එක සමාන බව ඔබ දන්නේ නම් පමණක් එය අක්‍රීය කරන්න — සාමාන්‍යයෙන් එසේ නොකිරීමට හේතුව සාමාජික අඩවියක් වීමයි."
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
 msgstr "විවිධ අන්තර්ගතයන් සඳහා විවිධ ආයු කාලයන්"
 
-#: includes/class-admin.php:188
+#: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "උදාහරණයක් ලෙස: වෙනත් සියල්ල සතියක් පවතින අතරතුර, සාප්පුවක නිෂ්පාදන පිටු පැයක් සඳහා."
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:215
 msgid "Add a rule"
 msgstr "රීතියක් එක් කරන්න"
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:222
 msgid "Content type"
 msgstr "අන්තර්ගත වර්ගය"
 
-#: includes/class-admin.php:202
+#: includes/class-admin.php:228
 msgid "Seconds"
 msgstr "තත්පර"
 
-#: includes/class-admin.php:223
-#: includes/class-admin.php:232
+#: includes/class-admin.php:249
+#: includes/class-admin.php:258
 msgid "Object cache (Redis)"
 msgstr "වස්තු කෑෂය (Redis)"
 
-#: includes/class-admin.php:224
+#: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "ඔබේ හෝස්ට් විසින් මෙම අඩවිය සඳහා පුද්ගලික Redis වස්තු හැඹුියක් (object cache) ක්‍රියාත්මක කරන අතර එය වින්‍යාස කර තබයි. මෙහි කිසිවක් සැකසීමට අවශ්‍ය නැත; මෙම තිරයේ ඉහළින් ඇති තත්ත්වය එය ක්‍රියාත්මක වේද යන්න පෙන්වයි."
 
-#: includes/class-admin.php:233
+#: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "දත්ත සමුදා විමසුම්වල ප්‍රතිඵල හැඹිලිගත කරයි. පිටු හැඹිලියට කළ නොහැකි අවස්ථාවක, කාර්යබහුල සාප්පුවක හෝ වැඩි පුරන ලද ගමනාගමනයක් (signed-in traffic) ඇති අඩවියක මෙය වඩාත් උපකාරී වේ."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
 msgstr "Redis object-cache drop-in එක ස්ථාපනය කරන්න"
 
-#: includes/class-admin.php:240
+#: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "phpredis එක්ස්ටෙන්ෂන් එක අවශ්‍ය වේ. එය නොමැති නම්, මෙම තිරයට ඉහත ඇති පෙට්ටියෙන් එය පෙන්වනු ඇත."
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:272
 msgid "Redis host"
 msgstr "Redis සත්කාරකය (host)"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:279
 msgid "Redis port"
 msgstr "Redis තොට (port)"
 
-#: includes/class-admin.php:262
+#: includes/class-admin.php:288
 msgid "Redis database"
 msgstr "Redis දත්ත සමුදාය"
 
-#: includes/class-admin.php:263
+#: includes/class-admin.php:289
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "හවුල් Redis එකක් මත ඇති සෑම වෙබ් අඩවියකටම තමන්ගේම අංකයක් දෙන්න, නැතහොත් ඒවා එකිනෙකාගේ හැඹිලිය (cache) මකා දමනු ඇත."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:298
 msgid "Redis username"
 msgstr "Redis පරිශීලක නාමය"
 
-#: includes/class-admin.php:273
+#: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "ACL පරිශීලකයින් සහිත Redis සේවාදායකයක් සඳහා පමණි (Redis 6 හෝ ඊට පසුව). මුරපදය පමණක් භාවිතයෙන් පුරනය වීමට හිස්ව තබන්න."
 
-#: includes/class-admin.php:281
+#: includes/class-admin.php:307
 msgid "Redis password"
 msgstr "Redis මුළුපදය"
 
-#: includes/class-admin.php:282
+#: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
 msgstr "ඔee Redis සඳහා එකක් අවශ්‍ය නොවේ නම් හිස්ව තබන්න."
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:315
 msgid "Key prefix"
 msgstr "මූල පදය උපසර්ගය"
 
-#: includes/class-admin.php:290
+#: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "වෙනම දත්ත සමුදා අංකයක් ලබා ගත නොහැකි අවස්ථාවකදී එයට විකල්පයකි."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:333
 msgid "Smart auto-purge"
 msgstr "බුද්ධිමත් ස්වයංක්‍රීය-පිරිසිදු කිරීම"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
 msgstr "අන්තර්ගතය වෙනස් වූ විට බලපෑමට ලක් වූ පිටු ස්වයංක්‍රීයව හිස් කරන්න"
 
-#: includes/class-admin.php:314
+#: includes/class-admin.php:340
 msgid "After updates"
 msgstr "යාවත්කාලීන කිරීම් වලින් පසු"
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
 msgstr "කෝර්, ප්ලගින් හෝ තේමා යාවත්කාලීන කිරීමකින් පසු සියල්ල හිස් කරන්න"
 
-#: includes/class-admin.php:321
+#: includes/class-admin.php:347
 msgid "After a comment"
 msgstr "පැමිණිල්ලකට පසු"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "පළ කරන ලද සටහනක අදහසක් අනුමත කළ විට එම සටහනේ පිටුව හිස් කරන්න"
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "ඉvery busy අදහස් දැක්වීමේ කොටුවක මෙය අක්‍රිය කරන්න, එහිදී එය පැයකට සිය ගණනක් එකම පිටුව හිස් කිරීමට ඉඩ ඇත."
 
-#: includes/class-admin.php:338
+#: includes/class-admin.php:364
 msgid "Never cache these"
 msgstr "මෙය කිසි විටෙක හැඹිලිගත (cache) නොකරන්න"
 
-#: includes/class-admin.php:339
+#: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "සංවේදී WordPress සහ WooCommerce පෙරනිමි නියමයන් සැමවිටම යෙදේ — කරත්තය, පිටවීම, මගේ ගිණුම සහ ඕනෑම පුරනය වූ සැසියක් කුමන තත්ත්වයක් යටතේ වුවද කිසි විටෙකත් හැඹිලිගත නොකෙරේ."
 
-#: includes/class-admin.php:345
+#: includes/class-admin.php:371
 msgid "Addresses"
 msgstr "ලිපිනයන්"
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "පේළියකට මාර්ගය බැගින්, උදාහරණයක් ලෙස <code>/basket</code>. අවසාන <code>*</code> මඟින් ඒ යටතේ ඇති සියල්ල ගැලපේ."
 
-#: includes/class-admin.php:354
+#: includes/class-admin.php:380
 msgid "Query parameters"
 msgstr "විමසුම් පරාමිතීන්"
 
-#: includes/class-admin.php:355
+#: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "මෙවැනි එකක් රැගෙන යන පිටුවක් කිසි විටෙකත් හැෂී (cache) නොකෙරේ — උදාහරණයක් ලෙස එක් වරක් පමණක් භාවිතා කළ හැකි පෙරදසුන් ටෝකනයකි."
 
-#: includes/class-admin.php:363
+#: includes/class-admin.php:389
 msgid "Cookies"
 msgstr "කුකීස්"
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "මෙම එකක් රැගෙන යන නරඹන්නෙකුට සැමවිටම නව පිටුවක් සපයනු ලැබේ."
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "හැඹිලිගත කළ සියලුම පිටු ඉවත් කර ඇත. පාරිභෝගිකයින් පිවිසෙන විට ඒවා නැවත ගොඩනගනු ඇත."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "වස්තු හැඹිලිය (object cache) ස්ථාපනය කර ඇත, නමුත් එය කිසිවක් ගබඩා කරන්නේ නැත."
 
-#: includes/class-admin.php:433
+#: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "පිටු හැඹිලිය (page cache) ක්‍රියාත්මක කර ඇත, නමුත් පිටු තවමත් ගබඩා වෙමින් නොපවතී."
 
-#: includes/class-admin.php:434
+#: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress තවමත් page-cache drop-in එක පූරණය කර නොමැත. එය ඊළඟ පිටුව පූරණය වීමේදී ආරම්භ වේ; එසේ නොවන්නේ නම්, wp-config.php හි WP_CACHE යන්න true ලෙස තිබේදැයි පරීක්ෂා කරන්න."
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "වස්තු හැඹිසිය සක්‍රීය කර ඇත, නමුත් මෙම සේවාදායකයේ Redis සඳහා සහය නොමැත."
 
-#: includes/class-admin.php:444
+#: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis එක්ස්ටෙන්ෂන් එක ඉන්ස්ටෝල් කර නොමැති බැවින්, ඩ්‍රොප්-ඉන් එක භාවිත කළ නොහැකි අතර WordPress විසින් එහිම මතකයේ ඇති හැඹිරියට (in-memory cache) යළි යොමු වෙමින් පවතී. phpredis සක්‍රීය කරන ලෙස ඔබේ හෝස්ට් වෙතින් ඉල්ා සිටින්න."
 
-#: includes/class-admin.php:452
+#: includes/class-admin.php:478
 msgid "Nothing is being cached."
 msgstr "කිසිවක් හැඹිලිගත වෙමින් නොපවතී."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "කෑෂ් (caches) දෙකම අක්‍රිය කර ඇත, එබැවින් මෙම ප්ලගිනය මඟින් වෙබ් අඩවියේ වේගය වැඩි කිරීමක් සිදු නොවේ."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:486
 msgid "Caching is active on this site."
 msgstr "මෙම වෙබ් අඩවියේ හැඹිලිකරණය (Caching) සක්‍රීය කර ඇත."
 
-#: includes/class-admin.php:495
+#: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis විසින් පරිශීලක නාමය හෝ මුරපදය ප්‍රතික්ෂේප කරන ලදී. wp-config.php හි හෝ මෙම තිරයේ ඇති Redis අක්තපත්‍ර පරීක්ෂා කරන්න."
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis ලොගින් කිරීම පිළිගත් නමුත් මෙම වෙබ් අඩවියට එහි යතුරු ගබඩා කිරීමට ඉඩ නොදේ. Redis පරිශීලකයාට මෙම වෙබ් අඩවියේ යතුරු උපසර්ගය සඳහා අවසර අවශ්‍ය වේ."
 
-#: includes/class-admin.php:499
+#: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis දත්ත සමුදා අංකය ප්‍රතික්ෂේප කළේය. Redis දත්ත සමුදා සැකසුම පරීක්ෂා කරන්න."
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis මතකය අවසන් වී ඇති අතර නව දත්ත පිළිගැනීම ප්‍රතික්ෂේප කරයි."
 
-#: includes/class-admin.php:503
+#: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "phpredis එක්ස්ටෙන්ෂන් එක ඉන්ස්ටෝල් කර නොමැති බැවින්, WordPress විසින් එහිම ඉන්-මෙමරි හැච් එක භාවිතා කරයි. phpredis සක්‍රීය කරන ලෙස ඔබේ හෝස්ට් වෙතින් ඉල්ලා සිටින්න."
 
-#: includes/class-admin.php:505
+#: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "wp-config.php තුළ WP_REDIS_DISABLED සකසා ඇති බැවින්, ඔබ්ජෙක්ට් හැඹිලිය ක්‍රියා විරහිත කර ඇත."
 
-#: includes/class-admin.php:507
+#: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Redis සේවාදායකය වෙත ළඟා වීමට නොහැකි විය. Redis සත්කාරකය (host) සහ තොට (port) පරීක්ෂා කරන්න, සහ Redis ධාවනය වන බවට තහවුරු කර ගන්න."
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis මඟින් එයට දැන් ලියන ලද අගය ආපසු ලබා දෙන ලද්දේ නැත. Redis සේවාදායකයේ ලොග් (logs) පරීක්ෂා කරන්න."
 
-#: includes/class-admin.php:524
+#: includes/class-admin.php:550
 msgid "Web server"
 msgstr "වෙබ් සේවාදායකය"
 
-#: includes/class-admin.php:526
+#: includes/class-admin.php:552
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — පිටු වෙබ් සේවාදායකය මඟින් හැඹිලිගත කර ඇත"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:553
 msgid "not LiteSpeed — pages are cached on disk by this plugin"
 msgstr "LiteSpeed නොවේ — මෙම ප්ලගිනය මඟින් පිටු තැටියක හැඹිලිගත කරනු ලැබේ"
 
-#: includes/class-admin.php:530
+#: includes/class-admin.php:556
 msgid "Pages stored on disk"
 msgstr "තැටියෙහි ගබඩා කර ඇති පිටු"
 
-#: includes/class-admin.php:534
+#: includes/class-admin.php:560
 msgid "Redis support"
 msgstr "Redis සහය"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:562
 msgid "phpredis is installed"
 msgstr "phpredis ස්ථාපනය කර ඇත"
 
-#: includes/class-admin.php:537
+#: includes/class-admin.php:563
 msgid "phpredis is not installed"
 msgstr "phpredis ස්ථාපනය කර නැත"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:566
 msgid "Page lifetime"
 msgstr "පිටු ආයු කාලය"
 
-#: includes/class-admin.php:615
+#: includes/class-admin.php:641
 msgid "You are not allowed to purge the cache."
 msgstr "කෑෂය පිරිසිදු කිරීමට ඔබට අවසර නැත."
 
-#: includes/class-admin.php:621
+#: includes/class-admin.php:647
 msgid "Cache purge requested."
 msgstr "කෑෂය පිරිසිදු කිරීම ඉල්ලා ඇත."
 
-#: includes/class-admin.php:649
+#: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: වෙනත් ඔබ්ජෙක්ට්-කෑෂ් ඩ්‍රොප්-ඉන් එකක් ස්ථාපනය කර ඇති බැවින්, Redis ඔබ්ජෙක්ට් කෑෂය මෙම ප්ලගිනය මඟින් කළමනාකරණය නොකෙරේ."
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:689
 msgid "detected"
 msgstr "අනාවරණය විය"
 
-#: includes/class-admin.php:664
+#: includes/class-admin.php:690
 msgid "not detected"
 msgstr "අනාවරණය නොවීය"
 
-#: includes/class-admin.php:668
+#: includes/class-admin.php:694
 msgid "phpredis extension missing"
 msgstr "phpredis දිගුව නොමැත"
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:696
 msgid "installed, not storing anything"
 msgstr "ස්ථාපනය කර ඇත, කිසිවක් ගබඩා නොකරයි"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:698
 msgid "active, managed by your host"
 msgstr "සක්‍රීයයි, ඔබේ සත්කාරක (host) විසින් කළමනාකරණය කරනු ලැබේ"
 
-#: includes/class-admin.php:674
+#: includes/class-admin.php:700
 msgid "active"
 msgstr "සක්‍රීයයි"
 
-#: includes/class-admin.php:676
+#: includes/class-admin.php:702
 msgid "inactive"
 msgstr "අක්‍රීයයි"
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed කෑෂය:"
 
-#: includes/class-admin.php:683
+#: includes/class-admin.php:709
 msgid "Redis object cache:"
 msgstr "Redis වස්තු කෑෂය:"
 
@@ -421,15 +438,15 @@ msgstr "වස්තු-කෑෂ drop-in එක ඉවත් කළ නොහ�
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "WordPress ගොනු පද්ධතිය ලිවිය නොහැකි බැවින්, වස්තු-කෑෂ drop-in එක කළමනාකරණය කළ නොහැකි විය."
 
-#: includes/class-page-cache.php:325
+#: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "තවත් පිටු හැඹිලි (page-cache) ප්ලගිනයක් විසින් wp-content/advanced-cache.php ස්ථාපනය කර ඇත. පළමුව එම ප්ලගින ඉවත් කරන්න, නැතහොත් එහි පිටු හැඹිලිය දිගටම භාවිතා කරන්න."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "wp-content/cache/zinn-cache ෆෝල්ඩරයට ලිවීමට නොහැකි වූ නිසා, පිටු හැබෙස් (cache) කිරීමට නොහැක."
 
-#: includes/class-page-cache.php:335
+#: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "wp-content/advanced-cache.php ලිවිය නොහැකි වූ බැවින්, පිටු හැෂගත කළ (cache) නොහැක."
 
@@ -4916,3 +4933,109 @@ msgstr "උත්ශ්‍රේණි කරන්න"
 msgctxt "x-ago"
 msgid "%s ago"
 msgstr "මීට පෙර %s"
+
+#: includes/mcp-kit/class-ability.php:82
+msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
+msgstr "ක්‍රියාව සම්පූර්ණ කිරීමට නොහැකි විය. නැවත උත්සාහ කරන්න, එය අසාර්ථක වීම දිගටම සිදුවුවහොත්, අඩවි පරිපාලක අමතන්න."
+
+#: includes/mcp-kit/class-rest-bridge.php:281
+msgid "A required value is missing or has the wrong form. Check the ability's input schema."
+msgstr "අවශ්‍ය අගයක් මගහැරී ඇත හෝ වැරදි ආකෘතියක පවතී. මෙම හැකියාවේ ආදාන යෝජනා ක්‍රමය (input schema) පරීක්ෂා කරන්න."
+
+#: includes/mcp-kit/class-rest-bridge.php:314
+msgid "The site refused the request."
+msgstr "අඩවිය ඉල්ලීම ප්‍රතික්ෂේප කළේය."
+
+#: includes/mcp-kit/class-server.php:217
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
+msgstr "Claude, Cursor හෝ VS Code වැනි AI සහායකයින්ට MCP (Model Context Protocol) හරහා ඔබ වෙනුවෙන් මෙම වෙබ් අඩවියේ වැඩ කිරීමට ඉඩ දෙන්න. ඔවුන් යෙදුම් මුරපදයක් සමඟ WordPress පරිශීලකයෙකු ලෙස ලොග් වන අතර, එම පරිශීලකයාට කිරීමට අවසර දී ඇති දේ පමණක් කළ හැක."
+
+#: includes/mcp-kit/class-server.php:219
+msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
+msgstr "AI නියෝජිතයන් සඳහා WordPress 6.9 හෝ ඊට පසු සංස්කරණයක් අවශ්‍ය වේ. ඒවා භාවිතා කිරීම සඳහා WordPress යාවත්කාලීන කරන්න."
+
+#: includes/mcp-kit/class-server.php:232
+msgid "Connection address (MCP endpoint)"
+msgstr "සම්බන්ධතා ලිපිනය (MCP අවසාන ලක්ෂ්‍යය)"
+
+#: includes/mcp-kit/class-server.php:235
+msgid "Create an application password for your user"
+msgstr "ඔබේ පරිශීලකයා සඳහා යෙදුම් මුරපදයක් සාදන්න"
+
+#: includes/mcp-kit/class-server.php:236
+msgid "Add this to your AI app’s MCP settings, with your username and that password:"
+msgstr "මෙය ඔබේ AI යෙදුමේ MCP සැකසීම් වෙත, ඔබේ පරිශීලක නාමය සහ එම මුපපදය සමඟ එක් කරන්න:"
+
+#: includes/mcp-kit/class-server.php:238
+msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
+msgstr "VS Code: \"servers\" යටතේ එකම ඇතුළත් කිරීම තබන්න, \"mcpServers\" යටතේ නොව .vscode/mcp.json හි තබන්න."
+
+#. translators: %d: how many tools an AI agent can use.
+#: includes/mcp-kit/class-server.php:242
+#, php-format
+msgid "Tools an AI agent can use here (%d):"
+msgstr "AI නියෝජිතයෙකුට මෙහි භාවිතා කළ හැකි මෙවලම් (%d):"
+
+#: includes/mcp-kit/class-server.php:253
+msgid "User guide: AI agents and MCP"
+msgstr "පරිශීලක මාර්ගෝපදේශය: AI නියෝජිතයන් සහ MCP"
+
+#: includes/mcp-kit/class-server.php:256
+msgid "Developer docs: abilities, REST and MCP"
+msgstr "සංවර්ධක ලේඛන: හැකියාවන්, REST සහ MCP"
+
+#: includes/mcp/class-abilities.php:50
+msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
+msgstr "Zinn® Cache සමඟින් මෙම අඩවියේ හැඹිළිය (cache) පරීක්ෂා කර ඉවත් කරන්න සහ එහි හැඹිලි සැකසුම් වෙනස් කරන්න."
+
+#: includes/mcp/class-abilities.php:56
+msgid "Page and object cache status, purging and settings."
+msgstr "පිටු සහ වස්තු හැඹිලි තත්ත්වය, ඉවත් කිරීම සහ සැකසීම්."
+
+#: includes/mcp/class-abilities.php:82
+msgid "Read the cache status"
+msgstr "ක හැ memorize තත්ත්වය කියවන්න"
+
+#: includes/mcp/class-abilities.php:83
+msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
+msgstr "පිටු හැඹිලිය (page cache) සහ වස්තු හැඹිලිය (object cache) ක්‍රියාත්මක වී ක්‍රියා කරන්නේද, හැඹිලිගත කර ඇති පිටු ගණන සහ වස්තු හැඹිලියේ සම්බන්ධතාවය සහ පහර (hit) සංඛ්‍යාව ලබා දෙයි."
+
+#: includes/mcp/class-abilities.php:101
+msgid "Read the cache settings"
+msgstr "කෑචේ සැකසුම් කියවන්න"
+
+#: includes/mcp/class-abilities.php:102
+msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
+msgstr "සියලුම හැඹිලි සැකසුම් ලබා දෙයි. Redis මුතුපදය (password) කිසිවිටෙක ලබා නොදේ, සුරකින ලද්දක් ඇද්ද යන්න පමණක් පෙන්වයි."
+
+#: includes/mcp/class-abilities.php:120
+msgid "Change the cache settings"
+msgstr "කැෂේ (cache) සැකසීම් වෙනස් කරන්න"
+
+#: includes/mcp/class-abilities.php:121
+msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
+msgstr "ඔබ යවන සැකසීම් වෙනස් කරන අතර ඉතිරිය (පිටු හැඹිලිය (page cache), පිටු හැඹිලිගතව පවතින කාලය, වස්තු හැඹිලිය (object cache) සහ එහි Redis සබඳතාව, ඉවත් කිරීමේ රීති සහ බැහැර කිරීම්) පවත්වා ගනී. Cache තිරයේ මෙන්ම අගයන් පරීක්ෂා කර නිවැරදි කරනු ලැබේ."
+
+#: includes/mcp/class-abilities.php:138
+msgid "Put the cache settings back to their defaults"
+msgstr "පොහොසත් හැඹිලි (කෑෂ්) සැකසුම් ඒවායේ පෙරනිමි වෙත ආපසු හරවන්න"
+
+#: includes/mcp/class-abilities.php:139
+msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
+msgstr "නැවත සැකසීමේ (Reset) බොත්තම මගින් සිදුකරන පරිදි, සෑම කැෂ් (cache) සැකසුමක්ම නැවත එහි තදින්ම ඇති මුල් තත්වයට පත් කරයි. සුරකින ලද Redis මුරපදය ද ඉවත් කරනු ලැබේ."
+
+#: includes/mcp/class-abilities.php:157
+msgid "Read the diagnostics report"
+msgstr "රෝග විනිශ්චය වාර්තාව කියවන්න"
+
+#: includes/mcp/class-abilities.php:158
+msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
+msgstr "සහාය සේවාව ඉල්ලා සිටින රෝග විනිශ්චය වාර්තාව ආපසු ලබා දෙයි: අනුවදානයන්, සේවාදායක සීමාවන්, හැඹිලි තත්ත්වය සහ මෑතකාලීන දෝෂ. එහි මුණුපද හෝ යතුරු කිසිවක් අඩංගු නොවේ."
+
+#: includes/mcp/class-rest-map.php:37
+msgid "Purge the cache"
+msgstr "කැචය හිස් කරන්න"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
+msgstr "හැඹිලිගත කළ පිටු ඉවත් කරයි: සියල්ල (all: true), සමහර ලිපිනයන් (urls) හෝ ටැග් කරන ලද සියල්ල (tags). අමුත්තන් පැමිණෙන විට පිටු නැවත ගොඩනඟනු ලැබේ."
