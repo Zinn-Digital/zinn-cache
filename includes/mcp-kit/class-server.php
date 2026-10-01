@@ -68,6 +68,9 @@ final class Server {
 	 * @return bool
 	 */
 	public static function enabled(): bool {
+		if ( Adapter::killed() ) {
+			return false;
+		}
 		$enabled = self::$config['enabled'] ?? null;
 
 		return is_callable( $enabled ) && true === (bool) $enabled();
@@ -193,6 +196,7 @@ final class Server {
 	 * @return void
 	 */
 	public static function render_panel( string $input_name = '' ): void {
+		Rest_Bridge::allow(); // This screen lists every tool, the bridged ones included.
 		$mcp    = self::describe();
 		$server = (string) ( self::$config['id'] ?? '' );
 		$config = (string) wp_json_encode(

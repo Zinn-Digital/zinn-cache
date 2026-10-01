@@ -63,6 +63,9 @@ final class Adapter {
 	 * @return bool True when an adapter is available.
 	 */
 	public static function load(): bool {
+		if ( self::killed() ) {
+			return false;
+		}
 		if ( defined( 'ZINN_MCP_ADAPTER' ) ) {
 			return class_exists( self::ENTRY );
 		}
@@ -78,7 +81,9 @@ final class Adapter {
 			add_action( 'plugins_loaded', array( self::class, 'start_external' ), 100 );
 			return true;
 		} else {
-			$dir = self::newest( (array) apply_filters( 'zinn_mcp_adapter_copies', array() ) );
+			// One hook SHARED by every Zinn plugin's kit copy (that is how the newest copy is found once), so it
+			// cannot carry one plugin's prefix.
+			$dir = self::newest( (array) apply_filters( 'zinn_mcp_adapter_copies', array() ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- shared across plugins on purpose.
 			if ( '' === $dir ) {
 				define( 'ZINN_MCP_ADAPTER', '' );
 				return false;
@@ -90,10 +95,51 @@ final class Adapter {
 		if ( ! class_exists( self::ENTRY ) ) {
 			return false;
 		}
+		if ( self::cli_without_mcp() ) {
+			return true; // Loadable, deliberately not started: see cli_without_mcp().
+		}
 		$entry = self::ENTRY;
 		$entry::instance();
 
 		return true;
+	}
+
+	/**
+	 * The site-wide kill switch: `define( 'ZINN_MCP_DISABLED', true );` in wp-config.php (or
+	 * `wp --exec=…`) turns every Zinn plugin's MCP server off — no adapter is loaded or started,
+	 * no ability is registered. For hosting operations and for an incident like PF-450.
+	 *
+	 * @return bool
+	 */
+	public static function killed(): bool {
+		return defined( 'ZINN_MCP_DISABLED' ) && (bool) constant( 'ZINN_MCP_DISABLED' );
+	}
+
+	/**
+	 * Is this a WP-CLI command other than `wp mcp-adapter …`?
+	 *
+	 * ⛔⛔ INCIDENT 2026-10-01 (found by L10, PF-450): under WP-CLI the adapter initialises on `init`
+	 * for EVERY command, which fires `mcp_adapter_init`, which made the kit list the abilities, which
+	 * built EVERY plugin's REST routes (`rest_get_server()`) — with WooCommerce active a plain
+	 * `wp option get siteurl` peaked at 152 MB against an 83 MB baseline and died at a 128M limit.
+	 * Our platform drives hosted sites through WP-CLI. A command that is not the adapter's own has
+	 * no use for an MCP server, so none is started; `wp mcp-adapter serve` (the platform's MCP
+	 * path) still is.
+	 *
+	 * @return bool
+	 */
+	public static function cli_without_mcp(): bool {
+		if ( ! defined( 'WP_CLI' ) || ! constant( 'WP_CLI' ) || ! class_exists( '\\WP_CLI' ) || ! method_exists( '\\WP_CLI', 'get_runner' ) ) {
+			return false;
+		}
+		$runner = \WP_CLI::get_runner();
+		// ⛔ `Runner::$arguments` is PRIVATE behind `__get()` with no `__isset()`: `isset()` and `??`
+		// read it as unset, every command looked like "not mcp-adapter" and `wp mcp-adapter serve`
+		// answered 0 tools (caught by the harness's STDIO check). Read it through `__get()`.
+		$args = is_object( $runner ) ? $runner->arguments : array();
+		$args = is_array( $args ) ? $args : array();
+
+		return 'mcp-adapter' !== (string) ( $args[0] ?? '' );
 	}
 
 	/**
@@ -109,6 +155,9 @@ final class Adapter {
 	 * @return void
 	 */
 	public static function start_external(): void {
+		if ( self::killed() ) {
+			return;
+		}
 		$entry = ltrim( self::ENTRY, '\\' );
 		if ( ! class_exists( $entry ) ) {
 			return;
@@ -124,6 +173,9 @@ final class Adapter {
 			$started = true; // A future adapter without the property: never second-guess its owner.
 		}
 		if ( ! $started ) {
+			if ( self::cli_without_mcp() ) {
+				return; // Never start a dormant copy for a WP-CLI command that is not the adapter's own.
+			}
 			add_filter( 'mcp_adapter_create_default_server', '__return_false', 5 );
 		}
 		$entry::instance();

@@ -36,6 +36,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class Rest_Bridge {
 
 	/**
+	 * Set by a screen that lists the tools outside a REST request (the PHP settings panel).
+	 *
+	 * @var bool
+	 */
+	private static $allowed = false;
+
+	/**
+	 * Let this request resolve REST routes (our own settings tab, which lists the tools).
+	 *
+	 * @return void
+	 */
+	public static function allow(): void {
+		self::$allowed = true;
+	}
+
+	/**
+	 * May this request build the REST server to bridge routes?
+	 *
+	 * ⛔⛔ INCIDENT 2026-10-01 (PF-450): bridging a route needs `rest_get_server()`, which builds
+	 * EVERY plugin's REST routes — 69 MB more on a WooCommerce site — and the bridge ran wherever
+	 * the abilities were listed, a WP-CLI command included. Routes are resolved only where they
+	 * are already being served: a REST request (the abilities API and the MCP endpoint are both
+	 * REST), `wp mcp-adapter …` (the platform's MCP path), or a screen that opted in.
+	 *
+	 * @return bool
+	 */
+	public static function may_resolve(): bool {
+		if ( self::$allowed || ( defined( 'REST_REQUEST' ) && constant( 'REST_REQUEST' ) ) || did_action( 'rest_api_init' ) ) {
+			return true;
+		}
+		if ( defined( 'WP_CLI' ) && constant( 'WP_CLI' ) ) {
+			return ! Adapter::cli_without_mcp();
+		}
+
+		return false;
+	}
+
+	/**
 	 * Register an ability for every bridged entry whose route is registered on this request
 	 * (a Pro route exists only while Pro is licensed, so its ability does too).
 	 *
@@ -44,6 +82,9 @@ final class Rest_Bridge {
 	 * @return int How many were registered.
 	 */
 	public static function register( array $entries, string $category ): int {
+		if ( ! self::may_resolve() ) {
+			return 0;
+		}
 		$registered = 0;
 		foreach ( $entries as $entry ) {
 			if ( empty( $entry['name'] ) ) {
