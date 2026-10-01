@@ -54,5 +54,6 @@ if ( !file_exists( dirname( __DIR__ ) . '/vendor/freemius/start.php' ) ) {
 
     zinn_cache_fs();
     zinn_cache_fs()->add_action( 'after_uninstall', 'zinn_cache_uninstall' );
+    zinn_cache_fs()->add_filter( 'plugin_icon', static fn() => dirname( __DIR__ ) . '/assets/icon-256x256.png' );
     do_action( 'zinn_cache_fs_loaded' );
 }
