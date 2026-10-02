@@ -23,7 +23,7 @@ msgstr "https://zinndigital.com/wordpress-plugins/zinn-cache"
 #. Description of the plugin
 #: zinn-cache.php
 msgid "A page cache and a Redis object cache for any WordPress site. Uses the LiteSpeed server cache where there is one and its own disk cache everywhere else, purges only what a change affects, and proves its Redis connection works."
-msgstr "Herhangi bir WordPress sitesi için bir sayfa önbelleği ve bir Redis nesne önbelleği. Varsa LiteSpeed sunucu önbelleğini, diğer her yerde kendi disk önbelleğini kullanır, yalnızca bir değişikliğin etkilediğini temizler ve Redis bağlantısının çalıştığını kanıtlar."
+msgstr "Herhangi bir WordPress sitesi için bir sayfa önbelleği ve bir Redis nesne önbelleği. Varsa LiteSpeed sunucu önbelleğini, diğer tüm yerlerde ise kendi disk önbelleğini kullanır, yalnızca bir değişikliğin etkilediği kısımları temizler ve Redis bağlantısının çalıştığını doğrular."
 
 #. Author of the plugin
 #: zinn-cache.php
@@ -55,31 +55,31 @@ msgstr "Temizleniyor"
 
 #: includes/class-admin.php:122
 msgid "Exclusions"
-msgstr "Hariç Tutulanlar"
+msgstr "Dışlamalar"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:216
+#: includes/mcp-kit/class-server.php:220
 msgid "AI agents (MCP)"
-msgstr "Yapay zeka aracıları (MCP)"
+msgstr "YZ aracıları (MCP)"
 
 #: includes/class-admin.php:133
 msgid "Purge everything now"
-msgstr "Her şeyi şimdi temizle"
+msgstr "Tümünü şimdi temizle"
 
 #: includes/class-admin.php:134
 msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
-msgstr "Önbelleğe alınan her sayfa silinir ve ziyaretçiler geldikçe yeniden oluşturulur. Devam edilsin mi?"
+msgstr "Önbelleğe alınan her sayfa silinir ve ziyaretçiler geldikçe yeniden oluşturulur. Devam etmek istiyor musunuz?"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:225
+#: includes/mcp-kit/class-server.php:229
 msgid "Allow AI agents (MCP)"
-msgstr "Yapay zeka ajanlarına izin ver (MCP)"
+msgstr "YZ aracılarına izin ver (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:227
+#: includes/mcp-kit/class-server.php:231
 msgid "Off: the tools below and their REST routes are not registered at all."
-msgstr "Kapalı: aşağıdaki araçlar ve REST rotaları hiçbir şekilde kayıtlı değil."
+msgstr "Kapalı: Aşağıdaki araçlar ve bunların REST yolları hiç kaydedilmemiştir."
 
 #: includes/class-admin.php:173
 msgid "Full-page cache"
@@ -87,11 +87,11 @@ msgstr "Tam sayfa önbelleği"
 
 #: includes/class-admin.php:174
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
-msgstr "Bir LiteSpeed sunucusunda sayfalar, WordPress çalışmadan önce web sunucusu tarafından sunulur. Başka herhangi bir sunucuda bu eklenti, her sayfayı bir dosya olarak depolar ve WordPress yüklenmeden önce sunar. Hızın neredeyse tamamı buradan gelmektedir."
+msgstr "Bir LiteSpeed sunucusunda sayfalar, WordPress çalışmadan önce web sunucusu tarafından sunulur. Diğer herhangi bir sunucuda bu eklenti, her sayfayı bir dosya olarak depolar ve WordPress yüklenmeden önce sunar. Hızın neredeyse tamamı buradan gelir."
 
 #: includes/class-admin.php:180
 msgid "Cache pages for visitors who are not signed in"
-msgstr "Oturum açmamış ziyaretçiler için sayfaları önbelleğe al"
+msgstr "Giriş yapmamış ziyaretçiler için sayfaları önbelleğe alın"
 
 #: includes/class-admin.php:186
 msgid "How long a page stays cached"
@@ -99,15 +99,15 @@ msgstr "Bir sayfanın önbellekte kalma süresi"
 
 #: includes/class-admin.php:187
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
-msgstr "Saniye. Çoğu site için bir hafta uygundur; saat başı yayın yapan bir haber sitesinin çok daha azına ihtiyacı vardır."
+msgstr "Saniye. Çoğu site için bir hafta uygundur; saat başı yayın yapan bir haber sitesi ise çok daha azını ister."
 
 #: includes/class-admin.php:196
 msgid "How long a visitor’s browser keeps images and scripts"
-msgstr "Ziyaretçinin tarayıcısının görselleri ve betikleri ne süreyle saklayacağı"
+msgstr "Bir ziyaretçinin tarayıcısının görselleri ve komut dosyalarını ne kadar süreyle saklayacağı"
 
 #: includes/class-admin.php:197
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
-msgstr "Saniye. Yalnızca görsellere, CSS ve JavaScript'e uygulanır; hiçbir zaman sayfalara uygulanmaz. Barındırıcınıza bırakmak için 0 olarak ayarlayın."
+msgstr "Saniye. Yalnızca görsellere, CSS ve JavaScript dosyalarına uygulanır; sayfalara asla uygulanmaz. Bunu barındırıcınıza bırakmak için 0 olarak ayarlayın."
 
 #: includes/class-admin.php:205
 msgid "Signed-in visitors"
@@ -115,23 +115,23 @@ msgstr "Giriş yapmış ziyaretçiler"
 
 #: includes/class-admin.php:206
 msgid "Never serve a cached page to a signed-in visitor"
-msgstr "Oturum açmış bir ziyaretçiye hiçbir zaman önbelleğe alınmış bir sayfa sunmayın"
+msgstr "Giriş yapmış bir ziyaretçiye hiçbir zaman önbelleğe alınmış bir sayfa sunmayın"
 
 #: includes/class-admin.php:207
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
-msgstr "Açık konumu güvenli olan ve varsayılan ayardır. Önbelleğe alınan her sayfanın oturum açmış tüm kullanıcılar için tamamen aynı olduğundan eminseniz kapatın; bunun yapılmamasının olağan nedeni bir üyelik sitesi olmasıdır."
+msgstr "\"Açık\" güvenli yanıttır ve varsayılandır. Yalnızca önbelleğe alınmış her sayfanın oturum açmış her kullanıcı için aynı olduğunu biliyorsanız kapatın; üyelik siteleri genellikle bunu yapmamanın nedenidir."
 
 #: includes/class-admin.php:213
 msgid "Different lifetimes for different content"
-msgstr "Farklı içerikler için farklı yaşam süreleri"
+msgstr "Farklı içerikler için farklı kullanım ömürleri"
 
 #: includes/class-admin.php:214
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
-msgstr "Örneğin: diğer her şey bir hafta kalırken, bir mağazanın ürün sayfaları bir saat."
+msgstr "Örneğin: bir mağazanın ürün sayfaları bir saatliğine, diğer her şey ise bir haftalığına kalır."
 
 #: includes/class-admin.php:215
 msgid "Add a rule"
-msgstr "Kural ekle"
+msgstr "Kural ekleyin"
 
 #: includes/class-admin.php:222
 msgid "Content type"
@@ -148,19 +148,19 @@ msgstr "Nesne önbelleği (Redis)"
 
 #: includes/class-admin.php:250
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
-msgstr "Barındırıcınız bu site için özel bir Redis nesne önbelleği çalıştırır ve yapılandırılmış halde tutar. Burada ayarlanacak hiçbir şey yoktur; bu ekranın üst kısmındaki durum çalışıp çalışmadığını gösterir."
+msgstr "Sunucunuz bu site için özel bir Redis nesne önbelleği çalıştırır ve bunu yapılandırılmış halde tutar. Burada ayarlamanız gereken bir şey yoktur; bu ekranın üst kısmındaki durum çalışıp çalışmadığını gösterir."
 
 #: includes/class-admin.php:259
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
-msgstr "Veritabanı sorgularının sonuçlarını önbelleğe alır. Sayfa önbelleğinin yardımcı olamadığı, yoğun bir mağazada veya çok sayıda oturum açmış trafiğin olduğu bir sitede en çok yardımcı olur."
+msgstr "Veritabanı sorgularının sonuçlarını önbelleğe alır. Sayfa önbelleğinin yardımcı olamadığı yoğun bir mağazada veya oturum açmış kullanıcı trafiği yüksek bir sitede en çok faydayı sağlar."
 
 #: includes/class-admin.php:265
 msgid "Install the Redis object-cache drop-in"
-msgstr "Redis nesne önbelleği eklentisini kurun"
+msgstr "Redis nesne önbelleği drop-in eklentisini yükleyin"
 
 #: includes/class-admin.php:266
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
-msgstr "phpredis uzantısı gereklidir. Eksikse, bu ekranın üzerindeki kutu bunu belirtir."
+msgstr "phpredis eklentisi gereklidir. Eksikse, bu ekranın üstündeki kutuda belirtilir."
 
 #: includes/class-admin.php:272
 msgid "Redis host"
@@ -185,23 +185,23 @@ msgstr "Redis kullanıcı adı"
 
 #: includes/class-admin.php:299
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
-msgstr "Yalnızca ACL kullanıcılarına sahip bir Redis sunucusu için (Redis 6 veya üzeri). Yalnızca şifreyle oturum açmak için boş bırakın."
+msgstr "Yalnızca ACL kullanıcıları olan bir Redis sunucusu içindir (Redis 6 veya üstü). Yalnızca parola ile oturum açmak için boş bırakın."
 
 #: includes/class-admin.php:307
 msgid "Redis password"
-msgstr "Redis şifresi"
+msgstr "Redis parolası"
 
 #: includes/class-admin.php:308
 msgid "Leave blank if your Redis does not need one."
-msgstr "Redis'iniz için gerekmiyorsa boş bırakın."
+msgstr "Redis sunucunuz için gerekli değilse boş bırakın."
 
 #: includes/class-admin.php:315
 msgid "Key prefix"
-msgstr "Anahtar öneki"
+msgstr "Anahtar ön eki"
 
 #: includes/class-admin.php:316
 msgid "An alternative to a separate database number when you cannot have one."
-msgstr "Ayrı bir veritabanı numarasına sahip olamadığınız durumlarda bu duruma alternatif bir çözüm."
+msgstr "Ayrı bir veritabanı numarasına sahip olamadığınız durumlar için bir alternatif."
 
 #: includes/class-admin.php:333
 msgid "Smart auto-purge"
@@ -209,7 +209,7 @@ msgstr "Akıllı otomatik temizleme"
 
 #: includes/class-admin.php:334
 msgid "Clear affected pages automatically when content changes"
-msgstr "İçerik değiştiğinde etkilenen sayfaları otomatik olarak temizle"
+msgstr "İçerik değiştiğinde etkilenen sayfaları otomatik olarak temizleyin"
 
 #: includes/class-admin.php:340
 msgid "After updates"
@@ -217,7 +217,7 @@ msgstr "Güncellemelerden sonra"
 
 #: includes/class-admin.php:341
 msgid "Clear everything after a core, plugin or theme update"
-msgstr "Bir çekirdek, eklenti veya tema güncellemesinden sonra her şeyi temizle"
+msgstr "Çekirdek, eklenti veya tema güncellemesinden sonra her şeyi temizleyin"
 
 #: includes/class-admin.php:347
 msgid "After a comment"
@@ -225,11 +225,11 @@ msgstr "Bir yorumdan sonra"
 
 #: includes/class-admin.php:348
 msgid "Clear a post’s page when a comment on it is approved"
-msgstr "Bir gönderiye yapılan bir yorum onaylandığında gönderinin sayfasını temizle"
+msgstr "Bir yazıya yapılan yorum onaylandığında o yazının sayfasını temizleyin"
 
 #: includes/class-admin.php:349
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
-msgstr "Yüzlerce kez saatte aynı sayfayı temizleyebileceği çok yoğun bir yorum bölümünde bunu kapatın."
+msgstr "Aynı sayfayı saatte yüzlerce kez temizleyebileceği çok yoğun bir yorum bölümünde bunu kapatın."
 
 #: includes/class-admin.php:364
 msgid "Never cache these"
@@ -237,7 +237,7 @@ msgstr "Bunları asla önbelleğe alma"
 
 #: includes/class-admin.php:365
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
-msgstr "Makul WordPress ve WooCommerce varsayılanları her zaman uygulanır; sepet, ödeme, hesabım ve oturum açmış hiçbir oturum, aşağıda ne olursa olsun asla önbelleğe alınmaz."
+msgstr "Her zaman mantıklı WordPress ve WooCommerce varsayılanları uygulanır — aşağıda ne olursa olsun cart, checkout, my-account ve oturum açılmış hiçbir oturum asla önbelleğe alınmaz."
 
 #: includes/class-admin.php:371
 msgid "Addresses"
@@ -245,7 +245,7 @@ msgstr "Adresler"
 
 #: includes/class-admin.php:372
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
-msgstr "Her satıra bir yol, örneğin <code>/basket</code>. Sonda yer alan bir <code>*</code> işareti, altındaki her şeyle eşleşir."
+msgstr "Her satıra bir yol, örneğin <code>/basket</code>. Sondaki <code>*</code> altındaki her şeyle eşleşir."
 
 #: includes/class-admin.php:380
 msgid "Query parameters"
@@ -253,7 +253,7 @@ msgstr "Sorgu parametreleri"
 
 #: includes/class-admin.php:381
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
-msgstr "Bunlardan birini içeren bir sayfa asla önbelleğe alınmaz; örneğin tek seferlik bir önizleme belirteci."
+msgstr "Bunlardan birini içeren bir sayfa asla önbelleğe alınmaz — örneğin tek kullanımlık bir önizleme belirteci."
 
 #: includes/class-admin.php:389
 msgid "Cookies"
@@ -261,15 +261,15 @@ msgstr "Çerezler"
 
 #: includes/class-admin.php:390
 msgid "A visitor carrying one of these is always served a fresh page."
-msgstr "Bunlardan birini taşıyan bir ziyaretçiye her zaman taze bir sayfa sunulur."
+msgstr "Bunlardan birini taşıyan bir ziyaretçiye her zaman yeni bir sayfa sunulur."
 
 #: includes/class-admin.php:419
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
-msgstr "Önbelleğe alınmış tüm sayfalar silindi. Ziyaretçiler geldikçe yeniden oluşturulacaklar."
+msgstr "Önbelleğe alınan her sayfa silindi. Ziyaretçiler geldikçe yeniden oluşturulacaklar."
 
 #: includes/class-admin.php:445
 msgid "The object cache is installed, but it is not storing anything."
-msgstr "Nesne önbelleği yüklü, ancak hiçbir şey depolamıyor."
+msgstr "Nesne önbelleği yüklendi, ancak hiçbir şey depolamıyor."
 
 #: includes/class-admin.php:459
 msgid "The page cache is on, but pages are not being stored yet."
@@ -277,59 +277,59 @@ msgstr "Sayfa önbelleği açık, ancak sayfalar henüz depolanmıyor."
 
 #: includes/class-admin.php:460
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
-msgstr "WordPress henüz sayfa önbelleği eklentisini (drop-in) yüklemedi. Sonraki sayfa yüklemesinde başlayacaktır; başlamazsa, wp-config.php dosyasında WP_CACHE değerinin true olup olmadığını kontrol edin."
+msgstr "WordPress henüz sayfa önbelleği drop-in eklentisini yüklemedi. Bir sonraki sayfa yüklemesinde başlayacaktır; başlamazsa, wp-config.php dosyasında WP_CACHE değerinin true olduğunu kontrol edin."
 
 #: includes/class-admin.php:469
 msgid "The object cache is on, but this server has no Redis support."
-msgstr "Nesne önbelleği açık, ancak bu sunucuda Redis desteği yok."
+msgstr "Nesne önbelleği etkin, ancak bu sunucuda Redis desteği yok."
 
 #: includes/class-admin.php:470
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
-msgstr "phpredis eklentisi kurulu değil, bu nedenle drop-in kullanılamıyor ve WordPress kendi bellek içi önbelleğine geri dönüyor. Barındırma sağlayıcınızdan phpredis'i etkinleştirmesini isteyin."
+msgstr "phpredis eklentisi yüklü değil, bu nedenle drop-in kullanılamıyor ve WordPress kendi bellek içi önbelleğine geri dönüyor. Barındırma sağlayıcınızdan phpredis eklentisini etkinleştirmesini isteyiniz."
 
 #: includes/class-admin.php:478
 msgid "Nothing is being cached."
-msgstr "Hiçbir şey önbelleğe alınmıyor."
+msgstr "Önbelleğe hiçbir şey alınmıyor."
 
 #: includes/class-admin.php:479
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
-msgstr "Her iki önbellek de kapalı olduğundan, bu eklenti siteyi daha hızlı hale getirmiyor."
+msgstr "Her iki önbellek de kapalı, bu nedenle bu eklenti siteyi daha hızlı hale getirmiyor."
 
 #: includes/class-admin.php:486
 msgid "Caching is active on this site."
-msgstr "Bu sitede önbellekleme etkin."
+msgstr "Bu sitede önbellekleme etkindir."
 
 #: includes/class-admin.php:521
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
-msgstr "Redis kullanıcı adını veya parolasını reddetti. wp-config.php dosyasındaki veya bu ekrandaki Redis kimlik bilgilerini kontrol edin."
+msgstr "Redis kullanıcı adını veya parolayı reddetti. wp-config.php dosyasındaki veya bu ekrandaki Redis kimlik bilgilerini kontrol edin."
 
 #: includes/class-admin.php:523
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
-msgstr "Redis oturum açma işlemini kabul etti ancak bu sitenin anahtarlarını depolamasına izin vermiyor. Redis kullanıcısının bu sitenin anahtar öneki için izne ihtiyacı var."
+msgstr "Redis girişi kabul etti ancak bu sitenin anahtarlarını depolamasına izin vermiyor. Redis kullanıcısının bu sitenin anahtar öneki için izne ihtiyacı var."
 
 #: includes/class-admin.php:525
 msgid "Redis refused the database number. Check the Redis database setting."
-msgstr "Redis veri tabanı numarasını reddetti. Redis veri tabanı ayarını kontrol edin."
+msgstr "Redis veritabanı numarasını reddetti. Redis veritabanı ayarını kontrol edin."
 
 #: includes/class-admin.php:527
 msgid "Redis is out of memory and is refusing new data."
-msgstr "Redis bellek tüketim sınırına ulaştı ve yeni verileri reddediyor."
+msgstr "Redis belleği tükendi ve yeni verileri reddediyor."
 
 #: includes/class-admin.php:529
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
-msgstr "phpredis uzantısı yüklü değil, bu nedenle WordPress kendi bellek içi önbelleğini kullanıyor. Barındırma sağlayıcınızdan phpredis özelliğini etkinleştirmesini isteyin."
+msgstr "phpredis eklentisi yüklü değil, bu nedenle WordPress kendi bellek içi önbelleğini kullanıyor. Barındırma sağlayıcınızdan phpredis eklentisini etkinleştirmesini isteyin."
 
 #: includes/class-admin.php:531
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
-msgstr "wp-config.php içinde WP_REDIS_DISABLED ayarlanmış, bu nedenle nesne önbelleği kapalıdır."
+msgstr "wp-config.php dosyasında WP_REDIS_DISABLED ayarlandığından nesne önbelleği kapatıldı."
 
 #: includes/class-admin.php:533
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
-msgstr "Redis sunucusuna ulaşılamadı. Redis ana bilgisayarını ve bağlantı noktasını ve Redis'in çalışıp çalışmadığını kontrol edin."
+msgstr "Redis sunucusuna ulaşılamadı. Redis ana bilgisayarını ve bağlantı noktasını, ayrıca Redis'in çalışıp çalışmadığını kontrol edin."
 
 #: includes/class-admin.php:535
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
-msgstr "Redis az önce yazılan değeri geri döndürmedi. Redis sunucusunun günlüklerini kontrol edin."
+msgstr "Redis, az önce kendisine yazılan değeri döndürmedi. Redis sunucusunun günlüklerini kontrol edin."
 
 #: includes/class-admin.php:550
 msgid "Web server"
@@ -345,7 +345,7 @@ msgstr "LiteSpeed değil — sayfalar bu eklenti tarafından diske önbelleğe a
 
 #: includes/class-admin.php:556
 msgid "Pages stored on disk"
-msgstr "Diskte saklanan sayfalar"
+msgstr "Diskte depolanan sayfalar"
 
 #: includes/class-admin.php:560
 msgid "Redis support"
@@ -353,11 +353,11 @@ msgstr "Redis desteği"
 
 #: includes/class-admin.php:562
 msgid "phpredis is installed"
-msgstr "phpredis yüklü"
+msgstr "phpredis kurulu"
 
 #: includes/class-admin.php:563
 msgid "phpredis is not installed"
-msgstr "phpredis yüklü değil"
+msgstr "phpredis kurulu değil"
 
 #: includes/class-admin.php:566
 msgid "Page lifetime"
@@ -369,19 +369,19 @@ msgstr "Önbelleği temizleme izniniz yok."
 
 #: includes/class-admin.php:647
 msgid "Cache purge requested."
-msgstr "Önbellek temizleme talep edildi."
+msgstr "Önbellek temizleme istendi."
 
 #: includes/class-admin.php:675
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
-msgstr "Zinn® Cache: Başka bir nesne önbelleği eklentisi yüklü olduğundan, Redis nesne önbelleği bu eklenti tarafından yönetilmiyor."
+msgstr "Zinn® Cache: Başka bir object-cache drop-in bileşeni yüklü olduğundan, Redis nesne önbelleği bu eklenti tarafından yönetilmiyor."
 
 #: includes/class-admin.php:689
 msgid "detected"
-msgstr "algılandı"
+msgstr "Algılandı"
 
 #: includes/class-admin.php:690
 msgid "not detected"
-msgstr "algılanmadı"
+msgstr "Algılanmadı"
 
 #: includes/class-admin.php:694
 msgid "phpredis extension missing"
@@ -389,7 +389,7 @@ msgstr "phpredis uzantısı eksik"
 
 #: includes/class-admin.php:696
 msgid "installed, not storing anything"
-msgstr "kurulu, hiçbir şey depolanmıyor"
+msgstr "yüklendi, hiçbir şey depolamıyor"
 
 #: includes/class-admin.php:698
 msgid "active, managed by your host"
@@ -397,11 +397,11 @@ msgstr "etkin, barındırıcınız tarafından yönetiliyor"
 
 #: includes/class-admin.php:700
 msgid "active"
-msgstr "etkin"
+msgstr "Etkin"
 
 #: includes/class-admin.php:702
 msgid "inactive"
-msgstr "etkin değil"
+msgstr "Etkin değil"
 
 #: includes/class-admin.php:707
 msgid "LiteSpeed cache:"
@@ -413,11 +413,11 @@ msgstr "Redis nesne önbelleği:"
 
 #: includes/class-object-cache.php:256
 msgid "The Redis PHP extension (phpredis) is not available on this server, so the object cache cannot be enabled."
-msgstr "Redis PHP uzantısı (phpredis) bu sunucuda mevcut olmadığından nesne önbelleği etkinleştirilemez."
+msgstr "Redis PHP eklentisi (phpredis) bu sunucuda mevcut değil, bu nedenle nesne önbelleği etkinleştirilemez."
 
 #: includes/class-object-cache.php:263
 msgid "Another object-cache drop-in is already installed. Remove it before enabling the Zinn® object cache."
-msgstr "Başka bir nesne önbelleği eklentisi (object-cache drop-in) zaten kurulu. Zinn® nesne önbelleğini etkinleştirmeden önce bunu kaldırın."
+msgstr "Başka bir object-cache drop-in zaten yüklü. Zinn® nesne önbelleğini etkinleştirmeden önce onu kaldırın."
 
 #: includes/class-object-cache.php:275
 msgid "Could not write the Redis connection configuration file."
@@ -425,23 +425,23 @@ msgstr "Redis bağlantı yapılandırma dosyası yazılamadı."
 
 #: includes/class-object-cache.php:283
 msgid "The bundled object-cache drop-in could not be read."
-msgstr "Birlikte gelen nesne önbelleği drop-in dosyası okunamadı."
+msgstr "Paket içindeki object-cache drop-in dosyası okunamadı."
 
 #: includes/class-object-cache.php:290
 msgid "Could not install the object-cache drop-in into wp-content."
-msgstr "Nesne önbelleği drop-in dosyası wp-content içine kurulamadı."
+msgstr "object-cache drop-in dosyası wp-content içine yüklenemedi."
 
 #: includes/class-object-cache.php:316
 msgid "Could not remove the object-cache drop-in."
-msgstr "Nesne önbelleği drop-in dosyası kaldırılamadı."
+msgstr "object-cache drop-in eklentisi kaldırılamadı."
 
 #: includes/class-object-cache.php:411
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
-msgstr "WordPress dosya sistemi yazılabilir olmadığından nesne önbelleği drop-in dosyası yönetilemedi."
+msgstr "WordPress dosya sistemi yazılabilir değil, bu nedenle object-cache drop-in bileşeni yönetilemedi."
 
 #: includes/class-page-cache.php:328
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
-msgstr "Başka bir sayfa önbelleği eklentisi wp-content/advanced-cache.php dosyasını yüklemiş. Önce o eklentiyi kaldırın veya sayfa önbelleğini kullanmaya devam edin."
+msgstr "Başka bir sayfa önbelleği eklentisi wp-content/advanced-cache.php dosyasını yükledi. Lütfen önce o eklentiyi kaldırın veya sayfa önbelleğini kullanmaya devam edin."
 
 #: includes/class-page-cache.php:331
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
@@ -449,21 +449,21 @@ msgstr "wp-content/cache/zinn-cache klasörüne yazılamadı, bu nedenle sayfala
 
 #: includes/class-page-cache.php:338
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
-msgstr "wp-content/advanced-cache.php dosyası yazılamadı, bu nedenle sayfalar önbelleğe alınamıyor."
+msgstr "wp-content/advanced-cache.php yazılamadı, bu nedenle sayfalar önbelleğe alınamıyor."
 
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
-msgstr "Zinn Digital® sürüm notlarını inceleyin."
+msgstr "Zinn Digital® sürüm notlarını görüntüleyin."
 
 #: includes/class-updater.php:299
 msgid "The Zinn® update service did not issue a download link for this update. Check that this site can reach the Zinn® platform, then try again."
-msgstr "Zinn® güncelleme servisi bu güncelleme için bir indirme bağlantısı oluşturmadı. Bu sitenin Zinn® platformuna erişebildiğini kontrol edin ve ardından tekrar deneyin."
+msgstr "Zinn® güncelleme servisi bu güncelleme için bir indirme bağlantısı sağlamadı. Bu sitenin Zinn® platformuna erişebildiğini kontrol edin, ardından tekrar deneyin."
 
 #. translators: %s: the download error reported by WordPress.
 #: includes/class-updater.php:313
 #, php-format
 msgid "The update could not be downloaded from the Zinn® update service (%s). Try again in a few minutes."
-msgstr "Güncelleme, Zinn® güncelleme servisinden (%s) indirilemedi. Birkaç dakika içinde tekrar deneyin."
+msgstr "Güncelleme, Zinn® güncelleme servisinden (%s) indirilemedi. Lütfen birkaç dakika sonra tekrar deneyin."
 
 #: includes/class-updater.php:327
 msgid "The downloaded update failed its integrity check and was not installed."
@@ -471,7 +471,7 @@ msgstr "İndirilen güncelleme bütünlük denetiminden geçemedi ve yüklenmedi
 
 #: includes/class-upsell.php:85
 msgid "Go Pro"
-msgstr "Pro'ya Geç"
+msgstr "Pro'ya Geçin"
 
 #: includes/class-upsell.php:112
 msgid "A cache analytics screen: hit ratio, memory, keys and the slowest cache commands."
@@ -479,57 +479,57 @@ msgstr "Önbellek analitiği ekranı: isabet oranı, bellek, anahtarlar ve en ya
 
 #: includes/class-upsell.php:113
 msgid "A slow-query and uncached-call finder that names the plugin or theme responsible."
-msgstr "Soruna neden olan eklentiyi veya temayı belirleyen yavaş sorgu ve önbelleğe alınmamış çağrı bulucu."
+msgstr "Sorumlu eklentiyi veya temayı belirten yavaş sorgu ve önbelleğe alınmamış çağrı bulucu."
 
 #: includes/class-upsell.php:114
 msgid "An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer."
-msgstr "En sıcak anahtarlar için Redis'in önünde bellek içi bir APCu katmanı, ayrıca önceden getirme, sıkıştırma ve igbinary serileştirici."
+msgstr "En sık kullanılan anahtarlar için Redis önünde bellek içi bir APCu katmanı, ayrıca önceden getirme, sıkıştırma ve igbinary serileştiricisi."
 
 #: includes/class-upsell.php:115
 msgid "Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together."
-msgstr "Gönderiler, terimler ve WooCommerce ürünleri için etiket tabanlı önbellek temizleme özelliği sayesinde, yalnızca değişen içerikler temizlenir ve sayfa ile nesne önbellekleri eş zamanlı olarak temizlenir."
+msgstr "Yazılar, terimler ve WooCommerce ürünleri için etiket tabanlı temizleme; böylece sayfa ve nesne önbellekleri birlikte temizlenerek yalnızca değişen içerikler silinir."
 
 #: includes/class-upsell.php:116
 msgid "Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript."
-msgstr "Bir temizleme (purge) işleminden sonra otomatik önbellek ısıtma, WebP ve AVIF görselleri, kullanılmayan CSS'in kaldırılması ve gecikmeli JavaScript."
+msgstr "Temizleme sonrasında otomatik önbellek ısıtma, WebP ve AVIF görselleri, kullanılmayan CSS'in kaldırılması ve geciktirilmiş JavaScript."
 
 #: includes/class-upsell.php:117
 msgid "Scheduled database clean-up with a preview, and per-page cache rules."
-msgstr "Ön izleme ile zamanlanmış veritabanı temizliği ve sayfa başına önbellek kuralları."
+msgstr "Önizleme ile zamanlanmış veritabanı temizliği ve sayfa başına önbellek kuralları."
 
 #: includes/class-upsell.php:118
 msgid "Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills."
-msgstr "Önbellek isabet oranı düştüğünde veya bellek dolduğunda Zinn Digital® panelinizde önbellek durumu uyarıları."
+msgstr "İsabet oranı düştüğünde veya bellek dolduğunda Zinn Digital® kontrol panelinizde önbellek durumu uyarıları."
 
 #: includes/class-upsell.php:132
 msgid "Everything on the other tabs is free and stays free. Pro installs on top of this plugin and adds:"
-msgstr "Diğer sekmlerdeki her şey ücretsizdir ve ücretsiz kalır. Pro, bu eklentinin üzerine kurulur ve şunları ekler:"
+msgstr "Diğer sekmelerdeki her şey ücretsizdir ve ücretsiz kalır. Pro, bu eklentinin üzerine kurulur ve şunları ekler:"
 
 #: includes/class-upsell.php:134
 msgid "See what Pro costs"
-msgstr "Pro fiyatlarını görün"
+msgstr "Pro ücretlerini görün"
 
 #. translators: 1: yearly price for one site, 2: for five sites, 3: for unlimited sites (each already formatted, e.g. $49).
 #: includes/class-upsell.php:138
 #, php-format
 msgid "Every plan starts with a 14-day free trial, no card needed: %1$s a year for one site, %2$s for five sites, %3$s for unlimited sites."
-msgstr "Her plan 14 günlük ücretsiz deneme ile başlar, kart gerekmez: tek site için yılda %1$s, beş site için %2$s, sınırsız site için %3$s."
+msgstr "Her plan 14 günlük ücretsiz deneme süresiyle başlar, kredi kartı gerekmez: Tek site için yıllık %1$s, beş site için %2$s, sınırsız site için %3$s."
 
 #: includes/class-wp-config.php:66
 msgid "wp-config.php was not found, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
-msgstr "wp-config.php bulunamadı, bu nedenle WP_CACHE etkinleştirilemedi. Buna define( 'WP_CACHE', true ); ekleyin."
+msgstr "wp-config.php bulunamadı, bu nedenle WP_CACHE etkinleştirilemedi. Dosyaya define( 'WP_CACHE', true ); ekleyin."
 
 #: includes/class-wp-config.php:72
 msgid "wp-config.php already defines WP_CACHE as false, so the page cache cannot start. Change it to true."
-msgstr "wp-config.php zaten WP_CACHE değerini false olarak tanımlıyor, bu nedenle sayfa önbelleği başlatılamıyor. Bunu true olarak değiştirin."
+msgstr "wp-config.php dosyası WP_CACHE değerini zaten false olarak tanımlamış, bu nedenle sayfa önbelleği başlatılamıyor. Bunu true olarak değiştirin."
 
 #: includes/class-wp-config.php:79
 msgid "wp-config.php is not writable, so WP_CACHE could not be turned on. Add define( 'WP_CACHE', true ); to it."
-msgstr "wp-config.php yazılabilir değil, bu nedenle WP_CACHE etkinleştirilemedi. Dosyaya define( 'WP_CACHE', true ); ekleyin."
+msgstr "wp-config.php yazılabilir değil, bu nedenle WP_CACHE etkinleştirilemedi. İçine define( 'WP_CACHE', true ); satırını ekleyin."
 
 #: includes/class-zinn-cache-admin-fields.php:580
 msgid "Stored. Type a new value to replace it."
-msgstr "Kaydedildi. Değiştirmek için yeni bir değer yazın."
+msgstr "Saklandı. Değiştirmek için yeni bir değer yazın."
 
 #: includes/class-zinn-cache-admin-fields.php:640
 msgid "Filter this list…"
@@ -541,7 +541,7 @@ msgstr "Bu listeyi filtrele"
 
 #: includes/class-zinn-cache-admin-fields.php:657
 msgid "Nothing matches that filter."
-msgstr "Bu filtreyle eşleşen sonuç yok."
+msgstr "Bu filtreyle eşleşen bir şey yok."
 
 #: includes/class-zinn-cache-admin-fields.php:688
 msgid "Add a row"
@@ -549,7 +549,7 @@ msgstr "Satır ekle"
 
 #: includes/class-zinn-cache-admin-fields.php:725
 msgid "Remove this row"
-msgstr "Bu satırı kaldır"
+msgstr "Bu satırı kaldırın"
 
 #: includes/class-zinn-cache-admin-fields.php:725
 #: includes/freemius-strings.php:2132
@@ -581,7 +581,7 @@ msgstr "Bu sitedeki her Zinn® eklentisi ve çalışıp çalışmadığı."
 
 #: includes/class-zinn-cache-admin-ui.php:437
 msgid "No connection is needed for this plugin."
-msgstr "Bu eklenti için bağlantı gerekmez."
+msgstr "Bu eklenti için herhangi bir bağlantı gerekmez."
 
 #: includes/class-zinn-cache-admin-ui.php:442
 msgid "Open settings"
@@ -590,11 +590,11 @@ msgstr "Ayarları aç"
 #: includes/class-zinn-cache-admin-ui.php:770
 #: includes/class-zinn-cache-admin-ui.php:1331
 msgid "You do not have permission to change these settings."
-msgstr "Bu ayarları değiştirmek için izniniz yok."
+msgstr "Bu ayarları değiştirmek için yetkiniz yok."
 
 #: includes/class-zinn-cache-admin-ui.php:799
 msgid "Settings sections"
-msgstr "Ayarlar bölümleri"
+msgstr "Ayar bölümleri"
 
 #: includes/class-zinn-cache-admin-ui.php:871
 #: includes/freemius-strings.php:2420
@@ -612,7 +612,7 @@ msgstr "Araçlar"
 
 #: includes/class-zinn-cache-admin-ui.php:973
 msgid "Export settings"
-msgstr "Ayarları Dışarı Aktar"
+msgstr "Ayarları dışa aktar"
 
 #: includes/class-zinn-cache-admin-ui.php:976
 msgid "Reset to defaults"
@@ -620,7 +620,7 @@ msgstr "Varsayılanlara sıfırla"
 
 #: includes/class-zinn-cache-admin-ui.php:977
 msgid "This puts every setting on this plugin back to its default. Continue?"
-msgstr "Bu, bu eklentideki tüm ayarları varsayılan değerlerine döndürür. Devam etmek istiyor musunuz?"
+msgstr "Bu işlem, bu eklentideki tüm ayarları varsayılan değerlerine sıfırlar. Devam etmek istiyor musunuz?"
 
 #: includes/class-zinn-cache-admin-ui.php:984
 msgid "Diagnostics for support"
@@ -628,15 +628,15 @@ msgstr "Destek için tanılama"
 
 #: includes/class-zinn-cache-admin-ui.php:993
 msgid "Import a settings file"
-msgstr "Bir ayar dosyası içeri aktar"
+msgstr "Ayar dosyasını içe aktarın"
 
 #: includes/class-zinn-cache-admin-ui.php:995
 msgid "Import"
-msgstr "İçe Aktar"
+msgstr "İçe aktar"
 
 #: includes/class-zinn-cache-admin-ui.php:997
 msgid "Exported files never contain passwords, tokens or API keys — you will need to enter those again on the new site."
-msgstr "Dışarı aktarılan dosyalar asla parola, belirteç veya API anahtarı içermez; bunları yeni sitede yeniden girmeniz gerekecektir."
+msgstr "Dışa aktarılan dosyalar asla parola, belirteç veya API anahtarı içermez — bunları yeni sitede tekrar girmeniz gerekecektir."
 
 #: includes/class-zinn-cache-admin-ui.php:1096
 msgid "Settings saved."
@@ -644,7 +644,7 @@ msgstr "Ayarlar kaydedildi."
 
 #: includes/class-zinn-cache-admin-ui.php:1143
 msgid "Every setting on this plugin is back to its default."
-msgstr "Bu eklentideki tüm ayarlar varsayılan değerlerine döndü."
+msgstr "Bu eklentideki tüm ayarlar varsayılan değerlerine döndürüldü."
 
 #: includes/class-zinn-cache-admin-ui.php:1186
 msgid "Done."
@@ -656,33 +656,33 @@ msgstr "Bu işlem kullanılamıyor."
 
 #: includes/class-zinn-cache-admin-ui.php:1257
 msgid "That file could not be read. Choose a settings file exported from a Zinn® plugin."
-msgstr "Bu dosya okunamadı. Bir Zinn® eklentisinden dışarı aktarılan bir ayar dosyası seçin."
+msgstr "Bu dosya okunamadı. Bir Zinn® eklentisinden dışa aktarılmış bir ayarlar dosyası seçin."
 
 #: includes/class-zinn-cache-admin-ui.php:1265
 msgid "That file is too large to be a settings export."
-msgstr "Bu dosya, bir ayarlar dışa aktarımı için çok büyük."
+msgstr "Bu dosya, bir ayar dışa aktarımı olmak için çok büyük."
 
 #: includes/class-zinn-cache-admin-ui.php:1278
 msgid "That file is not a Zinn® settings export."
-msgstr "O dosya bir Zinn® ayar dışa aktarımı değil."
+msgstr "Bu dosya bir Zinn® ayarları dışa aktarımı değildir."
 
 #. translators: %s: the plugin slug the file was exported from.
 #: includes/class-zinn-cache-admin-ui.php:1286
 #, php-format
 msgid "That file was exported from a different plugin (%s), so importing it here would store settings this plugin does not understand."
-msgstr "Bu dosya farklı bir eklentiden (%s) dışarı aktarıldığından, buraya içe aktarmak bu eklentinin anlamadığı ayarları kaydetmesine neden olur."
+msgstr "Bu dosya farklı bir eklentiden (%s) dışa aktarılmıştır, dolayısıyla buraya içe aktarılması bu eklentinin tanımadığı ayarları kaydedecektir."
 
 #. translators: %d: how many settings were imported.
 #: includes/class-zinn-cache-admin-ui.php:1316
 #, php-format
 msgid "%d setting imported. Passwords and API keys are never in an export, so enter those again."
 msgid_plural "%d settings imported. Passwords and API keys are never in an export, so enter those again."
-msgstr[0] "%d ayar içe aktarıldı. Parolalar ve API anahtarları hiçbir zaman dışa aktarıma dahil edilmez; bu yüzden bunları tekrar girin."
-msgstr[1] "%d ayar içe aktarıldı. Parolalar ve API anahtarları asla dışa aktarıma dahil edilmez, bu nedenle bunları yeniden girin."
+msgstr[0] "%d ayar içe aktarıldı. Parolalar ve API anahtarları hiçbir zaman bir dışa aktarmaya dahil edilmez, bu nedenle bunları tekrar girin."
+msgstr[1] "%d ayar içe aktarıldı. Parolalar ve API anahtarları hiçbir zaman dışa aktarılan dosyalarda yer almaz, bu nedenle bunları yeniden giriniz."
 
 #: includes/class-zinn-cache-connection.php:58
 msgid "Connected"
-msgstr "Bağlı"
+msgstr "Bağlandı"
 
 #: includes/class-zinn-cache-connection.php:60
 msgid "Connecting…"
@@ -690,7 +690,7 @@ msgstr "Bağlanıyor…"
 
 #: includes/class-zinn-cache-connection.php:62
 msgid "Connected, but something needs attention"
-msgstr "Bağlı, ancak bazı şeylerin ilgilenilmesi gerekiyor"
+msgstr "Bağlandı, ancak ilgilenilmesi gereken bir durum var"
 
 #: includes/class-zinn-cache-connection.php:64
 msgid "Not connected"
@@ -706,7 +706,7 @@ msgstr "Bunu kontrol edemedik"
 
 #: includes/class-zinn-cache-connection.php:93
 msgid "This plugin did not say why. Send a diagnostics report and we will look."
-msgstr "Bu eklenti nedenini belirtmedi. Bir tanı raporu gönderin, inceleyelim."
+msgstr "Bu eklenti nedenini belirtmedi. Bir teşhis raporu gönderin, inceleyelim."
 
 #: includes/class-zinn-cache-connection.php:161
 msgid "Connection status"
@@ -716,7 +716,7 @@ msgstr "Bağlantı durumu"
 #: includes/class-zinn-cache-connection.php:189
 #, php-format
 msgid "Last checked %s ago."
-msgstr "En son %s önce kontrol edildi."
+msgstr "Son denetim %s önce."
 
 #: includes/class-zinn-cache-connection.php:251
 msgid "(opens in a new tab)"
@@ -724,15 +724,15 @@ msgstr "(yeni sekmede açılır)"
 
 #: includes/class-zinn-cache-diagnostics.php:199
 msgid "Send this to Zinn® support"
-msgstr "Bunu Zinn® destek ekibine gönderin"
+msgstr "Bunu Zinn® desteğine gönderin"
 
 #: includes/class-zinn-cache-diagnostics.php:201
 msgid "This is exactly what will be sent — nothing else, and nothing hidden. Your passwords, tokens and API keys are not in it."
-msgstr "Tam olarak gönderilecek olan budur; başka hiçbir şey ve gizli bir şey yoktur. Şifreleriniz, belirteçleriniz ve API anahtarlarınız bunun içinde yer almaz."
+msgstr "Tam olarak gönderilecek olan budur — başka hiçbir şey ve gizli hiçbir şey yoktur. Parolalarınız, belirteçleriniz ve API anahtarlarınız bunun içinde yer almaz."
 
 #: includes/class-zinn-cache-diagnostics.php:204
 msgid "The diagnostics report that will be sent"
-msgstr "Gönderilecek olan tanılama raporu"
+msgstr "Gönderilecek tanı raporu"
 
 #: includes/class-zinn-cache-diagnostics.php:207
 msgid "Copy to clipboard"
@@ -740,75 +740,75 @@ msgstr "Panoya kopyala"
 
 #: includes/class-zinn-cache-diagnostics.php:214
 msgid "Send this report to Zinn® support"
-msgstr "Bu raporu Zinn® destek ekibine gönderin"
+msgstr "Bu raporu Zinn® desteğine gönderin"
 
 #: includes/class-zinn-cache-diagnostics.php:216
 msgid "We open a support ticket for you and reply by email. If you would rather not send it, copy it above and paste it into a ticket yourself."
-msgstr "Sizin için bir destek talebi açıp e-posta ile yanıt veriyoruz. Bunu göndermek istemiyorsanız, yukarıdakini kopyalayıp kendiniz bir talebe yapıştırın."
+msgstr "Sizin için bir destek talebi açıyoruz ve e-posta ile yanıt veriyoruz. Göndermemeyi tercih ederseniz, yukarıdan kopyalayın ve bir talebe kendiniz yapıştırın."
 
 #. translators: %s: the transport error reported by WordPress.
 #: includes/class-zinn-cache-diagnostics.php:270
 #, php-format
 msgid "We could not reach Zinn Digital® from this server (%s). Copy the report above and open a ticket instead — nothing about your settings is wrong."
-msgstr "Bu sunucudan (%s) Zinn Digital® adresine ulaşılamadı. Yukarıdaki raporu kopyalayın ve bunun yerine bir destek talebi oluşturun; ayarlarınızda herhangi bir sorun yoktur."
+msgstr "Bu sunucudan (%s) Zinn Digital® hizmetine ulaşılamadı. Yukarıdaki raporu kopyalayın ve bunun yerine bir destek talebi açın — ayarlarınızda yanlış bir şey yok."
 
 #: includes/class-zinn-cache-diagnostics.php:284
 msgid "Sent. Zinn® support has your report and will reply by email."
-msgstr "Zinn® destek ekibi raporunuzu aldı ve e-posta yoluyla yanıt verecektir."
+msgstr "Gönderildi. Zinn® desteği bildirinizi aldı ve e-posta ile yanıt verecektir."
 
 #. translators: %s: the support reference for the report just sent.
 #: includes/class-zinn-cache-diagnostics.php:287
 #, php-format
 msgid "Sent. Zinn® support has your report — reference %s — and will reply by email."
-msgstr "Gönderildi. Zinn® destek ekibi raporunuzu aldı — referans numarası %s — ve e-posta ile yanıt verecektir."
+msgstr "Gönderildi. Zinn® desteği bildiriminizi aldı — referans %s — ve e-posta ile yanıt verecektir."
 
 #: includes/class-zinn-cache-diagnostics.php:296
 msgid "You have sent several reports in a short time. Wait a few minutes and try again — the earlier ones did arrive."
-msgstr "Kisa süre içinde birkaç rapor gönderdiniz. Birkaç dakika bekleyin ve tekrar deneyin; öncekiler iletildi."
+msgstr "Kısa bir süre içinde birkaç rapor gönderdiniz. Birkaç dakika bekleyip tekrar deneyin — öncekiler başarıyla ulaştı."
 
 #: includes/class-zinn-cache-diagnostics.php:303
 msgid "Zinn Digital® could not accept the report just now — that is our end, not yours. Try again shortly, or copy the report above into a ticket."
-msgstr "Zinn Digital® raporu şu anda kabul edemedi; sorun bizden kaynaklanıyor, sizden değil. Kısa süre sonra tekrar deneyin veya yukarıdaki raporu bir destek biletine kopyalayın."
+msgstr "Zinn Digital® raporu şu anda kabul edemedi — bu sorun sizden değil, bizden kaynaklanıyor. Kısa süre sonra tekrar deneyin veya yukarıdaki raporu bir bilete kopyalayın."
 
 #. translators: %d: the HTTP status code the server returned.
 #: includes/class-zinn-cache-diagnostics.php:311
 #, php-format
 msgid "The report was refused (HTTP %d). Copy it above and open a ticket, quoting that number."
-msgstr "Rapor reddedildi (HTTP %d). Yukarıdan kopyalayın ve bu numarayı belirterek bir destek talebi oluşturun."
+msgstr "Rapor reddedildi (HTTP %d). Yukarıdan kopyalayın ve bu numarayı belirterek bir talep oluşturun."
 
 #. translators: 1: a percentage, e.g. 50. 2: a Pro plugin's name.
 #: includes/class-zinn-cache-pro-discount.php:130
 #, php-format
 msgid "Hosting customer? Get %1$d%% off %2$s"
-msgstr "Barındırma müşterisi misiniz? %2$s üzerinden %1$d%% indirim kazanın"
+msgstr "Barındırma müşterisi misiniz? %2$s için %% %1$d indirim kazanın"
 
 #. translators: %d: a percentage, e.g. 50.
 #: includes/class-zinn-cache-pro-discount.php:139
 #, php-format
 msgid "As a Zinn Digital® hosting customer you get a personal code for %d%% off your first payment. Renewals are at the normal price."
-msgstr "Zinn Digital® hosting müşterisi olarak, ilk ödemenizde %d%% indirim sağlayan kişisel bir kod alırsınız. Yenilemeler normal fiyattandır."
+msgstr "Bir Zinn Digital® barındırma müşterisi olarak, ilk ödemenizde %d%% indirim sağlayan kişisel bir kod alırsınız. Yenilemeler normal fiyattan yapılır."
 
 #. translators: %d: a percentage, e.g. 50.
 #: includes/class-zinn-cache-pro-discount.php:154
 #, php-format
 msgid "Get my %d%% code and go to checkout"
-msgstr "%d%% indirim kodumu alın ve ödemeye geçin"
+msgstr "Benim %d%% kodumu alın ve ödemeye geçin"
 
 #: includes/class-zinn-cache-pro-discount.php:169
 msgid "Sorry, you are not allowed to do that."
-msgstr "Üzgünüm, bunu yapmanıza izin verilmiyor."
+msgstr "Üzgünüz, bunu yapmaya izniniz yok."
 
 #: includes/class-zinn-cache-pro-discount.php:220
 msgid "This discount is for customers with a paid hosting plan in good standing. Free trials do not qualify."
-msgstr "Bu indirim, iyi durumdaki ücretli bir barındırma planına sahip müşteriler içindir. Ücretsiz denemeler bu kapsama girmez."
+msgstr "Bu indirim, iyi durumda ücretli bir barındırma planına sahip müşteriler içindir. Ücretsiz denemeler bu kapsamda değildir."
 
 #: includes/class-zinn-cache-pro-discount.php:223
 msgid "You have already used your hosting-customer discount for this plugin."
-msgstr "Bu eklenti için barındırma müşterisi indirimini zaten kullandınız."
+msgstr "Bu eklenti için barındırma müşterisi indiriminizi zaten kullandınız."
 
 #: includes/class-zinn-cache-pro-discount.php:226
 msgid "We could not get your code just now. Please try again in a few minutes."
-msgstr "Kodunuzu şu anda alamadık. Lütfen birkaç dakika içinde tekrar deneyin."
+msgstr "Kodunuzu şu anda alamadık. Lütfen birkaç dakika sonra tekrar deneyin."
 
 #. translators: %s: the Zinn Digital trade mark, which is not translated.
 #: includes/class-zinn-cache-promo.php:241
@@ -837,31 +837,31 @@ msgstr "WordPress için Zinn® barındırma"
 
 #: includes/class-zinn-cache-promo.php:425
 msgid "LiteSpeed, daily backups, free migration and a control panel built for people who run more than one site."
-msgstr "LiteSpeed, günlük yedeklemeler, ücretsiz taşıma ve birden fazla site çalıştıranlar için tasarlanmış bir kontrol paneli."
+msgstr "LiteSpeed, günlük yedeklemeler, ücretsiz taşıma ve birden fazla site yöneten kullanıcılar için tasarlanmış bir kontrol paneli."
 
 #: includes/class-zinn-cache-promo.php:431
 msgid "The Zinn® marketplace"
-msgstr "Zinn® pazarı"
+msgstr "Zinn® pazaryeri"
 
 #: includes/class-zinn-cache-promo.php:432
 msgid "Buy and sell established sites, domains and link placements, with the money held safely until both sides are happy."
-msgstr "Her iki taraf da memnun olana kadar paranın güvenle tutulduğu; köklü siteler, alan adları ve bağlantı yerleşimleri alıp satın."
+msgstr "Her iki taraf da memnun kalana kadar paranız güvenle saklanırken, yerleşik siteleri, alan adlarını ve bağlantı yerleşimlerini alıp satın."
 
 #: includes/class-zinn-cache-promo.php:479
 msgid "Zinn Hub® — hire people who do this for a living"
-msgstr "Zinn Hub® — bu işi profesyonel olarak yapan kişileri işe alın"
+msgstr "Zinn Hub® — bu işi meslek olarak yapan kişileri işe alın"
 
 #: includes/class-zinn-cache-promo.php:480
 msgid "Our global freelance marketplace: browse over 10,000 ready-made services from writers, designers, developers and SEOs, or post a project and let them bid."
-msgstr "Küresel serbest çalışan pazar yerimiz: yazarlardan, tasarımcılardan, geliştiricilerden ve SEO uzmanlarından oluşan 10.000'den fazla hazır hizmete göz atın veya bir proje yayınlayıp teklif vermelerini sağlayın."
+msgstr "Küresel serbest çalışan pazar yerimiz: yazarlar, tasarımcılar, geliştiriciler ve SEO uzmanlarından 10.000'den fazla hazır hizmete göz atın veya bir proje yayınlayarak teklif vermelerini sağlayın."
 
 #: includes/class-zinn-cache-style-presets.php:118
 msgid "Style preset"
-msgstr "Stil ön ayarı"
+msgstr "Stil önayarı"
 
 #: includes/class-zinn-cache-style-presets.php:119
 msgid "A starting point. Anything below overrides it."
-msgstr "Bir başlangıç noktası. Aşağıdaki her şey bunu geçersiz kılar."
+msgstr "Bir başlangıç noktası. Aşağıdaki her şey onu geçersiz kılar."
 
 #: includes/class-zinn-cache-style-presets.php:126
 msgid "Use my own colours and sizes"
@@ -869,7 +869,7 @@ msgstr "Kendi renklerimi ve boyutlarımı kullan"
 
 #: includes/class-zinn-cache-style-presets.php:127
 msgid "Leave this off and the preset is used exactly as it is."
-msgstr "Bunu kapalı bırakın ve ön ayar olduğu gibi kullanılır."
+msgstr "Bunu kapalı bırakırsanız ön ayar tam olarak olduğu gibi kullanılır."
 
 #: includes/freemius-strings.php:21
 #: includes/freemius-strings.php:6306
@@ -880,12 +880,12 @@ msgstr "bir lisans anahtarı"
 #: includes/freemius-strings.php:25
 #: includes/freemius-strings.php:3062
 msgid "A user has not yet been associated with the license, which is necessary to prevent unauthorized activation. To assign the license to your user, you agree to share your WordPress user's full name and email address."
-msgstr "Yetkisiz etkinleştirmeyi önlemek için gerekli olan lisansla henüz bir kullanıcı ilişkilendirilmedi. Lisansı kullanıcınıza atamak için WordPress kullanıcınızın adını, soyadını ve e-posta adresini paylaşmayı kabul edersiniz."
+msgstr "Yetkisiz etkinleştirmeyi önlemek için gerekli olan bir kullanıcı henüz lisansla ilişkilendirilmedi. Lisansı kullanıcınıza atamak için WordPress kullanıcınızın tam adını ve e-posta adresini paylaşmayı kabul edersiniz."
 
 #: includes/freemius-strings.php:29
 #: includes/freemius-strings.php:6253
 msgid "the above-mentioned sites"
-msgstr "yukarıda bahsedilen siteler"
+msgstr "yukarıda belirtilen siteler"
 
 #: includes/freemius-strings.php:33
 #: includes/freemius-strings.php:3072
@@ -895,19 +895,19 @@ msgstr "Hesap"
 #: includes/freemius-strings.php:37
 #: includes/freemius-strings.php:3077
 msgid "Account Details"
-msgstr "Hesap Detayları"
+msgstr "Hesap Ayrıntıları"
 
 #: includes/freemius-strings.php:41
 #: includes/freemius-strings.php:3082
 msgid "Account is pending activation. Please check your email and click the link to activate your account and then submit the affiliate form again."
-msgstr "Hesap etkinleştirme bekliyor. Lütfen e-postanızı kontrol edin ve hesabınızı etkinleştirmek için bağlantıya tıklayın, ardından ortaklık formunu tekrar gönderin."
+msgstr "Hesap etkinleştirilmeyi bekliyor. Lütfen e-postanızı kontrol edin ve hesabınızı etkinleştirmek için bağlantıya tıklayın, ardından ortaklık formunu tekrar gönderin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:46
 #: includes/freemius-strings.php:5838
 #, php-format
 msgid "Would you like to merge %1$s into %2$s?"
-msgstr "%1$s öğesini %2$s öğesiyle birleştirmek istiyor musunuz?"
+msgstr "%1$s ögesini %2$s ile birleştirmek ister misiniz?"
 
 #: includes/freemius-strings.php:50
 #: includes/freemius-strings.php:3087
@@ -923,7 +923,7 @@ msgstr "Etkinleştir"
 #: includes/freemius-strings.php:62
 #: includes/freemius-strings.php:3115
 msgid "Activate Free Version"
-msgstr "Ücretsiz Sürümü Etkinleştir"
+msgstr "Ücretsiz Sürümü Etkinleştirin"
 
 #: includes/freemius-strings.php:66
 #: includes/freemius-strings.php:3120
@@ -933,17 +933,17 @@ msgstr "Lisansı Etkinleştir"
 #: includes/freemius-strings.php:70
 #: includes/freemius-strings.php:6131
 msgid "activate a license here"
-msgstr "buradan bir lisans etkinleştirin"
+msgstr "Buradan bir lisans etkinleştirin"
 
 #: includes/freemius-strings.php:74
 #: includes/freemius-strings.php:4793
 msgid "Please enter the license key that you received in the email right after the purchase:"
-msgstr "Lütfen satın alma işleminden hemen sonra e-postada aldığınız lisans anahtarını girin:"
+msgstr "Lütfen satın alma işleminden hemen sonra e-posta ile aldığınız lisans anahtarını girin:"
 
 #: includes/freemius-strings.php:78
 #: includes/freemius-strings.php:3130
 msgid "Activate license on all sites in the network."
-msgstr "Aktif ağdaki tüm sitelerde lisansı etkinleştirin."
+msgstr "Lisansı ağdaki tüm sitelerde etkinleştirin."
 
 #: includes/freemius-strings.php:82
 #: includes/freemius-strings.php:3125
@@ -955,33 +955,33 @@ msgstr "Bekleyen tüm sitelerde lisansı etkinleştirin."
 #: includes/freemius-strings.php:2859
 #, php-format
 msgid " The paid version of %1$s is already installed. Please activate it to start benefiting from the %2$s features. %3$s"
-msgstr "%1$s ürününün ücretli sürümü zaten yüklenmiş. %2$s özelliklerinden yararlanmaya başlamak için lütfen etkinleştirin. %3$s"
+msgstr " %1$s uygulamasının ücretli sürümü zaten yüklü. %2$s özelliklerinden yararlanmaya başlamak için lütfen etkinleştirin. %3$s"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:92
 #: includes/freemius-strings.php:2865
 #, php-format
 msgid " The paid version of %1$s is already installed. Please navigate to the %2$s to activate it and start benefiting from the %3$s features."
-msgstr "%1$s ürününün ücretli sürümü zaten yüklü. %3$s özelliklerinden yararlanmaya başlamak ve etkinleştirmek için lütfen %2$s sayfasına gidin."
+msgstr " %1$s uygulamasının ücretli sürümü zaten yüklü. Etkinleştirmek ve %3$s özelliklerinden yararlanmaya başlamak için lütfen %2$s bölümüne gidin."
 
 #: includes/freemius-strings.php:96
 #: includes/freemius-strings.php:3135
 msgid "Activate this add-on"
-msgstr "Bu eklentiyi etkinleştir"
+msgstr "Bu eklentiyi etkinleştirin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:101
 #: includes/freemius-strings.php:3098
 #, php-format
 msgid "Activate %s"
-msgstr "%s Etkinleştir"
+msgstr "%s öğesini etkinleştirin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:106
 #: includes/freemius-strings.php:3110
 #, php-format
 msgid "Activate %s features"
-msgstr "%s özelliklerini etkinleştir"
+msgstr "%s özelliklerini etkinleştirin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:111
@@ -989,14 +989,14 @@ msgstr "%s özelliklerini etkinleştir"
 #, php-format
 msgctxt "%s - plugin name. As complete \"PluginX\" activation now"
 msgid "Complete \"%s\" Activation Now"
-msgstr "\"%s\" Etkinleştirmesini Şimdi Tamamla"
+msgstr "\"%s\" Etkinleştirmesini Şimdi Tamamlayın"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:116
 #: includes/freemius-strings.php:3104
 #, php-format
 msgid "Activate %s Plan"
-msgstr "%s Planını Etkinleştir"
+msgstr "%s Paketini Etkinleştirin"
 
 #: includes/freemius-strings.php:120
 #: includes/freemius-strings.php:3140
@@ -1006,7 +1006,7 @@ msgstr "Etkinleştirildi"
 #: includes/freemius-strings.php:124
 #: includes/freemius-strings.php:3145
 msgid "Activating"
-msgstr "Aktifleştiriliyor"
+msgstr "Etkinleştiriliyor"
 
 #: includes/freemius-strings.php:128
 #: includes/freemius-strings.php:3150
@@ -1018,7 +1018,7 @@ msgstr "Lisans etkinleştiriliyor"
 #: includes/freemius-strings.php:6022
 #, php-format
 msgid "Your account was successfully activated with the %s plan."
-msgstr "Hesabınız başarıyla %s planı ile etkinleştirildi."
+msgstr "Hesabınız %s planı ile başarıyla etkinleştirildi."
 
 #: includes/freemius-strings.php:137
 #: includes/freemius-strings.php:6366
@@ -1029,7 +1029,7 @@ msgstr "Etkin"
 #: includes/freemius-strings.php:141
 #: includes/freemius-strings.php:3167
 msgid "Add another domain"
-msgstr "Başka bir alan adı ekle"
+msgstr "Başka bir alan adı ekleyin"
 
 #: includes/freemius-strings.php:145
 #: includes/freemius-strings.php:3177
@@ -1046,7 +1046,7 @@ msgstr "%s için Eklentiler"
 #: includes/freemius-strings.php:154
 #: includes/freemius-strings.php:5751
 msgid "We couldn't load the add-ons list. It's probably an issue on our side, please try to come back in few minutes."
-msgstr "Eklenti listesini yükleyemedik. Muhtemelen bizden kaynaklanan bir sorun, lütfen birkaç dakika içinde tekrar deneyin."
+msgstr "Eklenti listesi yüklenemedi. Muhtemelen bizden kaynaklanan bir sorundur, lütfen birkaç dakika sonra tekrar deneyin."
 
 #: includes/freemius-strings.php:158
 #: includes/freemius-strings.php:3172
@@ -1058,14 +1058,14 @@ msgstr "Eklenti"
 #: includes/freemius-strings.php:2931
 #, php-format
 msgid "%s is a premium only add-on. You have to purchase a license first before activating the plugin."
-msgstr "%s yalnızca premium sürüme özel bir eklentidir. Eklentiyi etkinleştirmeden önce bir lisans satın almanız gerekir."
+msgstr "%s yalnızca premium bir eklentidir. Eklentiyi etkinleştirmeden önce bir lisans satın almalısınız."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:168
 #: includes/freemius-strings.php:2883
 #, php-format
 msgid "%s Add-on was successfully purchased."
-msgstr "%s Eklentisi başarıyla satın alındı."
+msgstr "%s eklentisi başarıyla satın alındı."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:173
@@ -1087,7 +1087,7 @@ msgstr "%s ücretsiz deneme sürümü başarıyla iptal edildi. Eklenti yalnızc
 #, php-format
 msgctxt "addonX cannot run..."
 msgid "%s cannot run without the plugin."
-msgstr "%s eklenti olmadan çalışamaz."
+msgstr "%s, eklenti olmadan çalışamaz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:188
@@ -1102,14 +1102,14 @@ msgstr "%1$s, %2$s olmadan çalışamaz."
 #: includes/freemius-strings.php:4332
 #, php-format
 msgid "Just letting you know that the add-ons information of %s is being pulled from an external server."
-msgstr "%s eklenti bilgilerinin harici bir sunucudan çekildiğini belirtmek isteriz."
+msgstr "%s eklenti bilgilerinin harici bir sunucudan çekildiğini bildirmek isteriz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:198
 #: includes/freemius-strings.php:3162
 #, php-format
 msgid "Add Ons of module %s"
-msgstr "%s modülünün Eklentileri"
+msgstr "%s modülünün eklentileri"
 
 #: includes/freemius-strings.php:202
 #: includes/freemius-strings.php:3187
@@ -1126,12 +1126,12 @@ msgstr "Adres Satırı %d"
 #: includes/freemius-strings.php:211
 #: includes/freemius-strings.php:3198
 msgid "Affiliate"
-msgstr "Satış Ortaklığı"
+msgstr "Ortak"
 
 #: includes/freemius-strings.php:215
 #: includes/freemius-strings.php:3830
 msgid "Due to violation of our affiliation terms, we decided to temporarily block your affiliation account. If you have any questions, please contact support."
-msgstr "Ortaklık şartlarımızı ihlal etmeniz nedeniyle ortaklık hesabınızı geçici olarak bloke etmeye karar verdik. Herhangi bir sorunuz varsa lütfen destek ekibiyle iletişime geçin."
+msgstr "Ortaklık şartlarımızın ihlali nedeniyle ortaklık hesabınızı geçici olarak engellemeye karar verdik. Herhangi bir sorunuz varsa lütfen destek ekibiyle iletişime geçin."
 
 #: includes/freemius-strings.php:219
 #: includes/freemius-strings.php:6033
@@ -1143,67 +1143,67 @@ msgstr "Ortaklık hesabınız geçici olarak askıya alındı."
 #: includes/freemius-strings.php:6028
 #, php-format
 msgid "Your affiliate application for %1$s has been accepted! Log in to your affiliate area at: %2$s."
-msgstr "%1$s için ortaklık başvurunuz kabul edildi! Ortaklık alanınıza şu adresten giriş yapın: %2$s."
+msgstr "%1$s için ortaklık başvurunuz kabul edildi! Ortaklık alanınıza şuradan giriş yapın: %2$s."
 
 #: includes/freemius-strings.php:228
 #: includes/freemius-strings.php:5316
 msgid "Thank you for applying for our affiliate program, unfortunately, we've decided at this point to reject your application. Please try again in 30 days."
-msgstr "Ortaklık programımıza başvurduğunuz için teşekkür ederiz, maalesef bu aşamada başvurunuzu reddetme kararı aldık. Lütfen 30 gün sonra tekrar deneyin."
+msgstr "Ortaklık programımıza başvurduğunuz için teşekkür ederiz, maalesef şu anda başvurunuzu reddetme kararı aldık. Lütfen 30 gün sonra tekrar deneyiniz."
 
 #: includes/freemius-strings.php:232
 #: includes/freemius-strings.php:5321
 msgid "Thank you for applying for our affiliate program, we'll review your details during the next 14 days and will get back to you with further information."
-msgstr "Ortaklık programımıza başvurduğunuz için teşekkür ederiz; bilgilerinizi önümüzdeki 14 gün içinde inceleyip daha fazla bilgiyle sizinle iletişime geçeceğiz."
+msgstr "Ortaklık programımıza başvurduğunuz için teşekkür ederiz, önümüzdeki 14 gün boyunca bilgilerinizi inceleyeceğiz ve daha fazla bilgi ile size geri döneceğiz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:237
 #: includes/freemius-strings.php:3027
 #, php-format
 msgid "%s tracking cookie after the first visit to maximize earnings potential."
-msgstr "Kazanç potansiyelini maksimize etmek için ilk ziyaretten sonra %s izleme çerezini."
+msgstr "Kazanç potansiyelini en üst düzeye çıkarmak için ilk ziyaretten sonraki %s takip çerezi."
 
 #: includes/freemius-strings.php:241
 #: includes/freemius-strings.php:3203
 msgid "Affiliation"
-msgstr "Ortaklık"
+msgstr "Bağlılık"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:246
 #: includes/freemius-strings.php:4652
 #, php-format
 msgid "Once your license expires you can still use the Free version but you will NOT have access to the %s features."
-msgstr "Lisansınızın süresi dolduğunda Ücretsiz sürümü kullanmaya devam edebilirsiniz ancak %s özelliklerine erişiminiz olmayacaktır."
+msgstr "Lisansınızın süresi dolduktan sonra da Ücretsiz sürümü kullanmaya devam edebilirsiniz ancak %s özelliklerine erişiminiz OLMAYACAKTIR."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:251
 #: includes/freemius-strings.php:4658
 #, php-format
 msgid "Once your license expires you will no longer be able to use the %s, unless you activate it again with a valid premium license."
-msgstr "Lisansınızın süresi sona erdiğinde, geçerli bir premium lisansla yeniden etkinleştirmediğiniz sürece %s öğesini kullanamazsınız."
+msgstr "Lisansınızın süresi dolduktan sonra, geçerli bir premium lisansla yeniden etkinleştirmediğiniz sürece %s öğesini artık kullanamazsınız."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:256
 #: includes/freemius-strings.php:5917
 #, php-format
 msgid "You can still enjoy all %1$s features but you will not have access to %2$s security & feature updates, nor support."
-msgstr "Tüm %1$s özelliklerini kullanmaya devam edebilirsiniz, ancak %2$s güvenlik ve özellik güncelleştirmelerine veya desteğe erişemezsiniz."
+msgstr "%1$s özelliklerinin tümünden yararlanmaya devam edebilirsiniz ancak %2$s güvenlik ve özellik güncellemelerine veya desteğe erişiminiz olmayacaktır."
 
 #: includes/freemius-strings.php:260
 #: includes/freemius-strings.php:5366
 msgid "Thanks for upgrading."
-msgstr "Yükseltme yaptığınız için teşekkür ederiz."
+msgstr "Yükselttiğiniz için teşekkür ederiz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:265
 #: includes/freemius-strings.php:3209
 #, php-format
 msgid "After your free %1$s, pay as little as %2$s"
-msgstr "Ücretsiz %1$s sürenizden sonra, sadece %2$s tutarından başlayan fiyatlarla ödeyin"
+msgstr "Ücretsiz %1$s sürenizden sonra %2$s gibi düşük bir fiyata sahip olun"
 
 #: includes/freemius-strings.php:269
 #: includes/freemius-strings.php:3214
 msgid "Agree & Activate License"
-msgstr "Lisansı Kabul Et ve Etkinleştir"
+msgstr "Kabul Edin ve Lisansı Etkinleştirin"
 
 #: includes/freemius-strings.php:273
 #: includes/freemius-strings.php:4071
@@ -1223,19 +1223,19 @@ msgstr "Tüm Türler"
 #: includes/freemius-strings.php:285
 #: includes/freemius-strings.php:6136
 msgid "allow"
-msgstr "izin ver"
+msgstr "İzin ver"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:290
 #: includes/freemius-strings.php:5982
 #, php-format
 msgid "You've already opted-in to our usage-tracking, which helps us keep improving the %s."
-msgstr "%s platformunu geliştirmemize yardımcı olan kullanım takibimize zaten katıldınız."
+msgstr "%s geliştirmeye devam etmemize yardımcı olan kullanım takibimize zaten katıldınız."
 
 #: includes/freemius-strings.php:294
 #: includes/freemius-strings.php:5987
 msgid "You've already opted-in to our usage-tracking, which helps us keep improving them."
-msgstr "Bunları geliştirmeye devam etmemize yardımcı olan kullanım takibimize zaten katıldınız."
+msgstr "Kullanım takibimize zaten dahil oldunuz; bu da onları geliştirmeye devam etmemize yardımcı oluyor."
 
 #: includes/freemius-strings.php:298
 #: includes/freemius-strings.php:3240
@@ -1273,37 +1273,37 @@ msgstr "Ağdaki tüm sitelere uygulayın."
 #: includes/freemius-strings.php:322
 #: includes/freemius-strings.php:3282
 msgid "Apply on all pending sites."
-msgstr "Bekleyen tüm sitelere uygula."
+msgstr "Bekleyen tüm sitelere uygulayın."
 
 #: includes/freemius-strings.php:326
 #: includes/freemius-strings.php:3292
 msgid "Apply to become an affiliate"
-msgstr "Satış ortaklığına başvurun"
+msgstr "Satış ortağı olmak için başvurun"
 
 #: includes/freemius-strings.php:330
 #: includes/freemius-strings.php:3297
 msgid "Approve & Start Trial"
-msgstr "Onayla ve Deneme Sürümünü Başlat"
+msgstr "Onaylayın ve Denemeyi Başlatın"
 
 #: includes/freemius-strings.php:334
 #: includes/freemius-strings.php:4357
 msgid "Kindly tell us the reason so we can improve."
-msgstr "Gelişebilmemiz için lütfen nedenini bize bildirin."
+msgstr "Kendimizi geliştirebilmemiz için lütfen bize nedenini bildirin."
 
 #: includes/freemius-strings.php:338
 #: includes/freemius-strings.php:3898
 msgid "Enter the email address you've used for the upgrade below and we will resend you the license key."
-msgstr "Yükseltme için kullandığınız e-posta adresini aşağıya girin; lisans anahtarınızı yeniden gönderelim."
+msgstr "Yükseltme için kullandığınız e-posta adresini aşağıya girin; lisans anahtarını size tekrar gönderelim."
 
 #: includes/freemius-strings.php:342
 #: includes/freemius-strings.php:3893
 msgid "Enter the email address you've used during the purchase and we will resend you the license key."
-msgstr "Satın alma işlemi sırasında kullandığınız e-posta adresini girin; lisans anahtarınızı yeniden gönderelim."
+msgstr "Satın alma sırasında kullandığınız e-posta adresini girin, lisans anahtarını size tekrar gönderelim."
 
 #: includes/freemius-strings.php:346
 #: includes/freemius-strings.php:3328
 msgid "Associate with the license owner's account."
-msgstr "Lisans sahibinin hesabı ile ilişkilendirin."
+msgstr "Lisans sahibinin hesabıyla ilişkilendirin."
 
 #: includes/freemius-strings.php:350
 #: includes/freemius-strings.php:6514
@@ -1314,17 +1314,17 @@ msgstr "Yazar"
 #: includes/freemius-strings.php:354
 #: includes/freemius-strings.php:4220
 msgid "Invalid module ID."
-msgstr "Geçersiz modül ID'si."
+msgstr "Geçersiz modül kimliği."
 
 #: includes/freemius-strings.php:358
 #: includes/freemius-strings.php:5922
 msgid "You do not have a valid license to access the premium version."
-msgstr "Premium sürümüne erişmek için geçerli bir lisansınız yok."
+msgstr "Premium sürüme erişmek için geçerli bir lisansınız yok."
 
 #: includes/freemius-strings.php:362
 #: includes/freemius-strings.php:3333
 msgid "Auto installation only works for opted-in users."
-msgstr "Otomatik kurulum yalnızca katılım sağlayan kullanıcılar için çalışır."
+msgstr "Otomatik yükleme yalnızca onay vermiş kullanıcılar için çalışır."
 
 #: includes/freemius-strings.php:366
 #: includes/freemius-strings.php:4900
@@ -1334,12 +1334,12 @@ msgstr "Premium sürüm zaten etkin."
 #: includes/freemius-strings.php:370
 #: includes/freemius-strings.php:4890
 msgid "Premium add-on version already installed."
-msgstr "Premium eklentinin sürümü zaten yüklü."
+msgstr "Eklentinin premium sürümü zaten yüklü."
 
 #: includes/freemius-strings.php:374
 #: includes/freemius-strings.php:4859
 msgid "Plugin is a \"Serviceware\" which means it does not have a premium code version."
-msgstr "Eklenti bir \"Serviceware\"dir, yani ücretli bir kod sürümüne sahip değildir."
+msgstr "Eklenti bir \"Serviceware\"dir; bu da premium bir kod sürümünün olmadığı anlamına gelir."
 
 #: includes/freemius-strings.php:378
 #: includes/freemius-strings.php:3344
@@ -1372,21 +1372,21 @@ msgstr "%s tabanlı"
 #: includes/freemius-strings.php:399
 #: includes/freemius-strings.php:3359
 msgid "Become an affiliate"
-msgstr "Ortak olun"
+msgstr "Satış ortağı olun"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:404
 #: includes/freemius-strings.php:4438
 #, php-format
 msgid "Like the %s? Become our ambassador and earn cash ;-)"
-msgstr "%s ürününü beğendiniz mi? Elçimiz olun ve nakit kazanın ;-)"
+msgstr "%s hoşunuza gitti mi? Elçimiz olun ve para kazanın ;-)"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:409
 #: includes/freemius-strings.php:4045
 #, php-format
 msgid "Hey there, did you know that %1$s has an affiliate program? If you like the %2$s you can become our ambassador and earn some cash!"
-msgstr "Hey, %1$s şirketinin bir ortaklık programı olduğunu biliyor muydunuz? %2$s hizmetini beğeniyorsanız elçimiz olabilir ve para kazanabilirsiniz!"
+msgstr "Merhaba, %1$s platformunun bir ortaklık programı olduğunu biliyor muydunuz? %2$s hoşunuza gittiyse elçimiz olabilir ve para kazanabilirsiniz!"
 
 #: includes/freemius-strings.php:413
 #: includes/freemius-strings.php:6556
@@ -1404,7 +1404,7 @@ msgstr "Beta"
 #: includes/freemius-strings.php:3267
 #, php-format
 msgid "An update to a Beta version will replace your installed version of %s with the latest Beta release - use with caution, and not on production sites. You have been warned."
-msgstr "Bir Beta sürümüne yapılacak güncelleme, yüklü %s sürümünüzü en son Beta sürümüyle değiştirecektir. Dikkatli kullanın ve canlı sitelerde kullanmayın. Uyarılmış oldunuz."
+msgstr "Bir Beta sürümüne güncelleme yapmak, kurulu %s sürümünüzü en son Beta sürümüyle değiştirecektir - dikkatli kullanın ve üretim sitelerinde kullanmayın. Uyarıldınız."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:427
@@ -1412,7 +1412,7 @@ msgstr "Bir Beta sürümüne yapılacak güncelleme, yüklü %s sürümünüzü 
 #, php-format
 msgctxt "e.g. billed monthly"
 msgid "Billed %s"
-msgstr "Faturalandırıldı: %s"
+msgstr "%s faturalandırılır"
 
 #: includes/freemius-strings.php:431
 #: includes/freemius-strings.php:3369
@@ -1468,7 +1468,7 @@ msgstr "İşletme adı"
 #: includes/freemius-strings.php:471
 #: includes/freemius-strings.php:3414
 msgid "Buy license"
-msgstr "Lisans satın al"
+msgstr "Lisans satın alın"
 
 #: includes/freemius-strings.php:475
 #: includes/freemius-strings.php:3409
@@ -1495,29 +1495,29 @@ msgstr "Aboneliği İptal Et"
 #: includes/freemius-strings.php:4179
 #, php-format
 msgid "In case you are NOT planning on using this %1$s on this site (or any other site) - would you like to cancel the %2$s as well?"
-msgstr "Bu %1$s ögesini bu sitede (veya başka bir sitede) kullanmayı planlamıyorsanız - %2$s aboneliğini de iptal etmek ister misiniz?"
+msgstr "Bu %1$s öğesini bu sitede (veya başka bir sitede) kullanmayı planlamıyorsanız - %2$s öğesini de iptal etmek ister misiniz?"
 
 #: includes/freemius-strings.php:496
 #: includes/freemius-strings.php:3486
 msgid "Cancel Trial"
-msgstr "Deneme Sürümünü İptal Et"
+msgstr "Deneme Sürümünü İptal Edin"
 
 #: includes/freemius-strings.php:500
 #: includes/freemius-strings.php:3513
 msgid "Cancelling the trial will immediately block access to all premium features. Are you sure?"
-msgstr "Deneme sürümünü iptal etmek, tüm premium özelliklere erişimi derhal engelleyecektir. Emin misiniz?"
+msgstr "Deneme sürümünü iptal etmek, tüm premium özelliklere erişimi hemen engelleyecektir. Emin misiniz?"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:505
 #: includes/freemius-strings.php:3459
 #, php-format
 msgid "Cancel %s & Proceed"
-msgstr "%s İptal Et ve Devam Et"
+msgstr "%s öğesini iptal et ve devam et"
 
 #: includes/freemius-strings.php:509
 #: includes/freemius-strings.php:3491
 msgid "Cancelled"
-msgstr "İptal Edildi"
+msgstr "İptal edildi"
 
 #: includes/freemius-strings.php:513
 #: includes/freemius-strings.php:3508
@@ -1532,21 +1532,21 @@ msgstr "Lisans anahtarınızı bulamıyor musunuz?"
 #: includes/freemius-strings.php:521
 #: includes/freemius-strings.php:3518
 msgid "Change License"
-msgstr "Lisansı Değiştir"
+msgstr "Lisansı Değiştirin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:526
 #: includes/freemius-strings.php:3057
 #, php-format
 msgid "A confirmation email was just sent to %s. You must confirm the update within the next 4 hours. If you cannot find the email, please check your spam folder."
-msgstr "%s adresine bir doğrulama e-postası gönderildi. Güncellemeyi önümüzdeki 4 saat içinde onaylamanız gerekmektedir. E-postayı bulamazsanız, lütfen spam klasörünüzü kontrol edin."
+msgstr "%s adresine bir onay e-postası gönderildi. Güncellemeyi sonraki 4 saat içinde onaylamanız gerekir. E-postayı bulamıyorsanız lütfen istenmeyen posta (spam) klasörünüzü kontrol edin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:531
 #: includes/freemius-strings.php:3051
 #, php-format
 msgid "A confirmation email was just sent to %s. The email owner must confirm the update within the next 4 hours."
-msgstr "%s adresine bir onay e-postası gönderildi. E-postanın sahibi, güncellemeyi önümüzdeki 4 saat içinde onaylamalıdır."
+msgstr "%s adresine bir onay e-postası gönderildi. E-posta sahibinin güncellemeyi sonraki 4 saat içinde onaylaması gerekir."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:536
@@ -1560,7 +1560,7 @@ msgstr "%s hesabın yeni sahibidir."
 #: includes/freemius-strings.php:5361
 #, php-format
 msgid "Thanks for confirming the ownership change. An email was just sent to %s for final approval."
-msgstr "Sahiplik değişikliğini onayladığınız için teşekkür ederiz. Son onay için hemen %s adresine bir e-posta gönderildi."
+msgstr "Mülkiyet değişikliğini onayladığınız için teşekkür ederiz. Son onay için %s adresine az önce bir e-posta gönderildi."
 
 #: includes/freemius-strings.php:545
 #: includes/freemius-strings.php:3523
@@ -1570,7 +1570,7 @@ msgstr "Sahipliği Değiştir"
 #: includes/freemius-strings.php:549
 #: includes/freemius-strings.php:3528
 msgid "Change Plan"
-msgstr "Planı Değiştir"
+msgstr "Planı Değiştirin"
 
 #: includes/freemius-strings.php:553
 #: includes/freemius-strings.php:3533
@@ -1580,13 +1580,13 @@ msgstr "Kullanıcıyı Değiştir"
 #: includes/freemius-strings.php:557
 #: includes/freemius-strings.php:3419
 msgid "By changing the user, you agree to transfer the account ownership to:"
-msgstr "Kullanıcıyı değiştirerek, hesap sahipliğini şu kişiye devretmeyi kabul edersiniz:"
+msgstr "Kullanıcıyı değiştirerek, hesap sahipliğini şuna devretmeyi kabul edersiniz:"
 
 #: includes/freemius-strings.php:561
 #: includes/freemius-strings.php:6321
 msgctxt "Plugin installer section title"
 msgid "Changelog"
-msgstr "Değişiklik Günlüğü"
+msgstr "Değişiklik günlüğü"
 
 #: includes/freemius-strings.php:565
 #: includes/freemius-strings.php:3538
@@ -1598,7 +1598,7 @@ msgstr "Kullanıcı değiştiriliyor, lütfen bekleyin"
 #: includes/freemius-strings.php:4132
 #, php-format
 msgid "If you didn't get the email, try checking your spam folder or search for emails from %4$s."
-msgstr "Eğer e-postayı almadıysanız, spam klasörünüzü kontrol etmeyi deneyin veya %4$s adresinden gelen e-postaları arayın."
+msgstr "E-postayı almadıysanız, spam klasörünüzü kontrol etmeyi deneyin veya %4$s adresinden gelen e-postaları arayın."
 
 #: includes/freemius-strings.php:574
 #: includes/freemius-strings.php:3543
@@ -1625,7 +1625,7 @@ msgstr "API Önbelleğini Temizle"
 #: includes/freemius-strings.php:591
 #: includes/freemius-strings.php:3564
 msgid "Clear Updates Transients"
-msgstr "Güncellemeleri Geçici Dosyalarını Temizle"
+msgstr "Güncelleme Geçici Verilerini Temizle"
 
 #: includes/freemius-strings.php:595
 #: includes/freemius-strings.php:6301
@@ -1636,21 +1636,21 @@ msgstr "Buraya tıklayın"
 #: includes/freemius-strings.php:599
 #: includes/freemius-strings.php:3574
 msgid "Click here to use the plugin anonymously"
-msgstr "Eklentiyi anonim olarak kullanmak için tıklayın"
+msgstr "Eklentiyi anonim olarak kullanmak için buraya tıklayın"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:604
 #: includes/freemius-strings.php:3580
 #, php-format
 msgid "Click to see reviews that provided a rating of %s"
-msgstr "%s puan veren değerlendirmeleri görmek için tıklayın"
+msgstr "%s puanı verilmiş incelemeleri görmek için tıklayın"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:609
 #: includes/freemius-strings.php:2937
 #, php-format
 msgid "%s is my client's email address"
-msgstr "%s, müşterimin e-posta adresidir"
+msgstr "%s müşterimin e-posta adresidir"
 
 #: includes/freemius-strings.php:613
 #: includes/freemius-strings.php:3591
@@ -1667,7 +1667,7 @@ msgstr "Bir müşteri yeni bir lisans satın aldığında %s komisyon."
 #: includes/freemius-strings.php:622
 #: includes/freemius-strings.php:3323
 msgid "As we reserve 30 days for potential refunds, we only pay commissions that are older than 30 days."
-msgstr "Potansiyel iadeler için 30 gün ayırdığımızdan, yalnızca 30 günden eski komisyonları ödüyoruz."
+msgstr "Olası geri ödemeler için 30 gün ayırdığımızdan, yalnızca 30 günden eski olan komisyonları ödüyoruz."
 
 #: includes/freemius-strings.php:626
 #: includes/freemius-strings.php:3596
@@ -1677,12 +1677,12 @@ msgstr "İletişim"
 #: includes/freemius-strings.php:630
 #: includes/freemius-strings.php:3601
 msgid "Compatible up to"
-msgstr "Şu sürüme kadar uyumlu"
+msgstr "Uyumlu olduğu son sürüm"
 
 #: includes/freemius-strings.php:634
 #: includes/freemius-strings.php:6147
 msgid "complete the opt-in"
-msgstr "katılımı tamamla"
+msgstr "Katılımı tamamlayın"
 
 #: includes/freemius-strings.php:638
 #: includes/freemius-strings.php:6419
@@ -1707,72 +1707,72 @@ msgstr "%1$s v%2$s sürümüne güncellediğiniz için teşekkür ederiz!"
 #: includes/freemius-strings.php:4679
 #, php-format
 msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info. This will help us make the %s more compatible with your site and better at doing what you need it to."
-msgstr "Güvenlik ve özellik güncellemeleri, eğitici içerikler ve ara sıra sunulan teklifler için e-posta bildirimleri almayı ve temel bazı WordPress ortam bilgilerini paylaşmayı kabul edin. Bu, %s ürününü sitenizle daha uyumlu hale getirmemize ve ihtiyaç duyduğunuz işlevleri daha iyi yerine getirmesini sağlamamıza yardımcı olacaktır."
+msgstr "Güvenlik ve özellik güncellemeleri, eğitici içerikler ve ara sıra sunulan teklifler hakkında e-posta bildirimleri almak ve bazı temel WordPress ortamı bilgilerini paylaşmak için katılın. Bu, %s ögesini sitenizle daha uyumlu hale getirmemize ve ihtiyaçlarınızı daha iyi karşılamasına yardımcı olacaktır."
 
 #: includes/freemius-strings.php:656
 #: includes/freemius-strings.php:4673
 msgid "Opt in to get email notifications for security & feature updates, educational content, and occasional offers, and to share some basic WordPress environment info."
-msgstr "Güvenlik ve özellik güncellemeleri, eğitici içerikler ve ara sıra sunulan teklifler için e-posta bildirimleri almayı ve temel bazı WordPress ortam bilgileri paylaşmayı kabul edin."
+msgstr "Güvenlik ve özellik güncellemeleri, eğitici içerikler ve ara sıra sunulan tekliflerle ilgili e-posta bildirimleri almak ve bazı temel WordPress ortam bilgilerini paylaşmak için onay verin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:661
 #: includes/freemius-strings.php:4144
 #, php-format
 msgid "If you skip this, that's okay! %1$s will still work just fine."
-msgstr "Bunu atlarsanız sorun değil! %1$s yine de sorunsuz bir şekilde çalışacaktır."
+msgstr "Bunu atlarsanız sorun değil! %1$s yine de gayet iyi çalışacaktır."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:666
 #: includes/freemius-strings.php:5757
 #, php-format
 msgid "We have introduced this opt-in so you never miss an important update and help us make the %s more compatible with your site and better at doing what you need it to."
-msgstr "%s uygulamasını sitenizle daha uyumlu hale getirmemize ve ihtiyaçlarınızı karşılamada daha iyi olmasına yardımcı olmak ve önemli bir güncellemeyi asla kaçırmamanızı sağlamak için bu isteğe bağlı katılımı kullanıma sunduk."
+msgstr "Önemli bir güncellemeyi asla kaçırmamanız ve %s ögesini sitenizle daha uyumlu hale getirip ihtiyaçlarınızı daha iyi karşılamasını sağlamamıza yardımcı olmanız için bu katılım seçeneğini kullanıma sunduk."
 
 #: includes/freemius-strings.php:670
 #: includes/freemius-strings.php:5773
 msgid "We're excited to introduce the Freemius network-level integration."
-msgstr "Freemius ağ düzeyinde entegrasyonunu duyurmaktan heyecan duyuyoruz."
+msgstr "Freemius ağ düzeyinde entegrasyonunu sunmaktan heyecan duyuyoruz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:675
 #: includes/freemius-strings.php:3847
 #, php-format
 msgid "During the update process we detected %s site(s) in the network that are still pending your attention."
-msgstr "Güncelleme işlemi sırasında ağda henüz sizin ilginizi bekleyen %s site tespit ettik."
+msgstr "Güncelleme işlemi sırasında, ağda henüz ilginizi bekleyen %s site tespit ettik."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:680
 #: includes/freemius-strings.php:3841
 #, php-format
 msgid "During the update process we detected %d site(s) that are still pending license activation."
-msgstr "Güncelleştirme işlemi sırasında henüz lisans aktivasyonu bekleyen %d site tespit edildi."
+msgstr "Güncelleme işlemi sırasında lisans etkinleştirmesi hâlâ beklemede olan %d site tespit ettik."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:685
 #: includes/freemius-strings.php:4162
 #, php-format
 msgid "If you'd like to use the %s on those sites, please enter your license key below and click the activation button."
-msgstr "Bu sitelerde %s kullanmak istiyorsanız, lütfen lisans anahtarınızı aşağıya girin ve etkinleştirme düğmesine tıklayın."
+msgstr "Bu sitelerde %s kullanmak istiyorsanız lütfen lisans anahtarınızı aşağıya girin ve etkinleştirme düğmesine tıklayın."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:690
 #: includes/freemius-strings.php:3235
 #, php-format
 msgid "Alternatively, you can skip it for now and activate the license later, in your %s's network-level Account page."
-msgstr "Alternatif olarak, bunu şimdilik atlayabilir ve lisansı daha sonra %s ağ düzeyindeki Hesap sayfanızdan etkinleştirebilirsiniz."
+msgstr "Alternatif olarak, şimdilik bunu atlayabilir ve lisansı daha sonra %s ağ düzeyindeki Hesap sayfanızda etkinleştirebilirsiniz."
 
 #: includes/freemius-strings.php:694
 #: includes/freemius-strings.php:6429
 msgctxt "as connection was successful"
 msgid "Connected"
-msgstr "Bağlı"
+msgstr "Bağlandı"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:699
 #: includes/freemius-strings.php:4646
 #, php-format
 msgid "Once you are done, deactivate the %s and activate it again."
-msgstr "İşleminiz bittiğinde, %s öğesini devre dışı bırakın ve tekrar etkinleştirin."
+msgstr "İşiniz bittiğinde, %s etkisizleştirin ve tekrar etkinleştirin."
 
 #: includes/freemius-strings.php:703
 #: includes/freemius-strings.php:3606
@@ -1782,17 +1782,17 @@ msgstr "İletişim"
 #: includes/freemius-strings.php:707
 #: includes/freemius-strings.php:4813
 msgid "Please let us know if you'd like us to contact you for security & feature updates, educational content, and occasional offers:"
-msgstr "Güvenlik ve özellik güncellemeleri, eğitici içerikler ve dönemsel teklifler için sizinle iletişime geçmemizi isterseniz lütfen bize bildirin:"
+msgstr "Güvenlik ve özellik güncellemeleri, eğitici içerikler ve ara sıra sunulan teklifler için sizinle iletişime geçmemizi isterseniz lütfen bize bildirin:"
 
 #: includes/freemius-strings.php:711
 #: includes/freemius-strings.php:3611
 msgid "Contact Support"
-msgstr "Destekle İletişime Geç"
+msgstr "Destek ile İletişime Geçin"
 
 #: includes/freemius-strings.php:715
 #: includes/freemius-strings.php:5219
 msgid "Sorry for the inconvenience and we are here to help if you give us a chance."
-msgstr "Yaşanan aksaklık için özür dileriz; bize bir şans verirseniz yardımcı olmak için buradayız."
+msgstr "Verdiğimiz rahatsızlıktan dolayı özür dileriz; bize bir şans verirseniz yardımcı olmaktan memnuniyet duyarız."
 
 #: includes/freemius-strings.php:719
 #: includes/freemius-strings.php:3616
@@ -1812,7 +1812,7 @@ msgstr "Lütfen aşağıdaki mesajla bizimle iletişime geçin:"
 #: includes/freemius-strings.php:731
 #: includes/freemius-strings.php:3621
 msgid "Continue"
-msgstr "Devam et"
+msgstr "Devam Et"
 
 #: includes/freemius-strings.php:735
 #: includes/freemius-strings.php:3626
@@ -1834,22 +1834,22 @@ msgstr "Ülke"
 #: includes/freemius-strings.php:748
 #: includes/freemius-strings.php:3642
 msgid "Cron Type"
-msgstr "Zamanlanmış Görev Türü"
+msgstr "Cron Türü"
 
 #: includes/freemius-strings.php:752
 #: includes/freemius-strings.php:5768
 msgid "We use PHP cURL library for the API calls, which is a very common library and usually installed and activated out of the box. Unfortunately, cURL is not activated (or disabled) on your server."
-msgstr "API çağrıları için, oldukça yaygın olan ve genellikle varsayılan olarak kurulu ve etkinleştirilmiş olan PHP cURL kitaplığını kullanıyoruz. Ne yazık ki cURL sunucunuzda etkinleştirilmemiş (veya devre dışı bırakılmış)."
+msgstr "API çağrıları için, oldukça yaygın bir kütüphane olan ve genellikle varsayılan olarak kurulu ve etkin gelen PHP cURL kütüphanesini kullanıyoruz. Ne yazık ki, sunucunuzda cURL etkinleştirilmemiş (veya devre dışı bırakılmış)."
 
 #: includes/freemius-strings.php:756
 #: includes/freemius-strings.php:6152
 msgid "data"
-msgstr "veri"
+msgstr "Veri"
 
 #: includes/freemius-strings.php:760
 #: includes/freemius-strings.php:3699
 msgid "Debug mode was successfully enabled and will be automatically disabled in 60 min. You can also disable it earlier by clicking the \"Stop Debug\" link."
-msgstr "Hata ayıklama modu başarıyla etkinleştirildi ve 60 dakika içinde otomatik olarak devre dışı bırakılacaktır. \"Hata Ayıklamayı Durdur\" bağlantısına tıklayarak da daha erken devre dışı bırakabilirsiniz."
+msgstr "Hata ayıklama modu başarıyla etkinleştirildi ve 60 dakika içinde otomatik olarak devre dışı bırakılacak. Dilerseniz \"Stop Debug\" bağlantısına tıklayarak daha önce de devre dışı bırakabilirsiniz."
 
 #: includes/freemius-strings.php:764
 #: includes/freemius-strings.php:3653
@@ -1859,12 +1859,12 @@ msgstr "Tarih"
 #: includes/freemius-strings.php:768
 #: includes/freemius-strings.php:3658
 msgid "Deactivate"
-msgstr "Devre Dışı Bırak"
+msgstr "Etkisizleştir"
 
 #: includes/freemius-strings.php:772
 #: includes/freemius-strings.php:3668
 msgid "Deactivate the free version"
-msgstr "Ücretsiz sürümü devre dışı bırak"
+msgstr "Ücretsiz sürümü etkisizleştirin"
 
 #: includes/freemius-strings.php:776
 #: includes/freemius-strings.php:3663
@@ -1874,12 +1874,12 @@ msgstr "Lisansı Devre Dışı Bırak"
 #: includes/freemius-strings.php:780
 #: includes/freemius-strings.php:3684
 msgid "Deactivating your license will block all premium features, but will enable activating the license on another site. Are you sure you want to proceed?"
-msgstr "Lisansınızı devre dışı bırakmak tüm premium özellikleri engelleyecek, ancak lisansın başka bir sitede etkinleştirilmesine izin verecektir. Devam etmek istediğinizden emin misiniz?"
+msgstr "Lisansınızı devre dışı bırakmak tüm premium özellikleri engelleyecektir, ancak lisansın başka bir sitede etkinleştirilmesine olanak tanıyacaktır. Devam etmek istediğinizden emin misiniz?"
 
 #: includes/freemius-strings.php:784
 #: includes/freemius-strings.php:3689
 msgid "Deactivation"
-msgstr "Devre Dışı Bırakma"
+msgstr "Devre dışı bırakma"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:789
@@ -1900,14 +1900,14 @@ msgstr "Gönder ve %s"
 #: includes/freemius-strings.php:3679
 #, php-format
 msgid "Deactivating or uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
-msgstr "%s eklentisinin devre dışı bırakılması veya kaldırılması, lisansı otomatik olarak devre dışı bırakacaktır ve bu lisansı başka bir sitede kullanabileceksiniz."
+msgstr "%s öğesini devre dışı bırakmak veya kaldırmak, lisansı otomatik olarak devre dışı bırakır ve bu lisansı başka bir sitede kullanabilirsiniz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:804
 #: includes/freemius-strings.php:4138
 #, php-format
 msgid "If you have a moment, please let us know why you are %s"
-msgstr "Bir dakikanız varsa, lütfen neden %s olduğunuzu bize bildirin"
+msgstr "Biraz vaktiniz varsa, lütfen neden %s olduğunuzu bize bildirin"
 
 #: includes/freemius-strings.php:808
 #: includes/freemius-strings.php:3694
@@ -1918,27 +1918,27 @@ msgstr "Hata Ayıklama Günlüğü"
 #: includes/freemius-strings.php:6414
 msgctxt "as code debugging"
 msgid "Debugging"
-msgstr "Hata Ayıklama"
+msgstr "Hata ayıklama"
 
 #: includes/freemius-strings.php:816
 #: includes/freemius-strings.php:6167
 msgid "delegate"
-msgstr "temsilci atayın"
+msgstr "Yetkilendir"
 
 #: includes/freemius-strings.php:820
 #: includes/freemius-strings.php:4126
 msgid "If you click it, this decision will be delegated to the sites administrators."
-msgstr "Buna tıklarsanız, bu karar site yöneticilerine devredilecektir."
+msgstr "Tıklarsanız bu karar, sitelerin yöneticilerine devredilecektir."
 
 #: includes/freemius-strings.php:824
 #: includes/freemius-strings.php:3704
 msgid "Delegate to Site Admins"
-msgstr "Site Yöneticilerine Devret"
+msgstr "Site Yöneticilerine Yetki Ver"
 
 #: includes/freemius-strings.php:828
 #: includes/freemius-strings.php:3709
 msgid "Delegate to Site Admins & Continue"
-msgstr "Site Yöneticilerine Yetki Ver ve Devam Et"
+msgstr "Site Yöneticilerine Devredin ve Devam Edin"
 
 #: includes/freemius-strings.php:832
 #: includes/freemius-strings.php:3714
@@ -1954,7 +1954,7 @@ msgstr "Sil"
 #: includes/freemius-strings.php:840
 #: includes/freemius-strings.php:3719
 msgid "Delete All Accounts"
-msgstr "Tüm Hesapları Sil"
+msgstr "Tüm Hesapları Silin"
 
 #: includes/freemius-strings.php:844
 #: includes/freemius-strings.php:3308
@@ -1975,22 +1975,22 @@ msgstr "Ayrıntılar"
 #: includes/freemius-strings.php:856
 #: includes/freemius-strings.php:6223
 msgid "seems like the key you entered doesn't match our records."
-msgstr "girdiğiniz anahtar kayıtlarımızla eşleşmiyor gibi görünüyor."
+msgstr "Girdiğiniz anahtar kayıtlarımızla eşleşmiyor gibi görünüyor."
 
 #: includes/freemius-strings.php:860
 #: includes/freemius-strings.php:3729
 msgid "Diagnostic Info"
-msgstr "Tanılama Bilgileri"
+msgstr "Tanılama Bilgisi"
 
 #: includes/freemius-strings.php:864
 #: includes/freemius-strings.php:3740
 msgid "Disabling white-label mode"
-msgstr "Beyaz etiket modu devre dışı bırakılıyor"
+msgstr "White-label modu devre dışı bırakılıyor"
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
 msgid "Disconnect"
-msgstr "Bağlantıyı Kes"
+msgstr "Bağlantıyı kes"
 
 #: includes/freemius-strings.php:872
 #: includes/freemius-strings.php:3318
@@ -2002,7 +2002,7 @@ msgstr "Bağlantıyı kesme işlemine devam etmek istediğinizden emin misiniz?"
 #: includes/freemius-strings.php:4150
 #, php-format
 msgid "If you wish to cancel your %1$s plan's subscription instead, please navigate to the %2$s and cancel it there."
-msgstr "%1$s plan'ınızın aboneliğini iptal etmek istiyorsanız, lütfen %2$s bölümüne giderek oradan iptal edin."
+msgstr "Bunun yerine %1$s planınızın aboneliğini iptal etmek istiyorsanız lütfen %2$s bölümüne gidin ve aboneliği oradan iptal edin."
 
 #: includes/freemius-strings.php:881
 #: includes/freemius-strings.php:6409
@@ -2015,73 +2015,73 @@ msgstr "Kapat"
 #: includes/freemius-strings.php:6173
 #, php-format
 msgid "do %1$sNOT%2$s send me security & feature updates, educational content and offers."
-msgstr "güvenlik ve özellik güncellemeleri, eğitici içerikler ve teklifler gönderme%1$sNOT%2$s."
+msgstr "Bana güvenlik ve özellik güncellemeleri, eğitici içerikler ve teklifler %1$sGÖNDERMEYİN%2$s."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:891
 #: includes/freemius-strings.php:3888
 #, php-format
 msgid "Enter the domain of your website or other websites from where you plan to promote the %s."
-msgstr "%s adlı öğeyi tanıtmayı planladığınız web sitenizin veya diğer web sitelerinin alan adını girin."
+msgstr "Web sitenizin veya %s tanıtımını yapmayı planladığınız diğer web sitelerinin alan adını girin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:896
 #: includes/freemius-strings.php:5822
 #, php-format
 msgid "Where are you going to promote the %s?"
-msgstr "%s adlı öğeyi nerede tanıtsın?"
+msgstr "%s öğesini nerede tanıtacaksınız?"
 
 #: includes/freemius-strings.php:900
 #: includes/freemius-strings.php:3756
 msgid "Domain is required."
-msgstr "Alan gereklidir."
+msgstr "Alan adı gereklidir."
 
 #: includes/freemius-strings.php:904
 #: includes/freemius-strings.php:3772
 msgid "Donate to this plugin"
-msgstr "Bu eklentiye bağış yap"
+msgstr "Bu eklentiye bağış yapın"
 
 #: includes/freemius-strings.php:908
 #: includes/freemius-strings.php:3777
 msgid "Done"
-msgstr "Tamamlandı"
+msgstr "Bitti"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:913
 #: includes/freemius-strings.php:3762
 #, php-format
 msgid "Don't cancel %s - I'm still interested in getting security & feature updates, as well as be able to contact support."
-msgstr "%s aboneliğini iptal etme - Güvenlik ve özellik güncelleştirmelerini almaya devam etmek ve destek ekibiyle iletişime geçebilmek istiyorum."
+msgstr "%s öğesini iptal etmeyin — güvenlik ve özellik güncellemelerini almaya ve destek ekibiyle iletişime geçebilmeye hâlâ ilgi duyuyorum."
 
 #: includes/freemius-strings.php:917
 #: includes/freemius-strings.php:3767
 msgid "Don't have a license key?"
-msgstr "Bir lisans anahtarınız yok mu?"
+msgstr "Lisans anahtarınız yok mu?"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:922
 #: includes/freemius-strings.php:5958
 #, php-format
 msgid "You might have missed it, but you don't have to share any data and can just %s the opt-in."
-msgstr "Kaçırmış olabilirsiniz, ancak herhangi bir veri paylaşmak zorunda değilsiniz ve doğrudan katılımı %s yapabilirsiniz."
+msgstr "Gözden kaçırmış olabilirsiniz, ancak herhangi bir veri paylaşmak zorunda değilsiniz ve katılımı kolayca %s yapabilirsiniz."
 
 #: includes/freemius-strings.php:926
 #: includes/freemius-strings.php:6637
 msgctxt "verb"
 msgid "Downgrade"
-msgstr "Alt Pakete Geçir"
+msgstr "Sürüm Düşür"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:931
 #: includes/freemius-strings.php:2877
 #, php-format
 msgid "%1$s will immediately stop all future recurring payments and your %2$s plan license will expire in %3$s."
-msgstr "%1$s gelecekteki tüm yinelenen ödemeleri hemen durduracak ve %2$s plan lisansınızın süresi %3$s içinde dolacak."
+msgstr "%1$s, gelecekteki tüm yinelenen ödemeleri hemen durduracak ve %2$s plan lisansınızın süresi %3$s içinde sona erecektir."
 
 #: includes/freemius-strings.php:935
 #: includes/freemius-strings.php:3782
 msgid "Downgrading"
-msgstr "Sürüm Düşürülüyor"
+msgstr "Sürüm düşürülüyor"
 
 #: includes/freemius-strings.php:939
 #: includes/freemius-strings.php:3787
@@ -2097,18 +2097,18 @@ msgstr "İndir"
 #: includes/freemius-strings.php:6434
 msgctxt "as download latest version"
 msgid "Download Latest"
-msgstr "En Yenisini İndir"
+msgstr "En Son Sürümü İndir"
 
 #: includes/freemius-strings.php:951
 #: includes/freemius-strings.php:6439
 msgctxt "as download latest version"
 msgid "Download Latest Free Version"
-msgstr "En Son Ücretsiz Sürümü İndir"
+msgstr "En Son Ücretsiz Sürümü İndirin"
 
 #: includes/freemius-strings.php:955
 #: includes/freemius-strings.php:3814
 msgid "Download the latest version"
-msgstr "En son sürümü indir"
+msgstr "En son sürümü indirin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:960
@@ -2120,14 +2120,14 @@ msgstr "En son %s sürümünü indirin"
 #: includes/freemius-strings.php:964
 #: includes/freemius-strings.php:3803
 msgid "Download Paid Version"
-msgstr "Ücretli Sürümü İndir"
+msgstr "Ücretli Sürümü İndirin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:969
 #: includes/freemius-strings.php:3798
 #, php-format
 msgid "Download %s Version"
-msgstr "%s Sürümünü İndir"
+msgstr "%s Sürümünü İndirin"
 
 #: includes/freemius-strings.php:973
 #: includes/freemius-strings.php:3819
@@ -2139,12 +2139,12 @@ msgstr "İndirildi"
 #: includes/freemius-strings.php:3825
 #, php-format
 msgid "Due to the new %1$sEU General Data Protection Regulation (GDPR)%2$s compliance requirements it is required that you provide your explicit consent, again, confirming that you are onboard :-)"
-msgstr "Yeni %1$sAB Genel Veri Koruma Yönetmeliği (GDPR)%2$s uyumluluk gereklilikleri nedeniyle, aramızda olduğunuzu onaylayan açık rızanızı yeniden bildirmeniz gerekmektedir :-)"
+msgstr "Yeni %1$sAB Genel Veri Koruma Tüzüğü (GDPR)%2$s uyumluluk gereksinimleri nedeniyle, aramıza katıldığınızı onaylamak için açık rızanızı yeniden vermeniz gerekmektedir :-)"
 
 #: includes/freemius-strings.php:982
 #: includes/freemius-strings.php:3835
 msgid "Duplicate Website"
-msgstr "Web Sitesini Kopyala"
+msgstr "Web Sitesini Çoğalt"
 
 #: includes/freemius-strings.php:986
 #: includes/freemius-strings.php:6642
@@ -2184,7 +2184,7 @@ msgstr "E-posta adresi güncellemesi"
 #: includes/freemius-strings.php:3303
 #, php-format
 msgid "Are both %1$s and %2$s your email addresses?"
-msgstr "%1$s ve %2$s e-posta adreslerinizin ikisi de size mi ait?"
+msgstr "Hem %1$s hem de %2$s e-posta adresleriniz mi?"
 
 #: includes/freemius-strings.php:1016
 #: includes/freemius-strings.php:5746
@@ -2194,7 +2194,7 @@ msgstr "E-posta adresinizi sistemde bulamadık, doğru adres olduğundan emin mi
 #: includes/freemius-strings.php:1020
 #: includes/freemius-strings.php:6038
 msgid "Your email has been successfully verified - you are AWESOME!"
-msgstr "E-postanız başarıyla doğrulandı - HARİKASINIZ!"
+msgstr "E-posta adresiniz başarıyla doğrulandı - harikasınız!"
 
 #: includes/freemius-strings.php:1024
 #: includes/freemius-strings.php:4427
@@ -2209,7 +2209,7 @@ msgstr "Beyaz etiket modu etkinleştiriliyor"
 #: includes/freemius-strings.php:1032
 #: includes/freemius-strings.php:3877
 msgid "End"
-msgstr "Sonlandır"
+msgstr "Son"
 
 #: includes/freemius-strings.php:1036
 #: includes/freemius-strings.php:3882
@@ -2230,12 +2230,12 @@ msgstr "Hata"
 #: includes/freemius-strings.php:6449
 msgctxt "as expiration date"
 msgid "Expiration"
-msgstr "Bitiş Tarihi"
+msgstr "Bitiş"
 
 #: includes/freemius-strings.php:1052
 #: includes/freemius-strings.php:3918
 msgid "Expired"
-msgstr "Süresi Dolmuş"
+msgstr "Süresi doldu"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1057
@@ -2262,7 +2262,7 @@ msgstr "Ek Alan Adları"
 #: includes/freemius-strings.php:1073
 #: includes/freemius-strings.php:4003
 msgid "Freemius SDK couldn't find the plugin's main file. Please contact sdk@freemius.com with the current error."
-msgstr "Freemius SDK eklentinin ana dosyasını bulamadı. Lütfen mevcut hata ile birlikte sdk@freemius.com adresine başvurun."
+msgstr "Freemius SDK eklentinin ana dosyasını bulamadı. Lütfen geçerli hatayla birlikte sdk@freemius.com adresiyle iletişime geçin."
 
 #: includes/freemius-strings.php:1077
 #: includes/freemius-strings.php:6331
@@ -2281,7 +2281,7 @@ msgstr "Özellikler ve Fiyatlandırma"
 #: includes/freemius-strings.php:5763
 #, php-format
 msgid "We made a few tweaks to the %1$s, %2$s"
-msgstr "%1$s, %2$s üzerinde birkaç küçük değişiklik yaptık"
+msgstr "%1$s üzerinde birkaç küçük değişiklik yaptık, %2$s"
 
 #: includes/freemius-strings.php:1090
 #: includes/freemius-strings.php:3944
@@ -2306,7 +2306,7 @@ msgstr "Ücretsiz"
 #: includes/freemius-strings.php:1106
 #: includes/freemius-strings.php:3182
 msgid "Add-on must be deployed to WordPress.org or Freemius."
-msgstr "Eklentinin WordPress.org veya Freemius platformuna yüklenmesi gerekir."
+msgstr "Eklenti WordPress.org veya Freemius üzerinde dağıtılmalıdır."
 
 #: includes/freemius-strings.php:1110
 #: includes/freemius-strings.php:3983
@@ -2336,7 +2336,7 @@ msgstr "Freemius Durumu"
 #: includes/freemius-strings.php:1130
 #: includes/freemius-strings.php:4018
 msgid "Full name"
-msgstr "Ad Soyad"
+msgstr "Tam ad"
 
 #: includes/freemius-strings.php:1134
 #: includes/freemius-strings.php:4023
@@ -2348,12 +2348,12 @@ msgstr "İşlev"
 #: includes/freemius-strings.php:4034
 #, php-format
 msgid "Get updates for bleeding edge Beta versions of %s."
-msgstr "%s için en güncel Beta sürümlerinin güncellemelerini alın."
+msgstr "%s için en yeni Beta sürümlerinin güncellemelerini alın."
 
 #: includes/freemius-strings.php:1143
 #: includes/freemius-strings.php:4039
 msgid "Have a license key?"
-msgstr "Bir lisans anahtarınız var mı?"
+msgstr "Lisans anahtarınız var mı?"
 
 #: includes/freemius-strings.php:1147
 #: includes/freemius-strings.php:6383
@@ -2365,7 +2365,7 @@ msgstr "Dikkat"
 #: includes/freemius-strings.php:6561
 msgctxt "exclamation"
 msgid "Hey"
-msgstr "Hey"
+msgstr "Merhaba"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1156
@@ -2395,14 +2395,14 @@ msgstr "Nasıl yüklenir ve etkinleştirilir?"
 #: includes/freemius-strings.php:1172
 #: includes/freemius-strings.php:4115
 msgid "ID"
-msgstr "ID"
+msgstr "Kimlik"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1177
 #: includes/freemius-strings.php:5905
 #, php-format
 msgid "You are already running the %s in a trial mode."
-msgstr "%s öğesini zaten deneme modunda çalıştırıyorsunuz."
+msgstr "Zaten %s öğesini deneme modunda çalıştırıyorsunuz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1182
@@ -2414,22 +2414,22 @@ msgstr "%s içinde"
 #: includes/freemius-strings.php:1186
 #: includes/freemius-strings.php:4184
 msgid "Install Free Version Now"
-msgstr "Ücretsiz Sürümü Şimdi Yükle"
+msgstr "Ücretsiz Sürümü Şimdi Yükleyin"
 
 #: includes/freemius-strings.php:1190
 #: includes/freemius-strings.php:4189
 msgid "Install Free Version Update Now"
-msgstr "Ücretsiz Sürümü Şimdi Güncelle"
+msgstr "Ücretsiz Sürüm Güncellemesini Şimdi Yükleyin"
 
 #: includes/freemius-strings.php:1194
 #: includes/freemius-strings.php:4194
 msgid "Install Now"
-msgstr "Şimdi Yükle"
+msgstr "Şimdi Kur"
 
 #: includes/freemius-strings.php:1198
 #: includes/freemius-strings.php:4199
 msgid "Install Update Now"
-msgstr "Güncellemeyi Şimdi Yükle"
+msgstr "Güncellemeyi Şimdi Yükleyin"
 
 #: includes/freemius-strings.php:1202
 #: includes/freemius-strings.php:6341
@@ -2441,19 +2441,19 @@ msgstr "Kurulum"
 #: includes/freemius-strings.php:6577
 msgctxt "installed add-on"
 msgid "Installed"
-msgstr "Kurulu"
+msgstr "Yüklendi"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1211
 #: includes/freemius-strings.php:3246
 #, php-format
 msgid "An automated download and installation of %1$s (paid version) from %2$s will start in %3$s. If you would like to do it manually - click the cancellation button now."
-msgstr "%1$s (%2$s) ürününün ücretli sürümünün otomatik indirme ve yükleme işlemi %3$s içinde başlayacaktır. Manuel olarak gerçekleştirmek isterseniz lütfen şimdi iptal düğmesine tıklayın."
+msgstr "%1$s (ücretli sürüm) yazılımının %2$s kaynağından otomatik indirilmesi ve kurulması %3$s içinde başlayacaktır. Kendiniz elle yapmak isterseniz - şimdi iptal düğmesine tıklayınız."
 
 #: includes/freemius-strings.php:1215
 #: includes/freemius-strings.php:5428
 msgid "The installation process has started and may take a few minutes to complete. Please wait until it is done - do not refresh this page."
-msgstr "Kurulum süreci başladı ve tamamlanması birkaç dakika sürebilir. Lütfen işlem bitene kadar bekleyin; bu sayfayı yenilemeyin."
+msgstr "Kurulum işlemi başladı ve tamamlanması birkaç dakika sürebilir. Lütfen işlem tamamlanana kadar bekleyin; bu sayfayı yenilemeyin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1220
@@ -2465,7 +2465,7 @@ msgstr "Eklenti yükleniyor: %s"
 #: includes/freemius-strings.php:1224
 #: includes/freemius-strings.php:4210
 msgid "Invalid clone resolution action."
-msgstr "Geçersiz kopya oluşturma çözünürlük eylemi."
+msgstr "Geçersiz klon çözümleme işlemi."
 
 #: includes/freemius-strings.php:1228
 #: includes/freemius-strings.php:4215
@@ -2480,7 +2480,7 @@ msgstr "Geçersiz yeni kullanıcı kimliği veya e-posta adresi."
 #: includes/freemius-strings.php:1236
 #: includes/freemius-strings.php:4230
 msgid "Invalid site details collection."
-msgstr "Geçersiz site bilgileri koleksiyonu."
+msgstr "Geçersiz site ayrıntıları koleksiyonu."
 
 #: includes/freemius-strings.php:1240
 #: includes/freemius-strings.php:4235
@@ -2495,7 +2495,7 @@ msgstr "Etkin"
 #: includes/freemius-strings.php:1248
 #: includes/freemius-strings.php:4337
 msgid "Keep Sharing"
-msgstr "Paylaşmaya Devam Et"
+msgstr "Paylaşmaya devam edin"
 
 #: includes/freemius-strings.php:1252
 #: includes/freemius-strings.php:4347
@@ -2505,7 +2505,7 @@ msgstr "Anahtar"
 #: includes/freemius-strings.php:1256
 #: includes/freemius-strings.php:4362
 msgid "Last"
-msgstr "En son"
+msgstr "Son"
 
 #: includes/freemius-strings.php:1260
 #: includes/freemius-strings.php:4372
@@ -2520,24 +2520,24 @@ msgstr "Son Güncelleme"
 #: includes/freemius-strings.php:1268
 #: includes/freemius-strings.php:4377
 msgid "Latest Free Version Installed"
-msgstr "En Son Ücretsiz Sürüm Yüklü"
+msgstr "En Son Ücretsiz Sürüm Yüklendi"
 
 #: includes/freemius-strings.php:1272
 #: includes/freemius-strings.php:4382
 msgid "Latest Version Installed"
-msgstr "En Son Sürüm Yüklü"
+msgstr "En Son Sürüm Yüklendi"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1277
 #: includes/freemius-strings.php:6259
 #, php-format
 msgid "the latest %s version here"
-msgstr "en son %s sürümünü burada bulun"
+msgstr "en son %s sürümü burada"
 
 #: includes/freemius-strings.php:1281
 #: includes/freemius-strings.php:4387
 msgid "Learn more"
-msgstr "Daha fazla bilgi al"
+msgstr "Daha fazla bilgi edinin"
 
 #: includes/freemius-strings.php:1285
 #: includes/freemius-strings.php:4392
@@ -2552,14 +2552,14 @@ msgstr "Lisansınız başarıyla etkinleştirildi."
 #: includes/freemius-strings.php:1293
 #: includes/freemius-strings.php:4274
 msgid "It looks like the license could not be activated."
-msgstr "Lisans etkinleştirilememiş gibi görünüyor."
+msgstr "Lisans etkinleştirilemedi gibi görünüyor."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1298
 #: includes/freemius-strings.php:3021
 #, php-format
 msgid "%s to activate the license once you get it."
-msgstr "Lisansı aldıktan sonra etkinleştirmek için %s kullanın."
+msgstr "Lisansı aldıktan sonra etkinleştirmek için %s."
 
 #: includes/freemius-strings.php:1302
 #: includes/freemius-strings.php:4402
@@ -2569,19 +2569,19 @@ msgstr "Lisans Sözleşmesi"
 #: includes/freemius-strings.php:1306
 #: includes/freemius-strings.php:6054
 msgid "Your license has been cancelled. If you think it's a mistake, please contact support."
-msgstr "Lisansınız iptal edilmiştir. Bunun bir hata olduğunu düşünüyorsanız, lütfen destek ekibiyle iletişime geçin."
+msgstr "Lisansınız iptal edildi. Bunun bir hata olduğunu düşünüyorsanız, lütfen destek ekibiyle iletişime geçin."
 
 #: includes/freemius-strings.php:1310
 #: includes/freemius-strings.php:4279
 msgid "It looks like the license deactivation failed."
-msgstr "Lisans deaktifleştirilmesi başarısız olmuş gibi görünüyor."
+msgstr "Lisans devre dışı bırakma işlemi başarısız olmuş gibi görünüyor."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1315
 #: includes/freemius-strings.php:6083
 #, php-format
 msgid "Your license was successfully deactivated, you are back to the %s plan."
-msgstr "Lisansınız başarıyla devre dışı bırakıldı, tekrar %s planındasınız."
+msgstr "Lisansınız başarıyla devre dışı bırakıldı, %s planına geri döndünüz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1320
@@ -2602,14 +2602,14 @@ msgstr "Lisansınızın süresi doldu. Ücretsiz %s sürümünü sonsuza kadar k
 #: includes/freemius-strings.php:6060
 #, php-format
 msgid "Your license has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
-msgstr "Lisansınızın süresi doldu. Kesintisiz bir şekilde %3$s kullanmaya devam etmek için %1$sşimdi yükseltin%2$s."
+msgstr "Lisansınızın süresi doldu. %3$s uygulamasını kesintisiz olarak kullanmaya devam etmek için %1$sşimdi yükseltin%2$s."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1335
 #: includes/freemius-strings.php:6066
 #, php-format
 msgid "Your license has expired. You can still continue using all the %s features, but you'll need to renew your license to continue getting updates and support."
-msgstr "Lisansınızın süresi doldu. Tüm %s özelliklerini kullanmaya devam edebilirsiniz, ancak güncelleme ve destek almaya devam etmek için lisansınızı yenilemeniz gerekecektir."
+msgstr "Lisansınızın süresi doldu. Tüm %s özelliklerini kullanmaya devam edebilirsiniz ancak güncellemeleri ve desteği almaya devam etmek için lisansınızı yenilemeniz gerekir."
 
 #: includes/freemius-strings.php:1339
 #: includes/freemius-strings.php:4407
@@ -2619,7 +2619,7 @@ msgstr "Lisans Kimliği"
 #: includes/freemius-strings.php:1343
 #: includes/freemius-strings.php:4417
 msgid "License issues?"
-msgstr "Lisans sorunları mı?"
+msgstr "Lisans sorunları mı var?"
 
 #: includes/freemius-strings.php:1347
 #: includes/freemius-strings.php:5156
@@ -2636,36 +2636,36 @@ msgstr "Sınırsız Lisans"
 #: includes/freemius-strings.php:5612
 #, php-format
 msgid "Up to %s Sites"
-msgstr "En fazla %s Site"
+msgstr "%s Siteye Kadar"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1361
 #: includes/freemius-strings.php:4269
 #, php-format
 msgid "Is this your client's site? %s if you wish to hide sensitive info like your email, license key, prices, billing address & invoices from the WP Admin."
-msgstr "Bu sizin müşterinizin sitesi mi? E-postanız, lisans anahtarınız, fiyatlarınız, fatura adresiniz ve faturalarınız gibi hassas bilgileri WP Yöneticisinden gizlemek istiyorsanız %s."
+msgstr "Bu müşterinizin sitesi mi? E-postanız, lisans anahtarınız, fiyatlar, fatura adresi ve faturalar gibi hassas bilgileri WP Admin panelinden gizlemek istiyorsanız %s."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1366
 #: includes/freemius-strings.php:6005
 #, php-format
 msgid "Your %1$s license was flagged as white-labeled to hide sensitive information from the WP Admin (e.g. your email, license key, prices, billing address & invoices). If you ever wish to revert it back, you can easily do it through your %2$s. If this was a mistake you can also %3$s."
-msgstr "%1$s lisansınız, hassas bilgileri WP Yöneticisinden gizlemek amacıyla beyaz etiketli (white-labeled) olarak işaretlendi (ör. e-postanız, lisans anahtarınız, fiyatlar, fatura adresiniz ve faturalarınız). Bunu istediğiniz zaman kolayca eski haline getirebilirsiniz; bunu %2$s üzerinden yapabilirsiniz. Bu bir hataysa, aynı zamanda %3$s."
+msgstr "%1$s lisansınız, hassas bilgileri (örn. e-posta adresiniz, lisans anahtarınız, fiyatlar, fatura adresi ve faturalar) WP Yönetim Paneli'nden gizlemek için beyaz etiketli (white-labeled) olarak işaretlendi. Bunu geri almak isterseniz, %2$s aracılığıyla kolayca yapabilirsiniz. Bu bir hata ise %3$s de yapabilirsiniz."
 
 #: includes/freemius-strings.php:1370
 #: includes/freemius-strings.php:4432
 msgid "Lifetime"
-msgstr "Ömür Boyu"
+msgstr "Ömür boyu"
 
 #: includes/freemius-strings.php:1374
 #: includes/freemius-strings.php:4443
 msgid "Load DB Option"
-msgstr "DB Seçeneğini Yükle"
+msgstr "Veritabanı Seçeneğini Yükle"
 
 #: includes/freemius-strings.php:1378
 #: includes/freemius-strings.php:4448
 msgid "Localhost"
-msgstr "Yerel Anamakine"
+msgstr "Localhost"
 
 #: includes/freemius-strings.php:1382
 #: includes/freemius-strings.php:4453
@@ -2675,7 +2675,7 @@ msgstr "Günlük"
 #: includes/freemius-strings.php:1386
 #: includes/freemius-strings.php:4458
 msgid "Logger"
-msgstr "Günlükçü"
+msgstr "Günlükleyici"
 
 #: includes/freemius-strings.php:1390
 #: includes/freemius-strings.php:4463
@@ -2685,7 +2685,7 @@ msgstr "Uzun Vadeli Yinelenen"
 #: includes/freemius-strings.php:1394
 #: includes/freemius-strings.php:4468
 msgid "Message"
-msgstr "Mesaj"
+msgstr "İleti"
 
 #: includes/freemius-strings.php:1398
 #: includes/freemius-strings.php:4473
@@ -2695,7 +2695,7 @@ msgstr "Yöntem"
 #: includes/freemius-strings.php:1402
 #: includes/freemius-strings.php:4488
 msgid "Migrate Options to Network"
-msgstr "Seçenekleri Ağa Taşı"
+msgstr "Seçenekleri Ağa Taşıyın"
 
 #: includes/freemius-strings.php:1406
 #: includes/freemius-strings.php:4478
@@ -2712,14 +2712,14 @@ msgstr "Lisansı Taşı"
 #: includes/freemius-strings.php:4253
 #, php-format
 msgid "Is %2$s the new home of %4$s?"
-msgstr "%2$s, %4$s için yeni ev mi?"
+msgstr "%2$s, %4$s için yeni yuva mı?"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1420
 #: includes/freemius-strings.php:5871
 #, php-format
 msgid "Yes, %%2$s is replacing %%4$s. I would like to migrate my %s from %%4$s to %%2$s."
-msgstr "Evet, %%2$s, %%4$s yerine geçiyor. %s öğemi %%4$s konumundan %%2$s konumuna taşımak istiyorum."
+msgstr "Evet, %%2$s, %%4$s yerine geçiyor. %s öğemi %%4$s üzerinden %%2$s üzerine taşımak istiyorum."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1425
@@ -2749,7 +2749,7 @@ msgstr "Modül"
 #: includes/freemius-strings.php:2889
 #, php-format
 msgid "%s Installs"
-msgstr "%s Yükleme"
+msgstr "%s Kurulum"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1447
@@ -2761,7 +2761,7 @@ msgstr "%s Lisans"
 #: includes/freemius-strings.php:1451
 #: includes/freemius-strings.php:5445
 msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
-msgstr "Uzak eklenti paketi istenen kısa ada sahip bir klasör içermiyor ve yeniden adlandırma işe yaramadı."
+msgstr "Uzak eklenti paketi istenen kısa adı (slug) içeren bir klasör barındırmıyor ve yeniden adlandırma çalışmadı."
 
 #: includes/freemius-strings.php:1455
 #: includes/freemius-strings.php:4503
@@ -2791,14 +2791,14 @@ msgstr "%s hakkında daha fazla bilgi"
 #: includes/freemius-strings.php:5865
 #, php-format
 msgid "Yes - move all my data and assets from %1$s to %2$s"
-msgstr "Evet - tüm verilerimi ve varlıklarımı %1$s konumundan %2$s konumuna taşı"
+msgstr "Evet - tüm verilerimi ve varlıklarımı %1$s kaynağından %2$s konumuna taşıyın"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1478
 #: includes/freemius-strings.php:4597
 #, php-format
 msgid "No - only move this site's data to %s"
-msgstr "Hayır - yalnızca bu sitenin verilerini şuraya taşı: %s"
+msgstr "Hayır - yalnızca bu sitenin verilerini %s hedefine taşıyın"
 
 #: includes/freemius-strings.php:1482
 #: includes/freemius-strings.php:6592
@@ -2811,24 +2811,24 @@ msgstr "ms"
 #: includes/freemius-strings.php:5434
 #, php-format
 msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of %3$s:%1$s"
-msgstr "%2$s ile %3$s birebir aynı kopya olduğu tespit edildiği için aşağıdaki ürünler güvenli moda alındı:%1$s"
+msgstr "Aşağıdaki ürünler güvenli moda alındı çünkü %2$s ürününün %3$s ürününün tam bir kopyası olduğunu fark ettik:%1$s"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1492
 #: includes/freemius-strings.php:5440
 #, php-format
 msgid "The products below have been placed into safe mode because we noticed that %2$s is an exact copy of these sites:%3$s%1$s"
-msgstr "Aşağıdaki ürünler, %2$s öğesinin bu sitelerin birebir kopyası olduğunu fark ettiğimiz için güvenli moda alınmıştır:%3$s%1$s"
+msgstr "Aşağıdaki ürünler, %2$s adresinin bu sitelerin tam bir kopyası olduğunu fark ettiğimiz için güvenli moda alındı:%3$s%1$s"
 
 #: includes/freemius-strings.php:1496
 #: includes/freemius-strings.php:4524
 msgid "Name"
-msgstr "Ad"
+msgstr "İsim"
 
 #: includes/freemius-strings.php:1500
 #: includes/freemius-strings.php:4829
 msgid "Please provide your full name."
-msgstr "Lütfen adınızı ve soyadınızı belirtin."
+msgstr "Lütfen tam adınızı belirtin."
 
 #: includes/freemius-strings.php:1504
 #: includes/freemius-strings.php:6088
@@ -2838,7 +2838,7 @@ msgstr "Adınız başarıyla güncellendi."
 #: includes/freemius-strings.php:1508
 #: includes/freemius-strings.php:4534
 msgid "Network Blog"
-msgstr "Ağ Blogu"
+msgstr "Ağ Günlüğü"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1513
@@ -2860,7 +2860,7 @@ msgstr "Yeni"
 #: includes/freemius-strings.php:1525
 #: includes/freemius-strings.php:6193
 msgid "new Beta version"
-msgstr "yeni Beta sürümü"
+msgstr "Yeni Beta sürümü"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1530
@@ -2874,24 +2874,24 @@ msgstr "%2$s yeni bir web sitesi mi?"
 #: includes/freemius-strings.php:5883
 #, php-format
 msgid "Yes, %2$s is a new and different website that is separate from %4$s."
-msgstr "Evet, %2$s, %4$s adresinden ayrı olan yeni ve farklı bir web sitesidir."
+msgstr "Evet, %2$s, %4$s sitesinden ayrı, yeni ve farklı bir web sitesidir."
 
 #: includes/freemius-strings.php:1539
 #: includes/freemius-strings.php:4300
 msgid "It requires license activation."
-msgstr "Lisans aktivasyonu gerektirir."
+msgstr "Lisans etkinleştirmesi gerektirir."
 
 #: includes/freemius-strings.php:1543
 #: includes/freemius-strings.php:6198
 msgid "new version"
-msgstr "yeni sürüm"
+msgstr "Yeni sürüm"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1548
 #: includes/freemius-strings.php:5483
 #, php-format
 msgid "There is a new version of %s available."
-msgstr "%s için yeni bir sürüm mevcut."
+msgstr "%s uygulamasının yeni bir sürümü mevcut."
 
 #: includes/freemius-strings.php:1552
 #: includes/freemius-strings.php:4564
@@ -2903,7 +2903,7 @@ msgstr "Yeni Web Sitesi"
 #: includes/freemius-strings.php:4570
 #, php-format
 msgid "Newer Free Version (%s) Installed"
-msgstr "Yeni Ücretsiz Sürüm (%s) Yüklendi"
+msgstr "Daha Yeni Ücretsiz Sürüm (%s) Yüklendi"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1562
@@ -2935,7 +2935,7 @@ msgstr "Görünüşe göre sitenizin şu anda etkin bir lisansı yok."
 #: includes/freemius-strings.php:1582
 #: includes/freemius-strings.php:5741
 msgid "We can't see any active licenses associated with that email address, are you sure it's the right address?"
-msgstr "Bu e-posta adresine bağlı herhangi bir aktif lisans bulamıyoruz; doğru adres olduğundan emin misiniz?"
+msgstr "Bu e-posta adresiyle ilişkili herhangi bir etkin lisans göremiyoruz, doğru adres olduğundan emin misiniz?"
 
 #: includes/freemius-strings.php:1586
 #: includes/freemius-strings.php:4619
@@ -2947,24 +2947,24 @@ msgstr "Kredi kartı gerekmez"
 #: includes/freemius-strings.php:4614
 #, php-format
 msgid "No commitment for %s days - cancel anytime!"
-msgstr "%s gün boyunca taahhüt yok - dilediğiniz zaman iptal edin!"
+msgstr "%s gün boyunca taahhüt yok - istediğiniz zaman iptal edin!"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1596
 #: includes/freemius-strings.php:4608
 #, php-format
 msgid "No commitment for %s - cancel anytime"
-msgstr "%s için taahhüt yok - dilediğiniz zaman iptal edin"
+msgstr "%s için taahhüt yok - istediğiniz zaman iptal edin"
 
 #: includes/freemius-strings.php:1600
 #: includes/freemius-strings.php:4624
 msgid "No expiration"
-msgstr "Son kullanma tarihi yok"
+msgstr "Süre sonu yok"
 
 #: includes/freemius-strings.php:1604
 #: includes/freemius-strings.php:4602
 msgid "No ID"
-msgstr "ID Yok"
+msgstr "Kimlik Yok"
 
 #: includes/freemius-strings.php:1608
 #: includes/freemius-strings.php:6281
@@ -2976,7 +2976,7 @@ msgstr "Henüz istek yok"
 #: includes/freemius-strings.php:6489
 msgctxt "as secret encryption key missing"
 msgid "No Secret"
-msgstr "Gizli Değil"
+msgstr "Gizli Anahtar Yok"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1617
@@ -2993,17 +2993,17 @@ msgstr "Süresiz"
 #: includes/freemius-strings.php:1625
 #: includes/freemius-strings.php:5494
 msgid "This plugin has not been marked as compatible with your version of WordPress."
-msgstr "Bu eklenti, WordPress sürümünüzle uyumlu olarak işaretlenmemiştir."
+msgstr "Bu eklenti, WordPress sürümünüzle uyumlu olarak işaretlenmemiş."
 
 #: includes/freemius-strings.php:1629
 #: includes/freemius-strings.php:5499
 msgid "This plugin has not been tested with your current version of WordPress."
-msgstr "Bu eklenti, mevcut WordPress sürümünüzle test edilmemiştir."
+msgstr "Bu eklenti mevcut WordPress sürümünüzle test edilmemiştir."
 
 #: includes/freemius-strings.php:1633
 #: includes/freemius-strings.php:6203
 msgid "not verified"
-msgstr "doğrulanmadı"
+msgstr "Doğrulanmadı"
 
 #: includes/freemius-strings.php:1637
 #: includes/freemius-strings.php:6519
@@ -3032,12 +3032,12 @@ msgstr "Bir kez"
 #: includes/freemius-strings.php:6566
 msgctxt "exclamation"
 msgid "Oops"
-msgstr "Hata"
+msgstr "Hata oluştu"
 
 #: includes/freemius-strings.php:1657
 #: includes/freemius-strings.php:4663
 msgid "Opt In"
-msgstr "Kayıt Ol"
+msgstr "Katıl"
 
 #: includes/freemius-strings.php:1661
 #: includes/freemius-strings.php:3229
@@ -3047,50 +3047,50 @@ msgstr "İzin Ver ve Devam Et"
 #: includes/freemius-strings.php:1665
 #: includes/freemius-strings.php:4668
 msgid "Opt Out"
-msgstr "Devre Dışı Bırak"
+msgstr "Vazgeç"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1670
 #: includes/freemius-strings.php:5131
 #, php-format
 msgid "Sharing diagnostic data with %s helps to provide functionality that's more relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the plugin should be translated and tailored to."
-msgstr "Tanılama verilerini %s ile paylaşmak, web sitenizle daha ilgili işlevler sağlamaya, web sitenizi bozabilecek WordPress veya PHP sürüm uyumsuzluklarını önlemeye ve eklentinin hangi dillere ve bölgelere çevrilmesi ve uyarlanması gerektiğini anlamaya yardımcı olur."
+msgstr "Tanılama verilerini %s ile paylaşmak; web sitenizle daha alakalı işlevler sunmaya, web sitenizi bozabilecek WordPress veya PHP sürüm uyumsuzluklarını önlemeye ve eklentinin hangi dillere ve bölgelere çevrilip uyarlanması gerektiğini belirlemeye yardımcı olur."
 
 #: includes/freemius-strings.php:1674
 #: includes/freemius-strings.php:5136
 msgid "Sharing your name and email allows us to keep you in the loop about new features and important updates, warn you about security issues before they become public knowledge, and send you special offers."
-msgstr "Adınızı ve e-postanızı paylaşmanız, yeni özellikler ve önemli güncellemeler hakkında sizi bilgilendirmemize, güvenlik sorunları kamuoyuna duyurulmadan önce sizi uyarmamıza ve size özel teklifler göndermemize olanak tanır."
+msgstr "Adınızı ve e-posta adresinizi paylaşmanız; yeni özellikler ve önemli güncellemeler hakkında sizi bilgilendirmemize, güvenlik sorunları henüz kamuya duyurulmadan önce sizi uyarabilmemize ve size özel teklifler gönderebilmemize olanak tanır."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1679
 #: includes/freemius-strings.php:3735
 #, php-format
 msgid "Diagnostic data will no longer be sent from %1$s to %2$s."
-msgstr "Tanılama verileri artık %1$s konumundan %2$s konumuna gönderilmeyecek."
+msgstr "Tanılama verileri artık %1$s kaynağından %2$s hedefine gönderilmeyecek."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1684
 #: includes/freemius-strings.php:4685
 #, php-format
 msgid "Opt in to make \"%s\" better!"
-msgstr "\"%s\" adlı öğeyi daha iyi hale getirmek için katılın!"
+msgstr "\"%s\" uygulamasını geliştirmeye yardımcı olmak için katılın!"
 
 #: includes/freemius-strings.php:1688
 #: includes/freemius-strings.php:4690
 msgid "Opting in"
-msgstr "Katılıyor"
+msgstr "Katılınıyor"
 
 #: includes/freemius-strings.php:1692
 #: includes/freemius-strings.php:4695
 msgid "Opting out"
-msgstr "Vazgeçiliyor"
+msgstr "Ayrılınıyor"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1697
 #: includes/freemius-strings.php:3973
 #, php-format
 msgid "For ongoing compatibility with your website, you can optionally allow %s to:"
-msgstr "Web sitenizin uyumluluğunun devamı için, isteğe bağlı olarak %s şunları yapmasına izin verebilirsiniz:"
+msgstr "Web sitenizle sürekli uyumluluk için isteğe bağlı olarak %s için şunlara izin verebilirsiniz:"
 
 #: includes/freemius-strings.php:1701
 #: includes/freemius-strings.php:2108
@@ -3138,12 +3138,12 @@ msgstr "Ödemeler"
 #: includes/freemius-strings.php:1733
 #: includes/freemius-strings.php:4750
 msgid "Payouts are in USD and processed monthly via PayPal."
-msgstr "Ödemeler USD cinsinden yapılır ve her ay PayPal aracılığıyla işleme alınır."
+msgstr "Ödemeler USD cinsindendir ve aylık olarak PayPal aracılığıyla işleme alınır."
 
 #: includes/freemius-strings.php:1737
 #: includes/freemius-strings.php:4735
 msgid "PayPal account email address"
-msgstr "PayPal hesap e-posta adresi"
+msgstr "PayPal hesabı e-posta adresi"
 
 #: includes/freemius-strings.php:1741
 #: includes/freemius-strings.php:4740
@@ -3170,47 +3170,47 @@ msgstr "WordPress ve PHP sürümleri, site dili ve başlığı"
 #: includes/freemius-strings.php:5526
 #, php-format
 msgid "To avoid breaking your website due to WordPress or PHP version incompatibilities, and recognize which languages & regions the %s should be translated and tailored to."
-msgstr "WordPress veya PHP sürümü uyumsuzlukları nedeniyle web sitenizin bozulmasını önlemek ve %s seçeneğinin hangi dillere ve bölgelere çevrilmesi ve uyarlanması gerektiğini belirlemek için."
+msgstr "WordPress veya PHP sürümü uyumsuzlukları nedeniyle web sitenizin bozulmasını önlemek ve %s ögesinin hangi dillere ve bölgelere çevrilip uyarlanması gerektiğini belirlemek için."
 
 #: includes/freemius-strings.php:1762
 #: includes/freemius-strings.php:5716
 msgid "View License Essentials"
-msgstr "Lisans Özelliklerini Görüntüle"
+msgstr "Lisans Temel Bilgilerini Görüntüleyin"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1767
 #, php-format
 msgid "Homepage URL, %s version, SDK version"
-msgstr "Ana Sayfa URL'si, %s sürümü, SDK sürümü"
+msgstr "Ana sayfa URL'si, %s sürümü, SDK sürümü"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1772
 #: includes/freemius-strings.php:5549
 #, php-format
 msgid "To let you manage & control where the license is activated and ensure %s security & feature updates are only delivered to websites you authorize."
-msgstr "Lisansın nerede etkinleştirildiğini yönetmenize ve kontrol etmenize izin vermek ve %s güvenlik ve özellik güncellemelerinin yalnızca yetki verdiğiniz web sitelerine iletilmesini sağlamak için."
+msgstr "Lisansın nerede etkinleştirildiğini yönetip denetlemenize ve %s güvenlik ve özellik güncellemelerinin yalnızca yetkilendirdiğiniz web sitelerine teslim edilmesini sağlamak için."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1777
 #: includes/freemius-strings.php:3648
 #, php-format
 msgid "Current %s & SDK versions, and if active or uninstalled"
-msgstr "Mevcut %s ve SDK sürümleri ile etkin veya kaldırılmış oldukları durumu"
+msgstr "Mevcut %s ve SDK sürümleri ile etkin veya kaldırılmış olup olmadığı"
 
 #: includes/freemius-strings.php:1781
 #: includes/freemius-strings.php:4263
 msgid "Is active, deactivated, or uninstalled"
-msgstr "Aktif, devre dışı bırakılmış veya kaldırılmış"
+msgstr "Etkin, devre dışı bırakılmış veya kaldırılmış"
 
 #: includes/freemius-strings.php:1785
 #: includes/freemius-strings.php:5721
 msgid "View Plugins & Themes List"
-msgstr "Eklenti ve Tema Listesini Görüntüle"
+msgstr "Eklentiler ve Temalar Listesini Görüntüle"
 
 #: includes/freemius-strings.php:1789
 #: includes/freemius-strings.php:4581
 msgid "Newsletter"
-msgstr "Bülten"
+msgstr "E-bülten"
 
 #: includes/freemius-strings.php:1793
 #: includes/freemius-strings.php:5627
@@ -3230,7 +3230,7 @@ msgstr "WordPress kullanıcınızın: adı ve soyadı ile e-posta adresi"
 #: includes/freemius-strings.php:1805
 #: includes/freemius-strings.php:4549
 msgid "Never miss important updates, get security warnings before they become public knowledge, and receive notifications about special offers and awesome new features."
-msgstr "Önemli güncellemeleri asla kaçırmayın, güvenlik uyarılarını bunlar kamuoyuna duyurulmadan önce alın ve özel teklifler ile harika yeni özellikler hakkında bildirimler alın."
+msgstr "Önemli güncellemeleri asla kaçırmayın, güvenlik uyarılarını kamuya duyurulmadan önce alın, özel teklifler ve harika yeni özellikler hakkında bildirimler edinin."
 
 #: includes/freemius-strings.php:1809
 #: includes/freemius-strings.php:5706
@@ -3247,19 +3247,19 @@ msgstr "Ana sayfa URL'si ve başlığı, WP ve PHP sürümleri ve site dili"
 #: includes/freemius-strings.php:5555
 #, php-format
 msgid "To provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break your website, and recognize which languages & regions the %s should be translated and tailored to."
-msgstr "Web sitenizle ilgili ek işlevsellik sağlamak, web sitenizi bozabilecek WordPress veya PHP sürüm uyumsuzluklarının önüne geçmek ve %s öğesinin hangi dillere ve bölgelere çevrilmesi ve uyarlanması gerektiğini belirlemek için."
+msgstr "Web sitenizle ilgili ek işlevler sağlamak, web sitenizi bozabilecek WordPress veya PHP sürüm uyumsuzluklarını önlemek ve %s ögesinin hangi dillere ve bölgelere çevrilip uyarlanması gerektiğini belirlemek için."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1823
 #: includes/freemius-strings.php:3045
 #, php-format
 msgid "<a href=\"%s\" target=\"_blank\">Click here to learn more about updating PHP</a>."
-msgstr "<a href=\"%s\" target=\"_blank\">PHP sürümünü güncellem gestionar hakkında daha fazla bilgi edinmek için tıklayın</a>."
+msgstr "<a href=\"%s\" target=\"_blank\">PHP'yi güncelleme hakkında daha fazla bilgi edinmek için buraya tıklayın</a>."
 
 #: includes/freemius-strings.php:1827
 #: includes/freemius-strings.php:5805
 msgid "What price would you feel comfortable paying?"
-msgstr "Ödemeyi yaparken hangi fiyat size makul gelir?"
+msgstr "Ne kadarlık bir fiyat ödemek sizin için uygun olurdu?"
 
 #: includes/freemius-strings.php:1831
 #: includes/freemius-strings.php:5794
@@ -3271,12 +3271,12 @@ msgstr "Hangi özellik?"
 #: includes/freemius-strings.php:5816
 #, php-format
 msgid "What's the %s's name?"
-msgstr "%s adlı öğenin adı nedir?"
+msgstr "%s adı nedir?"
 
 #: includes/freemius-strings.php:1840
 #: includes/freemius-strings.php:4352
 msgid "Kindly share what didn't work so we can fix it for future users..."
-msgstr "Lütfen neyin çalışmadığını paylaşın, böylece gelecekteki kullanıcılar için düzeltebiliriz..."
+msgstr "Gelecekteki kullanıcılar için düzeltebilmemiz adına lütfen neyin çalışmadığını paylaşın..."
 
 #: includes/freemius-strings.php:1844
 #: includes/freemius-strings.php:5789
@@ -3286,7 +3286,7 @@ msgstr "Ne bekliyordunuz?"
 #: includes/freemius-strings.php:1848
 #: includes/freemius-strings.php:5810
 msgid "What you've been looking for?"
-msgstr "Aradığınız şey bu mu?"
+msgstr "Aradığınız şey mi?"
 
 #: includes/freemius-strings.php:1852
 #: includes/freemius-strings.php:6484
@@ -3311,14 +3311,14 @@ msgstr "Planınız başarıyla %s olarak değiştirildi."
 #: includes/freemius-strings.php:4098
 #, php-format
 msgid "I have upgraded my account but when I try to Sync the License, the plan remains %s."
-msgstr "Hesabımı yükselttim ancak Lisansı Eşitle (Sync the License) seçeneğini denediğimde plan %s olarak kalıyor."
+msgstr "Hesabımı yükselttim ancak Lisansı Eşitlemeyi denediğimde plan %s olarak kalıyor."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1871
 #: includes/freemius-strings.php:4290
 #, php-format
 msgid "It looks like you are still on the %s plan. If you did upgrade or change your plan, it's probably an issue on our side - sorry."
-msgstr "Görünüşe göre hâlâ %s planındasınız. Planınızı yükselttiyseniz veya değiştirdiyseniz, bu muhtemelen bizim tarafımızdaki bir sorundur - üzgünüz."
+msgstr "Hâlâ %s planında olduğunuz görünüyor. Planınızı yükselttiyseniz veya değiştirdiyseniz, bu muhtemelen bizden kaynaklanan bir sorundur - özür dileriz."
 
 #: includes/freemius-strings.php:1875
 #: includes/freemius-strings.php:4772
@@ -3335,7 +3335,7 @@ msgstr "Planınız başarıyla yükseltildi."
 #: includes/freemius-strings.php:6116
 #, php-format
 msgid "Your subscription was successfully cancelled. Your %1$s plan license will expire in %2$s."
-msgstr "Aboneliğiniz başarıyla iptal edildi. %1$s planı lisansınız %2$s içinde sona erecek."
+msgstr "Aboneliğiniz başarıyla iptal edildi. %1$s planı lisansınızın süresi %2$s içinde dolacak."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1889
@@ -3349,7 +3349,7 @@ msgstr "%s planı deneme süresini desteklemiyor."
 #: includes/freemius-strings.php:4788
 #, php-format
 msgid "Please download %s."
-msgstr "Lütfen %s öğesini indirin."
+msgstr "Lütfen %s indirin."
 
 #: includes/freemius-strings.php:1898
 #: includes/freemius-strings.php:4834
@@ -3374,7 +3374,7 @@ msgstr "Eklenti Kimliği"
 #: includes/freemius-strings.php:1914
 #: includes/freemius-strings.php:4854
 msgid "Plugin Install"
-msgstr "Eklenti Yükleme"
+msgstr "Eklenti Kurulumu"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1919
@@ -3396,19 +3396,19 @@ msgstr "Eklentiler sayfası"
 #: includes/freemius-strings.php:1931
 #: includes/freemius-strings.php:4869
 msgid "Plugins & Themes Sync"
-msgstr "Eklentiler ve Temalar Senkronizasyonu"
+msgstr "Eklenti ve Tema Senkronizasyonu"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1936
 #: includes/freemius-strings.php:2853
 #, php-format
 msgid " The %1$s's %2$sdownload link%3$s, license key, and installation instructions have been sent to %4$s. If you can't find the email after 5 min, please check your spam box."
-msgstr "%1$s ürününün %2$sindirme bağlantısı%3$s, lisans anahtarı ve kurulum talimatları %4$s adresine gönderilmiştir. E-postayı 5 dakika içinde bulamazsanız, lütfen istenmeyen e-posta (spam) klasörünü kontrol edin."
+msgstr " %1$s için %2$sindirme bağlantısı%3$s, lisans anahtarı ve kurulum talimatları %4$s adresine gönderildi. 5 dakika sonra e-postayı bulamazsanız lütfen istenmeyen posta (spam) kutunuzu kontrol edin."
 
 #: includes/freemius-strings.php:1940
 #: includes/freemius-strings.php:4879
 msgid "Premium"
-msgstr "Özel"
+msgstr "Premium"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1945
@@ -3420,14 +3420,14 @@ msgstr "Premium %s sürümü başarıyla etkinleştirildi."
 #: includes/freemius-strings.php:1949
 #: includes/freemius-strings.php:4342
 msgid "Keep automatic updates"
-msgstr "Otomatik güncellemeleri tut"
+msgstr "Otomatik güncellemeleri koruyun"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:1954
 #: includes/freemius-strings.php:5537
 #, php-format
 msgid "To ensure that security & feature updates are automatically delivered directly to your WordPress Admin Dashboard while protecting your license from unauthorized abuse, %2$s needs to view the website’s homepage URL, %1$s version, SDK version, and whether the %1$s is active."
-msgstr "Güvenlik ve özellik güncellemelerinin WordPress Yönetici Panelinize doğrudan ve otomatik olarak iletilmesini sağlamak ve lisansınızı yetkisiz suiistimallere karşı korumak için %2$s; web sitesinin ana sayfa URL'sini, %1$s sürümünü, SDK sürümünü ve %1$s eklentisinin aktif olup olmadığını görüntülemelidir."
+msgstr "Güvenlik ve özellik güncellemelerinin lisansınızı yetkisiz kötüye kullanıma karşı korurken doğrudan WordPress Yönetici Panelinize otomatik olarak teslim edilmesini sağlamak için %2$s uygulamasının web sitesinin ana sayfa URL'sini, %1$s sürümünü, SDK sürümünü ve %1$s ögesinin etkin olup olmadığını görmesi gerekir."
 
 #: includes/freemius-strings.php:1958
 #: includes/freemius-strings.php:4895
@@ -3448,7 +3448,7 @@ msgstr "Fiyatlandırma"
 #: includes/freemius-strings.php:1970
 #: includes/freemius-strings.php:4818
 msgid "Please note that we will not be able to grandfather outdated pricing for renewals/new subscriptions after a cancellation. If you choose to renew the subscription manually in the future, after a price increase, which typically occurs once a year, you will be charged the updated price."
-msgstr "İptal işleminden sonra yenilemeler/yeni abonelikler için eski fiyatlandırmanın aynen korunamayacağını lütfen unutmayın. Fiyat artışından sonra (ki bu genellikle yılda bir kez gerçekleşir) gelecekte aboneliği manuel olarak yenilemeyi seçerseniz, sizden güncel fiyat tahsil edilecektir."
+msgstr "İptal işleminden sonraki yenilemeler veya yeni abonelikler için eski fiyatlandırmayı koruyamayacağımızı lütfen unutmayın. Aboneliği gelecekte, genellikle yılda bir kez gerçekleşen bir fiyat artışının ardından manuel olarak yenilemeyi seçerseniz güncellenmiş fiyat üzerinden ücretlendirilirsiniz."
 
 #: includes/freemius-strings.php:1974
 #: includes/freemius-strings.php:4910
@@ -3468,7 +3468,7 @@ msgstr "Devam etmek istediğinizden emin misiniz?"
 #: includes/freemius-strings.php:1986
 #: includes/freemius-strings.php:4920
 msgid "Process ID"
-msgstr "İşlem Kimliği"
+msgstr "İşlem Kimliği (PID)"
 
 #: includes/freemius-strings.php:1990
 #: includes/freemius-strings.php:4925
@@ -3503,17 +3503,17 @@ msgstr "Program Özeti"
 #: includes/freemius-strings.php:4824
 #, php-format
 msgid "Please provide details on how you intend to promote %s (please be as specific as possible)."
-msgstr "Lütfen %s platformunu nasıl tanıtmak istediğinize dair ayrıntılı bilgi verin (lütfen olabildiğinizce spesifik olun)."
+msgstr "Lütfen %s ögesini nasıl tanıtmayı planladığınıza dair ayrıntıları belirtin (lütfen mümkün olduğunca açık ve net olun)."
 
 #: includes/freemius-strings.php:2016
 #: includes/freemius-strings.php:4066
 msgid "How will you promote us?"
-msgstr "Bizi nasıl tanıtaacaksınız?"
+msgstr "Bizi nasıl tanıtacaksınız?"
 
 #: includes/freemius-strings.php:2020
 #: includes/freemius-strings.php:4945
 msgid "Promotion methods"
-msgstr "Promosyon yöntemleri"
+msgstr "Tanıtım yöntemleri"
 
 #: includes/freemius-strings.php:2024
 #: includes/freemius-strings.php:4950
@@ -3534,12 +3534,12 @@ msgstr "Satın Al"
 #: includes/freemius-strings.php:2036
 #: includes/freemius-strings.php:4960
 msgid "Purchase License"
-msgstr "Lisans Satın Al"
+msgstr "Lisans Satın Alın"
 
 #: includes/freemius-strings.php:2040
 #: includes/freemius-strings.php:4965
 msgid "Purchase More"
-msgstr "Daha Fazla Satın Al"
+msgstr "Daha Fazla Satın Alın"
 
 #: includes/freemius-strings.php:2044
 #: includes/freemius-strings.php:4970
@@ -3561,12 +3561,12 @@ msgstr "%s sitemi bozdu"
 #: includes/freemius-strings.php:2057
 #: includes/freemius-strings.php:4076
 msgid "I can't pay for it anymore"
-msgstr "Artık bunun ödemesini yapamam"
+msgstr "Artık bunun için ödeme yapamıyorum"
 
 #: includes/freemius-strings.php:2061
 #: includes/freemius-strings.php:4081
 msgid "I couldn't understand how to make it work"
-msgstr "Nasıl çalıştıracağımı anlayamadım"
+msgstr "Nasıl çalıştırılacağını anlayamadım"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2066
@@ -3585,7 +3585,7 @@ msgstr "%s beklendiği gibi çalışmadı"
 #: includes/freemius-strings.php:2075
 #: includes/freemius-strings.php:4086
 msgid "I don't like to share my information with you"
-msgstr "Bilgilerimi sizinle paylaşmaktan hoşlanmıyorum"
+msgstr "Bilgilerimi sizinle paylaşmak istemiyorum"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2080
@@ -3606,19 +3606,19 @@ msgstr "%s harika, ancak desteklemediğiniz belirli bir özelliğe ihtiyacım va
 #: includes/freemius-strings.php:4110
 #, php-format
 msgid "I only needed the %s for a short period"
-msgstr "%s için yalnızca kısa bir süreye ihtiyacım vardı"
+msgstr "%s ögesine yalnızca kısa bir süre için ihtiyacım vardı"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2095
 #: includes/freemius-strings.php:4104
 #, php-format
 msgid "I no longer need the %s"
-msgstr "%s hizmetine artık ihtiyacım yok"
+msgstr "Artık %s ögesine ihtiyacım yok"
 
 #: includes/freemius-strings.php:2099
 #: includes/freemius-strings.php:4316
 msgid "It's not what I was looking for"
-msgstr "Aradığım bu değildi"
+msgstr "Aradığım şey bu değil"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2104
@@ -3639,26 +3639,26 @@ msgstr "%s aniden çalışmayı durdurdu"
 #: includes/freemius-strings.php:4311
 #, php-format
 msgid "It's a temporary %s - I'm troubleshooting an issue"
-msgstr "Geçici bir %s - bir sorunu gideriyorum"
+msgstr "Bu geçici bir %s - bir sorunu gideriyorum"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2123
 #: includes/freemius-strings.php:4986
 #, php-format
 msgid "Redirecting, please <a href=\"%1$s\">click here</a> if you're stuck..."
-msgstr "Yönlendiriliyorsunuz, eğer takıldıysanız lütfen <a href=\"%1$s\">buraya tıklayın</a>..."
+msgstr "Yönlendiriliyorsunuz, takılıp kalırsanız lütfen <a href=\"%1$s\">buraya tıklayın</a>..."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2128
 #: includes/freemius-strings.php:4992
 #, php-format
 msgid "Refer new customers to our %1$s and earn %2$s commission on each successful sale you refer!"
-msgstr "Yeni müşterileri %1$s yönlendirin ve yönlendirdiğiniz her başarılı satıştan %2$s komisyon kazanın!"
+msgstr "Yeni müşterileri %1$s hizmetimize yönlendirin ve yönlendirdiğiniz her başarılı satıştan %2$s komisyon kazanın!"
 
 #: includes/freemius-strings.php:2136
 #: includes/freemius-strings.php:5002
 msgid "Renew license"
-msgstr "Lisansı yenile"
+msgstr "Lisansı yenileyin"
 
 #: includes/freemius-strings.php:2140
 #: includes/freemius-strings.php:5007
@@ -3668,7 +3668,7 @@ msgstr "Lisansınızı şimdi yenileyin"
 #: includes/freemius-strings.php:2144
 #: includes/freemius-strings.php:4028
 msgid "Get commission for automated subscription renewals."
-msgstr "Otomatik abonelik yenilemeleri için komisyon alın."
+msgstr "Otomatik abonelik yenilemelerinden komisyon kazanın."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2149
@@ -3685,27 +3685,27 @@ msgstr "İstekler"
 #: includes/freemius-strings.php:2157
 #: includes/freemius-strings.php:5017
 msgid "Required"
-msgstr "Zorunlu"
+msgstr "Gerekli"
 
 #: includes/freemius-strings.php:2161
 #: includes/freemius-strings.php:5022
 msgid "Requires PHP Version"
-msgstr "PHP Sürümü Gerekli"
+msgstr "Gereken PHP Sürümü"
 
 #: includes/freemius-strings.php:2165
 #: includes/freemius-strings.php:5027
 msgid "Requires WordPress Version"
-msgstr "WordPress Sürümü Gerekli"
+msgstr "Gerekli WordPress sürümü"
 
 #: includes/freemius-strings.php:2169
 #: includes/freemius-strings.php:4980
 msgid "Re-send activation email"
-msgstr "Aktivasyon e-postasını yeniden gönder"
+msgstr "Etkinleştirme e-postasını yeniden gönder"
 
 #: includes/freemius-strings.php:2173
 #: includes/freemius-strings.php:5032
 msgid "Reset Deactivation Snoozing"
-msgstr "Devre Dışı Bırakmayı Sıfırla"
+msgstr "Devre Dışı Bırakma Ertelemesini Sıfırla"
 
 #: includes/freemius-strings.php:2177
 #: includes/freemius-strings.php:5037
@@ -3715,7 +3715,7 @@ msgstr "Sonuç"
 #: includes/freemius-strings.php:2181
 #: includes/freemius-strings.php:6218
 msgid "revert it now"
-msgstr "şimdi geri al"
+msgstr "Şimdi geri al"
 
 #: includes/freemius-strings.php:2185
 #: includes/freemius-strings.php:6351
@@ -3727,14 +3727,14 @@ msgstr "İncelemeler"
 #: includes/freemius-strings.php:6361
 msgctxt "a positive response"
 msgid "Right on"
-msgstr "Harika"
+msgstr "Tam üstüne"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2194
 #: includes/freemius-strings.php:5053
 #, php-format
 msgid "Save %s"
-msgstr "%s öğesini kaydet"
+msgstr "%s Kaydet"
 
 #: includes/freemius-strings.php:2198
 #: includes/freemius-strings.php:5058
@@ -3744,12 +3744,12 @@ msgstr "Kaydedildi"
 #: includes/freemius-strings.php:2202
 #: includes/freemius-strings.php:5063
 msgid "Scheduled Crons"
-msgstr "Zamanlanmış Crondar"
+msgstr "Zamanlanmış Cron'lar"
 
 #: includes/freemius-strings.php:2206
 #: includes/freemius-strings.php:5068
 msgid "Screenshots"
-msgstr "Ekran Görüntüleri"
+msgstr "Ekran görüntüleri"
 
 #: includes/freemius-strings.php:2210
 #: includes/freemius-strings.php:5042
@@ -3788,22 +3788,22 @@ msgstr "Gizli Anahtar"
 #: includes/freemius-strings.php:5084
 #, php-format
 msgid "Secure HTTPS %s page, running from an external domain"
-msgstr "Harici bir etki alanından çalışan güvenli HTTPS %s sayfası"
+msgstr "Harici bir alandan çalışan güvenli HTTPS %s sayfası"
 
 #: includes/freemius-strings.php:2239
 #: includes/freemius-strings.php:5104
 msgid "Select Country"
-msgstr "Ülke Seç"
+msgstr "Ülke Seçin"
 
 #: includes/freemius-strings.php:2243
 #: includes/freemius-strings.php:5109
 msgid "Send License Key"
-msgstr "Lisans Anahtarı Gönder"
+msgstr "Lisans Anahtarını Gönder"
 
 #: includes/freemius-strings.php:2247
 #: includes/freemius-strings.php:6228
 msgid "send me security & feature updates, educational content and offers."
-msgstr "güvenlik ve özellik güncellemeleri, eğitici içerikler ve teklifler gönderin."
+msgstr "bana güvenlik ve özellik güncellemeleri, eğitici içerikler ve teklifler gönderin."
 
 #: includes/freemius-strings.php:2251
 #: includes/freemius-strings.php:6459
@@ -3821,7 +3821,7 @@ msgstr "Lisans anahtarı gönderiliyor"
 #: includes/freemius-strings.php:6110
 #, php-format
 msgid "Your server is blocking the access to Freemius' API, which is crucial for %1$s synchronization. Please contact your host to whitelist the following domains:%2$s"
-msgstr "Sunucunuz, %1$s senkronizasyonu için çok önemli olan Freemius API'sine erişimi engelliyor. Lütfen aşağıdaki etki alanlarını güvenli listeye eklemek için sunucu sağlayıcınızla iletişime geçin:%2$s"
+msgstr "Sunucunuz, %1$s eşitlemesi için kritik öneme sahip olan Freemius API'sine erişimi engelliyor. Lütfen aşağıdaki alan adlarını izin verilenler listesine eklemesi için barındırma sağlayıcınızla iletişime geçin:%2$s"
 
 #: includes/freemius-strings.php:2264
 #: includes/freemius-strings.php:3913
@@ -3831,7 +3831,7 @@ msgstr "Sunucudan alınan hata:"
 #: includes/freemius-strings.php:2268
 #: includes/freemius-strings.php:5119
 msgid "Set DB Option"
-msgstr "DB Seçeneğini Belirle"
+msgstr "Veritabanı Seçeneğini Ayarla"
 
 #: includes/freemius-strings.php:2272
 #: includes/freemius-strings.php:6667
@@ -3842,12 +3842,12 @@ msgstr "Göster"
 #: includes/freemius-strings.php:2276
 #: includes/freemius-strings.php:5141
 msgid "Show error details"
-msgstr "Hata detaylarını göster"
+msgstr "Hata ayrıntılarını göster"
 
 #: includes/freemius-strings.php:2280
 #: includes/freemius-strings.php:5146
 msgid "Simulate Network Upgrade"
-msgstr "Ağ Yükseltmesini Simüle Et"
+msgstr "Ağ Güncellemesini Simüle Et"
 
 #: includes/freemius-strings.php:2284
 #: includes/freemius-strings.php:5151
@@ -3859,7 +3859,7 @@ msgstr "Deneme Promosyonunu Simüle Et"
 #: includes/freemius-strings.php:2871
 #, php-format
 msgid "%1$s has been placed into safe mode because we noticed that %2$s is an exact copy of %3$s."
-msgstr "%1$s, %2$s adlı sitenin %3$s adlı sitenin birebir kopyası olduğunu fark ettiğimiz için güvenli moda alındı."
+msgstr "%1$s güvenli moda alındı, çünkü %2$s öğesinin %3$s öğesinin tam bir kopyası olduğunu fark ettik."
 
 #: includes/freemius-strings.php:2293
 #: includes/freemius-strings.php:5161
@@ -3886,7 +3886,7 @@ msgstr "Atlanıyor, lütfen bekleyin"
 #: includes/freemius-strings.php:2310
 #: includes/freemius-strings.php:5187
 msgid "Slug"
-msgstr "Uzantı"
+msgstr "Kısa isim"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2315
@@ -3898,12 +3898,12 @@ msgstr "Ertele ve %s"
 #: includes/freemius-strings.php:2319
 #: includes/freemius-strings.php:5198
 msgid "Snooze this panel during troubleshooting"
-msgstr "Sorun giderme sırasında bu paneli ertele"
+msgstr "Sorun giderme sırasında bu paneli erteleyin"
 
 #: includes/freemius-strings.php:2323
 #: includes/freemius-strings.php:5203
 msgid "Snooze this panel for"
-msgstr "Bu paneli şu kadar süreyle ertele:"
+msgstr "Bu paneli şu süreyle ertele:"
 
 #: includes/freemius-strings.php:2327
 #: includes/freemius-strings.php:5214
@@ -3924,38 +3924,38 @@ msgstr "Hata Ayıklamayı Başlat"
 #: includes/freemius-strings.php:6529
 msgctxt "call to action"
 msgid "Start free trial"
-msgstr "Ücretsiz denemeyi başlat"
+msgstr "Ücretsiz denemeyi başlatın"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2344
 #: includes/freemius-strings.php:5245
 #, php-format
 msgid "Start my free %s"
-msgstr "Ücretsiz %s denememi başlat"
+msgstr "Ücretsiz %s ürünümü başlatın"
 
 #: includes/freemius-strings.php:2348
 #: includes/freemius-strings.php:6238
 msgid "start the trial"
-msgstr "deneme sürümünü başlat"
+msgstr "Denemeyi başlatın"
 
 #: includes/freemius-strings.php:2352
 #: includes/freemius-strings.php:5239
 msgid "Start Trial"
-msgstr "Deneme Sürümünü Başlat"
+msgstr "Denemeyi Başlat"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2357
 #: includes/freemius-strings.php:5894
 #, php-format
 msgid "You are 1-click away from starting your %1$s-day free trial of the %2$s plan."
-msgstr "%1$s günlük %2$s planı ücretsiz deneme sürümünü başlatmaya 1 tıklama uzaktasınız."
+msgstr "%2$s planının %1$s günlük ücretsiz denemesini başlatmaktan yalnızca 1 tık uzaktasınız."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2362
 #: includes/freemius-strings.php:3961
 #, php-format
 msgid "For compliance with the WordPress.org guidelines, before we start the trial we ask that you opt in with your user and non-sensitive site information, allowing the %1$s to periodically send data to %2$s to check for version updates and to validate your trial."
-msgstr "WordPress.org yönergelerine uyumluluk adına, deneme sürümünü başlatmadan önce kullanıcı ve hassas olmayan site bilgilerinizle onay vermenizi rica ediyoruz; bu, %1$s aracının sürüm güncellemelerini denetlemek ve deneme sürümünüzü doğrulamak amacıyla düzenli olarak %2$s adresine veri göndermesine olanak tanır."
+msgstr "WordPress.org yönergeleriyle uyumluluk sağlamak adına, deneme sürümünü başlatmadan önce, %1$s uygulamasının sürüm güncellemelerini denetlemek ve denemenizi doğrulamak için %2$s adresine düzenli aralıklarla veri göndermesine izin vererek kullanıcı ve hassas olmayan site bilgilerinizle onay vermenizi rica ederiz."
 
 #: includes/freemius-strings.php:2366
 #: includes/freemius-strings.php:5250
@@ -3965,12 +3965,12 @@ msgstr "Deneme başlatılıyor"
 #: includes/freemius-strings.php:2370
 #: includes/freemius-strings.php:5255
 msgid "State"
-msgstr "Durum"
+msgstr "Eyalet"
 
 #: includes/freemius-strings.php:2374
 #: includes/freemius-strings.php:4803
 msgid "Please feel free to provide any relevant website or social media statistics, e.g. monthly unique site visits, number of email subscribers, followers, etc. (we will keep this information confidential)."
-msgstr "Lütfen aylık tekil site ziyaretleri, e-posta abone sayısı, takipçiler vb. gibi ilgili web sitesi veya sosyal medya istatistiklerini paylaşmaktan çekinmeyin (bu bilgileri gizli tutacağız)."
+msgstr "Lütfen web sitenizle veya sosyal medyanızla ilgili aylık tekil site ziyaretleri, e-posta abone sayısı, takipçiler gibi ilgili istatistikleri paylaşmaktan çekinmeyin (bu bilgileri gizli tutacağız)."
 
 #: includes/freemius-strings.php:2378
 #: includes/freemius-strings.php:5778
@@ -3997,7 +3997,7 @@ msgstr "Gönder"
 #: includes/freemius-strings.php:5543
 #, php-format
 msgid "To enter the debug mode, please enter the secret key of the license owner (UserID = %d), which you can find in your \"My Profile\" section of your User Dashboard:"
-msgstr "Hata ayıklama moduna girmek için lütfen kullanıcı kontrol panelinizin \"Profilim\" bölümünde bulabileceğiniz lisans sahibinin gizli anahtarını (UserID = %d) girin:"
+msgstr "Hata ayıklama moduna girmek için lütfen Kullanıcı Panonuzdaki \"Profilim\" bölümünde bulabileceğiniz lisans sahibinin gizli anahtarını (UserID = %d) girin:"
 
 #: includes/freemius-strings.php:2399
 #: includes/freemius-strings.php:4798
@@ -4012,7 +4012,7 @@ msgstr "Gönderiliyor"
 #: includes/freemius-strings.php:2407
 #: includes/freemius-strings.php:5089
 msgid "Seems like we are having some temporary issue with your subscription cancellation. Please try again in few minutes."
-msgstr "Aboneliğinizin iptaliyle ilgili geçici bir sorun yaşıyoruz gibi görünüyor. Lütfen birkaç dakika içinde tekrar deneyin."
+msgstr "Aboneliğinizi iptal etme işlemiyle ilgili geçici bir sorun yaşıyoruz gibi görünüyor. Lütfen birkaç dakika sonra tekrar deneyin."
 
 #: includes/freemius-strings.php:2411
 #: includes/freemius-strings.php:5166
@@ -4075,33 +4075,33 @@ msgstr "Vergi / KDV Numarası"
 #: includes/freemius-strings.php:5946
 #, php-format
 msgid "You marked this website, %1$s, as a temporary duplicate of %2$s."
-msgstr "Bu web sitesini, %1$s, %2$s sitesinin geçici bir kopyası olarak işaretlediniz."
+msgstr "Bu web sitesini (%1$s), %2$s sitesinin geçici bir kopyası olarak işaretlediniz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2462
 #: includes/freemius-strings.php:5952
 #, php-format
 msgid "You marked this website, %s, as a temporary duplicate of these sites"
-msgstr "Bu web sitesini, %s, bu sitelerin geçici bir kopyası olarak işaretlediniz"
+msgstr "Bu web sitesini (%s), şu sitelerin geçici bir kopyası olarak işaretlediniz"
 
 #: includes/freemius-strings.php:2466
 #: includes/freemius-strings.php:5349
 msgid "Thank you!"
-msgstr "Teşekkürler!"
+msgstr "Teşekkür ederiz!"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2471
 #: includes/freemius-strings.php:5339
 #, php-format
 msgid "Thank you so much for using %s!"
-msgstr "%s kullandığınız için çok teşekkür ederiz!"
+msgstr "%s uygulamasını kullandığınız için çok teşekkür ederiz!"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2476
 #: includes/freemius-strings.php:5333
 #, php-format
 msgid "Thank you so much for using %s and its add-ons!"
-msgstr "%s ve eklentilerini kullandığınız için çok teşekkür ederiz!"
+msgstr "%s uygulamasını ve eklentilerini kullandığınız için çok teşekkür ederiz!"
 
 #: includes/freemius-strings.php:2480
 #: includes/freemius-strings.php:5344
@@ -4118,7 +4118,7 @@ msgstr "Teşekkürler!"
 #: includes/freemius-strings.php:5784
 #, php-format
 msgid "Welcome to %s! To get started, please enter your license key:"
-msgstr "%s'e hoş geldiniz! Başlamak için lütfen lisans anahtarınızı girin:"
+msgstr "%s uygulamasına hoş geldiniz! Başlamak için lütfen lisans anahtarınızı girin:"
 
 #: includes/freemius-strings.php:2493
 #: includes/freemius-strings.php:5376
@@ -4149,7 +4149,7 @@ msgstr "kurulum talimatları"
 #, php-format
 msgctxt "\"The <product_label>\", e.g.: \"The plugin\""
 msgid "The %s's"
-msgstr "%s öğesinin"
+msgstr "%s ögesinin"
 
 #: includes/freemius-strings.php:2515
 #: includes/freemius-strings.php:5456
@@ -4159,7 +4159,7 @@ msgstr "Tema"
 #: includes/freemius-strings.php:2519
 #: includes/freemius-strings.php:5461
 msgid "Theme Switch"
-msgstr "Tema Değiştirici"
+msgstr "Tema Değiştir"
 
 #: includes/freemius-strings.php:2523
 #: includes/freemius-strings.php:5466
@@ -4181,7 +4181,7 @@ msgstr "Bu, %s için şuna izin verecektir:"
 #: includes/freemius-strings.php:2536
 #: includes/freemius-strings.php:5515
 msgid "Timestamp"
-msgstr "Zaman Damgası"
+msgstr "Zaman damgası"
 
 #: includes/freemius-strings.php:2540
 #: includes/freemius-strings.php:5520
@@ -4201,24 +4201,24 @@ msgstr "Toplam"
 #: includes/freemius-strings.php:2552
 #: includes/freemius-strings.php:5565
 msgid "Town"
-msgstr "Şehir"
+msgstr "İlçe"
 
 #: includes/freemius-strings.php:2556
 #: includes/freemius-strings.php:5094
 msgid "Seems like we are having some temporary issue with your trial cancellation. Please try again in few minutes."
-msgstr "Deneme sürümünüzün iptaliyle ilgili geçici bir sorun yaşıyoruz gibi görünüyor. Lütfen birkaç dakika içinde tekrar deneyin."
+msgstr "Deneme sürümünüzü iptal etmeyle ilgili geçici bir sorun yaşıyoruz gibi görünüyor. Lütfen birkaç dakika sonra tekrar deneyin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2561
 #: includes/freemius-strings.php:5999
 #, php-format
 msgid "Your %s free trial was successfully cancelled."
-msgstr "%s ücretsiz deneme sürümünüz başarıyla iptal edildi."
+msgstr "%s ücretsiz denemeniz başarıyla iptal edildi."
 
 #: includes/freemius-strings.php:2565
 #: includes/freemius-strings.php:4284
 msgid "It looks like you are not in trial mode anymore so there's nothing to cancel :)"
-msgstr "Artık deneme modunda görünmüyorsunuz, bu yüzden iptal edilecek bir şey yok :)"
+msgstr "Görünüşe göre artık deneme modunda değilsiniz, bu nedenle iptal edilecek bir şey yok :)"
 
 #: includes/freemius-strings.php:2569
 #: includes/freemius-strings.php:6049
@@ -4230,31 +4230,31 @@ msgstr "Ücretsiz deneme süreniz sona erdi. Tüm ücretsiz özelliklerimizi kul
 #: includes/freemius-strings.php:6044
 #, php-format
 msgid "Your free trial has expired. %1$sUpgrade now%2$s to continue using the %3$s without interruptions."
-msgstr "Ücretsiz deneme süreniz sona erdi. %3$s hizmetini kesintisiz kullanmaya devam etmek için %1$sşimdi yükseltin%2$s."
+msgstr "Ücretsiz deneme süreniz sona erdi. %3$s hizmetini kesintisiz olarak kullanmaya devam etmek için %1$sşimdi yükseltin%2$s."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2579
 #: includes/freemius-strings.php:4761
 #, php-format
 msgid "Plan %s do not exist, therefore, can't start a trial."
-msgstr "%s planı mevcut değil, bu nedenle deneme başlatılamaz."
+msgstr "%s planı mevcut değil, bu nedenle deneme başlatılamıyor."
 
 #: includes/freemius-strings.php:2583
 #: includes/freemius-strings.php:6121
 msgid "Your trial has been successfully started."
-msgstr "Deneme sürümünüz başarıyla başlatıldı."
+msgstr "Deneme süreniz başarıyla başlatıldı."
 
 #: includes/freemius-strings.php:2587
 #: includes/freemius-strings.php:5888
 msgid "You already utilized a trial before."
-msgstr "Daha önce bir deneme sürümü kullandınız."
+msgstr "Daha önce zaten bir deneme sürümü kullandınız."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2592
 #: includes/freemius-strings.php:4056
 #, php-format
 msgid "How do you like %1$s so far? Test all our %2$s premium features with a %3$d-day free trial."
-msgstr "%1$s ürününü şimdiye kadar nasıl buldunuz? %3$d günlük ücretsiz deneme ile tüm %2$s premium özelliklerini test edin."
+msgstr "Şimdiye kadar %1$s deneyiminiz nasıldı? %3$d günlük ücretsiz deneme ile tüm %2$s premium özelliklerimizi test edin."
 
 #: includes/freemius-strings.php:2596
 #: includes/freemius-strings.php:5575
@@ -4271,19 +4271,19 @@ msgstr "Dosya sistemine bağlanılamıyor. Lütfen kimlik bilgilerinizi doğrula
 #: includes/freemius-strings.php:5489
 #, php-format
 msgid "There was an unexpected API error while processing your request. Please try again in a few minutes and if it still doesn't work, contact the %s's author with the following:"
-msgstr "İsteğiniz işlenirken beklenmeyen bir API hatası oluştu. Lütfen birkaç dakika içinde tekrar deneyin ve hâlâ çalışmıyorsa, aşağıdakilerle birlikte %s eklentisinin yazarıyla iletişime geçin:"
+msgstr "İsteğiniz işlenirken beklenmeyen bir API hatası oluştu. Lütfen birkaç dakika sonra tekrar deneyin; sorun devam ederse aşağıdaki bilgilerle birlikte %s yazarıyla iletişime geçin:"
 
 #: includes/freemius-strings.php:2609
 #: includes/freemius-strings.php:5585
 msgid "Unexpected error, try again in 5 minutes. If the error persists, please contact support."
-msgstr "Beklenmeyen bir hata oluştu, 5 dakika içinde tekrar deneyin. Hata devam ederse lütfen destek ekibiyle iletişime geçin."
+msgstr "Beklenmeyen bir hata oluştu, lütfen 5 dakika sonra tekrar deneyin. Hata devam ederse lütfen destek ekibiyle iletişime geçin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2614
 #: includes/freemius-strings.php:5591
 #, php-format
 msgid "Uninstalling the %s will automatically disable the license, which you'll be able to use on another site."
-msgstr "%s uygulamasının kaldırılması lisansı otomatik olarak devre dışı bırakacaktır; bu lisansı başka bir sitede kullanabileceksiniz."
+msgstr "%s eklentisini kaldırmak, lisansı otomatik olarak devre dışı bırakır ve bu lisansı başka bir sitede kullanabilirsiniz."
 
 #: includes/freemius-strings.php:2618
 #: includes/freemius-strings.php:3261
@@ -4309,7 +4309,7 @@ msgstr "Güncelle"
 #: includes/freemius-strings.php:2634
 #: includes/freemius-strings.php:5843
 msgid "Would you like to proceed with the update?"
-msgstr "Güncellemeyle devam etmek istiyor musunuz?"
+msgstr "Güncellemeye devam etmek istiyor musunuz?"
 
 #: includes/freemius-strings.php:2638
 #: includes/freemius-strings.php:5617
@@ -4339,19 +4339,19 @@ msgstr "İndirilen sürümü yükleyin ve etkinleştirin"
 #: includes/freemius-strings.php:2658
 #: includes/freemius-strings.php:5642
 msgid "User Dashboard"
-msgstr "Kullanıcı Kontrol Paneli"
+msgstr "Kullanıcı Paneli"
 
 #: includes/freemius-strings.php:2662
 #: includes/freemius-strings.php:5224
 msgid "Sorry, we could not complete the email update. Another user with the same email is already registered."
-msgstr "Üzgünüz, e-posta güncellemesi tamamlanamadı. Aynı e-posta adresine sahip başka bir kullanıcı zaten kayıtlı."
+msgstr "Üzgünüz, e-posta güncellemesini tamamlayamadık. Aynı e-postaya sahip başka bir kullanıcı zaten kayıtlı."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2667
 #: includes/freemius-strings.php:4156
 #, php-format
 msgid "If you would like to give up the ownership of the %1$s's account to %2$s click the Change Ownership button."
-msgstr "%1$s hesabının sahipliğini %2$s kullanıcısına devretmek istiyorsanız Sahip Değiştir düğmesine tıklayın."
+msgstr "%1$s adlı kullanıcının hesabının sahipliğini %2$s adlı kullanıcıya devretmek istiyorsanız Sahipliği Değiştir düğmesine tıklayın."
 
 #: includes/freemius-strings.php:2671
 #: includes/freemius-strings.php:5647
@@ -4378,17 +4378,17 @@ msgstr "Değer"
 #: includes/freemius-strings.php:5668
 #, php-format
 msgid "Verification mail was just sent to %s. If you can't find it after 5 min, please check your spam box."
-msgstr "Doğrulama e-postası %s adresine gönderildi. 5 dakika içinde bulamazsanız, lütfen spam klasörünü kontrol edin."
+msgstr "Doğrulama e-postası az önce %s adresine gönderildi. 5 dakika sonra bulamazsanız, lütfen spam kutunuzu kontrol edin."
 
 #: includes/freemius-strings.php:2692
 #: includes/freemius-strings.php:5673
 msgid "Verified"
-msgstr "Doğrulanmış"
+msgstr "Doğrulandı"
 
 #: includes/freemius-strings.php:2696
 #: includes/freemius-strings.php:5678
 msgid "Verify Email"
-msgstr "E-postayı Doğrula"
+msgstr "E-postayı Doğrulayın"
 
 #: includes/freemius-strings.php:2700
 #: includes/freemius-strings.php:6607
@@ -4413,7 +4413,7 @@ msgstr "Ayrıntıları görüntüle"
 #: includes/freemius-strings.php:3586
 #, php-format
 msgid "Click to view full-size screenshot %d"
-msgstr "%d boyutundaki tam ekran ekran görüntüsünü görmek için tıklayın"
+msgstr "Tam boyutlu %d ekran görüntüsünü görmek için tıklayın"
 
 #: includes/freemius-strings.php:2718
 #: includes/freemius-strings.php:5731
@@ -4436,7 +4436,7 @@ msgstr "%s bilginiz nedir?"
 #: includes/freemius-strings.php:6356
 msgctxt "Used to express elation, enthusiasm, or triumph (especially in electronic communication)."
 msgid "W00t"
-msgstr "W00t"
+msgstr "Yaşasın"
 
 #: includes/freemius-strings.php:2735
 #: includes/freemius-strings.php:5832
@@ -4446,7 +4446,7 @@ msgstr "WordPress.org Eklenti Sayfası"
 #: includes/freemius-strings.php:2739
 #: includes/freemius-strings.php:4305
 msgid "It seems like one of the authentication parameters is wrong. Update your Public Key, Secret Key & User ID, and try again."
-msgstr "Kimlik doğrulama parametrelerinden biri yanlış görünüyor. Genel Anahtarınızı, Gizli Anahtarınızı ve Kullanıcı Kimliğinizi güncelleyin ve tekrar deneyin."
+msgstr "Kimlik doğrulama parametrelerinden biri yanlış görünüyor. Public Key, Secret Key ve User ID bilgilerinizi güncelleyip tekrar deneyin."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2744
@@ -4468,14 +4468,14 @@ msgstr "%s kaldı"
 #: includes/freemius-strings.php:2967
 #, php-format
 msgid "%s or higher"
-msgstr "%s veya üzeri"
+msgstr "%s veya daha üstü"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2759
 #: includes/freemius-strings.php:3033
 #, php-format
 msgid "%s's paid features"
-msgstr "%s adlı kullanıcının ücretli özellikleri"
+msgstr "%s adlı öğenin ücretli özellikleri"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2764
@@ -4490,7 +4490,7 @@ msgstr "%s Planı"
 #: includes/freemius-strings.php:2973
 #, php-format
 msgid "%s rating"
-msgstr "%s puanı"
+msgstr "%s değerlendirme"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2774
@@ -4525,7 +4525,7 @@ msgstr "%s yıldız"
 #: includes/freemius-strings.php:3003
 #, php-format
 msgid "%s time"
-msgstr "%s kez"
+msgstr "%s zamanı"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2799
@@ -4539,19 +4539,19 @@ msgstr "%s kez"
 #: includes/freemius-strings.php:5940
 #, php-format
 msgid "You have successfully updated your %s."
-msgstr "%s öğesini başarıyla güncellediniz."
+msgstr "%s başarıyla güncellediniz."
 
 #: includes/freemius-strings.php:2808
 #: includes/freemius-strings.php:6399
 msgctxt "as annual period"
 msgid "year"
-msgstr "yıl"
+msgstr "Yıl"
 
 #: includes/freemius-strings.php:2812
 #: includes/freemius-strings.php:6582
 msgctxt "interjection expressing joy or exuberance"
 msgid "Yee-haw"
-msgstr "Yee-haw"
+msgstr "Vuhuu"
 
 #: includes/freemius-strings.php:2816
 #: includes/freemius-strings.php:5848
@@ -4568,42 +4568,42 @@ msgstr "Her şey yolunda!"
 #: includes/freemius-strings.php:5911
 #, php-format
 msgid "You are just one step away - %s"
-msgstr "Yalnızca bir adım uzaktasınız - %s"
+msgstr "Sadece bir adım uzaktasınız - %s"
 
 #: includes/freemius-strings.php:2829
 #: includes/freemius-strings.php:5099
 msgid "Seems like you got the latest release."
-msgstr "Görünen o ki en son sürüme sahipsiniz."
+msgstr "Görünüşe göre en son sürüme sahipsiniz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2834
 #: includes/freemius-strings.php:5964
 #, php-format
 msgid "You should receive %3$s for %1$s to your mailbox at %2$s in the next 5 minutes."
-msgstr "%1$s için %3$s tutarını önümüzdeki 5 dakika içinde %2$s adresindeki e-posta kutunuza almanız gerekir."
+msgstr "Önümüzdeki 5 dakika içinde %2$s adresindeki posta kutunuza %1$s için %3$s almalısınız."
 
 #: includes/freemius-strings.php:2838
 #: includes/freemius-strings.php:6126
 msgid "ZIP / Postal Code"
-msgstr "PK / Posta Kodu"
+msgstr "Posta Kodu"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2847
 #, php-format
 msgid " %1$s to access version %2$s security & feature updates, and support."
-msgstr "Sürüm %2$s güvenlik ve özellik güncelleştirmeleri ile desteğe erişmek için %1$s."
+msgstr " %2$s sürümü güvenlik ve özellik güncellemelerine ve desteğe erişmek için %1$s."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2913
 #, php-format
 msgid "%1$s automatic security & feature updates and paid functionality will keep working without interruptions until %2$s (or when your license expires, whatever comes first)."
-msgstr "%1$s otomatik güvenlik ve özellik güncelleştirmeleri ile ücretli işlevsellik, %2$s tarihine kadar (veya lisansınızın süresi dolana kadar, hangisi önce gerçekleşirse) kesintisiz olarak çalışmaya devam edecektir."
+msgstr "%1$s otomatik güvenlik ve özellik güncellemeleri ile ücretli işlevler, %2$s tarihine kadar (veya lisansınızın süresi dolduğunda, hangisi önce gerçekleşirse) kesintisiz olarak çalışmaya devam edecektir."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3015
 #, php-format
 msgid "%1$s to access version %2$s security & feature updates, and support."
-msgstr "Sürüm %2$s güvenlik ve özellik güncellemelerine ve desteğe erişmek için %1$s."
+msgstr "%2$s sürümü güvenlik ve özellik güncellemelerine ve desteğe erişmek için %1$s."
 
 #: includes/freemius-strings.php:3067
 msgid "API"
@@ -4625,31 +4625,31 @@ msgstr "Yıllık"
 #: includes/freemius-strings.php:3425
 #, php-format
 msgid "By clicking \"Opt Out\", %s will no longer be able to view your name and email."
-msgstr "\"Devre Dışı Bırak\" seçeneğine tıklayarak, %s artık adınızı ve e-postanızı görüntüleyemeyecektir."
+msgstr "\"Ayrıl\" seçeneğine tıklayarak %s artık adınızı ve e-posta adresinizi göremeyecektir."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3431
 #, php-format
 msgid "By clicking \"Opt Out\", diagnostic data will no longer be sent to %s."
-msgstr "\"Vazgeç\" seçeneğine tıklayarak, tanıılama verileri artık %s konumuna gönderilmeyecektir."
+msgstr "\"Opt Out\" düğmesine tıklayarak tanılama verileri artık %s adresine gönderilmeyecektir."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3437
 #, php-format
 msgid "By disconnecting the website, previously shared diagnostic data about %1$s will be deleted and no longer visible to %2$s."
-msgstr "Web sitesinin bağlantısını keserek, %1$s hakkındaki daha önce paylaşılmış tanılama verileri silinecek ve %2$s tarafından artık görülemeyecektir."
+msgstr "Web sitesinin bağlantısını keserek, %1$s hakkında daha önce paylaşılan tanılama verileri silinecek ve artık %2$s tarafından görülemeyecektir."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3443
 #, php-format
 msgid "By opting out from sharing this information with the updates server, you’ll have to check for new %1$s releases and manually download & install them. Not just a hassle, but missing an update can put your site at risk and cause undue compatibility issues, so we highly recommend keeping these essential permissions on."
-msgstr "Bu bilgileri güncelleme sunucusuyla paylaşmaktan vazgeçerek, yeni %1$s sürümlerini kendiniz kontrol etmek ve bunları manuel olarak indirip kurmak zorunda kalacaksınız. Bu sadece zahmetli olmakla kalmaz, aynı zamanda bir güncellemeyi kaçırmak sitenizi riske atabilir ve gereksiz uyumluluk sorunlarına yol açabilir; bu nedenle bu temel izinleri açık tutmanızı şiddetle tavsiye ederiz."
+msgstr "Bu bilgilerin güncelleme sunucusuyla paylaşılmasından vazgeçerek, yeni %1$s sürümlerini kendiniz kontrol etmek ve manuel olarak indirip yüklemek zorunda kalırsınız. Bu yalnızca bir zahmet olmakla kalmaz, aynı zamanda bir güncellemeyi kaçırmak sitenizi riske atabilir ve gereksiz uyumluluk sorunlarına yol açabilir; bu nedenle bu temel izinleri açık tutmanızı önemle tavsiye ederiz."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3465
 #, php-format
 msgid "Cancel %1$s - I no longer need any security & feature updates, nor support for %2$s because I'm not planning to use the %3$s on this, or any other site."
-msgstr "%1$s iptal et - %3$s eklentisini bu sitede veya başka bir sitede kullanmayı düşünmediğim için %2$s için artık güvenlik ve özellik güncellemesine veya desteğe ihtiyacım yok."
+msgstr "%1$s İptal Et - Artık herhangi bir güvenlik ve özellik güncellemesine ya da %2$s için desteğe ihtiyacım yok, çünkü %3$s ögesini bu sitede veya başka bir sitede kullanmayı planlamıyorum."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3471
@@ -4661,7 +4661,7 @@ msgstr "%s iptal edilsin mi?"
 #: includes/freemius-strings.php:3497
 #, php-format
 msgid "Cancelling %s"
-msgstr "%s İptal ediliyor"
+msgstr "%s iptal ediliyor"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3503
@@ -4675,25 +4675,25 @@ msgstr "Buraya tıklayın"
 
 #: includes/freemius-strings.php:3673
 msgid "Deactivating"
-msgstr "Devre dışı bırakılıyor"
+msgstr "Etkisizleştiriliyor"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3751
 #, php-format
 msgid "Disconnecting the website will permanently remove %s from your User Dashboard's account."
-msgstr "Web sitesinin bağlantısını kesmek, %s öğesini Kullanıcı Panonuzun hesabından kalıcı olarak kaldıracaktır."
+msgstr "Web sitesinin bağlantısını kesmek, %s öğesini Kullanıcı Paneli hesabınızdan kalıcı olarak kaldıracaktır."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3955
 #, php-format
 msgid "For automatic delivery of security & feature updates, and license management & protection, %s needs to:"
-msgstr "Güvenlik ve özellik güncellemelerinin otomatik olarak teslim edilmesi, lisans yönetimi ve koruması için %s şunları yapmalıdır:"
+msgstr "Güvenlik ve özellik güncellemelerinin otomatik olarak teslim edilmesi ile lisans yönetimi ve koruması için %s şunları yapmalıdır:"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:3967
 #, php-format
 msgid "For delivery of security & feature updates, and license management, %s needs to"
-msgstr "Güvenlik ve özellik güncellemelerinin teslimi ve lisans yönetimi için %s şuna ihtiyaç duyar:"
+msgstr "Güvenlik ve özellik güncellemelerinin teslimi ve lisans yönetimi için %s şunları yapmalıdır:"
 
 #: includes/freemius-strings.php:4013
 msgid "Freemius is our licensing and software updates engine"
@@ -4703,13 +4703,13 @@ msgstr "Freemius, lisanslama ve yazılım güncellemeleri altyapımızdır"
 #: includes/freemius-strings.php:4121
 #, php-format
 msgid "If this is a long term duplicate, to keep automatic updates and paid functionality after %1$s, please %2$s."
-msgstr "Bu uzun vadeli bir kopya ise, %1$s tarihinden sonra otomatik güncellemeleri ve ücretli işlevselliği korumak için lütfen %2$s."
+msgstr "Bu uzun vadeli bir kopyaysa, %1$s sonrasında otomatik güncellemeleri ve ücretli işlevleri sürdürmek için lütfen %2$s."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:4241
 #, php-format
 msgid "Is %2$s a duplicate of %4$s?"
-msgstr "%2$s, %4$s öğesinin bir kopyası mı?"
+msgstr "%2$s, %4$s ögesinin bir kopyası mı?"
 
 #: includes/freemius-strings.php:4321
 msgid "Join the Beta Program"
@@ -4737,7 +4737,7 @@ msgstr "Aylık"
 
 #: includes/freemius-strings.php:4529
 msgid "Names, slugs, versions, and if active or not"
-msgstr "Adlar, kısa adlar, sürümler ve etkin olup olmadıkları"
+msgstr "İsimler, kısa isimler, sürümler ve etkin olup olmadıkları"
 
 #: includes/freemius-strings.php:4559
 msgid "New Version Available"
@@ -4759,13 +4759,13 @@ msgstr "Ürünler"
 #: includes/freemius-strings.php:5125
 #, php-format
 msgid "Sharing diagnostic data helps to provide additional functionality that's relevant to your website, avoid WordPress or PHP version incompatibilities that can break the website, and recognize which languages & regions the %s should be translated and tailored to."
-msgstr "Tanılama verilerini paylaşmak, web sitenizle ilgili ek işlevler sağlamaya, web sitesini bozabilecek WordPress veya PHP sürüm uyumsuzluklarını önlemeye ve %s öğesinin hangi dillere ve bölgelere çevrilmesi ve uyarlanması gerektiğini anlamaya yardımcı olur."
+msgstr "Tanılama verilerini paylaşmak, web sitenizle ilgili ek işlevler sağlamaya, web sitesini bozabilecek WordPress veya PHP sürüm uyumsuzluklarını önlemeye ve %s ögesinin hangi dillere ve bölgelere çevrilmesi ve uyarlanması gerektiğini belirlemeye yardımcı olur."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:5209
 #, php-format
 msgid "So you can reuse the license when the %s is no longer active."
-msgstr "Böylece %s artık etkin olmadığında lisansı yeniden kullanabilirsiniz."
+msgstr "%s artık aktif olmadığında lisansı yeniden kullanabilmeniz için."
 
 #: includes/freemius-strings.php:5286
 msgid "Subscription"
@@ -4775,21 +4775,21 @@ msgstr "Abonelik"
 #: includes/freemius-strings.php:5382
 #, php-format
 msgid "The %1$s will be periodically sending essential license data to %2$s to check for security and feature updates, and verify the validity of your license."
-msgstr "%1$s, güvenlik ve özellik güncelleştirmelerini denetlemek ve lisansınızın geçerliliğini doğrulamak amacıyla periyodik olarak %2$s adresine gerekli lisans verilerini gönderecektir."
+msgstr "%1$s; güvenlik ve özellik güncellemelerini kontrol etmek ve lisansınızın geçerliliğini doğrulamak için %2$s adresine periyodik olarak temel lisans verilerini gönderecektir."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:5477
 #, php-format
 msgid "There is a %1$s of %2$s available."
-msgstr "%2$s için bir %1$s mevcuttur."
+msgstr "%2$s için bir %1$s mevcut."
 
 #: includes/freemius-strings.php:5531
 msgid "To ensure compatibility and avoid conflicts with your installed plugins and themes."
-msgstr "Yüklü eklentileriniz ve temalarınızla uyumluluğu sağlamak ve çakışmaları önlemek için."
+msgstr "Uyumluluğu sağlamak ve yüklü eklentileriniz ve temalarınızla çakışmaları önlemek için."
 
 #: includes/freemius-strings.php:5570
 msgid "Trial"
-msgstr "Deneme Süresi"
+msgstr "Deneme"
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:5690
@@ -4807,7 +4807,7 @@ msgstr "Temel %s Bilgilerini Görüntüle"
 #: includes/freemius-strings.php:5877
 #, php-format
 msgid "Yes, %2$s is a duplicate of %4$s for the purpose of testing, staging, or development."
-msgstr "Evet, %2$s, test, hazırlık veya geliştirme amacıyla %4$s öğesinin bir kopyasıdır."
+msgstr "Evet, %2$s test, hazırlık (staging) veya geliştirme amacıyla %4$s kopyasıdır."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:5928
@@ -4819,14 +4819,14 @@ msgstr "%s lisansına sahipsiniz."
 #: includes/freemius-strings.php:5934
 #, php-format
 msgid "You have purchased a %s license."
-msgstr "%s lisansı satın aldınız."
+msgstr "Bir %s lisansı satın aldınız."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:5970
 #: includes/freemius-strings.php:5976
 #, php-format
 msgid "You should receive a confirmation email for %1$s to your mailbox at %2$s. Please make sure you click the button in that email to %3$s."
-msgstr "%1$s için %2$s adresindeki posta kutunuza bir onay e-postası gönderilmelidir. %3$s için lütfen bu e-postadaki düğmeye tıkladığınızdan emin olun."
+msgstr "%2$s adresindeki posta kutunuza %1$s için bir onay e-postası almalısınız. Lütfen %3$s için bu e-postadaki düğmeye tıkladığınızdan emin olun."
 
 #: includes/freemius-strings.php:6157
 msgid "days"
@@ -4834,7 +4834,7 @@ msgstr "gün"
 
 #: includes/freemius-strings.php:6162
 msgid "deactivating"
-msgstr "pasifleştiriliyor"
+msgstr "Devre dışı bırakılıyor"
 
 #: includes/freemius-strings.php:6178
 msgid "hour"
@@ -4846,7 +4846,7 @@ msgstr "saat"
 
 #: includes/freemius-strings.php:6188
 msgid "license"
-msgstr "lisans"
+msgstr "Lisans"
 
 #: includes/freemius-strings.php:6208
 msgid "optional"
@@ -4862,11 +4862,11 @@ msgstr "Atla"
 
 #: includes/freemius-strings.php:6243
 msgid "subscription"
-msgstr "abonelik"
+msgstr "Abonelik"
 
 #: includes/freemius-strings.php:6264
 msgid "trial"
-msgstr "deneme süresi"
+msgstr "Deneme"
 
 #: includes/freemius-strings.php:6296
 msgctxt "Clone resolution admin notice products list label"
@@ -4906,17 +4906,17 @@ msgstr "Fiyatlandırma"
 #: includes/freemius-strings.php:6627
 msgctxt "trial period"
 msgid "Trial"
-msgstr "Deneme süresi"
+msgstr "Deneme"
 
 #: includes/freemius-strings.php:6652
 msgctxt "verb"
 msgid "Opt In"
-msgstr "Bildirimleri Al"
+msgstr "Katılın"
 
 #: includes/freemius-strings.php:6657
 msgctxt "verb"
 msgid "Opt Out"
-msgstr "Vazgeç"
+msgstr "Abonelikten çıkın"
 
 #: includes/freemius-strings.php:6672
 msgctxt "verb"
@@ -4937,61 +4937,61 @@ msgstr "%s önce"
 
 #: includes/mcp-kit/class-ability.php:82
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
-msgstr "İşlem tamamlanamadı. Tekrar deneyin; hata devam ederse site yöneticisiyle iletişime geçin."
+msgstr "İşlem tamamlanamadı. Yeniden deneyin ve sorun devam ederse site yöneticisiyle iletişime geçin."
 
-#: includes/mcp-kit/class-rest-bridge.php:281
+#: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
-msgstr "Gerekli bir değer eksik veya yanlış biçimde. Yeteneğin girdi şemasını kontrol edin."
+msgstr "Gerekli bir değer eksik veya yanlış biçimde. Yeteneğin giriş şemasını kontrol edin."
 
-#: includes/mcp-kit/class-rest-bridge.php:314
+#: includes/mcp-kit/class-rest-bridge.php:355
 msgid "The site refused the request."
 msgstr "Site isteği reddetti."
 
-#: includes/mcp-kit/class-server.php:217
+#: includes/mcp-kit/class-server.php:221
 msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "Claude, Cursor veya VS Code gibi yapay zeka asistanlarının MCP (Model Context Protocol) aracılığıyla bu sitenizde sizin için çalışmasına izin verin. Bir uygulama şifresiyle WordPress kullanıcı olarak oturum açarlar ve yalnızca o kullanıcının yapmasına izin verilen şeyleri yapabilirler."
+msgstr "Claude, Cursor veya VS Code gibi yapay zeka asistanlarının sizin için MCP (Model Context Protocol) aracılığıyla bu sitede çalışmasına izin verin. Bir uygulama parolasıyla bir WordPress kullanıcısı olarak oturum açarlar ve yalnızca o kullanıcının yapmasına izin verilen şeyleri yapabilirler."
 
-#: includes/mcp-kit/class-server.php:219
+#: includes/mcp-kit/class-server.php:223
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
-msgstr "Yapay zeka ajanları WordPress 6.9 veya sonraki bir sürümünü gerektirir. Bunları kullanmak için WordPress'i güncelleyin."
+msgstr "Yapay zeka aracıları için WordPress 6.9 veya daha yenisi gerekir. Bunları kullanmak için WordPress'i güncelleyin."
 
-#: includes/mcp-kit/class-server.php:232
+#: includes/mcp-kit/class-server.php:236
 msgid "Connection address (MCP endpoint)"
 msgstr "Bağlantı adresi (MCP uç noktası)"
 
-#: includes/mcp-kit/class-server.php:235
+#: includes/mcp-kit/class-server.php:239
 msgid "Create an application password for your user"
 msgstr "Kullanıcınız için bir uygulama parolası oluşturun"
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:240
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
-msgstr "Bunu kullanıcı adınız ve ilgili parola ile birlikte AI uygulamanızın MCP ayarlarına ekleyin:"
+msgstr "Bunu, kullanıcı adınız ve bu parolayla birlikte AI uygulamanızın MCP ayarlarına ekleyin:"
 
-#: includes/mcp-kit/class-server.php:238
+#: includes/mcp-kit/class-server.php:242
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
-msgstr "VS Code: \"mcpServers\" altına değil, .vscode/mcp.json içindeki \"servers\" altına aynı girdiyi ekleyin."
+msgstr "VS Code: aynı girdiyi .vscode/mcp.json içinde \"mcpServers\" altına değil, \"servers\" altına yerleştirin."
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:246
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
-msgstr "Bir yapay zeka aracisinin burada kullanabileceği araçlar (%d):"
+msgstr "Bir yapay zeka aracısının burada kullanabileceği araçlar (%d):"
 
-#: includes/mcp-kit/class-server.php:253
+#: includes/mcp-kit/class-server.php:257
 msgid "User guide: AI agents and MCP"
-msgstr "Kullanıcı kılavuzu: Yapay zeka ajanları ve MCP"
+msgstr "Kullanım kılavuzu: Yapay zeka aracıları ve MCP"
 
-#: includes/mcp-kit/class-server.php:256
+#: includes/mcp-kit/class-server.php:260
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "Geliştirici belgeleri: yetenekler, REST ve MCP"
 
 #: includes/mcp/class-abilities.php:50
 msgid "Check and purge this site's cache and change its cache settings with Zinn® Cache."
-msgstr "Zinn® Cache ile bu sitenin önbelleğini kontrol edin ve temizleyin, önbellek ayarlarını değiştirin."
+msgstr "Bu sitenin önbelleğini kontrol edip temizleyin ve Zinn® Cache ile önbellek ayarlarını değiştirin."
 
 #: includes/mcp/class-abilities.php:56
 msgid "Page and object cache status, purging and settings."
-msgstr "Sayfa ve nesne önbellek durumu, temizleme ve ayarlar."
+msgstr "Sayfa ve nesne önbelleği durumu, temizleme ve ayarlar."
 
 #: includes/mcp/class-abilities.php:82
 msgid "Read the cache status"
@@ -4999,39 +4999,39 @@ msgstr "Önbellek durumunu oku"
 
 #: includes/mcp/class-abilities.php:83
 msgid "Returns whether the page cache and the object cache are on and working, how many pages are cached, and the object cache's connection and hit numbers."
-msgstr "Sayfa önbelleğinin ve nesne önbelleğinin açık ve çalışır durumda olup olmadığını, kaç sayfanın önbelleğe alındığını ve nesne önbelleğinin bağlantı ve isabet sayılarını döndürür."
+msgstr "Sayfa önbelleğinin ve nesne önbelleğinin açık ve çalışır durumda olup olmadığını, kaç sayfanın önbelleğe alındığını ve nesne önbelleğinin bağlantı ile isabet sayılarını döndürür."
 
 #: includes/mcp/class-abilities.php:101
 msgid "Read the cache settings"
-msgstr "Önbellek ayarlarını oku"
+msgstr "Önbellek ayarlarını okuyun"
 
 #: includes/mcp/class-abilities.php:102
 msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
-msgstr "Tüm önbellek ayarlarını döndürür. Redis şifresi asla döndürülmez, yalnızca bir tane kaydedilip kaydedilmediği döndürülür."
+msgstr "Tüm önbellek ayarlarını döndürür. Redis parolası asla döndürülmez, yalnızca bir parolanın kayıtlı olup olmadığı döndürülür."
 
 #: includes/mcp/class-abilities.php:120
 msgid "Change the cache settings"
-msgstr "Önbellek ayarlarını değiştir"
+msgstr "Önbellek ayarlarını değiştirin"
 
 #: includes/mcp/class-abilities.php:121
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
-msgstr "Gönderdiğiniz ayarları değiştirir ve geri kalanını (sayfa önbelleği, sayfaların ne kadar süre önbellekte kalacağı, nesne önbelleği ve Redis bağlantısı, temizleme kuralları ve hariç tutulanlar) korur. Değerler, Önbellek ekranındakilerle tamamen aynı şekilde kontrol edilir ve düzeltilir."
+msgstr "Gönderdiğiniz ayarları değiştirir ve kalanları korur (sayfa önbelleği, sayfaların ne kadar süre önbellekte kalacağı, nesne önbelleği ve Redis bağlantısı, temizleme kuralları ve hariç tutulanlar). Değerler, tam olarak Önbellek ekranında olduğu gibi kontrol edilir ve düzeltilir."
 
 #: includes/mcp/class-abilities.php:138
 msgid "Put the cache settings back to their defaults"
-msgstr "Önbellek ayarlarını varsayılan değerlerine geri yükleyin"
+msgstr "Önbellek ayarlarını varsayılanlarına döndürün"
 
 #: includes/mcp/class-abilities.php:139
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
-msgstr "Önbellek ayarlarının tümünü, Sıfırla düğmesinin yaptığı gibi varsayılan değerlerine geri döndürür. Kaydedilmiş olan Redis şifresi de silinir."
+msgstr "Sıfırla düğmesinin yaptığı gibi, her önbellek ayarını varsayılanına geri döndürür. Kaydedilen Redis parolası da kaldırılır."
 
 #: includes/mcp/class-abilities.php:157
 msgid "Read the diagnostics report"
-msgstr "Tanılama raporunu oku"
+msgstr "Tanılama raporunu okuyun"
 
 #: includes/mcp/class-abilities.php:158
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
-msgstr "Destek ekibinin istediği tanılama raporunu döndürür: sürümler, sunucu sınırları, önbellek durumu ve son hatalar. Parola veya anahtar barındırmaz."
+msgstr "Desteğin talep ettiği tanılama raporunu döndürür: sürümler, sunucu sınırları, önbellek durumu ve son hatalar. Hiçbir parola veya anahtar içermez."
 
 #: includes/mcp/class-rest-map.php:37
 msgid "Purge the cache"
@@ -5039,4 +5039,4 @@ msgstr "Önbelleği temizle"
 
 #: includes/mcp/class-rest-map.php:38
 msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
-msgstr "Önbelleğe alınan sayfaları siler: tümü (all: true), bazı adresler (urls) veya etiketlenen her şey (tags). Sayfalar, ziyaretçiler geldikçe yeniden oluşturulur."
+msgstr "Önbelleğe alınmış sayfaları siler: tümü (all: true), bazı adresler (urls) veya etiketlenmiş her şey (tags). Sayfalar, ziyaretçiler geldikçe yeniden oluşturulur."
