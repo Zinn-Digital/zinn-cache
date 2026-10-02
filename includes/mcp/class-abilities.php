@@ -125,7 +125,8 @@ final class Abilities {
 				'execute_callback'    => array( self::class, 'update_settings' ),
 				'permission_callback' => $can,
 				'annotations'         => array(
-					'idempotent' => true,
+					'destructive' => true,
+					'idempotent'  => true,
 				),
 			)
 		);

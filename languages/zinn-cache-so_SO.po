@@ -59,7 +59,7 @@ msgstr "Ka-reebitaanka"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "Wakiilada AI (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "Bog kasta oo kaydsan waa la tuurayaa waxaana dib loo dhisi doonaa marka ay soo-booqdayaashu yimaadaan. Ma rabtaa inaad sii wadato?"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "Oggolow wakiilada AI (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "Dansan: qalabka hoose iyo waddooyinkooda REST gabi ahaanba ma diiwaangashana."
 
@@ -1988,6 +1988,7 @@ msgstr "Deminta habka sumad-la'aanta"
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "Kala xiriir"
 
@@ -4934,9 +4935,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s kahor"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "Falka lama dhamaystiri karin. Isku day mar kale, haddii ay weli shaqayn weydana, la xiriir maamulaha goobta."
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "Ku xidh barnaamij AI"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "Codsigan isku-xirka wuu dhacay. Ku noqo abka oo mar kale billow isku-xirka."
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s wuxuu codsanayaa inuu u isticmaalo %2$s goobtan sidii %3$s. Waxa kaliya ee uu samayn karaa waa waxa akoonkaaga WordPress loo oggol yahay inuu sameeyo, waxaanad ka jari kartaa wakhti kasta goobaha habaynta wakiillada AI (MCP)."
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s wuxuu iska aqoonsaday %2$s."
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s si toos ah ayuu isu diiwaangeliyay. Kaliya sii wad haddii aad ka bilowday %2$s."
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "Koontadaadu ma isticmaali karto aaladahaas goobtan. Weydii maamulaha."
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "Markaad jawaabto ka dib waxaad dib ugu noqon doontaa %s."
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "Oggolow %s"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "Ha oggolaan"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4946,41 +4996,57 @@ msgstr "Qiime loo baahnaa ayaa maqan ama qaab qaldan ku jira. Hubi qaab-dhismeed
 msgid "The site refused the request."
 msgstr "Boggu wuxuu diiday codsigii."
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "U oggolow kaaliyeyaasha AI sida Claude, Cursor ama VS Code inay boggan kuugu shaqeeyaan iyagoo adeegsanaya MCP (Model Context Protocol). Waxay u galaan sidii isticmaale WordPress ah oo wata erayga sirta ah ee dalabka waxayna qaban karaan oo keliya waxa isticmaalahaas loo oggol yahay."
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "U oggolow kaaliyeyaasha AI sida Claude, Cursor ama VS Code inay goobtan kuugu shaqeeyaan iyagoo adeegsanaya MCP (Model Context Protocol). Waxay ku soo galaan sidii isticmaale WordPress ah (Claude iyo ChatGPT adoo halkan ku ansixinaya, kuwa kalena erayga sirta ah ee codsiga) waxayna samayn karaan oo keliya waxa isticmaalahaas loo oggol yahay inuu sameeyo."
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "Wakiilada AI waxay u baahan yihiin WordPress 6.9 ama ka dambeeya. Cusboonaysii WordPress si aad u isticmaasho."
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "Cinwaanka xiriirka (barta dhammaadka MCP)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude iyo ChatGPT: taa beddelkeeda gal"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "Ku dar ciwaanka xidhiidhka sidii xidhiidhiye gaar ah oo ku jira Claude, ama sidii app ku jira habka horumariyaha ChatGPT. Waxay furayaan goobtan si aad u ansixiso; ma jiro eray sir ah oo la koobiyeeyo."
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "Barnaamijyada AI ee ku xiran koontadaada:"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "Barnaamijyada kale ee AI: furaha sirta ah ee barnaamijka"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "U samee furaha sirta ah ee codsiga isticmaalahaaga"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "Ku dar tan habaynta MCP ee abkaaga AI, adigoo isticmaalaya magacaaga isticmaalaha iyo eraygaas sirta ah:"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code: isla gelitaankaas geli qaybta hoose ee \"servers\" ee .vscode/mcp.json, ee ha gelin qaybta hoose ee \"mcpServers\"."
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "Aaladaha uu wakiilka AI halkan ku isticmaali karo (%d):"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "Hagaha isticmaalaha: Wakiilada AI iyo MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "Dukumentiyada horumariyaha: awoodaha, REST iyo MCP"
 
@@ -5016,19 +5082,19 @@ msgstr "Beddel habaynta kaydka xogta"
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "Waxay beddeshaa habaynta aad dirtay waxayna haysaa inta kale (kaydka barta, muddada ay boggagu kaydsan yihiin, kaydka walxaha iyo xidhiidhkiisa Redis, xeerarka nadiifinta iyo waxyaabaha laga reebay). Qiyamka waxa loo hubiyaa loona saxaa si la mid ah sida shaashadda Kaydka."
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "Ku celi habaynta kaydka xogta ee ku meel gaarka ah xaaladdii hore"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "Waxay ku celisaa hab kasta oo khasdhasho ah tii caadiga ahayd, sida uu badhanka Dib-u-dejiyeeyo sameeyo. Furaha sirta ah ee Redis ee la keydiyay sidoo kale waa laga saarayaa."
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "Akhri warbixinta baaritaanka"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "Waxay soo celisaa warbixinta baaritaanka ee taageeradu codsato: noocyada, xaddidyada server-ka, xaaladda cache-ka iyo khaladaadkii ugu dambeeyay. Kuma jiraan wax furaha sirta ah ama furayaal."
 

@@ -59,7 +59,7 @@ msgstr "Àwọn ìyọkúrò"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "Àwọn aṣojú AI (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "Gbogbo oju-iwe ti a kashi ni a o sọnu ti a o si tun kọ bi awọn alejo ti n de. Ṣe o fẹ lati tẹsiwaju?"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "Gba awọn aṣoju AI laaye (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "Pípa: àwọn irinṣẹ́ tí ó wà ní ìsàlẹ̀ yìí àti àwọn ipa ọ̀nà REST wọn kò tíì fi orúkọ sílẹ̀ rárá."
 
@@ -1987,6 +1987,7 @@ msgstr "Ń pa ipò àmì-ọ̀rọ̀ funfun"
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "Ge asopọ kuro"
 
@@ -4933,9 +4934,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s sẹ́yìn"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "A ko le pari igbese naa. Gbiyanju lẹẹkansi, ati ti o ba tẹsiwaju lati kuna, kan si alabojuto aaye naa."
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "So ohun elo AI pọ̀"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "Ìbéèrè ìsopọ̀ yìí ti parí. Padà sí inú àpù náà kí o sì bẹ̀rẹ̀ sí ní sopọ̀ lẹ́ẹ̀kan sí i."
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s n tọrọ lati lo %2$s lori aaye yii bii %3$s. O le ṣe ohun ti a gba akọọlẹ WordPress rẹ laaye lati ṣe nikan, ati pe o le ge asopọ rẹ nigbakugba lati awọn eto awọn aṣoju AI (MCP)."
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s ṣe idanimọ ara rẹ lati %2$s."
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s forukọsilẹ funrararẹ laifọwọyi. Tẹsiwaju nikan ti o ba bẹrẹ eyi lati %2$s."
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "Àkọọ́lẹ̀ rẹ kò le lo àwọn irinṣẹ́ wọ̀nyí lórí ojú-òpó wẹ́ẹ̀bù yìí. Béèrè lọ́wọ́ olùṣàkóso."
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "Lẹ́yìn tí ẹ bá dáhùn, ẹ ó padà sí %s."
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "Gba %s láàyè"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "Maa ṣe gba laaye"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4945,41 +4995,57 @@ msgstr "Iye kan ti a beere fun sonu tabi o ni fọọmu ti ko tọ. Ṣayẹwo i
 msgid "The site refused the request."
 msgstr "Ojú-òpó wẹ́ẹ̀bù náà kọ̀ ìbéèrè náà."
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "Gba awọn oluranlọwọ AI laaye gẹgẹbi Claude, Cursor tabi VS Code lati ṣiṣẹ lori aaye yii fun ọ nipasẹ MCP (Model Context Protocol). Wọn wọle bi olumulo WordPress kan pẹlu ọrọ igbaniwọle ohun elo ati pe wọn le ṣe ohun ti olumulo yẹn nikan ni a gba laaye lati ṣe."
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "Gba awọn oluranlọwọ AI laaye bii Claude, Cursor tabi VS Code lati ṣiṣẹ lori aaye yii fun ọ nipasẹ MCP (Model Context Protocol). Wọn wọle bi olumulo WordPress kan (Claude ati ChatGPT nipa fọwọsi wọn nibi, awọn miiran pẹlu ọrọ igbaniwọle ohun elo) ati pe wọn le ṣe ohun ti olumulo yẹn gba laaye lati ṣe nikan."
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "Àwọn aṣojú AI nílò WordPress 6.9 tàbí tuntun sí i. Ṣe àfikún sí WordPress láti lò wọ́n."
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "Àdírẹ́ẹ̀sì ìsopọ̀ (ojú-ìparí MCP)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude àti ChatGPT: wọle dípò"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "Ṣafikun adirẹsi asopọ naa gẹgẹbi asopọ aṣa ninu Claude, tabi gẹgẹbi ohun elo ninu ipo olupilẹṣẹ ChatGPT. Wọn yoo ṣii aaye yii ki ẹ le fọwọsi wọn; ko si ọrọ igbaniwọle kankan lati daakọ."
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "Àwọn àpù AI tí a so pọ̀ mọ́ àkọ́ọ́lẹ̀ rẹ:"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "Awọn ohun elo AI miiran: ọrọigbaniwọle ohun elo kan"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "Ṣẹda ọrọigbaniwọle ohun elo fun olumulo rẹ"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "Ṣafikun eyi si awọn eto MCP ti app AI rẹ, pẹlu orukọ olumulo rẹ ati ọrọ igbaniwọle yẹn:"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code: fi àkọsílẹ̀ kan náà sí abẹ́ \"servers\" nínú .vscode/mcp.json, kì í ṣe lábẹ́ \"mcpServers\"."
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "Awọn irinṣẹ ti aṣoju AI le lo nibi (%d):"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "Itọsọna olumulo: Awọn aṣoju AI ati MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "Àwọn àkọsílẹ̀ olùgbédàgbà: àwọn agbára, REST àti MCP"
 
@@ -5015,19 +5081,19 @@ msgstr "Yi awọn eto cache pada"
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "Ó ń yí àwọn ètò tí ẹ fi ránṣẹ́ padà tí ó sì ń pa àwọn yòókù mọ́ (cache ojú-ewé, bí àwọn ojú-ewé ṣe ń pẹ́ tó nínú cache, cache ohun-èlò àti ìsopọ̀ Redis rẹ̀, àwọn òfin ìgbálẹ̀ àti àwọn àyàfi). A máa ń yẹ àwọn iye wò tí a sì ń tún wọn ṣe gan-an gẹ́gẹ́ bí ó ṣe wà lójú ìbòjú Cache."
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "Da awọn eto cache pada si awọn aiyipada wọn"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "O n da gbogbo eto kaṣi pada si aiyipada re, bi botini Tun-eto se n se. A tun yọ ọrọigbaniwọle Redis ti a fipamọ kuro."
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "Ka iroyin ayẹwo naa"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "Ó ń da èsì ìròyìn àyẹ̀wò tí ìtìlẹ́yìn béèrè fún padà: àwọn àtúnṣe, àwọn ààlà olupin, ipò cache àti àwọn àṣìṣe àìpẹ́. Kò ní ọ̀rọ̀ aṣínà tàbí kókó kankan nínú."
 

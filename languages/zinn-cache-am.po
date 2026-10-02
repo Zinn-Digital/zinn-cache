@@ -59,7 +59,7 @@ msgstr "የተገለሉ"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "የ-AI ወኪሎች (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "እያንዳንዱ የተሸጎጠ ገጽ ይወገዳል እንዲሁም ጎብኚዎች ሲመጡ እንደገና ይገነባል። ይቀጥሉ?"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "የAI ወኪሎችን ፍቀድ (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "ጠፍቷል፦ ከዚህ በታች ያሉት መሣሪያዎች እና የእነሱ REST መስመሮች በጭራሽ አልተመዘገቡም።"
 
@@ -1988,6 +1988,7 @@ msgstr "የነጭ ምልክት ሁነታን ማሰናከል"
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "ግንኙነት አቋርጥ"
 
@@ -4934,9 +4935,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "ከ%s በፊት"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "ድርጊቱ ሊጠናቀቅ አልቻለም። እንደገና ይሞክሩ፣ እና አሁንም ካልተሳካ የጣቢያውን አስተዳዳሪ ያነጋግሩ።"
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "የ-AI መተግበሪያን ያገናኙ"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "ይህ የግንኙነት ጥያቄ ጊዜው አልፎበታል። ወደ መተግበሪያው ይመለሱና እንደገና ማገናኘት ይጀምሩ።"
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s በዚህ ጣቢያ ላይ %2$sን እንደ %3$s ለመጠቀም እየጠየቀ ነው። የእርስዎ የWordPress መለያ እንዲያደርግ የተፈቀደለትን ብቻ ማድረግ ይችላል፣ እና በማንኛውም ጊዜ ከAI ወኪሎች (MCP) ቅንብሮች ማቋረጥ ይችላሉ።"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s ራሱን ከ%2$s ለይቷል።"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s ራሱን በራስ-ሰር አስመዝግቧል። ይህንን ከ %2$s ከጀመሩት ብቻ ይቀጥሉ።"
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "የእርስዎ መለያ በዚህ ጣቢያ ላይ እነዚህን መሣሪያዎች መጠቀም አይችልም። አስተዳዳሪን ይጠይቁ።"
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "ከመለሱ በኋላ ወደ %s ይመለሳሉ።"
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "%s ፍቀድ"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "አይፍቀዱ"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4946,41 +4996,57 @@ msgstr "አስፈላጊ እሴት ጠፍቷል ወይም የተሳሳተ ቅር�
 msgid "The site refused the request."
 msgstr "ድህረ ገጹ ጥያቄውን አልተቀበለውም።"
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "እንደ Claude፣ Cursor ወይም VS Code ያሉ የAI ረዳቶች በMCP (Model Context Protocol) በኩል በዚህ ጣቢያ ላይ ለእርስዎ እንዲሰሩ ይፍቀዱላቸው። እነሱ የመተግበሪያ የይለፍ ቃል በመጠቀም እንደ WordPress ተጠቃሚ ሆነው ይገባሉ እንዲሁም ያ ተጠቃሚ እንዲያደርግ የተፈቀደለትን ብቻ ማድረግ ይችላሉ።"
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "እንደ Claude፣ Cursor ወይም VS Code ያሉ የAI ረዳቶች በMCP (Model Context Protocol) አማካኝነት በዚህ ጣቢያ ላይ ለእርስዎ እንዲሰሩ ይፍቀዱ። እነሱ እንደ WordPress ተጠቃሚ ሆነው ይገባሉ (Claude እና ChatGPT እዚህ በማጽደቅ፣ ሌሎች ደግሞ በመተግበሪያ የይለፍ ቃል አማካኝነት) እና ያ ተጠቃሚ እንዲያደርግ የተፈቀደለትን ብቻ ማድረግ ይችላሉ።"
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "የAI ወኪሎች WordPress 6.9 ወይም ከዚያ በላይ ያስፈልጋቸዋል። እነሱን ለመጠቀም እባክዎ WordPressን ያዘምኑ።"
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "የግንኙነት አድራሻ (MCP የመጨረሻ ነጥብ)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude እና ChatGPT፡ ይልቁንስ ይግቡ"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "የግንኙነት አድራሻውን በClaude ውስጥ እንደ ብጁ አገናኝ፣ ወይም በChatGPT የገንቢ ሁነታ እንደ መተግበሪያ ያክሉት። እርስዎ እንዲያጸድቋቸው ይህንን ጣቢያ ይከፍታሉ፤ የሚገለበጥ የይለፍ ቃል የለም።"
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "ከእርስዎ መለያ ጋር የተገናኙ የAI መተግበሪያዎች፦"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "ሌሎች የAI መተግበሪያዎች፦ የመተግበሪያ የይለፍ ቃል"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "ለተጠቃሚዎ የመተግበሪያ ይለፍ ቃል ይፍጠሩ"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "የተጠቃሚ ስምዎን እና ያንን የይለፍ ቃል በመጠቀም ይህንን ወደ የእርስዎ AI መተግበሪያ MCP ቅንብሮች ያክሉ፦"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code፦ ያንኑ ግቤት በ.vscode/mcp.json ውስጥ በ\"servers\" ስር ያስቀምጡ፣ በ\"mcpServers\" ስር አይሁን።"
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "የ AI ወኪል እዚህ ሊጠቀምባቸው የሚችላቸው መሣሪያዎች (%d)፦"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "የተጠቃሚ መመሪያ፦ የ-AI ወኪሎች እና MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "የገንቢ ሰነዶች፦ ችሎታዎች፣ REST እና MCP"
 
@@ -5016,19 +5082,19 @@ msgstr "የመሸጎጫ ቅንብሮችን ይቀይሩ"
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "የሚልኳቸውን ቅንብሮች ይለውጣል እንዲሁም የቀሩትን ያስቀምጣል (የገጽ መሸጎጫ፣ ገጾች ተሸጉጠው የሚቆዩበት ጊዜ፣ የእቃ መሸጎጫ እና የ Redis ግንኙነቱ፣ የማጽዳት ደንቦች እና ማግለያዎች)። እሴቶች ልክ በCache ማያ ገጽ ላይ እንዳለው ተረጋግጠው ይስተካከላሉ።"
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "የመሸጎጫ ቅንብሮችን ወደ ነባሪዎቻቸው ይመልሱ"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "እንደ «ዳግም አስጀምር» አዝራር ሁሉ እያንዳንዱን የመሸጎጫ ቅንብር ወደ ነባሪ ይመልሳል። የተቀመጠው የRedis የይለፍ ቃልም ይወገዳል።"
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "የምርመራ ሪፖርቱን ያንብቡ"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "የድጋፍ ቡድኑ የሚጠይቀውን የምርመራ ሪፖርት ይመልሳል፡ ስሪቶች፣ የአገልጋይ ገደቦች፣ የመሸጎጫ ሁኔታ እና የቅርብ ጊዜ ስህተቶች። ምንም የይለፍ ቃላትን ወይም ቁልፎችን አልያዘም።"
 

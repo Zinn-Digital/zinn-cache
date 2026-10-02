@@ -59,7 +59,7 @@ msgstr "استثنیات"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "AI ایجنٹس (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "ہر کیش شدہ صفحہ ضائع کر دیا جائے گا اور زائرین کی آمد پر دوبارہ تشکیل دیا جائے گا۔ کیا آپ جاری رکھنا چاہتے ہیں؟"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "AI ایجنٹس کی اجازت دیں (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "بند: نیچے دیے گئے ٹولز اور ان کے REST راستے بالکل بھی رجسٹرڈ نہیں ہیں۔"
 
@@ -1988,6 +1988,7 @@ msgstr "وائٹ لیبل موڈ غیر فعال ہو رہا ہے"
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "منقطع کریں"
 
@@ -4934,9 +4935,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s قبل"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "کارروائی مکمل نہیں ہو سکی۔ دوبارہ کوشش کریں، اور اگر مسئلہ برقرار رہے تو سائٹ منتظم سے رابطہ کریں۔"
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "ایک AI ایپ مربوط کریں"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "اس کنکشن کی درخواست کی میعاد ختم ہو چکی ہے۔ ایپ پر واپس جائیں اور دوبارہ منسلک ہونا شروع کریں۔"
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s اس سائٹ پر بطور %3$s، %2$s استعمال کرنے کی درخواست کر رہا ہے۔ یہ صرف وہی کر سکتا ہے جس کی آپ کے WordPress اکاؤنٹ کو اجازت ہے، اور آپ اسے AI ایجنٹس (MCP) کی ترتیبات سے کسی بھی وقت منقطع کر سکتے ہیں۔"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s نے %2$s سے اپنی شناخت کروائی۔"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s خود بخود رجسٹر ہو گیا ہے۔ صرف اسی صورت میں آگے بڑھیں اگر آپ نے یہ %2$s سے شروع کیا ہو۔"
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "آپ کا اکاؤنٹ اس سائٹ پر یہ ٹولز استعمال نہیں کر سکتا۔ کسی ایڈمنسٹریٹر سے پوچھیں۔"
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "جواب دینے کے بعد آپ %s پر واپس چلے جائیں گے۔"
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "%s کی اجازت دیں"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "اجازت نہ دیں"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4946,41 +4996,57 @@ msgstr "ایک مطلوبہ قدر غائب ہے یا اس کی شکل غلط ہ
 msgid "The site refused the request."
 msgstr "سائٹ نے درخواست مسترد کر دی۔"
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "Claude، Cursor یا VS Code جیسے AI معاونین کو MCP (Model Context Protocol) کے ذریعے آپ کے لیے اس سائٹ پر کام کرنے دیں۔ وہ ایپلیکیشن پاس ورڈ کے ساتھ بطور WordPress صارف سائن ان کرتے ہیں اور صرف وہی کر سکتے ہیں جس کی اس صارف کو اجازت ہے۔"
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "Claude، Cursor یا VS Code جیسے AI معاونین کو MCP (Model Context Protocol) کے ذریعے اس سائٹ پر اپنے لیے کام کرنے کی اجازت دیں۔ وہ ایک WordPress صارف کے طور پر سائن ان کرتے ہیں (Claude اور ChatGPT کو یہاں منظور کر کے، دیگر کو ایپلیکیشن پاس ورڈ کے ساتھ) اور وہ صرف وہی کر سکتے ہیں جس کی اس صارف کو اجازت ہے۔"
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "AI ایجنٹس کے لیے WordPress 6.9 یا بعد کا ورژن درکار ہے۔ انہیں استعمال کرنے کے لیے WordPress کو اپ ڈیٹ کریں۔"
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "کنکشن کا پتہ (MCP اختتامی نقطہ)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude اور ChatGPT: اس کے بجائے سائن ان کریں"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "کنکشن کا پتہ Claude میں بطور کسٹم کنیکٹر، یا ChatGPT ڈیولپر موڈ میں بطور ایپ شامل کریں۔ وہ اس سائٹ کو کھولتے ہیں تاکہ آپ انہیں منظور کر سکیں؛ کاپی کرنے کے لیے کسی پاس ورڈ کی ضرورت نہیں ہے۔"
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "آپ کے اکاؤنٹ سے منسلک AI ایپس:"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "دیگر AI ایپس: ایک ایپلیکیشن پاس ورڈ"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "اپنے صارف کے لیے ایک ایپلیکیشن پاس ورڈ بنائیں"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "اپنے صارف نام اور اس پاس ورڈ کے ساتھ اسے اپنی AI ایپ کی MCP ترتیبات میں شامل کریں:"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code: یہی اندراج .vscode/mcp.json میں \"servers\" کے تحت رکھیں، \"mcpServers\" کے تحت نہیں۔"
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "وہ ٹولز جو ایک AI ایجنٹ یہاں استعمال کر سکتا ہے (%d):"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "صارف رہنما: AI ایجنٹس اور MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "ڈویلپر دستاویزات: صلاحیتیں، REST اور MCP"
 
@@ -5016,19 +5082,19 @@ msgstr "کیش کی ترتیبات تبدیل کریں"
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "آپ کی بھیجی گئی ترتیبات کو تبدیل کرتا ہے اور باقی کو برقرار رکھتا ہے (صفحہ کیش، صفحات کتنی دیر تک کیش رہتے ہیں، آبجیکٹ کیش اور اس کا Redis کنکشن، صاف کرنے کے قواعد اور استثنیات)۔ اقدار بالکل اسی طرح چیک اور درست کی جاتی ہیں جیسا کہ کیش اسکرین پر ہوتا ہے۔"
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "کیش کی ترتیبات کو ان کے پہلے سے طے شدہ پر واپس لائیں"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "کیشے کی ہر ترتیب کو اس کے پہلے سے طے شدہ پر واپس لاتا ہے، جیسا کہ ری سیٹ کا بٹن کرتا ہے۔ محفوظ کردہ Redis پاس ورڈ بھی ہٹا دیا جاتا ہے۔"
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "تشخیصی رپورٹ پڑھیں"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "تشخیصی رپورٹ واپس کرتا ہے جو سپورٹ طلب کرتی ہے: ورژنز، سرور کی حدود، کیشے کی حالت اور حالیہ غلطیاں۔ اس میں کوئی پاس ورڈ یا کیز نہیں ہیں۔"
 

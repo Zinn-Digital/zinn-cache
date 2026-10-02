@@ -59,7 +59,7 @@ msgstr "ချွင်းချက်များ"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "AI အေးဂျင့်များ (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "သိမ်းဆည်းထားသော စာမျက်နှာတိုင်းကို စွန့်ပစ်မည်ဖြစ်ပြီး ဝင်ရောက်ကြည့်ရှုသူများ ရောက်ရှိလာချိန်တွင် ပြန်လည်တည်ဆောက်မည်ဖြစ်သည်။ ဆက်လုပ်မည်လား။"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "AI အေးဂျင့်များကို ခွင့်ပြုရန် (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "ပိတ်ထားသည်- အောက်ဖော်ပြပါ ကိရိယာများနှင့် ၎င်းတို့၏ REST လမ်းကြောင်းများကို လုံးဝမှတ်ပုံတင်ထားခြင်းမရှိပါ။"
 
@@ -1988,6 +1988,7 @@ msgstr "White-label စနစ်ကို ပိတ်နေသည်"
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "ချိတ်ဆက်မှုဖြုတ်ရန်"
 
@@ -4934,9 +4935,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "လွန်ခဲ့သော %s က"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "လုပ်ဆောင်ချက်ကို ပြီးမြောက်အောင် မလုပ်ဆောင်နိုင်ပါ။ ထပ်မံကြိုးစားပါ၊ ဆက်လက်မအောင်မြင်ပါက ဝဘ်ဆိုက် စီမံခန့်ခွဲသူထံ ဆက်သွယ်ပါ။"
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "AI အက်ပ်တစ်ခု ချိတ်ဆက်ပါ"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "ဤချိတ်ဆက်မှုတောင်းဆိုချက် သက်တမ်းကုန်ဆုံးသွားပါပြီ။ အက်ပ်သို့ ပြန်သွားပြီး ချိတ်ဆက်မှုကို နောက်တစ်ကြိမ် ပြန်လည်စတင်ပါ။"
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s သည် ဤဆိုက်တွင် %2$s ကို %3$s အဖြစ် အသုံးပြုရန် တောင်းဆိုနေပါသည်။ ၎င်းသည် သင်၏ WordPress အကောင့်ကို ခွင့်ပြုထားသည့် လုပ်ဆောင်ချက်များကိုသာ ပြုလုပ်နိုင်ပြီး ၎င်းကို AI အေးဂျင့်များ (MCP) ဆက်တင်များမှ အချိန်မရွေး ချိတ်ဆက်မှု ဖြတ်တောက်နိုင်ပါသည်။"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s သည် %2$s မှ ၎င်းကိုယ်တိုင် အတည်ပြုခဲ့သည်။"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s သည် သူ့အလိုလို အလိုအလျောက် မှတ်ပုံတင်ခဲ့သည်။ ဤလုပ်ငန်းစဉ်ကို %2$s မှ စတင်ခဲ့လျှင်သာ ဆက်လက်လုပ်ဆောင်ပါ။"
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "သင့်အကောင့်သည် ဤဆိုဒ်တွင် ဤကိရိယာများကို အသုံးမပြုနိုင်ပါ။ စီမံခန့်ခွဲသူကို မေးမြန်းပါ။"
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "ဖြေဆိုပြီးနောက် %s သို့ ပြန်သွားပါမည်။"
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "%s ကို ခွင့်ပြုပါ"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "ခွင့်မပြုပါနှင့်"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4946,41 +4996,57 @@ msgstr "လိုအပ်သော တန်ဖိုးတစ်ခု ပျ�
 msgid "The site refused the request."
 msgstr "ဝဘ်ဆိုက်က တောင်းဆိုချက်ကို ငြင်းပယ်ခဲ့သည်။"
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "Claude၊ Cursor သို့မဟုတ် VS Code ကဲ့သို့သော AI လက်ထောက်များကို MCP (Model Context Protocol) မှတစ်ဆင့် သင့်အတွက် ဤဆိုဒ်တွင် အလုပ်လုပ်ခွင့်ပြုပါ။ ၎င်းတို့သည် အက်ပ်စကားဝှက်ဖြင့် WordPress အသုံးပြုသူအဖြစ် အကောင့်ဝင်ပြီး ထိုအသုံးပြုသူကို ခွင့်ပြုထားသည့်အရာများကိုသာ လုပ်ဆောင်နိုင်သည်။"
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "Claude၊ Cursor သို့မဟုတ် VS Code ကဲ့သို့သော AI အကူများကို MCP (Model Context Protocol) မှတစ်ဆင့် သင့်အတွက် ဤဆိုက်တွင် လုပ်ဆောင်ခွင့်ပြုပါ။ ၎င်းတို့သည် WordPress အသုံးပြုသူအဖြစ် လက်မှတ်ထိုးဝင်ကြပြီး (Claude နှင့် ChatGPT ကို ဤနေရာတွင် အတည်ပြုပေးခြင်းဖြင့်ဖြစ်စေ၊ အခြားအရာများကို အက်ပ်သုံးစကားဝှက်ဖြင့်ဖြစ်စေ) ထိုအသုံးပြုသူ လုပ်ပိုင်ခွင့်ရှိသည့်အရာကိုသာ လုပ်ဆောင်နိုင်မည်ဖြစ်သည်။"
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "AI အေးဂျင့်များသည် WordPress 6.9 သို့မဟုတ် နောက်ပိုင်းဗားရှင်း လိုအပ်ပါသည်။ ၎င်းတို့ကို အသုံးပြုရန် WordPress ကို အပ်ဒိတ်လုပ်ပါ။"
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "ချိတ်ဆက်မှု လိပ်စာ (MCP အဆုံးသတ်မှတ်)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude နှင့် ChatGPT: ယင်းအစား အကောင့်ဝင်ပါ"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "ချိတ်ဆက်မှု လိပ်စာကို Claude တွင် စိတ်ကြိုက် ချိတ်ဆက်ကိရိယာအဖြစ် သို့မဟုတ် ChatGPT ဆော့ဖ်ဝဲရေးသားသူ မုဒ်တွင် အက်ပ်အဖြစ် ထည့်သွင်းပါ။ သင် အတည်ပြုနိုင်ရန် ၎င်းတို့သည် ဤဆိုက်ကို ဖွင့်ပေးမည်ဖြစ်ပြီး ကူးယူရန် စကားဝှက် မလိုအပ်ပါ။"
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "သင့်အကောင့်နှင့် ချိတ်ဆက်ထားသော AI အက်ပ်များ-"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "အခြားသော AI အက်ပ်များ- အက်ပ်စကားဝှက်တစ်ခု"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "သင့်အသုံးပြုသူအတွက် အက်ပ်စကားဝှက်တစ်ခု ဖန်တီးပါ"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "သင့်အသုံးပြုသူအမည်နှင့် ထိုစကားဝှက်ဖြင့် ၎င်းကို သင့် AI အက်ပ်၏ MCP ဆက်တင်များတွင် ထည့်ပါ-"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code: တူညီသော ထည့်သွင်းချက်ကို .vscode/mcp.json ရှိ \"mcpServers\" အောက်တွင် မဟုတ်ဘဲ \"servers\" အောက်တွင် ထည့်ပါ။"
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "AI အေဂျင့် ဤနေရာတွင် အသုံးပြုနိုင်သည့် ကိရိယာများ (%d) -"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "အသုံးပြုသူလမ်းညွှန်- AI အေးဂျင့်များနှင့် MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "ဆော့ဖ်ဝဲရေးသားသူဆိုင်ရာ စာရွက်စာတမ်းများ- စွမ်းဆောင်ရည်များ၊ REST နှင့် MCP"
 
@@ -5016,19 +5082,19 @@ msgstr "ကက်ရှ် ဆက်တင်များကို ပြော�
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "သင်ပေးပို့သော ဆက်တင်များကို ပြောင်းလဲပြီး ကျန်ရှိသည်များကို ဆက်လက်ထိန်းသိမ်းထားပါသည် (စာမျက်နှာ ကက်ရှ်၊ စာမျက်နှာများကို ကက်ရှ်ပြုလုပ်ထားမည့် အချိန်ကြာချိန်၊ အရာဝတ္ထု ကက်ရှ်နှင့် ၎င်း၏ Redis ချိတ်ဆက်မှု၊ ရှင်းလင်းရေး စည်းမျဉ်းများနှင့် ချွင်းချက်များ)။ တန်ဖိုးများကို Cache မျက်နှာပြင်ပေါ်တွင်ကဲ့သို့ အတိအကျ စစ်ဆေးပြီး ပြင်ဆင်ပေးပါသည်။"
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "ကက်ရှ်ဆက်တင်များကို မူလသတ်မှတ်ချက်များသို့ ပြန်ထားပါ"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "ပြန်လည်သတ်မှတ်ရန် ခလုတ်ကဲ့သို့ပင် ကက်ရှ်ဆက်တင်တစ်ခုစီကို မူရင်းအတိုင်း ပြန်ထားပေးသည်။ သိမ်းဆည်းထားသော Redis စကားဝှက်ကိုလည်း ဖယ်ရှားပေးပါသည်။"
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "ရောဂါရှာဖွေရေး အစီရင်ခံစာကို ဖတ်ရှုပါ"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "အကူအညီပေးရေးအဖွဲ့မှ တောင်းဆိုသော ရောဂါရှာဖွေမှု အစီရင်ခံစာကို ပြန်ပေးသည်- ဗားရှင်းများ၊ ဆာဗာကန့်သတ်ချက်များ၊ ကက်ရှ်အခြေအနေနှင့် လတ်တလော အမှားများ။ ၎င်းတွင် စကားဝှက်များ သို့မဟုတ် သော့များ မပါဝင်ပါ။"
 

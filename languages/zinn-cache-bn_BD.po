@@ -59,7 +59,7 @@ msgstr "বর্জনসমূহ"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "এআই এজেন্ট (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "ক্যাশে করা প্রতিটি পাতা বাতিল করা হবে এবং দর্শকরা এলে তা আবার তৈরি করা হবে। আপনি কি এগিয়ে যেতে চান?"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "AI এজেন্টদের অনুমতি দিন (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "বন্ধ: নীচের সরঞ্জামগুলি এবং সেগুলির REST রুটগুলি মোটেই নিবন্ধিত নয়।"
 
@@ -1988,6 +1988,7 @@ msgstr "হোয়াইট-লেবেল মোড নিষ্ক্রি
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "সংযোগ বিচ্ছিন্ন করুন"
 
@@ -4934,9 +4935,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s আগে"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "পদক্ষেপটি সম্পন্ন করা যায়নি। আবার চেষ্টা করুন, এবং এটি ব্যর্থ হতে থাকলে, সাইট প্রশাসকের সাথে যোগাযোগ করুন।"
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "একটি AI অ্যাপ সংযুক্ত করুন"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "এই সংযোগের অনুরোধটির মেয়াদ শেষ হয়ে গেছে। অ্যাপে ফিরে যান এবং পুনরায় সংযোগ স্থাপন শুরু করুন।"
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s এই সাইটে %3$s হিসেবে %2$s ব্যবহার করার অনুরোধ করছে। আপনার WordPress অ্যাকাউন্ট যা করার অনুমতিপ্রাপ্ত এটি কেবল সেটাই করতে পারবে, এবং আপনি যেকোনো সময় AI এজেন্ট (MCP) সেটিংস থেকে এর সংযোগ বিচ্ছিন্ন করতে পারবেন।"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s নিজেকে %2$s থেকে সনাক্ত করেছে।"
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s স্বয়ংক্রিয়ভাবে নিজেকে নিবন্ধিত করেছে। আপনি এটি %2$s থেকে শুরু করে থাকলে কেবল তবেই এগিয়ে যান।"
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "আপনার অ্যাকাউন্ট এই সাইটে এই সরঞ্জামগুলো ব্যবহার করতে পারবে না। একজন প্রশাসকের সাথে যোগাযোগ করুন।"
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "আপনি উত্তর দেওয়ার পর %s-এ ফিরে যাবেন।"
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "%s অনুমতি দিন"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "অনুমতি দেবেন না"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4946,41 +4996,57 @@ msgstr "একটি প্রয়োজনীয় মান অনুপস
 msgid "The site refused the request."
 msgstr "সাইটটি অনুরোধ প্রত্যাখ্যান করেছে।"
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "Claude, Cursor বা VS Code-এর মতো AI সহকারীগুলোকে MCP (মডেল কনটেক্সট প্রোটোকল)-এর মাধ্যমে আপনার জন্য এই সাইটে কাজ করার অনুমতি দিন। তারা একটি অ্যাপ্লিকেশন পাসওয়ার্ড দিয়ে WordPress ব্যবহারকারী হিসেবে সাইন ইন করে এবং সেই ব্যবহারকারীকে যা করার অনুমতি দেওয়া হয়েছে শুধুমাত্র তা-ই করতে পারে।"
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "MCP (Model Context Protocol)-এর মাধ্যমে Claude, Cursor বা VS Code-এর মতো AI সহকারীকে আপনার জন্য এই সাইটে কাজ করার অনুমতি দিন। তারা একজন WordPress ব্যবহারকারী হিসেবে সাইন ইন করে (এখানে অনুমোদনের মাধ্যমে Claude ও ChatGPT, এবং অন্যরা একটি অ্যাপ্লিকেশন পাসওয়ার্ড দিয়ে) এবং কেবল সেই ব্যবহারকারীর যা করার অনুমতি রয়েছে তা-ই করতে পারে।"
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "AI এজেন্টগুলির জন্য WordPress 6.9 বা তার পরবর্তী সংস্করণ প্রয়োজন। সেগুলি ব্যবহার করতে WordPress আপডেট করুন।"
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "সংযোগের ঠিকানা (MCP এন্ডপয়েন্ট)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude এবং ChatGPT: এর পরিবর্তে সাইন ইন করুন"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "সংযোগের ঠিকানাটি Claude-এ একটি কাস্টম সংযোগকারী হিসেবে, অথবা ChatGPT ডেভেলপার মোডে একটি অ্যাপ হিসেবে যোগ করুন। তারা এই সাইটটি খুলবে যাতে আপনি তাদের অনুমোদন করতে পারেন; কপি করার মতো কোনো পাসওয়ার্ড নেই।"
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "আপনার অ্যাকাউন্টের সাথে সংযুক্ত AI অ্যাপগুলি:"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "অন্যান্য এআই অ্যাপ: একটি অ্যাপ্লিকেশন পাসওয়ার্ড"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "আপনার ব্যবহারকারীর জন্য একটি অ্যাপ্লিকেশন পাসওয়ার্ড তৈরি করুন"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "আপনার ব্যবহারকারীর নাম এবং সেই পাসওয়ার্ড সহ এটি আপনার AI অ্যাপের MCP সেটিংসে যোগ করুন:"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code: একই ভুক্তি .vscode/mcp.json-এ \"mcpServers\"-এর অধীনে নয়, বরং \"servers\"-এর অধীনে রাখুন।"
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "এআই এজেন্ট এখানে ব্যবহার করতে পারে এমন সরঞ্জামগুলি (%d):"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "ব্যবহারকারী নির্দেশিকা: AI এজেন্ট এবং MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "ডেভেলপার ডক্স: সক্ষমতা, REST এবং MCP"
 
@@ -5016,19 +5082,19 @@ msgstr "ক্যাশ সেটিংস পরিবর্তন করুন
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "আপনার পাঠানো সেটিংস পরিবর্তন করে এবং বাকিগুলো অপরিবর্তিত রাখে (পৃষ্ঠার ক্যাশ, পৃষ্ঠাগুলো কতক্ষণ ক্যাশ করা থাকবে, অবজেক্ট ক্যাশ ও এর Redis সংযোগ, পার্জের নিয়মাবলী এবং ব্যতিক্রমসমূহ)। মানগুলো ঠিক Cache স্ক্রিনের মতোই যাচাই ও সংশোধন করা হয়।"
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "ক্যাশ সেটিংসকে তাদের ডিফল্ট অবস্থায় ফিরিয়ে আনুন"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "«রিসেট» বোতামের মতোই প্রতিটি ক্যাশে সেটিংকে তার ডিফল্ট মানে ফিরিয়ে আনে। সংরক্ষিত Redis পাসওয়ার্ডটিও মুছে ফেলা হয়।"
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "ডায়াগনস্টিক রিপোর্ট পড়ুন"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "সাপোর্টের জন্য প্রয়োজনীয় ডায়াগনস্টিক রিপোর্ট প্রদান করে: সংস্করণসমূহ, সার্ভার সীমা, ক্যাশের অবস্থা এবং সাম্প্রতিক ত্রুটিসমূহ। এতে কোনো পাসওয়ার্ড বা কী থাকে না।"
 

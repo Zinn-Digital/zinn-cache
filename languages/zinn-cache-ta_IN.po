@@ -59,7 +59,7 @@ msgstr "விலக்கல்கள்"
 
 #: includes/class-admin.php:126
 #: includes/class-admin.php:152
-#: includes/mcp-kit/class-server.php:220
+#: includes/mcp-kit/class-server.php:237
 msgid "AI agents (MCP)"
 msgstr "AI முகவர்கள் (MCP)"
 
@@ -72,12 +72,12 @@ msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Co
 msgstr "தேக்ககத்தில் உள்ள ஒவ்வொரு பக்கமும் நிராகரிக்கப்பட்டு, பார்வையாளர்கள் வரும்போது மீண்டும் உருவாக்கப்படும். தொடர விரும்புகிறீர்களா?"
 
 #: includes/class-admin.php:153
-#: includes/mcp-kit/class-server.php:229
+#: includes/mcp-kit/class-server.php:246
 msgid "Allow AI agents (MCP)"
 msgstr "AI முகவர்களை அனுமதிக்கவும் (MCP)"
 
 #: includes/class-admin.php:154
-#: includes/mcp-kit/class-server.php:231
+#: includes/mcp-kit/class-server.php:248
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "முடக்கப்பட்டது: கீழே உள்ள கருவிகளும் அவற்றின் REST வழிகளும் பதிவு செய்யப்படவில்லை."
 
@@ -1988,6 +1988,7 @@ msgstr "ஒயிட்-லேபிள் பயன்முறையை மு
 
 #: includes/freemius-strings.php:868
 #: includes/freemius-strings.php:3745
+#: includes/mcp-kit/class-server.php:269
 msgid "Disconnect"
 msgstr "இணைப்பைத் துண்டி"
 
@@ -4934,9 +4935,58 @@ msgctxt "x-ago"
 msgid "%s ago"
 msgstr "%s முன்பு"
 
-#: includes/mcp-kit/class-ability.php:82
+#: includes/mcp-kit/class-ability.php:94
 msgid "The action could not be completed. Try again, and if it keeps failing, contact the site administrator."
 msgstr "செயலை முடிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும், தொடர்ந்து தோல்வியுற்றால், தள நிர்வாகியைத் தொடர்பு கொள்ளவும்."
+
+#: includes/mcp-kit/class-oauth.php:639
+#: includes/mcp-kit/class-oauth.php:650
+msgid "Connect an AI app"
+msgstr "AI செயலியை இணைக்கவும்"
+
+#: includes/mcp-kit/class-oauth.php:652
+#: includes/mcp-kit/class-oauth.php:658
+#: includes/mcp-kit/class-oauth.php:699
+msgid "This connection request has expired. Go back to the app and start connecting again."
+msgstr "இந்த இணைப்பு கோரிக்கையின் காலம் முடிந்துவிட்டது. பயன்பாட்டிற்குச் சென்று மீண்டும் இணைக்கத் தொடங்குங்கள்."
+
+#. translators: 1: the AI app's name, 2: the plugin's MCP server name, 3: the WordPress user's display name.
+#: includes/mcp-kit/class-oauth.php:666
+#, php-format
+msgid "%1$s is asking to use %2$s on this site as %3$s. It can do only what your WordPress account is allowed to do, and you can disconnect it at any time from the AI agents (MCP) settings."
+msgstr "%1$s இந்தத் தளத்தில் %2$s-ஐ %3$s ஆகப் பயன்படுத்தக் கோருகிறது. உங்கள் WordPress கணக்கிற்கு அனுமதிக்கப்பட்டதை மட்டுமே இது செய்ய முடியும், மேலும் AI ஏஜெண்டுகள் (MCP) அமைப்புகளில் இருந்து எப்போது வேண்டுமானாலும் இதை நீங்கள் துண்டிக்கலாம்."
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:669
+#, php-format
+msgid "%1$s identified itself from %2$s."
+msgstr "%1$s தன்னை %2$s இலிருந்து அடையாளம் காட்டியது."
+
+#. translators: 1: the AI app's name, 2: a domain name.
+#: includes/mcp-kit/class-oauth.php:672
+#, php-format
+msgid "%1$s registered itself automatically. Only continue if you started this from %2$s."
+msgstr "%1$s தானாகவே பதிவுசெய்துகொண்டது. இதை நீங்கள் %2$s இலிருந்து தொடங்கியிருந்தால் மட்டுமே தொடரவும்."
+
+#: includes/mcp-kit/class-oauth.php:676
+msgid "Your account cannot use these tools on this site. Ask an administrator."
+msgstr "உங்கள் கணக்கு இந்த தளத்தில் இந்த கருவிகளைப் பயன்படுத்த முடியாது. நிர்வாகியிடம் கேட்கவும்."
+
+#. translators: %s: a domain name.
+#: includes/mcp-kit/class-oauth.php:679
+#, php-format
+msgid "After you answer you will go back to %s."
+msgstr "நீங்கள் பதிலளித்த பிறகு %s என்பதற்குத் திரும்புவீர்கள்."
+
+#. translators: %s: the AI app's name.
+#: includes/mcp-kit/class-oauth.php:684
+#, php-format
+msgid "Allow %s"
+msgstr "%s-ஐ அனுமதி"
+
+#: includes/mcp-kit/class-oauth.php:685
+msgid "Do not allow"
+msgstr "அனுமதிக்க வேண்டாம்"
 
 #: includes/mcp-kit/class-rest-bridge.php:322
 msgid "A required value is missing or has the wrong form. Check the ability's input schema."
@@ -4946,41 +4996,57 @@ msgstr "தேவையான மதிப்பு விடுபட்டு�
 msgid "The site refused the request."
 msgstr "தளம் கோரிக்கையை நிராகரித்தது."
 
-#: includes/mcp-kit/class-server.php:221
-msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user with an application password and can do only what that user is allowed to do."
-msgstr "Claude, Cursor அல்லது VS Code போன்ற AI உதவியாளர்களை MCP (Model Context Protocol) வழியாக உங்களுக்காக இந்த தளத்தில் பணியாற்ற அனுமதியுங்கள். அவர்கள் ஒரு பயன்பாட்டு கடவுச்சொல்லுடன் WordPress பயனராக உள்நுழைகிறார்கள், மேலும் அந்த பயனருக்கு அனுமதிக்கப்பட்டதை மட்டுமே செய்ய முடியும்."
+#: includes/mcp-kit/class-server.php:238
+msgid "Let AI assistants such as Claude, Cursor or VS Code work on this site for you through MCP (Model Context Protocol). They sign in as a WordPress user (Claude and ChatGPT by approving them here, others with an application password) and can do only what that user is allowed to do."
+msgstr "MCP (Model Context Protocol) வழியாக உங்களுக்காக Claude, Cursor அல்லது VS Code போன்ற AI உதவியாளர்களை இந்தத் தளத்தில் பணியாற்ற அனுமதியுங்கள். அவர்கள் ஒரு WordPress பயனராக உள்நுழைகிறார்கள் (Claude மற்றும் ChatGPT ஆகியவற்றை இங்கே அங்கீகரிப்பதன் மூலமும், மற்றவை பயன்பாட்டு கடவுச்சொல் மூலமும்) மேலும் அந்தப் பயனருக்கு அனுமதிக்கப்பட்டதை மட்டுமே அவர்களால் செய்ய முடியும்."
 
-#: includes/mcp-kit/class-server.php:223
+#: includes/mcp-kit/class-server.php:240
 msgid "AI agents need WordPress 6.9 or later. Update WordPress to use them."
 msgstr "AI முகவர்களுக்கு WordPress 6.9 அல்லது அதற்குப் பிந்தைய பதிப்பு தேவை. அவற்றைப் பயன்படுத்த WordPress-ஐப் புதுப்பிக்கவும்."
 
-#: includes/mcp-kit/class-server.php:236
+#: includes/mcp-kit/class-server.php:253
 msgid "Connection address (MCP endpoint)"
 msgstr "இணைப்பு முகவரி (MCP இறுதிப்புள்ளி)"
 
-#: includes/mcp-kit/class-server.php:239
+#: includes/mcp-kit/class-server.php:257
+msgid "Claude and ChatGPT: sign in instead"
+msgstr "Claude மற்றும் ChatGPT: பதிலாக உள்நுழையவும்"
+
+#: includes/mcp-kit/class-server.php:258
+msgid "Add the connection address as a custom connector in Claude, or as an app in ChatGPT developer mode. They open this site so you can approve them; no password to copy."
+msgstr "இணைப்பு முகவரியை Claude-இல் தனிப்பயன் இணைப்பியகவோ, அல்லது ChatGPT டெவலப்பர் பயன்முறையில் ஒரு பயன்பாடாகவோ சேர்க்கவும். நீங்கள் அவற்றை அங்கீகரிக்கும் வகையில் அவை இந்தத் தளத்தைத் திறக்கும்; நகலெடுப்பதற்கு கடவுச்சொல் எதுவும் இல்லை."
+
+#: includes/mcp-kit/class-server.php:260
+msgid "AI apps connected to your account:"
+msgstr "உங்கள் கணக்குடன் இணைக்கப்பட்ட AI செயலிகள்:"
+
+#: includes/mcp-kit/class-server.php:275
+msgid "Other AI apps: an application password"
+msgstr "பிற AI செயலிகள்: பயன்பாட்டு கடவுச்சொல்"
+
+#: includes/mcp-kit/class-server.php:277
 msgid "Create an application password for your user"
 msgstr "உங்கள் பயனருக்கு ஒரு பயன்பாட்டு கடவுச்சொல்லை உருவாக்கவும்"
 
-#: includes/mcp-kit/class-server.php:240
+#: includes/mcp-kit/class-server.php:278
 msgid "Add this to your AI app’s MCP settings, with your username and that password:"
 msgstr "உங்கள் பயனர்பெயர் மற்றும் அந்த கடவுச்சொல்லுடன் இதை உங்கள் AI பயன்பாட்டின் MCP அமைப்புகளில் சேர்க்கவும்:"
 
-#: includes/mcp-kit/class-server.php:242
+#: includes/mcp-kit/class-server.php:280
 msgid "VS Code: put the same entry under \"servers\" in .vscode/mcp.json, not under \"mcpServers\"."
 msgstr "VS Code: அதே உள்ளீட்டை .vscode/mcp.json-இல் உள்ள \"servers\"-இன் கீழ் வைக்கவும், \"mcpServers\"-இன் கீழ் அல்ல."
 
 #. translators: %d: how many tools an AI agent can use.
-#: includes/mcp-kit/class-server.php:246
+#: includes/mcp-kit/class-server.php:284
 #, php-format
 msgid "Tools an AI agent can use here (%d):"
 msgstr "இங்கே ஒரு AI முகவர் பயன்படுத்தக்கூடிய கருவிகள் (%d):"
 
-#: includes/mcp-kit/class-server.php:257
+#: includes/mcp-kit/class-server.php:295
 msgid "User guide: AI agents and MCP"
 msgstr "பயனர் வழிகாட்டி: AI ஏஜென்ட்கள் மற்றும் MCP"
 
-#: includes/mcp-kit/class-server.php:260
+#: includes/mcp-kit/class-server.php:298
 msgid "Developer docs: abilities, REST and MCP"
 msgstr "டெவெலப்பர் ஆவணங்கள்: திறன்கள், REST மற்றும் MCP"
 
@@ -5016,19 +5082,19 @@ msgstr "தேக்கக அமைப்புகளை மாற்றவு�
 msgid "Changes the settings you send and keeps the rest (page cache, how long pages stay cached, the object cache and its Redis connection, purging rules and exclusions). Values are checked and corrected exactly as on the Cache screen."
 msgstr "நீங்கள் அனுப்பும் அமைப்புகளை மாற்றுகிறது, மற்றவற்றை அப்படியே வைத்திருக்கிறது (பக்கத் தற்காலிகச் சேமிப்பு, பக்கங்கள் எவ்வளவு காலம் தற்காலிகச் சேமிப்பில் இருக்க வேண்டும், பொருள் தற்காலிகச் சேமிப்பு மற்றும் அதன் Redis இணைப்பு, அழித்தல் விதிகள் மற்றும் விலக்குகள்). தற்காலிகச் சேமிப்புத் திரையில் உள்ளதைப் போலவே மதிப்புகள் துல்லியமாகச் சரிபார்க்கப்பட்டு திருத்தப்படுகின்றன."
 
-#: includes/mcp/class-abilities.php:138
+#: includes/mcp/class-abilities.php:139
 msgid "Put the cache settings back to their defaults"
 msgstr "கேச் அமைப்புகளை அவற்றின் இயல்புநிலைக்கு மீட்டமைக்கவும்"
 
-#: includes/mcp/class-abilities.php:139
+#: includes/mcp/class-abilities.php:140
 msgid "Puts every cache setting back to its default, as the Reset button does. The saved Redis password is removed too."
 msgstr "மீட்டமை பொத்தான் செய்வது போலவே ஒவ்வொரு தேக்கக அமைப்பையும் அதன் இயல்புநிலைக்கு மீட்டமைக்கிறது. சேமிக்கப்பட்ட Redis கடவுச்சொல்லும் அகற்றப்படும்."
 
-#: includes/mcp/class-abilities.php:157
+#: includes/mcp/class-abilities.php:158
 msgid "Read the diagnostics report"
 msgstr "கண்டறிதல் அறிக்கையைப் படிக்கவும்"
 
-#: includes/mcp/class-abilities.php:158
+#: includes/mcp/class-abilities.php:159
 msgid "Returns the diagnostics report support asks for: versions, server limits, the cache state and recent errors. It holds no passwords or keys."
 msgstr "ஆதரவு கோரும் கண்டறியும் அறிக்கையை வழங்குகிறது: பதிப்புகள், சேவையக வரம்புகள், தற்காலிக சேமிப்பு நிலை மற்றும் சமீபத்திய பிழைகள். இதில் கடவுச்சொற்கள் அல்லது விசைகள் எதுவும் இல்லை."
 
