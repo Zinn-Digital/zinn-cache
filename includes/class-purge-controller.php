@@ -91,6 +91,15 @@ final class Purge_Controller {
 		 * flush), so it is honoured even when automatic purging is switched off.
 		 */
 		add_action( 'zinn_cache_purge_plan', array( $this, 'purge_plan' ), 10, 1 );
+		/**
+		 * Purge everything: `do_action( 'zinn_cache_purge_all' )`.
+		 *
+		 * ⛔ Nothing listened to this until 1.9.10 (W16, 2026-10-05). The settings screen's "Purge
+		 * everything now" button and every deploy fired it, and it did nothing — measured on
+		 * demo.zinnchat.com from WP-CLI: 2 pages before, 2 after, `has_action()` 0. Explicit, so
+		 * honoured even when automatic purging is switched off.
+		 */
+		add_action( 'zinn_cache_purge_all', array( $this, 'purge_everything' ), 10, 0 );
 
 		if ( empty( $this->settings['auto_purge_enabled'] ) ) {
 			return;
@@ -279,6 +288,32 @@ final class Purge_Controller {
 	 */
 	public function purge_all(): void {
 		$this->dispatch( Purge_Planner::everything() );
+	}
+
+	/**
+	 * Purge the entire cache on an explicit request (the `zinn_cache_purge_all` action, the
+	 * settings screen's button, `wp zinn-cache purge all`).
+	 *
+	 * @return void
+	 */
+	public function purge_everything(): void {
+		$this->lscache->purge_all( 'manual' );
+	}
+
+	/**
+	 * Purge one post's pages and the listings it can appear on, whatever its status
+	 * (`wp zinn-cache purge post <id>`).
+	 *
+	 * @param int $post_id Post ID.
+	 * @return bool False when there is no such post.
+	 */
+	public function purge_post( int $post_id ): bool {
+		$post = get_post( $post_id );
+		if ( ! $post instanceof WP_Post ) {
+			return false;
+		}
+		$this->dispatch( $this->plan_for_post( $post ) );
+		return true;
 	}
 
 	/**

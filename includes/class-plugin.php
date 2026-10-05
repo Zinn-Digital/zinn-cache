@@ -87,7 +87,8 @@ final class Plugin {
 			}
 		);
 
-		( new Purge_Controller( $lscache, $settings ) )->register();
+		$purger = new Purge_Controller( $lscache, $settings );
+		$purger->register();
 		// Reports plugin/theme/core changes to the panel so the speed timeline can
 		// explain a score change (docs/85 §6.2). It hooks the SAME WordPress events
 		// `Purge_Controller` already listens to — those were purging the cache and
@@ -121,7 +122,7 @@ final class Plugin {
 		// capability keeps working for our own customers and leaves the public artefact entirely.
 		// DO NOT re-add it here.
 		( new Updater( ZINN_CACHE_FILE, ZINN_CACHE_VERSION ) )->register();
-		Cli::register();
+		Cli::register( $lscache, $purger );
 
 		if ( is_admin() ) {
 			( new Admin( new Object_Cache( $settings ), $lscache ) )->register();

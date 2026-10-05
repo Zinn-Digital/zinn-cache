@@ -47,6 +47,11 @@ final class Lscache {
 	private const HEADER_PURGE = 'X-LiteSpeed-Purge';
 
 	/**
+	 * The file (under the cache root) holding server purge directives a WP-CLI run could not send.
+	 */
+	public const PENDING_FILE = 'server-purge.pending';
+
+	/**
 	 * Current, normalised plugin settings.
 	 *
 	 * @var array<string,mixed>
@@ -84,6 +89,82 @@ final class Lscache {
 	public function register(): void {
 		add_action( 'template_redirect', array( $this, 'maybe_start_buffer' ), 0 );
 		add_action( 'shutdown', array( $this, 'flush_purge_queue' ), 0 );
+		add_action( 'init', array( $this, 'send_deferred_purge' ), 0 );
+	}
+
+	/**
+	 * Whether this run has no HTTP response to carry a purge header (WP-CLI).
+	 *
+	 * @return bool
+	 */
+	public static function is_cli(): bool {
+		return defined( 'WP_CLI' ) && WP_CLI;
+	}
+
+	/**
+	 * The path of the deferred server-purge file.
+	 *
+	 * @return string
+	 */
+	public static function pending_file(): string {
+		return Page_Cache::root() . '/' . self::PENDING_FILE;
+	}
+
+	/**
+	 * Keep server purge directives for the next web request, from a run that has no response.
+	 *
+	 * ⛔ A LiteSpeed server purges only on a response header, and a WP-CLI run sends none, so a
+	 * purge from the command line used to be dropped without a word (W16, 2026-10-05). The disk
+	 * cache never needed this: the drop-in is installed only where LiteSpeed is NOT the server,
+	 * so a site with a ready disk cache has nothing to defer. A file, not an option: the check
+	 * runs on every uncached request, and a stat() costs less than a query.
+	 *
+	 * @param string[] $directives `*` or `tag=<tag>` entries.
+	 * @return bool Whether anything was deferred.
+	 */
+	public function defer_server_purge( array $directives ): bool {
+		if ( array() === $directives || ! self::is_cli() || null !== $this->cache_engine_hook_prefix()
+			|| empty( $this->settings['lscache_enabled'] ) || Page_Cache::is_ready() ) {
+			return false;
+		}
+		$file    = self::pending_file();
+		$pending = is_file( $file ) ? array_filter( explode( "\n", (string) file_get_contents( $file ) ) ) : array(); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- A local flag file.
+		$pending = in_array( '*', $directives, true ) || in_array( '*', $pending, true )
+			? array( '*' )
+			: array_values( array_unique( array_merge( $pending, $directives ) ) );
+		if ( ! wp_mkdir_p( Page_Cache::root() ) ) {
+			return false;
+		}
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- A local flag file; WP_Filesystem may be FTP-backed.
+		return false !== file_put_contents( $file, implode( "\n", $pending ) . "\n", LOCK_EX );
+	}
+
+	/**
+	 * Send a purge a WP-CLI run deferred, on the first web request after it (hooked to `init`).
+	 *
+	 * @return void
+	 */
+	public function send_deferred_purge(): void {
+		if ( self::is_cli() ) {
+			return;
+		}
+		$file = self::pending_file();
+		if ( ! is_file( $file ) ) {
+			return;
+		}
+		$pending = array_filter( explode( "\n", (string) file_get_contents( $file ) ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- A local flag file.
+		wp_delete_file( $file );
+		if ( ! $this->is_litespeed_server() ) {
+			return;
+		}
+		foreach ( $pending as $directive ) {
+			if ( '*' === $directive ) {
+				$this->purge_all_queued = true;
+			} elseif ( str_starts_with( $directive, 'tag=' ) ) {
+				$this->purge_queue[ $directive ] = true;
+			}
+		}
+		$this->emit_purge_now();
 	}
 
 	/**
@@ -373,6 +454,8 @@ final class Lscache {
 		} elseif ( $this->is_litespeed_server() ) {
 			$this->purge_all_queued = true;
 			$this->emit_purge_now();
+		} else {
+			$this->defer_server_purge( array( '*' ) );
 		}
 		// The disk cache is emptied whatever engine serves now: pages stored before a switch to
 		// LiteSpeed (or before the cache was turned off) must not come back if it is switched back.
@@ -412,6 +495,12 @@ final class Lscache {
 		}
 
 		if ( ! $this->is_litespeed_server() ) {
+			$this->defer_server_purge(
+				array_map(
+					static fn( $tag ): string => 'tag=' . (string) $tag,
+					(array) ( $plan['tags'] ?? array() )
+				)
+			);
 			return;
 		}
 

@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.9.9
+Stable tag: 1.9.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -178,7 +178,14 @@ No. If the LiteSpeed Cache plugin is active, Zinn® Cache defers page caching to
 
 The object cache is optional. If the phpredis extension is missing the toggle is disabled with a notice; if Redis becomes unreachable at runtime, the drop-in serves from a per-request in-memory cache so the site never breaks.
 
+= How do I clear the cache from the command line? =
+
+With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache purge url https://example.com/pricing/` (or just `/pricing/`) empties those pages, and `wp zinn-cache purge post 42` empties a post's page and the lists it appears on. Each prints how many stored pages it removed. On a LiteSpeed server the purge is sent to the server with the next request, which the command makes itself.
+
 == Changelog ==
+
+= 1.9.10 =
+* New: `wp zinn-cache purge all|url|post`, so a stale page can be cleared from the command line. Fixed: "Purge everything now" and the zinn_cache_purge_all action did nothing; a purge from WP-CLI on a LiteSpeed server is now sent with the next request instead of being dropped.
 
 = 1.9.9 =
 * Saving a draft, pending or scheduled post no longer empties the cache of your home page and archives; unpublishing a post still clears its pages.
