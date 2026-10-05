@@ -98,6 +98,7 @@ final class Purge_Controller {
 
 		add_action( 'save_post', array( $this, 'on_save_post' ), 10, 1 );
 		add_action( 'wp_trash_post', array( $this, 'on_save_post' ), 10, 1 );
+		add_action( 'transition_post_status', array( $this, 'on_status_change' ), 10, 3 );
 		// `before_delete_post` fires while the row still exists, so the permalink
 		// and post type can still be resolved (unlike `deleted_post`).
 		add_action( 'before_delete_post', array( $this, 'on_save_post' ), 10, 1 );
@@ -167,10 +168,42 @@ final class Purge_Controller {
 			return;
 		}
 
-		if ( 'auto-draft' === $post->post_status || 'inherit' === $post->post_status ) {
+		if ( ! self::is_public_status( (string) $post->post_status ) && 'trash' !== $post->post_status ) {
 			return;
 		}
 
+		$this->dispatch( $this->plan_for_post( $post ) );
+	}
+
+	/**
+	 * Could a visitor have seen a post in this status (so its cached pages may be out of date)?
+	 *
+	 * ⛔ Not a draft, pending or scheduled post: saving one changes nothing anybody can see, and
+	 * purging the home page and archives for it emptied the cache on every "Save draft" (found on
+	 * demo.pagebuildersandwich.com, 2026-10-05, where each demo visitor's draft copy cleared the
+	 * home page: Zinn® Cache served MISS four requests in a row). Unpublishing is caught by
+	 * {@see self::on_status_change()}.
+	 *
+	 * @param string $status Post status.
+	 * @return bool
+	 */
+	public static function is_public_status( string $status ): bool {
+		return in_array( $status, array( 'publish', 'private' ), true );
+	}
+
+	/**
+	 * A post that was public and no longer is (unpublished, back to draft, scheduled again):
+	 * its pages and lists still show it until they are purged.
+	 *
+	 * @param string  $new_status New status.
+	 * @param string  $old_status Old status.
+	 * @param WP_Post $post       Post.
+	 * @return void
+	 */
+	public function on_status_change( string $new_status, string $old_status, $post ): void {
+		if ( ! $post instanceof WP_Post || ! self::is_public_status( $old_status ) || self::is_public_status( $new_status ) || 'trash' === $new_status ) {
+			return; // Trashing is purged by wp_trash_post, before the status changes.
+		}
 		$this->dispatch( $this->plan_for_post( $post ) );
 	}
 
