@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.9.10
+Stable tag: 1.9.11
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -183,6 +183,9 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache purge url https://example.com/pricing/` (or just `/pricing/`) empties those pages, and `wp zinn-cache purge post 42` empties a post's page and the lists it appears on. Each prints how many stored pages it removed. On a LiteSpeed server the purge is sent to the server with the next request, which the command makes itself.
 
 == Changelog ==
+
+= 1.9.11 =
+* Security-scan annotation on the AI agents (MCP) sign-in screen (no behaviour change): every value on its Allow button is escaped.
 
 = 1.9.10 =
 * New: `wp zinn-cache purge all|url|post`, so a stale page can be cleared from the command line. Fixed: "Purge everything now" and the zinn_cache_purge_all action did nothing; a purge from WP-CLI on a LiteSpeed server is now sent with the next request instead of being dropped.
