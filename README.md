@@ -22,7 +22,7 @@ Everything in Zinn® Cache keeps working without it.
 
 | | |
 |---|---|
-| Version | `1.9.11` |
+| Version | `1.9.12` |
 | Requires WordPress | 6.6 or later |
 | Tested up to | WordPress **7.1** |
 | Requires PHP | 8.2 or later |
@@ -44,7 +44,7 @@ The listing is at https://wordpress.org/plugins/zinn-cache/. On a site we host i
 - **[zinn-migrate](https://github.com/Zinn-Digital/zinn-migrate)** — Install it on the WordPress site you are LEAVING. It packages that site — files and database — into one archive and gives you a private link to paste into your Zinn Digital® migration. For hosts that give you no FTP, no SSH and no control-panel API; if you have any of those, Zinn® can fetch the site directly and you do not need this.
 - **[zinn-offload](https://github.com/Zinn-Digital/zinn-offload)** — Move a WordPress media library to Zinn® object storage and serve it from a CDN. Configured from the Zinn® dashboard — no access key is ever typed into WordPress. · [Install from WordPress.org](https://wordpress.org/plugins/zinn-offload/)
 - **[zinn-reseller](https://github.com/Zinn-Digital/zinn-reseller-toolkit)** — Sell Zinn Digital® hosting from your own WordPress site — domain search, one-click client sign-in, and WooCommerce provisioning. · [Install from WordPress.org](https://wordpress.org/plugins/zinn-reseller/)
-- **[zinn-translate](https://github.com/Zinn-Digital/zinn-translate)** — Publish a WordPress site in 58 languages on their own web addresses — translated slugs, SEO metadata, menus, WooCommerce and hreflang — translated with a Zinn Digital® plan or the site owner's own provider key.
+- **[zinn-translate](https://github.com/Zinn-Digital/zinn-translate)** — Publish a WordPress site in 58 languages on their own web addresses — translated slugs, SEO metadata, menus, WooCommerce and hreflang — translated with a Zinn Digital® plan or the site owner's own provider key. · [Install from WordPress.org](https://wordpress.org/plugins/zinn-translate/)
 
 All of them are free to download from https://zinndigital.com/wordpress-plugins.
 
