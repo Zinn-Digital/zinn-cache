@@ -72,15 +72,36 @@ final class OAuth {
 				return $resources;
 			}
 		);
+		if ( ! did_action( 'plugins_loaded' ) ) {
+			add_action( 'plugins_loaded', array( self::class, 'load' ), 6 );
+			return;
+		}
 		// ⛔ A plugin that boots its MCP server ON `plugins_loaded` (Zinn® Cache and the Reseller
 		// Toolkit do, at priority 10) arrives after priority 6 has run: the hook never fired, so a
 		// site with only that plugin had no OAuth sign-in at all (found by the access gate's
-		// stale OAuth rows, 2026-10-04). Start now in that case; the first copy still wins.
-		if ( did_action( 'plugins_loaded' ) ) {
+		// stale OAuth rows, 2026-10-04). Start now in that case; the first copy still wins. A
+		// deferred start's replay of `plugins_loaded` counts as running it (doing_action()).
+		if ( doing_action( 'plugins_loaded' ) ) {
 			self::load();
-		} else {
-			add_action( 'plugins_loaded', array( self::class, 'load' ), 6 );
+			return;
 		}
+		if ( ! defined( 'WP_CLI' ) || ! constant( 'WP_CLI' ) ) {
+			self::load(); // A plugin file read after WordPress loaded (activated in this request).
+			return;
+		}
+		// ⛔⛔ Under WP-CLI every host starts AFTER WordPress has loaded (WP-CLI's `after_wp_load`,
+		// PERF2/PERF3/CONSENT1) and then replays `plugins_loaded` for what its start hooked. Starting
+		// the server here, in the middle of that start, put the sign-in's hooks ahead of everything
+		// the rest of the starts add — a different hook order from an immediate start (KIT1, Q243:
+		// 9 hook-map lines; a later change could have picked a different owner unseen). So the
+		// sign-in waits for the replay at priority 6, exactly as when the plugin starts at once —
+		// the same rule as Adapter::offer() (plugins_loaded@5, never at once). A plugin file read
+		// later in a command (`wp plugin activate`) gets neither: no WP-CLI command serves the
+		// sign-in (it answers browser and REST requests). ⛔ There is no WP-CLI hook to fall back
+		// on: `before_run_command` and `before_invoke:<command>` fire BEFORE WordPress loads
+		// (`wp eval` loads it inside the command; measured 2026-10-14), so a fallback there starts
+		// the server at once, mid-start — the defect itself.
+		add_action( 'plugins_loaded', array( self::class, 'load' ), 6 );
 	}
 
 	/**
@@ -220,7 +241,7 @@ final class OAuth {
 		}
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
-		echo wp_json_encode( $body, JSON_UNESCAPED_SLASHES );
+		echo wp_json_encode( $body );
 		exit;
 	}
 
@@ -1085,7 +1106,17 @@ final class OAuth {
 	private static function requesting( string $route ): bool {
 		$uri  = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 		$path = untrailingslashit( (string) wp_parse_url( $uri, PHP_URL_PATH ) );
-		$want = untrailingslashit( (string) wp_parse_url( rest_url( $route ), PHP_URL_PATH ) );
+		// ⛔ Not rest_url() before WordPress has built $wp_rewrite: a plugin that asks who the user
+		// is during `plugins_loaded` (Zinn® SEO's inspector does) runs this filter that early, and
+		// rest_url() then dies on a null $wp_rewrite — every OAuth MCP request answered 500
+		// (P13, 2026-10-13, mcp_abilities.sh). OAuth needs pretty permalinks, so the address is
+		// the home path, the REST prefix and the route either way.
+		$want = untrailingslashit(
+			(string) wp_parse_url(
+				( $GLOBALS['wp_rewrite'] ?? null ) instanceof \WP_Rewrite ? rest_url( $route ) : home_url( '/' . rest_get_url_prefix() . '/' . ltrim( $route, '/' ) ),
+				PHP_URL_PATH
+			)
+		);
 		$qr   = isset( $_GET['rest_route'] ) ? untrailingslashit( sanitize_text_field( wp_unslash( $_GET['rest_route'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- routing, not a form.
 
 		return $path === $want || '/' . $route === $qr;

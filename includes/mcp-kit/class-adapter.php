@@ -67,6 +67,22 @@ final class Adapter {
 			return false;
 		}
 		if ( defined( 'ZINN_MCP_ADAPTER' ) ) {
+			// Another copy loaded the adapter first — the first kit to load decides, and plugins
+			// load alphabetically, so it may be an OLDER kit whose own start leaves the adapter on
+			// `init` under WP-CLI. Its servers then list every ability while WordPress is still
+			// loading, before a plugin that starts on `after_wp_load` (Zinn® SEO, class-boot.php)
+			// has registered one: `wp mcp-adapter serve --server=zinn-seo` answered 0 tools beside
+			// Page Builder Sandwich 6.34.18 and Tranzly 3.25.14 with WooCommerce's adapter
+			// (Q286, demo.zinnseo.com, 2026-10-15; with either sibling skipped, 373). So EVERY copy
+			// runs start_external() after the first copy's start: it never starts a dormant adapter
+			// for a WP-CLI command the adapter does not serve, and moving an already-moved start is
+			// a no-op (after_load()), so a sibling that is older can no longer take our tools.
+			// Only where it can matter: a `wp mcp-adapter …` command (after_load() acts only under
+			// WP-CLI, and never starts a server for another command), so every other request and
+			// command keeps exactly the hooks it had (the deferred-start hook map, PERF3).
+			if ( '' !== (string) constant( 'ZINN_MCP_ADAPTER' ) && defined( 'WP_CLI' ) && constant( 'WP_CLI' ) && ! self::cli_without_mcp() && false === has_action( 'plugins_loaded', array( self::class, 'start_external' ) ) ) {
+				add_action( 'plugins_loaded', array( self::class, 'start_external' ), 100 );
+			}
 			return class_exists( self::ENTRY );
 		}
 		if ( ! function_exists( 'wp_register_ability' ) ) {
@@ -99,9 +115,69 @@ final class Adapter {
 			return true; // Loadable, deliberately not started: see cli_without_mcp().
 		}
 		$entry = self::ENTRY;
-		$entry::instance();
+		self::bundled_as_library();
+		self::after_load( $entry::instance() );
 
 		return true;
+	}
+
+	/**
+	 * Under WP-CLI, start the adapter's servers right after WordPress has loaded, never while it
+	 * loads (stage PERF2, Q191).
+	 *
+	 * ⛔⛔ Measured 2026-10-13 (WordPress 7.1.3 / PHP 8.4, WooCommerce + the six hosted plugins):
+	 * the adapter starts its servers on `init` under WP-CLI, and starting them lists every
+	 * ability, which builds every plugin's REST routes — +16 MB (WooCommerce's routes) while
+	 * WordPress is still loading under PHP's 128 MB limit, which WP-CLI lifts only after
+	 * `wp-settings.php` (WP_CLI\Runner::load_wordpress). `wp mcp-adapter serve` then answered
+	 * tools/list with 0 tools for EVERY server, with or without Zinn® SEO. WP-CLI's
+	 * `after_wp_load` runs after the limit is lifted and before the command is looked up, so
+	 * `wp mcp-adapter …` still finds its command and every server, exactly as before. A copy the
+	 * adapter does not start on `init` (an older or newer adapter) is left as it is.
+	 *
+	 * @param object $adapter The adapter instance.
+	 * @return void
+	 */
+	public static function after_load( $adapter ): void {
+		if ( ! defined( 'WP_CLI' ) || ! constant( 'WP_CLI' ) || ! class_exists( '\\WP_CLI' ) || ! method_exists( '\\WP_CLI', 'add_hook' ) || did_action( 'init' ) ) {
+			return;
+		}
+		$start = array( $adapter, 'init' );
+		$at    = has_action( 'init', $start );
+		if ( false === $at ) {
+			return;
+		}
+		remove_action( 'init', $start, (int) $at );
+		\WP_CLI::add_hook( 'after_wp_load', $start );
+	}
+
+	/**
+	 * Tell a bundled adapter (0.7.0+) that it is deliberately loaded as a library.
+	 *
+	 * Since 0.7.0 the adapter calls `_deprecated_function()` from `McpAdapter::init()` on every
+	 * request unless `WP_MCP_VERSION` is defined — which only its own plugin file does — and then
+	 * defines the constant itself (upstream: "so bad plugins don't break those that follow best
+	 * practices"). We start that copy, so we define the constant first, to the same value the
+	 * adapter would: a notice on every WP_DEBUG request is a WordPress.org review defect (§2.15),
+	 * and no site owner can act on it. Called only for a copy nobody else started (ours, or a
+	 * dormant bundled one); the MCP Adapter plugin defines it unconditionally in
+	 * `Plugin::constants()` while its file loads, long before `plugins_loaded`, and then its copy
+	 * is `external` and already started, so this never runs beside it.
+	 *
+	 * ⛔ §2.36 suppression. Fact it rests on: WordPress core ships no MCP adapter, and the site
+	 * has no MCP Adapter plugin active (that plugin's copy would win and be started by its
+	 * owner). Re-check condition: remove once WordPress core or an installed adapter plugin
+	 * provides MCP — and on every adapter version bump (`wp/bin/mcp-adapter.lock.json`), re-read
+	 * `McpAdapter::check_plugin_loaded()` for the constant it tests.
+	 *
+	 * @return void
+	 */
+	private static function bundled_as_library(): void {
+		$entry = ltrim( self::ENTRY, '\\' );
+		if ( defined( 'WP_MCP_VERSION' ) || ! defined( $entry . '::VERSION' ) ) {
+			return;
+		}
+		define( 'WP_MCP_VERSION', (string) constant( $entry . '::VERSION' ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- the adapter's own constant, which it reads (see above).
 	}
 
 	/**
@@ -143,6 +219,34 @@ final class Adapter {
 	}
 
 	/**
+	 * The server a `wp mcp-adapter serve --server=<id>` command serves, or null for every other
+	 * request (a REST/HTTP MCP request included: it may reach any server).
+	 *
+	 * ⛔⛔ Measured 2026-10-13 (P13: WordPress 7.1.3 / PHP 8.4, WooCommerce + the six hosted
+	 * plugins at WP-CLI's 128 MB): `serve --server=zinn-seo` built every host's abilities, ~690,
+	 * to list Zinn® SEO's 395, and passed at 128 MB but failed at 126 MB. Only the served
+	 * server's abilities are needed for it.
+	 *
+	 * @return string|null
+	 */
+	public static function cli_server(): ?string {
+		if ( ! defined( 'WP_CLI' ) || ! constant( 'WP_CLI' ) || ! class_exists( '\\WP_CLI' ) || ! method_exists( '\\WP_CLI', 'get_runner' ) ) {
+			return null;
+		}
+		$runner = \WP_CLI::get_runner();
+		// Runner::$arguments / $assoc_args are private behind __get() (no __isset()): read them.
+		$args  = is_object( $runner ) ? $runner->arguments : array();
+		$assoc = is_object( $runner ) ? $runner->assoc_args : array();
+		$args  = is_array( $args ) ? array_values( $args ) : array();
+		if ( 'mcp-adapter' !== (string) ( $args[0] ?? '' ) || 'serve' !== (string) ( $args[1] ?? '' ) ) {
+			return null;
+		}
+		$server = is_array( $assoc ) ? (string) ( $assoc['server'] ?? '' ) : '';
+
+		return '' === $server ? null : $server;
+	}
+
+	/**
 	 * Start another plugin's adapter copy only when its owner has not.
 	 *
 	 * ⛔⛔ Measured 2026-10-01 (test-wp-compat.sh with WooCommerce, which bundles the adapter and
@@ -177,8 +281,9 @@ final class Adapter {
 				return; // Never start a dormant copy for a WP-CLI command that is not the adapter's own.
 			}
 			add_filter( 'mcp_adapter_create_default_server', '__return_false', 5 );
+			self::bundled_as_library();
 		}
-		$entry::instance();
+		self::after_load( $entry::instance() );
 	}
 
 	/**

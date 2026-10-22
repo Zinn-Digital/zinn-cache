@@ -7,7 +7,7 @@ Tags: cache, page cache, object cache, redis, performance
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.9.12
+Stable tag: 1.10.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,48 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache purge url https://example.com/pricing/` (or just `/pricing/`) empties those pages, and `wp zinn-cache purge post 42` empties a post's page and the lists it appears on. Each prints how many stored pages it removed. On a LiteSpeed server the purge is sent to the server with the next request, which the command makes itself.
 
 == Changelog ==
+
+= 1.10.10 =
+* WordPress MCP adapter updated to 0.7.1 (MCP protocol 2026-07-28, session-storage security fix); no deprecation notice from the bundled copy.
+
+= 1.10.9 =
+* Plural forms in every language now follow that language's own plural rules (Russian, Polish, Czech, Croatian, Serbian, Arabic, Hebrew, French and others), re-filled by the translator with a human check on the forms it could not tell apart.
+
+= 1.10.8 =
+* AI agents (MCP): this plugin's tools now always appear to your AI app, even when another Zinn® plugin on the same site is an older version.
+
+= 1.10.7 =
+* More dependable AI app sign-in (MCP): Claude, ChatGPT and other AI apps connect to your site the same way whether a visitor, a scheduled task or a WP-CLI command started WordPress.
+
+= 1.10.6 =
+* Faster and lighter on servers: WP-CLI commands, scheduled tasks and AI agents (MCP) on your site now start with less memory, so they keep working beside large plugins such as WooCommerce.
+
+= 1.10.5 =
+* Translation template refreshed so every language stays complete.
+
+= 1.10.4 =
+* AI agent (MCP) tools load faster and use less memory.
+
+= 1.10.3 =
+* The MCP connection's sign-in response no longer switches off JSON escaping.
+
+= 1.10.2 =
+* Lighter start for WP-CLI commands: works within a 128 MB memory limit beside WooCommerce and other large plugins.
+
+= 1.10.1 =
+* Fixes a site build failure: Zinn® Cache no longer stops WordPress from loading if one of its files is missing.
+
+= 1.10.0 =
+* New: a title, description, redirect or site-wide setting changed in Zinn® SEO reaches visitors straight away: exactly the pages it changed leave the cache, and a bulk change is one purge.
+
+= 1.9.15 =
+* Packaging only, no behaviour change: the licensing icon is now shipped as assets/images/sdk-icon.png instead of a file named like a WordPress.org directory asset (WordPress.org review guidance).
+
+= 1.9.14 =
+* The Zinn® panel now appears only on this plugin's own screens, never on the WordPress dashboard (WordPress.org guideline 11).
+
+= 1.9.13 =
+* Updated Freemius SDK to the latest version.
 
 = 1.9.12 =
 * The readme's External services section now lists the request made when an AI app signs in to the site's MCP server (its public OAuth client metadata); no behaviour change.

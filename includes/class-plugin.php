@@ -89,6 +89,13 @@ final class Plugin {
 
 		$purger = new Purge_Controller( $lscache, $settings );
 		$purger->register();
+		// ⛔ `class_exists` (autoloads): a site that receives this file before `class-seo-purge.php`
+		// (a partial copy, a mixed-version install) must keep serving pages, not die at bootstrap.
+		// A fatal here broke WordPress installs on the fleet (Zinn Cache 1.10.0, 2026-10-11).
+		if ( ! empty( $settings['auto_purge_enabled'] ) && class_exists( Seo_Purge::class ) ) {
+			// A change made in Zinn® SEO (a title, a redirect, a site-wide setting) saves no post.
+			( new Seo_Purge( $purger ) )->register();
+		}
 		// Reports plugin/theme/core changes to the panel so the speed timeline can
 		// explain a score change (docs/85 §6.2). It hooks the SAME WordPress events
 		// `Purge_Controller` already listens to — those were purging the cache and
