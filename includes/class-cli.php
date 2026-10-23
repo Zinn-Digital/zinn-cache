@@ -53,6 +53,9 @@ final class Cli {
 			\WP_CLI::add_command( 'zinn-cache purge all', array( self::class, 'purge_all' ) );
 			\WP_CLI::add_command( 'zinn-cache purge url', array( self::class, 'purge_url' ) );
 			\WP_CLI::add_command( 'zinn-cache purge post', array( self::class, 'purge_post' ) );
+			\WP_CLI::add_command( 'zinn-cache server detect', array( self::class, 'server_detect' ) );
+			\WP_CLI::add_command( 'zinn-cache server drain', array( self::class, 'server_drain' ) );
+			\WP_CLI::add_command( 'zinn-cache refresh', array( self::class, 'refresh' ) );
 		}
 	}
 
@@ -106,9 +109,98 @@ final class Cli {
 		if ( null === self::$purger ) {
 			\WP_CLI::error( 'Zinn® Cache is not loaded on this site.' );
 		}
-		$before = Page_Cache::stats()['pages'];
-		self::$purger->purge_plan( array( 'urls' => $urls ) );
+		$before  = Page_Cache::stats()['pages'];
+		$results = self::$purger->purge_urls_now( $urls, 'cli' );
+		foreach ( $results as $layer => $result ) {
+			if ( 'disk' === $layer ) {
+				continue;
+			}
+			\WP_CLI::log( sprintf( '%s: %d purged, %d failed%s', $layer, (int) $result['ok'], (int) $result['failed'], '' !== (string) $result['error'] ? ' (' . $result['error'] . ')' : '' ) );
+		}
 		self::report( $before, implode( ', ', $urls ) );
+	}
+
+	/**
+	 * Check which caches answer in front of the site (nginx, Varnish, Apache, LiteSpeed, Cloudflare).
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp zinn-cache server detect
+	 *
+	 * @param array<int,string>    $args       Unused.
+	 * @param array<string,string> $assoc_args Unused.
+	 * @return void
+	 */
+	public static function server_detect( array $args, array $assoc_args ): void {
+		unset( $args, $assoc_args );
+		$probe = Server\Probe::run();
+		if ( ! empty( $probe['blind'] ) ) {
+			\WP_CLI::error( sprintf( 'The site did not answer (%s), so it is not known what is in front of it.', (string) $probe['error'] ), false );
+			return;
+		}
+		\WP_CLI::log( sprintf( 'Page cache in front: %s. CDN: %s.', (string) $probe['page'], (string) $probe['cdn'] ) );
+		foreach ( (array) $probe['status'] as $layer => $outcome ) {
+			\WP_CLI::log( sprintf( '  %s: %s', $layer, $outcome ) );
+		}
+		\WP_CLI::success( 'Detection stored.' );
+	}
+
+	/**
+	 * Send the queued server-cache purges now instead of waiting for WP-Cron.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp zinn-cache server drain
+	 *
+	 * @param array<int,string>    $args       Unused.
+	 * @param array<string,string> $assoc_args Unused.
+	 * @return void
+	 */
+	public static function server_drain( array $args, array $assoc_args ): void {
+		unset( $args, $assoc_args );
+		$left = self::controller()->server()->drain();
+		\WP_CLI::success( sprintf( 'Queue sent; %d address(es) still waiting.', $left ) );
+	}
+
+	/**
+	 * Start, stop or show the paced refresh (what replaces "purge everything" after an update).
+	 *
+	 * ## OPTIONS
+	 *
+	 * <action>
+	 * : start, stop, status or tick (run one batch now).
+	 * ---
+	 * options:
+	 *   - start
+	 *   - stop
+	 *   - status
+	 *   - tick
+	 * ---
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp zinn-cache refresh status
+	 *
+	 * @param array<int,string>    $args       The action.
+	 * @param array<string,string> $assoc_args Unused.
+	 * @return void
+	 */
+	public static function refresh( array $args, array $assoc_args ): void {
+		unset( $assoc_args );
+		$action = (string) ( $args[0] ?? 'status' );
+		if ( 'start' === $action ) {
+			Refresh::arm( 'manual' );
+		} elseif ( 'stop' === $action ) {
+			Refresh::stop();
+		} elseif ( 'tick' === $action ) {
+			( new Refresh( self::controller(), Settings::get() ) )->tick();
+		}
+		$state = Refresh::state();
+		if ( null === $state ) {
+			\WP_CLI::success( 'No refresh is running.' );
+			return;
+		}
+		\WP_CLI::success( sprintf( 'Refresh running since %s: stage %s, %d addresses refreshed%s.', gmdate( 'c', (int) $state['armed_at'] ), (string) $state['stage'], (int) $state['done'], '' !== (string) $state['paused'] ? ', paused: ' . $state['paused'] : '' ) );
 	}
 
 	/**
@@ -223,9 +315,16 @@ final class Cli {
 		// Appended, never interleaved: hosts alert on the object-cache fields above by name (V1).
 		// `disk` is decidable from the CLI; `litespeed` is not (the server is known only to a web
 		// request), so an enabled cache without the disk drop-in reports `server`.
-		$pages                      = Page_Cache::stats();
-		$report['page_cache']       = empty( Settings::get()['lscache_enabled'] ) ? 'off' : ( Page_Cache::is_ready() ? 'disk' : 'server' );
-		$report['page_cache_pages'] = $pages['pages'];
+		$pages                = Page_Cache::stats();
+		$report['page_cache'] = empty( Settings::get()['lscache_enabled'] ) ? 'off' : ( Page_Cache::is_ready() ? 'disk' : 'server' );
+		// `server` above means "not the disk cache" (V1 alerts read it by name); the next fields
+		// say which server cache.
+		$report['page_cache_pages']  = $pages['pages'];
+		$server                      = self::controller()->server();
+		$report['server_cache']      = $server->chosen_layer();
+		$report['server_cache_seen'] = $server->page_layer();
+		$report['purge_queue']       = Server\Server_Cache::queue_depth();
+		$report['refresh']           = null === Refresh::state() ? 'idle' : 'running';
 		// false when the build lost vendor/freemius and the plugin is running without it (D28308).
 		$report['freemius'] = ! defined( 'ZINN_CACHE_FREEMIUS_MISSING' );
 

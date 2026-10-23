@@ -124,10 +124,13 @@ final class Purge_Controller {
 		add_action( 'edited_term', array( $this, 'on_term_change' ), 10, 1 );
 		add_action( 'delete_term', array( $this, 'on_term_change' ), 10, 1 );
 
+		// ⛔⛔ Each of these changes every page, and NONE of them empties the cache any more: they
+		// arm the paced refresh (Refresh), which rebuilds the site a batch per minute. Emptying
+		// at once sent every visitor to PHP together (zinnhub.com, 2026-10-22).
 		add_action( 'switch_theme', array( $this, 'purge_all' ) );
 		add_action( 'customize_save_after', array( $this, 'purge_all' ) );
-		add_action( 'activated_plugin', array( $this, 'purge_all' ) );
-		add_action( 'deactivated_plugin', array( $this, 'purge_all' ) );
+		add_action( 'activated_plugin', array( $this, 'on_plugin_toggle' ) );
+		add_action( 'deactivated_plugin', array( $this, 'on_plugin_toggle' ) );
 		add_action( 'wp_update_nav_menu', array( $this, 'purge_all' ) );
 
 		foreach ( self::site_wide_option_hooks() as $hook ) {
@@ -135,8 +138,26 @@ final class Purge_Controller {
 		}
 
 		if ( ! empty( $this->settings['purge_on_upgrade'] ) ) {
-			add_action( 'upgrader_process_complete', array( $this, 'purge_all' ) );
+			add_action( 'upgrader_process_complete', array( $this, 'on_upgrade' ) );
 		}
+	}
+
+	/**
+	 * A plugin was activated or deactivated: refresh the site, paced.
+	 *
+	 * @return void
+	 */
+	public function on_plugin_toggle(): void {
+		Refresh::arm( 'plugin' );
+	}
+
+	/**
+	 * WordPress, a plugin or a theme was updated: refresh the site, paced. Never "purge everything".
+	 *
+	 * @return void
+	 */
+	public function on_upgrade(): void {
+		Refresh::arm( 'update' );
 	}
 
 	/**
@@ -301,6 +322,22 @@ final class Purge_Controller {
 	}
 
 	/**
+	 * Purge exactly these addresses, at once and on every layer (the status screen's
+	 * "Purge this address", `wp zinn-cache purge url`, the REST API, an AI agent).
+	 *
+	 * @param string[] $urls   Absolute URLs.
+	 * @param string   $source Who asked.
+	 * @return array<string,array{ok:int,failed:int,error:string}> Per server layer.
+	 */
+	public function purge_urls_now( array $urls, string $source = 'manual' ): array {
+		$urls = Purge_Planner::normalize_urls( array_map( 'strval', $urls ) );
+		if ( array() === $urls ) {
+			return array();
+		}
+		return $this->dispatch( Purge_Planner::targets( $urls ), 'cli' === $source ? 'cli' : 'manual' );
+	}
+
+	/**
 	 * Purge one post's pages and the listings it can appear on, whatever its status
 	 * (`wp zinn-cache purge post <id>`).
 	 *
@@ -337,6 +374,24 @@ final class Purge_Controller {
 			$urls[] = $archive;
 		}
 
+		// A server cache (nginx, Varnish, Cloudflare) purges by address, not by tag, so the lists
+		// the post appears on are named too: its categories, tags and other terms, and its author.
+		foreach ( get_object_taxonomies( (string) $post->post_type, 'objects' ) as $taxonomy ) {
+			if ( empty( $taxonomy->public ) ) {
+				continue;
+			}
+			$terms = get_the_terms( $post_id, (string) $taxonomy->name );
+			foreach ( is_array( $terms ) ? $terms : array() as $term ) {
+				$link = get_term_link( $term );
+				if ( is_string( $link ) ) {
+					$urls[] = $link;
+				}
+			}
+		}
+		if ( post_type_supports( (string) $post->post_type, 'author' ) && (int) $post->post_author > 0 ) {
+			$urls[] = get_author_posts_url( (int) $post->post_author );
+		}
+
 		$tags = Cache_Tags::for_post_change( $post_id, (string) $post->post_type );
 
 		return Purge_Planner::targets( $urls, $tags );
@@ -345,15 +400,16 @@ final class Purge_Controller {
 	/**
 	 * Dispatch a purge plan to LiteSpeed and mirror it to the panel.
 	 *
-	 * @param array{purge_all:bool,urls:string[],tags:string[]} $plan Purge plan.
-	 * @return void
+	 * @param array{purge_all:bool,urls:string[],tags:string[]} $plan   Purge plan.
+	 * @param string                                            $source Who asked (see Lscache::dispatch()).
+	 * @return array<string,array<string,mixed>> What each cache layer answered.
 	 */
-	private function dispatch( array $plan ): void {
+	private function dispatch( array $plan, string $source = 'auto' ): array {
 		if ( Purge_Planner::is_empty( $plan ) ) {
-			return;
+			return array();
 		}
 
-		$this->lscache->dispatch( $plan );
+		$results = $this->lscache->dispatch( $plan, $source );
 
 		/**
 		 * Fires after the plugin has dispatched a cache purge.
@@ -363,6 +419,7 @@ final class Purge_Controller {
 		do_action( 'zinn_cache_purged', $plan );
 
 		$this->notify_panel( $plan );
+		return $results;
 	}
 
 	/**

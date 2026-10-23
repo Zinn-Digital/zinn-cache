@@ -1,6 +1,6 @@
 # Zinn® Cache
 
-A page cache and a Redis object cache for any WordPress site — LiteSpeed-aware, with smart auto-purge and safe exclusions.
+Page cache, Redis object cache and purging for nginx, Varnish, Apache, LiteSpeed and Cloudflare — updates refresh pages gradually, never all at once.
 
 Built and maintained by **Neil Lock — CEO, Zinn Digital® Ltd** — https://zinndigital.com
 
@@ -22,7 +22,7 @@ Everything in Zinn® Cache keeps working without it.
 
 | | |
 |---|---|
-| Version | `1.10.10` |
+| Version | `1.11.0` |
 | Requires WordPress | 6.6 or later |
 | Tested up to | WordPress **7.1** |
 | Requires PHP | 8.2 or later |

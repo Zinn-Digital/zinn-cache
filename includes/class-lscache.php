@@ -73,12 +73,29 @@ final class Lscache {
 	private bool $purge_all_queued = false;
 
 	/**
+	 * The caches in front of WordPress (nginx, Varnish, Apache, Cloudflare).
+	 *
+	 * @var Server\Server_Cache
+	 */
+	private Server\Server_Cache $server;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param array<string,mixed> $settings Normalised settings from {@see Settings::get()}.
 	 */
 	public function __construct( array $settings ) {
 		$this->settings = $settings;
+		$this->server   = new Server\Server_Cache( $settings );
+	}
+
+	/**
+	 * The server-cache router.
+	 *
+	 * @return Server\Server_Cache
+	 */
+	public function server(): Server\Server_Cache {
+		return $this->server;
 	}
 
 	/**
@@ -90,6 +107,7 @@ final class Lscache {
 		add_action( 'template_redirect', array( $this, 'maybe_start_buffer' ), 0 );
 		add_action( 'shutdown', array( $this, 'flush_purge_queue' ), 0 );
 		add_action( 'init', array( $this, 'send_deferred_purge' ), 0 );
+		$this->server->register();
 	}
 
 	/**
@@ -339,6 +357,9 @@ final class Lscache {
 		if ( $this->is_disk_mode() ) {
 			return $this->finalize_disk( $buffer );
 		}
+		if ( $this->is_server_mode() ) {
+			return $this->finalize_server( $buffer );
+		}
 
 		if ( ! headers_sent() ) {
 			if ( $this->request_is_cacheable() ) {
@@ -386,6 +407,43 @@ final class Lscache {
 	}
 
 	/**
+	 * In front of an nginx, Varnish or Apache page cache: tell it which responses are personal.
+	 *
+	 * ⛔ A response this plugin would never cache — a signed-in visitor, a POST, an excluded
+	 * address, `DONOTCACHEPAGE`, a preview — gets `Cache-Control: private, no-store`, so a server
+	 * cache that honours it (zinnhub.com's nginx does) never keeps one visitor's page for the next.
+	 * A 404 and a search are left to the server's own rules. A cacheable page gets a shared-cache
+	 * lifetime (`s-maxage`) only when the site allows it and nothing else has set Cache-Control.
+	 *
+	 * @param string $buffer Response body.
+	 * @return string The unmodified body.
+	 */
+	private function finalize_server( string $buffer ): string {
+		if ( headers_sent() ) {
+			return $buffer;
+		}
+		$set = false;
+		foreach ( headers_list() as $header ) {
+			if ( 0 === stripos( $header, 'cache-control:' ) ) {
+				$set = true;
+				break;
+			}
+		}
+		if ( $this->request_is_cacheable() ) {
+			if ( ! $set && ! empty( $this->settings['server_cache_headers'] ) && 200 === http_response_code() && $this->is_html_response() ) {
+				header( 'Cache-Control: public, s-maxage=' . $this->ttl_for_request() );
+			}
+			return $buffer;
+		}
+		if ( is_404() || is_search() ) {
+			return $buffer;
+		}
+		header( 'Cache-Control: private, no-store, max-age=0' );
+		header( 'X-Zinn-Cache: BYPASS' );
+		return $buffer;
+	}
+
+	/**
 	 * Whether the response being sent is HTML (no Content-Type header sent yet means WordPress's default, HTML).
 	 *
 	 * @return bool
@@ -407,7 +465,30 @@ final class Lscache {
 	private function should_control_cache(): bool {
 		return ! empty( $this->settings['lscache_enabled'] )
 			&& ! $this->is_lscache_plugin_active()
-			&& ( $this->is_litespeed_server() || $this->is_disk_mode() );
+			&& ( $this->is_litespeed_server() || $this->is_disk_mode() || $this->is_server_mode() );
+	}
+
+	/**
+	 * Whether something other than the plugin's disk cache serves pages here: the LiteSpeed server,
+	 * the LiteSpeed Cache plugin, or an nginx / Varnish / Apache page cache in front of WordPress.
+	 * When it does, the disk cache is not installed ({@see Page_Cache::sync()}).
+	 *
+	 * @return bool
+	 */
+	public function page_cache_is_elsewhere(): bool {
+		return $this->is_litespeed_server() || $this->is_lscache_plugin_active() || $this->server->has_server_page_cache();
+	}
+
+	/**
+	 * Whether an nginx, Varnish or Apache page cache sits in front of WordPress on this request
+	 * (and LiteSpeed does not: on LiteSpeed its own cache wins).
+	 *
+	 * @return bool
+	 */
+	public function is_server_mode(): bool {
+		return ! $this->is_lscache_plugin_active()
+			&& ! $this->is_litespeed_server()
+			&& $this->server->has_server_page_cache();
 	}
 
 	/**
@@ -426,7 +507,9 @@ final class Lscache {
 	/**
 	 * Which page-cache engine serves this site right now, for the status screen and the CLI.
 	 *
-	 * @return string `litespeed`, `disk`, `plugin`, `off` or `not-ready` (on, but the disk cache is not installed).
+	 * @return string `litespeed`, `disk`, `plugin`, `off`, `server:<nginx|varnish|apache>` (a server
+	 *                page cache in front, the plugin purges it) or `not-ready` (on, but the disk cache
+	 *                is not installed).
 	 */
 	public function engine(): string {
 		if ( empty( $this->settings['lscache_enabled'] ) ) {
@@ -438,16 +521,26 @@ final class Lscache {
 		if ( $this->is_litespeed_server() ) {
 			return 'litespeed';
 		}
+		if ( $this->server->has_server_page_cache() ) {
+			return 'server:' . $this->server->page_layer();
+		}
 		return Page_Cache::is_ready() ? 'disk' : 'not-ready';
 	}
 
 	/**
-	 * Purge the entire full-page cache.
+	 * Empty the entire page cache AT ONCE, and every cache in front of WordPress with it.
+	 *
+	 * ⛔⛔ Only on an explicit request from a person or their tooling ("Empty all now", `wp
+	 * zinn-cache purge all`, the REST API with `all`). Updates, activations and site-wide changes
+	 * arm the paced {@see Refresh} instead — see {@see self::dispatch()}.
 	 *
 	 * @param string $reason Why: 'manual', 'deploy', 'update' or 'api' (passed to `zinn_cache_purged_all`).
 	 * @return void
 	 */
 	public function purge_all( string $reason = 'manual' ): void {
+		// A running refresh is moot once everything is gone.
+		Refresh::stop();
+		$this->server->purge_all( $reason );
 		$engine = $this->cache_engine_hook_prefix();
 		if ( null !== $engine ) {
 			do_action( $engine . 'purge_all' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Invoking the active cache-engine plugin's own action, not defining ours; the prefix comes from the fixed CACHE_ENGINES map.
@@ -474,24 +567,37 @@ final class Lscache {
 	/**
 	 * Dispatch a purge plan produced by {@see Purge_Planner}.
 	 *
-	 * @param array{purge_all?:bool,urls?:string[],tags?:string[]} $plan Purge plan.
-	 * @return void
+	 * ⛔⛔ A plan that says "everything" does NOT empty the cache: it arms the paced refresh
+	 * ({@see Refresh}). Every automatic "everything" — a plugin update or activation, a theme
+	 * switch, a menu save, a site-wide setting, a bulk Zinn® SEO change — reaches here, and
+	 * emptying a cache at once is what overloaded zinnhub.com's origin on 2026-10-22.
+	 *
+	 * @param array{purge_all?:bool,urls?:string[],tags?:string[]} $plan   Purge plan.
+	 * @param string                                               $source Who asked: `auto`, `refresh`, `api`, `cli`, `manual`.
+	 * @return array<string,array<string,mixed>> What each layer answered (`disk` and the server layers).
 	 */
-	public function dispatch( array $plan ): void {
+	public function dispatch( array $plan, string $source = 'auto' ): array {
 		if ( ! empty( $plan['purge_all'] ) ) {
-			$this->purge_all( 'update' );
-			return;
+			Refresh::arm( 'site-change' );
+			return array();
 		}
 
-		Page_Cache::purge_tags( (array) ( $plan['tags'] ?? array() ) );
-		Page_Cache::purge_urls( (array) ( $plan['urls'] ?? array() ) );
+		$disk    = Page_Cache::purge_tags( (array) ( $plan['tags'] ?? array() ) );
+		$disk   += Page_Cache::purge_urls( (array) ( $plan['urls'] ?? array() ) );
+		$results = array(
+			'disk' => array(
+				'ok'     => $disk,
+				'failed' => 0,
+				'error'  => '',
+			),
+		) + $this->server->purge_urls( array_map( 'strval', (array) ( $plan['urls'] ?? array() ) ), $source, in_array( $source, array( 'manual', 'cli' ), true ) );
 
 		$engine = $this->cache_engine_hook_prefix();
 		if ( null !== $engine ) {
 			foreach ( ( $plan['urls'] ?? array() ) as $url ) {
 				do_action( $engine . 'purge_url', $url ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Invoking the active cache-engine plugin's own action, not defining ours; the prefix comes from the fixed CACHE_ENGINES map.
 			}
-			return;
+			return $results;
 		}
 
 		if ( ! $this->is_litespeed_server() ) {
@@ -501,13 +607,22 @@ final class Lscache {
 					(array) ( $plan['tags'] ?? array() )
 				)
 			);
-			return;
+			return $results;
 		}
 
 		foreach ( ( $plan['tags'] ?? array() ) as $tag ) {
 			$this->purge_queue[ 'tag=' . $tag ] = true;
 		}
+		// A purge by address (the status screen, an AI agent) names paths: LiteSpeed purges a
+		// relative URI given in the same header.
+		foreach ( ( $plan['urls'] ?? array() ) as $url ) {
+			$path = wp_parse_url( (string) $url, PHP_URL_PATH );
+			if ( is_string( $path ) && '' !== $path && false === strpbrk( $path, ", \r\n" ) ) {
+				$this->purge_queue[ $path ] = true;
+			}
+		}
 		$this->emit_purge_now();
+		return $results;
 	}
 
 	/**

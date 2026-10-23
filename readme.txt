@@ -3,28 +3,33 @@ Contributors: zinndigital
 Plugin URI: https://zinndigital.com/wordpress-plugins/zinn-cache
 Author: Neil Lock — CEO, Zinn Digital® Ltd
 Author URI: https://zinndigital.com
-Tags: cache, page cache, object cache, redis, performance
+Tags: cache, page cache, nginx, varnish, redis
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.10.10
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A page cache and a Redis object cache for any WordPress site — LiteSpeed-aware, with smart auto-purge and safe exclusions.
+Page cache, Redis object cache and purging for nginx, Varnish, Apache, LiteSpeed and Cloudflare — updates refresh pages gradually, never all at once.
 
 == Description ==
 
-Zinn® Cache makes a WordPress site faster wherever it is hosted. On a LiteSpeed server it drives the server's own page cache; on any other server it stores each page as a file and serves it before WordPress loads. It also installs a Redis object cache that proves it is working, and purges only the pages a change affects.
+Zinn® Cache makes a WordPress site faster wherever it is hosted. On a LiteSpeed server it drives the server's own page cache. When nginx, Varnish or Apache already caches pages in front of WordPress, it does not add a second page cache behind them: it tells them which pages changed. On any other server it stores each page as a file and serves it before WordPress loads. It also installs a Redis object cache that proves it is working, and purges only the pages a change affects.
 
 It is installed for you on sites hosted with Zinn Digital®, and it works the same way on any other host. There is one Zinn® cache plugin; Zinn® Cache Pro is an optional add-on that installs on top of it (see Pro features below).
 
 **What it does**
 
 * **Page cache on any server.** On a LiteSpeed server it stamps `X-LiteSpeed-Cache-Control` and `X-LiteSpeed-Tag` headers so the web server serves full pages without hitting PHP or MySQL. On any other server it stores each complete page as a file under `wp-content/cache/zinn-cache/` and serves it from `advanced-cache.php` before WordPress loads (it adds `define( 'WP_CACHE', true );` to `wp-config.php` for that, and removes it again when the page cache is turned off). Only visitors who are not signed in are served stored pages, and only addresses with no query string (tracking parameters such as `utm_source` are ignored). If the third-party LiteSpeed Cache plugin is present, page caching is deferred to it instead.
-* **Smart auto-purge.** When content changes — a post or page is saved, trashed or deleted, a comment is added or moderated, a taxonomy term is edited, the theme is switched, a plugin is (de)activated, or WordPress/plugins/themes are updated — only the affected pages (and the listings they appear on) are purged, via targeted LiteSpeed cache tags. The plugin can also mirror each purge to a control panel over a signed webhook, but only when `ZINN_CACHE_PANEL_URL` is defined — and the Zinn Digital® platform does not set it today, so on a Zinn-hosted site purges happen on the server and are not mirrored anywhere.
-* **Redis object cache.** A one-click toggle installs a self-contained Redis object-cache drop-in (requires the phpredis extension), offloading repeated database reads. It signs in with a plain password or a Redis 6+ ACL username and password, honours the usual `WP_REDIS_*` constants (including `WP_REDIS_PASSWORD` given as `array( 'user', 'password' )`, `WP_REDIS_PATH` and `WP_REDIS_MAXTTL`), and proves itself with a write-and-read round trip: if Redis refuses the login or the data, the settings screen says why instead of showing a cache that stores nothing. The plugin never overwrites another caching plugin's drop-in, refreshes its own drop-in after an update, and the drop-in falls back to an in-memory cache if Redis is unreachable, so the site keeps working.
+* **Smart auto-purge.** When content changes — a post or page is saved, trashed or deleted, a comment is added or moderated, a taxonomy term is edited — only the affected pages (and the listings they appear on: its home page, archive, categories, tags and author page) are purged, on every cache layer: LiteSpeed by cache tag, the disk cache, nginx, Varnish, Apache and Cloudflare by address. A change that touches every page (the theme, a plugin, an update, a menu, the site title) starts the paced refresh described below. The plugin can also mirror each purge to a control panel over a signed webhook, but only when `ZINN_CACHE_PANEL_URL` is defined — and the Zinn Digital® platform does not set it today, so on a Zinn-hosted site purges happen on the server and are not mirrored anywhere.
+* **Redis object cache.** A one-click toggle installs a self-contained Redis object-cache drop-in (requires the phpredis extension), offloading repeated database reads. It signs in with a plain password or a Redis 6+ ACL username and password, honours the usual `WP_REDIS_*` constants (including `WP_REDIS_PASSWORD` given as `array( 'user', 'password' )`, `WP_REDIS_PATH` and `WP_REDIS_MAXTTL`), and proves itself with a write-and-read round trip: if Redis refuses the login or the data, the settings screen says why instead of showing a cache that stores nothing. The plugin never overwrites another caching plugin's drop-in, refreshes its own drop-in after an update, and the drop-in falls back to an in-memory cache if Redis is unreachable, so the site keeps working. Choose the igbinary serializer (smaller and faster, when the extension is installed) or PHP's own; each stored value is read in the format it was written in, so switching is safe at any time.
 * **Host-managed object cache.** A host that installs this drop-in for its customers (as Zinn Digital® hosting does) defines `ZINN_CACHE_MANAGED_OBJECT_CACHE`; the plugin then never removes that drop-in and shows the cache as managed. A host whose Redis users may not run `SCAN` can define `ZINN_CACHE_FLUSH_SOCKET`, the path of a local helper that deletes only the calling site's keys, so "Flush cache" keeps working.
+* **Server caches in front of WordPress: nginx, Varnish, Apache.** Zinn® Cache detects an nginx `proxy_cache`/`fastcgi_cache`, Varnish, Apache `mod_cache` or LiteSpeed in front of the site from the response headers, and then keeps its own disk cache out of the way. Tell it how to reach the cache and it purges changed pages there: nginx by a purge request (the `ngx_cache_purge` module), by deleting the cache files when WordPress can read the cache folder, or by writing the changed addresses to a folder your host's purger reads; Varnish by `PURGE` or `BAN`; Apache's disk cache by deleting the entry files. Signed-in visitors, excluded addresses and form posts are sent `Cache-Control: private, no-store`, so a server cache never keeps one person's page for the next.
+* **Cloudflare purge.** With a zone ID and an API token limited to Cache Purge, changed pages are purged from Cloudflare's edge by address, in batches, from WP-Cron so editors never wait on it. Emptying the whole zone is off unless you allow it.
+* **Paced refresh instead of "purge everything".** An update, a plugin activation, a theme or menu change or a site-wide setting no longer empties the cache at once — that sends every visitor to WordPress in the same minute. Zinn® Cache refreshes the site a batch a minute instead (100 pages by default), newest first, all the way to the end, and pauses while the server is busy. "Empty all now" is still there for the rare time you want exactly that.
+* **Status screen and per-address purge.** One screen says what serves your pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the disk cache), what the last check saw in front of the site, how big each cache is where WordPress can read it (and says plainly when it cannot), the purge queue, the paced refresh and the last purges with what each layer answered. Purge any address from there, check the hit ratio on a sample of pages, or start and stop a refresh.
+* **Lighter pages.** Control the WordPress Heartbeat, show text at once while Google Fonts load (`display=swap`), connect early to the servers your pages use, and serve images, CSS, JavaScript and fonts from a pull CDN address.
 * **Safe cache exclusions.** Ships with sensible WordPress and WooCommerce/Easy Digital Downloads defaults — cart, checkout, my-account, REST/AJAX, preview, search, and any logged-in or session-cookie request are never cached. Extra path, query-key, and cookie-prefix rules can be added per site.
 
 **Remote purging**
@@ -37,9 +42,10 @@ Everything above is free and stays free. [Zinn® Cache Pro](https://zinndigital.
 
 * A cache analytics screen: hit ratio, memory, keys and the slowest cache commands.
 * A slow-query and uncached-call finder that names the plugin or theme responsible.
-* An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching, compression and the igbinary serializer.
+* An in-memory APCu tier in front of Redis for the hottest keys, plus prefetching and compression (zstd, lzf or gzip).
 * Tag-based purging for posts, terms and WooCommerce products, so only what changed is cleared, with the page and object caches purged together.
-* Automatic cache warm-up after a purge, WebP and AVIF images, unused-CSS removal and delayed JavaScript.
+* Automatic cache warm-up after a purge and when a paced refresh finishes, WebP and AVIF images, missing image width and height added from the file, unused-CSS removal and delayed JavaScript.
+* Cloudflare's own cache-hit ratio for the last 24 hours on the status screen.
 * Scheduled database clean-up with a preview, and per-page cache rules.
 * Cache health alerts in your Zinn Digital® dashboard when the hit ratio drops or memory fills.
 
@@ -57,6 +63,14 @@ Optionally define these constants in `wp-config.php` (set automatically on Zinn-
 * `WP_REDIS_HOST`, `WP_REDIS_PORT`, `WP_REDIS_DATABASE`, `WP_REDIS_PASSWORD`, `WP_REDIS_PREFIX` — override the object-cache connection.
 
 == External services ==
+
+= Cloudflare (only if you switch on Cloudflare purge) =
+
+When **Cloudflare purge** is on and a zone ID and API token are saved (or `ZINN_CACHE_CLOUDFLARE_ZONE` and `ZINN_CACHE_CLOUDFLARE_TOKEN` are defined), the plugin sends the addresses of changed pages on this site to `https://api.cloudflare.com/client/v4/zones/<zone>/purge_cache` so Cloudflare stops serving the old copies. Nothing else about the site or its visitors is sent. Cloudflare: terms https://www.cloudflare.com/terms/, privacy policy https://www.cloudflare.com/privacypolicy/
+
+= Your own site (cache detection) =
+
+The Status tab's **Check now** button, and a daily check, request a few of this site's own pages as a visitor would, to read which caches answered. These requests go only to this site's own address.
 
 = AI apps you connect (MCP sign-in) =
 
@@ -173,6 +187,22 @@ corrections and new languages can be contributed directly.
 
 == Frequently Asked Questions ==
 
+= My host runs nginx. How do I set up Zinn® Cache? =
+
+Open **Zinn Digital® → Cache → Status** and press **Check now**. If nginx caches your pages, the screen says so and Zinn® Cache does not install its own page cache behind it. Then open the **Server cache** tab, choose **nginx**, and choose how to purge it: **a purge request per page** if your nginx has the `ngx_cache_purge` module (set "Send purges to" to `http://127.0.0.1` when a CDN is in front); **delete the cache files** if WordPress can read the folder in your `proxy_cache_path` or `fastcgi_cache_path` line (copy the folder, the `levels=` value and your cache key); or **write the addresses to a folder** your host's purger reads. Save, then purge one address from the Status tab and check that its next visit says MISS. If nginx does not cache your pages at all, choose **None** and Zinn® Cache's own page cache does the job.
+
+= Varnish, Apache mod_cache or Cloudflare? =
+
+Varnish: choose **Varnish**, give its address and port, and allow `PURGE` (or `BAN`) from this server in your VCL. Apache: put `mod_cache` in a reverse-proxy virtual host in front of WordPress — inside the same server as WordPress's own rewrite rules, Apache stores every address as `/index.php` and can serve one page for all of them; the status screen warns when it sees that. Cloudflare: switch on **Cloudflare purge** and paste a zone ID and a token limited to Cache Purge.
+
+= Why does an update no longer empty the cache? =
+
+Because emptying it sends every visitor and every crawler to WordPress in the same minute, and on a large site that can take the server down. Updates, plugin activations, theme and menu changes start a paced refresh: every page is refreshed, a batch a minute, newest first, until the whole site is done, and the refresh pauses while the server is busy. **Empty all now** on the settings screen empties everything at once when you want that.
+
+= Why is there no "combine CSS/JS", "minify" or "separate mobile cache" option? =
+
+On purpose. Combining files was a workaround for HTTP/1.1; on HTTP/2 and HTTP/3 it makes pages slower to start and breaks caching of shared files, which is why other cache plugins have been retiring it. Minifying saves a few percent once files are compressed (gzip or Brotli) and is the most common cause of a broken layout after installing a cache plugin. A separate mobile cache doubles every cached page and every server-cache key for themes that are responsive anyway; Zinn® Cache Pro's warm-up can warm a mobile pass for the few sites that do serve phones a different page.
+
 = Does this require LiteSpeed? =
 
 Full-page caching requires a LiteSpeed web server (or the third-party LiteSpeed Cache plugin). On any other server nothing reads the cache headers, so pages are not cached — and the settings screen says so plainly rather than looking as if it works. Everything else (object cache, exclusions, and the signed purge endpoint) still works.
@@ -190,6 +220,16 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache purge url https://example.com/pricing/` (or just `/pricing/`) empties those pages, and `wp zinn-cache purge post 42` empties a post's page and the lists it appears on. Each prints how many stored pages it removed. On a LiteSpeed server the purge is sent to the server with the next request, which the command makes itself.
 
 == Changelog ==
+
+= 1.11.0 =
+* **Updates no longer empty the cache.** For every site: a WordPress, plugin or theme update, a plugin activation or deactivation, a theme switch, a menu save and a site-wide setting now start a paced refresh (100 pages a minute by default, paused while the server is busy) instead of purging everything at once. **Empty all now** (formerly "Purge everything now") still empties the cache at once.
+* New: server caches in front of WordPress. nginx (purge request, cache files, or a spool folder for the host's purger), Varnish (PURGE or BAN) and Apache mod_cache are purged when content changes, and Zinn® Cache no longer installs its own page cache behind one. Sites with no server cache keep the disk page cache exactly as before.
+* New: Cloudflare purge by address (batched, from WP-Cron), with emptying the zone off unless allowed.
+* New: Status tab — what serves your pages, what is in front of the site, cache sizes, the purge queue and log, a hit-ratio check, per-address purge and the paced refresh.
+* New: serializer setting for the Redis object cache (igbinary or PHP). The drop-in (revision 4) reads each value in the format it was written in, so a server that gains or loses igbinary no longer misreads stored values.
+* New: Heartbeat control, Google Fonts `display=swap`, early connections (preconnect) and a CDN address for static files.
+* New: WP-CLI `wp zinn-cache server detect`, `wp zinn-cache server drain` and `wp zinn-cache refresh start|stop|status|tick`; `purge url` reports what each cache layer answered. REST routes and AI-agent (MCP) tools for the status, per-address purge, detection and the refresh.
+* A purge by address now reaches a LiteSpeed server too (it used to purge only by tag there).
 
 = 1.10.10 =
 * WordPress MCP adapter updated to 0.7.1 (MCP protocol 2026-07-28, session-storage security fix); no deprecation notice from the bundled copy.

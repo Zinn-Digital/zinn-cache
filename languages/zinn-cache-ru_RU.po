@@ -35,378 +35,786 @@ msgstr "Neil Lock — CEO, Zinn Digital® Ltd"
 msgid "https://zinndigital.com"
 msgstr "https://zinndigital.com"
 
+#: includes/class-admin.php:103
+msgid "Purge addresses"
+msgstr "Очистить адреса"
+
 #: includes/class-admin.php:104
+msgid "One address per line: a path such as /about/ or a full address on this site. Each one is removed from every cache layer at once."
+msgstr "По одному адресу на строку: путь, такой как /about/, или полный адрес на этом сайте. Каждый из них удаляется из всех уровней кэша одновременно."
+
+#: includes/class-admin.php:105
+msgid "Addresses to purge"
+msgstr "Адреса для очистки"
+
+#: includes/class-admin.php:106
+msgid "Purge these addresses"
+msgstr "Очистить эти адреса"
+
+#: includes/class-admin.php:107
+msgid "Check what is caching"
+msgstr "Проверьте, что кэшируется"
+
+#: includes/class-admin.php:108
+msgid "Requests the home page and the newest pages twice, as a visitor would, and reports which cache answered and how often it was a hit."
+msgstr "Запрашивает главную страницу и самые новые страницы дважды, как это сделал бы посетитель, и сообщает, какой кэш ответил и как часто происходило попадание."
+
+#: includes/class-admin.php:109
+msgid "Check now"
+msgstr "Проверить сейчас"
+
+#. translators: 1: pages checked, 2: pages that did not answer.
+#: includes/class-admin.php:111
+#, php-format
+msgid "Pages checked: %1$d. Pages that did not answer: %2$d."
+msgstr "Проверено страниц: %1$d. Не ответило страниц: %2$d."
+
+#: includes/class-admin.php:112
+msgid "served from the cache"
+msgstr "Предоставлено из кэша"
+
+#: includes/class-admin.php:113
+msgid "No cache layer named itself in the responses."
+msgstr "Ни один уровень кэша не идентифицировал себя в ответах."
+
+#: includes/class-admin.php:114
+msgid "Reload this screen to see the detection above updated."
+msgstr "Перезагрузите этот экран, чтобы увидеть обновленное обнаружение выше."
+
+#: includes/class-admin.php:115
+#: includes/class-status.php:188
+#: includes/class-status.php:196
+msgid "Paced refresh"
+msgstr "Поэтапное обновление"
+
+#: includes/class-admin.php:116
+msgid "Refreshes every page a batch per minute instead of emptying the cache at once. It starts by itself after an update or a site-wide change."
+msgstr "Обновляет каждую страницу пакетами в минуту вместо одномоментной очистки кэша. Запускается автоматически после обновления или изменения на всем сайте."
+
+#: includes/class-admin.php:117
+msgid "Start a refresh now"
+msgstr "Запустить обновление сейчас"
+
+#: includes/class-admin.php:118
+msgid "Stop the refresh"
+msgstr "Остановить обновление"
+
+#: includes/class-admin.php:119
+msgid "The refresh is running."
+msgstr "Обновление выполняется."
+
+#: includes/class-admin.php:120
+msgid "No refresh is running."
+msgstr "Обновление не выполняется."
+
+#: includes/class-admin.php:121
+msgid "Working…"
+msgstr "Выполняется…"
+
+#: includes/class-admin.php:122
+msgid "purged"
+msgstr "Очищено"
+
+#: includes/class-admin.php:123
+msgid "queued (sent within a minute)"
+msgstr "в очереди (отправка в течение минуты)"
+
+#: includes/class-admin.php:124
+msgid "failed"
+msgstr "Ошибка"
+
+#: includes/class-admin.php:125
+msgid "The request failed"
+msgstr "Запрос не удался"
+
+#: includes/class-admin.php:126
+msgid "No cache layer needed purging."
+msgstr "Ни один уровень кэша не требовал очистки."
+
+#: includes/class-admin.php:159
 msgid "Cache"
 msgstr "Кэш"
 
-#: includes/class-admin.php:110
-#: includes/class-admin.php:179
+#: includes/class-admin.php:165
+msgid "Status"
+msgstr "Статус"
+
+#: includes/class-admin.php:169
+#: includes/class-admin.php:553
 msgid "Page cache"
 msgstr "Кэш страниц"
 
-#: includes/class-admin.php:114
-#: includes/class-admin.php:264
+#: includes/class-admin.php:173
+#: includes/class-admin.php:638
 msgid "Object cache"
 msgstr "Объектный кэш"
 
-#: includes/class-admin.php:118
+#: includes/class-admin.php:177
 msgid "Purging"
 msgstr "Очистка"
 
-#: includes/class-admin.php:122
+#: includes/class-admin.php:181
 msgid "Exclusions"
 msgstr "Исключения"
 
-#: includes/class-admin.php:126
-#: includes/class-admin.php:152
+#: includes/class-admin.php:185
+msgid "Server cache"
+msgstr "Кэш сервера"
+
+#: includes/class-admin.php:189
+msgid "Lighter pages"
+msgstr "Более легкие страницы"
+
+#: includes/class-admin.php:193
+#: includes/class-admin.php:526
 #: includes/mcp-kit/class-server.php:322
 msgid "AI agents (MCP)"
 msgstr "ИИ-агенты (MCP)"
 
-#: includes/class-admin.php:133
-msgid "Purge everything now"
+#: includes/class-admin.php:200
+msgid "Empty all now"
 msgstr "Очистить все сейчас"
 
-#: includes/class-admin.php:134
-msgid "Every cached page is discarded and will be rebuilt as visitors arrive. Continue?"
-msgstr "Все кэшированные страницы будут удалены и созданы заново при посещении сайта пользователями. Продолжить?"
+#: includes/class-admin.php:201
+msgid "Every cached page is discarded at once, on every cache layer this plugin purges, and every visitor will reach WordPress until pages are rebuilt. Updates do not need this: they refresh pages gradually by themselves. Continue?"
+msgstr "Все кэшированные страницы будут удалены одновременно на каждом уровне кэша, который очищает этот плагин, и все посетители будут обращаться напрямую к WordPress, пока страницы не будут созданы заново. Обновлениям это не требуется: они обновляют страницы постепенно сами по себе. Продолжить?"
 
-#: includes/class-admin.php:153
+#: includes/class-admin.php:230
+msgid "not checked yet"
+msgstr "еще не проверено"
+
+#: includes/class-admin.php:230
+msgid "the check could not reach the site"
+msgstr "проверке не удалось связаться с сайтом"
+
+#: includes/class-admin.php:235
+msgid "A page cache in front of WordPress"
+msgstr "Кэш страниц перед WordPress"
+
+#: includes/class-admin.php:236
+msgid "Many hosts put nginx, Varnish or Apache’s own cache in front of WordPress. Those answer before PHP runs, so they are faster than any plugin; Zinn® Cache then does not add a second page cache behind them. It tells them which pages changed instead. On a LiteSpeed server nothing here is needed."
+msgstr "Многие хостинг-провайдеры размещают nginx, Varnish или собственный кэш Apache перед WordPress. Они отдают ответ до запуска PHP, поэтому работают быстрее любого плагина; в таком случае Zinn® Cache не создает второй кэш страниц после них. Вместо этого он сообщает им, какие страницы изменились. На сервере LiteSpeed здесь ничего не требуется."
+
+#: includes/class-admin.php:241
+msgid "Server page cache"
+msgstr "Серверный кэш страниц"
+
+#. translators: %s: what the last check saw.
+#: includes/class-admin.php:243
+#, php-format
+msgid "Last check: %s. “Detect automatically” keeps Zinn® Cache’s own page cache out when a server cache is seen, but purges only reach a server cache you choose here, with how to reach it."
+msgstr "Последняя проверка: %s. «Определять автоматически» отключает собственный кэш страниц Zinn® Cache при обнаружении кэша сервера, но очистка затрагивает только тот кэш сервера, который вы выберете здесь, вместе со способом обращения к нему."
+
+#: includes/class-admin.php:245
+#: includes/class-status.php:154
+msgid "Detect automatically"
+msgstr "Определять автоматически"
+
+#: includes/class-admin.php:246
+msgid "None — use Zinn® Cache’s page cache"
+msgstr "Нет — использовать кэш страниц Zinn® Cache"
+
+#: includes/class-admin.php:247
+msgid "nginx (proxy_cache or fastcgi_cache)"
+msgstr "nginx (proxy_cache или fastcgi_cache)"
+
+#: includes/class-admin.php:249
+msgid "Apache mod_cache (disk)"
+msgstr "Apache mod_cache (диск)"
+
+#: includes/class-admin.php:256
+msgid "Cache headers"
+msgstr "Заголовки кэша"
+
+#: includes/class-admin.php:257
+msgid "Tell the server cache how long a page may be kept (s-maxage), and mark personal pages private"
+msgstr "Укажите кэшу сервера, как долго может храниться страница (s-maxage), и отметьте личные страницы как private"
+
+#: includes/class-admin.php:258
+msgid "Signed-in visitors, excluded addresses and form posts always get Cache-Control: private, no-store. This switch adds the shared-cache lifetime to pages that may be cached."
+msgstr "Вошедшие посетители, исключенные адреса и отправки форм всегда получают Cache-Control: private, no-store. Этот переключатель добавляет время жизни общего кэша для страниц, которые могут кэшироваться."
+
+#: includes/class-admin.php:264
+msgid "How to purge nginx"
+msgstr "Как очистить nginx"
+
+#: includes/class-admin.php:266
+msgid "A purge request per page (the ngx_cache_purge module)"
+msgstr "Запрос на очистку для каждой страницы (модуль ngx_cache_purge)"
+
+#: includes/class-admin.php:267
+msgid "Delete the cache files (WordPress can read the cache folder)"
+msgstr "Удалите файлы кэша (WordPress может читать папку кэша)"
+
+#: includes/class-admin.php:268
+msgid "Write the addresses to a folder for the host’s purger"
+msgstr "Запишите адреса в папку для очистителя хоста"
+
+#: includes/class-admin.php:276
+msgid "Purge address"
+msgstr "Очистить адрес"
+
+#: includes/class-admin.php:277
+msgid "Leave blank for {scheme}://{host}/purge{request_uri}. Tokens: {scheme}, {host}, {path}, {request_uri}, {url}."
+msgstr "Оставьте пустым для {scheme}://{host}/purge{request_uri}. Токены: {scheme}, {host}, {path}, {request_uri}, {url}."
+
+#: includes/class-admin.php:287
+msgid "Request method"
+msgstr "Метод запроса"
+
+#: includes/class-admin.php:301
+msgid "Send purges to"
+msgstr "Отправлять очистку на"
+
+#: includes/class-admin.php:302
+msgid "For example http://127.0.0.1. Needed when a CDN is in front of nginx: a purge sent to the public address would reach the CDN, not nginx. The site’s host name goes in the Host header."
+msgstr "Например, http://127.0.0.1. Требуется, когда CDN находится перед nginx: запрос на очистку, отправленный на публичный адрес, достигнет CDN, а не nginx. Имя хоста сайта указывается в заголовке Host."
+
+#: includes/class-admin.php:312
+msgid "Cache folder"
+msgstr "Папка кеша"
+
+#: includes/class-admin.php:313
+msgid "The folder in proxy_cache_path or fastcgi_cache_path, for example /var/cache/nginx/site. Only nginx cache files in it are ever deleted."
+msgstr "Папка в proxy_cache_path или fastcgi_cache_path, например /var/cache/nginx/site. Удаляются только находящиеся в ней файлы кэша nginx."
+
+#: includes/class-admin.php:323
+msgid "levels="
+msgstr "уровни="
+
+#: includes/class-admin.php:324
+msgid "The levels= value of the same line, usually 1:2."
+msgstr "Значение levels= той же строки, обычно 1:2."
+
+#: includes/class-admin.php:334
+msgid "Cache key"
+msgstr "Ключ кэша"
+
+#: includes/class-admin.php:335
+msgid "Your proxy_cache_key or fastcgi_cache_key. Leave blank for $scheme$request_method$host$request_uri."
+msgstr "Ваш proxy_cache_key или fastcgi_cache_key. Оставьте пустым для $scheme$request_method$host$request_uri."
+
+#: includes/class-admin.php:346
+msgid "Other key variables"
+msgstr "Другие ключевые переменные"
+
+#: includes/class-admin.php:347
+msgid "For a variable of your own in the key, one per line as name=value1|value2 (an empty value allowed), for example encoding=gzip|. Every combination is purged."
+msgstr "Для собственной переменной в ключе укажите по одной на строку в виде name=value1|value2 (допускается пустое значение), например encoding=gzip|. Каждая комбинация удаляется."
+
+#: includes/class-admin.php:358
+msgid "Spool folder"
+msgstr "Папка спулинга"
+
+#: includes/class-admin.php:359
+msgid "A folder outside the web root that your host’s purger reads. Each purge is one file with one address per line."
+msgstr "Папка за пределами корневого веб-каталога, которую считывает модуль очистки вашего хостинга. Каждая очистка представляет собой один файл с одним адресом на строку."
+
+#: includes/class-admin.php:369
+msgid "Varnish address"
+msgstr "Адрес Varnish"
+
+#: includes/class-admin.php:376
+msgid "Varnish port"
+msgstr "Порт Varnish"
+
+#: includes/class-admin.php:385
+msgid "Purge with"
+msgstr "Очистить с помощью"
+
+#: includes/class-admin.php:386
+msgid "Your VCL must accept it from this server (an ACL in vcl_recv)."
+msgstr "Ваш VCL должен принимать это с этого сервера (ACL в vcl_recv)."
+
+#: includes/class-admin.php:397
+msgid "CacheRoot"
+msgstr "Корневой каталог кэша"
+
+#: includes/class-admin.php:398
+msgid "The CacheRoot folder of mod_cache_disk."
+msgstr "Папка CacheRoot модуля mod_cache_disk."
+
+#: includes/class-admin.php:405
+msgid "CacheDirLevels"
+msgstr "Уровни каталога кэша"
+
+#: includes/class-admin.php:414
+msgid "CacheDirLength"
+msgstr "Длина директории кэша"
+
+#: includes/class-admin.php:422
+#: includes/class-status.php:148
+#: includes/server/class-cloudflare.php:48
+msgid "Cloudflare"
+msgstr "Cloudflare"
+
+#: includes/class-admin.php:423
+msgid "When Cloudflare caches your pages (a Cache Everything rule or APO), changed pages are purged from its edge by address."
+msgstr "Когда Cloudflare кэширует ваши страницы (правило Cache Everything или APO), измененные страницы очищаются с его пограничных узлов по адресу."
+
+#: includes/class-admin.php:428
+msgid "Cloudflare purge"
+msgstr "Очистка Cloudflare"
+
+#: includes/class-admin.php:429
+msgid "Purge changed pages from Cloudflare"
+msgstr "Очистить измененные страницы из Cloudflare"
+
+#: includes/class-admin.php:435
+msgid "Zone ID"
+msgstr "Идентификатор зоны"
+
+#: includes/class-admin.php:436
+msgid "On the Overview page of your domain in Cloudflare."
+msgstr "На странице «Обзор» вашего домена в Cloudflare."
+
+#: includes/class-admin.php:445
+msgid "API token"
+msgstr "Токен API"
+
+#: includes/class-admin.php:446
+msgid "Set in wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); that one is used."
+msgstr "Задано в wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); используется это значение."
+
+#: includes/class-admin.php:446
+msgid "Create a token with only Zone → Cache Purge → Purge, for this zone. It is never shown again or exported."
+msgstr "Создайте токен только с Zone → Cache Purge → Purge для этой зоны. Он больше никогда не будет показан или экспортирован."
+
+#: includes/class-admin.php:453
+msgid "Empty all"
+msgstr "Очистить все"
+
+#: includes/class-admin.php:454
+msgid "Let “Empty all now” empty the whole Cloudflare zone too"
+msgstr "Разрешить действию «Очистить всё сейчас» также очищать всю зону Cloudflare"
+
+#: includes/class-admin.php:455
+msgid "Off by default: it empties every host name on the zone and sends every visitor to your server at once."
+msgstr "Отключено по умолчанию: очищает каждое имя хоста в зоне и отправляет всех посетителей на ваш сервер одновременно."
+
+#: includes/class-admin.php:472
+msgid "WordPress Heartbeat"
+msgstr "Сердцебиение WordPress"
+
+#: includes/class-admin.php:473
+msgid "The Heartbeat is the browser asking WordPress every 15–60 seconds whether anything changed (autosave, post locks). Each ask is a PHP request the page cache cannot serve."
+msgstr "Heartbeat — это опрос браузером WordPress каждые 15–60 секунд на предмет изменений (автосохранение, блокировка записей). Каждый такой опрос представляет собой PHP-запрос, который кэш страниц не может обработать."
+
+#: includes/class-admin.php:475
+msgid "Leave it as WordPress sets it"
+msgstr "Оставьте так, как задает WordPress"
+
+#: includes/class-admin.php:476
+msgid "Once a minute everywhere"
+msgstr "Раз в минуту везде"
+
+#: includes/class-admin.php:477
+msgid "Off on the public site, normal in the dashboard"
+msgstr "Отключено на общедоступном сайте, стандартно в консоли"
+
+#: includes/class-admin.php:484
+msgid "Web fonts"
+msgstr "Веб-шрифты"
+
+#: includes/class-admin.php:485
+msgid "Show text at once while Google Fonts load (display=swap), and connect to the font server early"
+msgstr "Показывайте текст сразу во время загрузки Google Fonts (display=swap) и подключайтесь к серверу шрифтов заблаговременно"
+
+#: includes/class-admin.php:492
+msgid "Connect early to"
+msgstr "Заранее подключаться к"
+
+#: includes/class-admin.php:493
+msgid "One https:// address per line: servers your pages load from (a CDN, a payment or analytics script)."
+msgstr "Один адрес https:// на строку: серверы, с которых загружаются ваши страницы (CDN, скрипт оплаты или аналитики)."
+
+#: includes/class-admin.php:500
+msgid "CDN address"
+msgstr "Адрес CDN"
+
+#: includes/class-admin.php:501
+msgid "For a pull CDN such as BunnyCDN or KeyCDN, for example https://cdn.example.com. Images, CSS, JavaScript and fonts under /wp-content/ and /wp-includes/ are served from it. Pages are not. Leave blank when Cloudflare proxies your whole site: it is already the CDN."
+msgstr "Для pull CDN, такого как BunnyCDN или KeyCDN, например https://cdn.example.com. Изображения, CSS, JavaScript и шрифты из /wp-content/ и /wp-includes/ отдаются через него. Страницы — нет. Оставьте пустым, если Cloudflare проксирует весь ваш сайт: он уже является CDN."
+
+#: includes/class-admin.php:508
+msgid "Keep on this site"
+msgstr "Оставить на этом сайте"
+
+#: includes/class-admin.php:509
+msgid "Addresses containing any of these (one per line) are not moved to the CDN."
+msgstr "Адреса, содержащие любой из этих элементов (по одному на строку), не переносятся в CDN."
+
+#: includes/class-admin.php:527
 #: includes/mcp-kit/class-server.php:331
 msgid "Allow AI agents (MCP)"
 msgstr "Разрешить агентам ИИ (MCP)"
 
-#: includes/class-admin.php:154
+#: includes/class-admin.php:528
 #: includes/mcp-kit/class-server.php:333
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "Отключено: приведенные ниже инструменты и их маршруты REST вообще не зарегистрированы."
 
-#: includes/class-admin.php:173
+#: includes/class-admin.php:547
 msgid "Full-page cache"
 msgstr "Кэш всей страницы"
 
-#: includes/class-admin.php:174
+#: includes/class-admin.php:548
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "На сервере LiteSpeed страницы отдаются веб-сервером до запуска WordPress. На любом другом сервере этот плагин сохраняет каждую страницу в виде файла и отдает ее до загрузки WordPress. Именно за счет этого достигается практически вся скорость."
 
-#: includes/class-admin.php:180
+#: includes/class-admin.php:554
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Кэшировать страницы для пользователей, которые не выполнили вход"
 
-#: includes/class-admin.php:186
+#: includes/class-admin.php:560
 msgid "How long a page stays cached"
 msgstr "Как долго страница остаётся в кэше"
 
-#: includes/class-admin.php:187
+#: includes/class-admin.php:561
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Секунды. Большинству сайтов подходит одна неделя; новостному сайту с ежечасными публикациями требуется гораздо меньше."
 
-#: includes/class-admin.php:196
+#: includes/class-admin.php:570
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Как долго браузер посетителя сохраняет изображения и скрипты"
 
-#: includes/class-admin.php:197
+#: includes/class-admin.php:571
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Секунды. Применяется только к изображениям, CSS и JavaScript — но не к страницам. Установите значение 0, чтобы оставить это на усмотрение вашего хостинга."
 
-#: includes/class-admin.php:205
+#: includes/class-admin.php:579
 msgid "Signed-in visitors"
 msgstr "Вошедшие посетители"
 
-#: includes/class-admin.php:206
+#: includes/class-admin.php:580
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Никогда не отдавать кэшированную страницу авторизованному посетителю"
 
-#: includes/class-admin.php:207
+#: includes/class-admin.php:581
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "«Включено» — это безопасный выбор и значение по умолчанию. Отключайте эту функцию только в том случае, если вы уверены, что каждая кэшированная страница одинакова для каждого вошедшего пользователя — сайт с платным доступом или членством обычно является причиной этого не делать."
 
-#: includes/class-admin.php:213
+#: includes/class-admin.php:587
 msgid "Different lifetimes for different content"
 msgstr "Разный срок жизни для разного контента"
 
-#: includes/class-admin.php:214
+#: includes/class-admin.php:588
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Например: страницы товаров магазина на один час, тогда как всё остальное сохраняется в течение недели."
 
-#: includes/class-admin.php:215
+#: includes/class-admin.php:589
 msgid "Add a rule"
 msgstr "Добавить правило"
 
-#: includes/class-admin.php:222
+#: includes/class-admin.php:596
 msgid "Content type"
 msgstr "Тип содержимого"
 
-#: includes/class-admin.php:228
+#: includes/class-admin.php:602
 msgid "Seconds"
 msgstr "Секунды"
 
-#: includes/class-admin.php:249
-#: includes/class-admin.php:258
+#: includes/class-admin.php:623
+#: includes/class-admin.php:632
 msgid "Object cache (Redis)"
 msgstr "Объектный кэш (Redis)"
 
-#: includes/class-admin.php:250
+#: includes/class-admin.php:624
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Ваш хостинг запускает приватный объектный кэш Redis для этого сайта и поддерживает его в настроенном состоянии. Здесь не нужно ничего настраивать; статус в верхней части этого экрана показывает, работает ли он."
 
-#: includes/class-admin.php:259
+#: includes/class-admin.php:633
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Кэширует результаты запросов к базе данных. Это больше всего помогает в загруженном магазине или на сайте с большим количеством авторизованных пользователей, где кэш страниц бессилен."
 
-#: includes/class-admin.php:265
+#: includes/class-admin.php:639
 msgid "Install the Redis object-cache drop-in"
 msgstr "Установите drop-in объектного кэша Redis"
 
-#: includes/class-admin.php:266
+#: includes/class-admin.php:640
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Требуется расширение phpredis. Если оно отсутствует, об этом сообщается в поле над этим экраном."
 
-#: includes/class-admin.php:272
+#: includes/class-admin.php:646
 msgid "Redis host"
 msgstr "Хост Redis"
 
-#: includes/class-admin.php:279
+#: includes/class-admin.php:653
 msgid "Redis port"
 msgstr "Порт Redis"
 
-#: includes/class-admin.php:288
+#: includes/class-admin.php:662
 msgid "Redis database"
 msgstr "База данных Redis"
 
-#: includes/class-admin.php:289
+#: includes/class-admin.php:663
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Присвойте каждому сайту в общем Redis собственный номер, иначе они будут очищать кэш друг друга."
 
-#: includes/class-admin.php:298
+#: includes/class-admin.php:672
 msgid "Redis username"
 msgstr "Имя пользователя Redis"
 
-#: includes/class-admin.php:299
+#: includes/class-admin.php:673
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Только для сервера Redis с пользователями ACL (Redis 6 или более поздней версии). Оставьте пустым для входа только по паролю."
 
-#: includes/class-admin.php:307
+#: includes/class-admin.php:681
 msgid "Redis password"
 msgstr "Пароль Redis"
 
-#: includes/class-admin.php:308
+#: includes/class-admin.php:682
 msgid "Leave blank if your Redis does not need one."
 msgstr "Оставьте пустым, если вашему Redis это не требуется."
 
-#: includes/class-admin.php:315
+#: includes/class-admin.php:689
+msgid "Serializer"
+msgstr "Сериализатор"
+
+#: includes/class-admin.php:690
+msgid "igbinary stores the same data in less memory and reads it faster, when the PHP igbinary extension is installed. Changing it is safe at any time: each stored value is read in the format it was written in."
+msgstr "igbinary сохраняет те же данные с меньшим расходом памяти и считывает их быстрее, если установлено расширение PHP igbinary. Изменить этот параметр безопасно в любое время: каждое сохранённое значение считывается в том формате, в котором оно было записано."
+
+#: includes/class-admin.php:692
+msgid "igbinary when available, otherwise PHP"
+msgstr "igbinary, если доступно, иначе PHP"
+
+#: includes/class-admin.php:694
+#: includes/class-status.php:183
+msgid "PHP (standard)"
+msgstr "PHP (стандартный)"
+
+#: includes/class-admin.php:702
 msgid "Key prefix"
 msgstr "Префикс ключа"
 
-#: includes/class-admin.php:316
+#: includes/class-admin.php:703
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Альтернатива отдельному номеру базы данных, когда у вас не может быть такового."
 
-#: includes/class-admin.php:333
+#: includes/class-admin.php:720
 msgid "Smart auto-purge"
 msgstr "Умная автоочистка"
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:721
 msgid "Clear affected pages automatically when content changes"
 msgstr "Автоматически очищать затронутые страницы при изменении содержимого"
 
-#: includes/class-admin.php:340
+#: includes/class-admin.php:727
 msgid "After updates"
 msgstr "После обновлений"
 
-#: includes/class-admin.php:341
-msgid "Clear everything after a core, plugin or theme update"
-msgstr "Очистить все после обновления ядра, плагина или темы"
+#: includes/class-admin.php:728
+msgid "Refresh every page, a batch a minute, after a core, plugin or theme update"
+msgstr "Обновляйте каждую страницу, по одной партии в минуту, после обновления ядра, плагина или темы"
 
-#: includes/class-admin.php:347
+#: includes/class-admin.php:729
+msgid "Updates, plugin activations, theme and menu changes never empty the cache at once any more: emptying it sends every visitor to WordPress in the same minute. The paced refresh rebuilds the site gradually instead."
+msgstr "Обновления, активации плагинов, изменения тем и меню больше не очищают кэш одновременно: полная очистка направляет каждого посетителя к WordPress в одну и ту же минуту. Вместо этого размеренное обновление перестраивает сайт постепенно."
+
+#: includes/class-admin.php:735
+msgid "Pages refreshed per minute"
+msgstr "Обновленных страниц в минуту"
+
+#: includes/class-admin.php:736
+msgid "The refresh always reaches the end of the site; this only sets its pace."
+msgstr "Обновление всегда доходит до конца сайта; этот параметр лишь задает его скорость."
+
+#: includes/class-admin.php:744
+msgid "Pause the refresh above this server load"
+msgstr "Приостанавливать обновление при нагрузке на сервер выше указанной"
+
+#: includes/class-admin.php:745
+msgid "The one-minute load average. 0 means 1.5 × the number of CPU cores."
+msgstr "Средняя нагрузка за одну минуту. 0 означает 1,5 × количество ядер процессора."
+
+#: includes/class-admin.php:753
 msgid "After a comment"
 msgstr "После комментария"
 
-#: includes/class-admin.php:348
+#: includes/class-admin.php:754
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Очищать страницу записи при одобрении комментария к ней"
 
-#: includes/class-admin.php:349
+#: includes/class-admin.php:755
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Отключите это в очень активном разделе комментариев, где одна и та же страница может очищаться сотни раз в час."
 
-#: includes/class-admin.php:364
+#: includes/class-admin.php:770
 msgid "Never cache these"
 msgstr "Никогда не кэшировать эти"
 
-#: includes/class-admin.php:365
+#: includes/class-admin.php:771
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Всегда применяются разумные настройки по умолчанию для WordPress и WooCommerce — cart, checkout, my-account и любые сеансы авторизованных пользователей никогда не кэшируются, независимо от того, что указано ниже."
 
-#: includes/class-admin.php:371
+#: includes/class-admin.php:777
+#: includes/class-status.php:222
 msgid "Addresses"
 msgstr "Адреса"
 
-#: includes/class-admin.php:372
+#: includes/class-admin.php:778
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Один путь на строку, например <code>/basket</code>. Знак <code>*</code> в конце соответствует всему, что находится под ним."
 
-#: includes/class-admin.php:380
+#: includes/class-admin.php:786
 msgid "Query parameters"
 msgstr "Параметры запроса"
 
-#: includes/class-admin.php:381
+#: includes/class-admin.php:787
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Страница, содержащая один из этих элементов, никогда не кэшируется — например, одноразовый токен предварительного просмотра."
 
-#: includes/class-admin.php:389
+#: includes/class-admin.php:795
 msgid "Cookies"
 msgstr "Файлы cookie"
 
-#: includes/class-admin.php:390
+#: includes/class-admin.php:796
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Посетителю, имеющему один из этих элементов, всегда отдается свежая страница."
 
-#: includes/class-admin.php:419
+#: includes/class-admin.php:825
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Все кэшированные страницы удалены. Они будут созданы заново по мере посещения пользователями."
 
-#: includes/class-admin.php:445
+#: includes/class-admin.php:851
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Кэш объектов установлен, но ничего не сохраняет."
 
-#: includes/class-admin.php:459
+#: includes/class-admin.php:866
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Кэш страниц включен, но страницы пока не сохраняются."
 
-#: includes/class-admin.php:460
+#: includes/class-admin.php:867
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress ещё не загрузил drop-in кэширования страниц. Он запустится при следующей загрузке страницы; если этого не произошло, проверьте, установлено ли значение true для WP_CACHE в wp-config.php."
 
-#: includes/class-admin.php:469
+#: includes/class-admin.php:876
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Объектный кэш включен, но этот сервер не поддерживает Redis."
 
-#: includes/class-admin.php:470
+#: includes/class-admin.php:877
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Расширение phpredis не установлено, поэтому drop-in не может быть использован, и WordPress возвращается к собственному кэшу в оперативной памяти. Попросите вашего хостинг-провайдера включить phpredis."
 
-#: includes/class-admin.php:478
+#: includes/class-admin.php:885
 msgid "Nothing is being cached."
 msgstr "Ничего не кэшируется."
 
-#: includes/class-admin.php:479
+#: includes/class-admin.php:886
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Оба кэша отключены, поэтому этот плагин не ускоряет работу сайта."
 
-#: includes/class-admin.php:486
+#: includes/class-admin.php:893
 msgid "Caching is active on this site."
 msgstr "Кэширование на этом сайте активно."
 
-#: includes/class-admin.php:521
+#: includes/class-admin.php:928
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Сервер Redis отклонил имя пользователя или пароль. Проверьте учетные данные Redis в файле wp-config.php или на этом экране."
 
-#: includes/class-admin.php:523
+#: includes/class-admin.php:930
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis принял вход, но не разрешает этому сайту сохранять свои ключи. Пользователю Redis требуется разрешение для префикса ключей этого сайта."
 
-#: includes/class-admin.php:525
+#: includes/class-admin.php:932
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis отклонил номер базы данных. Проверьте настройку базы данных Redis."
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:934
 msgid "Redis is out of memory and is refusing new data."
 msgstr "У Redis закончилась память, и он отклоняет новые данные."
 
-#: includes/class-admin.php:529
+#: includes/class-admin.php:936
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Расширение phpredis не установлено, поэтому WordPress использует собственный кэш в оперативной памяти. Попросите вашего хостинг-провайдера включить phpredis."
 
-#: includes/class-admin.php:531
+#: includes/class-admin.php:938
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "Параметр WP_REDIS_DISABLED задан в wp-config.php, поэтому кэш объектов отключен."
 
-#: includes/class-admin.php:533
+#: includes/class-admin.php:940
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Не удалось связаться с сервером Redis. Проверьте хост и порт Redis, а также убедитесь, что Redis запущен."
 
-#: includes/class-admin.php:535
+#: includes/class-admin.php:942
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis не вернул значение, которое только что было в него записано. Проверьте журналы сервера Redis."
 
-#: includes/class-admin.php:550
-msgid "Web server"
-msgstr "Веб-сервер"
+#: includes/class-admin.php:957
+#: includes/class-status.php:137
+msgid "Pages are served by"
+msgstr "Страницы обслуживаются"
 
-#: includes/class-admin.php:552
+#: includes/class-admin.php:959
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — страницы кэшируются веб-сервером"
 
-#: includes/class-admin.php:553
-msgid "not LiteSpeed — pages are cached on disk by this plugin"
-msgstr "Не LiteSpeed — страницы кэшируются на диске этим плагином"
-
-#: includes/class-admin.php:556
+#: includes/class-admin.php:963
 msgid "Pages stored on disk"
 msgstr "Страницы, сохраненные на диске"
 
-#: includes/class-admin.php:560
+#: includes/class-admin.php:967
 msgid "Redis support"
 msgstr "Поддержка Redis"
 
-#: includes/class-admin.php:562
+#: includes/class-admin.php:969
 msgid "phpredis is installed"
 msgstr "phpredis установлен"
 
-#: includes/class-admin.php:563
+#: includes/class-admin.php:970
 msgid "phpredis is not installed"
 msgstr "phpredis не установлен"
 
-#: includes/class-admin.php:566
+#: includes/class-admin.php:973
 msgid "Page lifetime"
 msgstr "Время жизни страницы"
 
-#: includes/class-admin.php:641
+#: includes/class-admin.php:1049
 msgid "You are not allowed to purge the cache."
 msgstr "Вам не разрешено очищать кэш."
 
-#: includes/class-admin.php:647
+#: includes/class-admin.php:1055
 msgid "Cache purge requested."
 msgstr "Запрошена очистка кэша."
 
-#: includes/class-admin.php:675
+#: includes/class-admin.php:1083
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: установлен другой drop-in для object-cache, поэтому объектный кэш Redis не управляется этим плагином."
 
-#: includes/class-admin.php:689
+#: includes/class-admin.php:1097
 msgid "detected"
 msgstr "Обнаружено"
 
-#: includes/class-admin.php:690
+#: includes/class-admin.php:1098
 msgid "not detected"
 msgstr "Не обнаружено"
 
-#: includes/class-admin.php:694
+#: includes/class-admin.php:1102
 msgid "phpredis extension missing"
 msgstr "Отсутствует расширение phpredis"
 
-#: includes/class-admin.php:696
+#: includes/class-admin.php:1104
 msgid "installed, not storing anything"
 msgstr "установлено, ничего не сохраняет"
 
-#: includes/class-admin.php:698
+#: includes/class-admin.php:1106
 msgid "active, managed by your host"
 msgstr "активно, управляется вашим хостингом"
 
-#: includes/class-admin.php:700
+#: includes/class-admin.php:1108
 msgid "active"
 msgstr "Активен"
 
-#: includes/class-admin.php:702
+#: includes/class-admin.php:1110
 msgid "inactive"
 msgstr "Неактивен"
 
-#: includes/class-admin.php:707
+#: includes/class-admin.php:1115
 msgid "LiteSpeed cache:"
 msgstr "Кэш LiteSpeed:"
 
-#: includes/class-admin.php:709
+#: includes/class-admin.php:1117
 msgid "Redis object cache:"
 msgstr "Кэш объектов Redis:"
 
@@ -434,21 +842,200 @@ msgstr "Не удалось установить drop-in object-cache в wp-cont
 msgid "Could not remove the object-cache drop-in."
 msgstr "Не удалось удалить drop-in плагин object-cache."
 
-#: includes/class-object-cache.php:411
+#: includes/class-object-cache.php:412
 msgid "The WordPress filesystem is not writable, so the object-cache drop-in could not be managed."
 msgstr "Файловая система WordPress недоступна для записи, поэтому не удалось управлять drop-in файлом object-cache."
 
-#: includes/class-page-cache.php:328
+#: includes/class-page-cache.php:362
 msgid "Another page-cache plugin has installed wp-content/advanced-cache.php. Remove that plugin first, or keep using its page cache."
 msgstr "Другой плагин кэширования страниц установил wp-content/advanced-cache.php. Пожалуйста, сначала удалите этот плагин или продолжайте использовать его кэш страниц."
 
-#: includes/class-page-cache.php:331
+#: includes/class-page-cache.php:365
 msgid "The folder wp-content/cache/zinn-cache could not be written, so pages cannot be cached."
 msgstr "Не удалось выполнить запись в папку wp-content/cache/zinn-cache, поэтому страницы не могут быть кэшированы."
 
-#: includes/class-page-cache.php:338
+#: includes/class-page-cache.php:372
 msgid "wp-content/advanced-cache.php could not be written, so pages cannot be cached."
 msgstr "Не удалось записать wp-content/advanced-cache.php, поэтому страницы не могут быть кэшированы."
+
+#: includes/class-refresh.php:95
+msgid "Every minute (Zinn® Cache refresh)"
+msgstr "Каждую минуту (обновление Zinn® Cache)"
+
+#. translators: 1: one-minute load average, 2: the limit.
+#: includes/class-refresh.php:173
+#, php-format
+msgid "Server load %1$.1f is over the limit of %2$.1f."
+msgstr "Нагрузка на сервер %1$.1f превышает лимит %2$.1f."
+
+#: includes/class-rest-controller.php:182
+msgid "None of those is an address on this site."
+msgstr "Ни один из них не является адресом на этом сайте."
+
+#: includes/class-status.php:141
+msgid "Not checked yet."
+msgstr "Ещё не проверено."
+
+#. translators: %s: the error.
+#: includes/class-status.php:144
+#, php-format
+msgid "The check could not reach the site (%s), so it is not known whether a server cache is in front."
+msgstr "Проверке не удалось получить доступ к сайту (%s), поэтому неизвестно, есть ли перед ним кэш сервера."
+
+#. translators: %s: how long ago.
+#: includes/class-status.php:151
+#, php-format
+msgid "checked %s ago"
+msgstr "проверено %s назад"
+
+#: includes/class-status.php:153
+msgid "Seen in front of WordPress"
+msgstr "Замечено перед WordPress"
+
+#: includes/class-status.php:154
+msgid "Server cache setting"
+msgstr "Настройка серверного кэша"
+
+#: includes/class-status.php:159
+msgid "Not set up yet: open the Server cache tab."
+msgstr "Ещё не настроено: откройте вкладку Кэш сервера."
+
+#. translators: 1: number of cached entries, 2: size.
+#: includes/class-status.php:162
+#, php-format
+msgid "%1$s cached entries, %2$s"
+msgstr "%1$s кэшированных записей, %2$s"
+
+#. translators: 1: number of cached entries, 2: size.
+#: includes/class-status.php:162
+msgid "(at least — counting stopped early)"
+msgstr "(как минимум — подсчёт был остановлен раньше)"
+
+#. translators: %s: number of batches.
+#: includes/class-status.php:167
+#, php-format
+msgid "Batches waiting for the host: %s."
+msgstr "Пакеты, ожидающие хоста: %s."
+
+#. translators: 1: number of pages, 2: size.
+#: includes/class-status.php:177
+msgid "Disk page cache"
+msgstr "Кэш страниц диска"
+
+#. translators: 1: number of pages, 2: size.
+#: includes/class-status.php:177
+#, php-format
+msgid "%1$s pages, %2$s"
+msgstr "%1$s страниц, %2$s"
+
+#: includes/class-status.php:180
+msgid "Purges waiting to be sent"
+msgstr "Очистки, ожидающие отправки"
+
+#: includes/class-status.php:183
+msgid "Object cache serializer"
+msgstr "Сериализатор объектного кэша"
+
+#: includes/class-status.php:188
+msgid "Not running."
+msgstr "Не выполняется."
+
+#. translators: 1: pages refreshed so far, 2: how long ago it started.
+#: includes/class-status.php:191
+#, php-format
+msgid "Running: %1$s pages refreshed, started %2$s ago."
+msgstr "Выполняется: обновлено страниц: %1$s, запущено %2$s назад."
+
+#. translators: %s: the reason.
+#: includes/class-status.php:194
+#, php-format
+msgid "Paused this minute: %s"
+msgstr "Приостановлено в эту минуту: %s"
+
+#: includes/class-status.php:207
+msgid "What is caching this site"
+msgstr "Что кэширует этот сайт"
+
+#: includes/class-status.php:220
+msgid "Recent purges"
+msgstr "Недавние очистки"
+
+#: includes/class-status.php:221
+msgid "When"
+msgstr "Когда"
+
+#: includes/class-status.php:221
+msgid "Why"
+msgstr "Почему"
+
+#: includes/class-status.php:222
+#: includes/freemius-strings.php:2172
+#: includes/freemius-strings.php:5031
+msgid "Result"
+msgstr "Результат"
+
+#. translators: %d: number queued.
+#: includes/class-status.php:229
+#, php-format
+msgid "%d queued"
+msgstr "%d в очереди"
+
+#. translators: %s: how long ago.
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/class-status.php:236
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s ago"
+msgstr "%s назад"
+
+#: includes/class-status.php:253
+#: includes/server/class-nginx.php:52
+msgid "nginx page cache"
+msgstr "Кэш страниц nginx"
+
+#: includes/class-status.php:255
+#: includes/server/class-apache.php:43
+msgid "Apache disk cache (mod_cache)"
+msgstr "Дисковый кэш Apache (mod_cache)"
+
+#: includes/class-status.php:256
+msgid "LiteSpeed server cache"
+msgstr "Кэш сервера LiteSpeed"
+
+#: includes/class-status.php:257
+msgid "No server page cache"
+msgstr "Нет серверного кэша страниц"
+
+#: includes/class-status.php:258
+msgid "Not known"
+msgstr "Неизвестно"
+
+#. translators: %s: the server cache, e.g. "nginx page cache".
+#: includes/class-status.php:272
+#, php-format
+msgid "%s (Zinn® Cache purges it when content changes)"
+msgstr "%s (Zinn® Cache очищает его при изменении содержимого)"
+
+#: includes/class-status.php:275
+msgid "The LiteSpeed server cache"
+msgstr "Кэш сервера LiteSpeed"
+
+#: includes/class-status.php:276
+msgid "Zinn® Cache’s disk page cache"
+msgstr "Дисковый кэш страниц Zinn® Cache"
+
+#: includes/class-status.php:277
+msgid "The LiteSpeed Cache plugin"
+msgstr "Плагин LiteSpeed Cache"
+
+#: includes/class-status.php:278
+msgid "Nothing: the page cache is switched off"
+msgstr "Ничего: кэш страниц выключен"
+
+#: includes/class-status.php:279
+msgid "Nothing yet: the disk page cache is not installed"
+msgstr "Пока ничего нет: дисковый кэш страниц не установлен"
 
 #: includes/class-updater.php:250
 msgid "See the Zinn Digital® release notes."
@@ -3701,11 +4288,6 @@ msgstr "Отправить письмо с активацией повторно
 msgid "Reset Deactivation Snoozing"
 msgstr "Сбросить откладывание деактивации"
 
-#: includes/freemius-strings.php:2172
-#: includes/freemius-strings.php:5031
-msgid "Result"
-msgstr "Результат"
-
 #: includes/freemius-strings.php:2176
 #: includes/freemius-strings.php:6206
 msgid "revert it now"
@@ -4443,13 +5025,6 @@ msgid "It seems like one of the authentication parameters is wrong. Update your 
 msgstr "Похоже, один из параметров аутентификации неверен. Обновите свои Public Key, Secret Key и User ID и повторите попытку."
 
 #. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
-#: includes/freemius-strings.php:2739
-#: includes/freemius-strings.php:2895
-#, php-format
-msgid "%s ago"
-msgstr "%s назад"
-
-#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
 #: includes/freemius-strings.php:2744
 #: includes/freemius-strings.php:6377
 #, php-format
@@ -5064,8 +5639,8 @@ msgid "Read the cache settings"
 msgstr "Прочитать настройки кэша"
 
 #: includes/mcp/class-abilities.php:102
-msgid "Returns every cache setting. The Redis password is never returned, only whether one is saved."
-msgstr "Возвращает все настройки кэша. Пароль Redis никогда не возвращается, возвращается только факт его сохранения."
+msgid "Returns every cache setting. The Redis password and the Cloudflare token are never returned, only whether one is saved."
+msgstr "Возвращает все настройки кэша. Пароль Redis и токен Cloudflare никогда не возвращаются, возвращается только факт их сохранения."
 
 #: includes/mcp/class-abilities.php:120
 msgid "Change the cache settings"
@@ -5098,3 +5673,114 @@ msgstr "Очистить кэш"
 #: includes/mcp/class-rest-map.php:38
 msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
 msgstr "Удаляет кэшированные страницы: всё (all: true), некоторые адреса (urls) или всё с указанными метками (tags). Страницы формируются заново по мере захода посетителей."
+
+#: includes/mcp/class-rest-map.php:46
+msgid "Read what is caching the site"
+msgstr "Узнайте, что кэширует сайт"
+
+#: includes/mcp/class-rest-map.php:47
+msgid "Returns which cache serves pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the plugin's disk cache), what the last detection saw, each layer's size where WordPress can read it, the purge queue, the paced refresh and the recent purges."
+msgstr "Возвращает информацию о том, какой кэш отдаёт страницы (LiteSpeed, nginx, Varnish, Apache, Cloudflare или дисковый кэш плагина), что было обнаружено при последней проверке, размер каждого уровня, где WordPress может его прочитать, очередь очистки, размеренное обновление и недавние очистки."
+
+#: includes/mcp/class-rest-map.php:55
+msgid "Purge some addresses on every cache layer"
+msgstr "Очистить некоторые адреса на каждом уровне кэша"
+
+#: includes/mcp/class-rest-map.php:56
+msgid "Removes these addresses (paths such as /about/ or full addresses on this site) from the disk cache, the server cache and Cloudflare at once, and says what each layer answered."
+msgstr "Удаляет эти адреса (пути, такие как /about/, или полные адреса на этом сайте) одновременно из дискового кэша, кэша сервера и Cloudflare, а также сообщает, что ответил каждый уровень."
+
+#: includes/mcp/class-rest-map.php:64
+msgid "Detect the caches in front of the site"
+msgstr "Обнаружить кэши перед сайтом"
+
+#: includes/mcp/class-rest-map.php:65
+msgid "Requests the home page as a visitor would and stores which caches answered. With sample: true it also requests the newest pages twice and counts how often each layer served them from its cache."
+msgstr "Запрашивает главную страницу так, как это сделал бы посетитель, и сохраняет данные о том, какие кэши ответили. При sample: true также дважды запрашивает новейшие страницы и подсчитывает, как часто каждый уровень отдавал их из своего кэша."
+
+#: includes/mcp/class-rest-map.php:73
+msgid "Start or stop the paced refresh"
+msgstr "Запустить или остановить постепенное обновление"
+
+#: includes/mcp/class-rest-map.php:74
+msgid "action: start refreshes every page a batch per minute (what updates do instead of emptying the cache); action: stop ends a running refresh."
+msgstr "action: start обновляет каждую страницу пакетами каждую минуту (то, что делают обновления вместо очистки кэша); action: stop завершает выполняемое обновление."
+
+#: includes/server/class-apache.php:69
+#: includes/server/class-apache.php:97
+#: includes/server/class-apache.php:124
+msgid "The Apache CacheRoot folder cannot be read."
+msgstr "Не удается прочитать папку Apache CacheRoot."
+
+#: includes/server/class-apache.php:110
+msgid "The Apache CacheRoot folder could not be read completely."
+msgstr "Не удалось полностью прочитать папку Apache CacheRoot."
+
+#: includes/server/class-apache.php:134
+msgid "Apache stores every page under the address /index.php here, because its cache module runs in the same server as the WordPress rewrite rules. Every address can then be served the same cached page. Put the cache in a reverse-proxy virtual host in front of WordPress (ProxyPass, CacheEnable) instead."
+msgstr "Apache сохраняет здесь каждую страницу по адресу /index.php, поскольку его модуль кэширования работает на том же сервере, что и правила перезаписи WordPress. В таком случае по каждому адресу может отдаваться одна и та же кэшированная страница. Вместо этого разместите кэш в виртуальном хосте обратного прокси перед WordPress (ProxyPass, CacheEnable)."
+
+#: includes/server/class-cloudflare.php:94
+#: includes/server/class-cloudflare.php:119
+msgid "Cloudflare needs a zone id and an API token."
+msgstr "Для Cloudflare требуются идентификатор зоны и токен API."
+
+#: includes/server/class-cloudflare.php:116
+msgid "Emptying the whole Cloudflare zone is switched off in the settings. Single pages are still purged."
+msgstr "Очистка всей зоны Cloudflare отключена в настройках. Отдельные страницы по-прежнему очищаются."
+
+#: includes/server/class-cloudflare.php:131
+msgid "Cloudflare’s own hit ratio is in your Cloudflare dashboard, under Caching."
+msgstr "Собственный коэффициент попаданий Cloudflare находится в вашей панели управления Cloudflare, в разделе Кэширование."
+
+#: includes/server/class-cloudflare.php:162
+msgid "Cloudflare is rate-limiting purges; the rest are retried shortly."
+msgstr "Cloudflare ограничивает частоту очисток; оставшиеся будут повторены в ближайшее время."
+
+#. translators: 1: HTTP status code, 2: Cloudflare's error message.
+#: includes/server/class-cloudflare.php:166
+#, php-format
+msgid "Cloudflare answered HTTP %1$d. %2$s"
+msgstr "Cloudflare вернул ответ HTTP %1$d. %2$s"
+
+#: includes/server/class-driver.php:98
+msgid "This cache runs on the server, where WordPress cannot read its size."
+msgstr "Этот кэш работает на сервере, где WordPress не может прочитать его размер."
+
+#: includes/server/class-driver.php:176
+msgid "The purge address reached WordPress, not the cache. Check the purge address setting and the server configuration."
+msgstr "Адрес очистки обратился к WordPress, а не к кэшу. Проверьте настройку адреса очистки и конфигурацию сервера."
+
+#. translators: %d: HTTP status code.
+#: includes/server/class-driver.php:184
+#, php-format
+msgid "The cache answered HTTP %d."
+msgstr "Кэш ответил кодом HTTP %d."
+
+#: includes/server/class-nginx.php:112
+msgid "Emptying the whole nginx cache needs the \"delete cache files\" method, or your host. Single pages are still purged."
+msgstr "Для очистки всего кэша nginx требуется метод «delete cache files» или ваш хостинг. Отдельные страницы по-прежнему очищаются."
+
+#: includes/server/class-nginx.php:116
+#: includes/server/class-nginx.php:148
+#: includes/server/class-nginx.php:278
+msgid "The nginx cache folder cannot be read."
+msgstr "Не удается прочитать папку кэша nginx."
+
+#: includes/server/class-nginx.php:119
+msgid "That folder does not look like an nginx cache, so nothing in it was deleted."
+msgstr "Эта папка не похожа на кеш nginx, поэтому в ней ничего не было удалено."
+
+#: includes/server/class-nginx.php:138
+msgid "nginx runs where WordPress cannot read its cache; purges are handed to the host through the spool folder."
+msgstr "nginx работает там, где WordPress не может прочитать его кэш; очистки передаются хосту через папку spool."
+
+#: includes/server/class-nginx.php:307
+#: includes/server/class-nginx.php:325
+msgid "The spool folder cannot be written."
+msgstr "Не удается выполнить запись в папку спулера."
+
+#: includes/server/class-varnish.php:76
+#: includes/server/class-varnish.php:104
+msgid "No Varnish address is set."
+msgstr "Адрес Varnish не задан."

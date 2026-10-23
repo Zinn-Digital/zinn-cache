@@ -99,7 +99,7 @@ final class Abilities {
 				'edition'             => 'free',
 				'capability'          => self::CAPABILITY,
 				'label'               => __( 'Read the cache settings', 'zinn-cache' ),
-				'description'         => __( 'Returns every cache setting. The Redis password is never returned, only whether one is saved.', 'zinn-cache' ),
+				'description'         => __( 'Returns every cache setting. The Redis password and the Cloudflare token are never returned, only whether one is saved.', 'zinn-cache' ),
 				'category'            => self::CATEGORY,
 				'input_schema'        => self::no_input(),
 				'output_schema'       => array( 'type' => 'object' ),
@@ -227,11 +227,14 @@ final class Abilities {
 	 * @return array<string, mixed>
 	 */
 	public static function status(): array {
-		$settings                   = Settings::get();
-		$report                     = ( new Object_Cache( $settings ) )->status_report();
-		$pages                      = Page_Cache::stats();
-		$report['page_cache']       = empty( $settings['lscache_enabled'] ) ? 'off' : ( Page_Cache::is_ready() ? 'disk' : 'server' );
-		$report['page_cache_pages'] = $pages['pages'];
+		$settings                    = Settings::get();
+		$report                      = ( new Object_Cache( $settings ) )->status_report();
+		$pages                       = Page_Cache::stats();
+		$report['page_cache']        = empty( $settings['lscache_enabled'] ) ? 'off' : ( Page_Cache::is_ready() ? 'disk' : 'server' );
+		$report['page_cache_pages']  = $pages['pages'];
+		$server                      = ( new \Zinn\Cache\Lscache( $settings ) )->server();
+		$report['server_cache']      = $server->chosen_layer();
+		$report['server_cache_seen'] = $server->page_layer();
 
 		return $report;
 	}
@@ -242,9 +245,10 @@ final class Abilities {
 	 * @return array<string, mixed>
 	 */
 	public static function settings(): array {
-		$settings                       = Settings::get();
-		$settings['redis_password_set'] = '' !== (string) ( $settings['redis_password'] ?? '' );
-		unset( $settings['redis_password'], $settings['mcp'] );
+		$settings                             = Settings::get();
+		$settings['redis_password_set']       = '' !== (string) ( $settings['redis_password'] ?? '' );
+		$settings['cloudflare_api_token_set'] = '' !== (string) ( $settings['cloudflare_api_token'] ?? '' );
+		unset( $settings['redis_password'], $settings['cloudflare_api_token'], $settings['mcp'] );
 
 		return $settings;
 	}

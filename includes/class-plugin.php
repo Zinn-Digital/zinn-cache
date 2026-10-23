@@ -17,6 +17,11 @@ defined( 'ABSPATH' ) || exit;
 final class Plugin {
 
 	/**
+	 * The daily server-cache detection hook.
+	 */
+	public const PROBE_HOOK = 'zinn_cache_probe';
+
+	/**
 	 * Singleton instance.
 	 *
 	 * @var Plugin|null
@@ -69,7 +74,8 @@ final class Plugin {
 			if ( wp_doing_ajax() ) {
 				return;
 			}
-			Page_Cache::sync( Settings::get(), $lscache->is_litespeed_server() || $lscache->is_lscache_plugin_active() );
+			self::detect_before_install( $lscache );
+			Page_Cache::sync( Settings::get(), $lscache->page_cache_is_elsewhere() );
 		};
 		add_action( 'admin_init', $page_cache );
 		// Move a no-cache block written below WordPress's catch-all (before 1.7.4) above it.
@@ -83,9 +89,22 @@ final class Plugin {
 				if ( Page_Cache::is_ready() ) {
 					Page_Cache::write_config( $settings );
 				}
-				Page_Cache::sync( $settings, $lscache->is_litespeed_server() || $lscache->is_lscache_plugin_active() );
+				Page_Cache::sync( $settings, ( new Lscache( $settings ) )->page_cache_is_elsewhere() );
 			}
 		);
+
+		// Which caches answer in front of the site: checked once a day (and from the status screen),
+		// so a server cache added later takes over from the disk cache by itself.
+		add_action( self::PROBE_HOOK, array( Server\Probe::class, 'run' ) );
+		add_action( self::PROBE_HOOK . '_once', array( Server\Probe::class, 'run' ) );
+		// Not on LiteSpeed: its own cache is the page cache there, and the answer never changes.
+		if ( ! wp_installing() && ! $lscache->is_litespeed_server() && ! Lscache::is_cli() && ! wp_next_scheduled( self::PROBE_HOOK ) ) {
+			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', self::PROBE_HOOK );
+		}
+		// The paced refresh that replaces "purge everything" (updates, activations, site-wide changes).
+		( new Refresh( $lscache, $settings ) )->register();
+		// Lighter pages: Heartbeat, web fonts, preconnect, CDN address (each off until switched on).
+		( new Frontend_Tweaks( $settings ) )->register();
 
 		$purger = new Purge_Controller( $lscache, $settings );
 		$purger->register();
@@ -138,6 +157,33 @@ final class Plugin {
 	}
 
 	/**
+	 * Find out whether a server page cache is in front of the site BEFORE the disk cache would be
+	 * installed behind it, and schedule a check for a site that already has the disk cache.
+	 *
+	 * ⛔ Only a POSITIVE detection keeps the disk cache out (or removes it). A detection that could
+	 * not see (`blind`) leaves the site exactly as it was: a customer on Apache or nginx with no
+	 * server cache keeps the disk page cache, on install and on upgrade alike.
+	 *
+	 * @param Lscache $lscache Page-cache controller.
+	 * @return void
+	 */
+	private static function detect_before_install( Lscache $lscache ): void {
+		$settings = Settings::get();
+		if ( empty( $settings['lscache_enabled'] ) || 'auto' !== (string) ( $settings['server_cache'] ?? 'auto' ) || defined( 'ZINN_CACHE_SERVER_CACHE' )
+			|| null !== Server\Probe::last() || $lscache->is_litespeed_server() || $lscache->is_lscache_plugin_active() ) {
+			return;
+		}
+		if ( Page_Cache::is_ready() ) {
+			// Already serving pages: never block an admin screen on a loopback for it.
+			if ( ! wp_next_scheduled( self::PROBE_HOOK . '_once' ) ) {
+				wp_schedule_single_event( time(), self::PROBE_HOOK . '_once' );
+			}
+			return;
+		}
+		Server\Probe::run();
+	}
+
+	/**
 	 * Load the plugin's translations.
 	 *
 	 * @return void
@@ -173,6 +219,10 @@ final class Plugin {
 		( new Object_Cache( Settings::get() ) )->disable();
 		Htaccess::remove();
 		Page_Cache::uninstall();
+		Refresh::stop();
+		wp_clear_scheduled_hook( self::PROBE_HOOK );
+		wp_clear_scheduled_hook( self::PROBE_HOOK . '_once' );
+		wp_clear_scheduled_hook( Server\Server_Cache::CRON_HOOK );
 		// ⛔ A cron event survives deactivation unless it is removed. Leaving it would
 		// keep firing a hook whose handler no longer exists — a warning in the customer's
 		// log every hour, for ever, from a plugin they turned off.

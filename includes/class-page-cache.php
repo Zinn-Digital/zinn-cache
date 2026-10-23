@@ -205,6 +205,40 @@ final class Page_Cache {
 	}
 
 	/**
+	 * Delete up to `$limit` stored pages written before a moment, oldest first, and count how many
+	 * such pages are left (the paced refresh's pass over the disk cache, {@see Refresh}).
+	 *
+	 * @param int $before Unix time: pages stored before it are out of date.
+	 * @param int $limit  Most pages to delete in this call.
+	 * @return array{deleted:int,remaining:int}
+	 */
+	public static function purge_older_than( int $before, int $limit ): array {
+		$old   = array();
+		$files = glob( self::root() . '/pages/*/*.html' );
+		foreach ( is_array( $files ) ? $files : array() as $file ) {
+			$time = (int) @filemtime( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- A file another request may have just deleted.
+			if ( $time > 0 && $time < $before ) {
+				$old[ $file ] = $time;
+			}
+		}
+		asort( $old );
+		$deleted = 0;
+		foreach ( array_keys( $old ) as $file ) {
+			if ( $deleted >= $limit ) {
+				break;
+			}
+			$base = substr( $file, 0, -5 );
+			wp_delete_file( $base . '.html' );
+			wp_delete_file( $base . '.json' );
+			++$deleted;
+		}
+		return array(
+			'deleted'   => $deleted,
+			'remaining' => count( $old ) - $deleted,
+		);
+	}
+
+	/**
 	 * How many pages are stored, and their size in bytes.
 	 *
 	 * @return array{pages:int,bytes:int}

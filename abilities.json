@@ -70,6 +70,35 @@
       "mcp_tool": "zinn-cache-convert-images"
     },
     {
+      "name": "zinn-cache/detect-cache-layers",
+      "label": "Detect the caches in front of the site",
+      "description": "Requests the home page as a visitor would and stores which caches answered. With sample: true it also requests the newest pages twice and counts how often each layer served them from its cache.",
+      "edition": "free",
+      "capability": "manage_options (the REST route's own check)",
+      "annotations": {
+        "readonly": false,
+        "destructive": false,
+        "idempotent": false
+      },
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "sample": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "default": {}
+      },
+      "output_schema": {},
+      "rest": {
+        "method": "POST",
+        "path": "/wp-json/wp-abilities/v1/abilities/zinn-cache/detect-cache-layers/run"
+      },
+      "mcp_tool": "zinn-cache-detect-cache-layers"
+    },
+    {
       "name": "zinn-cache/get-cache-analytics",
       "label": "Read the cache analytics (Pro)",
       "description": "Returns the object cache's hit rate and traffic for the last hours (hours, up to 720), its slowest commands, and which plugins miss the cache most.",
@@ -101,6 +130,29 @@
         "path": "/wp-json/wp-abilities/v1/abilities/zinn-cache/get-cache-analytics/run"
       },
       "mcp_tool": "zinn-cache-get-cache-analytics"
+    },
+    {
+      "name": "zinn-cache/get-cache-layers",
+      "label": "Read what is caching the site",
+      "description": "Returns which cache serves pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the plugin's disk cache), what the last detection saw, each layer's size where WordPress can read it, the purge queue, the paced refresh and the recent purges.",
+      "edition": "free",
+      "capability": "manage_options (the REST route's own check)",
+      "annotations": {
+        "readonly": true,
+        "destructive": false,
+        "idempotent": true
+      },
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "default": {}
+      },
+      "output_schema": {},
+      "rest": {
+        "method": "GET",
+        "path": "/wp-json/wp-abilities/v1/abilities/zinn-cache/get-cache-layers/run"
+      },
+      "mcp_tool": "zinn-cache-get-cache-layers"
     },
     {
       "name": "zinn-cache/get-diagnostics",
@@ -183,7 +235,7 @@
     {
       "name": "zinn-cache/get-settings",
       "label": "Read the cache settings",
-      "description": "Returns every cache setting. The Redis password is never returned, only whether one is saved.",
+      "description": "Returns every cache setting. The Redis password and the Cloudflare token are never returned, only whether one is saved.",
       "edition": "free",
       "capability": "manage_options",
       "annotations": {
@@ -352,6 +404,73 @@
         "path": "/wp-json/wp-abilities/v1/abilities/zinn-cache/purge/run"
       },
       "mcp_tool": "zinn-cache-purge"
+    },
+    {
+      "name": "zinn-cache/purge-urls",
+      "label": "Purge some addresses on every cache layer",
+      "description": "Removes these addresses (paths such as /about/ or full addresses on this site) from the disk cache, the server cache and Cloudflare at once, and says what each layer answered.",
+      "edition": "free",
+      "capability": "manage_options (the REST route's own check)",
+      "annotations": {
+        "readonly": false,
+        "destructive": false,
+        "idempotent": false
+      },
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "urls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "urls"
+        ]
+      },
+      "output_schema": {},
+      "rest": {
+        "method": "POST",
+        "path": "/wp-json/wp-abilities/v1/abilities/zinn-cache/purge-urls/run"
+      },
+      "mcp_tool": "zinn-cache-purge-urls"
+    },
+    {
+      "name": "zinn-cache/refresh-cache",
+      "label": "Start or stop the paced refresh",
+      "description": "action: start refreshes every page a batch per minute (what updates do instead of emptying the cache); action: stop ends a running refresh.",
+      "edition": "free",
+      "capability": "manage_options (the REST route's own check)",
+      "annotations": {
+        "readonly": false,
+        "destructive": false,
+        "idempotent": false
+      },
+      "input_schema": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "start",
+              "stop"
+            ]
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "output_schema": {},
+      "rest": {
+        "method": "POST",
+        "path": "/wp-json/wp-abilities/v1/abilities/zinn-cache/refresh-cache/run"
+      },
+      "mcp_tool": "zinn-cache-refresh-cache"
     },
     {
       "name": "zinn-cache/remove-converted-images",
@@ -542,6 +661,105 @@
             "type": "boolean"
           },
           "ttl_overrides": {
+            "type": [
+              "array",
+              "object",
+              "string"
+            ]
+          },
+          "server_cache": {
+            "type": "string"
+          },
+          "server_cache_headers": {
+            "type": "boolean"
+          },
+          "nginx_purge_method": {
+            "type": "string"
+          },
+          "nginx_purge_endpoint": {
+            "type": "string"
+          },
+          "nginx_http_verb": {
+            "type": "string"
+          },
+          "nginx_purge_address": {
+            "type": "string"
+          },
+          "nginx_cache_path": {
+            "type": "string"
+          },
+          "nginx_cache_levels": {
+            "type": "string"
+          },
+          "nginx_cache_key": {
+            "type": "string"
+          },
+          "nginx_key_variants": {
+            "type": [
+              "array",
+              "object",
+              "string"
+            ]
+          },
+          "nginx_spool_dir": {
+            "type": "string"
+          },
+          "varnish_host": {
+            "type": "string"
+          },
+          "varnish_port": {
+            "type": "integer"
+          },
+          "varnish_method": {
+            "type": "string"
+          },
+          "apache_cache_root": {
+            "type": "string"
+          },
+          "apache_dir_levels": {
+            "type": "integer"
+          },
+          "apache_dir_length": {
+            "type": "integer"
+          },
+          "cloudflare_enabled": {
+            "type": "boolean"
+          },
+          "cloudflare_zone_id": {
+            "type": "string"
+          },
+          "cloudflare_api_token": {
+            "type": "string"
+          },
+          "cloudflare_purge_everything": {
+            "type": "boolean"
+          },
+          "refresh_batch": {
+            "type": "integer"
+          },
+          "refresh_load_limit": {
+            "type": "integer"
+          },
+          "redis_serializer": {
+            "type": "string"
+          },
+          "heartbeat_mode": {
+            "type": "string"
+          },
+          "font_display_swap": {
+            "type": "boolean"
+          },
+          "preconnect_origins": {
+            "type": [
+              "array",
+              "object",
+              "string"
+            ]
+          },
+          "cdn_url": {
+            "type": "string"
+          },
+          "cdn_exclude": {
             "type": [
               "array",
               "object",

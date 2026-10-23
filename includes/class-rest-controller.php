@@ -96,6 +96,141 @@ final class Rest_Controller {
 				),
 			)
 		);
+
+		$admin = array( $this, 'is_admin_user' );
+		register_rest_route(
+			self::REST_NAMESPACE,
+			'/status',
+			array(
+				'methods'             => 'GET',
+				'callback'            => fn() => new WP_REST_Response( Status::report( $this->lscache ), 200 ),
+				'permission_callback' => $admin,
+			)
+		);
+		register_rest_route(
+			self::REST_NAMESPACE,
+			'/purge-urls',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'handle_purge_urls' ),
+				'permission_callback' => $admin,
+				'args'                => array(
+					'urls' => array(
+						'type'     => 'array',
+						'required' => true,
+						'items'    => array( 'type' => 'string' ),
+						'maxItems' => 500,
+					),
+				),
+			)
+		);
+		register_rest_route(
+			self::REST_NAMESPACE,
+			'/probe',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'handle_probe' ),
+				'permission_callback' => $admin,
+				'args'                => array(
+					'sample' => array(
+						'type'    => 'boolean',
+						'default' => false,
+					),
+				),
+			)
+		);
+		register_rest_route(
+			self::REST_NAMESPACE,
+			'/refresh',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'handle_refresh' ),
+				'permission_callback' => $admin,
+				'args'                => array(
+					'action' => array(
+						'type'     => 'string',
+						'required' => true,
+						'enum'     => array( 'start', 'stop' ),
+					),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Only a signed-in administrator (no HMAC: these routes are the status screen's own).
+	 *
+	 * @return bool
+	 */
+	public function is_admin_user(): bool {
+		return current_user_can( 'manage_options' );
+	}
+
+	/**
+	 * Purge typed addresses (paths or full URLs on this site) on every layer, now.
+	 *
+	 * @param WP_REST_Request $request Request.
+	 * @return WP_REST_Response
+	 */
+	public function handle_purge_urls( WP_REST_Request $request ): WP_REST_Response {
+		$urls = Status::to_urls( array_map( 'strval', (array) $request->get_param( 'urls' ) ) );
+		$urls = $this->lscache->server()->own_urls( $urls );
+		if ( array() === $urls ) {
+			return new WP_REST_Response(
+				array(
+					'code'    => 'zinn_cache_no_urls',
+					'message' => __( 'None of those is an address on this site.', 'zinn-cache' ),
+				),
+				400
+			);
+		}
+		$plan    = Purge_Planner::targets( $urls );
+		$results = $this->lscache->dispatch( $plan, 'manual' );
+		/** This action is documented in includes/class-purge-controller.php */
+		do_action( 'zinn_cache_purged', $plan );
+		return new WP_REST_Response(
+			array(
+				'urls'    => $urls,
+				'results' => $results,
+			),
+			200
+		);
+	}
+
+	/**
+	 * Detect the caches in front of the site, and optionally sample how often they hit.
+	 *
+	 * @param WP_REST_Request $request Request.
+	 * @return WP_REST_Response
+	 */
+	public function handle_probe( WP_REST_Request $request ): WP_REST_Response {
+		delete_transient( 'zinn_cache_layer_stats' );
+		$out = array( 'probe' => Server\Probe::run() );
+		if ( $request->get_param( 'sample' ) ) {
+			$out['sample'] = Server\Probe::sample( Status::sample_urls() );
+		}
+		return new WP_REST_Response( $out, 200 );
+	}
+
+	/**
+	 * Start or stop the paced refresh.
+	 *
+	 * @param WP_REST_Request $request Request.
+	 * @return WP_REST_Response
+	 */
+	public function handle_refresh( WP_REST_Request $request ): WP_REST_Response {
+		if ( 'start' === $request->get_param( 'action' ) ) {
+			Refresh::arm( 'manual' );
+		} else {
+			Refresh::stop();
+		}
+		return new WP_REST_Response(
+			array(
+				'running' => null !== Refresh::state(),
+				'state'   => Refresh::state(),
+			),
+			200
+		);
 	}
 
 	/**
@@ -152,7 +287,15 @@ final class Rest_Controller {
 		}
 
 		if ( ! empty( $body['all'] ) ) {
-			$plan = Purge_Planner::everything();
+			// An explicit "everything" from tooling the site owner runs: empty at once.
+			$this->lscache->purge_all( 'api' );
+			return new WP_REST_Response(
+				array(
+					'purged' => true,
+					'plan'   => Purge_Planner::everything(),
+				),
+				200
+			);
 		} else {
 			$raw_urls = is_array( $body['urls'] ?? null ) ? $body['urls'] : array();
 			$raw_tags = is_array( $body['tags'] ?? null ) ? $body['tags'] : array();
@@ -161,7 +304,7 @@ final class Rest_Controller {
 			$plan     = Purge_Planner::targets( $urls, $tags );
 		}
 
-		$this->lscache->dispatch( $plan );
+		$this->lscache->dispatch( $plan, 'api' );
 
 		/** This action is documented in includes/class-purge-controller.php */
 		do_action( 'zinn_cache_purged', $plan );

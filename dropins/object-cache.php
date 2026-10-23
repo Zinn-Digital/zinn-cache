@@ -1,7 +1,7 @@
 <?php
 /**
  * Zinn Cache object-cache drop-in — a persistent WordPress object cache backed by Redis (phpredis).
- * Drop-in revision: 3
+ * Drop-in revision: 4
  *
  * This file is copied to `wp-content/object-cache.php` by the Zinn Cache plugin. WordPress loads it
  * very early (before most of core), so it must be self-contained and must never fatal: when the
@@ -49,7 +49,7 @@ class WP_Object_Cache {
 	 *
 	 * @var int
 	 */
-	public const REVISION = 3;
+	public const REVISION = 4;
 
 	/**
 	 * The first bytes of a value written by the Zinn® Cache Pro extension (compressed or otherwise
@@ -168,11 +168,25 @@ class WP_Object_Cache {
 	private string $key_salt = '';
 
 	/**
-	 * Whether the igbinary extension is available for (de)serialisation.
+	 * Whether NEW values are written with igbinary (the extension is loaded and the serializer
+	 * setting is `auto` or `igbinary`).
+	 *
+	 * ⛔ Reads never depend on this: each stored value is recognised by its own first bytes
+	 * ({@see self::unserialize_value()}), so changing the setting, or a PHP build gaining or
+	 * losing the extension, never makes the cache misread what it already holds. Before revision
+	 * 4 the choice was made per request from `function_exists()` alone and applied to reads too,
+	 * so a server that gained igbinary read every stored PHP-serialized value as garbage.
 	 *
 	 * @var bool
 	 */
 	private bool $use_igbinary = false;
+
+	/**
+	 * Whether the igbinary extension is loaded at all (for reading igbinary values).
+	 *
+	 * @var bool
+	 */
+	private bool $has_igbinary = false;
 
 	/**
 	 * Normalised connection configuration.
@@ -197,7 +211,7 @@ class WP_Object_Cache {
 	 * Build the cache, load configuration, and attempt the Redis connection.
 	 */
 	public function __construct() {
-		$this->use_igbinary = function_exists( 'igbinary_serialize' ) && function_exists( 'igbinary_unserialize' );
+		$this->has_igbinary = function_exists( 'igbinary_serialize' ) && function_exists( 'igbinary_unserialize' );
 		$this->multisite    = ( function_exists( 'is_multisite' ) && is_multisite() ) || ( defined( 'MULTISITE' ) && MULTISITE );
 
 		if ( $this->multisite ) {
@@ -236,8 +250,9 @@ class WP_Object_Cache {
 			true
 		);
 
-		$this->config   = $this->load_config();
-		$this->key_salt = defined( 'WP_CACHE_KEY_SALT' ) ? (string) WP_CACHE_KEY_SALT : '';
+		$this->config       = $this->load_config();
+		$this->key_salt     = defined( 'WP_CACHE_KEY_SALT' ) ? (string) WP_CACHE_KEY_SALT : '';
+		$this->use_igbinary = $this->has_igbinary && 'php' !== $this->config['serializer'];
 
 		// Keys MUST always be namespaced: if neither a configured prefix nor a
 		// key salt is present, derive a stable per-install namespace. Without this,
@@ -387,7 +402,22 @@ class WP_Object_Cache {
 				return array( false, false );
 			}
 		}
+		if ( is_string( $raw ) && ! $this->has_igbinary && self::is_igbinary( $raw ) ) {
+			return array( false, false ); // Written where igbinary was loaded; a miss here, rebuilt by WordPress.
+		}
 		return array( true, $this->unserialize_value( $raw ) );
+	}
+
+	/**
+	 * Whether a stored value is an igbinary payload (it starts with the format version
+	 * 0x00000001 or 0x00000002; a PHP serialization starts with a type letter).
+	 *
+	 * @param string $raw Stored bytes.
+	 * @return bool
+	 */
+	public static function is_igbinary( string $raw ): bool {
+		$head = substr( $raw, 0, 4 );
+		return "\x00\x00\x00\x02" === $head || "\x00\x00\x00\x01" === $head;
 	}
 
 	/**
@@ -958,6 +988,7 @@ class WP_Object_Cache {
 			'timeout'      => 1.0,
 			'maxttl'       => 0,
 			'flush_socket' => '',
+			'serializer'   => 'auto',
 		);
 
 		$path = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR . '/zinn-cache-redis.php' : '';
@@ -978,6 +1009,7 @@ class WP_Object_Cache {
 			'timeout'      => 'WP_REDIS_TIMEOUT',
 			'maxttl'       => 'WP_REDIS_MAXTTL',
 			'flush_socket' => 'ZINN_CACHE_FLUSH_SOCKET',
+			'serializer'   => 'WP_REDIS_SERIALIZER',
 		);
 		foreach ( $constants as $key => $constant ) {
 			if ( defined( $constant ) ) {
@@ -1002,7 +1034,38 @@ class WP_Object_Cache {
 			'timeout'      => (float) $config['timeout'],
 			'maxttl'       => max( 0, (int) $config['maxttl'] ),
 			'flush_socket' => is_scalar( $config['flush_socket'] ) ? (string) $config['flush_socket'] : '',
+			'serializer'   => self::serializer_name( $config['serializer'] ),
 		);
+	}
+
+	/**
+	 * Normalise a serializer setting: `php`, `igbinary` or `auto` (igbinary when it is loaded).
+	 * Accepts Redis Object Cache's `WP_REDIS_SERIALIZER` spellings and `WP_REDIS_IGBINARY`.
+	 *
+	 * @param mixed $value Configured value.
+	 * @return string
+	 */
+	private static function serializer_name( $value ): string {
+		if ( defined( 'WP_REDIS_IGBINARY' ) && WP_REDIS_IGBINARY && ! defined( 'WP_REDIS_SERIALIZER' ) ) {
+			return 'igbinary';
+		}
+		$value = is_scalar( $value ) ? strtolower( (string) $value ) : 'auto';
+		if ( in_array( $value, array( 'igbinary', 'serializer_igbinary' ), true ) ) {
+			return 'igbinary';
+		}
+		if ( in_array( $value, array( 'php', 'serializer_php', 'native' ), true ) ) {
+			return 'php';
+		}
+		return 'auto';
+	}
+
+	/**
+	 * The serializer new values are written with, for the status screen.
+	 *
+	 * @return string `igbinary` or `php`.
+	 */
+	public function serializer(): string {
+		return $this->use_igbinary ? 'igbinary' : 'php';
 	}
 
 	/**
@@ -1500,8 +1563,12 @@ class WP_Object_Cache {
 			return (int) $value;
 		}
 
-		if ( $this->use_igbinary ) {
-			return igbinary_unserialize( $value );
+		// An igbinary payload starts with its format version (0x00000001 or 0x00000002); a PHP
+		// serialization starts with a type letter. So each value says how it was written.
+		if ( self::is_igbinary( $value ) ) {
+			// Written with igbinary on a PHP that had it; without the extension it is a miss
+			// (false), which WordPress rebuilds and this drop-in writes back in PHP format.
+			return $this->has_igbinary ? igbinary_unserialize( $value ) : false;
 		}
 
 		// The payload was serialized by this drop-in and read back from our own

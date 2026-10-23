@@ -378,13 +378,14 @@ final class Object_Cache {
 	 */
 	private function config_file_contents(): string {
 		$config = array(
-			'host'     => (string) ( $this->settings['redis_host'] ?? '127.0.0.1' ),
-			'port'     => (int) ( $this->settings['redis_port'] ?? 6379 ),
-			'database' => (int) ( $this->settings['redis_database'] ?? 0 ),
-			'username' => (string) ( $this->settings['redis_username'] ?? '' ),
-			'password' => (string) ( $this->settings['redis_password'] ?? '' ),
-			'prefix'   => (string) ( $this->settings['redis_key_prefix'] ?? '' ),
-			'timeout'  => 1.0,
+			'host'       => (string) ( $this->settings['redis_host'] ?? '127.0.0.1' ),
+			'port'       => (int) ( $this->settings['redis_port'] ?? 6379 ),
+			'database'   => (int) ( $this->settings['redis_database'] ?? 0 ),
+			'username'   => (string) ( $this->settings['redis_username'] ?? '' ),
+			'password'   => (string) ( $this->settings['redis_password'] ?? '' ),
+			'prefix'     => (string) ( $this->settings['redis_key_prefix'] ?? '' ),
+			'timeout'    => 1.0,
+			'serializer' => (string) ( $this->settings['redis_serializer'] ?? 'auto' ),
 		);
 
 		return "<?php\n"

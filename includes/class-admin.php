@@ -70,6 +70,61 @@ final class Admin {
 		add_action( 'admin_post_zinn_cache_purge_all', array( $this, 'handle_purge_all' ) );
 		add_action( 'update_option_' . Settings::OPTION, array( $this, 'on_settings_updated' ), 10, 0 );
 		add_action( 'admin_notices', array( $this, 'render_notices' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_status_script' ) );
+	}
+
+	/**
+	 * The status screen's script, on this plugin's screen only (§2.22: no global asset).
+	 *
+	 * @param string $hook The admin page hook suffix.
+	 * @return void
+	 */
+	public function enqueue_status_script( string $hook ): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reading which screen is open.
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( (string) $_GET['page'] ) ) : '';
+		if ( \Zinn_Cache_Admin_UI::page_slug() !== $page || '' === $hook ) {
+			return;
+		}
+		wp_enqueue_script( 'zinn-cache-status', plugins_url( 'assets/status.js', ZINN_CACHE_FILE ), array(), ZINN_CACHE_VERSION, true );
+		wp_add_inline_script(
+			'zinn-cache-status',
+			'window.zinnCacheStatus = ' . wp_json_encode( self::status_strings() ) . ';',
+			'before'
+		);
+	}
+
+	/**
+	 * The status script's words, translated here so they reach every locale with the rest.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function status_strings(): array {
+		return array(
+			'purgeTitle'     => __( 'Purge addresses', 'zinn-cache' ),
+			'purgeHelp'      => __( 'One address per line: a path such as /about/ or a full address on this site. Each one is removed from every cache layer at once.', 'zinn-cache' ),
+			'purgeLabel'     => __( 'Addresses to purge', 'zinn-cache' ),
+			'purgeButton'    => __( 'Purge these addresses', 'zinn-cache' ),
+			'checkTitle'     => __( 'Check what is caching', 'zinn-cache' ),
+			'checkHelp'      => __( 'Requests the home page and the newest pages twice, as a visitor would, and reports which cache answered and how often it was a hit.', 'zinn-cache' ),
+			'checkButton'    => __( 'Check now', 'zinn-cache' ),
+			/* translators: 1: pages checked, 2: pages that did not answer. */
+			'sampled'        => __( 'Pages checked: %1$d. Pages that did not answer: %2$d.', 'zinn-cache' ),
+			'hits'           => __( 'served from the cache', 'zinn-cache' ),
+			'noLayers'       => __( 'No cache layer named itself in the responses.', 'zinn-cache' ),
+			'reload'         => __( 'Reload this screen to see the detection above updated.', 'zinn-cache' ),
+			'refreshTitle'   => __( 'Paced refresh', 'zinn-cache' ),
+			'refreshHelp'    => __( 'Refreshes every page a batch per minute instead of emptying the cache at once. It starts by itself after an update or a site-wide change.', 'zinn-cache' ),
+			'refreshStart'   => __( 'Start a refresh now', 'zinn-cache' ),
+			'refreshStop'    => __( 'Stop the refresh', 'zinn-cache' ),
+			'refreshRunning' => __( 'The refresh is running.', 'zinn-cache' ),
+			'refreshStopped' => __( 'No refresh is running.', 'zinn-cache' ),
+			'working'        => __( 'Working…', 'zinn-cache' ),
+			'ok'             => __( 'purged', 'zinn-cache' ),
+			'queued'         => __( 'queued (sent within a minute)', 'zinn-cache' ),
+			'failedCount'    => __( 'failed', 'zinn-cache' ),
+			'failed'         => __( 'The request failed', 'zinn-cache' ),
+			'nothing'        => __( 'No cache layer needed purging.', 'zinn-cache' ),
+		);
 	}
 
 	/*
@@ -106,6 +161,10 @@ final class Admin {
 				'position'   => 50,
 				'connection' => array( __CLASS__, 'status' ),
 				'tabs'       => array(
+					'status'     => array(
+						'title'  => __( 'Status', 'zinn-cache' ),
+						'fields' => array( __CLASS__, 'status_fields' ),
+					),
 					'page'       => array(
 						'title'  => __( 'Page cache', 'zinn-cache' ),
 						'fields' => array( __CLASS__, 'page_fields' ),
@@ -122,6 +181,14 @@ final class Admin {
 						'title'  => __( 'Exclusions', 'zinn-cache' ),
 						'fields' => array( __CLASS__, 'exclusion_fields' ),
 					),
+					'server'     => array(
+						'title'  => __( 'Server cache', 'zinn-cache' ),
+						'fields' => array( __CLASS__, 'server_fields' ),
+					),
+					'lighter'    => array(
+						'title'  => __( 'Lighter pages', 'zinn-cache' ),
+						'fields' => array( __CLASS__, 'lighter_fields' ),
+					),
 					'agents'     => array(
 						'title'  => __( 'AI agents (MCP)', 'zinn-cache' ),
 						'fields' => array( __CLASS__, 'agent_fields' ),
@@ -130,12 +197,319 @@ final class Admin {
 				'actions'    => array(
 					array(
 						'id'       => 'zinn_cache_purge_all',
-						'label'    => __( 'Purge everything now', 'zinn-cache' ),
-						'confirm'  => __( 'Every cached page is discarded and will be rebuilt as visitors arrive. Continue?', 'zinn-cache' ),
+						'label'    => __( 'Empty all now', 'zinn-cache' ),
+						'confirm'  => __( 'Every cached page is discarded at once, on every cache layer this plugin purges, and every visitor will reach WordPress until pages are rebuilt. Updates do not need this: they refresh pages gradually by themselves. Continue?', 'zinn-cache' ),
 						'callback' => array( __CLASS__, 'purge_all_now' ),
 					),
 				),
 			)
+		);
+	}
+
+	/**
+	 * The Status tab: what is caching the site, and the tools to act on it.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	public static function status_fields(): array {
+		return array(
+			array(
+				'type' => 'html',
+				'html' => Status::panel_html( new Lscache( Settings::get() ) ),
+			),
+		);
+	}
+
+	/**
+	 * The Server cache tab: nginx, Varnish, Apache and Cloudflare.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	public static function server_fields(): array {
+		$probe    = Server\Probe::last();
+		$detected = null === $probe ? __( 'not checked yet', 'zinn-cache' ) : ( ! empty( $probe['blind'] ) ? __( 'the check could not reach the site', 'zinn-cache' ) : Status::layer_label( (string) $probe['page'] ) );
+		$is_layer = static fn( string $layer ): array => array( 'server_cache' => $layer );
+		return array(
+			array(
+				'type'        => 'heading',
+				'label'       => __( 'A page cache in front of WordPress', 'zinn-cache' ),
+				'description' => __( 'Many hosts put nginx, Varnish or Apache’s own cache in front of WordPress. Those answer before PHP runs, so they are faster than any plugin; Zinn® Cache then does not add a second page cache behind them. It tells them which pages changed instead. On a LiteSpeed server nothing here is needed.', 'zinn-cache' ),
+			),
+			array(
+				'key'         => 'server_cache',
+				'type'        => 'select',
+				'label'       => __( 'Server page cache', 'zinn-cache' ),
+				/* translators: %s: what the last check saw. */
+				'description' => sprintf( __( 'Last check: %s. “Detect automatically” keeps Zinn® Cache’s own page cache out when a server cache is seen, but purges only reach a server cache you choose here, with how to reach it.', 'zinn-cache' ), $detected ),
+				'choices'     => array(
+					'auto'    => __( 'Detect automatically', 'zinn-cache' ),
+					'none'    => __( 'None — use Zinn® Cache’s page cache', 'zinn-cache' ),
+					'nginx'   => __( 'nginx (proxy_cache or fastcgi_cache)', 'zinn-cache' ),
+					'varnish' => 'Varnish',
+					'apache'  => __( 'Apache mod_cache (disk)', 'zinn-cache' ),
+				),
+				'default'     => 'auto',
+			),
+			array(
+				'key'            => 'server_cache_headers',
+				'type'           => 'toggle',
+				'label'          => __( 'Cache headers', 'zinn-cache' ),
+				'checkbox_label' => __( 'Tell the server cache how long a page may be kept (s-maxage), and mark personal pages private', 'zinn-cache' ),
+				'description'    => __( 'Signed-in visitors, excluded addresses and form posts always get Cache-Control: private, no-store. This switch adds the shared-cache lifetime to pages that may be cached.', 'zinn-cache' ),
+				'default'        => true,
+			),
+			array(
+				'key'     => 'nginx_purge_method',
+				'type'    => 'radio',
+				'label'   => __( 'How to purge nginx', 'zinn-cache' ),
+				'choices' => array(
+					'http'  => __( 'A purge request per page (the ngx_cache_purge module)', 'zinn-cache' ),
+					'files' => __( 'Delete the cache files (WordPress can read the cache folder)', 'zinn-cache' ),
+					'spool' => __( 'Write the addresses to a folder for the host’s purger', 'zinn-cache' ),
+				),
+				'default' => 'http',
+				'show_if' => $is_layer( 'nginx' ),
+			),
+			array(
+				'key'         => 'nginx_purge_endpoint',
+				'type'        => 'text',
+				'label'       => __( 'Purge address', 'zinn-cache' ),
+				'description' => __( 'Leave blank for {scheme}://{host}/purge{request_uri}. Tokens: {scheme}, {host}, {path}, {request_uri}, {url}.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'http',
+				),
+			),
+			array(
+				'key'     => 'nginx_http_verb',
+				'type'    => 'select',
+				'label'   => __( 'Request method', 'zinn-cache' ),
+				'choices' => array(
+					'GET'   => 'GET',
+					'PURGE' => 'PURGE',
+				),
+				'default' => 'GET',
+				'show_if' => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'http',
+				),
+			),
+			array(
+				'key'         => 'nginx_purge_address',
+				'type'        => 'text',
+				'label'       => __( 'Send purges to', 'zinn-cache' ),
+				'description' => __( 'For example http://127.0.0.1. Needed when a CDN is in front of nginx: a purge sent to the public address would reach the CDN, not nginx. The site’s host name goes in the Host header.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'http',
+				),
+			),
+			array(
+				'key'         => 'nginx_cache_path',
+				'type'        => 'text',
+				'label'       => __( 'Cache folder', 'zinn-cache' ),
+				'description' => __( 'The folder in proxy_cache_path or fastcgi_cache_path, for example /var/cache/nginx/site. Only nginx cache files in it are ever deleted.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'files',
+				),
+			),
+			array(
+				'key'         => 'nginx_cache_levels',
+				'type'        => 'text',
+				'label'       => __( 'levels=', 'zinn-cache' ),
+				'description' => __( 'The levels= value of the same line, usually 1:2.', 'zinn-cache' ),
+				'default'     => '1:2',
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'files',
+				),
+			),
+			array(
+				'key'         => 'nginx_cache_key',
+				'type'        => 'text',
+				'label'       => __( 'Cache key', 'zinn-cache' ),
+				'description' => __( 'Your proxy_cache_key or fastcgi_cache_key. Leave blank for $scheme$request_method$host$request_uri.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'files',
+				),
+			),
+			array(
+				'key'         => 'nginx_key_variants',
+				'type'        => 'textarea',
+				'sanitize'    => 'csv',
+				'label'       => __( 'Other key variables', 'zinn-cache' ),
+				'description' => __( 'For a variable of your own in the key, one per line as name=value1|value2 (an empty value allowed), for example encoding=gzip|. Every combination is purged.', 'zinn-cache' ),
+				'rows'        => 3,
+				'default'     => array(),
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'files',
+				),
+			),
+			array(
+				'key'         => 'nginx_spool_dir',
+				'type'        => 'text',
+				'label'       => __( 'Spool folder', 'zinn-cache' ),
+				'description' => __( 'A folder outside the web root that your host’s purger reads. Each purge is one file with one address per line.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array(
+					'server_cache'       => 'nginx',
+					'nginx_purge_method' => 'spool',
+				),
+			),
+			array(
+				'key'     => 'varnish_host',
+				'type'    => 'text',
+				'label'   => __( 'Varnish address', 'zinn-cache' ),
+				'default' => '127.0.0.1',
+				'show_if' => $is_layer( 'varnish' ),
+			),
+			array(
+				'key'     => 'varnish_port',
+				'type'    => 'number',
+				'label'   => __( 'Varnish port', 'zinn-cache' ),
+				'min'     => 1,
+				'max'     => 65535,
+				'default' => 6081,
+				'show_if' => $is_layer( 'varnish' ),
+			),
+			array(
+				'key'         => 'varnish_method',
+				'type'        => 'select',
+				'label'       => __( 'Purge with', 'zinn-cache' ),
+				'description' => __( 'Your VCL must accept it from this server (an ACL in vcl_recv).', 'zinn-cache' ),
+				'choices'     => array(
+					'PURGE' => 'PURGE',
+					'BAN'   => 'BAN',
+				),
+				'default'     => 'PURGE',
+				'show_if'     => $is_layer( 'varnish' ),
+			),
+			array(
+				'key'         => 'apache_cache_root',
+				'type'        => 'text',
+				'label'       => __( 'CacheRoot', 'zinn-cache' ),
+				'description' => __( 'The CacheRoot folder of mod_cache_disk.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => $is_layer( 'apache' ),
+			),
+			array(
+				'key'     => 'apache_dir_levels',
+				'type'    => 'number',
+				'label'   => __( 'CacheDirLevels', 'zinn-cache' ),
+				'min'     => 0,
+				'max'     => 20,
+				'default' => 2,
+				'show_if' => $is_layer( 'apache' ),
+			),
+			array(
+				'key'     => 'apache_dir_length',
+				'type'    => 'number',
+				'label'   => __( 'CacheDirLength', 'zinn-cache' ),
+				'min'     => 1,
+				'max'     => 20,
+				'default' => 1,
+				'show_if' => $is_layer( 'apache' ),
+			),
+			array(
+				'type'        => 'heading',
+				'label'       => __( 'Cloudflare', 'zinn-cache' ),
+				'description' => __( 'When Cloudflare caches your pages (a Cache Everything rule or APO), changed pages are purged from its edge by address.', 'zinn-cache' ),
+			),
+			array(
+				'key'            => 'cloudflare_enabled',
+				'type'           => 'toggle',
+				'label'          => __( 'Cloudflare purge', 'zinn-cache' ),
+				'checkbox_label' => __( 'Purge changed pages from Cloudflare', 'zinn-cache' ),
+				'default'        => false,
+			),
+			array(
+				'key'         => 'cloudflare_zone_id',
+				'type'        => 'text',
+				'label'       => __( 'Zone ID', 'zinn-cache' ),
+				'description' => __( 'On the Overview page of your domain in Cloudflare.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array( 'cloudflare_enabled' => true ),
+			),
+			array(
+				'key'         => 'cloudflare_api_token',
+				'type'        => 'password',
+				'secret'      => true,
+				'sanitize'    => 'raw_secret',
+				'label'       => __( 'API token', 'zinn-cache' ),
+				'description' => Server\Cloudflare::token_is_constant() ? __( 'Set in wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); that one is used.', 'zinn-cache' ) : __( 'Create a token with only Zone → Cache Purge → Purge, for this zone. It is never shown again or exported.', 'zinn-cache' ),
+				'default'     => '',
+				'show_if'     => array( 'cloudflare_enabled' => true ),
+			),
+			array(
+				'key'            => 'cloudflare_purge_everything',
+				'type'           => 'toggle',
+				'label'          => __( 'Empty all', 'zinn-cache' ),
+				'checkbox_label' => __( 'Let “Empty all now” empty the whole Cloudflare zone too', 'zinn-cache' ),
+				'description'    => __( 'Off by default: it empties every host name on the zone and sends every visitor to your server at once.', 'zinn-cache' ),
+				'default'        => false,
+				'show_if'        => array( 'cloudflare_enabled' => true ),
+			),
+		);
+	}
+
+	/**
+	 * The Lighter pages tab.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	public static function lighter_fields(): array {
+		return array(
+			array(
+				'key'         => 'heartbeat_mode',
+				'type'        => 'select',
+				'label'       => __( 'WordPress Heartbeat', 'zinn-cache' ),
+				'description' => __( 'The Heartbeat is the browser asking WordPress every 15–60 seconds whether anything changed (autosave, post locks). Each ask is a PHP request the page cache cannot serve.', 'zinn-cache' ),
+				'choices'     => array(
+					'default'   => __( 'Leave it as WordPress sets it', 'zinn-cache' ),
+					'reduce'    => __( 'Once a minute everywhere', 'zinn-cache' ),
+					'off_front' => __( 'Off on the public site, normal in the dashboard', 'zinn-cache' ),
+				),
+				'default'     => 'default',
+			),
+			array(
+				'key'            => 'font_display_swap',
+				'type'           => 'toggle',
+				'label'          => __( 'Web fonts', 'zinn-cache' ),
+				'checkbox_label' => __( 'Show text at once while Google Fonts load (display=swap), and connect to the font server early', 'zinn-cache' ),
+				'default'        => false,
+			),
+			array(
+				'key'         => 'preconnect_origins',
+				'type'        => 'textarea',
+				'sanitize'    => 'csv',
+				'label'       => __( 'Connect early to', 'zinn-cache' ),
+				'description' => __( 'One https:// address per line: servers your pages load from (a CDN, a payment or analytics script).', 'zinn-cache' ),
+				'rows'        => 3,
+				'default'     => array(),
+			),
+			array(
+				'key'         => 'cdn_url',
+				'type'        => 'url',
+				'label'       => __( 'CDN address', 'zinn-cache' ),
+				'description' => __( 'For a pull CDN such as BunnyCDN or KeyCDN, for example https://cdn.example.com. Images, CSS, JavaScript and fonts under /wp-content/ and /wp-includes/ are served from it. Pages are not. Leave blank when Cloudflare proxies your whole site: it is already the CDN.', 'zinn-cache' ),
+				'default'     => '',
+			),
+			array(
+				'key'         => 'cdn_exclude',
+				'type'        => 'textarea',
+				'sanitize'    => 'csv',
+				'label'       => __( 'Keep on this site', 'zinn-cache' ),
+				'description' => __( 'Addresses containing any of these (one per line) are not moved to the CDN.', 'zinn-cache' ),
+				'rows'        => 3,
+				'default'     => array(),
+			),
 		);
 	}
 
@@ -310,6 +684,19 @@ final class Admin {
 				'show_if'     => array( 'object_cache_enabled' => true ),
 			),
 			array(
+				'key'         => 'redis_serializer',
+				'type'        => 'select',
+				'label'       => __( 'Serializer', 'zinn-cache' ),
+				'description' => __( 'igbinary stores the same data in less memory and reads it faster, when the PHP igbinary extension is installed. Changing it is safe at any time: each stored value is read in the format it was written in.', 'zinn-cache' ),
+				'choices'     => array(
+					'auto'     => __( 'igbinary when available, otherwise PHP', 'zinn-cache' ),
+					'igbinary' => 'igbinary',
+					'php'      => __( 'PHP (standard)', 'zinn-cache' ),
+				),
+				'default'     => 'auto',
+				'show_if'     => array( 'object_cache_enabled' => true ),
+			),
+			array(
 				'key'         => 'redis_key_prefix',
 				'type'        => 'text',
 				'label'       => __( 'Key prefix', 'zinn-cache' ),
@@ -338,8 +725,27 @@ final class Admin {
 				'key'            => 'purge_on_upgrade',
 				'type'           => 'toggle',
 				'label'          => __( 'After updates', 'zinn-cache' ),
-				'checkbox_label' => __( 'Clear everything after a core, plugin or theme update', 'zinn-cache' ),
+				'checkbox_label' => __( 'Refresh every page, a batch a minute, after a core, plugin or theme update', 'zinn-cache' ),
+				'description'    => __( 'Updates, plugin activations, theme and menu changes never empty the cache at once any more: emptying it sends every visitor to WordPress in the same minute. The paced refresh rebuilds the site gradually instead.', 'zinn-cache' ),
 				'default'        => true,
+			),
+			array(
+				'key'         => 'refresh_batch',
+				'type'        => 'number',
+				'label'       => __( 'Pages refreshed per minute', 'zinn-cache' ),
+				'description' => __( 'The refresh always reaches the end of the site; this only sets its pace.', 'zinn-cache' ),
+				'min'         => 10,
+				'max'         => 1000,
+				'default'     => 100,
+			),
+			array(
+				'key'         => 'refresh_load_limit',
+				'type'        => 'number',
+				'label'       => __( 'Pause the refresh above this server load', 'zinn-cache' ),
+				'description' => __( 'The one-minute load average. 0 means 1.5 × the number of CPU cores.', 'zinn-cache' ),
+				'min'         => 0,
+				'max'         => 1000,
+				'default'     => 0,
 			),
 			array(
 				'key'            => 'purge_on_comment',
@@ -451,7 +857,8 @@ final class Admin {
 		// On a server that is not LiteSpeed the page cache is the disk cache (Page_Cache). It needs
 		// its drop-in and WP_CACHE; when either is missing, say which, because "on" is otherwise a
 		// tick that caches nothing.
-		if ( $settings['lscache_enabled'] && ! $litespeed && ! Page_Cache::is_ready() ) {
+		$elsewhere = ( new Lscache( $settings ) )->page_cache_is_elsewhere();
+		if ( $settings['lscache_enabled'] && ! $elsewhere && ! Page_Cache::is_ready() ) {
 			$result = Page_Cache::sync( $settings, false );
 			if ( is_wp_error( $result ) || ! Page_Cache::is_ready() ) {
 				return array(
@@ -547,10 +954,10 @@ final class Admin {
 	private static function detail_rows( array $settings, bool $litespeed, bool $redis_ok ): array {
 		return array(
 			array(
-				'label' => __( 'Web server', 'zinn-cache' ),
+				'label' => __( 'Pages are served by', 'zinn-cache' ),
 				'value' => $litespeed
 					? __( 'LiteSpeed — pages are cached by the web server', 'zinn-cache' )
-					: __( 'not LiteSpeed — pages are cached on disk by this plugin', 'zinn-cache' ),
+					: Status::engine_label( ( new Lscache( $settings ) )->engine() ),
 			),
 			array(
 				'label' => __( 'Pages stored on disk', 'zinn-cache' ),
@@ -622,6 +1029,7 @@ final class Admin {
 	 */
 	public function on_settings_updated(): void {
 		$settings = Settings::get();
+		delete_transient( 'zinn_cache_layer_stats' );
 
 		$result = ( new Object_Cache( $settings ) )->sync();
 		if ( $result instanceof \WP_Error ) {

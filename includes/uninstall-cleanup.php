@@ -22,8 +22,15 @@ function zinn_cache_uninstall(): void {
 	Zinn\Cache\Htaccess::remove();
 	Zinn\Cache\Page_Cache::uninstall();
 
+	$zinn_cache_options = array(
+		Zinn\Cache\Settings::OPTION,
+		Zinn\Cache\Server\Probe::OPTION,
+		Zinn\Cache\Server\Server_Cache::QUEUE_OPTION,
+		Zinn\Cache\Server\Server_Cache::LOG_OPTION,
+		Zinn\Cache\Refresh::OPTION,
+	);
 	if ( ! is_multisite() ) {
-		delete_option( Zinn\Cache\Settings::OPTION );
+		array_map( 'delete_option', $zinn_cache_options );
 		return;
 	}
 	$zinn_cache_site_ids = get_sites(
@@ -34,7 +41,7 @@ function zinn_cache_uninstall(): void {
 	);
 	foreach ( $zinn_cache_site_ids as $zinn_cache_site_id ) {
 		switch_to_blog( (int) $zinn_cache_site_id );
-		delete_option( Zinn\Cache\Settings::OPTION );
+		array_map( 'delete_option', $zinn_cache_options );
 		restore_current_blog();
 	}
 }
