@@ -7,7 +7,7 @@ Tags: cache, page cache, nginx, varnish, redis
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.11.0
+Stable tag: 1.11.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -220,6 +220,9 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache purge url https://example.com/pricing/` (or just `/pricing/`) empties those pages, and `wp zinn-cache purge post 42` empties a post's page and the lists it appears on. Each prints how many stored pages it removed. On a LiteSpeed server the purge is sent to the server with the next request, which the command makes itself.
 
 == Changelog ==
+
+= 1.11.1 =
+* Security: the AI-app sign-in's "Disconnect" action now checks the signed-in user's capability as well as the nonce (WordPress.org review standards).
 
 = 1.11.0 =
 * **Updates no longer empty the cache.** For every site: a WordPress, plugin or theme update, a plugin activation or deactivation, a theme switch, a menu save and a site-wide setting now start a paced refresh (100 pages a minute by default, paused while the server is busy) instead of purging everything at once. **Empty all now** (formerly "Purge everything now") still empties the cache at once.
