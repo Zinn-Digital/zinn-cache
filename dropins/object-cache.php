@@ -1269,6 +1269,24 @@ class WP_Object_Cache {
 	}
 
 	/**
+	 * True only if a PHP function exists AND is not in `disable_functions`.
+	 *
+	 * ⛔⛔ This drop-in runs on EVERY request, before plugins load, so it cannot use the plugin's
+	 * `zinn_cache_can_call()`. On PHP 8 a disabled function is undefined and calling it is a fatal
+	 * error `@` does not stop - here that would take the whole site down (docs/72).
+	 *
+	 * @param string $name A PHP function name.
+	 * @return bool
+	 */
+	private static function can_call( string $name ): bool {
+		if ( ! function_exists( $name ) ) {
+			return false;
+		}
+		$list = function_exists( 'ini_get' ) ? (string) ini_get( 'disable_functions' ) : '';
+		return ! in_array( strtolower( $name ), array_map( 'trim', explode( ',', strtolower( $list ) ) ), true );
+	}
+
+	/**
 	 * Ask the host's flush helper to delete every key this site owns.
 	 *
 	 * Used only when `ZINN_CACHE_FLUSH_SOCKET` names a Unix socket. The helper identifies the
@@ -1279,14 +1297,14 @@ class WP_Object_Cache {
 	 */
 	private function helper_flush(): bool {
 		$path = $this->config['flush_socket'];
-		if ( '' === $path ) {
+		if ( '' === $path || ! self::can_call( 'stream_socket_client' ) ) {
 			return false;
 		}
 
 		$errno  = 0;
 		$errstr = '';
 		// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- A missing socket is an expected, handled state (the host has not installed the helper); PHP's warning would only add noise to the site's log.
-		$socket = @stream_socket_client( 'unix://' . $path, $errno, $errstr, 2.0 );
+		$socket = @stream_socket_client( 'unix://' . $path, $errno, $errstr, 2.0 ); // php-fn-guard-ok: self::can_call( 'stream_socket_client' ) is checked at the top of this method.
 		if ( ! is_resource( $socket ) ) {
 			return false;
 		}

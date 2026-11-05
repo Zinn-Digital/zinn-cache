@@ -318,7 +318,7 @@ final class Nginx extends Driver {
 		if ( array() === $lines ) {
 			return self::result( 0 );
 		}
-		$name = $dir . '/' . gmdate( 'YmdHis' ) . '-' . getmypid() . '-' . wp_rand( 100000, 999999 );
+		$name = $dir . '/' . gmdate( 'YmdHis' ) . '-' . ( \Zinn\Cache\Php::can_call( 'getmypid' ) ? getmypid() : 0 ) . '-' . wp_rand( 100000, 999999 );
 		// phpcs:disable WordPress.WP.AlternativeFunctions -- A temporary file and a rename, so the host purger never reads half a batch; WP_Filesystem has no rename and may be FTP-backed.
 		if ( false === file_put_contents( $name . '.tmp', implode( "\n", $lines ) . "\n", LOCK_EX ) || ! rename( $name . '.tmp', $name . '.txt' ) ) {
 			wp_delete_file( $name . '.tmp' );

@@ -166,7 +166,7 @@ final class Refresh {
 		if ( $limit <= 0 ) {
 			$limit = 1.5 * self::cpu_count();
 		}
-		if ( function_exists( 'sys_getloadavg' ) ) {
+		if ( Php::can_call( 'sys_getloadavg' ) ) {
 			$load = sys_getloadavg();
 			if ( is_array( $load ) && isset( $load[0] ) && (float) $load[0] > $limit ) {
 				/* translators: 1: one-minute load average, 2: the limit. */
