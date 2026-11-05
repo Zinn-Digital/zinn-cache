@@ -49,7 +49,7 @@ final class Page_Cache {
 	/**
 	 * Tracking query keys that never change a page, so a URL carrying only these is still cacheable.
 	 */
-	public const IGNORED_QUERY_KEYS = array( 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', '_ga', 'mc_cid', 'mc_eid' );
+	public const IGNORED_QUERY_KEYS = array( 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', 'twclid', '_ga', 'mc_cid', 'mc_eid' );
 
 	/**
 	 * The cache root.
