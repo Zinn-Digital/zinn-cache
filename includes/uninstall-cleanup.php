@@ -28,6 +28,7 @@ function zinn_cache_uninstall(): void {
 		Zinn\Cache\Server\Server_Cache::QUEUE_OPTION,
 		Zinn\Cache\Server\Server_Cache::LOG_OPTION,
 		Zinn\Cache\Refresh::OPTION,
+		Zinn\Cache\Activity::OPTION,
 	);
 	if ( ! is_multisite() ) {
 		array_map( 'delete_option', $zinn_cache_options );

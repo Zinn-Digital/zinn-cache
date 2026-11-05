@@ -239,6 +239,8 @@ final class Status {
 			}
 			$html .= '</tbody></table>';
 		}
+		// Who changed which setting and who emptied the cache (Hummingbird 4.0 parity).
+		$html .= Activity::panel_html();
 		return $html;
 	}
 

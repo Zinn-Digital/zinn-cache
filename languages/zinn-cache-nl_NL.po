@@ -35,6 +35,56 @@ msgstr "Neil Lock — CEO, Zinn Digital® Ltd"
 msgid "https://zinndigital.com"
 msgstr "https://zinndigital.com"
 
+#. translators: %s: comma-separated setting names.
+#: includes/class-activity.php:134
+#, php-format
+msgid "Changed: %s"
+msgstr "Gewijzigd: %s"
+
+#. translators: %s: why the cache was emptied (manual, deploy, update or api).
+#: includes/class-activity.php:137
+#, php-format
+msgid "Emptied the whole cache (%s)"
+msgstr "De hele cache geleegd (%s)"
+
+#. translators: %s: why the refresh started.
+#: includes/class-activity.php:140
+#, php-format
+msgid "Started a paced refresh (%s)"
+msgstr "Gedoseerd vernieuwen gestart (%s)"
+
+#: includes/class-activity.php:156
+msgid "Activity"
+msgstr "Activiteit"
+
+#: includes/class-activity.php:157
+#: includes/class-status.php:221
+msgid "When"
+msgstr "Wanneer"
+
+#: includes/class-activity.php:157
+msgid "Who"
+msgstr "Wie"
+
+#: includes/class-activity.php:158
+msgid "What"
+msgstr "Wat"
+
+#. translators: %s: how long ago.
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/class-activity.php:161
+#: includes/class-status.php:236
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s ago"
+msgstr "%s geleden"
+
+#. translators: %s: how long ago.
+#: includes/class-activity.php:162
+msgid "System"
+msgstr "Systeem"
+
 #: includes/class-admin.php:103
 msgid "Purge addresses"
 msgstr "Adressen wissen"
@@ -136,685 +186,697 @@ msgid "Cache"
 msgstr "Cache"
 
 #: includes/class-admin.php:165
+msgid "Saving…"
+msgstr "Opslaan…"
+
+#: includes/class-admin.php:166
+msgid "All changes saved."
+msgstr "Alle wijzigingen opgeslagen."
+
+#: includes/class-admin.php:167
+msgid "Could not save: use Save changes."
+msgstr "Kon niet opslaan: gebruik Wijzigingen opslaan."
+
+#: includes/class-admin.php:171
 msgid "Status"
 msgstr "Status"
 
-#: includes/class-admin.php:169
-#: includes/class-admin.php:553
+#: includes/class-admin.php:175
+#: includes/class-admin.php:559
 msgid "Page cache"
 msgstr "Paginacache"
 
-#: includes/class-admin.php:173
-#: includes/class-admin.php:638
+#: includes/class-admin.php:179
+#: includes/class-admin.php:644
 msgid "Object cache"
 msgstr "Objectcache"
 
-#: includes/class-admin.php:177
+#: includes/class-admin.php:183
 msgid "Purging"
 msgstr "Bezig met legen"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:187
 msgid "Exclusions"
 msgstr "Uitsluitingen"
 
-#: includes/class-admin.php:185
+#: includes/class-admin.php:191
 msgid "Server cache"
 msgstr "Servercache"
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:195
 msgid "Lighter pages"
 msgstr "Lichtere pagina's"
 
-#: includes/class-admin.php:193
-#: includes/class-admin.php:526
+#: includes/class-admin.php:199
+#: includes/class-admin.php:532
 #: includes/mcp-kit/class-server.php:322
 msgid "AI agents (MCP)"
 msgstr "AI-agenten (MCP)"
 
-#: includes/class-admin.php:200
+#: includes/class-admin.php:206
 msgid "Empty all now"
 msgstr "Nu alles legen"
 
-#: includes/class-admin.php:201
+#: includes/class-admin.php:207
 msgid "Every cached page is discarded at once, on every cache layer this plugin purges, and every visitor will reach WordPress until pages are rebuilt. Updates do not need this: they refresh pages gradually by themselves. Continue?"
 msgstr "Elke gecachte pagina wordt in één keer weggegooid, op elke cachelaag die deze plugin leegt, en elke bezoeker zal WordPress bereiken totdat de pagina's opnieuw zijn opgebouwd. Updates hebben dit niet nodig: ze vernieuwen pagina's geleidelijk vanzelf. Doorgaan?"
 
-#: includes/class-admin.php:230
+#: includes/class-admin.php:236
 msgid "not checked yet"
 msgstr "nog niet gecontroleerd"
 
-#: includes/class-admin.php:230
+#: includes/class-admin.php:236
 msgid "the check could not reach the site"
 msgstr "de controle kon de site niet bereiken"
 
-#: includes/class-admin.php:235
+#: includes/class-admin.php:241
 msgid "A page cache in front of WordPress"
 msgstr "Een paginacache voor WordPress"
 
-#: includes/class-admin.php:236
+#: includes/class-admin.php:242
 msgid "Many hosts put nginx, Varnish or Apache’s own cache in front of WordPress. Those answer before PHP runs, so they are faster than any plugin; Zinn® Cache then does not add a second page cache behind them. It tells them which pages changed instead. On a LiteSpeed server nothing here is needed."
 msgstr "Veel hosts plaatsen nginx, Varnish of de eigen cache van Apache vóór WordPress. Die antwoorden voordat PHP draait en zijn dus sneller dan welke plugin dan ook; Zinn® Cache voegt daarachter dan ook geen tweede paginacache toe. In plaats daarvan laat het weten welke pagina's zijn gewijzigd. Op een LiteSpeed-server is hier niets nodig."
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:247
 msgid "Server page cache"
 msgstr "Serverpaginacache"
 
 #. translators: %s: what the last check saw.
-#: includes/class-admin.php:243
+#: includes/class-admin.php:249
 #, php-format
 msgid "Last check: %s. “Detect automatically” keeps Zinn® Cache’s own page cache out when a server cache is seen, but purges only reach a server cache you choose here, with how to reach it."
 msgstr "Laatste controle: %s. 'Automatisch detecteren' houdt de eigen paginacache van Zinn® Cache buiten gebruik wanneer er een servercache wordt aangetroffen, maar geleegde gegevens bereiken alleen een servercache die je hier kiest, samen met hoe deze te bereiken."
 
-#: includes/class-admin.php:245
+#: includes/class-admin.php:251
 #: includes/class-status.php:154
 msgid "Detect automatically"
 msgstr "Automatisch detecteren"
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:252
 msgid "None — use Zinn® Cache’s page cache"
 msgstr "Geen — gebruik de paginacache van Zinn® Cache"
 
-#: includes/class-admin.php:247
+#: includes/class-admin.php:253
 msgid "nginx (proxy_cache or fastcgi_cache)"
 msgstr "nginx (proxy_cache of fastcgi_cache)"
 
-#: includes/class-admin.php:249
+#: includes/class-admin.php:255
 msgid "Apache mod_cache (disk)"
 msgstr "Apache mod_cache (schijf)"
 
-#: includes/class-admin.php:256
+#: includes/class-admin.php:262
 msgid "Cache headers"
 msgstr "Cache-headers"
 
-#: includes/class-admin.php:257
+#: includes/class-admin.php:263
 msgid "Tell the server cache how long a page may be kept (s-maxage), and mark personal pages private"
 msgstr "Geef aan de servercache door hoe lang een pagina bewaard mag blijven (s-maxage), en markeer persoonlijke pagina's als private"
 
-#: includes/class-admin.php:258
+#: includes/class-admin.php:264
 msgid "Signed-in visitors, excluded addresses and form posts always get Cache-Control: private, no-store. This switch adds the shared-cache lifetime to pages that may be cached."
 msgstr "Ingelogde bezoekers, uitgesloten adressen en formulierberichten krijgen altijd Cache-Control: private, no-store. Deze schakelaar voegt de levensduur van de gedeelde cache toe aan pagina's die gecachet kunnen worden."
 
-#: includes/class-admin.php:264
+#: includes/class-admin.php:270
 msgid "How to purge nginx"
 msgstr "Hoe je nginx leegmaakt"
 
-#: includes/class-admin.php:266
+#: includes/class-admin.php:272
 msgid "A purge request per page (the ngx_cache_purge module)"
 msgstr "Een leegmaakverzoek per pagina (de ngx_cache_purge module)"
 
-#: includes/class-admin.php:267
+#: includes/class-admin.php:273
 msgid "Delete the cache files (WordPress can read the cache folder)"
 msgstr "Verwijder de cachebestanden (WordPress kan de cachemap lezen)"
 
-#: includes/class-admin.php:268
+#: includes/class-admin.php:274
 msgid "Write the addresses to a folder for the host’s purger"
 msgstr "Schrijf de adressen naar een map voor de purger van de host"
 
-#: includes/class-admin.php:276
+#: includes/class-admin.php:282
 msgid "Purge address"
 msgstr "Adres wissen"
 
-#: includes/class-admin.php:277
+#: includes/class-admin.php:283
 msgid "Leave blank for {scheme}://{host}/purge{request_uri}. Tokens: {scheme}, {host}, {path}, {request_uri}, {url}."
 msgstr "Laat leeg voor {scheme}://{host}/purge{request_uri}. Tokens: {scheme}, {host}, {path}, {request_uri}, {url}."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:293
 msgid "Request method"
 msgstr "Verzoekmethode"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:307
 msgid "Send purges to"
 msgstr "Verwijderingen verzenden naar"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:308
 msgid "For example http://127.0.0.1. Needed when a CDN is in front of nginx: a purge sent to the public address would reach the CDN, not nginx. The site’s host name goes in the Host header."
 msgstr "Bijvoorbeeld http://127.0.0.1. Nodig wanneer er een CDN vóór nginx staat: een purge die naar het openbare adres wordt verzonden, bereikt het CDN en niet nginx. De hostnaam van de site komt in de Host-header."
 
-#: includes/class-admin.php:312
+#: includes/class-admin.php:318
 msgid "Cache folder"
 msgstr "Cachemap"
 
-#: includes/class-admin.php:313
+#: includes/class-admin.php:319
 msgid "The folder in proxy_cache_path or fastcgi_cache_path, for example /var/cache/nginx/site. Only nginx cache files in it are ever deleted."
 msgstr "De map in proxy_cache_path of fastcgi_cache_path, bijvoorbeeld /var/cache/nginx/site. Alleen nginx-cachebestanden daarin worden ooit verwijderd."
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:329
 msgid "levels="
 msgstr "niveaus="
 
-#: includes/class-admin.php:324
+#: includes/class-admin.php:330
 msgid "The levels= value of the same line, usually 1:2."
 msgstr "De levels=-waarde van dezelfde regel, meestal 1:2."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:340
 msgid "Cache key"
 msgstr "Cache-sleutel"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:341
 msgid "Your proxy_cache_key or fastcgi_cache_key. Leave blank for $scheme$request_method$host$request_uri."
 msgstr "Je proxy_cache_key of fastcgi_cache_key. Laat leeg voor $scheme$request_method$host$request_uri."
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:352
 msgid "Other key variables"
 msgstr "Andere belangrijke variabelen"
 
-#: includes/class-admin.php:347
+#: includes/class-admin.php:353
 msgid "For a variable of your own in the key, one per line as name=value1|value2 (an empty value allowed), for example encoding=gzip|. Every combination is purged."
 msgstr "Voor een eigen variabele in de sleutel, één per regel als name=value1|value2 (een lege waarde is toegestaan), bijvoorbeeld encoding=gzip|. Elke combinatie wordt gewist."
 
-#: includes/class-admin.php:358
+#: includes/class-admin.php:364
 msgid "Spool folder"
 msgstr "Spoolmap"
 
-#: includes/class-admin.php:359
+#: includes/class-admin.php:365
 msgid "A folder outside the web root that your host’s purger reads. Each purge is one file with one address per line."
 msgstr "Een map buiten de web-root die de purger van je host leest. Elke purge is één bestand met één adres per regel."
 
-#: includes/class-admin.php:369
+#: includes/class-admin.php:375
 msgid "Varnish address"
 msgstr "Varnish-adres"
 
-#: includes/class-admin.php:376
+#: includes/class-admin.php:382
 msgid "Varnish port"
 msgstr "Varnish-poort"
 
-#: includes/class-admin.php:385
+#: includes/class-admin.php:391
 msgid "Purge with"
 msgstr "Leegmaken met"
 
-#: includes/class-admin.php:386
+#: includes/class-admin.php:392
 msgid "Your VCL must accept it from this server (an ACL in vcl_recv)."
 msgstr "Je VCL moet dit accepteren van deze server (een ACL in vcl_recv)."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:403
 msgid "CacheRoot"
 msgstr "Cachehoofdmap"
 
-#: includes/class-admin.php:398
+#: includes/class-admin.php:404
 msgid "The CacheRoot folder of mod_cache_disk."
 msgstr "De CacheRoot-map van mod_cache_disk."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:411
 msgid "CacheDirLevels"
 msgstr "Niveaus van cachemap"
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:420
 msgid "CacheDirLength"
 msgstr "Lengte cachemap"
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:428
 #: includes/class-status.php:148
 #: includes/server/class-cloudflare.php:48
 msgid "Cloudflare"
 msgstr "Cloudflare"
 
-#: includes/class-admin.php:423
+#: includes/class-admin.php:429
 msgid "When Cloudflare caches your pages (a Cache Everything rule or APO), changed pages are purged from its edge by address."
 msgstr "Wanneer Cloudflare je pagina's buffert (een Cache Everything-regel of APO), worden gewijzigde pagina's op basis van adres uit het edge-netwerk gewist."
 
-#: includes/class-admin.php:428
+#: includes/class-admin.php:434
 msgid "Cloudflare purge"
 msgstr "Cloudflare leegmaken"
 
-#: includes/class-admin.php:429
+#: includes/class-admin.php:435
 msgid "Purge changed pages from Cloudflare"
 msgstr "Gewijzigde pagina's legen uit Cloudflare"
 
-#: includes/class-admin.php:435
+#: includes/class-admin.php:441
 msgid "Zone ID"
 msgstr "Zone-ID"
 
-#: includes/class-admin.php:436
+#: includes/class-admin.php:442
 msgid "On the Overview page of your domain in Cloudflare."
 msgstr "Op de pagina Overzicht van je domein in Cloudflare."
 
-#: includes/class-admin.php:445
+#: includes/class-admin.php:451
 msgid "API token"
 msgstr "API-token"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Set in wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); that one is used."
 msgstr "Ingesteld in wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); die wordt gebruikt."
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Create a token with only Zone → Cache Purge → Purge, for this zone. It is never shown again or exported."
 msgstr "Maak een token met alleen Zone → Cache Purge → Purge voor deze zone. Het wordt nooit meer getoond of geëxporteerd."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:459
 msgid "Empty all"
 msgstr "Alles legen"
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Let “Empty all now” empty the whole Cloudflare zone too"
 msgstr "Laat ‘Nu alles legen’ ook de hele Cloudflare-zone legen"
 
-#: includes/class-admin.php:455
+#: includes/class-admin.php:461
 msgid "Off by default: it empties every host name on the zone and sends every visitor to your server at once."
 msgstr "Standaard uitgeschakeld: het maakt elke hostnaam in de zone leeg en stuurt elke bezoeker tegelijk naar jouw server."
 
-#: includes/class-admin.php:472
+#: includes/class-admin.php:478
 msgid "WordPress Heartbeat"
 msgstr "WordPress Heartbeat"
 
-#: includes/class-admin.php:473
+#: includes/class-admin.php:479
 msgid "The Heartbeat is the browser asking WordPress every 15–60 seconds whether anything changed (autosave, post locks). Each ask is a PHP request the page cache cannot serve."
 msgstr "De Heartbeat is de browser die WordPress elke 15–60 seconden vraagt of er iets is gewijzigd (automatisch opslaan, berichtvergrendelingen). Elke vraag is een PHP-verzoek dat de paginacache niet kan afhandelen."
 
-#: includes/class-admin.php:475
+#: includes/class-admin.php:481
 msgid "Leave it as WordPress sets it"
 msgstr "Laat het zoals WordPress het instelt"
 
-#: includes/class-admin.php:476
+#: includes/class-admin.php:482
 msgid "Once a minute everywhere"
 msgstr "Overal één keer per minuut"
 
-#: includes/class-admin.php:477
+#: includes/class-admin.php:483
 msgid "Off on the public site, normal in the dashboard"
 msgstr "Uit op de openbare site, normaal in het dashboard"
 
-#: includes/class-admin.php:484
+#: includes/class-admin.php:490
 msgid "Web fonts"
 msgstr "Weblettertypen"
 
-#: includes/class-admin.php:485
+#: includes/class-admin.php:491
 msgid "Show text at once while Google Fonts load (display=swap), and connect to the font server early"
 msgstr "Toon tekst meteen terwijl Google Fonts laden (display=swap), en maak vroeg verbinding met de lettertypeserver"
 
-#: includes/class-admin.php:492
+#: includes/class-admin.php:498
 msgid "Connect early to"
 msgstr "Maak vroegtijdig verbinding met"
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "One https:// address per line: servers your pages load from (a CDN, a payment or analytics script)."
 msgstr "Eén https://-adres per regel: servers waarvan je pagina's worden geladen (een CDN, een betaal- of analysescript)."
 
-#: includes/class-admin.php:500
+#: includes/class-admin.php:506
 msgid "CDN address"
 msgstr "CDN-adres"
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "For a pull CDN such as BunnyCDN or KeyCDN, for example https://cdn.example.com. Images, CSS, JavaScript and fonts under /wp-content/ and /wp-includes/ are served from it. Pages are not. Leave blank when Cloudflare proxies your whole site: it is already the CDN."
 msgstr "Voor een pull-CDN zoals BunnyCDN of KeyCDN, bijvoorbeeld https://cdn.example.com. Afbeeldingen, CSS, JavaScript en lettertypen onder /wp-content/ en /wp-includes/ worden hiervandaan geleverd. Pagina's niet. Laat leeg wanneer Cloudflare je hele site proxiet: het is al het CDN."
 
-#: includes/class-admin.php:508
+#: includes/class-admin.php:514
 msgid "Keep on this site"
 msgstr "Op deze site bewaren"
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:515
 msgid "Addresses containing any of these (one per line) are not moved to the CDN."
 msgstr "Adressen die een van deze bevatten (één per regel) worden niet verplaatst naar het CDN."
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:533
 #: includes/mcp-kit/class-server.php:331
 msgid "Allow AI agents (MCP)"
 msgstr "AI-agents toestaan (MCP)"
 
-#: includes/class-admin.php:528
+#: includes/class-admin.php:534
 #: includes/mcp-kit/class-server.php:333
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "Uit: de onderstaande tools en hun REST-routes zijn helemaal niet geregistreerd."
 
-#: includes/class-admin.php:547
+#: includes/class-admin.php:553
 msgid "Full-page cache"
 msgstr "Volledige-paginacache"
 
-#: includes/class-admin.php:548
+#: includes/class-admin.php:554
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Op een LiteSpeed-server worden pagina's door de webserver geserveerd voordat WordPress wordt uitgevoerd. Op elke andere server slaat deze plugin elke pagina op als een bestand en serveert deze voordat WordPress laadt. Dit is waar bijna alle snelheid vandaan komt."
 
-#: includes/class-admin.php:554
+#: includes/class-admin.php:560
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Pagina's cachen voor bezoekers die niet zijn ingelogd"
 
-#: includes/class-admin.php:560
+#: includes/class-admin.php:566
 msgid "How long a page stays cached"
 msgstr "Hoe lang een pagina gecachet blijft"
 
-#: includes/class-admin.php:561
+#: includes/class-admin.php:567
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Seconden. Een week is geschikt voor de meeste sites; een nieuwssite die elk uur publiceert, heeft veel minder nodig."
 
-#: includes/class-admin.php:570
+#: includes/class-admin.php:576
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Hoe lang de browser van een bezoeker afbeeldingen en scripts bewaart"
 
-#: includes/class-admin.php:571
+#: includes/class-admin.php:577
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Seconden. Alleen van toepassing op afbeeldingen, CSS en JavaScript — nooit op pagina's. Stel in op 0 om dit aan je host over te laten."
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:585
 msgid "Signed-in visitors"
 msgstr "Aangemelde bezoekers"
 
-#: includes/class-admin.php:580
+#: includes/class-admin.php:586
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Toon nooit een gecachete pagina aan een ingelogde bezoeker"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:587
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "Aan is de veilige keuze en de standaardwaarde. Schakel het alleen uit als je weet dat elke gecachete pagina identiek is voor elke ingelogde gebruiker — een lidmaatschapssite is de gebruikelijke reden om dit niet te doen."
 
-#: includes/class-admin.php:587
+#: includes/class-admin.php:593
 msgid "Different lifetimes for different content"
 msgstr "Verschillende levensduren voor verschillende inhoud"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:594
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Bijvoorbeeld: de productpagina's van een winkel gedurende een uur, terwijl al het andere een week blijft."
 
-#: includes/class-admin.php:589
+#: includes/class-admin.php:595
 msgid "Add a rule"
 msgstr "Regel toevoegen"
 
-#: includes/class-admin.php:596
+#: includes/class-admin.php:602
 msgid "Content type"
 msgstr "Inhoudstype"
 
-#: includes/class-admin.php:602
+#: includes/class-admin.php:608
 msgid "Seconds"
 msgstr "Seconden"
 
-#: includes/class-admin.php:623
-#: includes/class-admin.php:632
+#: includes/class-admin.php:629
+#: includes/class-admin.php:638
 msgid "Object cache (Redis)"
 msgstr "Objectcache (Redis)"
 
-#: includes/class-admin.php:624
+#: includes/class-admin.php:630
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Je host voert een privé Redis-objectcache uit voor deze site en houdt deze geconfigureerd. Er valt hier niets in te stellen; de status bovenaan dit scherm laat zien of het werkt."
 
-#: includes/class-admin.php:633
+#: includes/class-admin.php:639
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Slaat de resultaten van databasequery's op in de cache. Het helpt vooral bij een drukke winkel of een site met veel verkeer van ingelogde gebruikers, waar de paginacache niet kan helpen."
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:645
 msgid "Install the Redis object-cache drop-in"
 msgstr "Installeer de Redis object-cache drop-in"
 
-#: includes/class-admin.php:640
+#: includes/class-admin.php:646
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Heeft de phpredis-extensie nodig. Als deze ontbreekt, geeft het vak boven dit scherm dat aan."
 
-#: includes/class-admin.php:646
+#: includes/class-admin.php:652
 msgid "Redis host"
 msgstr "Redis-host"
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:659
 msgid "Redis port"
 msgstr "Redis-poort"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:668
 msgid "Redis database"
 msgstr "Redis-database"
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:669
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Geef elke site op een gedeelde Redis een eigen nummer, anders wissen ze elkaars cache."
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:678
 msgid "Redis username"
 msgstr "Redis-gebruikersnaam"
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:679
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Alleen voor een Redis-server met ACL-gebruikers (Redis 6 of nieuwer). Laat leeg om alleen met het wachtwoord in te loggen."
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:687
 msgid "Redis password"
 msgstr "Redis-wachtwoord"
 
-#: includes/class-admin.php:682
+#: includes/class-admin.php:688
 msgid "Leave blank if your Redis does not need one."
 msgstr "Laat leeg als jouw Redis er geen nodig heeft."
 
-#: includes/class-admin.php:689
+#: includes/class-admin.php:695
 msgid "Serializer"
 msgstr "Serializer"
 
-#: includes/class-admin.php:690
+#: includes/class-admin.php:696
 msgid "igbinary stores the same data in less memory and reads it faster, when the PHP igbinary extension is installed. Changing it is safe at any time: each stored value is read in the format it was written in."
 msgstr "igbinary slaat dezelfde gegevens op in minder geheugen en leest ze sneller wanneer de PHP igbinary-extensie is geïnstalleerd. Het wijzigen ervan is op elk moment veilig: elke opgeslagen waarde wordt gelezen in het formaat waarin deze is geschreven."
 
-#: includes/class-admin.php:692
+#: includes/class-admin.php:698
 msgid "igbinary when available, otherwise PHP"
 msgstr "igbinary indien beschikbaar, anders PHP"
 
-#: includes/class-admin.php:694
+#: includes/class-admin.php:700
 #: includes/class-status.php:183
 msgid "PHP (standard)"
 msgstr "PHP (standaard)"
 
-#: includes/class-admin.php:702
+#: includes/class-admin.php:708
 msgid "Key prefix"
 msgstr "Sleutelvoorvoegsel"
 
-#: includes/class-admin.php:703
+#: includes/class-admin.php:709
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Een alternatief voor een apart databasenummer als je er geen kunt hebben."
 
-#: includes/class-admin.php:720
+#: includes/class-admin.php:726
 msgid "Smart auto-purge"
 msgstr "Slim automatisch wissen"
 
-#: includes/class-admin.php:721
+#: includes/class-admin.php:727
 msgid "Clear affected pages automatically when content changes"
 msgstr "Getroffen pagina's automatisch wissen wanneer inhoud verandert"
 
-#: includes/class-admin.php:727
+#: includes/class-admin.php:733
 msgid "After updates"
 msgstr "Na updates"
 
-#: includes/class-admin.php:728
+#: includes/class-admin.php:734
 msgid "Refresh every page, a batch a minute, after a core, plugin or theme update"
 msgstr "Vernieuw elke pagina, één batch per minuut, na een update van de core, een plugin of een thema"
 
-#: includes/class-admin.php:729
+#: includes/class-admin.php:735
 msgid "Updates, plugin activations, theme and menu changes never empty the cache at once any more: emptying it sends every visitor to WordPress in the same minute. The paced refresh rebuilds the site gradually instead."
 msgstr "Updates, plug-in-activaties en thema- en menuwijzigingen maken de cache niet meer in één keer leeg: als je hem leegmaakt, wordt elke bezoeker in dezelfde minuut naar WordPress gestuurd. In plaats daarvan bouwt de gedoseerde vernieuwing de site geleidelijk weer op."
 
-#: includes/class-admin.php:735
+#: includes/class-admin.php:741
 msgid "Pages refreshed per minute"
 msgstr "Vernieuwde pagina's per minuut"
 
-#: includes/class-admin.php:736
+#: includes/class-admin.php:742
 msgid "The refresh always reaches the end of the site; this only sets its pace."
 msgstr "Het vernieuwen bereikt altijd het einde van de site; dit bepaalt alleen het tempo."
 
-#: includes/class-admin.php:744
+#: includes/class-admin.php:750
 msgid "Pause the refresh above this server load"
 msgstr "Pauzeer het vernieuwen boven deze serverbelasting"
 
-#: includes/class-admin.php:745
+#: includes/class-admin.php:751
 msgid "The one-minute load average. 0 means 1.5 × the number of CPU cores."
 msgstr "De gemiddelde belasting over één minuut. 0 betekent 1,5 × het aantal CPU-kernen."
 
-#: includes/class-admin.php:753
+#: includes/class-admin.php:759
 msgid "After a comment"
 msgstr "Na een reactie"
 
-#: includes/class-admin.php:754
+#: includes/class-admin.php:760
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "De pagina van een bericht legen wanneer een reactie erop is goedgekeurd"
 
-#: includes/class-admin.php:755
+#: includes/class-admin.php:761
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Schakel dit uit bij een zeer actieve reactiesectie, waar dezelfde pagina honderden keren per uur gewist kan worden."
 
-#: includes/class-admin.php:770
+#: includes/class-admin.php:776
 msgid "Never cache these"
 msgstr "Deze nooit cachen"
 
-#: includes/class-admin.php:771
+#: includes/class-admin.php:777
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Verstandige standaardwaarden voor WordPress en WooCommerce worden altijd toegepast — cart, checkout, my-account en elke ingelogde sessie worden nooit gecachet, ongeacht wat er hieronder staat."
 
-#: includes/class-admin.php:777
+#: includes/class-admin.php:783
 #: includes/class-status.php:222
 msgid "Addresses"
 msgstr "Adressen"
 
-#: includes/class-admin.php:778
+#: includes/class-admin.php:784
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Eén pad per regel, bijvoorbeeld <code>/basket</code>. Een <code>*</code> aan het einde komt overeen met alles wat eronder valt."
 
-#: includes/class-admin.php:786
+#: includes/class-admin.php:792
 msgid "Query parameters"
 msgstr "Queryparameters"
 
-#: includes/class-admin.php:787
+#: includes/class-admin.php:793
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Een pagina die een van deze bevat, wordt nooit gecachet — bijvoorbeeld een eenmalige previewtoken."
 
-#: includes/class-admin.php:795
+#: includes/class-admin.php:801
 msgid "Cookies"
 msgstr "Cookies"
 
-#: includes/class-admin.php:796
+#: includes/class-admin.php:802
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Een bezoeker die een van deze heeft, krijgt altijd een verse pagina geserveerd."
 
-#: includes/class-admin.php:825
+#: includes/class-admin.php:831
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Elke gecachte pagina is verwijderd. Ze worden opnieuw opgebouwd zodra er bezoekers komen."
 
-#: includes/class-admin.php:851
+#: includes/class-admin.php:857
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "De objectcache is geïnstalleerd, maar slaat niets op."
 
-#: includes/class-admin.php:866
+#: includes/class-admin.php:872
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "De paginacache is ingeschakeld, maar pagina's worden nog niet opgeslagen."
 
-#: includes/class-admin.php:867
+#: includes/class-admin.php:873
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress heeft de pagina-cache drop-in nog niet geladen. Deze start bij de volgende paginalading; als dit niet gebeurt, controleer dan of WP_CACHE op true staat in wp-config.php."
 
-#: includes/class-admin.php:876
+#: includes/class-admin.php:882
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "De objectcache staat aan, maar deze server heeft geen ondersteuning voor Redis."
 
-#: includes/class-admin.php:877
+#: includes/class-admin.php:883
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "De phpredis-extensie is niet geïnstalleerd, waardoor de drop-in niet kan worden gebruikt en WordPress terugvalt op zijn eigen in-memory cache. Vraag je host om phpredis in te schakelen."
 
-#: includes/class-admin.php:885
+#: includes/class-admin.php:891
 msgid "Nothing is being cached."
 msgstr "Er wordt niets gecachet."
 
-#: includes/class-admin.php:886
+#: includes/class-admin.php:892
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Beide caches zijn uitgeschakeld, dus deze plugin maakt de site niet sneller."
 
-#: includes/class-admin.php:893
+#: includes/class-admin.php:899
 msgid "Caching is active on this site."
 msgstr "Caching is actief op deze site."
 
-#: includes/class-admin.php:928
+#: includes/class-admin.php:934
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis heeft de gebruikersnaam of het wachtwoord geweigerd. Controleer de Redis-inloggegevens in wp-config.php of op dit scherm."
 
-#: includes/class-admin.php:930
+#: includes/class-admin.php:936
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis heeft de aanmelding geaccepteerd, maar staat deze site niet toe zijn sleutels op te slaan. De Redis-gebruiker heeft toestemming nodig voor het sleutelvoorvoegsel van deze site."
 
-#: includes/class-admin.php:932
+#: includes/class-admin.php:938
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis heeft het databasenummer geweigerd. Controleer je Redis-database-instelling."
 
-#: includes/class-admin.php:934
+#: includes/class-admin.php:940
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis heeft geen geheugen meer en weigert nieuwe gegevens."
 
-#: includes/class-admin.php:936
+#: includes/class-admin.php:942
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "De phpredis-extensie is niet geïnstalleerd, dus gebruikt WordPress zijn eigen in-memory cache. Vraag je host om phpredis in te schakelen."
 
-#: includes/class-admin.php:938
+#: includes/class-admin.php:944
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED is ingesteld in wp-config.php, dus de objectcache is uitgeschakeld."
 
-#: includes/class-admin.php:940
+#: includes/class-admin.php:946
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "De Redis-server kon niet worden bereikt. Controleer de Redis-host en -poort en of Redis actief is."
 
-#: includes/class-admin.php:942
+#: includes/class-admin.php:948
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis heeft de waarde die zojuist is geschreven niet geretourneerd. Controleer de logboeken van de Redis-server."
 
-#: includes/class-admin.php:957
+#: includes/class-admin.php:963
 #: includes/class-status.php:137
 msgid "Pages are served by"
 msgstr "Pagina's worden geleverd door"
 
-#: includes/class-admin.php:959
+#: includes/class-admin.php:965
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — pagina's worden gecachet door de webserver"
 
-#: includes/class-admin.php:963
+#: includes/class-admin.php:969
 msgid "Pages stored on disk"
 msgstr "Pagina's opgeslagen op schijf"
 
-#: includes/class-admin.php:967
+#: includes/class-admin.php:973
 msgid "Redis support"
 msgstr "Redis-ondersteuning"
 
-#: includes/class-admin.php:969
+#: includes/class-admin.php:975
 msgid "phpredis is installed"
 msgstr "phpredis is geïnstalleerd"
 
-#: includes/class-admin.php:970
+#: includes/class-admin.php:976
 msgid "phpredis is not installed"
 msgstr "phpredis is niet geïnstalleerd"
 
-#: includes/class-admin.php:973
+#: includes/class-admin.php:979
 msgid "Page lifetime"
 msgstr "Levensduur van pagina"
 
-#: includes/class-admin.php:1049
+#: includes/class-admin.php:1055
 msgid "You are not allowed to purge the cache."
 msgstr "Je hebt geen toestemming om de cache te legen."
 
-#: includes/class-admin.php:1055
+#: includes/class-admin.php:1061
 msgid "Cache purge requested."
 msgstr "Legen van cache aangevraagd."
 
-#: includes/class-admin.php:1083
+#: includes/class-admin.php:1089
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: er is een andere drop-in voor object-cache geïnstalleerd, waardoor de Redis-objectcache niet door deze plugin wordt beheerd."
 
-#: includes/class-admin.php:1097
+#: includes/class-admin.php:1103
 msgid "detected"
 msgstr "Gedetecteerd"
 
-#: includes/class-admin.php:1098
+#: includes/class-admin.php:1104
 msgid "not detected"
 msgstr "Niet gedetecteerd"
 
-#: includes/class-admin.php:1102
+#: includes/class-admin.php:1108
 msgid "phpredis extension missing"
 msgstr "phpredis-extensie ontbreekt"
 
-#: includes/class-admin.php:1104
+#: includes/class-admin.php:1110
 msgid "installed, not storing anything"
 msgstr "geïnstalleerd, slaat niets op"
 
-#: includes/class-admin.php:1106
+#: includes/class-admin.php:1112
 msgid "active, managed by your host"
 msgstr "actief, beheerd door je host"
 
-#: includes/class-admin.php:1108
+#: includes/class-admin.php:1114
 msgid "active"
 msgstr "Actief"
 
-#: includes/class-admin.php:1110
+#: includes/class-admin.php:1116
 msgid "inactive"
 msgstr "Inactief"
 
-#: includes/class-admin.php:1115
+#: includes/class-admin.php:1121
 msgid "LiteSpeed cache:"
 msgstr "LiteSpeed-cache:"
 
-#: includes/class-admin.php:1117
+#: includes/class-admin.php:1123
 msgid "Redis object cache:"
 msgstr "Redis-objectcache:"
 
@@ -961,10 +1023,6 @@ msgid "Recent purges"
 msgstr "Recente schoningen"
 
 #: includes/class-status.php:221
-msgid "When"
-msgstr "Wanneer"
-
-#: includes/class-status.php:221
 msgid "Why"
 msgstr "Waarom"
 
@@ -980,60 +1038,51 @@ msgstr "Resultaat"
 msgid "%d queued"
 msgstr "%d in de wachtrij"
 
-#. translators: %s: how long ago.
-#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
-#: includes/class-status.php:236
-#: includes/freemius-strings.php:2739
-#: includes/freemius-strings.php:2895
-#, php-format
-msgid "%s ago"
-msgstr "%s geleden"
-
-#: includes/class-status.php:253
+#: includes/class-status.php:255
 #: includes/server/class-nginx.php:52
 msgid "nginx page cache"
 msgstr "nginx-paginacache"
 
-#: includes/class-status.php:255
+#: includes/class-status.php:257
 #: includes/server/class-apache.php:43
 msgid "Apache disk cache (mod_cache)"
 msgstr "Apache-schijfcache (mod_cache)"
 
-#: includes/class-status.php:256
+#: includes/class-status.php:258
 msgid "LiteSpeed server cache"
 msgstr "LiteSpeed-servercache"
 
-#: includes/class-status.php:257
+#: includes/class-status.php:259
 msgid "No server page cache"
 msgstr "Geen serverpagina-cache"
 
-#: includes/class-status.php:258
+#: includes/class-status.php:260
 msgid "Not known"
 msgstr "Niet bekend"
 
 #. translators: %s: the server cache, e.g. "nginx page cache".
-#: includes/class-status.php:272
+#: includes/class-status.php:274
 #, php-format
 msgid "%s (Zinn® Cache purges it when content changes)"
 msgstr "%s (Zinn® Cache leegt dit wanneer de inhoud verandert)"
 
-#: includes/class-status.php:275
+#: includes/class-status.php:277
 msgid "The LiteSpeed server cache"
 msgstr "De LiteSpeed-servercache"
 
-#: includes/class-status.php:276
+#: includes/class-status.php:278
 msgid "Zinn® Cache’s disk page cache"
 msgstr "Schijfpaginacache van Zinn® Cache"
 
-#: includes/class-status.php:277
+#: includes/class-status.php:279
 msgid "The LiteSpeed Cache plugin"
 msgstr "De LiteSpeed Cache-plugin"
 
-#: includes/class-status.php:278
+#: includes/class-status.php:280
 msgid "Nothing: the page cache is switched off"
 msgstr "Niets: de paginacache is uitgeschakeld"
 
-#: includes/class-status.php:279
+#: includes/class-status.php:281
 msgid "Nothing yet: the disk page cache is not installed"
 msgstr "Nog niets: de paginacache op schijf is niet geïnstalleerd"
 
@@ -1143,123 +1192,123 @@ msgstr "Deze rij verwijderen"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: includes/class-zinn-cache-admin-ui.php:280
-#: includes/class-zinn-cache-admin-ui.php:281
-#: includes/class-zinn-cache-admin-ui.php:421
+#: includes/class-zinn-cache-admin-ui.php:297
+#: includes/class-zinn-cache-admin-ui.php:298
+#: includes/class-zinn-cache-admin-ui.php:439
 msgid "Zinn Digital®"
 msgstr "Zinn Digital®"
 
-#: includes/class-zinn-cache-admin-ui.php:294
+#: includes/class-zinn-cache-admin-ui.php:311
 msgid "Zinn Digital® — overview"
 msgstr "Zinn Digital® — overzicht"
 
-#: includes/class-zinn-cache-admin-ui.php:295
+#: includes/class-zinn-cache-admin-ui.php:312
 msgid "Overview"
 msgstr "Overzicht"
 
-#: includes/class-zinn-cache-admin-ui.php:383
+#: includes/class-zinn-cache-admin-ui.php:400
 msgid "Copied"
 msgstr "Gekopieerd"
 
-#: includes/class-zinn-cache-admin-ui.php:422
+#: includes/class-zinn-cache-admin-ui.php:440
 msgid "Every Zinn® plugin on this site, and whether it is working."
 msgstr "Elke Zinn®-plugin op deze site, en of deze werkt."
 
-#: includes/class-zinn-cache-admin-ui.php:437
+#: includes/class-zinn-cache-admin-ui.php:455
 msgid "No connection is needed for this plugin."
 msgstr "Er is geen verbinding vereist voor deze plugin."
 
-#: includes/class-zinn-cache-admin-ui.php:442
+#: includes/class-zinn-cache-admin-ui.php:460
 msgid "Open settings"
 msgstr "Instellingen openen"
 
-#: includes/class-zinn-cache-admin-ui.php:770
-#: includes/class-zinn-cache-admin-ui.php:1331
+#: includes/class-zinn-cache-admin-ui.php:788
+#: includes/class-zinn-cache-admin-ui.php:1426
 msgid "You do not have permission to change these settings."
 msgstr "Je hebt geen toestemming om deze instellingen te wijzigen."
 
-#: includes/class-zinn-cache-admin-ui.php:799
+#: includes/class-zinn-cache-admin-ui.php:817
 msgid "Settings sections"
 msgstr "Instellingensecties"
 
-#: includes/class-zinn-cache-admin-ui.php:871
+#: includes/class-zinn-cache-admin-ui.php:889
 #: includes/freemius-strings.php:2415
 #: includes/freemius-strings.php:5285
 msgid "Support"
 msgstr "Ondersteuning"
 
-#: includes/class-zinn-cache-admin-ui.php:929
+#: includes/class-zinn-cache-admin-ui.php:955
 msgid "Save changes"
 msgstr "Wijzigingen opslaan"
 
-#: includes/class-zinn-cache-admin-ui.php:958
+#: includes/class-zinn-cache-admin-ui.php:984
 msgid "Tools"
 msgstr "Gereedschap"
 
-#: includes/class-zinn-cache-admin-ui.php:973
+#: includes/class-zinn-cache-admin-ui.php:999
 msgid "Export settings"
 msgstr "Instellingen exporteren"
 
-#: includes/class-zinn-cache-admin-ui.php:976
+#: includes/class-zinn-cache-admin-ui.php:1002
 msgid "Reset to defaults"
 msgstr "Herstellen naar standaardwaarden"
 
-#: includes/class-zinn-cache-admin-ui.php:977
+#: includes/class-zinn-cache-admin-ui.php:1003
 msgid "This puts every setting on this plugin back to its default. Continue?"
 msgstr "Hiermee worden alle instellingen van deze plugin teruggezet naar de standaardwaarden. Wil je doorgaan?"
 
-#: includes/class-zinn-cache-admin-ui.php:984
+#: includes/class-zinn-cache-admin-ui.php:1010
 msgid "Diagnostics for support"
 msgstr "Diagnostische gegevens voor ondersteuning"
 
-#: includes/class-zinn-cache-admin-ui.php:993
+#: includes/class-zinn-cache-admin-ui.php:1019
 msgid "Import a settings file"
 msgstr "Een instellingenbestand importeren"
 
-#: includes/class-zinn-cache-admin-ui.php:995
+#: includes/class-zinn-cache-admin-ui.php:1021
 msgid "Import"
 msgstr "Importeren"
 
-#: includes/class-zinn-cache-admin-ui.php:997
+#: includes/class-zinn-cache-admin-ui.php:1023
 msgid "Exported files never contain passwords, tokens or API keys — you will need to enter those again on the new site."
 msgstr "Geëxporteerde bestanden bevatten nooit wachtwoorden, tokens of API-sleutels — je moet deze opnieuw invoeren op de nieuwe site."
 
-#: includes/class-zinn-cache-admin-ui.php:1096
+#: includes/class-zinn-cache-admin-ui.php:1076
 msgid "Settings saved."
 msgstr "Instellingen opgeslagen."
 
-#: includes/class-zinn-cache-admin-ui.php:1143
+#: includes/class-zinn-cache-admin-ui.php:1238
 msgid "Every setting on this plugin is back to its default."
 msgstr "Elke instelling van deze plugin is weer teruggezet naar de standaardwaarde."
 
-#: includes/class-zinn-cache-admin-ui.php:1186
+#: includes/class-zinn-cache-admin-ui.php:1281
 msgid "Done."
 msgstr "Gereed."
 
-#: includes/class-zinn-cache-admin-ui.php:1190
+#: includes/class-zinn-cache-admin-ui.php:1285
 msgid "That action is not available."
 msgstr "Die actie is niet beschikbaar."
 
-#: includes/class-zinn-cache-admin-ui.php:1257
+#: includes/class-zinn-cache-admin-ui.php:1352
 msgid "That file could not be read. Choose a settings file exported from a Zinn® plugin."
 msgstr "Dat bestand kon niet worden gelezen. Kies een instellingenbestand dat is geëxporteerd vanuit een Zinn®-plugin."
 
-#: includes/class-zinn-cache-admin-ui.php:1265
+#: includes/class-zinn-cache-admin-ui.php:1360
 msgid "That file is too large to be a settings export."
 msgstr "Dat bestand is te groot om een export van instellingen te zijn."
 
-#: includes/class-zinn-cache-admin-ui.php:1278
+#: includes/class-zinn-cache-admin-ui.php:1373
 msgid "That file is not a Zinn® settings export."
 msgstr "Dat bestand is geen exportbestand met Zinn®-instellingen."
 
 #. translators: %s: the plugin slug the file was exported from.
-#: includes/class-zinn-cache-admin-ui.php:1286
+#: includes/class-zinn-cache-admin-ui.php:1381
 #, php-format
 msgid "That file was exported from a different plugin (%s), so importing it here would store settings this plugin does not understand."
 msgstr "Dat bestand is geëxporteerd vanuit een andere plugin (%s), dus als je het hier importeert, worden instellingen opgeslagen die deze plugin niet begrijpt."
 
 #. translators: %d: how many settings were imported.
-#: includes/class-zinn-cache-admin-ui.php:1316
+#: includes/class-zinn-cache-admin-ui.php:1411
 #, php-format
 msgid "%d setting imported. Passwords and API keys are never in an export, so enter those again."
 msgid_plural "%d settings imported. Passwords and API keys are never in an export, so enter those again."
@@ -5666,20 +5715,20 @@ msgid "Returns the diagnostics report support asks for: versions, server limits,
 msgstr "Retourneert het diagnostische rapport waar support om vraagt: versies, serverlimieten, de cachestatus en recente fouten. Het bevat geen wachtwoorden of sleutels."
 
 #: includes/mcp/class-rest-map.php:37
+msgid "Detect the caches in front of the site"
+msgstr "Detecteer de caches vóór de site"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Requests the home page as a visitor would and stores which caches answered. With sample: true it also requests the newest pages twice and counts how often each layer served them from its cache."
+msgstr "Vraagt de startpagina op zoals een bezoeker dat zou doen en slaat op welke caches hebben geantwoord. Met sample: true vraagt het de nieuwste pagina's ook twee keer op en telt het hoe vaak elke laag ze vanuit zijn cache heeft geleverd."
+
+#: includes/mcp/class-rest-map.php:46
 msgid "Purge the cache"
 msgstr "Cache legen"
 
-#: includes/mcp/class-rest-map.php:38
+#: includes/mcp/class-rest-map.php:47
 msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
 msgstr "Verwijdert gecachte pagina's: alles (all: true), bepaalde adressen (urls) of alles met tags (tags). Pagina's worden opnieuw opgebouwd zodra bezoekers binnenkomen."
-
-#: includes/mcp/class-rest-map.php:46
-msgid "Read what is caching the site"
-msgstr "Lees wat de site buffert"
-
-#: includes/mcp/class-rest-map.php:47
-msgid "Returns which cache serves pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the plugin's disk cache), what the last detection saw, each layer's size where WordPress can read it, the purge queue, the paced refresh and the recent purges."
-msgstr "Geeft aan welke cache pagina's serveert (LiteSpeed, nginx, Varnish, Apache, Cloudflare of de schijfcache van de plugin), wat er bij de laatste detectie is waargenomen, de grootte van elke laag waar WordPress deze kan lezen, de wachtrij voor legen, het gedoseerd vernieuwen en de recente legingen."
 
 #: includes/mcp/class-rest-map.php:55
 msgid "Purge some addresses on every cache layer"
@@ -5690,20 +5739,20 @@ msgid "Removes these addresses (paths such as /about/ or full addresses on this 
 msgstr "Verwijdert deze adressen (paden zoals /about/ of volledige adressen op deze site) tegelijkertijd uit de schijfcache, de servercache en Cloudflare, en geeft aan wat elke laag heeft geantwoord."
 
 #: includes/mcp/class-rest-map.php:64
-msgid "Detect the caches in front of the site"
-msgstr "Detecteer de caches vóór de site"
-
-#: includes/mcp/class-rest-map.php:65
-msgid "Requests the home page as a visitor would and stores which caches answered. With sample: true it also requests the newest pages twice and counts how often each layer served them from its cache."
-msgstr "Vraagt de startpagina op zoals een bezoeker dat zou doen en slaat op welke caches hebben geantwoord. Met sample: true vraagt het de nieuwste pagina's ook twee keer op en telt het hoe vaak elke laag ze vanuit zijn cache heeft geleverd."
-
-#: includes/mcp/class-rest-map.php:73
 msgid "Start or stop the paced refresh"
 msgstr "Start of stop het gedoseerd vernieuwen"
 
-#: includes/mcp/class-rest-map.php:74
+#: includes/mcp/class-rest-map.php:65
 msgid "action: start refreshes every page a batch per minute (what updates do instead of emptying the cache); action: stop ends a running refresh."
 msgstr "actie: start ververst elke pagina batch per minuut (wat updates doen in plaats van de cache te legen); actie: stop beëindigt een actieve vernieuwing."
+
+#: includes/mcp/class-rest-map.php:73
+msgid "Read what is caching the site"
+msgstr "Lees wat de site buffert"
+
+#: includes/mcp/class-rest-map.php:74
+msgid "Returns which cache serves pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the plugin's disk cache), what the last detection saw, each layer's size where WordPress can read it, the purge queue, the paced refresh and the recent purges."
+msgstr "Geeft aan welke cache pagina's serveert (LiteSpeed, nginx, Varnish, Apache, Cloudflare of de schijfcache van de plugin), wat er bij de laatste detectie is waargenomen, de grootte van elke laag waar WordPress deze kan lezen, de wachtrij voor legen, het gedoseerd vernieuwen en de recente legingen."
 
 #: includes/server/class-apache.php:69
 #: includes/server/class-apache.php:97

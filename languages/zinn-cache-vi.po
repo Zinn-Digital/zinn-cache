@@ -35,6 +35,56 @@ msgstr "Neil Lock — CEO, Zinn Digital® Ltd"
 msgid "https://zinndigital.com"
 msgstr "https://zinndigital.com"
 
+#. translators: %s: comma-separated setting names.
+#: includes/class-activity.php:134
+#, php-format
+msgid "Changed: %s"
+msgstr "Đã thay đổi: %s"
+
+#. translators: %s: why the cache was emptied (manual, deploy, update or api).
+#: includes/class-activity.php:137
+#, php-format
+msgid "Emptied the whole cache (%s)"
+msgstr "Đã làm trống toàn bộ bộ nhớ đệm (%s)"
+
+#. translators: %s: why the refresh started.
+#: includes/class-activity.php:140
+#, php-format
+msgid "Started a paced refresh (%s)"
+msgstr "Đã bắt đầu làm mới có điều tiết tốc độ (%s)"
+
+#: includes/class-activity.php:156
+msgid "Activity"
+msgstr "Hoạt động"
+
+#: includes/class-activity.php:157
+#: includes/class-status.php:221
+msgid "When"
+msgstr "Khi nào"
+
+#: includes/class-activity.php:157
+msgid "Who"
+msgstr "Người thực hiện"
+
+#: includes/class-activity.php:158
+msgid "What"
+msgstr "Gì"
+
+#. translators: %s: how long ago.
+#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
+#: includes/class-activity.php:161
+#: includes/class-status.php:236
+#: includes/freemius-strings.php:2739
+#: includes/freemius-strings.php:2895
+#, php-format
+msgid "%s ago"
+msgstr "%s trước"
+
+#. translators: %s: how long ago.
+#: includes/class-activity.php:162
+msgid "System"
+msgstr "Hệ thống"
+
 #: includes/class-admin.php:103
 msgid "Purge addresses"
 msgstr "Dọn sạch địa chỉ"
@@ -136,685 +186,697 @@ msgid "Cache"
 msgstr "Bộ nhớ đệm"
 
 #: includes/class-admin.php:165
+msgid "Saving…"
+msgstr "Đang lưu…"
+
+#: includes/class-admin.php:166
+msgid "All changes saved."
+msgstr "Đã lưu mọi thay đổi."
+
+#: includes/class-admin.php:167
+msgid "Could not save: use Save changes."
+msgstr "Không thể lưu: hãy dùng Lưu thay đổi."
+
+#: includes/class-admin.php:171
 msgid "Status"
 msgstr "Trạng thái"
 
-#: includes/class-admin.php:169
-#: includes/class-admin.php:553
+#: includes/class-admin.php:175
+#: includes/class-admin.php:559
 msgid "Page cache"
 msgstr "Bộ nhớ đệm trang"
 
-#: includes/class-admin.php:173
-#: includes/class-admin.php:638
+#: includes/class-admin.php:179
+#: includes/class-admin.php:644
 msgid "Object cache"
 msgstr "Bộ nhớ đệm đối tượng"
 
-#: includes/class-admin.php:177
+#: includes/class-admin.php:183
 msgid "Purging"
 msgstr "Đang dọn dẹp"
 
-#: includes/class-admin.php:181
+#: includes/class-admin.php:187
 msgid "Exclusions"
 msgstr "Loại trừ"
 
-#: includes/class-admin.php:185
+#: includes/class-admin.php:191
 msgid "Server cache"
 msgstr "Bộ nhớ đệm máy chủ"
 
-#: includes/class-admin.php:189
+#: includes/class-admin.php:195
 msgid "Lighter pages"
 msgstr "Trang nhẹ hơn"
 
-#: includes/class-admin.php:193
-#: includes/class-admin.php:526
+#: includes/class-admin.php:199
+#: includes/class-admin.php:532
 #: includes/mcp-kit/class-server.php:322
 msgid "AI agents (MCP)"
 msgstr "Các tác nhân AI (MCP)"
 
-#: includes/class-admin.php:200
+#: includes/class-admin.php:206
 msgid "Empty all now"
 msgstr "Xóa sạch tất cả ngay bây giờ"
 
-#: includes/class-admin.php:201
+#: includes/class-admin.php:207
 msgid "Every cached page is discarded at once, on every cache layer this plugin purges, and every visitor will reach WordPress until pages are rebuilt. Updates do not need this: they refresh pages gradually by themselves. Continue?"
 msgstr "Mọi trang được lưu trong bộ nhớ đệm sẽ bị loại bỏ cùng một lúc, trên mọi lớp bộ nhớ đệm mà tiện ích mở rộng này xóa, và mọi khách truy cập sẽ tiếp cận WordPress cho đến khi các trang được tạo lại. Các bản cập nhật không cần điều này: chúng sẽ tự động làm mới các trang một cách dần dần. Tiếp tục?"
 
-#: includes/class-admin.php:230
+#: includes/class-admin.php:236
 msgid "not checked yet"
 msgstr "chưa kiểm tra"
 
-#: includes/class-admin.php:230
+#: includes/class-admin.php:236
 msgid "the check could not reach the site"
 msgstr "quá trình kiểm tra không thể kết nối tới trang web"
 
-#: includes/class-admin.php:235
+#: includes/class-admin.php:241
 msgid "A page cache in front of WordPress"
 msgstr "Bộ nhớ đệm trang phía trước WordPress"
 
-#: includes/class-admin.php:236
+#: includes/class-admin.php:242
 msgid "Many hosts put nginx, Varnish or Apache’s own cache in front of WordPress. Those answer before PHP runs, so they are faster than any plugin; Zinn® Cache then does not add a second page cache behind them. It tells them which pages changed instead. On a LiteSpeed server nothing here is needed."
 msgstr "Nhiều nhà cung cấp dịch vụ lưu trữ đặt nginx, Varnish hoặc bộ nhớ đệm riêng của Apache phía trước WordPress. Chúng phản hồi trước khi PHP chạy, vì vậy chúng nhanh hơn bất kỳ tiện ích mở rộng nào; do đó Zinn® Cache không thêm bộ nhớ đệm trang thứ hai phía sau chúng. Thay vào đó, nó thông báo cho chúng biết những trang nào đã thay đổi. Trên máy chủ LiteSpeed, không có cài đặt nào ở đây là cần thiết."
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:247
 msgid "Server page cache"
 msgstr "Bộ nhớ đệm trang máy chủ"
 
 #. translators: %s: what the last check saw.
-#: includes/class-admin.php:243
+#: includes/class-admin.php:249
 #, php-format
 msgid "Last check: %s. “Detect automatically” keeps Zinn® Cache’s own page cache out when a server cache is seen, but purges only reach a server cache you choose here, with how to reach it."
 msgstr "Lần kiểm tra cuối: %s. “Tự động phát hiện” sẽ loại bỏ bộ nhớ đệm trang của chính Zinn® Cache khi phát hiện thấy bộ nhớ đệm máy chủ, nhưng lệnh xóa chỉ tiếp cận bộ nhớ đệm máy chủ mà bạn chọn ở đây, cùng với cách thức tiếp cận."
 
-#: includes/class-admin.php:245
+#: includes/class-admin.php:251
 #: includes/class-status.php:154
 msgid "Detect automatically"
 msgstr "Tự động phát hiện"
 
-#: includes/class-admin.php:246
+#: includes/class-admin.php:252
 msgid "None — use Zinn® Cache’s page cache"
 msgstr "Không có — sử dụng bộ nhớ đệm trang của Zinn® Cache"
 
-#: includes/class-admin.php:247
+#: includes/class-admin.php:253
 msgid "nginx (proxy_cache or fastcgi_cache)"
 msgstr "nginx (proxy_cache hoặc fastcgi_cache)"
 
-#: includes/class-admin.php:249
+#: includes/class-admin.php:255
 msgid "Apache mod_cache (disk)"
 msgstr "Apache mod_cache (đĩa)"
 
-#: includes/class-admin.php:256
+#: includes/class-admin.php:262
 msgid "Cache headers"
 msgstr "Tiêu đề bộ nhớ đệm"
 
-#: includes/class-admin.php:257
+#: includes/class-admin.php:263
 msgid "Tell the server cache how long a page may be kept (s-maxage), and mark personal pages private"
 msgstr "Cho bộ nhớ đệm máy chủ biết một trang có thể được lưu giữ trong bao lâu (s-maxage), và đánh dấu các trang cá nhân là private"
 
-#: includes/class-admin.php:258
+#: includes/class-admin.php:264
 msgid "Signed-in visitors, excluded addresses and form posts always get Cache-Control: private, no-store. This switch adds the shared-cache lifetime to pages that may be cached."
 msgstr "Khách truy cập đã đăng nhập, các địa chỉ bị loại trừ và các bài đăng từ biểu mẫu luôn nhận được Cache-Control: private, no-store. Công tắc này sẽ thêm thời gian tồn tại của bộ nhớ đệm dùng chung vào các trang có thể được lưu vào bộ nhớ đệm."
 
-#: includes/class-admin.php:264
+#: includes/class-admin.php:270
 msgid "How to purge nginx"
 msgstr "Cách xóa bộ nhớ đệm nginx"
 
-#: includes/class-admin.php:266
+#: includes/class-admin.php:272
 msgid "A purge request per page (the ngx_cache_purge module)"
 msgstr "Một yêu cầu xóa trên mỗi trang (mô-đun ngx_cache_purge)"
 
-#: includes/class-admin.php:267
+#: includes/class-admin.php:273
 msgid "Delete the cache files (WordPress can read the cache folder)"
 msgstr "Xóa các tệp bộ nhớ đệm (WordPress có thể đọc thư mục bộ nhớ đệm)"
 
-#: includes/class-admin.php:268
+#: includes/class-admin.php:274
 msgid "Write the addresses to a folder for the host’s purger"
 msgstr "Ghi các địa chỉ vào thư mục dành cho trình dọn dẹp của máy chủ"
 
-#: includes/class-admin.php:276
+#: includes/class-admin.php:282
 msgid "Purge address"
 msgstr "Xóa sạch địa chỉ"
 
-#: includes/class-admin.php:277
+#: includes/class-admin.php:283
 msgid "Leave blank for {scheme}://{host}/purge{request_uri}. Tokens: {scheme}, {host}, {path}, {request_uri}, {url}."
 msgstr "Để trống cho {scheme}://{host}/purge{request_uri}. Thẻ: {scheme}, {host}, {path}, {request_uri}, {url}."
 
-#: includes/class-admin.php:287
+#: includes/class-admin.php:293
 msgid "Request method"
 msgstr "Phương thức yêu cầu"
 
-#: includes/class-admin.php:301
+#: includes/class-admin.php:307
 msgid "Send purges to"
 msgstr "Gửi yêu cầu xóa tới"
 
-#: includes/class-admin.php:302
+#: includes/class-admin.php:308
 msgid "For example http://127.0.0.1. Needed when a CDN is in front of nginx: a purge sent to the public address would reach the CDN, not nginx. The site’s host name goes in the Host header."
 msgstr "Ví dụ: http://127.0.0.1. Cần thiết khi CDN đứng trước nginx: yêu cầu xóa bộ nhớ đệm gửi đến địa chỉ công khai sẽ đến CDN chứ không phải nginx. Tên máy chủ của trang web sẽ nằm trong tiêu đề Host."
 
-#: includes/class-admin.php:312
+#: includes/class-admin.php:318
 msgid "Cache folder"
 msgstr "Thư mục bộ nhớ đệm"
 
-#: includes/class-admin.php:313
+#: includes/class-admin.php:319
 msgid "The folder in proxy_cache_path or fastcgi_cache_path, for example /var/cache/nginx/site. Only nginx cache files in it are ever deleted."
 msgstr "Thư mục trong proxy_cache_path hoặc fastcgi_cache_path, ví dụ: /var/cache/nginx/site. Chỉ các tệp bộ nhớ đệm nginx trong đó mới bị xóa."
 
-#: includes/class-admin.php:323
+#: includes/class-admin.php:329
 msgid "levels="
 msgstr "cấp độ="
 
-#: includes/class-admin.php:324
+#: includes/class-admin.php:330
 msgid "The levels= value of the same line, usually 1:2."
 msgstr "Giá trị levels= của cùng một dòng, thường là 1:2."
 
-#: includes/class-admin.php:334
+#: includes/class-admin.php:340
 msgid "Cache key"
 msgstr "Khóa bộ nhớ đệm"
 
-#: includes/class-admin.php:335
+#: includes/class-admin.php:341
 msgid "Your proxy_cache_key or fastcgi_cache_key. Leave blank for $scheme$request_method$host$request_uri."
 msgstr "proxy_cache_key hoặc fastcgi_cache_key của bạn. Để trống cho $scheme$request_method$host$request_uri."
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:352
 msgid "Other key variables"
 msgstr "Các biến chính khác"
 
-#: includes/class-admin.php:347
+#: includes/class-admin.php:353
 msgid "For a variable of your own in the key, one per line as name=value1|value2 (an empty value allowed), for example encoding=gzip|. Every combination is purged."
 msgstr "Đối với biến của riêng bạn trong khóa, nhập một biến trên mỗi dòng dưới dạng name=value1|value2 (cho phép giá trị trống), ví dụ encoding=gzip|. Mọi kết hợp đều sẽ bị xóa bỏ."
 
-#: includes/class-admin.php:358
+#: includes/class-admin.php:364
 msgid "Spool folder"
 msgstr "Thư mục spool"
 
-#: includes/class-admin.php:359
+#: includes/class-admin.php:365
 msgid "A folder outside the web root that your host’s purger reads. Each purge is one file with one address per line."
 msgstr "Một thư mục bên ngoài thư mục gốc của trang web mà trình dọn dẹp của máy chủ lưu trữ đọc. Mỗi lần dọn dẹp là một tệp có một địa chỉ trên mỗi dòng."
 
-#: includes/class-admin.php:369
+#: includes/class-admin.php:375
 msgid "Varnish address"
 msgstr "Địa chỉ Varnish"
 
-#: includes/class-admin.php:376
+#: includes/class-admin.php:382
 msgid "Varnish port"
 msgstr "Cổng Varnish"
 
-#: includes/class-admin.php:385
+#: includes/class-admin.php:391
 msgid "Purge with"
 msgstr "Xóa sạch bằng"
 
-#: includes/class-admin.php:386
+#: includes/class-admin.php:392
 msgid "Your VCL must accept it from this server (an ACL in vcl_recv)."
 msgstr "VCL của bạn phải chấp nhận nó từ máy chủ này (một ACL trong vcl_recv)."
 
-#: includes/class-admin.php:397
+#: includes/class-admin.php:403
 msgid "CacheRoot"
 msgstr "Thư mục gốc bộ nhớ đệm"
 
-#: includes/class-admin.php:398
+#: includes/class-admin.php:404
 msgid "The CacheRoot folder of mod_cache_disk."
 msgstr "Thư mục CacheRoot của mod_cache_disk."
 
-#: includes/class-admin.php:405
+#: includes/class-admin.php:411
 msgid "CacheDirLevels"
 msgstr "Cấp thư mục bộ nhớ đệm"
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:420
 msgid "CacheDirLength"
 msgstr "Độ dài thư mục bộ nhớ đệm"
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:428
 #: includes/class-status.php:148
 #: includes/server/class-cloudflare.php:48
 msgid "Cloudflare"
 msgstr "Cloudflare"
 
-#: includes/class-admin.php:423
+#: includes/class-admin.php:429
 msgid "When Cloudflare caches your pages (a Cache Everything rule or APO), changed pages are purged from its edge by address."
 msgstr "Khi Cloudflare lưu vào bộ nhớ đệm các trang của bạn (quy tắc Cache Everything hoặc APO), các trang bị thay đổi sẽ bị xóa khỏi mạng biên theo địa chỉ."
 
-#: includes/class-admin.php:428
+#: includes/class-admin.php:434
 msgid "Cloudflare purge"
 msgstr "Xóa bộ nhớ đệm Cloudflare"
 
-#: includes/class-admin.php:429
+#: includes/class-admin.php:435
 msgid "Purge changed pages from Cloudflare"
 msgstr "Xóa các trang đã thay đổi khỏi Cloudflare"
 
-#: includes/class-admin.php:435
+#: includes/class-admin.php:441
 msgid "Zone ID"
 msgstr "ID vùng"
 
-#: includes/class-admin.php:436
+#: includes/class-admin.php:442
 msgid "On the Overview page of your domain in Cloudflare."
 msgstr "Trên trang Tổng quan của miền của bạn trong Cloudflare."
 
-#: includes/class-admin.php:445
+#: includes/class-admin.php:451
 msgid "API token"
 msgstr "Mã xác thực API"
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Set in wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); that one is used."
 msgstr "Được đặt trong wp-config.php (ZINN_CACHE_CLOUDFLARE_TOKEN); giá trị đó đang được sử dụng."
 
-#: includes/class-admin.php:446
+#: includes/class-admin.php:452
 msgid "Create a token with only Zone → Cache Purge → Purge, for this zone. It is never shown again or exported."
 msgstr "Tạo mã thông báo chỉ có Zone → Cache Purge → Purge cho vùng này. Mã này sẽ không bao giờ được hiển thị lại hoặc xuất ra."
 
-#: includes/class-admin.php:453
+#: includes/class-admin.php:459
 msgid "Empty all"
 msgstr "Xóa hết tất cả"
 
-#: includes/class-admin.php:454
+#: includes/class-admin.php:460
 msgid "Let “Empty all now” empty the whole Cloudflare zone too"
 msgstr "Cho phép “Xóa sạch tất cả ngay” cũng làm trống toàn bộ vùng Cloudflare"
 
-#: includes/class-admin.php:455
+#: includes/class-admin.php:461
 msgid "Off by default: it empties every host name on the zone and sends every visitor to your server at once."
 msgstr "Tắt theo mặc định: tùy chọn này sẽ xóa mọi tên máy chủ trên vùng và gửi tất cả khách truy cập đến máy chủ của bạn cùng một lúc."
 
-#: includes/class-admin.php:472
+#: includes/class-admin.php:478
 msgid "WordPress Heartbeat"
 msgstr "WordPress Heartbeat"
 
-#: includes/class-admin.php:473
+#: includes/class-admin.php:479
 msgid "The Heartbeat is the browser asking WordPress every 15–60 seconds whether anything changed (autosave, post locks). Each ask is a PHP request the page cache cannot serve."
 msgstr "Heartbeat là việc trình duyệt hỏi WordPress sau mỗi 15–60 giây xem có bất kỳ thay đổi nào không (tự động lưu, khóa bài viết). Mỗi lần hỏi là một yêu cầu PHP mà bộ nhớ đệm trang không thể phục vụ."
 
-#: includes/class-admin.php:475
+#: includes/class-admin.php:481
 msgid "Leave it as WordPress sets it"
 msgstr "Để nguyên theo thiết lập của WordPress"
 
-#: includes/class-admin.php:476
+#: includes/class-admin.php:482
 msgid "Once a minute everywhere"
 msgstr "Mỗi phút một lần ở mọi nơi"
 
-#: includes/class-admin.php:477
+#: includes/class-admin.php:483
 msgid "Off on the public site, normal in the dashboard"
 msgstr "Tắt trên trang công khai, bình thường trong bảng điều khiển"
 
-#: includes/class-admin.php:484
+#: includes/class-admin.php:490
 msgid "Web fonts"
 msgstr "Phông chữ web"
 
-#: includes/class-admin.php:485
+#: includes/class-admin.php:491
 msgid "Show text at once while Google Fonts load (display=swap), and connect to the font server early"
 msgstr "Hiển thị văn bản ngay lập tức trong khi tải Google Fonts (display=swap) và kết nối sớm với máy chủ phông chữ"
 
-#: includes/class-admin.php:492
+#: includes/class-admin.php:498
 msgid "Connect early to"
 msgstr "Kết nối sớm với"
 
-#: includes/class-admin.php:493
+#: includes/class-admin.php:499
 msgid "One https:// address per line: servers your pages load from (a CDN, a payment or analytics script)."
 msgstr "Một địa chỉ https:// trên mỗi dòng: các máy chủ tải trang của bạn (CDN, tập lệnh thanh toán hoặc phân tích)."
 
-#: includes/class-admin.php:500
+#: includes/class-admin.php:506
 msgid "CDN address"
 msgstr "Địa chỉ CDN"
 
-#: includes/class-admin.php:501
+#: includes/class-admin.php:507
 msgid "For a pull CDN such as BunnyCDN or KeyCDN, for example https://cdn.example.com. Images, CSS, JavaScript and fonts under /wp-content/ and /wp-includes/ are served from it. Pages are not. Leave blank when Cloudflare proxies your whole site: it is already the CDN."
 msgstr "Dành cho pull CDN chẳng hạn như BunnyCDN hoặc KeyCDN, ví dụ https://cdn.example.com. Hình ảnh, CSS, JavaScript và phông chữ trong /wp-content/ và /wp-includes/ được phân phối từ đó. Các trang thì không. Hãy để trống khi Cloudflare ủy nhiệm toàn bộ trang web của bạn: nó đã là CDN rồi."
 
-#: includes/class-admin.php:508
+#: includes/class-admin.php:514
 msgid "Keep on this site"
 msgstr "Giữ trên trang web này"
 
-#: includes/class-admin.php:509
+#: includes/class-admin.php:515
 msgid "Addresses containing any of these (one per line) are not moved to the CDN."
 msgstr "Các địa chỉ chứa bất kỳ mục nào trong số này (mỗi mục một dòng) sẽ không được chuyển sang CDN."
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:533
 #: includes/mcp-kit/class-server.php:331
 msgid "Allow AI agents (MCP)"
 msgstr "Cho phép tác nhân AI (MCP)"
 
-#: includes/class-admin.php:528
+#: includes/class-admin.php:534
 #: includes/mcp-kit/class-server.php:333
 msgid "Off: the tools below and their REST routes are not registered at all."
 msgstr "Tắt: các công cụ bên dưới và các tuyến REST của chúng hoàn toàn không được đăng ký."
 
-#: includes/class-admin.php:547
+#: includes/class-admin.php:553
 msgid "Full-page cache"
 msgstr "Bộ nhớ đệm toàn trang"
 
-#: includes/class-admin.php:548
+#: includes/class-admin.php:554
 msgid "On a LiteSpeed server, pages are served by the web server before WordPress runs. On any other server, this plugin stores each page as a file and serves it before WordPress loads. This is where nearly all the speed comes from."
 msgstr "Trên máy chủ LiteSpeed, các trang được máy chủ web phân phát trước khi WordPress chạy. Trên bất kỳ máy chủ nào khác, plugin này lưu trữ từng trang dưới dạng tệp và phân phát trang đó trước khi WordPress tải. Đây là nơi tạo ra gần như toàn bộ tốc độ."
 
-#: includes/class-admin.php:554
+#: includes/class-admin.php:560
 msgid "Cache pages for visitors who are not signed in"
 msgstr "Bộ nhớ đệm cho khách truy cập chưa đăng nhập"
 
-#: includes/class-admin.php:560
+#: includes/class-admin.php:566
 msgid "How long a page stays cached"
 msgstr "Thời gian một trang được lưu trong bộ nhớ đệm"
 
-#: includes/class-admin.php:561
+#: includes/class-admin.php:567
 msgid "Seconds. A week suits most sites; a news site publishing hourly wants far less."
 msgstr "Giây. Một tuần là phù hợp với hầu hết các trang web; một trang tin tức xuất bản hàng giờ cần ít hơn nhiều."
 
-#: includes/class-admin.php:570
+#: includes/class-admin.php:576
 msgid "How long a visitor’s browser keeps images and scripts"
 msgstr "Khoảng thời gian trình duyệt của khách truy cập lưu giữ hình ảnh và tập lệnh"
 
-#: includes/class-admin.php:571
+#: includes/class-admin.php:577
 msgid "Seconds. Applies to images, CSS and JavaScript only — never to pages. Set to 0 to leave this to your host."
 msgstr "Giây. Chỉ áp dụng cho hình ảnh, CSS và JavaScript — không bao giờ áp dụng cho các trang. Đặt thành 0 để để lại việc này cho máy chủ lưu trữ của bạn."
 
-#: includes/class-admin.php:579
+#: includes/class-admin.php:585
 msgid "Signed-in visitors"
 msgstr "Khách truy cập đã đăng nhập"
 
-#: includes/class-admin.php:580
+#: includes/class-admin.php:586
 msgid "Never serve a cached page to a signed-in visitor"
 msgstr "Không bao giờ phân phối trang được lưu trong bộ nhớ đệm cho khách truy cập đã đăng nhập"
 
-#: includes/class-admin.php:581
+#: includes/class-admin.php:587
 msgid "On is the safe answer and the default. Turn it off only if you know every cached page is identical for every signed-in user — a membership site is the usual reason not to."
 msgstr "\"Bật\" là câu trả lời an toàn và là mặc định. Chỉ tắt tùy chọn này nếu bạn biết mọi trang được lưu vào bộ nhớ đệm đều giống hệt nhau đối với mọi người dùng đã đăng nhập — trang web dành cho thành viên thường là lý do để không tắt."
 
-#: includes/class-admin.php:587
+#: includes/class-admin.php:593
 msgid "Different lifetimes for different content"
 msgstr "Thời hạn tồn tại khác nhau cho nội dung khác nhau"
 
-#: includes/class-admin.php:588
+#: includes/class-admin.php:594
 msgid "For example: a shop’s product pages for an hour, while everything else stays a week."
 msgstr "Ví dụ: các trang sản phẩm của cửa hàng trong một giờ, trong khi mọi thứ khác giữ nguyên trong một tuần."
 
-#: includes/class-admin.php:589
+#: includes/class-admin.php:595
 msgid "Add a rule"
 msgstr "Thêm quy tắc"
 
-#: includes/class-admin.php:596
+#: includes/class-admin.php:602
 msgid "Content type"
 msgstr "Loại nội dung"
 
-#: includes/class-admin.php:602
+#: includes/class-admin.php:608
 msgid "Seconds"
 msgstr "Giây"
 
-#: includes/class-admin.php:623
-#: includes/class-admin.php:632
+#: includes/class-admin.php:629
+#: includes/class-admin.php:638
 msgid "Object cache (Redis)"
 msgstr "Bộ nhớ đệm đối tượng (Redis)"
 
-#: includes/class-admin.php:624
+#: includes/class-admin.php:630
 msgid "Your host runs a private Redis object cache for this site and keeps it configured. There is nothing to set up here; the status at the top of this screen shows whether it is working."
 msgstr "Máy chủ lưu trữ của bạn đang chạy một bộ nhớ đệm đối tượng Redis riêng tư cho trang web này và duy trì cấu hình của nó. Không có gì cần phải thiết lập ở đây; trạng thái ở đầu màn hình này cho biết nó có đang hoạt động hay không."
 
-#: includes/class-admin.php:633
+#: includes/class-admin.php:639
 msgid "Caches the results of database queries. It helps most on a busy shop or a site with a lot of signed-in traffic, where the page cache cannot."
 msgstr "Lưu vào bộ nhớ đệm kết quả của các truy vấn cơ sở dữ liệu. Tính năng này hữu ích nhất đối với cửa hàng bận rộn hoặc trang web có nhiều lưu lượng truy cập từ người dùng đã đăng nhập, nơi bộ nhớ đệm trang không thể hỗ trợ."
 
-#: includes/class-admin.php:639
+#: includes/class-admin.php:645
 msgid "Install the Redis object-cache drop-in"
 msgstr "Cài đặt drop-in bộ nhớ đệm đối tượng Redis"
 
-#: includes/class-admin.php:640
+#: includes/class-admin.php:646
 msgid "Needs the phpredis extension. If it is missing, the box above this screen says so."
 msgstr "Cần có tiện ích mở rộng phpredis. Nếu còn thiếu, hộp phía trên màn hình này sẽ thông báo điều đó."
 
-#: includes/class-admin.php:646
+#: includes/class-admin.php:652
 msgid "Redis host"
 msgstr "Máy chủ Redis"
 
-#: includes/class-admin.php:653
+#: includes/class-admin.php:659
 msgid "Redis port"
 msgstr "Cổng Redis"
 
-#: includes/class-admin.php:662
+#: includes/class-admin.php:668
 msgid "Redis database"
 msgstr "Cơ sở dữ liệu Redis"
 
-#: includes/class-admin.php:663
+#: includes/class-admin.php:669
 msgid "Give each site on a shared Redis its own number, or they will clear each other’s cache."
 msgstr "Hãy cấp cho mỗi trang web trên một Redis dùng chung số riêng, nếu không chúng sẽ xóa bộ nhớ đệm của nhau."
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:678
 msgid "Redis username"
 msgstr "Tên người dùng Redis"
 
-#: includes/class-admin.php:673
+#: includes/class-admin.php:679
 msgid "Only for a Redis server with ACL users (Redis 6 or later). Leave blank to sign in with the password alone."
 msgstr "Chỉ dành cho máy chủ Redis có người dùng ACL (Redis 6 trở lên). Để trống để đăng nhập chỉ bằng mật khẩu."
 
-#: includes/class-admin.php:681
+#: includes/class-admin.php:687
 msgid "Redis password"
 msgstr "Mật khẩu Redis"
 
-#: includes/class-admin.php:682
+#: includes/class-admin.php:688
 msgid "Leave blank if your Redis does not need one."
 msgstr "Để trống nếu Redis của bạn không cần."
 
-#: includes/class-admin.php:689
+#: includes/class-admin.php:695
 msgid "Serializer"
 msgstr "Bộ tuần tự hóa"
 
-#: includes/class-admin.php:690
+#: includes/class-admin.php:696
 msgid "igbinary stores the same data in less memory and reads it faster, when the PHP igbinary extension is installed. Changing it is safe at any time: each stored value is read in the format it was written in."
 msgstr "igbinary lưu trữ cùng một lượng dữ liệu trong ít bộ nhớ hơn và đọc nhanh hơn khi tiện ích mở rộng PHP igbinary được cài đặt. Việc thay đổi cài đặt này là an toàn vào bất kỳ lúc nào: mỗi giá trị được lưu trữ sẽ được đọc theo đúng định dạng mà nó đã được ghi."
 
-#: includes/class-admin.php:692
+#: includes/class-admin.php:698
 msgid "igbinary when available, otherwise PHP"
 msgstr "igbinary khi khả dụng, nếu không thì PHP"
 
-#: includes/class-admin.php:694
+#: includes/class-admin.php:700
 #: includes/class-status.php:183
 msgid "PHP (standard)"
 msgstr "PHP (tiêu chuẩn)"
 
-#: includes/class-admin.php:702
+#: includes/class-admin.php:708
 msgid "Key prefix"
 msgstr "Tiền tố khóa"
 
-#: includes/class-admin.php:703
+#: includes/class-admin.php:709
 msgid "An alternative to a separate database number when you cannot have one."
 msgstr "Một giải pháp thay thế cho số cơ sở dữ liệu riêng biệt khi bạn không thể có."
 
-#: includes/class-admin.php:720
+#: includes/class-admin.php:726
 msgid "Smart auto-purge"
 msgstr "Tự động dọn dẹp thông minh"
 
-#: includes/class-admin.php:721
+#: includes/class-admin.php:727
 msgid "Clear affected pages automatically when content changes"
 msgstr "Tự động xóa các trang bị ảnh hưởng khi nội dung thay đổi"
 
-#: includes/class-admin.php:727
+#: includes/class-admin.php:733
 msgid "After updates"
 msgstr "Sau khi cập nhật"
 
-#: includes/class-admin.php:728
+#: includes/class-admin.php:734
 msgid "Refresh every page, a batch a minute, after a core, plugin or theme update"
 msgstr "Làm mới mọi trang, một nhóm mỗi phút, sau khi cập nhật cốt lõi, plugin hoặc giao diện"
 
-#: includes/class-admin.php:729
+#: includes/class-admin.php:735
 msgid "Updates, plugin activations, theme and menu changes never empty the cache at once any more: emptying it sends every visitor to WordPress in the same minute. The paced refresh rebuilds the site gradually instead."
 msgstr "Các bản cập nhật, việc kích hoạt gói mở rộng, các thay đổi về giao diện và menu sẽ không còn làm trống bộ nhớ đệm cùng một lúc nữa: việc làm trống bộ nhớ đệm sẽ gửi tất cả khách truy cập đến WordPress trong cùng một phút. Thay vào đó, tính năng làm mới theo nhịp độ sẽ xây dựng lại trang web một cách dần dần."
 
-#: includes/class-admin.php:735
+#: includes/class-admin.php:741
 msgid "Pages refreshed per minute"
 msgstr "Số trang được làm mới mỗi phút"
 
-#: includes/class-admin.php:736
+#: includes/class-admin.php:742
 msgid "The refresh always reaches the end of the site; this only sets its pace."
 msgstr "Quá trình làm mới luôn đi đến phần cuối của trang web; điều này chỉ thiết lập tốc độ của nó."
 
-#: includes/class-admin.php:744
+#: includes/class-admin.php:750
 msgid "Pause the refresh above this server load"
 msgstr "Tạm dừng làm mới khi vượt quá tải máy chủ này"
 
-#: includes/class-admin.php:745
+#: includes/class-admin.php:751
 msgid "The one-minute load average. 0 means 1.5 × the number of CPU cores."
 msgstr "Mức tải trung bình trong một phút. 0 có nghĩa là 1,5 × số lõi CPU."
 
-#: includes/class-admin.php:753
+#: includes/class-admin.php:759
 msgid "After a comment"
 msgstr "Sau bình luận"
 
-#: includes/class-admin.php:754
+#: includes/class-admin.php:760
 msgid "Clear a post’s page when a comment on it is approved"
 msgstr "Xóa trang của bài viết khi bình luận trong đó được phê duyệt"
 
-#: includes/class-admin.php:755
+#: includes/class-admin.php:761
 msgid "Turn this off on a very busy comment section, where it can clear the same page hundreds of times an hour."
 msgstr "Hãy tắt tính năng này trong phần bình luận rất bận rộn, nơi nó có thể xóa cùng một trang hàng trăm lần một giờ."
 
-#: includes/class-admin.php:770
+#: includes/class-admin.php:776
 msgid "Never cache these"
 msgstr "Không bao giờ lưu vào bộ nhớ đệm"
 
-#: includes/class-admin.php:771
+#: includes/class-admin.php:777
 msgid "Sensible WordPress and WooCommerce defaults are always applied — cart, checkout, my-account and any signed-in session are never cached, whatever is below."
 msgstr "Các giá trị mặc định hợp lý của WordPress và WooCommerce luôn được áp dụng — cart, checkout, my-account và bất kỳ phiên đăng nhập nào cũng không bao giờ được lưu vào bộ nhớ đệm, bất kể bên dưới là gì."
 
-#: includes/class-admin.php:777
+#: includes/class-admin.php:783
 #: includes/class-status.php:222
 msgid "Addresses"
 msgstr "Địa chỉ"
 
-#: includes/class-admin.php:778
+#: includes/class-admin.php:784
 msgid "One path per line, for example <code>/basket</code>. A trailing <code>*</code> matches everything under it."
 msgstr "Một đường dẫn trên mỗi dòng, ví dụ: <code>/basket</code>. Ký tự <code>*</code> ở cuối khớp với mọi thứ bên dưới nó."
 
-#: includes/class-admin.php:786
+#: includes/class-admin.php:792
 msgid "Query parameters"
 msgstr "Tham số truy vấn"
 
-#: includes/class-admin.php:787
+#: includes/class-admin.php:793
 msgid "A page carrying one of these is never cached — for example a one-time preview token."
 msgstr "Một trang có chứa một trong những mục này sẽ không bao giờ được lưu vào bộ nhớ đệm — ví dụ như mã thông báo xem trước một lần."
 
-#: includes/class-admin.php:795
+#: includes/class-admin.php:801
 msgid "Cookies"
 msgstr "Cookie"
 
-#: includes/class-admin.php:796
+#: includes/class-admin.php:802
 msgid "A visitor carrying one of these is always served a fresh page."
 msgstr "Khách truy cập mang theo một trong những thứ này luôn được phục vụ một trang mới."
 
-#: includes/class-admin.php:825
+#: includes/class-admin.php:831
 msgid "Every cached page has been discarded. They will be rebuilt as visitors arrive."
 msgstr "Mọi trang được lưu trong bộ nhớ đệm đã bị hủy bỏ. Chúng sẽ được tạo lại khi có khách truy cập."
 
-#: includes/class-admin.php:851
+#: includes/class-admin.php:857
 msgid "The object cache is installed, but it is not storing anything."
 msgstr "Bộ nhớ đệm đối tượng đã được cài đặt, nhưng nó không lưu trữ bất cứ thứ gì."
 
-#: includes/class-admin.php:866
+#: includes/class-admin.php:872
 msgid "The page cache is on, but pages are not being stored yet."
 msgstr "Bộ nhớ đệm trang đang bật, nhưng các trang vẫn chưa được lưu trữ."
 
-#: includes/class-admin.php:867
+#: includes/class-admin.php:873
 msgid "WordPress has not loaded the page-cache drop-in yet. It starts on the next page load; if it does not, check that WP_CACHE is true in wp-config.php."
 msgstr "WordPress vẫn chưa tải drop-in bộ nhớ đệm trang. Nó sẽ bắt đầu ở lần tải trang tiếp theo; nếu không, hãy kiểm tra xem WP_CACHE đã được đặt là true trong wp-config.php hay chưa."
 
-#: includes/class-admin.php:876
+#: includes/class-admin.php:882
 msgid "The object cache is on, but this server has no Redis support."
 msgstr "Bộ nhớ đệm đối tượng đang bật, nhưng máy chủ này không hỗ trợ Redis."
 
-#: includes/class-admin.php:877
+#: includes/class-admin.php:883
 msgid "The phpredis extension is not installed, so the drop-in cannot be used and WordPress is falling back to its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Phần mở rộng phpredis chưa được cài đặt, vì vậy không thể sử dụng drop-in và WordPress đang chuyển về dùng bộ nhớ đệm trong bộ nhớ riêng của nó. Hãy yêu cầu nhà cung cấp dịch vụ lưu trữ của bạn kích hoạt phpredis."
 
-#: includes/class-admin.php:885
+#: includes/class-admin.php:891
 msgid "Nothing is being cached."
 msgstr "Không có gì đang được lưu vào bộ nhớ đệm."
 
-#: includes/class-admin.php:886
+#: includes/class-admin.php:892
 msgid "Both caches are switched off, so this plugin is not making the site any faster."
 msgstr "Cả hai bộ nhớ đệm đều đã bị tắt, do đó tiện ích này không làm cho trang web nhanh hơn."
 
-#: includes/class-admin.php:893
+#: includes/class-admin.php:899
 msgid "Caching is active on this site."
 msgstr "Bộ nhớ đệm đang hoạt động trên trang web này."
 
-#: includes/class-admin.php:928
+#: includes/class-admin.php:934
 msgid "Redis refused the username or password. Check the Redis credentials in wp-config.php or on this screen."
 msgstr "Redis đã từ chối tên người dùng hoặc mật khẩu. Hãy kiểm tra thông tin xác thực Redis trong wp-config.php hoặc trên màn hình này."
 
-#: includes/class-admin.php:930
+#: includes/class-admin.php:936
 msgid "Redis accepted the login but does not allow this site to store its keys. The Redis user needs permission for this site's key prefix."
 msgstr "Redis đã chấp nhận đăng nhập nhưng không cho phép trang web này lưu trữ các khóa của nó. Người dùng Redis cần có quyền cho tiền tố khóa của trang web này."
 
-#: includes/class-admin.php:932
+#: includes/class-admin.php:938
 msgid "Redis refused the database number. Check the Redis database setting."
 msgstr "Redis đã từ chối số cơ sở dữ liệu. Hãy kiểm tra cài đặt cơ sở dữ liệu Redis."
 
-#: includes/class-admin.php:934
+#: includes/class-admin.php:940
 msgid "Redis is out of memory and is refusing new data."
 msgstr "Redis đã hết bộ nhớ và đang từ chối dữ liệu mới."
 
-#: includes/class-admin.php:936
+#: includes/class-admin.php:942
 msgid "The phpredis extension is not installed, so WordPress is using its own in-memory cache. Ask your host to enable phpredis."
 msgstr "Phần mở rộng phpredis chưa được cài đặt, vì vậy WordPress đang sử dụng bộ nhớ đệm trong bộ nhớ của chính nó. Hãy yêu cầu nhà cung cấp dịch vụ lưu trữ của bạn bật phpredis."
 
-#: includes/class-admin.php:938
+#: includes/class-admin.php:944
 msgid "WP_REDIS_DISABLED is set in wp-config.php, so the object cache is switched off."
 msgstr "WP_REDIS_DISABLED được đặt trong wp-config.php, vì vậy bộ nhớ đệm đối tượng bị tắt."
 
-#: includes/class-admin.php:940
+#: includes/class-admin.php:946
 msgid "The Redis server could not be reached. Check the Redis host and port, and that Redis is running."
 msgstr "Không thể truy cập máy chủ Redis. Hãy kiểm tra máy chủ và cổng Redis, và đảm bảo rằng Redis đang chạy."
 
-#: includes/class-admin.php:942
+#: includes/class-admin.php:948
 msgid "Redis did not return the value that was just written to it. Check the Redis server's logs."
 msgstr "Redis đã không trả về giá trị vừa được ghi vào. Hãy kiểm tra nhật ký của máy chủ Redis."
 
-#: includes/class-admin.php:957
+#: includes/class-admin.php:963
 #: includes/class-status.php:137
 msgid "Pages are served by"
 msgstr "Các trang được phục vụ bởi"
 
-#: includes/class-admin.php:959
+#: includes/class-admin.php:965
 msgid "LiteSpeed — pages are cached by the web server"
 msgstr "LiteSpeed — các trang được lưu trong bộ nhớ đệm bởi máy chủ web"
 
-#: includes/class-admin.php:963
+#: includes/class-admin.php:969
 msgid "Pages stored on disk"
 msgstr "Các trang được lưu trữ trên đĩa"
 
-#: includes/class-admin.php:967
+#: includes/class-admin.php:973
 msgid "Redis support"
 msgstr "Hỗ trợ Redis"
 
-#: includes/class-admin.php:969
+#: includes/class-admin.php:975
 msgid "phpredis is installed"
 msgstr "phpredis đã được cài đặt"
 
-#: includes/class-admin.php:970
+#: includes/class-admin.php:976
 msgid "phpredis is not installed"
 msgstr "phpredis chưa được cài đặt"
 
-#: includes/class-admin.php:973
+#: includes/class-admin.php:979
 msgid "Page lifetime"
 msgstr "Thời gian tồn tại của trang"
 
-#: includes/class-admin.php:1049
+#: includes/class-admin.php:1055
 msgid "You are not allowed to purge the cache."
 msgstr "Bạn không được phép xóa bộ nhớ đệm."
 
-#: includes/class-admin.php:1055
+#: includes/class-admin.php:1061
 msgid "Cache purge requested."
 msgstr "Đã yêu cầu xóa bộ nhớ đệm."
 
-#: includes/class-admin.php:1083
+#: includes/class-admin.php:1089
 msgid "Zinn® Cache: another object-cache drop-in is installed, so the Redis object cache is not managed by this plugin."
 msgstr "Zinn® Cache: một drop-in object-cache khác đã được cài đặt, do đó bộ nhớ đệm đối tượng Redis không được quản lý bởi tiện ích mở rộng này."
 
-#: includes/class-admin.php:1097
+#: includes/class-admin.php:1103
 msgid "detected"
 msgstr "Đã phát hiện"
 
-#: includes/class-admin.php:1098
+#: includes/class-admin.php:1104
 msgid "not detected"
 msgstr "Không phát hiện"
 
-#: includes/class-admin.php:1102
+#: includes/class-admin.php:1108
 msgid "phpredis extension missing"
 msgstr "Thiếu phần mở rộng phpredis"
 
-#: includes/class-admin.php:1104
+#: includes/class-admin.php:1110
 msgid "installed, not storing anything"
 msgstr "đã cài đặt, không lưu trữ gì"
 
-#: includes/class-admin.php:1106
+#: includes/class-admin.php:1112
 msgid "active, managed by your host"
 msgstr "đang hoạt động, được quản lý bởi máy chủ lưu trữ của bạn"
 
-#: includes/class-admin.php:1108
+#: includes/class-admin.php:1114
 msgid "active"
 msgstr "Đang hoạt động"
 
-#: includes/class-admin.php:1110
+#: includes/class-admin.php:1116
 msgid "inactive"
 msgstr "Không hoạt động"
 
-#: includes/class-admin.php:1115
+#: includes/class-admin.php:1121
 msgid "LiteSpeed cache:"
 msgstr "Bộ nhớ đệm LiteSpeed:"
 
-#: includes/class-admin.php:1117
+#: includes/class-admin.php:1123
 msgid "Redis object cache:"
 msgstr "Bộ nhớ đệm đối tượng Redis:"
 
@@ -961,10 +1023,6 @@ msgid "Recent purges"
 msgstr "Lần xóa gần đây"
 
 #: includes/class-status.php:221
-msgid "When"
-msgstr "Khi nào"
-
-#: includes/class-status.php:221
 msgid "Why"
 msgstr "Tại sao"
 
@@ -980,60 +1038,51 @@ msgstr "Kết quả"
 msgid "%d queued"
 msgstr "%d trong hàng đợi"
 
-#. translators: %s: how long ago.
-#. translators: placeholders are filled by the licensing SDK (names, versions, links); keep each one.
-#: includes/class-status.php:236
-#: includes/freemius-strings.php:2739
-#: includes/freemius-strings.php:2895
-#, php-format
-msgid "%s ago"
-msgstr "%s trước"
-
-#: includes/class-status.php:253
+#: includes/class-status.php:255
 #: includes/server/class-nginx.php:52
 msgid "nginx page cache"
 msgstr "Bộ nhớ đệm trang nginx"
 
-#: includes/class-status.php:255
+#: includes/class-status.php:257
 #: includes/server/class-apache.php:43
 msgid "Apache disk cache (mod_cache)"
 msgstr "Bộ nhớ đệm đĩa Apache (mod_cache)"
 
-#: includes/class-status.php:256
+#: includes/class-status.php:258
 msgid "LiteSpeed server cache"
 msgstr "Bộ nhớ đệm máy chủ LiteSpeed"
 
-#: includes/class-status.php:257
+#: includes/class-status.php:259
 msgid "No server page cache"
 msgstr "Không có bộ nhớ đệm trang máy chủ"
 
-#: includes/class-status.php:258
+#: includes/class-status.php:260
 msgid "Not known"
 msgstr "Không xác định"
 
 #. translators: %s: the server cache, e.g. "nginx page cache".
-#: includes/class-status.php:272
+#: includes/class-status.php:274
 #, php-format
 msgid "%s (Zinn® Cache purges it when content changes)"
 msgstr "%s (Zinn® Cache sẽ xóa khi nội dung thay đổi)"
 
-#: includes/class-status.php:275
+#: includes/class-status.php:277
 msgid "The LiteSpeed server cache"
 msgstr "Bộ nhớ đệm máy chủ LiteSpeed"
 
-#: includes/class-status.php:276
+#: includes/class-status.php:278
 msgid "Zinn® Cache’s disk page cache"
 msgstr "Bộ nhớ đệm trang đĩa của Zinn® Cache"
 
-#: includes/class-status.php:277
+#: includes/class-status.php:279
 msgid "The LiteSpeed Cache plugin"
 msgstr "Plugin LiteSpeed Cache"
 
-#: includes/class-status.php:278
+#: includes/class-status.php:280
 msgid "Nothing: the page cache is switched off"
 msgstr "Không có gì: bộ nhớ đệm trang đã bị tắt"
 
-#: includes/class-status.php:279
+#: includes/class-status.php:281
 msgid "Nothing yet: the disk page cache is not installed"
 msgstr "Chưa có gì: bộ nhớ đệm trang trên đĩa chưa được cài đặt"
 
@@ -1143,123 +1192,123 @@ msgstr "Xóa hàng này"
 msgid "Remove"
 msgstr "Xóa"
 
-#: includes/class-zinn-cache-admin-ui.php:280
-#: includes/class-zinn-cache-admin-ui.php:281
-#: includes/class-zinn-cache-admin-ui.php:421
+#: includes/class-zinn-cache-admin-ui.php:297
+#: includes/class-zinn-cache-admin-ui.php:298
+#: includes/class-zinn-cache-admin-ui.php:439
 msgid "Zinn Digital®"
 msgstr "Zinn Digital®"
 
-#: includes/class-zinn-cache-admin-ui.php:294
+#: includes/class-zinn-cache-admin-ui.php:311
 msgid "Zinn Digital® — overview"
 msgstr "Zinn Digital® — tổng quan"
 
-#: includes/class-zinn-cache-admin-ui.php:295
+#: includes/class-zinn-cache-admin-ui.php:312
 msgid "Overview"
 msgstr "Tổng quan"
 
-#: includes/class-zinn-cache-admin-ui.php:383
+#: includes/class-zinn-cache-admin-ui.php:400
 msgid "Copied"
 msgstr "Đã sao chép"
 
-#: includes/class-zinn-cache-admin-ui.php:422
+#: includes/class-zinn-cache-admin-ui.php:440
 msgid "Every Zinn® plugin on this site, and whether it is working."
 msgstr "Mọi plugin Zinn® trên trang này, và liệu nó có đang hoạt động hay không."
 
-#: includes/class-zinn-cache-admin-ui.php:437
+#: includes/class-zinn-cache-admin-ui.php:455
 msgid "No connection is needed for this plugin."
 msgstr "Không cần kết nối cho plugin này."
 
-#: includes/class-zinn-cache-admin-ui.php:442
+#: includes/class-zinn-cache-admin-ui.php:460
 msgid "Open settings"
 msgstr "Mở cài đặt"
 
-#: includes/class-zinn-cache-admin-ui.php:770
-#: includes/class-zinn-cache-admin-ui.php:1331
+#: includes/class-zinn-cache-admin-ui.php:788
+#: includes/class-zinn-cache-admin-ui.php:1426
 msgid "You do not have permission to change these settings."
 msgstr "Bạn không có quyền thay đổi các cài đặt này."
 
-#: includes/class-zinn-cache-admin-ui.php:799
+#: includes/class-zinn-cache-admin-ui.php:817
 msgid "Settings sections"
 msgstr "Các phần cài đặt"
 
-#: includes/class-zinn-cache-admin-ui.php:871
+#: includes/class-zinn-cache-admin-ui.php:889
 #: includes/freemius-strings.php:2415
 #: includes/freemius-strings.php:5285
 msgid "Support"
 msgstr "Hỗ trợ"
 
-#: includes/class-zinn-cache-admin-ui.php:929
+#: includes/class-zinn-cache-admin-ui.php:955
 msgid "Save changes"
 msgstr "Lưu thay đổi"
 
-#: includes/class-zinn-cache-admin-ui.php:958
+#: includes/class-zinn-cache-admin-ui.php:984
 msgid "Tools"
 msgstr "Công cụ"
 
-#: includes/class-zinn-cache-admin-ui.php:973
+#: includes/class-zinn-cache-admin-ui.php:999
 msgid "Export settings"
 msgstr "Xuất cài đặt"
 
-#: includes/class-zinn-cache-admin-ui.php:976
+#: includes/class-zinn-cache-admin-ui.php:1002
 msgid "Reset to defaults"
 msgstr "Đặt lại về mặc định"
 
-#: includes/class-zinn-cache-admin-ui.php:977
+#: includes/class-zinn-cache-admin-ui.php:1003
 msgid "This puts every setting on this plugin back to its default. Continue?"
 msgstr "Thao tác này sẽ đặt lại mọi cài đặt của tiện ích mở rộng này về mặc định. Tiếp tục?"
 
-#: includes/class-zinn-cache-admin-ui.php:984
+#: includes/class-zinn-cache-admin-ui.php:1010
 msgid "Diagnostics for support"
 msgstr "Chẩn đoán hỗ trợ"
 
-#: includes/class-zinn-cache-admin-ui.php:993
+#: includes/class-zinn-cache-admin-ui.php:1019
 msgid "Import a settings file"
 msgstr "Nhập tệp cài đặt"
 
-#: includes/class-zinn-cache-admin-ui.php:995
+#: includes/class-zinn-cache-admin-ui.php:1021
 msgid "Import"
 msgstr "Nhập"
 
-#: includes/class-zinn-cache-admin-ui.php:997
+#: includes/class-zinn-cache-admin-ui.php:1023
 msgid "Exported files never contain passwords, tokens or API keys — you will need to enter those again on the new site."
 msgstr "Các tệp được xuất không bao giờ chứa mật khẩu, mã thông báo hoặc khóa API — bạn sẽ cần phải nhập lại chúng trên trang web mới."
 
-#: includes/class-zinn-cache-admin-ui.php:1096
+#: includes/class-zinn-cache-admin-ui.php:1076
 msgid "Settings saved."
 msgstr "Đã lưu cài đặt."
 
-#: includes/class-zinn-cache-admin-ui.php:1143
+#: includes/class-zinn-cache-admin-ui.php:1238
 msgid "Every setting on this plugin is back to its default."
 msgstr "Mọi cài đặt trên plugin này đã được khôi phục về mặc định."
 
-#: includes/class-zinn-cache-admin-ui.php:1186
+#: includes/class-zinn-cache-admin-ui.php:1281
 msgid "Done."
 msgstr "Đã xong."
 
-#: includes/class-zinn-cache-admin-ui.php:1190
+#: includes/class-zinn-cache-admin-ui.php:1285
 msgid "That action is not available."
 msgstr "Hành động đó không khả dụng."
 
-#: includes/class-zinn-cache-admin-ui.php:1257
+#: includes/class-zinn-cache-admin-ui.php:1352
 msgid "That file could not be read. Choose a settings file exported from a Zinn® plugin."
 msgstr "Không thể đọc tệp đó. Hãy chọn một tệp cài đặt được xuất từ tiện ích mở rộng Zinn®."
 
-#: includes/class-zinn-cache-admin-ui.php:1265
+#: includes/class-zinn-cache-admin-ui.php:1360
 msgid "That file is too large to be a settings export."
 msgstr "Tệp đó quá lớn để có thể là tệp xuất cài đặt."
 
-#: includes/class-zinn-cache-admin-ui.php:1278
+#: includes/class-zinn-cache-admin-ui.php:1373
 msgid "That file is not a Zinn® settings export."
 msgstr "Tệp đó không phải là bản xuất cài đặt của Zinn®."
 
 #. translators: %s: the plugin slug the file was exported from.
-#: includes/class-zinn-cache-admin-ui.php:1286
+#: includes/class-zinn-cache-admin-ui.php:1381
 #, php-format
 msgid "That file was exported from a different plugin (%s), so importing it here would store settings this plugin does not understand."
 msgstr "Tệp đó đã được xuất từ một gói mở rộng khác (%s), vì vậy việc nhập tệp vào đây sẽ lưu các cài đặt mà gói mở rộng này không hiểu."
 
 #. translators: %d: how many settings were imported.
-#: includes/class-zinn-cache-admin-ui.php:1316
+#: includes/class-zinn-cache-admin-ui.php:1411
 #, php-format
 msgid "%d setting imported. Passwords and API keys are never in an export, so enter those again."
 msgid_plural "%d settings imported. Passwords and API keys are never in an export, so enter those again."
@@ -5665,20 +5714,20 @@ msgid "Returns the diagnostics report support asks for: versions, server limits,
 msgstr "Trả về báo cáo chẩn đoán mà bộ phận hỗ trợ yêu cầu: các phiên bản, giới hạn máy chủ, trạng thái bộ nhớ đệm và các lỗi gần đây. Báo cáo không chứa bất kỳ mật khẩu hoặc khóa nào."
 
 #: includes/mcp/class-rest-map.php:37
+msgid "Detect the caches in front of the site"
+msgstr "Phát hiện các bộ nhớ đệm phía trước trang web"
+
+#: includes/mcp/class-rest-map.php:38
+msgid "Requests the home page as a visitor would and stores which caches answered. With sample: true it also requests the newest pages twice and counts how often each layer served them from its cache."
+msgstr "Yêu cầu trang chủ như cách khách truy cập thực hiện và lưu lại bộ nhớ đệm nào đã phản hồi. Với sample: true, nó cũng yêu cầu các trang mới nhất hai lần và đếm tần suất mỗi lớp phân phát chúng từ bộ nhớ đệm của chính nó."
+
+#: includes/mcp/class-rest-map.php:46
 msgid "Purge the cache"
 msgstr "Xóa bộ nhớ đệm"
 
-#: includes/mcp/class-rest-map.php:38
+#: includes/mcp/class-rest-map.php:47
 msgid "Discards cached pages: everything (all: true), some addresses (urls) or everything tagged (tags). Pages are rebuilt as visitors arrive."
 msgstr "Hủy bỏ các trang đã lưu trong bộ nhớ đệm: tất cả (all: true), một số địa chỉ (urls) hoặc mọi thứ được gắn thẻ (tags). Các trang sẽ được tạo lại khi có khách truy cập."
-
-#: includes/mcp/class-rest-map.php:46
-msgid "Read what is caching the site"
-msgstr "Đọc những gì đang lưu vào bộ nhớ tạm của trang web"
-
-#: includes/mcp/class-rest-map.php:47
-msgid "Returns which cache serves pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the plugin's disk cache), what the last detection saw, each layer's size where WordPress can read it, the purge queue, the paced refresh and the recent purges."
-msgstr "Trả về bộ nhớ đệm nào phân phối các trang (LiteSpeed, nginx, Varnish, Apache, Cloudflare hoặc bộ nhớ đệm trên đĩa của tiện ích mở rộng), kết quả phát hiện gần đây nhất, kích thước của từng lớp nơi WordPress có thể đọc được, hàng đợi làm sạch, quá trình làm mới có điều tiết và các lần làm sạch gần đây."
 
 #: includes/mcp/class-rest-map.php:55
 msgid "Purge some addresses on every cache layer"
@@ -5689,20 +5738,20 @@ msgid "Removes these addresses (paths such as /about/ or full addresses on this 
 msgstr "Xóa các địa chỉ này (các đường dẫn như /about/ hoặc địa chỉ đầy đủ trên trang web này) khỏi bộ nhớ đệm đĩa, bộ nhớ đệm máy chủ và Cloudflare cùng một lúc, đồng thời cho biết phản hồi của từng lớp."
 
 #: includes/mcp/class-rest-map.php:64
-msgid "Detect the caches in front of the site"
-msgstr "Phát hiện các bộ nhớ đệm phía trước trang web"
-
-#: includes/mcp/class-rest-map.php:65
-msgid "Requests the home page as a visitor would and stores which caches answered. With sample: true it also requests the newest pages twice and counts how often each layer served them from its cache."
-msgstr "Yêu cầu trang chủ như cách khách truy cập thực hiện và lưu lại bộ nhớ đệm nào đã phản hồi. Với sample: true, nó cũng yêu cầu các trang mới nhất hai lần và đếm tần suất mỗi lớp phân phát chúng từ bộ nhớ đệm của chính nó."
-
-#: includes/mcp/class-rest-map.php:73
 msgid "Start or stop the paced refresh"
 msgstr "Bắt đầu hoặc dừng làm mới theo tiến độ"
 
-#: includes/mcp/class-rest-map.php:74
+#: includes/mcp/class-rest-map.php:65
 msgid "action: start refreshes every page a batch per minute (what updates do instead of emptying the cache); action: stop ends a running refresh."
 msgstr "action: start làm mới mỗi trang theo từng đợt mỗi phút (điều mà các bản cập nhật thực hiện thay vì xóa bộ nhớ đệm); action: stop chấm dứt quá trình làm mới đang chạy."
+
+#: includes/mcp/class-rest-map.php:73
+msgid "Read what is caching the site"
+msgstr "Đọc những gì đang lưu vào bộ nhớ tạm của trang web"
+
+#: includes/mcp/class-rest-map.php:74
+msgid "Returns which cache serves pages (LiteSpeed, nginx, Varnish, Apache, Cloudflare or the plugin's disk cache), what the last detection saw, each layer's size where WordPress can read it, the purge queue, the paced refresh and the recent purges."
+msgstr "Trả về bộ nhớ đệm nào phân phối các trang (LiteSpeed, nginx, Varnish, Apache, Cloudflare hoặc bộ nhớ đệm trên đĩa của tiện ích mở rộng), kết quả phát hiện gần đây nhất, kích thước của từng lớp nơi WordPress có thể đọc được, hàng đợi làm sạch, quá trình làm mới có điều tiết và các lần làm sạch gần đây."
 
 #: includes/server/class-apache.php:69
 #: includes/server/class-apache.php:97

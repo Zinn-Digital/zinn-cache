@@ -160,6 +160,12 @@ final class Admin {
 				'option'     => Settings::OPTION,
 				'position'   => 50,
 				'connection' => array( __CLASS__, 'status' ),
+				// Settings save as they are changed (Hummingbird 4.0 parity, MASTER-LIST 1104#37).
+				'autosave'   => array(
+					'saving' => __( 'Saving…', 'zinn-cache' ),
+					'saved'  => __( 'All changes saved.', 'zinn-cache' ),
+					'failed' => __( 'Could not save: use Save changes.', 'zinn-cache' ),
+				),
 				'tabs'       => array(
 					'status'     => array(
 						'title'  => __( 'Status', 'zinn-cache' ),
