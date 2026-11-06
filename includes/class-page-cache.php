@@ -49,7 +49,7 @@ final class Page_Cache {
 	/**
 	 * Tracking query keys that never change a page, so a URL carrying only these is still cacheable.
 	 */
-	public const IGNORED_QUERY_KEYS = array( 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', 'twclid', '_ga', 'mc_cid', 'mc_eid' );
+	public const IGNORED_QUERY_KEYS = array( 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gclsrc', 'gbraid', 'wbraid', 'gad_source', 'gad_campaignid', 'dclid', 'fbclid', 'msclkid', 'twclid', '_ga', 'mc_cid', 'mc_eid' );
 
 	/**
 	 * The cache root.
@@ -423,7 +423,10 @@ final class Page_Cache {
 	private static function config_matches( array $settings ): bool {
 		$config = include self::root() . '/config.php';
 		return is_array( $config ) && ! empty( $config['enabled'] ) === ! empty( $settings['lscache_enabled'] )
-			&& ( $config['exclusions_file'] ?? '' ) === ZINN_CACHE_DIR . 'includes/class-exclusions.php';
+			&& ( $config['exclusions_file'] ?? '' ) === ZINN_CACHE_DIR . 'includes/class-exclusions.php'
+			// A release that adds a tracking key (1.11.5: Google Ads' gbraid, wbraid, gad_*) must
+			// reach a config written by an older one, or those visits keep missing the cache.
+			&& ( $config['ignored'] ?? null ) === self::IGNORED_QUERY_KEYS;
 	}
 
 	/**
