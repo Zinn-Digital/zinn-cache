@@ -108,6 +108,14 @@ final class Plugin {
 
 		$purger = new Purge_Controller( $lscache, $settings );
 		$purger->register();
+		// The toolbar purge menu (desktop and phones): registered outside is_admin() because its
+		// admin-post handler and front-end "Purge this page" link need it on every request.
+		if ( class_exists( Admin_Bar::class ) ) {
+			( new Admin_Bar(
+				array( $purger, 'purge_everything' ),
+				static fn( array $urls ): array => $purger->purge_urls_now( $urls, 'manual' )
+			) )->register();
+		}
 		// ⛔ `class_exists` (autoloads): a site that receives this file before `class-seo-purge.php`
 		// (a partial copy, a mixed-version install) must keep serving pages, not die at bootstrap.
 		// A fatal here broke WordPress installs on the fleet (Zinn Cache 1.10.0, 2026-10-11).
