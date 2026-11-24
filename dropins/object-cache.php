@@ -292,8 +292,11 @@ class WP_Object_Cache {
 				return;
 			}
 			require_once $spec['file'];
-			if ( class_exists( 'Zinn_Cache_Pro_Object_Cache_Extension', false ) ) {
-				$this->ext = new Zinn_Cache_Pro_Object_Cache_Extension( $this, (array) ( $spec['config'] ?? array() ) );
+			// A generic extension point: the spec names the class its file defines, so this drop-in
+			// knows no add-on by name (WordPress.org guideline 5).
+			$class = is_string( $spec['class'] ?? null ) ? $spec['class'] : '';
+			if ( 1 === preg_match( '/^[A-Za-z_][A-Za-z0-9_]*$/', $class ) && class_exists( $class, false ) && method_exists( $class, 'request_end' ) ) {
+				$this->ext = new $class( $this, (array) ( $spec['config'] ?? array() ) );
 				register_shutdown_function( array( $this->ext, 'request_end' ) );
 			}
 		} catch ( \Throwable $e ) {
