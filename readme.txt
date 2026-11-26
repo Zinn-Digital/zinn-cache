@@ -7,7 +7,7 @@ Tags: cache, page cache, nginx, varnish, redis
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.12.3
+Stable tag: 1.12.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,18 @@ Everything above is free and stays free. [Zinn® Cache Pro](https://zinndigital.
 
 Pro costs $49 a year for one site, $99 for five sites and $199 for unlimited sites, and every plan starts with a 14-day free trial, no card needed. Start it from the Pro tab of the Zinn® Cache screen.
 
+= Compatibility =
+
+* Works with most well-built WordPress themes and plugins.
+
+= Zinn® Pro Membership =
+
+Everything described above is free and stays free. If you want more, one Zinn® Pro Membership gives you the Pro versions of Page Builder Sandwich, Tranzly™, Zinn® SEO, Zinn® Cache and Zinn® Backups, and every Pro plugin we release next, from $149 a year: https://zinndigital.com/pro-membership
+
+= Free support, 24/7 =
+
+Help is free for everyone, free and Pro alike, around the clock. Ask on this plugin's wordpress.org support forum or at https://zinndigital.com/contact and Zinn Digital® answers.
+
 = Source code =
 
 The complete source is public at https://github.com/Zinn-Digital/zinn-cache
@@ -80,10 +92,9 @@ The Status tab's **Check now** button, and a daily check, request a few of this 
 
 = AI apps you connect (MCP sign-in) =
 
-Only when an AI app such as Claude or ChatGPT starts connecting to the site's MCP server does the site fetch that app's public OAuth client metadata from the address the app gives, for example `https://claude.ai/oauth/mcp-oauth-client-metadata` or `https://chatgpt.com/oauth/client.json`. No site content is sent.
+Only when an AI app such as Claude starts connecting to the site's MCP server does the site fetch that app's public OAuth client metadata from the address the app gives, for example `https://claude.ai/oauth/mcp-oauth-client-metadata` for Claude. Another AI app is reached only at the address that app gives, under its own terms and privacy policy. No site content is sent.
 
 * Claude: terms https://www.anthropic.com/legal/consumer-terms, privacy policy https://www.anthropic.com/legal/privacy
-* ChatGPT: terms https://openai.com/policies/terms-of-use/, privacy policy https://openai.com/policies/privacy-policy/
 
 This plugin can connect your site to Zinn Digital® (the hosting platform it is built for) so that
 cache purges can be mirrored to it and the Zinn® dashboard can show what changed on the site.
@@ -227,6 +238,9 @@ With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache
 
 == Changelog ==
 
+= 1.12.4 =
+* Improved the plugin description: free 24/7 support for everyone, the Zinn® Pro Membership, and clearer English (UK) text.
+
 = 1.12.3 =
 * WordPress.org review fixes: nothing is written into or removed from the must-use, plugins or themes folders by free code without your action, add-ons hook in through actions, and translated text is filtered for every role.
 
@@ -246,7 +260,7 @@ With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache
 * Shows the Zinn® Pro Membership offer in the plugin's Zinn® panel.
 
 = 1.11.6 =
-* The AI agents (MCP) panel now says to add the connection address as a custom MCP server in ChatGPT; developer mode is no longer needed.
+* The AI agents (MCP) panel now says to add the connection address as a custom MCP server in your AI app; developer mode is no longer needed.
 
 = 1.11.5 =
 * Improved: visitors from Google Ads app and iOS campaigns (gbraid, wbraid, gad_source, gad_campaignid, gclsrc and dclid in the address) now get the cached page, as visits with gclid or utm_ tags already did. A site already running the page cache picks up the new list by itself. To keep such visits out of the cache instead, add the key to the excluded Query parameters.
@@ -283,7 +297,7 @@ With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache
 * AI agents (MCP): this plugin's tools now always appear to your AI app, even when another Zinn® plugin on the same site is an older version.
 
 = 1.10.7 =
-* More dependable AI app sign-in (MCP): Claude, ChatGPT and other AI apps connect to your site the same way whether a visitor, a scheduled task or a WP-CLI command started WordPress.
+* More dependable AI app sign-in (MCP): Claude and other AI apps connect to your site the same way whether a visitor, a scheduled task or a WP-CLI command started WordPress.
 
 = 1.10.6 =
 * Faster and lighter on servers: WP-CLI commands, scheduled tasks and AI agents (MCP) on your site now start with less memory, so they keep working beside large plugins such as WooCommerce.
@@ -328,7 +342,7 @@ With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache
 * Saving a draft, pending or scheduled post no longer empties the cache of your home page and archives; unpublishing a post still clears its pages.
 
 = 1.9.8 =
-* AI apps (Claude, ChatGPT) can now sign in with OAuth on a site where this is the only Zinn® plugin with an AI-agent server; the sign-in did not start there.
+* AI apps such as Claude can now sign in with OAuth on a site where this is the only Zinn® plugin with an AI-agent server; the sign-in did not start there.
 
 = 1.9.7 =
 * MCP tools for AI connector directories: tool descriptions state only what each tool does (no references to other tools); every tool that takes input declares it; list results reach MCP clients as objects.
@@ -352,7 +366,7 @@ With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache
 * Security: the AI-app sign-in (MCP OAuth) checks a client's metadata address more strictly before fetching it (a public web address only, a limit per address, and a refused address remembered).
 
 = 1.9.0 =
-* AI apps such as Claude and ChatGPT can connect by signing in (OAuth 2.1) — no application password needed; every MCP tool declares whether it is read-only or destructive.
+* AI apps such as Claude can connect by signing in (OAuth 2.1) — no application password needed; every MCP tool declares whether it is read-only or destructive.
 
 = 1.8.4 =
 * Every bundled translation is redone with the current Google model: each locale in its own script (Serbian in Cyrillic), in the register its WordPress translation team uses, with the original spacing, placeholders and entities preserved.
