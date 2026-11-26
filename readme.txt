@@ -7,7 +7,7 @@ Tags: cache, page cache, nginx, varnish, redis
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.12.4
+Stable tag: 1.12.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -237,6 +237,9 @@ The object cache is optional. If the phpredis extension is missing the toggle is
 With WP-CLI: `wp zinn-cache purge all` empties every cached page, `wp zinn-cache purge url https://example.com/pricing/` (or just `/pricing/`) empties those pages, and `wp zinn-cache purge post 42` empties a post's page and the lists it appears on. Each prints how many stored pages it removed. On a LiteSpeed server the purge is sent to the server with the next request, which the command makes itself.
 
 == Changelog ==
+
+= 1.12.5 =
+* Readme description trimmed under the WordPress.org word limit.
 
 = 1.12.4 =
 * Improved the plugin description: free 24/7 support for everyone, the Zinn® Pro Membership, and clearer English (UK) text.
